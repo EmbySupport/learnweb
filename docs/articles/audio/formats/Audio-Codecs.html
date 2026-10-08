@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Audio Codecs Explained | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Audio Codecs Explained | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <link rel="stylesheet" href="../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    <meta property="docfx:uid" content="Audio-Codecs">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+    <script type="text/javascript" src="../../../nav.js"></script>
+    <script type="text/javascript" src="../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Audio-Codecs">
+<h1>Audio Codecs Explained</h1>
+
+
+<p>A codec answers a practical question: <strong>what must the player understand to turn this track into sound?</strong> A media file can contain perfectly usable video while its soundtrack needs a decoder the client does not have.</p>
+<p>The name can refer to an encoded format or to software that implements it. Two AAC encoders may make different quality choices while producing tracks that the same AAC decoder can play.</p>
+<h2 id="three-descriptions-to-keep-separate">Three descriptions to keep separate</h2>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Example</th>
+<th>What it identifies</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Container</td>
+<td>M4A or Matroska</td>
+<td>How tracks, timing, and tags are stored</td>
+</tr>
+<tr>
+<td>Audio codec</td>
+<td>AAC or FLAC</td>
+<td>How the audio data is represented</td>
+</tr>
+<tr>
+<td>Decoder implementation</td>
+<td>A player or system decoder</td>
+<td>The component that reconstructs sound</td>
+</tr>
+</tbody>
+</table>
+<p>A container extension alone cannot settle codec compatibility. An M4A file, for example, can contain <a href="lossy/aac-family/AAC-LC.html">AAC</a> or <a href="lossless/ALAC.html">Apple Lossless</a>. The same extension can therefore describe two quite different audio streams.</p>
+<h2 id="compression-and-playback-are-different-decisions">Compression and playback are different decisions</h2>
+<p><a href="lossy/Audio-Lossy-Compression.html">Lossy codecs</a> reduce data by allowing changes to the reconstructed signal. <a href="lossless/Audio-Lossless-Compression.html">Lossless codecs</a> preserve the encoded source samples exactly. <a href="LPCM.html">Linear PCM</a> stores sample values without audio compression.</p>
+<p>That distinction says little about which component decodes the track. A player can decode locally and send PCM to an amplifier, or pass a compatible encoded bitstream onward.</p>
+<p>When checking an Emby session, look at the codec, channel layout, and <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">delivery method</a> together. A client may accept a codec in stereo but require conversion for a multichannel presentation. A successful Direct Play session also does not establish that the receiver is receiving the original compressed format.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../media-files/fundamentals/Containers-and-Codecs.html" title="Containers and Codecs">Containers and Codecs</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../fundamentals/Audio-Bitrate.html" title="Audio Bitrate">Audio Bitrate</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../decoding-output/Audio-Playback-Path.html" title="The Audio Playback Path">The Audio Playback Path</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/medfound/choosinganaudiocodec" title="Microsoft: Choosing an audio codec">Microsoft: Choosing an audio codec</a></li>
+			            <li><a class="seealso-link" href="https://xiph.org/vorbis/faq/" title="Xiph.Org: Vorbis FAQ">Xiph.Org: Vorbis FAQ</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Audio-Codecs%0A*%20Title%3A%20Audio%20Codecs%20Explained%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

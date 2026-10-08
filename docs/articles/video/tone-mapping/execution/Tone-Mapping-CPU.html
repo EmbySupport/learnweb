@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>CPU Tone Mapping | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="CPU Tone Mapping | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Tone-Mapping-CPU">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tone-Mapping-CPU">
+<h1>CPU Tone Mapping</h1>
+
+
+<p>CPU tone mapping carries out the brightness conversion on the computer's general-purpose processor. It is still the same kind of picture operation as GPU tone mapping; the processor doing the calculations does not define the artistic result.</p>
+<p>For example, FFmpeg's software tonemap filter operates on floating-point RGB values in linear light. Other processing must interpret the incoming HDR signal and prepare the final output format. The tone curve is only one step in that conversion.</p>
+<h2 id="the-work-scales-with-the-pictures-not-just-the-bitrate">The work scales with the pictures, not just the bitrate</h2>
+<p>A frame contains pixels to process even when its compressed file is small. These simple counts show why resolution and frame rate matter:</p>
+<table>
+<thead>
+<tr>
+<th>Video size and rate</th>
+<th style="text-align: right;">Pixels per second, approximately</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1920 × 1080 at 24 fps</td>
+<td style="text-align: right;">50 million</td>
+</tr>
+<tr>
+<td>3840 × 2160 at 24 fps</td>
+<td style="text-align: right;">199 million</td>
+</tr>
+<tr>
+<td>3840 × 2160 at 60 fps</td>
+<td style="text-align: right;">498 million</td>
+</tr>
+</tbody>
+</table>
+<p><em>Pixel counts only, not a performance benchmark. Color conversion, decoding, encoding, and memory traffic add their own costs.</em></p>
+<p>Four times as many pixels does not guarantee exactly four times the processing time, but it does explain why a comfortable 1080p workload says little about 4K at a higher frame rate. Multiple simultaneous sessions add to the total.</p>
+<p>In an Emby transcoding session, CPU use may also come from decoding, subtitle rendering, audio conversion, or encoding. A high CPU reading alone does not identify tone mapping as the bottleneck. Likewise, an accelerated encoder does not prove that all preceding filters run on the GPU.</p>
+<p>Software processing can be useful when the required GPU path is unavailable or when the frames are already in system memory. Moving them to a GPU and back has a cost of its own. The <a class="xref" href="https://emby.media/support/articles/apps/windows/Emby-Windows-FAQ.html">Emby Windows FAQ</a> gives a concrete example of a player combining software decoding with GPU presentation.</p>
+<p>Compare <a href="Tone-Mapping-Playback-Path.html">the whole playback path</a>, including whether it keeps up with the source frame rate. The labels CPU and GPU are execution choices, not quality ratings.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Tone-Mapping-Playback-Path.html" title="Where Tone Mapping Happens in an Emby Playback Session">Where Tone Mapping Happens in an Emby Playback Session</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="gpu/Tone-Mapping-OpenCL.html" title="OpenCL Tone Mapping">OpenCL Tone Mapping</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="gpu/Tone-Mapping-CUDA.html" title="CUDA Tone Mapping">CUDA Tone Mapping</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://github.com/FFmpeg/FFmpeg/blob/n8.1/libavfilter/vf_tonemap.c" title="FFmpeg 8.1: software tone-mapping implementation">FFmpeg 8.1: software tone-mapping implementation</a></li>
+			            <li><a class="seealso-link" href="https://github.com/FFmpeg/FFmpeg/blob/n8.1/doc/filters.texi" title="FFmpeg 8.1: filter documentation">FFmpeg 8.1: filter documentation</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Tone-Mapping-CPU%0A*%20Title%3A%20CPU%20Tone%20Mapping%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

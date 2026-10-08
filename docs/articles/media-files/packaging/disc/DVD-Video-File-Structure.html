@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>DVD-Video File Structure | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="DVD-Video File Structure | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="DVD-Video-File-Structure">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="DVD-Video-File-Structure">
+<h1>DVD-Video File Structure</h1>
+
+
+<p>A DVD-Video folder is a presentation made from several related files, rather than a directory of independent movies. Its <strong>VIDEO_TS</strong> structure keeps encoded media and the navigation needed to interpret it.</p>
+<p>The filesystem and the DVD-Video application rules are different layers. A correctly copied directory preserves file relationships; the player still needs to interpret the disc's title and navigation information.</p>
+<table>
+<thead>
+<tr>
+<th>File type in VIDEO_TS</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.VOB</td>
+<td>Video objects containing multiplexed picture, sound, subtitles, and navigation data</td>
+</tr>
+<tr>
+<td>.IFO</td>
+<td>Descriptions of title sets, programme chains, chapters, and playback choices</td>
+</tr>
+<tr>
+<td>.BUP</td>
+<td>Backup copies of IFO information</td>
+</tr>
+</tbody>
+</table>
+<p>A title's media is often split across numbered VOB files. Those boundaries are storage divisions, not necessarily chapter or scene boundaries.</p>
+<h2 id="follow-the-title-not-just-the-filenames">Follow the title, not just the filenames</h2>
+<p>DVD navigation can select and order cells within the video objects. Menus, alternative angles, or different cuts can make the intended sequence more complicated than playing every VOB in directory order.</p>
+<p>An isolated VOB uses <a href="../../containers/mpeg-systems/MPEG-Program-Stream.html">program-stream</a> packaging and may open in a general media reader. That does not establish that it represents the complete feature or follows the same path as a DVD-aware reader.</p>
+<p>For a collection used with Emby, distinguish a complete DVD folder or <a href="Disc-Images-ISO.html">image</a> from a single movie file. Disc navigation support and the available playback path depend on the app and platform; follow the <a class="xref" href="https://emby.media/support/articles/Movie-Naming.html">movie organization guidance</a> for the library layout.</p>
+<p>If creating one self-contained movie from a disc presentation, choose the intended title and verify its full sequence, selected audio, subtitles, and chapters. Repackaging its encoded streams can avoid recompression, but it still requires resolving the disc structure correctly. The largest file or the first numbered title is only a clue, not proof of the main feature.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../containers/mpeg-systems/MPEG-Program-Stream.html" title="MPEG Program Stream">MPEG Program Stream</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Disc-Images-ISO.html" title="Disc Images: ISO Files">Disc Images: ISO Files</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../container-structure/timing-and-navigation/Media-Chapter-Markers.html" title="Chapter Markers">Chapter Markers</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://ecma-international.org/publications-and-standards/technical-reports/ecma-tr-71/" title="ECMA TR/71: DVD read-only disk file system specifications">ECMA TR/71: DVD read-only disk file system specifications</a></li>
+			            <li><a class="seealso-link" href="https://www.dvdfllc.co.jp/format/f_bconst.html" title="DVD Format/Logo Licensing Corporation: DVD format book catalogue">DVD Format/Logo Licensing Corporation: DVD format book catalogue</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-formats.html" title="FFmpeg: format documentation">FFmpeg: format documentation</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20DVD-Video-File-Structure%0A*%20Title%3A%20DVD-Video%20File%20Structure%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

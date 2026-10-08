@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Monkey's Audio (APE) | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Monkey's Audio (APE) | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Monkeys-Audio-APE">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Monkeys-Audio-APE">
+<h1>Monkey's Audio (APE)</h1>
+
+
+<p><strong>Monkey's Audio compresses audio without losing the source data.</strong> Its familiar file extension is APE. Different compression levels change the balance between compression and processing effort; they do not select different decoded audio quality.</p>
+<table>
+<thead>
+<tr>
+<th>Choice</th>
+<th>What changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Faster compression setting</td>
+<td>Usually less encoding effort and a larger result</td>
+</tr>
+<tr>
+<td>Stronger compression setting</td>
+<td>More processing effort to reduce size</td>
+</tr>
+<tr>
+<td>Verification mode</td>
+<td>Checks an APE file's integrity</td>
+</tr>
+<tr>
+<td>Conversion to another compatible lossless codec</td>
+<td>Changes the representation while preserving the audio</td>
+</tr>
+</tbody>
+</table>
+<p>The codec uses prediction and compact coding of the remaining information. The project's SDK and source code are the implementation reference for decoding, encoding, and related file handling.</p>
+<h2 id="an-album-can-still-be-one-audio-stream">An album can still be one audio stream</h2>
+<p>APE collections sometimes use a single album file with a <a href="../../../media-files/playlists-and-references/Media-CUE-Sheets.html">CUE sheet</a> describing track boundaries. The CUE sheet does not contain the music and is not part of the compression algorithm. Keeping it associated with the audio can matter when moving such a collection.</p>
+<p>APE tags are another separate detail: they describe metadata and can also occur outside Monkey's Audio files. A tag-format name is not sufficient to identify the soundtrack's codec.</p>
+<p>When an Emby client needs a converted version, a supported lossless conversion can preserve the decoded PCM, while a lossy delivery version introduces its own tradeoff. A smaller APE file than a FLAC made from the same samples does not imply better sound; successful lossless decoding returns the same audio.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Audio-Lossless-Compression.html" title="Lossless Audio Compression">Lossless Audio Compression</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="FLAC.html" title="FLAC Audio">FLAC Audio</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="WavPack.html" title="WavPack Audio">WavPack Audio</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../media-files/playlists-and-references/Media-CUE-Sheets.html" title="CUE Sheets">CUE Sheets</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.monkeysaudio.com/developers.html" title="Monkey's Audio: SDK and source code">Monkey's Audio: SDK and source code</a></li>
+			            <li><a class="seealso-link" href="https://monkeysaudio.com/help.html" title="Monkey's Audio: Help and verification">Monkey's Audio: Help and verification</a></li>
+			            <li><a class="seealso-link" href="https://www.monkeysaudio.com/theory.html" title="Monkey's Audio: Lossless compression theory">Monkey's Audio: Lossless compression theory</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Monkeys-Audio-APE%0A*%20Title%3A%20Monkey's%20Audio%20(APE)%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

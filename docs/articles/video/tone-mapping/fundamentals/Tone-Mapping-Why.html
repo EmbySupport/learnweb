@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Why Tone Mapping Is Needed | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Why Tone Mapping Is Needed | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Tone-Mapping-Why">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tone-Mapping-Why">
+<h1>Why Tone Mapping Is Needed</h1>
+
+
+<p>An HDR film can contain a bright reflection on a car alongside a face in shadow. An SDR screen cannot reproduce the same range of light. <strong>Tone mapping fits that range into the available output</strong>, deciding how much room to give the face, the reflection, and everything between them.</p>
+<p>Simply cutting off everything above the screen's limit loses differences between bright objects. Darkening the entire picture can fit the highlights, but make the rest unnecessarily dim. A tone-mapping curve makes a more selective compromise.</p>
+<p>For scale, an SDR reference viewing setup uses a peak of 100 nits, while an HDR highlight might reach 1,000 nits. A nit is a unit of luminance (one candela per square metre). Dividing every light level by ten would fit that example, but would also turn a 100-nit object into a 10-nit one.</p>
+<h2 id="why-changing-the-playback-quality-is-not-enough">Why changing the playback quality is not enough</h2>
+<table>
+<thead>
+<tr>
+<th>Change</th>
+<th>What it changes</th>
+<th>Does it solve the brightness mismatch?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lower the resolution</td>
+<td>The number of pixels</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Reduce the bitrate</td>
+<td>The amount of compressed data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Relabel HDR as SDR</td>
+<td>How a player interprets the signal</td>
+<td>No; the picture values still need conversion</td>
+</tr>
+<tr>
+<td>Tone-map the picture</td>
+<td>The relationship between input and output brightness</td>
+<td>Yes, as part of a correctly configured conversion</td>
+</tr>
+</tbody>
+</table>
+<p>Tone mapping is one part of <a href="Tone-Mapping-HDR-to-SDR.html">HDR-to-SDR conversion</a>. Color also needs appropriate handling; fixing brightness alone does not guarantee correct color.</p>
+<h2 id="where-emby-fits">Where Emby fits</h2>
+<p>The work can happen at different points in a playback session. Emby Server can tone-map during video transcoding. A player can also do it locally: the <a class="xref" href="https://emby.media/support/articles/apps/windows/Emby-Windows-FAQ.html">Emby Windows FAQ</a> describes tone mapping in the app's rendering stage.</p>
+<p>That is why the server's <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">playback method</a> and the final appearance are separate questions. Direct Play describes delivery from the server; it does not mean the player or display leaves the picture untouched.</p>
+<p>Different mappings can retain different amounts of highlight contrast or change the apparent brightness of faces. They cannot reproduce all the original HDR brightness on an SDR screen, or guarantee the same result as a separately graded SDR release.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Tone-Mapping-HDR-to-SDR.html" title="How HDR-to-SDR Tone Mapping Works">How HDR-to-SDR Tone Mapping Works</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../curves/Tone-Mapping-Curves.html" title="What a Tone-Mapping Curve Controls">What a Tone-Mapping Curve Controls</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.itu.int/rec/R-REC-BT.2100/en" title="ITU-R BT.2100: HDR television image parameters">ITU-R BT.2100: HDR television image parameters</a></li>
+			            <li><a class="seealso-link" href="https://www.itu.int/pub/R-REP-BT.2446-1-2021" title="ITU-R BT.2446-1: Conversion between HDR and SDR">ITU-R BT.2446-1: Conversion between HDR and SDR</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Tone-Mapping-Why%0A*%20Title%3A%20Why%20Tone%20Mapping%20Is%20Needed%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

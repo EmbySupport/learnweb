@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Fallback to an Embedded Audio Core | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Fallback to an Embedded Audio Core | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Embedded-Audio-Core-Fallback">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Embedded-Audio-Core-Fallback">
+<h1>Fallback to an Embedded Audio Core</h1>
+
+
+<p>An <strong>embedded core</strong> is an existing compatible part of an audio stream that a less capable decoder can use. Falling back to it can keep sound playing without re-encoding the full presentation.</p>
+<p>The common example is a DTS-HD disc soundtrack containing a <a href="../../formats/lossy/DTS-Core.html">DTS core</a>. A core-only decoder uses the lossy compatible presentation; a full decoder can also use extension information.</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Where the fallback audio comes from</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Embedded core fallback</td>
+<td>An already encoded component inside the stream</td>
+</tr>
+<tr>
+<td>Selecting another audio track</td>
+<td>A separately stored presentation</td>
+</tr>
+<tr>
+<td>Audio transcoding</td>
+<td>A new encoding made from decoded audio</td>
+</tr>
+</tbody>
+</table>
+<p>These operations can produce similar receiver labels while having different origins.</p>
+<h2 id="a-core-does-not-preserve-every-enhancement">A core does not preserve every enhancement</h2>
+<p>A DTS core from a Master Audio track is not the lossless Master Audio result. It can also lack additional channels or immersive information available through the full presentation. The benefit is compatibility without another encoding generation, not preservation of all source features.</p>
+<p>Do not assume that every DTS-HD stream has a core: the format also allows extension-only arrangements.</p>
+<p>The Dolby case is different. <a href="../../formats/lossless/Dolby-TrueHD.html">TrueHD</a> may be accompanied by an AC-3 fallback in disc packaging, but TrueHD itself does not contain a DTS-style lossy AC-3 core. E-AC-3 independent substreams are also not automatically AC-3 components.</p>
+<p>In an Emby session, confirm what the file actually contains and what was delivered. If a core is selected or extracted, compare that result with the full source presentation. If the server creates another codec, that is <a href="Audio-Transcoding.html">transcoding</a>, even if the new track happens to use the same familiar codec name as a typical fallback.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../formats/lossy/DTS-Core.html" title="DTS Core Audio">DTS Core Audio</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../formats/lossless/DTS-HD-Master-Audio.html" title="DTS-HD Master Audio">DTS-HD Master Audio</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../formats/lossless/Dolby-TrueHD.html" title="Dolby TrueHD Audio">Dolby TrueHD Audio</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Audio-Transcoding.html" title="Audio Transcoding">Audio Transcoding</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.etsi.org/deliver/etsi_ts/102100_102199/102114/01.06.01_60/ts_102114v010601p.pdf" title="ETSI TS 102 114 V1.6.1: DTS Coherent Acoustics core and extensions">ETSI TS 102 114 V1.6.1: DTS Coherent Acoustics core and extensions</a></li>
+			            <li><a class="seealso-link" href="https://consumer.dts.com/production-tools/" title="DTS: Production tools and backwards compatibility">DTS: Production tools and backwards compatibility</a></li>
+			            <li><a class="seealso-link" href="https://professional.dolby.com/tv/dolby-truehd" title="Dolby: TrueHD lossless audio">Dolby: TrueHD lossless audio</a></li>
+			            <li><a class="seealso-link" href="https://professional.dolby.com/globalassets/dolby-digital-plus/dolby-digital-plus-audio-coding-tech-paper.pdf" title="Dolby: Dolby Digital Plus audio coding">Dolby: Dolby Digital Plus audio coding</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Embedded-Audio-Core-Fallback%0A*%20Title%3A%20Fallback%20to%20an%20Embedded%20Audio%20Core%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

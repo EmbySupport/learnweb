@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Tone Mapping Curve: Hable | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Tone Mapping Curve: Hable | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../../toc.html">
+    <meta property="docfx:uid" content="Tone-Mapping-Algorithm-Hable">
+    
+    <meta property="docfx:rel" content="../../../../../">
+    
+    <script type="text/javascript" src="../../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tone-Mapping-Algorithm-Hable">
+<h1>Tone Mapping Curve: Hable</h1>
+
+
+<p>Hable is the tone mapping curve John Hable developed for <em>Uncharted 2</em>. Its aim was a film-like response: bright areas approach white gradually, while the darker parts of the image also receive deliberate shaping. Hable describes its origins and publishes the original formula in <a href="https://filmicworlds.com/blog/filmic-tonemapping-operators/">Filmic Tonemapping Operators</a>.</p>
+<p><img src="images/tone-mapping-curve-hable.png" alt="Hable curve with a full-range plot and a close-up of lower values, compared with clipping."></p>
+<p><em>FFmpeg 8.1 Hable curve: source peak 8, output white 1, relative linear-light values for neutral gray. Dashed gray shows clipping. This illustrates the curve, not an Emby preset.</em></p>
+<p>The close-up shows that this version already changes lower values; it is not an unchanged section followed only by a highlight knee.</p>
+<p>That makes it more than a way to squeeze down the brightest pixels. The <a href="https://filmicworlds.com/blog/filmic-tonemapping-with-piecewise-power-curves/">filmic shape</a> has three parts:</p>
+<table>
+<thead>
+<tr>
+<th>Part of the curve</th>
+<th>What it shapes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Toe</td>
+<td>The transition out of black and the separation of dark tones</td>
+</tr>
+<tr>
+<td>Middle section</td>
+<td>The brightness and contrast of ordinary scene content</td>
+</tr>
+<tr>
+<td>Shoulder</td>
+<td>The gradual compression of strong highlights toward white</td>
+</tr>
+</tbody>
+</table>
+<p>The appeal during <a href="../../fundamentals/Tone-Mapping-HDR-to-SDR.html">HDR-to-SDR conversion</a> is that a bright reflection can retain gradations instead of becoming a flat white patch. The tradeoff is that midtones can become darker too. If an Emby playback comparison preserves the sky but makes a person's face noticeably dimmer, the tone curve is one possible contributor; the brightest highlights alone do not tell the whole story.</p>
+<p>The name does not specify every processing choice. For example, <a href="https://github.com/FFmpeg/FFmpeg/blob/n8.1/libavfilter/vf_tonemap.c">FFmpeg's software implementation</a> uses fixed curve coefficients and normalizes the result against the source peak. Different peak assumptions can therefore change the result even with the same curve selected.</p>
+<p>Hable is useful to recognize in existing settings and discussions, but it is not a universal quality recommendation: <a href="https://libplacebo.org/options/">current libplacebo documentation</a> treats it as a legacy option.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Tone-Mapping-Curves.html" title="What a Tone-Mapping Curve Controls">What a Tone-Mapping Curve Controls</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../fundamentals/Tone-Mapping-HDR-to-SDR.html" title="How HDR-to-SDR Tone Mapping Works">How HDR-to-SDR Tone Mapping Works</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Tone-Mapping-Algorithm-Reinhard.html" title="Tone Mapping Curve: Reinhard">Tone Mapping Curve: Reinhard</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://filmicworlds.com/blog/filmic-tonemapping-operators/" title="John Hable: Filmic Tonemapping Operators">John Hable: Filmic Tonemapping Operators</a></li>
+			            <li><a class="seealso-link" href="https://filmicworlds.com/blog/filmic-tonemapping-with-piecewise-power-curves/" title="John Hable: Filmic Tonemapping with Piecewise Power Curves">John Hable: Filmic Tonemapping with Piecewise Power Curves</a></li>
+			            <li><a class="seealso-link" href="https://github.com/FFmpeg/FFmpeg/blob/n8.1/libavfilter/vf_tonemap.c" title="FFmpeg 8.1: tonemap implementation">FFmpeg 8.1: tonemap implementation</a></li>
+			            <li><a class="seealso-link" href="https://libplacebo.org/options/" title="libplacebo: tone mapping options">libplacebo: tone mapping options</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Tone-Mapping-Algorithm-Hable%0A*%20Title%3A%20Tone%20Mapping%20Curve%3A%20Hable%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../../styles/main.js"></script>
+  </body>
+</html>

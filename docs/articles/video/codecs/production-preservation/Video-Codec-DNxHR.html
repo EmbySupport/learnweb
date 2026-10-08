@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Avid DNxHR Video | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Avid DNxHR Video | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Video-Codec-DNxHR">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Video-Codec-DNxHR">
+<h1>Avid DNxHR Video</h1>
+
+
+<p><strong>Avid DNxHR</strong> is the established name for resolution-independent production workflows in the VC-3 coding family. It extends the practical use of <a href="Video-Codec-DNxHD.html">DNxHD</a>-style picture coding to a wider range of picture sizes, including UHD and larger production rasters.</p>
+<p>The codec encodes pictures independently. Its quality levels serve different production purposes, from lightweight editing proxies to copies intended to retain more picture information.</p>
+<table>
+<thead>
+<tr>
+<th>Familiar level</th>
+<th>Intended distinction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LB</td>
+<td>Low-bandwidth production or proxy representation</td>
+</tr>
+<tr>
+<td>SQ</td>
+<td>Standard quality</td>
+</tr>
+<tr>
+<td>HQ</td>
+<td>High quality</td>
+</tr>
+<tr>
+<td>HQX</td>
+<td>High quality extended</td>
+</tr>
+<tr>
+<td>444</td>
+<td>Higher-fidelity color representation</td>
+</tr>
+</tbody>
+</table>
+<p><em>Level names identify codec choices, not universal quality scores or direct-play guarantees. Their permitted sample formats depend on the codec generation and implementation.</em></p>
+<p>A level does not specify one fixed bitrate for every file. Picture size and frame rate matter, and Avid's newer unified DNx implementation also offers customizable rates. Consult the applicable mode's specification when estimating storage.</p>
+<h2 id="legacy-labels-remain-useful">Legacy labels remain useful</h2>
+<p>Avid now calls the family <strong>Avid DNx</strong>, with the HD, HR, and GX suffixes removed from the newer naming scheme. The old DNxHR label remains relevant when inspecting existing files and older software exports. Historical mode restrictions should not be assumed to describe every capability of the newer codec.</p>
+<p>DNxHR is a lossy production codec. High quality and independence between pictures make it suitable for editing; neither property proves exact reconstruction of the original samples.</p>
+<p>For Emby, keep the production copy when creating a smaller playback version. A server input decoder and a receiving app's direct-play decoder are separate requirements. If video conversion is needed, start from the retained master and verify the actual delivered stream. A smaller derivative is a convenience copy, not a substitute for the source's preserved information.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-Codec-DNxHD.html" title="Avid DNxHD Video">Avid DNxHD Video</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-Codec-ProRes.html" title="Apple ProRes Video">Apple ProRes Video</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../encoding-quality/quality-changes-artifacts/Video-Generation-Loss.html" title="Video Generation Loss">Video Generation Loss</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Video-Codec-Compatibility.html" title="How Video Codecs Affect Playback Compatibility">How Video Codecs Affect Playback Compatibility</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://pub.smpte.org/latest/st2019-1/st2019-1-2016.pdf" title="SMPTE ST 2019-1: VC-3 picture compression and data stream format (2016)">SMPTE ST 2019-1: VC-3 picture compression and data stream format (2016)</a></li>
+			            <li><a class="seealso-link" href="https://kb.avid.com/pkb/articles/en_US/Knowledge/Avid-DNx-naming-scheme-and-data-rates" title="Avid: DNx naming scheme and data rates">Avid: DNx naming scheme and data rates</a></li>
+			            <li><a class="seealso-link" href="https://developer.avid.com/" title="Avid: DNx SDK and specification overview">Avid: DNx SDK and specification overview</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Video-Codec-DNxHR%0A*%20Title%3A%20Avid%20DNxHR%20Video%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Media Stream Inspection with ffprobe | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Media Stream Inspection with ffprobe | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <link rel="stylesheet" href="../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    <meta property="docfx:uid" content="Media-Inspection-ffprobe">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+    <script type="text/javascript" src="../../../nav.js"></script>
+    <script type="text/javascript" src="../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Media-Inspection-ffprobe">
+<h1>Media Stream Inspection with ffprobe</h1>
+
+
+<p>ffprobe is FFmpeg's inspection tool. It reads media information and reports it as text or structured data; it does not re-encode the input.</p>
+<p>With ffprobe installed and available on the command path, this produces a JSON report:</p>
+<pre><code class="lang-powershell">ffprobe -v error -show_format -show_streams -show_chapters -of json &quot;Movie.mkv&quot;
+</code></pre>
+<p>The three requested sections separate whole-file information, individual tracks, and chapters. Missing fields mean the tool did not report a value, not necessarily that the underlying property is zero.</p>
+<table>
+<thead>
+<tr>
+<th>Output field</th>
+<th>How to read it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>format_name</code></td>
+<td>The detected demuxer or format family; it can list related formats</td>
+</tr>
+<tr>
+<td><code>codec_name</code> / <code>codec_type</code></td>
+<td>A track's codec and whether it is video, audio, or another type</td>
+</tr>
+<tr>
+<td><code>time_base</code></td>
+<td>The scale used for that track's integer timestamps</td>
+</tr>
+<tr>
+<td><code>tags</code> / <code>disposition</code></td>
+<td>Reported metadata and selection flags</td>
+</tr>
+<tr>
+<td><code>duration</code> / <code>bit_rate</code></td>
+<td>Reported or estimated values at the relevant scope</td>
+</tr>
+</tbody>
+</table>
+<h2 id="examine-the-part-that-matches-the-problem">Examine the part that matches the problem</h2>
+<p>For a transport-stream recording, add <code>-show_programs</code> to see programme groupings. For timing, request packets from a short interval:</p>
+<pre><code class="lang-powershell">ffprobe -v error -select_streams v:0 -read_intervals &quot;%+5&quot; -show_packets -show_entries packet=pts_time,dts_time,duration_time,flags -of json &quot;Movie.mkv&quot;
+</code></pre>
+<p>This selects the first video stream and examines an interval of approximately five seconds from the initial read position. Packet durations and reordering mean the result need not correspond to exactly five seconds of displayed pictures.</p>
+<p>For Emby troubleshooting, use the same source file and record the selected tracks. Compare timestamp values in seconds and avoid mistaking a demuxer family name for a precise file subtype.</p>
+<p>A summary probe does not decode every frame. Packet inspection can reveal timing clues, but a full integrity investigation may need decoding as a separate step.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Media-Probing.html" title="Media Probing">Media Probing</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Media-Inspection-MediaInfo.html" title="Media Stream Inspection with MediaInfo">Media Stream Inspection with MediaInfo</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../container-structure/timing-and-navigation/Media-Packet-Timestamps.html" title="Packet Timestamps">Packet Timestamps</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../container-structure/track-and-programme-descriptions/Media-MPEG-TS-Program-Tables.html" title="MPEG-TS Program Tables: PAT and PMT">MPEG-TS Program Tables: PAT and PMT</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffprobe.html" title="ffprobe documentation">ffprobe documentation</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Media-Inspection-ffprobe%0A*%20Title%3A%20Media%20Stream%20Inspection%20with%20ffprobe%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

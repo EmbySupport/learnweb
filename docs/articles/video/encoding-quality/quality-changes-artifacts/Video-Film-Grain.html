@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Film Grain in Compressed Video | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Film Grain in Compressed Video | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Video-Film-Grain">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Video-Film-Grain">
+<h1>Film Grain in Compressed Video</h1>
+
+
+<p><strong>Film grain</strong> is fine texture associated with photographic film. A digital video may retain that texture from a scan or add a grain effect deliberately. It can be part of the intended appearance rather than a defect to remove.</p>
+<p>Grain is difficult to compress because it changes across pictures and is less predictable than stable scenery. An encoder may need substantial data to retain it, or may simplify it when the budget is tight.</p>
+<table>
+<thead>
+<tr>
+<th>Treatment</th>
+<th>What to look for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Encode the visible grain directly</td>
+<td>The texture must fit the picture's data budget</td>
+</tr>
+<tr>
+<td>Filter it before encoding</td>
+<td>Smoother pictures, with a risk of removing real detail</td>
+</tr>
+<tr>
+<td>Use a grain-aware encoder tuning</td>
+<td>Different decisions about preserving the texture</td>
+</tr>
+<tr>
+<td>Encode a cleaner picture with grain parameters</td>
+<td>The decoder generates modeled grain for display</td>
+</tr>
+</tbody>
+</table>
+<h2 id="grain-can-change-without-the-resolution-changing">Grain can change without the resolution changing</h2>
+<p>A converted film can retain the same width and height yet lose its fine texture. Grain may become softer, form larger patches, or pulse between pictures. Inspect moving scenes: a paused frame does not show how consistently the texture behaves.</p>
+<p>Some encoders offer a grain tuning. This changes their priorities rather than restoring grain lost before the encode. The setting is implementation-specific, and its effect on bitrate should be assessed using the actual source.</p>
+<p><a href="../../codecs/vpx-av1/Video-Codec-AV1.html">AV1</a> can signal film-grain parameters so grain is synthesized as part of output processing. This aims to reproduce the appearance of grain without coding every original grain sample in the picture. It is not exact preservation of the source's grain pattern.</p>
+<p>For Emby, grain differences between direct playback and a converted stream can explain why the same film looks smoother even when the delivered resolution matches. Check the source, rate-control constraints, and any filtering in the conversion path.</p>
+<p>If the original appearance matters, retain the source while evaluating smaller derivatives. A later encoder cannot reconstruct the original pattern from a copy that has already removed it.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../codecs/vpx-av1/Video-Codec-AV1.html" title="AV1 Video">AV1 Video</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../rate-control/Video-Encoding-CRF.html" title="Constant Rate Factor (CRF) for Video">Constant Rate Factor (CRF) for Video</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-Compression-Artifacts.html" title="Video Compression Artifacts">Video Compression Artifacts</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-Generation-Loss.html" title="Video Generation Loss">Video Generation Loss</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://aomediacodec.github.io/av1-spec/av1-spec.pdf" title="AOMedia: AV1 bitstream and decoding process specification">AOMedia: AV1 bitstream and decoding process specification</a></li>
+			            <li><a class="seealso-link" href="https://x265.readthedocs.io/en/master/presets.html" title="x265: Presets and tunings">x265: Presets and tunings</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Video-Film-Grain%0A*%20Title%3A%20Film%20Grain%20in%20Compressed%20Video%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

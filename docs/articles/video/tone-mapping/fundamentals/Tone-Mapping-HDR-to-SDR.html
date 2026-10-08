@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>How HDR-to-SDR Tone Mapping Works | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="How HDR-to-SDR Tone Mapping Works | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Tone-Mapping-HDR-to-SDR">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tone-Mapping-HDR-to-SDR">
+<h1>How HDR-to-SDR Tone Mapping Works</h1>
+
+
+<p>Converting HDR video to SDR means changing what the pixel values represent. It is more than removing an HDR label or choosing a different video codec.</p>
+<p><img src="images/hdr-to-sdr-stages.svg" alt="Conceptual HDR-to-SDR conversion: interpret the source signal, adapt brightness and color, then encode and label the SDR output."></p>
+<p><em>Conceptual stages. A particular implementation may combine the brightness and color operations.</em></p>
+<h2 id="read-the-signal-correctly">Read the signal correctly</h2>
+<p>The converter needs to know how the source encodes brightness and color. HDR video may use PQ or HLG transfer characteristics; those values cannot simply be treated as ordinary SDR values. The picture is converted into a representation suitable for processing.</p>
+<p>Ten-bit video does not necessarily mean HDR: SDR can also use ten bits. Bit depth describes how many distinct values are available, while the transfer characteristics describe what those values mean in terms of light. A converter needs both pieces of information.</p>
+<p>Source metadata can help describe the content, but a mastering display's peak brightness is not a measurement of every frame. Some implementations also analyze the picture to estimate its brightness range.</p>
+<h2 id="fit-the-picture-to-the-target">Fit the picture to the target</h2>
+<p>The <a href="../curves/Tone-Mapping-Curves.html">tone-mapping curve</a> determines how input brightness becomes output brightness. Its brighter end can flatten gradually, preserving differences in highlights within the smaller output range.</p>
+<p>Colors need attention too. HDR material often uses a wider color gamut than an SDR target. Gamut mapping handles colors outside that target's range; it is related to tone mapping, but answers a different question. An implementation may solve both together.</p>
+<p>Finally, the converter prepares pixel values and signaling appropriate for the SDR output. If the values are converted but still labeled as HDR, the player may interpret an otherwise valid picture incorrectly.</p>
+<h2 id="the-curve-is-one-part-of-the-result">The curve is one part of the result</h2>
+<p>Changing the curve cannot correct mistaken source color information or an incorrectly configured output. Two conversions using the same curve name can also differ because their source-peak estimates, target brightness, or color handling differ.</p>
+<p>When Emby performs this work during <a class="xref" href="https://emby.media/support/articles/Transcoding.html">video transcoding</a>, the converted frames are encoded into the stream sent to the player. The original media file remains the source; the conversion does not rewrite its pixels on disk.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Tone-Mapping-Why.html" title="Why Tone Mapping Is Needed">Why Tone Mapping Is Needed</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../curves/Tone-Mapping-Curves.html" title="What a Tone-Mapping Curve Controls">What a Tone-Mapping Curve Controls</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../curves/general-purpose/Tone-Mapping-Algorithm-Mobius.html" title="Tone Mapping Curve: Mobius">Tone Mapping Curve: Mobius</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.itu.int/pub/R-REP-BT.2446-1-2021" title="ITU-R BT.2446-1: Conversion between HDR and SDR">ITU-R BT.2446-1: Conversion between HDR and SDR</a></li>
+			            <li><a class="seealso-link" href="https://www.itu.int/rec/R-REC-BT.2100/en" title="ITU-R BT.2100: HDR television image parameters">ITU-R BT.2100: HDR television image parameters</a></li>
+			            <li><a class="seealso-link" href="https://www.itu.int/rec/R-REC-BT.709/en" title="ITU-R BT.709: HDTV image parameters">ITU-R BT.709: HDTV image parameters</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Tone-Mapping-HDR-to-SDR%0A*%20Title%3A%20How%20HDR-to-SDR%20Tone%20Mapping%20Works%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

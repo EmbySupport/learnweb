@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>VC-1 Video | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="VC-1 Video | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <link rel="stylesheet" href="../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    <meta property="docfx:uid" content="Video-Codec-VC1">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+    <script type="text/javascript" src="../../../nav.js"></script>
+    <script type="text/javascript" src="../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Video-Codec-VC1">
+<h1>VC-1 Video</h1>
+
+
+<p><strong>VC-1</strong> is a compressed video format standardized in SMPTE ST 421. It is associated with the Windows Media video ecosystem and appears in older media collections. It is a distinct codec from H.264 and MPEG-2 Video.</p>
+<p>The standard defines Simple, Main, and Advanced profiles. The stream's profile is more informative than a generic “Windows Media” label, which can refer to several generations of video formats.</p>
+<table>
+<thead>
+<tr>
+<th>VC-1 characteristic</th>
+<th>Practical meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8-bit, 4:2:0 samples</td>
+<td>The decoded sample format specified by ST 421</td>
+</tr>
+<tr>
+<td>Profiles</td>
+<td>Different permitted tools and stream structures</td>
+</tr>
+<tr>
+<td>Advanced-profile interlaced coding</td>
+<td>Field handling may be part of decoding</td>
+</tr>
+<tr>
+<td>Metadata for display</td>
+<td>Aspect ratio and color information still matter after decoding</td>
+</tr>
+</tbody>
+</table>
+<p>VC-1 combines spatial prediction, transformed differences, and prediction from reference pictures. The standard defines the required decoding process; an encoder can choose among the permitted tools to meet a bitrate or quality goal.</p>
+<h2 id="decoder-availability-can-differ-by-route">Decoder availability can differ by route</h2>
+<p>A playback app can have a usable decoder for one VC-1 stream but not another profile or interlaced form. Software decoding and a hardware media engine also need not offer the same capabilities. Check the complete path before attributing failure to the file itself.</p>
+<p>For Emby, successful server decoding for video transcoding does not imply direct decoding in every app. Likewise, support for the container does not supply a missing VC-1 decoder. Repackaging changes the container while retaining that requirement.</p>
+<p>When a VC-1 source is interlaced, conversion should account for its <a href="../frame-timing/interlacing-and-cadence/Interlaced-Video.html">field timing</a> as well as the target codec. A file that opens successfully can still show incorrect motion if the fields are handled incorrectly. Preserve the source while assessing a conversion's picture and timing.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-Codec-Compatibility.html" title="How Video Codecs Affect Playback Compatibility">How Video Codecs Affect Playback Compatibility</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../compression/Video-Codec-Profiles.html" title="Video Codec Profiles">Video Codec Profiles</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../frame-timing/interlacing-and-cadence/Interlaced-Video.html" title="Interlaced Video">Interlaced Video</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../media-files/fundamentals/Containers-and-Codecs.html" title="Containers and Codecs">Containers and Codecs</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://pub.smpte.org/pub/st421/st0421-2013.pdf" title="SMPTE ST 421: VC-1 bitstream format and decoding process">SMPTE ST 421: VC-1 bitstream format and decoding process</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Video-Codec-VC1%0A*%20Title%3A%20VC-1%20Video%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

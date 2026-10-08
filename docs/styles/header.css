@@ -1,0 +1,40 @@
+
+.container {
+    max-width: 81em;
+    width: 100%;
+    padding-right: 50px;
+    padding-left: 40px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.sidetoc {
+    text-align: left;
+}
+
+@media (max-width: 768px) {
+
+    .breadcrumpsearch {
+        display: none;
+    }
+
+    .container {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .sidetoc, .sidefilter {
+        overflow-x: auto;
+        overflow-wrap: normal;
+        width: 100%;
+    }
+
+    .sidetoggle {
+        padding: 0 15px;
+    }
+
+    .sidetoc {
+        padding: 10px;
+        text-align: left;
+    }
+}

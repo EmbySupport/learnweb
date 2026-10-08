@@ -1,0 +1,3890 @@
+{
+  "homepages": [],
+  "source_base_path": "U:/TestDataRepos/Emby.Learn/Emby.Learn/obj/pilot-preview",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      },
+      "is_incremental": false
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/images/books_background.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "images/books_background.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/images/books_background.psd",
+      "output": {
+        "resource": {
+          "relative_path": "images/books_background.psd"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/images/emby_dev_logo.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/emby_dev_logo.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/images/emby_dev_logo_beta.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/emby_dev_logo_beta.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/images/favicon.ico",
+      "output": {
+        "resource": {
+          "relative_path": "images/favicon.ico"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/images/logo-dark-text.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/logo-dark-text.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/images/logo.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/logo.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/images/logo_old.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/logo_old.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/Understanding-Audio-in-Media.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/Understanding-Audio-in-Media.html",
+          "hash": "UrqfHlldkQpvnMGPvSl/NQRITDc0fh7NjL0zezX5BXA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/channels/Binaural-Audio.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/channels/Binaural-Audio.html",
+          "hash": "2x+iS+rm81EQdWJY9ID5W1RIxVL9lUzR9wDTb29npxc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/channels/Matrix-Surround.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/channels/Matrix-Surround.html",
+          "hash": "YbsFvP2e18LZlFSckNRLzWeZ9nXD/f0c0CO9SrrrwO4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/channels/Multichannel-Audio.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/channels/Multichannel-Audio.html",
+          "hash": "nB35Vpq6QdyswwqipvJrml4QkE5SbgwE4cOXpY3vTs4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/channels/Virtual-Surround.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/channels/Virtual-Surround.html",
+          "hash": "pYdTBFnrbcR86Ci6zqyx8Mds+DlxuWudq6+AVOOASTs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/audio/channels/images/binaural-cues.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/audio/channels/images/binaural-cues.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/channels/layouts/Mono-Audio.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/channels/layouts/Mono-Audio.html",
+          "hash": "lP/Fo/JrHLGeQwS/0C+pP+PvVPUGQekBT9xygrR0O4k="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/channels/layouts/Stereo-Audio.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/channels/layouts/Stereo-Audio.html",
+          "hash": "qsik8zEwU21zS+4N8lfb6Nl/ouXnt70LEiAHY0b1UYQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/channels/layouts/Surround-Sound-5-1.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/channels/layouts/Surround-Sound-5-1.html",
+          "hash": "FcB0OnMFWdURRH3v78NVeqpzVb0XInQFoL8zGABWydE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/channels/layouts/Surround-Sound-7-1.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/channels/layouts/Surround-Sound-7-1.html",
+          "hash": "enlqgVoCst7zAddSTipbtK9ZiDb84JqUl18B49NW4Ag="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/audio/channels/layouts/images/surround-5-1.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/audio/channels/layouts/images/surround-5-1.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/audio/channels/layouts/images/surround-7-1.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/audio/channels/layouts/images/surround-7-1.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/channels/object-based/DTS-X.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/channels/object-based/DTS-X.html",
+          "hash": "F4qHKxWoOOzQJshbetUuIaPkUxJk7PVD2bEjfyAqpUI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/channels/object-based/Dolby-Atmos.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/channels/object-based/Dolby-Atmos.html",
+          "hash": "gEEXUtbwdDq/hwQH5yMp3CAie3cOy8nC7bemeDtjTDQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/channels/object-based/Object-Based-Audio.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/channels/object-based/Object-Based-Audio.html",
+          "hash": "VlxvadLPRkdwEOzUR9qif/LlkU2VDWgLt52sCoGoDDQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/audio/channels/object-based/images/object-audio-renderer.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/audio/channels/object-based/images/object-audio-renderer.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/channels/roles-and-ordering/Audio-Center-Channel.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/channels/roles-and-ordering/Audio-Center-Channel.html",
+          "hash": "Lp6xahWN+3nqqwXEnuw539jwnhybWORhWsZBaN8XmfU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/channels/roles-and-ordering/Audio-Channel-Order.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/channels/roles-and-ordering/Audio-Channel-Order.html",
+          "hash": "6UNPh+kxjQIDmSR70bo2KYj6pPkpunJqCI5+3KC6i2g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/channels/roles-and-ordering/Audio-LFE.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/channels/roles-and-ordering/Audio-LFE.html",
+          "hash": "lfgfvR9i0qpsjfbYS+Aka1DUmZlmQm48QeYl9QfpKns="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/decoding-output/Audio-Description-Tracks.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/decoding-output/Audio-Description-Tracks.html",
+          "hash": "O1Dp0WH/xeu7tfekxQIWX3h8dNu8GlW3gMa7GO0L4Cs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/decoding-output/Audio-Playback-Path.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/decoding-output/Audio-Playback-Path.html",
+          "hash": "/KzEyLLExH+UJp5LpKsdkawDSIKexmNnDg+Dh3hDncc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/decoding-output/Audio-Video-Synchronization.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/decoding-output/Audio-Video-Synchronization.html",
+          "hash": "poSgoYKOcnW0QEp6P7zTA13zSYd7eUODMt4c2JPZ3dE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/decoding-output/Immersive-Audio-Metadata.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/decoding-output/Immersive-Audio-Metadata.html",
+          "hash": "5jzlPJn1nlZmpV+4Hsw/ghHimuYJ+iODOzYmc2U7a+U="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/decoding-output/conversion-fallback/Audio-Downmixing.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/decoding-output/conversion-fallback/Audio-Downmixing.html",
+          "hash": "JKSm15YMwnT4/7RVZ29ug3+GjR+u9BfLxCPN/LsOFOw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/decoding-output/conversion-fallback/Audio-Transcoding.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/decoding-output/conversion-fallback/Audio-Transcoding.html",
+          "hash": "HKumIM7HAWF/W38Idi1e0ymBZ3eJWQ+5HDlkTfvY8UM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/decoding-output/conversion-fallback/Audio-Upmixing.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/decoding-output/conversion-fallback/Audio-Upmixing.html",
+          "hash": "oxVC0LxoRNf+pBSV19P1m364jcMCJDb39I4jmL27sMM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/decoding-output/conversion-fallback/Embedded-Audio-Core-Fallback.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/decoding-output/conversion-fallback/Embedded-Audio-Core-Fallback.html",
+          "hash": "AHMs6pArm26jReVEzxhcbJK4TnBwVH6HMc9Ky6KQd5A="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/audio/decoding-output/images/audio-playback-stages.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/audio/decoding-output/images/audio-playback-stages.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/decoding-output/output-transport/Audio-Bitstream-Passthrough.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/decoding-output/output-transport/Audio-Bitstream-Passthrough.html",
+          "hash": "0KhFt2/VTltAad+OkEDYGX6dYvi0O7KNPmNg4qvca9c="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/decoding-output/output-transport/Decoded-PCM-Output.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/decoding-output/output-transport/Decoded-PCM-Output.html",
+          "hash": "F1mmMGB0F4nMQyCnJajPYQpMg5FG9jhW8QLnA3wpdk0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/decoding-output/output-transport/Dolby-MAT.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/decoding-output/output-transport/Dolby-MAT.html",
+          "hash": "ulT9f+Hl33LbXegSSO5C1cTDvVqmmQ6xI4DE80GR9iE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/Audio-Codecs.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/Audio-Codecs.html",
+          "hash": "h2FDlTK/HQ8i3d2QN63N1TEXD0UzMS0InKylmNQE6vM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/DSD.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/DSD.html",
+          "hash": "uHy6U6Xt74Oeeq0FeF24ZKOqp68w7uyM6H9kgO8yqLs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/LPCM.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/LPCM.html",
+          "hash": "0guluoFbV9RFyD89mU7P5ciBf2NTcPgjcJmpdKdRDmk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/lossless/ALAC.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/lossless/ALAC.html",
+          "hash": "/BnmsjoY9w6W0rS9gHaJD6fgkELfx0KmJRurgIFoKp4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/lossless/Audio-Lossless-Compression.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/lossless/Audio-Lossless-Compression.html",
+          "hash": "ogm5WqYZQ8HTaqMBXHVFOomskgk+UK9ktjG7S8m6odo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/lossless/DTS-HD-Master-Audio.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/lossless/DTS-HD-Master-Audio.html",
+          "hash": "++wn2efj5to6jEmsIaZygFuvzcWafCHO34s9foI6dXo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/lossless/Dolby-TrueHD.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/lossless/Dolby-TrueHD.html",
+          "hash": "iyMfwoFF+zF7h+sqlpP949qsfm3TH9alqr4LmCWotoY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/lossless/FLAC.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/lossless/FLAC.html",
+          "hash": "38jLR76UtcHQ3zDBRYeCch6pKd7bE4sMJCfzwlSO844="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/lossless/Monkeys-Audio-APE.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/lossless/Monkeys-Audio-APE.html",
+          "hash": "2qUYrBMo6xep8PQZQiHjV6POlMh2m1V+78D0aRzS7Kw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/lossless/WMA-Lossless.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/lossless/WMA-Lossless.html",
+          "hash": "dHkGCUp4FBCo8RK2HyWPb24KN3adOWabnHYOmPwdTbg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/lossless/WavPack.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/lossless/WavPack.html",
+          "hash": "VkXqEy2OFQyQw/g5sJdk9/l3B1WSBECA1ozbv9D8L0I="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/lossy/Audio-Lossy-Compression.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/lossy/Audio-Lossy-Compression.html",
+          "hash": "6S6W5c5tA60+rtWsEqv6tb95M0+m9uEL5IeEsBq8oqg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/lossy/DTS-Core.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/lossy/DTS-Core.html",
+          "hash": "VC9KbODrurkkNtptC1OmmNUd2ocTSL/byF4gdiTSAwA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/lossy/DTS-HD-High-Resolution.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/lossy/DTS-HD-High-Resolution.html",
+          "hash": "sYm6X8HGD1cmgnygT0ooZWrfYNZUjW3DvsnWkTvb6FA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/lossy/MP2.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/lossy/MP2.html",
+          "hash": "dJwC0rUrjkZYs+mGHbO3clkal6xMne3PYKOZdOcqeCI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/lossy/MP3.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/lossy/MP3.html",
+          "hash": "UGR2uZmw74Hrrz8USsE3dIv7W1+FzmWUoSSO8QTEUiY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/lossy/Opus.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/lossy/Opus.html",
+          "hash": "HOgPUh8+G9v9L9T2zvv9kwPc3cUk3jfup5L69WhGENo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/lossy/Vorbis.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/lossy/Vorbis.html",
+          "hash": "8N8ILnMVvz6KAiF3MbxWOt6qcrlX/CoqeXV85Ph1qsY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/lossy/WMA.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/lossy/WMA.html",
+          "hash": "xjNOJ/F4aVYqEXdS1JfUHWhzLEaHd4Leg1aBfM4QGMY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/lossy/aac-family/AAC-LC.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/lossy/aac-family/AAC-LC.html",
+          "hash": "Ja7l2oD/CvW6w/i0rY0FITQxmAYwXCKmDggt1OdfICQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/lossy/aac-family/HE-AAC-v2.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/lossy/aac-family/HE-AAC-v2.html",
+          "hash": "RBOJ/DnBXkg9OS0SCLq1cNFVJCUKaDq5nmfHXECtq5s="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/lossy/aac-family/HE-AAC.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/lossy/aac-family/HE-AAC.html",
+          "hash": "wURO1O1aJrBOqPFdeVo9QL0CSLFZdVHIHD309Z993xc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/lossy/aac-family/xHE-AAC.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/lossy/aac-family/xHE-AAC.html",
+          "hash": "nz/+YmdM0UbwqEslZzEsK4yUz+YeJnmx+R77MfnoA5E="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/lossy/dolby/Dolby-AC4.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/lossy/dolby/Dolby-AC4.html",
+          "hash": "UqYtVDfE7RAwbQkphsiNF/G0bbad+fQ432lEQy7IVyQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/lossy/dolby/Dolby-Digital-AC3.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/lossy/dolby/Dolby-Digital-AC3.html",
+          "hash": "kl+3wd9F5plFlvRO/Tto+bCK/q5ohWtFO+51+9Tpep0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/lossy/dolby/Dolby-Digital-Plus-EAC3.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/lossy/dolby/Dolby-Digital-Plus-EAC3.html",
+          "hash": "MdGL3M9HSVTgBiKnPTfMPDfP1yiVI+5DojAnV+FzBlc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/speech/AMR-NB.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/speech/AMR-NB.html",
+          "hash": "VZ6s3gCfqHLh1u43bqUDiBDe9WsJpxQPvXbpmluU4zc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/speech/AMR-WB.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/speech/AMR-WB.html",
+          "hash": "pitbdomT3N6WWAs25QNW0oz98BJ1JrJ7IZcL0PFVYMc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/speech/Speech-Coding.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/speech/Speech-Coding.html",
+          "hash": "IkK6GHg5U+VnhcEe7/MuXFPO5GQIq52JKwSuE0l3/jA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/formats/speech/Speex.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/formats/speech/Speex.html",
+          "hash": "kLA/lXW7eTjS5Cqf8yJniU8CchhEb3CsLHgF4xb/itQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/fundamentals/Audio-Bitrate.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/fundamentals/Audio-Bitrate.html",
+          "hash": "NH3tWa2sQfxq1QTkMJNuZQ1LtoJqIhJYi9oTy1htaNw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/fundamentals/Audio-Clipping.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/fundamentals/Audio-Clipping.html",
+          "hash": "j4nrKheliNAuBz30/exMQs5VXouQgJSzc6z90JxkpOk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/fundamentals/Audio-Dithering.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/fundamentals/Audio-Dithering.html",
+          "hash": "Oa3wvNOLaOU9KSUNPhwe5IQHppuWZWM5cIwFHzbkAcA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/fundamentals/Audio-Dynamic-Range.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/fundamentals/Audio-Dynamic-Range.html",
+          "hash": "0r/AkIJuVLrFKv3I7ETcAldVQ1lOcyl5sxmMY+DDTNc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/fundamentals/Audio-Quantization-Noise.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/fundamentals/Audio-Quantization-Noise.html",
+          "hash": "+8FZ9YwMVK3ktfB58rwHPp1Tx4dVr47CGM2r+NgGatI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/fundamentals/Audio-Resampling.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/fundamentals/Audio-Resampling.html",
+          "hash": "szpiFldAFJAY3fOxGQpKINHB41gO1mvu5eL4X3eueHw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/audio/fundamentals/images/audio-clipping.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/audio/fundamentals/images/audio-clipping.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/audio/fundamentals/images/audio-quantization.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/audio/fundamentals/images/audio-quantization.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/fundamentals/sample-representation/Audio-Bit-Depth.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/fundamentals/sample-representation/Audio-Bit-Depth.html",
+          "hash": "4WuddAB/ZVanXlx6+Iot/p+iz/hTl3AloL+L6X2kPp4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/fundamentals/sample-representation/Audio-Sample-Rate.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/fundamentals/sample-representation/Audio-Sample-Rate.html",
+          "hash": "muWiYJUy9AXE/HMD38JLl+ojcBDY+WN14xwsIdlxDgw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/fundamentals/sample-representation/Digital-Audio-Sampling.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/fundamentals/sample-representation/Digital-Audio-Sampling.html",
+          "hash": "86HtWj9aMxKx+fgjCBD0d0XCb4vc3n/Y1N0LpVVpvmw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/audio/fundamentals/sample-representation/PCM-Sample-Formats.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/audio/fundamentals/sample-representation/PCM-Sample-Formats.html",
+          "hash": "Po4qcrzcYeAFcP6EcQHQHBunT223rQURB2SwzIKAig0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/audio/fundamentals/sample-representation/images/audio-aliasing.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/audio/fundamentals/sample-representation/images/audio-aliasing.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/audio/fundamentals/sample-representation/images/audio-sampling.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/audio/fundamentals/sample-representation/images/audio-sampling.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/images/logo/logo96.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/images/logo/logo96.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/container-structure/Media-Codec-Identifiers.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/container-structure/Media-Codec-Identifiers.html",
+          "hash": "AR2CpRB7yrcuVN7deAB4ZMg9sF7KCu7UxngA9B2jG0A="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/container-structure/Media-Container-Codec-Support.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/container-structure/Media-Container-Codec-Support.html",
+          "hash": "WryKhCnjBK1teyuQujbeJqI3PEOurPDuAGwWe8QlYEE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/container-structure/Media-Container-Overhead.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/container-structure/Media-Container-Overhead.html",
+          "hash": "HWCtObv6HOIg0TnNXZLHPdItqKG/G4Y8vifp/rSZFh8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/container-structure/Media-Container-Types.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/container-structure/Media-Container-Types.html",
+          "hash": "O6WC9AEGQAw3V3v+l/zHPTh1yGNfe8G2sXCIYpQyxNk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/container-structure/Media-Container.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/container-structure/Media-Container.html",
+          "hash": "XcZD4k4qvQlTbHylKrehV4PSj2TMe96lbU3w27RCrMI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/container-structure/Media-Damaged-Incomplete-Files.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/container-structure/Media-Damaged-Incomplete-Files.html",
+          "hash": "BkaF5MlDjE8bEmW5VVI9UJzbM+icBOwpKporSGZtkRw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/container-structure/Media-Elementary-Streams.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/container-structure/Media-Elementary-Streams.html",
+          "hash": "QS7Ry1BZxMU0Izef1CYfaox3JabIJmm8tNj4lfR+994="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/container-structure/Media-Multiplexing.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/container-structure/Media-Multiplexing.html",
+          "hash": "H76UuPL7vIg0XVMyXHhwwf9sjzmGBnXv/Nu36nFmHIs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/media-files/container-structure/images/container-structure.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/media-files/container-structure/images/container-structure.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/media-files/container-structure/images/mux-demux.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/media-files/container-structure/images/mux-demux.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/container-structure/timing-and-navigation/Media-Chapter-Markers.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/container-structure/timing-and-navigation/Media-Chapter-Markers.html",
+          "hash": "Ykv/B7z0+VAf+2yGaS8v5LUcwvprkjQ0nwjptcVQs3E="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/container-structure/timing-and-navigation/Media-Container-Seeking.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/container-structure/timing-and-navigation/Media-Container-Seeking.html",
+          "hash": "+BJt9tvL68cJnbaVJyq8A9Q/u3vNR/cXX8Kwv1HjUN0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/container-structure/timing-and-navigation/Media-Packet-Timestamps.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/container-structure/timing-and-navigation/Media-Packet-Timestamps.html",
+          "hash": "7INByPKlcxfvBEDRNg1ZNBBj6X3XMfT803dOGYAPHhY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/container-structure/timing-and-navigation/Media-Time-Bases.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/container-structure/timing-and-navigation/Media-Time-Bases.html",
+          "hash": "iHWxCjcbucSN5QWBcSwF8VX4RkJHdKTehniJcIi+7jI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/media-files/container-structure/timing-and-navigation/images/seeking-timeline.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/media-files/container-structure/timing-and-navigation/images/seeking-timeline.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/container-structure/track-and-programme-descriptions/Media-Default-Track-Flags.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/container-structure/track-and-programme-descriptions/Media-Default-Track-Flags.html",
+          "hash": "vLREdoUvonRiiwlQ5OFdacBcbwCoyNuvpxao1XsKnTY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/container-structure/track-and-programme-descriptions/Media-MPEG-TS-Program-Tables.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/container-structure/track-and-programme-descriptions/Media-MPEG-TS-Program-Tables.html",
+          "hash": "08mfvgZdhZY+0PxaNkq2G7gnQpTakfDDR3tIlOXOECQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/container-structure/track-and-programme-descriptions/Media-Track-Language.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/container-structure/track-and-programme-descriptions/Media-Track-Language.html",
+          "hash": "unQQ/BJvoDPySaOq/H5Gh3pxGRcDzLLwC0fzFakZDKk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/media-files/container-structure/track-and-programme-descriptions/images/pat-pmt.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/media-files/container-structure/track-and-programme-descriptions/images/pat-pmt.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/containers/ASF-Container.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/containers/ASF-Container.html",
+          "hash": "s+hlm/1l/yLAe/878h+Nq9lZYQvfSqNj54aP+We8UKQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/containers/AVI-Container.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/containers/AVI-Container.html",
+          "hash": "GWkR9pEOYAuaca8lB2IGD13vkV+Pp3xjyaQWcxauj80="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/containers/Ogg-Container.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/containers/Ogg-Container.html",
+          "hash": "w/rlzwkfUoTSbl4N7PmtOHHyYr1K4wU2yxiZ2t4k9Bc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/containers/audio-oriented/AIFF-Container.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/containers/audio-oriented/AIFF-Container.html",
+          "hash": "xpXghZB4p6rfP+rkviPra6xMt3n9RP5xM4rORcHcmIc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/containers/audio-oriented/CAF-Container.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/containers/audio-oriented/CAF-Container.html",
+          "hash": "JsfvRQd9dvXg33qG+cwXWB5jUbXLBtSpBuTR6wNC9Jw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/containers/audio-oriented/DSDIFF-Container.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/containers/audio-oriented/DSDIFF-Container.html",
+          "hash": "z7Q4DjOQOq0TgP/GFYbcgg8+lYFgx4FFmkqa0EWld8E="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/containers/audio-oriented/DSF-Container.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/containers/audio-oriented/DSF-Container.html",
+          "hash": "T0nhK2ZWQczEK/TXKMYSbbKPxYMHqKxGFfEMIvCDOmQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/containers/audio-oriented/WAV-RIFF-Container.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/containers/audio-oriented/WAV-RIFF-Container.html",
+          "hash": "u5VIvmdxnZjT2Ig+tC0bPUs0qByb42dL4y5/xYdLjIU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/containers/iso-base-media-and-quicktime/MP4-Container.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/containers/iso-base-media-and-quicktime/MP4-Container.html",
+          "hash": "JD47HCXDec149uOVuFVF83QLnIdWborRem2ptsizPAE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/containers/iso-base-media-and-quicktime/QuickTime-Container.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/containers/iso-base-media-and-quicktime/QuickTime-Container.html",
+          "hash": "yjsf+qkj4WWtno7ZTrnUvzeS4NNBd+QsNAqCcbBSXso="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/media-files/containers/iso-base-media-and-quicktime/images/mp4-boxes.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/media-files/containers/iso-base-media-and-quicktime/images/mp4-boxes.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/containers/matroska-family/Matroska-Container.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/containers/matroska-family/Matroska-Container.html",
+          "hash": "EOHs9O3+cy7wPa8ij6Z/RxLdDAgyTrQUzv9xYZfuFzM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/containers/matroska-family/WebM-Container.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/containers/matroska-family/WebM-Container.html",
+          "hash": "st1BxzKT9Pz+uzE9rLrayzgCBq+6qrE8hkj5FSJhFCY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/containers/mpeg-systems/MPEG-Program-Stream.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/containers/mpeg-systems/MPEG-Program-Stream.html",
+          "hash": "1S33/TAxu3jF117v5O7YdZ9KxPzZCsS2j46jFm3OicQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/containers/mpeg-systems/MPEG-Transport-Stream.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/containers/mpeg-systems/MPEG-Transport-Stream.html",
+          "hash": "iqd9tQCd3b9cP1Yy4z9bZEACojZhrB9GEMdOv5b3zDQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/media-files/containers/mpeg-systems/images/ts-m2ts-packets.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/media-files/containers/mpeg-systems/images/ts-m2ts-packets.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/fundamentals/Containers-and-Codecs.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/fundamentals/Containers-and-Codecs.html",
+          "hash": "ta1za3AY4MLVkaD/yw7Oo1F92Q6UhdCAxtA5BcHBFUU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/fundamentals/Media-File-Extensions.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/fundamentals/Media-File-Extensions.html",
+          "hash": "Fy+8xGtx/RSWG3oWKb73yiJUTIUsquX/2pmcKbgXPsw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/fundamentals/Media-File.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/fundamentals/Media-File.html",
+          "hash": "Vv91hS0msVwc6Mm6fhhNh6mMXTwpJhnRPuIv4vFHW2Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/fundamentals/Media-Lossy-Lossless.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/fundamentals/Media-Lossy-Lossless.html",
+          "hash": "t8uOygLrpe5MT76IKu65r7kin/xCzmB2qncgrPuw8S0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/fundamentals/Media-MIME-Types.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/fundamentals/Media-MIME-Types.html",
+          "hash": "fqTo7vRHLLfqOtyOKdC12av0TGvL2kW1sE+osOo6a9Q="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/fundamentals/Media-Streams-Tracks.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/fundamentals/Media-Streams-Tracks.html",
+          "hash": "Cg0iNjAt237EWO34gDIJ5k/5IlXCPRvOQ/OcRAEjo0I="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/fundamentals/bitrate-and-file-size/Media-Bitrate-Variation.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/fundamentals/bitrate-and-file-size/Media-Bitrate-Variation.html",
+          "hash": "uFo69ab19Ia/VnHalICi1nazSOIa80RpScrL6bxfx0M="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/fundamentals/bitrate-and-file-size/Media-Bitrate.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/fundamentals/bitrate-and-file-size/Media-Bitrate.html",
+          "hash": "mJjzIm7AN7c9dU+YRJ1YHc+gIVSiN1wzIFRqCSj4Xmk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/fundamentals/bitrate-and-file-size/Media-Data-Units.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/fundamentals/bitrate-and-file-size/Media-Data-Units.html",
+          "hash": "ZmgiUZIrBfdbCGrMCzIcuc1K67wSBRxabYvT0F0XQLY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/fundamentals/bitrate-and-file-size/Media-File-Size-Duration.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/fundamentals/bitrate-and-file-size/Media-File-Size-Duration.html",
+          "hash": "DeMl6Kda2zEP6pUFzz4UjBRxWh69UYunX7fBMpcZH3s="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/media-files/fundamentals/bitrate-and-file-size/images/bitrate-variation.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/media-files/fundamentals/bitrate-and-file-size/images/bitrate-variation.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/media-files/fundamentals/images/media-file-parts.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/media-files/fundamentals/images/media-file-parts.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/inspection/Media-Inspection-MediaInfo.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/inspection/Media-Inspection-MediaInfo.html",
+          "hash": "8+u37NsuFxmiCjZ8vu+z5rWJOQvWY+QrFljHaMZvG44="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/inspection/Media-Inspection-ffprobe.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/inspection/Media-Inspection-ffprobe.html",
+          "hash": "ddisrHhF4iMqTXXVdZbF/RC9z9n+R7dkWwkp7QJWpaY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/inspection/Media-Probing.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/inspection/Media-Probing.html",
+          "hash": "OXiBfKQHr7qnldKo5b/pn2DXFnq6YqfRxAFAECMXBJc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/media-files/inspection/images/media-probing.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/media-files/inspection/images/media-probing.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/packaging/MP3-Files.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/packaging/MP3-Files.html",
+          "hash": "PXhH2NNwvJZF0zG42nOyOXqIVRUvP0nu3Hsp9RVUKwc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/packaging/aac/AAC-ADTS.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/packaging/aac/AAC-ADTS.html",
+          "hash": "/qdgepQWoGgvrpGxv7KDM+xOlFB8LckNAOV7elBtntU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/packaging/aac/AAC-LATM.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/packaging/aac/AAC-LATM.html",
+          "hash": "ihB+kbNOvrnwIW8RVeAlV7c9FOyow0GJtr2hsIHucmo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/packaging/aac/AAC-Stream-Packaging.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/packaging/aac/AAC-Stream-Packaging.html",
+          "hash": "THCMzpfyhm8VVV+CuNK+IOk+b1DKwyaz49pG/myQZ84="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/packaging/disc/Blu-ray-File-Structure.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/packaging/disc/Blu-ray-File-Structure.html",
+          "hash": "iZcZNZRYpZicEW0BIGXphF8xdgdF0NFURFaSxyU4p6E="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/packaging/disc/DVD-Video-File-Structure.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/packaging/disc/DVD-Video-File-Structure.html",
+          "hash": "PMDUK9HAd4fHeOctWyUsbv/K3GhaA2JUDB7egqbPBIg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/packaging/disc/Disc-Images-ISO.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/packaging/disc/Disc-Images-ISO.html",
+          "hash": "qzozfl03F9ZEnEPUPCs04tnt0JhU8uZlUTk/gog2rvc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/media-files/packaging/disc/images/bluray-file-structure.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/media-files/packaging/disc/images/bluray-file-structure.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/packaging/matroska/Matroska-Attachments.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/packaging/matroska/Matroska-Attachments.html",
+          "hash": "dSh4bY0Fg+dVAUcRtJgrvor3mV9U/mqVedQcbmuqz8Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/packaging/matroska/Matroska-Ordered-Chapters.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/packaging/matroska/Matroska-Ordered-Chapters.html",
+          "hash": "QSduRXFVwAiS5Y8ue+t8WSc4jgWZ5J1Es3rWreOntb8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/media-files/packaging/matroska/images/matroska-ordered-chapters.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/media-files/packaging/matroska/images/matroska-ordered-chapters.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/packaging/mp4/Fragmented-MP4.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/packaging/mp4/Fragmented-MP4.html",
+          "hash": "QVv+ftwyh/gh0uL0e6fSihk3V7eA31HDWiIHD7BEbTA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/packaging/mp4/M4A-M4B-Files.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/packaging/mp4/M4A-M4B-Files.html",
+          "hash": "9bb4wrRr1y7K8ocK4GzEYcMk6WjtDoKhOcIuHuJPR4M="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/packaging/mp4/MP4-Fast-Start.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/packaging/mp4/MP4-Fast-Start.html",
+          "hash": "MSd6kYWsadOq3biuPVVXmJXu/NljmTpn3n/Aigc/w4Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/media-files/packaging/mp4/images/fragmented-mp4.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/media-files/packaging/mp4/images/fragmented-mp4.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/media-files/packaging/mp4/images/mp4-fast-start.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/media-files/packaging/mp4/images/mp4-fast-start.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/playlists-and-references/Media-CUE-Sheets.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/playlists-and-references/Media-CUE-Sheets.html",
+          "hash": "lWMFJmze7fu6BBGa8okyGvK083I9HzAsFK2ps+P0Rcc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/playlists-and-references/Media-M3U-Playlists.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/playlists-and-references/Media-M3U-Playlists.html",
+          "hash": "E9xUqaLtFfnjMssmPTTPn7iEbZ7ASz2J77ltby+IcCY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/playlists-and-references/Media-PLS-Playlists.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/playlists-and-references/Media-PLS-Playlists.html",
+          "hash": "sO9wyRZw+C1zUrj+gbcDryg0gFpiFGGhvEiR0pwzQJ8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/media-files/playlists-and-references/Media-STRM-Files.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/media-files/playlists-and-references/Media-STRM-Files.html",
+          "hash": "TlU1cgKy42h78q5XACViWPg8R3ieMvwdInACH4OzF58="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/media-files/playlists-and-references/images/strm-pointer.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/media-files/playlists-and-references/images/strm-pointer.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "../../content/learn/articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "RmdS+cc2DT3TCASTQ7Vi7dIssxNQJ8ZaC7rQxdY2u3I="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/codecs/Video-Codec-Compatibility.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/codecs/Video-Codec-Compatibility.html",
+          "hash": "jP+3bBs6gj9WiZp/5khE+iop/nOHG4MIQpcsTYWxX/c="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/codecs/Video-Codec-VC1.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/codecs/Video-Codec-VC1.html",
+          "hash": "7MbM2b4uH8/5eSccOrrXldkzlAKDLyy1StZu2BlY37g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/codecs/mpeg-itu/Video-Codec-H264.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/codecs/mpeg-itu/Video-Codec-H264.html",
+          "hash": "PS9QJ9ovGzVG9e0fZNiBsd8Vd/NLEQS/I6zTC43TjFw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/codecs/mpeg-itu/Video-Codec-HEVC.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/codecs/mpeg-itu/Video-Codec-HEVC.html",
+          "hash": "mJx8jnuH0oZQiyAC61wBxjB1+2lVpMBausM2/qcX8tY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/codecs/mpeg-itu/Video-Codec-MPEG2.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/codecs/mpeg-itu/Video-Codec-MPEG2.html",
+          "hash": "d0Qd6TTbTkHeFgneZOOhf4KmWKZVSGITuOdtMRHFFew="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/codecs/mpeg-itu/Video-Codec-MPEG4-Part2.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/codecs/mpeg-itu/Video-Codec-MPEG4-Part2.html",
+          "hash": "Bj26kyi2+GIOAD7C0jN9o8eD200yheC2tyTPYi0pfUQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/codecs/mpeg-itu/Video-Codec-VVC.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/codecs/mpeg-itu/Video-Codec-VVC.html",
+          "hash": "IOB5le2yF8iVnGFCFNlOIsK1BlPFKMBDOBwkohNbPc0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/codecs/production-preservation/Video-Codec-DNxHD.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/codecs/production-preservation/Video-Codec-DNxHD.html",
+          "hash": "vvGlXMxS12ka19HZndhlC4OoGZg9wUR6+0k8kftpyvg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/codecs/production-preservation/Video-Codec-DNxHR.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/codecs/production-preservation/Video-Codec-DNxHR.html",
+          "hash": "m63ARJQF+v34qFw9eUyjb4zE4dYzNpiD5toh2GEw3iY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/codecs/production-preservation/Video-Codec-DV.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/codecs/production-preservation/Video-Codec-DV.html",
+          "hash": "5t2AIb6HIEn/gY3+jSxv//xA42diO0IMi8qPiVGSveE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/codecs/production-preservation/Video-Codec-FFV1.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/codecs/production-preservation/Video-Codec-FFV1.html",
+          "hash": "syumQKejCG2mUIBZLl77L712249GK+9RgDMgeTFTYo8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/codecs/production-preservation/Video-Codec-Motion-JPEG.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/codecs/production-preservation/Video-Codec-Motion-JPEG.html",
+          "hash": "I69Toy09OeGyuAFEuamqES9HVhgr/IlacpDL9tXAaDQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/codecs/production-preservation/Video-Codec-ProRes.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/codecs/production-preservation/Video-Codec-ProRes.html",
+          "hash": "qZz561XoMnkUrXmysQ2sHDBdpWW1sJ56DIbH09xFo18="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/codecs/production-preservation/images/ffv1-sample-preservation.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/codecs/production-preservation/images/ffv1-sample-preservation.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/codecs/production-preservation/images/motion-jpeg-pictures.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/codecs/production-preservation/images/motion-jpeg-pictures.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/codecs/vpx-av1/Video-Codec-AV1.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/codecs/vpx-av1/Video-Codec-AV1.html",
+          "hash": "SO2NDC2Fm+yT6VU4MjpRsjvGfcNpFctu8FCM5ZZtigU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/codecs/vpx-av1/Video-Codec-VP8.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/codecs/vpx-av1/Video-Codec-VP8.html",
+          "hash": "3kzjSfnAoUxLhN18Wd2oynBMnXewkJPBbXFMMdL/N6Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/codecs/vpx-av1/Video-Codec-VP9.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/codecs/vpx-av1/Video-Codec-VP9.html",
+          "hash": "K/6a7K/DYI+FDcwbZjwmnE/brwNFPBip+f/c6pXs0rE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/color-standards/Color-Gamut.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/color-standards/Color-Gamut.html",
+          "hash": "+GLomDAnQ+8SYobvvYMMxr0QDLOVS9Y4lbzenTjDle0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/color-standards/Color-Volume.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/color-standards/Color-Volume.html",
+          "hash": "4EhmJhmoXqIvy+yJBcRL6/d3Q2LtFAgBgLmmgQrxkCw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/color-standards/images/color-gamut-triangles.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/color-standards/images/color-gamut-triangles.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/color-standards/standards/Color-Standard-BT2020.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/color-standards/standards/Color-Standard-BT2020.html",
+          "hash": "vUinDLndFbui1cL+5LjdPidI8kJ5h7HEZ5koy//YwEA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/color-standards/standards/Color-Standard-BT2100.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/color-standards/standards/Color-Standard-BT2100.html",
+          "hash": "1vMVXMSGvv7cLAUT50bpyEIjg870Z51+u1VGNet+bcc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/color-standards/standards/Color-Standard-BT601.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/color-standards/standards/Color-Standard-BT601.html",
+          "hash": "mmCKYtbDyfAJJ0TgUE6AL4gXsli05/sCoev012G6R/k="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/color-standards/standards/Color-Standard-BT709.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/color-standards/standards/Color-Standard-BT709.html",
+          "hash": "qzxDmn8Oo6oQkHKvHc0XxermZvSagkzPiuZaGccBsOY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/color-standards/standards/P3-Color-Gamuts.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/color-standards/standards/P3-Color-Gamuts.html",
+          "hash": "W/jboaEg6G4vAey/XN4pL5eTfbsemtaAqFOzSLMk3Gs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/color-standards/transfer-functions/Transfer-Function-BT1886.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/color-standards/transfer-functions/Transfer-Function-BT1886.html",
+          "hash": "OPFdulsvHfYV384jlwo8Gpa7tam53F0jL5LV7FqaZSc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/color-standards/transfer-functions/Transfer-Function-EOTF.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/color-standards/transfer-functions/Transfer-Function-EOTF.html",
+          "hash": "/YXq08fbIcosN6gLce38iWa6XTpk5Qe78jldlMTYQZE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/color-standards/transfer-functions/Transfer-Function-OETF.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/color-standards/transfer-functions/Transfer-Function-OETF.html",
+          "hash": "PSPSWWGhq2m0byDVb1nJztOkyMI7cibAd18SnTJMm0E="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/color-standards/transfer-functions/Transfer-Function-OOTF.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/color-standards/transfer-functions/Transfer-Function-OOTF.html",
+          "hash": "HXfixPEblOEog9uvw9W04ptgW0wcedD07Q3/K4Pg/iE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/color-standards/transfer-functions/Transfer-Function-PQ.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/color-standards/transfer-functions/Transfer-Function-PQ.html",
+          "hash": "T6zr1EmVuNkTUqGRq1tZeNGuzbccqtoK1f0mH/OMFUo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/color-standards/transfer-functions/Video-Gamma.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/color-standards/transfer-functions/Video-Gamma.html",
+          "hash": "ZIURqJ4wYqORAOKuMnJoSZcA9f0CVRbenSSnuxpSvzU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/color-standards/transfer-functions/images/transfer-bt1886.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/color-standards/transfer-functions/images/transfer-bt1886.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/color-standards/transfer-functions/images/transfer-oetf-bt709.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/color-standards/transfer-functions/images/transfer-oetf-bt709.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/color-standards/transfer-functions/images/transfer-ootf-chain.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/color-standards/transfer-functions/images/transfer-ootf-chain.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/color-standards/transfer-functions/images/transfer-pq.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/color-standards/transfer-functions/images/transfer-pq.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/color-standards/transfer-functions/images/video-gamma.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/color-standards/transfer-functions/images/video-gamma.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/compression/Lossless-Video-Compression.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/compression/Lossless-Video-Compression.html",
+          "hash": "/Oq64VcHbpW/tvdJ/sJxMfdFMR/3/pVlS0a5hBcW53s="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/compression/Lossy-Video-Compression.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/compression/Lossy-Video-Compression.html",
+          "hash": "+93T0/uZ7U9fberab42RcNbhbDSFa4a4NaJrXKB4FoQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/compression/Video-Codec-Levels-Tiers.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/compression/Video-Codec-Levels-Tiers.html",
+          "hash": "pecehny2KTKXSLJHqvQYETF52dcTALdJ7tO2B/Znw30="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/compression/Video-Codec-Profiles.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/compression/Video-Codec-Profiles.html",
+          "hash": "oQoZAMiPSuDpaL6jqqr8Qs8dcOyvLw8Gw7cGgccG0sE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/compression/Video-Compression.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/compression/Video-Compression.html",
+          "hash": "TX3aNZ2kwTFzheu0Au/G39t1Ha5D4OZGHOm0z3SeJPQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/compression/picture-prediction-and-random-access/Inter-Frame-Prediction.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/compression/picture-prediction-and-random-access/Inter-Frame-Prediction.html",
+          "hash": "jfsMVCiGcD22kWWgHxyU665m2MzIwA4VX3A7oWUkDXk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/compression/picture-prediction-and-random-access/Intra-Frame-Compression.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/compression/picture-prediction-and-random-access/Intra-Frame-Compression.html",
+          "hash": "ZCemRQDtgyTVXcKSmUjVZATbu69p2DeviHzJoq184V8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/compression/picture-prediction-and-random-access/Reference-Frames.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/compression/picture-prediction-and-random-access/Reference-Frames.html",
+          "hash": "g3cuY+Y7wwgBsIYlxKWVMzgTCB0sEmCneN+e6FIEfw0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/compression/picture-prediction-and-random-access/Video-GOP.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/compression/picture-prediction-and-random-access/Video-GOP.html",
+          "hash": "uZqM8r0jZ079l2NTk5bzdxUpeD1jvSK7FewX2zkD85o="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/compression/picture-prediction-and-random-access/Video-Keyframes.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/compression/picture-prediction-and-random-access/Video-Keyframes.html",
+          "hash": "Ct9gsYC5vyC6Hmvhdl52LQFUVblUrb0WURo2eBdCtzQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/compression/picture-prediction-and-random-access/images/gop-orders.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/compression/picture-prediction-and-random-access/images/gop-orders.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/compression/picture-prediction-and-random-access/images/inter-frame-prediction.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/compression/picture-prediction-and-random-access/images/inter-frame-prediction.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/encoding-quality/Video-Encoder-Presets.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/encoding-quality/Video-Encoder-Presets.html",
+          "hash": "CJFMx9L6c2knFd3vGfYiFNYtllKIAlPq68EjYKH97Mk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/encoding-quality/quality-changes-artifacts/Video-Compression-Artifacts.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/encoding-quality/quality-changes-artifacts/Video-Compression-Artifacts.html",
+          "hash": "iaGUPrkY0Bx7mnhdR+bLZLiiKOpPNSMkwspKMErEU7g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/encoding-quality/quality-changes-artifacts/Video-Film-Grain.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/encoding-quality/quality-changes-artifacts/Video-Film-Grain.html",
+          "hash": "pGKbLNOrXnkuKZfIoAkz/NDGbmtBUoy1MIxrnSP6NXk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/encoding-quality/quality-changes-artifacts/Video-Generation-Loss.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/encoding-quality/quality-changes-artifacts/Video-Generation-Loss.html",
+          "hash": "kLRkmHSKTq+pcZndI1aAOdqAVzrqHGm4pjFF+RjQQqI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/encoding-quality/quality-changes-artifacts/images/generation-loss-paths.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/encoding-quality/quality-changes-artifacts/images/generation-loss-paths.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/encoding-quality/quality-metrics/Video-Quality-PSNR.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/encoding-quality/quality-metrics/Video-Quality-PSNR.html",
+          "hash": "6Y5xBGW68nr/YeXEskO7xwWGnrf0lYnxpOtxQjhfQ24="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/encoding-quality/quality-metrics/Video-Quality-SSIM.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/encoding-quality/quality-metrics/Video-Quality-SSIM.html",
+          "hash": "ZbY7mhokGSqm9VlNOmLV8zNDwkpzSjd/dxDKEC7NsUY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/encoding-quality/quality-metrics/Video-Quality-VMAF.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/encoding-quality/quality-metrics/Video-Quality-VMAF.html",
+          "hash": "fTBN+p6qwDTxk6ucqoCuMkFO1QrHXUiZMkiQeO60/6Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/encoding-quality/quality-metrics/images/psnr-sample-error.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/encoding-quality/quality-metrics/images/psnr-sample-error.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/encoding-quality/rate-control/Video-Encoding-Bitrate.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/encoding-quality/rate-control/Video-Encoding-Bitrate.html",
+          "hash": "+lTa5YJSJZ8KQKNaKo86DoqOdAVEeU87O0eZY1y8rEQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/encoding-quality/rate-control/Video-Encoding-CBR.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/encoding-quality/rate-control/Video-Encoding-CBR.html",
+          "hash": "97xsglmssOUUS7ShNc3bMsepaE7UJp6PwXcDjI++QCI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/encoding-quality/rate-control/Video-Encoding-CRF.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/encoding-quality/rate-control/Video-Encoding-CRF.html",
+          "hash": "O5g0hOIV4y2bzYrVhZ4Q5UjG1US02jun5sznkXfMZEk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/encoding-quality/rate-control/Video-Encoding-Constant-Quality.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/encoding-quality/rate-control/Video-Encoding-Constant-Quality.html",
+          "hash": "c6HcvXF18Fkn1VCf8QsW+uNiH0WRjV8oxhtRuIwI4lg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/encoding-quality/rate-control/Video-Encoding-QP.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/encoding-quality/rate-control/Video-Encoding-QP.html",
+          "hash": "0mFPnO5qw0aQE4VzEPZ7XQXr/hm3hi6r4rg2e2sSBR4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/encoding-quality/rate-control/Video-Encoding-Two-Pass.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/encoding-quality/rate-control/Video-Encoding-Two-Pass.html",
+          "hash": "qZT5aDN6x8byeRcJ4zPyVw4K0F4nzTJkhlaS3S1jGD8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/encoding-quality/rate-control/Video-Encoding-VBR.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/encoding-quality/rate-control/Video-Encoding-VBR.html",
+          "hash": "zEK2LABDdxhmCU6iG2avx/cXjyRjU4EZfdOxrso+LwA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/encoding-quality/rate-control/Video-Encoding-VBV.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/encoding-quality/rate-control/Video-Encoding-VBV.html",
+          "hash": "YGqOc8d052Gjil/0egAbz27XIgy//VyW1QaLB5VX3Ho="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/encoding-quality/rate-control/images/encoding-rate-example.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/encoding-quality/rate-control/images/encoding-rate-example.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/encoding-quality/rate-control/images/scalar-quantization-example.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/encoding-quality/rate-control/images/scalar-quantization-example.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/encoding-quality/rate-control/images/two-pass-encoding.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/encoding-quality/rate-control/images/two-pass-encoding.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/encoding-quality/rate-control/images/vbv-buffer-model.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/encoding-quality/rate-control/images/vbv-buffer-model.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/frame-timing/Frame-Rate-Conversion.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/frame-timing/Frame-Rate-Conversion.html",
+          "hash": "g+aLWtG4ZdOpOg5XI3/xpCmrHBY1mEQvGWQebNbiIuM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/frame-timing/Motion-Interpolation.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/frame-timing/Motion-Interpolation.html",
+          "hash": "J//4gdUB/UMlkUR4foObG24Z+e5BJKTgyeCGV9y2OLw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/frame-timing/frame-rates/Fractional-Frame-Rates.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/frame-timing/frame-rates/Fractional-Frame-Rates.html",
+          "hash": "TNuyX3sf5NlWSY5s6/451neNAtsef6UOnWbxFHtBhW8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/frame-timing/frame-rates/Variable-Frame-Rate.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/frame-timing/frame-rates/Variable-Frame-Rate.html",
+          "hash": "GrAavGNh4nRDu52+rA3offZ8iQhyeRzw0/5iPHjNyPc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/frame-timing/frame-rates/Video-Frame-Rate.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/frame-timing/frame-rates/Video-Frame-Rate.html",
+          "hash": "NMTChQc2wVqnhJersyl73O2U+1YbjHFIjFCw8AeDDXw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/frame-timing/frame-rates/images/variable-frame-timing.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/frame-timing/frame-rates/images/variable-frame-timing.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/frame-timing/images/display-cadence.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/frame-timing/images/display-cadence.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/frame-timing/images/motion-interpolation.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/frame-timing/images/motion-interpolation.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/frame-timing/interlacing-and-cadence/Deinterlacing.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/frame-timing/interlacing-and-cadence/Deinterlacing.html",
+          "hash": "74ccb1lWfEeYaDUuQlYtetTQbrqxOJUNUgllJmwmH5k="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/frame-timing/interlacing-and-cadence/Interlaced-Video.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/frame-timing/interlacing-and-cadence/Interlaced-Video.html",
+          "hash": "LbdixYyOox67d34sc85khsGTQVOZTJBL5ItSklcslD8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/frame-timing/interlacing-and-cadence/Inverse-Telecine.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/frame-timing/interlacing-and-cadence/Inverse-Telecine.html",
+          "hash": "M0a0UwRv5lgMLzdGRDmy76LzR7QlUjSBxzIA+YVBDsI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/frame-timing/interlacing-and-cadence/Progressive-Video.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/frame-timing/interlacing-and-cadence/Progressive-Video.html",
+          "hash": "dDkQZDIj9YyEukQj8S+BcAwycgq3WIoHFG6upgYhWOE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/frame-timing/interlacing-and-cadence/Telecine-Pulldown.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/frame-timing/interlacing-and-cadence/Telecine-Pulldown.html",
+          "hash": "rO0inKLXdOhSp7M0Tz9JD2YoVuZiSc12EuOvuYjM9H4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/frame-timing/interlacing-and-cadence/Video-Field-Order.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/frame-timing/interlacing-and-cadence/Video-Field-Order.html",
+          "hash": "5lcSiBjqE6DBSpC0A/tYHGcaBB+VNycQS+qNp2yX2fc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/frame-timing/interlacing-and-cadence/images/deinterlacing-reconstruction.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/frame-timing/interlacing-and-cadence/images/deinterlacing-reconstruction.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/frame-timing/interlacing-and-cadence/images/field-order.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/frame-timing/interlacing-and-cadence/images/field-order.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/frame-timing/interlacing-and-cadence/images/interlaced-fields.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/frame-timing/interlacing-and-cadence/images/interlaced-fields.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/frame-timing/interlacing-and-cadence/images/telecine-cadence.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/frame-timing/interlacing-and-cadence/images/telecine-cadence.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/fundamentals/Digital-Video.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/fundamentals/Digital-Video.html",
+          "hash": "cRQ/INAFFJg+J0T0EHvdUxEw6xAH4fs25cLAJQpyBnU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/fundamentals/images/digital-video-frames.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/fundamentals/images/digital-video-frames.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/geometry/Letterboxing-Pillarboxing.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/geometry/Letterboxing-Pillarboxing.html",
+          "hash": "vXwvZO7COceFzIoZUj0LCxzX0pYjZZu3EE057db1CJ8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/geometry/Video-Cropping.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/geometry/Video-Cropping.html",
+          "hash": "lfMaGCDuPC41/Q8TGUvndj3uYuFyQgSnDasECBsbjo8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/geometry/Video-Resolution.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/geometry/Video-Resolution.html",
+          "hash": "jDSU1cp0fiAac4aL1OoZSJ9xYCHLphP5ThUe5PBq0eI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/geometry/Video-Rotation-Metadata.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/geometry/Video-Rotation-Metadata.html",
+          "hash": "aSQ0dMfyJMGIewB4sUhD9mkofLfjtt746ygqSHvUX4Q="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/geometry/aspect-ratios/Anamorphic-Video.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/geometry/aspect-ratios/Anamorphic-Video.html",
+          "hash": "63wBtFu8WxEQ92ma1n4o1jWGfLu/iU83EljKcBZDkOw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/geometry/aspect-ratios/Video-Display-Aspect-Ratio.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/geometry/aspect-ratios/Video-Display-Aspect-Ratio.html",
+          "hash": "6BvsdWa9aO/cRQSxbvgx5i4upv97YKvgYPGcxkxuyK4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/geometry/aspect-ratios/Video-Pixel-Aspect-Ratio.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/geometry/aspect-ratios/Video-Pixel-Aspect-Ratio.html",
+          "hash": "ZoPnKtYCkxc8HjB1DDq/lHL0gwBIXb32f1FeRulBVHc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/geometry/aspect-ratios/images/anamorphic-presentation.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/geometry/aspect-ratios/images/anamorphic-presentation.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/geometry/aspect-ratios/images/display-aspect-ratios.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/geometry/aspect-ratios/images/display-aspect-ratios.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/geometry/aspect-ratios/images/pixel-aspect-ratio.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/geometry/aspect-ratios/images/pixel-aspect-ratio.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/geometry/images/letterbox-pillarbox.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/geometry/images/letterbox-pillarbox.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/hdr/HDR-Camera-Capture.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/hdr/HDR-Camera-Capture.html",
+          "hash": "LIIvokcaZtOoKNPvrYwsmzzpW3MCfRI7leqhhWQPfG8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/hdr/HDR-Luminance-Nits.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/hdr/HDR-Luminance-Nits.html",
+          "hash": "UliNYI8YiIIPIEJdYrCRdvNopoZZEYmN+nqjWSwDyzE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/hdr/HDR-Mastering.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/hdr/HDR-Mastering.html",
+          "hash": "4ZqZHDO0SKkklM+1uXIUM7MqniVN1garnaXt9tIsbwI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/hdr/HDR-Video.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/hdr/HDR-Video.html",
+          "hash": "DGkGO850p4KwyS3c9isnpFxyla1V29UGF+JBdUti3pM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/hdr/formats/HDR10-Plus.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/hdr/formats/HDR10-Plus.html",
+          "hash": "ReJNwLJMcrQdrnU9eTEDKWgsLmRn3LUXxdwoJszQgeE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/hdr/formats/HDR10.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/hdr/formats/HDR10.html",
+          "hash": "EECJj76E86bynxVQVNp/USifs2iZBxtqpfnicANIFFU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/hdr/formats/HLG.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/hdr/formats/HLG.html",
+          "hash": "LjJF+bS6NLelJwSFZBVLsEuRoPY56gUZvpTCa+JNyRU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/hdr/formats/dolby-vision/Dolby-Vision.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/hdr/formats/dolby-vision/Dolby-Vision.html",
+          "hash": "3M/a3w9v/0dRbhNJjMMyMBa13ksbXvESftFFEdki5uc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/hdr/formats/dolby-vision/metadata-and-layers/Dolby-Vision-Layers.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/hdr/formats/dolby-vision/metadata-and-layers/Dolby-Vision-Layers.html",
+          "hash": "wFypRI/QCd1RWRD04sxJmOfs9C5Nwm/S3vEfjvRHqHw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/hdr/formats/dolby-vision/metadata-and-layers/Dolby-Vision-MEL-FEL.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/hdr/formats/dolby-vision/metadata-and-layers/Dolby-Vision-MEL-FEL.html",
+          "hash": "waZZqx3n4NaYtl+KO2QlshaQxUx1bpMr64ToHX0ZJfE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/hdr/formats/dolby-vision/metadata-and-layers/Dolby-Vision-RPU.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/hdr/formats/dolby-vision/metadata-and-layers/Dolby-Vision-RPU.html",
+          "hash": "Fl7HCyRI/P/b7OV/hN1XWvK6NbETttawNP13B4rGRdc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/hdr/formats/dolby-vision/metadata-and-layers/images/dolby-vision-layers.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/hdr/formats/dolby-vision/metadata-and-layers/images/dolby-vision-layers.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Fallback.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Fallback.html",
+          "hash": "Yly1t5xUykbS8SfyQqh6cevsGMG2UsiDm51XzOj9eIY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-10.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-10.html",
+          "hash": "zzxuJzfSS7E7DGWE4s1yzNDhCrnhDPxwVwlkOotXJoM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-20.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-20.html",
+          "hash": "t2QP9J/ifOdntlwV/LXzZOELEKqBg53gwXBeav4k0JE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-3.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-3.html",
+          "hash": "NEncn4zAkmkudqKGcE/p4SgDqX99Vg5+0MhBIKHM2O8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-4.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-4.html",
+          "hash": "jV16qTU5D5QvLXXJmwgMRX1GnBfLbepOHlsbb5nk9FM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-5.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-5.html",
+          "hash": "sKAZB+0etSZF4e/g6GXsnEhqy0ooMpO1t9ugvvOX8Oo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-7.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-7.html",
+          "hash": "bRzJ7izPEkIzODpmdAi7N/KWFGRdcrn5GDBHyTKKnx4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-8.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-8.html",
+          "hash": "x8iJvZD5NsL4W7RVNLyGznJFwWUgovqFWW+Zo5JzvTI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-9.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-9.html",
+          "hash": "UQS82bg7BONfMqrBnlWYcyek3nJgxzTChlZ1cbRTl80="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profiles-Levels.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profiles-Levels.html",
+          "hash": "Z0QznwwOQkuJQEY+bM35Ii97xV7xqWyuozgfdogtzOQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/hdr/metadata-and-light-levels/HDR-Mastering-Display-Metadata.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/hdr/metadata-and-light-levels/HDR-Mastering-Display-Metadata.html",
+          "hash": "Mf8nxlSnnSpHpDOTTKa2Kx2ikCCk2DT85NwmbnObxjE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/hdr/metadata-and-light-levels/HDR-MaxCLL-MaxFALL.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/hdr/metadata-and-light-levels/HDR-MaxCLL-MaxFALL.html",
+          "hash": "46ZmArBCN+I6AjsM4gpG735WPsa3MRg5WGfgZOCmAgA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/hdr/metadata-and-light-levels/HDR-Metadata.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/hdr/metadata-and-light-levels/HDR-Metadata.html",
+          "hash": "861e8MCks1ig0AcmogfylJTDf7ubcjc5/fBNKTV5iWg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/color-and-luminance/Gamut-Mapping.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/tone-mapping/color-and-luminance/Gamut-Mapping.html",
+          "hash": "EDcOpc7JFoPpcGMA1qfQCdTLnjURXK5EhC3BSKNsz7Q="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/color-and-luminance/Tone-Mapping-Highlight-Roll-Off.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/tone-mapping/color-and-luminance/Tone-Mapping-Highlight-Roll-Off.html",
+          "hash": "ldVKHjNoBPLXdW6qtl2GxcR3AncG0vHD1aNGa0Pnqdg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/color-and-luminance/Tone-Mapping-Peak-Detection.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/tone-mapping/color-and-luminance/Tone-Mapping-Peak-Detection.html",
+          "hash": "E8RB1XWZZUvbXeLC4dFAYtQVBtPxww1L/DXO3kpa76I="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/color-and-luminance/Tone-Mapping-Scene-Adaptive.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/tone-mapping/color-and-luminance/Tone-Mapping-Scene-Adaptive.html",
+          "hash": "OGsC3ixbv3JJcqOTnq4sdARc8MXQ90cjBeMLDUuInJM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/color-and-luminance/images/highlight-roll-off.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/tone-mapping/color-and-luminance/images/highlight-roll-off.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/color-and-luminance/images/scene-adaptation.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/tone-mapping/color-and-luminance/images/scene-adaptation.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/curves/Tone-Mapping-Curves.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/tone-mapping/curves/Tone-Mapping-Curves.html",
+          "hash": "BX8GNX5p0Q3OvaAqx8bDDzXjvJExyE+T/hVpKqA7uUg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Algorithm-Hable.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Algorithm-Hable.html",
+          "hash": "3bKcmXAPgiXQmq5t8NQajRdVIbRCcmnjRXFreHn1jTs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Algorithm-Mobius.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Algorithm-Mobius.html",
+          "hash": "CbeWKo7h/DUVQFbWIU/Ke5+rUzMNwcVXadgIivWQzAI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Algorithm-Reinhard.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Algorithm-Reinhard.html",
+          "hash": "JLx5BnA+OgQZaq1MJq+UWVGNAh4FuZjB8jiCqpJAd48="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Curve-Clip.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Curve-Clip.html",
+          "hash": "ZoCTl606lADEWgEMKyE6HSghXPHhUYcK9JQ/J0efu1M="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Curve-Gamma.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Curve-Gamma.html",
+          "hash": "WNI7sdZQGCOnDDKGg6CyCRNMEwjHXKggEPz7iP9K7Hc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Curve-Linear.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Curve-Linear.html",
+          "hash": "D+TjpZeWH41vC7e5aWWqUxbNAyTja+o0+lUuzI0MTKw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Curve-Spline.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Curve-Spline.html",
+          "hash": "ecve7I+adH7iB3Hd7DWepL8WdIQbLF+aJS11cfs/vkM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/curves/general-purpose/images/tone-mapping-curve-clip.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/tone-mapping/curves/general-purpose/images/tone-mapping-curve-clip.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/curves/general-purpose/images/tone-mapping-curve-gamma.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/tone-mapping/curves/general-purpose/images/tone-mapping-curve-gamma.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/curves/general-purpose/images/tone-mapping-curve-hable.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/tone-mapping/curves/general-purpose/images/tone-mapping-curve-hable.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/curves/general-purpose/images/tone-mapping-curve-linear.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/tone-mapping/curves/general-purpose/images/tone-mapping-curve-linear.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/curves/general-purpose/images/tone-mapping-curve-mobius.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/tone-mapping/curves/general-purpose/images/tone-mapping-curve-mobius.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/curves/general-purpose/images/tone-mapping-curve-reinhard.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/tone-mapping/curves/general-purpose/images/tone-mapping-curve-reinhard.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/curves/general-purpose/images/tone-mapping-curve-spline.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/tone-mapping/curves/general-purpose/images/tone-mapping-curve-spline.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/curves/images/tone-mapping-curve-shapes.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/tone-mapping/curves/images/tone-mapping-curve-shapes.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-BT2390.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-BT2390.html",
+          "hash": "nALRryl2iMjf2QkkaZqqxZMVO1IU3S4HwCsYBrcRpCE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-BT2446A.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-BT2446A.html",
+          "hash": "qN4C6bNqwGHmeQ1eXrBSmlZ1zWFIcgcWXfGsa5iTOJI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-ST2094-10.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-ST2094-10.html",
+          "hash": "8glx6C9Sp0n8F5H5fimxsxUsxWPanVNnqKgV3Hfwyug="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-ST2094-40.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-ST2094-40.html",
+          "hash": "UCQ569BHLkjetd5bldKWjGvVd2de8ojvu7tkbSb9/uo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/curves/standards-based/images/tone-mapping-curve-bt2390.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/tone-mapping/curves/standards-based/images/tone-mapping-curve-bt2390.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/curves/standards-based/images/tone-mapping-curve-bt2446a.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/tone-mapping/curves/standards-based/images/tone-mapping-curve-bt2446a.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/curves/standards-based/images/tone-mapping-curve-st2094-10.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/tone-mapping/curves/standards-based/images/tone-mapping-curve-st2094-10.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/curves/standards-based/images/tone-mapping-curve-st2094-40.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/tone-mapping/curves/standards-based/images/tone-mapping-curve-st2094-40.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/execution/Tone-Mapping-CPU.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/tone-mapping/execution/Tone-Mapping-CPU.html",
+          "hash": "zQdDWRS7Xg9fpjhuQUNxVhNP+too8G9qlz2QGO7Bzwk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/execution/Tone-Mapping-Playback-Path.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/tone-mapping/execution/Tone-Mapping-Playback-Path.html",
+          "hash": "ZgQba5uC8OsmZM0hltEW+dp8L4IjYBlvTSXM9puz+QU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/execution/gpu/Tone-Mapping-CUDA.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/tone-mapping/execution/gpu/Tone-Mapping-CUDA.html",
+          "hash": "R9Oo3vn8GBowNHDySN8hkYWEKTWNlxWxjxfpPt1iIbw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/execution/gpu/Tone-Mapping-OpenCL.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/tone-mapping/execution/gpu/Tone-Mapping-OpenCL.html",
+          "hash": "bcbhm15aQSRIu+ol8/i8QDmM7Wnykv4u7Ygwe6Iy8oc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/execution/gpu/Tone-Mapping-Vulkan.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/tone-mapping/execution/gpu/Tone-Mapping-Vulkan.html",
+          "hash": "O2Fh33gWVX4U23HnQ8Ay9veZ7n0eDL8jOh8AxkZCnWE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/execution/images/tone-mapping-playback-path.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/tone-mapping/execution/images/tone-mapping-playback-path.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/fundamentals/Tone-Mapping-HDR-to-HDR.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/tone-mapping/fundamentals/Tone-Mapping-HDR-to-HDR.html",
+          "hash": "5PBnWtDUCm3k0q6aBH/2VLyYRU3Dreeo3R5GAit5F4k="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/fundamentals/Tone-Mapping-HDR-to-SDR.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/tone-mapping/fundamentals/Tone-Mapping-HDR-to-SDR.html",
+          "hash": "nDnVTnHYh7Q6DZQ4c7OKTSgztLiYdOFNT6RRCXg8W3s="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/fundamentals/Tone-Mapping-Why.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/video/tone-mapping/fundamentals/Tone-Mapping-Why.html",
+          "hash": "oChC4XdwNoC9c+ypNYzgttrcLfTjSMxerpk/9RYMZp0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/fundamentals/images/hdr-to-sdr-stages.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/tone-mapping/fundamentals/images/hdr-to-sdr-stages.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "landing",
+      "source_relative_path": "../../content/learn/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "SmSTXmxUhh5gXLv89JdhM/QU4Iv3uqLqTMaWCaEuOMw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "../../content/learn/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "7an4klCenS44yTShF+AYXezAZrb5iR6B34YbfKgdwfM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Disable incremental build by force rebuild option.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "ForceRebuild"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ConceptualDocumentProcessor cannot support incremental build because the following steps don't implement ISupportIncrementalBuildStep interface: BuildSeeAlso.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="510" viewBox="0 0 640 510" role="img" aria-labelledby="title description">
+  <title id="title">HDR-to-SDR conversion stages</title>
+  <desc id="description">Interpret the HDR source signal. Adapt brightness with tone mapping and color with gamut mapping. Prepare and label the SDR output. These are conceptual stages, not a fixed implementation sequence.</desc>
+  <rect width="640" height="510" rx="12" fill="#f7f9fa"/>
+  <g font-family="Segoe UI, Arial, sans-serif" text-anchor="middle" fill="#25333f">
+    <rect x="60" y="28" width="520" height="110" rx="10" fill="#e4edf5"/>
+    <text x="320" y="70" font-size="24" font-weight="600">Interpret the HDR source</text>
+    <text x="320" y="108" font-size="20">Brightness encoding · color information</text>
+    <path d="M320 150V180m-9-9 9 9 9-9" fill="none" stroke="#687887" stroke-width="3"/>
+    <rect x="60" y="194" width="520" height="120" rx="10" fill="#e3f0df"/>
+    <text x="320" y="234" font-size="24" font-weight="600">Fit brightness and color</text>
+    <text x="320" y="275" font-size="20">Tone mapping · gamut mapping</text>
+    <path d="M320 328V358m-9-9 9 9 9-9" fill="none" stroke="#687887" stroke-width="3"/>
+    <rect x="60" y="372" width="520" height="110" rx="10" fill="#e4edf5"/>
+    <text x="320" y="414" font-size="24" font-weight="600">Prepare the SDR output</text>
+    <text x="320" y="452" font-size="20">SDR pixel values · matching signal labels</text>
+  </g>
+</svg>

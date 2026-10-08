@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Telecine and 3:2 Pulldown | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Telecine and 3:2 Pulldown | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Telecine-Pulldown">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Telecine-Pulldown">
+<h1>Telecine and 3:2 Pulldown</h1>
+
+
+<p><strong>Telecine</strong> adapts film pictures to television timing. The familiar <strong>3:2 pulldown</strong> cadence presents successive film pictures for alternating three-field and two-field intervals. Four source pictures occupy ten field intervals, fitting a 24-to-60 relationship.</p>
+<p>For the common fractional-rate version, 24000/1001 film pictures per second become 60000/1001 field intervals per second. Those fields are often stored or reported as 30000/1001 frame pairs per second.</p>
+<p><img src="images/telecine-cadence.svg" alt="Four film pictures become ten fields and five field pairs, including two pairs assembled from different film pictures."></p>
+<p><em>Original cadence schematic, starting at a two-field phase: A A B B B C C D D D. Top and bottom fields alternate. Adjacent pairs are AA, BB, BC, CD, and DD; a different starting phase shifts the pattern.</em></p>
+<h2 id="more-fields-the-same-film-motion">More fields, the same film motion</h2>
+<p>The repeated fields do not record new moments. They hold existing film pictures for different lengths of time. That uneven hold can create familiar film judder, especially during horizontal pans.</p>
+<table>
+<thead>
+<tr>
+<th>Source within one cycle</th>
+<th>Television representation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Four progressive film pictures</td>
+<td>Ten field intervals</td>
+</tr>
+<tr>
+<td>Equal source picture durations</td>
+<td>Alternating two- and three-field holds</td>
+</tr>
+<tr>
+<td>One picture time per film frame</td>
+<td>Some stored pairs combine different picture times</td>
+</tr>
+</tbody>
+</table>
+<p>In <strong>hard telecine</strong>, the repetitions are represented in the stored pictures or fields. In <strong>soft telecine</strong>, signaling can instruct presentation to repeat fields without storing all those repetitions as separate coded pictures. The handling depends on the codec and transport.</p>
+<p>For an Emby library of older film transfers or television recordings, a 29.97 fps interlaced description therefore does not necessarily mean the camera captured 59.94 distinct motion moments. The source may instead contain a recoverable 23.976 fps film sequence.</p>
+<p><a href="Inverse-Telecine.html">Inverse telecine</a> tries to recover that sequence. It is useful when this cadence is present; applying it to native interlaced sport can remove real motion samples. Mixed programmes may contain both kinds of material.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Inverse-Telecine.html" title="Inverse Telecine">Inverse Telecine</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Interlaced-Video.html" title="Interlaced Video">Interlaced Video</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../frame-rates/Fractional-Frame-Rates.html" title="Fractional Frame Rates: 23.976, 29.97, and 59.94">Fractional Frame Rates: 23.976, 29.97, and 59.94</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.itu.int/rec/R-REC-BT.709/en" title="ITU-R BT.709: HDTV picture parameters">ITU-R BT.709: HDTV picture parameters</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-filters.html" title="FFmpeg video filters documentation">FFmpeg video filters documentation</a></li>
+			            <li><a class="seealso-link" href="https://www.itu.int/rec/T-REC-H.264" title="ITU-T H.264: Advanced video coding">ITU-T H.264: Advanced video coding</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Telecine-Pulldown%0A*%20Title%3A%20Telecine%20and%203%3A2%20Pulldown%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

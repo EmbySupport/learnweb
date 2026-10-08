@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Audio Resampling | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Audio Resampling | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <link rel="stylesheet" href="../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    <meta property="docfx:uid" content="Audio-Resampling">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+    <script type="text/javascript" src="../../../nav.js"></script>
+    <script type="text/javascript" src="../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Audio-Resampling">
+<h1>Audio Resampling</h1>
+
+
+<p><strong>Resampling changes an audio signal's sample rate.</strong> It produces values on a new time grid while keeping the intended duration and pitch. It is more than changing the sample-rate number in the file header.</p>
+<p>For example, one second of 44.1 kHz audio contains 44,100 samples per channel. Converting that second to 48 kHz produces 48,000 samples per channel. The new positions generally fall between the old ones, so the converter calculates their values using interpolation and filtering.</p>
+<table>
+<thead>
+<tr>
+<th>Treatment of a one-second 44.1 kHz signal</th>
+<th style="text-align: right;">Samples per channel</th>
+<th style="text-align: right;">Resulting duration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keep its original rate</td>
+<td style="text-align: right;">44,100</td>
+<td style="text-align: right;">1.000 seconds</td>
+</tr>
+<tr>
+<td>Resample to 48 kHz</td>
+<td style="text-align: right;">48,000</td>
+<td style="text-align: right;">1.000 seconds</td>
+</tr>
+<tr>
+<td>Only relabel it as 48 kHz</td>
+<td style="text-align: right;">44,100</td>
+<td style="text-align: right;">0.91875 seconds</td>
+</tr>
+</tbody>
+</table>
+<p><em>Calculated example without encoder padding or other timing adjustments. The relabeled case also raises pitch.</em></p>
+<h2 id="filtering-is-part-of-the-conversion">Filtering is part of the conversion</h2>
+<p>When reducing the rate, frequencies above the new Nyquist limit must be attenuated to avoid aliasing. When increasing it, the converter must avoid creating unwanted spectral images. The exact filter determines how close the result comes to the desired conversion, including its transition band and processing cost.</p>
+<p>Upsampling does not invent information above the original recording's frequency limit. A 48 kHz file converted to 96 kHz has more sample positions, but that alone does not make the recording more detailed.</p>
+<p>An Emby client, an operating-system mixer, or a server conversion may need a different rate for the destination. If playback is smooth and correctly timed, a rate change is not automatically a problem. The useful questions are whether conversion is required and whether it is performed well. If integer precision is reduced as part of the same processing, <a href="Audio-Dithering.html">dithering</a> is a separate decision.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="sample-representation/Audio-Sample-Rate.html" title="Audio Sample Rate">Audio Sample Rate</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="sample-representation/Digital-Audio-Sampling.html" title="Digital Audio Sampling">Digital Audio Sampling</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Audio-Dithering.html" title="Audio Dithering">Audio Dithering</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-resampler.html" title="FFmpeg: Audio resampler documentation">FFmpeg: Audio resampler documentation</a></li>
+			            <li><a class="seealso-link" href="https://www.analog.com/media/en/training-seminars/tutorials/MT-002.pdf" title="Analog Devices MT-002: Sampling and the Nyquist criterion">Analog Devices MT-002: Sampling and the Nyquist criterion</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Audio-Resampling%0A*%20Title%3A%20Audio%20Resampling%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="480" viewBox="0 0 720 480" role="img" aria-labelledby="title desc">
+<title id="title">Highlight roll-off compared with hard clipping</title>
+<desc id="desc">Qualitative chart. Hard clipping rises in a straight line and then becomes flat at the output limit. A smooth highlight shoulder bends below that limit and approaches it gradually, preserving smaller differences between bright values.</desc>
+<rect width="720" height="480" rx="12" fill="#f7f9fa"/>
+<g font-family="Segoe UI, Arial, sans-serif" fill="#25333f">
+<text x="40" y="37" font-size="23" font-weight="600">Making room for bright detail</text>
+<path d="M90 80V390H660" fill="none" stroke="#687887" stroke-width="2"/>
+<path d="M90 90H660" fill="none" stroke="#a9b4bf" stroke-dasharray="5 6"/>
+<text x="95" y="73" font-size="17">Output limit</text>
+<path d="M90 390L370 90H650" fill="none" stroke="#7f8992" stroke-width="3.5" stroke-dasharray="8 7"/>
+<path d="M90 390L250 218.57C327 136 435 99 650 94" fill="none" stroke="#3b8c2e" stroke-width="5"/>
+<circle cx="250" cy="218.57" r="6" fill="#3b8c2e"/>
+<path d="M250 227L267 280" fill="none" stroke="#5b6b76" stroke-width="1.5"/>
+<text x="220" y="307" font-size="18">Knee</text>
+<text x="433" y="143" font-size="18" fill="#2a7120">Smooth shoulder</text>
+<text x="457" y="71" font-size="18" fill="#687887">Hard clipping</text>
+<text x="375" y="426" font-size="19" text-anchor="middle">Input brightness →</text>
+<text transform="translate(35 245) rotate(-90)" font-size="19" text-anchor="middle">Output brightness →</text>
+<text x="360" y="459" font-size="16" text-anchor="middle" fill="#687887">Qualitative sketch · no fixed units or prescribed curve</text>
+</g></svg>

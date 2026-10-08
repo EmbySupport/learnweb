@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Video Reference Frames | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Video Reference Frames | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Reference-Frames">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Reference-Frames">
+<h1>Video Reference Frames</h1>
+
+
+<p>A <strong>reference frame</strong> is a decoded picture kept available for predicting another picture. The decoder stores these pictures in a decoded picture buffer rather than immediately discarding every frame after display.</p>
+<p>Multiple references let an encoder choose useful earlier pictures or combine prediction information. For example, a region briefly hidden behind a moving person may be easier to predict from an older view in which it was visible. Whether extra choices improve compression depends on the content and encoder.</p>
+<h2 id="the-buffer-contains-pictures-not-compressed-packets">The buffer contains pictures, not compressed packets</h2>
+<p>The memory needed for references grows with resolution and sample precision. For a tightly packed 8-bit 4:2:0 picture with even dimensions, the sample payload is width × height × 1.5 bytes:</p>
+<table>
+<thead>
+<tr>
+<th>Picture grid</th>
+<th style="text-align: right;">Payload for one decoded picture</th>
+<th style="text-align: right;">Payload for four</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1920 × 1080</td>
+<td style="text-align: right;">3.11 MB</td>
+<td style="text-align: right;">12.44 MB</td>
+</tr>
+<tr>
+<td>3840 × 2160</td>
+<td style="text-align: right;">12.44 MB</td>
+<td style="text-align: right;">49.77 MB</td>
+</tr>
+</tbody>
+</table>
+<p><em>Calculated examples using decimal MB. Actual decoder memory can be larger because of alignment, additional working surfaces, display reordering, and different pixel layouts. These are not compressed file sizes.</em></p>
+<p>A higher bit depth can increase storage further, especially when samples occupy wider memory containers. The number of pictures needed for reordering can also differ from the number actively used as prediction references.</p>
+<p>For Emby playback, a decoder must meet the stream's buffer and prediction requirements as well as recognize the codec. <a href="../Video-Codec-Levels-Tiers.html">Codec levels</a> place limits on relevant resources, and device support can have additional constraints.</p>
+<p>Reference count is not a quality score. A media inspector may report a maximum or an encoder setting rather than the references used for every picture. A stream with fewer references can still look better if other encoding decisions suit the content.</p>
+<p>Nor are all B-pictures excluded from the buffer. Modern codecs allow structures where B-pictures become references for other pictures. To interpret a dependency chain, examine the actual <a href="Video-GOP.html">picture structure</a> rather than treating each letter as a fixed lifetime rule.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Inter-Frame-Prediction.html" title="Inter-Frame Video Prediction">Inter-Frame Video Prediction</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-GOP.html" title="Groups of Pictures (GOPs)">Groups of Pictures (GOPs)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Video-Codec-Levels-Tiers.html" title="Video Codec Levels and Tiers">Video Codec Levels and Tiers</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.itu.int/rec/T-REC-H.264" title="ITU-T H.264: Advanced video coding">ITU-T H.264: Advanced video coding</a></li>
+			            <li><a class="seealso-link" href="https://www.itu.int/rec/T-REC-H.265" title="ITU-T H.265: High efficiency video coding">ITU-T H.265: High efficiency video coding</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Reference-Frames%0A*%20Title%3A%20Video%20Reference%20Frames%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

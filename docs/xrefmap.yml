@@ -1,0 +1,741 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: AAC-ADTS
+  name: 'AAC: Audio Data Transport Stream (ADTS)'
+  href: articles/media-files/packaging/aac/AAC-ADTS.html
+- uid: AAC-LATM
+  name: 'AAC: Low Overhead Audio Transport Multiplex (LATM)'
+  href: articles/media-files/packaging/aac/AAC-LATM.html
+- uid: AAC-LC
+  name: AAC-LC Audio
+  href: articles/audio/formats/lossy/aac-family/AAC-LC.html
+- uid: AAC-Stream-Packaging
+  name: AAC Stream Packaging
+  href: articles/media-files/packaging/aac/AAC-Stream-Packaging.html
+- uid: AIFF-Container
+  name: AIFF Container
+  href: articles/media-files/containers/audio-oriented/AIFF-Container.html
+- uid: ALAC
+  name: Apple Lossless (ALAC)
+  href: articles/audio/formats/lossless/ALAC.html
+- uid: AMR-NB
+  name: AMR-NB Speech Audio
+  href: articles/audio/formats/speech/AMR-NB.html
+- uid: AMR-WB
+  name: AMR-WB Speech Audio
+  href: articles/audio/formats/speech/AMR-WB.html
+- uid: Anamorphic-Video
+  name: Anamorphic Video
+  href: articles/video/geometry/aspect-ratios/Anamorphic-Video.html
+- uid: ASF-Container
+  name: ASF Container
+  href: articles/media-files/containers/ASF-Container.html
+- uid: Audio-Bit-Depth
+  name: Audio Bit Depth
+  href: articles/audio/fundamentals/sample-representation/Audio-Bit-Depth.html
+- uid: Audio-Bitrate
+  name: Audio Bitrate
+  href: articles/audio/fundamentals/Audio-Bitrate.html
+- uid: Audio-Bitstream-Passthrough
+  name: Audio Bitstream Passthrough
+  href: articles/audio/decoding-output/output-transport/Audio-Bitstream-Passthrough.html
+- uid: Audio-Center-Channel
+  name: The Audio Center Channel
+  href: articles/audio/channels/roles-and-ordering/Audio-Center-Channel.html
+- uid: Audio-Channel-Order
+  name: Audio Channel Order
+  href: articles/audio/channels/roles-and-ordering/Audio-Channel-Order.html
+- uid: Audio-Clipping
+  name: Audio Clipping
+  href: articles/audio/fundamentals/Audio-Clipping.html
+- uid: Audio-Codecs
+  name: Audio Codecs Explained
+  href: articles/audio/formats/Audio-Codecs.html
+- uid: Audio-Description-Tracks
+  name: Audio-Description Tracks
+  href: articles/audio/decoding-output/Audio-Description-Tracks.html
+- uid: Audio-Dithering
+  name: Audio Dithering
+  href: articles/audio/fundamentals/Audio-Dithering.html
+- uid: Audio-Downmixing
+  name: Audio Downmixing
+  href: articles/audio/decoding-output/conversion-fallback/Audio-Downmixing.html
+- uid: Audio-Dynamic-Range
+  name: Audio Dynamic Range
+  href: articles/audio/fundamentals/Audio-Dynamic-Range.html
+- uid: Audio-LFE
+  name: Low-Frequency Effects (LFE)
+  href: articles/audio/channels/roles-and-ordering/Audio-LFE.html
+- uid: Audio-Lossless-Compression
+  name: Lossless Audio Compression
+  href: articles/audio/formats/lossless/Audio-Lossless-Compression.html
+- uid: Audio-Lossy-Compression
+  name: Lossy Audio Compression
+  href: articles/audio/formats/lossy/Audio-Lossy-Compression.html
+- uid: Audio-Playback-Path
+  name: The Audio Playback Path
+  href: articles/audio/decoding-output/Audio-Playback-Path.html
+- uid: Audio-Quantization-Noise
+  name: Audio Quantization Noise
+  href: articles/audio/fundamentals/Audio-Quantization-Noise.html
+- uid: Audio-Resampling
+  name: Audio Resampling
+  href: articles/audio/fundamentals/Audio-Resampling.html
+- uid: Audio-Sample-Rate
+  name: Audio Sample Rate
+  href: articles/audio/fundamentals/sample-representation/Audio-Sample-Rate.html
+- uid: Audio-Transcoding
+  name: Audio Transcoding
+  href: articles/audio/decoding-output/conversion-fallback/Audio-Transcoding.html
+- uid: Audio-Upmixing
+  name: Audio Upmixing
+  href: articles/audio/decoding-output/conversion-fallback/Audio-Upmixing.html
+- uid: Audio-Video-Synchronization
+  name: Audio/Video Synchronization
+  href: articles/audio/decoding-output/Audio-Video-Synchronization.html
+- uid: AVI-Container
+  name: AVI Container
+  href: articles/media-files/containers/AVI-Container.html
+- uid: Binaural-Audio
+  name: Binaural Audio
+  href: articles/audio/channels/Binaural-Audio.html
+- uid: Blu-ray-File-Structure
+  name: Blu-ray File Structure
+  href: articles/media-files/packaging/disc/Blu-ray-File-Structure.html
+- uid: CAF-Container
+  name: 'CAF: Core Audio Format'
+  href: articles/media-files/containers/audio-oriented/CAF-Container.html
+- uid: Color-Gamut
+  name: Color Gamut
+  href: articles/video/color-standards/Color-Gamut.html
+- uid: Color-Standard-BT2020
+  name: ITU-R BT.2020
+  href: articles/video/color-standards/standards/Color-Standard-BT2020.html
+- uid: Color-Standard-BT2100
+  name: ITU-R BT.2100
+  href: articles/video/color-standards/standards/Color-Standard-BT2100.html
+- uid: Color-Standard-BT601
+  name: ITU-R BT.601
+  href: articles/video/color-standards/standards/Color-Standard-BT601.html
+- uid: Color-Standard-BT709
+  name: ITU-R BT.709
+  href: articles/video/color-standards/standards/Color-Standard-BT709.html
+- uid: Color-Volume
+  name: Color Volume
+  href: articles/video/color-standards/Color-Volume.html
+- uid: Containers-and-Codecs
+  name: Containers and Codecs
+  href: articles/media-files/fundamentals/Containers-and-Codecs.html
+- uid: Decoded-PCM-Output
+  name: Decoded PCM Output
+  href: articles/audio/decoding-output/output-transport/Decoded-PCM-Output.html
+- uid: Deinterlacing
+  name: Deinterlacing
+  href: articles/video/frame-timing/interlacing-and-cadence/Deinterlacing.html
+- uid: Digital-Audio-Sampling
+  name: Digital Audio Sampling
+  href: articles/audio/fundamentals/sample-representation/Digital-Audio-Sampling.html
+- uid: Digital-Video
+  name: How Digital Video Represents Moving Pictures
+  href: articles/video/fundamentals/Digital-Video.html
+- uid: Disc-Images-ISO
+  name: 'Disc Images: ISO Files'
+  href: articles/media-files/packaging/disc/Disc-Images-ISO.html
+- uid: Dolby-AC4
+  name: Dolby AC-4 Audio
+  href: articles/audio/formats/lossy/dolby/Dolby-AC4.html
+- uid: Dolby-Atmos
+  name: Dolby Atmos
+  href: articles/audio/channels/object-based/Dolby-Atmos.html
+- uid: Dolby-Digital-AC3
+  name: Dolby Digital (AC-3)
+  href: articles/audio/formats/lossy/dolby/Dolby-Digital-AC3.html
+- uid: Dolby-Digital-Plus-EAC3
+  name: Dolby Digital Plus (E-AC-3)
+  href: articles/audio/formats/lossy/dolby/Dolby-Digital-Plus-EAC3.html
+- uid: Dolby-MAT
+  name: Dolby MAT Audio Transport
+  href: articles/audio/decoding-output/output-transport/Dolby-MAT.html
+- uid: Dolby-TrueHD
+  name: Dolby TrueHD Audio
+  href: articles/audio/formats/lossless/Dolby-TrueHD.html
+- uid: Dolby-Vision
+  name: How Dolby Vision Works
+  href: articles/video/hdr/formats/dolby-vision/Dolby-Vision.html
+- uid: Dolby-Vision-Fallback
+  name: Dolby Vision Fallback Compatibility
+  href: articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Fallback.html
+- uid: Dolby-Vision-Layers
+  name: Dolby Vision Base and Enhancement Layers
+  href: articles/video/hdr/formats/dolby-vision/metadata-and-layers/Dolby-Vision-Layers.html
+- uid: Dolby-Vision-MEL-FEL
+  name: Dolby Vision MEL and FEL
+  href: articles/video/hdr/formats/dolby-vision/metadata-and-layers/Dolby-Vision-MEL-FEL.html
+- uid: Dolby-Vision-Profile-10
+  name: Dolby Vision Profile 10
+  href: articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-10.html
+- uid: Dolby-Vision-Profile-20
+  name: Dolby Vision Profile 20
+  href: articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-20.html
+- uid: Dolby-Vision-Profile-3
+  name: Dolby Vision Profile 3 (Legacy)
+  href: articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-3.html
+- uid: Dolby-Vision-Profile-4
+  name: Dolby Vision Profile 4 (Legacy)
+  href: articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-4.html
+- uid: Dolby-Vision-Profile-5
+  name: Dolby Vision Profile 5
+  href: articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-5.html
+- uid: Dolby-Vision-Profile-7
+  name: Dolby Vision Profile 7
+  href: articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-7.html
+- uid: Dolby-Vision-Profile-8
+  name: Dolby Vision Profile 8
+  href: articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-8.html
+- uid: Dolby-Vision-Profile-9
+  name: Dolby Vision Profile 9
+  href: articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-9.html
+- uid: Dolby-Vision-Profiles-Levels
+  name: Dolby Vision Profiles and Levels
+  href: articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profiles-Levels.html
+- uid: Dolby-Vision-RPU
+  name: Dolby Vision RPU Metadata
+  href: articles/video/hdr/formats/dolby-vision/metadata-and-layers/Dolby-Vision-RPU.html
+- uid: DSD
+  name: Direct Stream Digital (DSD)
+  href: articles/audio/formats/DSD.html
+- uid: DSDIFF-Container
+  name: 'DSDIFF: DFF Container'
+  href: articles/media-files/containers/audio-oriented/DSDIFF-Container.html
+- uid: DSF-Container
+  name: 'DSF: DSD Stream File'
+  href: articles/media-files/containers/audio-oriented/DSF-Container.html
+- uid: DTS-Core
+  name: DTS Core Audio
+  href: articles/audio/formats/lossy/DTS-Core.html
+- uid: DTS-HD-High-Resolution
+  name: DTS-HD High Resolution Audio
+  href: articles/audio/formats/lossy/DTS-HD-High-Resolution.html
+- uid: DTS-HD-Master-Audio
+  name: DTS-HD Master Audio
+  href: articles/audio/formats/lossless/DTS-HD-Master-Audio.html
+- uid: DTS-X
+  name: DTS:X
+  href: articles/audio/channels/object-based/DTS-X.html
+- uid: DVD-Video-File-Structure
+  name: DVD-Video File Structure
+  href: articles/media-files/packaging/disc/DVD-Video-File-Structure.html
+- uid: Embedded-Audio-Core-Fallback
+  name: Fallback to an Embedded Audio Core
+  href: articles/audio/decoding-output/conversion-fallback/Embedded-Audio-Core-Fallback.html
+- uid: FLAC
+  name: FLAC Audio
+  href: articles/audio/formats/lossless/FLAC.html
+- uid: Fractional-Frame-Rates
+  name: 'Fractional Frame Rates: 23.976, 29.97, and 59.94'
+  href: articles/video/frame-timing/frame-rates/Fractional-Frame-Rates.html
+- uid: Fragmented-MP4
+  name: Fragmented MP4
+  href: articles/media-files/packaging/mp4/Fragmented-MP4.html
+- uid: Frame-Rate-Conversion
+  name: Frame-Rate Conversion
+  href: articles/video/frame-timing/Frame-Rate-Conversion.html
+- uid: Gamut-Mapping
+  name: Gamut Mapping
+  href: articles/video/tone-mapping/color-and-luminance/Gamut-Mapping.html
+- uid: HDR10
+  name: HDR10
+  href: articles/video/hdr/formats/HDR10.html
+- uid: HDR10-Plus
+  name: HDR10+
+  href: articles/video/hdr/formats/HDR10-Plus.html
+- uid: HDR-Camera-Capture
+  name: HDR Capture in Cameras
+  href: articles/video/hdr/HDR-Camera-Capture.html
+- uid: HDR-Luminance-Nits
+  name: Luminance and Nits
+  href: articles/video/hdr/HDR-Luminance-Nits.html
+- uid: HDR-Mastering
+  name: HDR Mastering in the Studio
+  href: articles/video/hdr/HDR-Mastering.html
+- uid: HDR-Mastering-Display-Metadata
+  name: 'Mastering Display Metadata: SMPTE ST 2086'
+  href: articles/video/hdr/metadata-and-light-levels/HDR-Mastering-Display-Metadata.html
+- uid: HDR-MaxCLL-MaxFALL
+  name: MaxCLL and MaxFALL
+  href: articles/video/hdr/metadata-and-light-levels/HDR-MaxCLL-MaxFALL.html
+- uid: HDR-Metadata
+  name: HDR Metadata
+  href: articles/video/hdr/metadata-and-light-levels/HDR-Metadata.html
+- uid: HDR-Video
+  name: What HDR Video Adds to SDR
+  href: articles/video/hdr/HDR-Video.html
+- uid: HE-AAC
+  name: HE-AAC Audio
+  href: articles/audio/formats/lossy/aac-family/HE-AAC.html
+- uid: HE-AAC-v2
+  name: HE-AAC v2 Audio
+  href: articles/audio/formats/lossy/aac-family/HE-AAC-v2.html
+- uid: HLG
+  name: Hybrid Log-Gamma (HLG)
+  href: articles/video/hdr/formats/HLG.html
+- uid: Immersive-Audio-Metadata
+  name: Preserving Immersive Audio Metadata
+  href: articles/audio/decoding-output/Immersive-Audio-Metadata.html
+- uid: Inter-Frame-Prediction
+  name: Inter-Frame Video Prediction
+  href: articles/video/compression/picture-prediction-and-random-access/Inter-Frame-Prediction.html
+- uid: Interlaced-Video
+  name: Interlaced Video
+  href: articles/video/frame-timing/interlacing-and-cadence/Interlaced-Video.html
+- uid: Intra-Frame-Compression
+  name: Intra-Frame Video Compression
+  href: articles/video/compression/picture-prediction-and-random-access/Intra-Frame-Compression.html
+- uid: Inverse-Telecine
+  name: Inverse Telecine
+  href: articles/video/frame-timing/interlacing-and-cadence/Inverse-Telecine.html
+- uid: Learn.Index
+  name: Emby Learn
+  href: index.html
+- uid: Letterboxing-Pillarboxing
+  name: Letterboxing and Pillarboxing
+  href: articles/video/geometry/Letterboxing-Pillarboxing.html
+- uid: Lossless-Video-Compression
+  name: Lossless Video Compression
+  href: articles/video/compression/Lossless-Video-Compression.html
+- uid: Lossy-Video-Compression
+  name: Lossy Video Compression
+  href: articles/video/compression/Lossy-Video-Compression.html
+- uid: LPCM
+  name: Linear PCM (LPCM)
+  href: articles/audio/formats/LPCM.html
+- uid: M4A-M4B-Files
+  name: M4A and M4B File Conventions
+  href: articles/media-files/packaging/mp4/M4A-M4B-Files.html
+- uid: Matrix-Surround
+  name: Matrix Surround
+  href: articles/audio/channels/Matrix-Surround.html
+- uid: Matroska-Attachments
+  name: Matroska Attachments
+  href: articles/media-files/packaging/matroska/Matroska-Attachments.html
+- uid: Matroska-Container
+  name: 'Matroska: MKV and MKA'
+  href: articles/media-files/containers/matroska-family/Matroska-Container.html
+- uid: Matroska-Ordered-Chapters
+  name: Matroska Ordered Chapters
+  href: articles/media-files/packaging/matroska/Matroska-Ordered-Chapters.html
+- uid: Media-Bitrate
+  name: Bitrate
+  href: articles/media-files/fundamentals/bitrate-and-file-size/Media-Bitrate.html
+- uid: Media-Bitrate-Variation
+  name: Bitrate Variation
+  href: articles/media-files/fundamentals/bitrate-and-file-size/Media-Bitrate-Variation.html
+- uid: Media-Chapter-Markers
+  name: Chapter Markers
+  href: articles/media-files/container-structure/timing-and-navigation/Media-Chapter-Markers.html
+- uid: Media-Codec-Identifiers
+  name: Codec Identifiers and FourCC
+  href: articles/media-files/container-structure/Media-Codec-Identifiers.html
+- uid: Media-Container
+  name: What Is a Media Container?
+  href: articles/media-files/container-structure/Media-Container.html
+- uid: Media-Container-Codec-Support
+  name: Codec Support in Containers
+  href: articles/media-files/container-structure/Media-Container-Codec-Support.html
+- uid: Media-Container-Overhead
+  name: Container Overhead
+  href: articles/media-files/container-structure/Media-Container-Overhead.html
+- uid: Media-Container-Seeking
+  name: Container Indexes and Seeking
+  href: articles/media-files/container-structure/timing-and-navigation/Media-Container-Seeking.html
+- uid: Media-Container-Types
+  name: Types of Media Containers
+  href: articles/media-files/container-structure/Media-Container-Types.html
+- uid: Media-CUE-Sheets
+  name: CUE Sheets
+  href: articles/media-files/playlists-and-references/Media-CUE-Sheets.html
+- uid: Media-Damaged-Incomplete-Files
+  name: Damaged and Incomplete Media Files
+  href: articles/media-files/container-structure/Media-Damaged-Incomplete-Files.html
+- uid: Media-Data-Units
+  name: Digital Media Data Units
+  href: articles/media-files/fundamentals/bitrate-and-file-size/Media-Data-Units.html
+- uid: Media-Default-Track-Flags
+  name: Default Track Flags
+  href: articles/media-files/container-structure/track-and-programme-descriptions/Media-Default-Track-Flags.html
+- uid: Media-Elementary-Streams
+  name: Elementary Streams
+  href: articles/media-files/container-structure/Media-Elementary-Streams.html
+- uid: Media-File
+  name: What Is a Media File?
+  href: articles/media-files/fundamentals/Media-File.html
+- uid: Media-File-Extensions
+  name: Media File Extensions
+  href: articles/media-files/fundamentals/Media-File-Extensions.html
+- uid: Media-File-Size-Duration
+  name: File Size and Duration
+  href: articles/media-files/fundamentals/bitrate-and-file-size/Media-File-Size-Duration.html
+- uid: Media-Inspection-ffprobe
+  name: Media Stream Inspection with ffprobe
+  href: articles/media-files/inspection/Media-Inspection-ffprobe.html
+- uid: Media-Inspection-MediaInfo
+  name: Media Stream Inspection with MediaInfo
+  href: articles/media-files/inspection/Media-Inspection-MediaInfo.html
+- uid: Media-Lossy-Lossless
+  name: Lossy and Lossless Compression
+  href: articles/media-files/fundamentals/Media-Lossy-Lossless.html
+- uid: Media-M3U-Playlists
+  name: M3U Playlists
+  href: articles/media-files/playlists-and-references/Media-M3U-Playlists.html
+- uid: Media-MIME-Types
+  name: Media MIME Types
+  href: articles/media-files/fundamentals/Media-MIME-Types.html
+- uid: Media-MPEG-TS-Program-Tables
+  name: 'MPEG-TS Program Tables: PAT and PMT'
+  href: articles/media-files/container-structure/track-and-programme-descriptions/Media-MPEG-TS-Program-Tables.html
+- uid: Media-Multiplexing
+  name: Multiplexing and Demultiplexing
+  href: articles/media-files/container-structure/Media-Multiplexing.html
+- uid: Media-Packet-Timestamps
+  name: Packet Timestamps
+  href: articles/media-files/container-structure/timing-and-navigation/Media-Packet-Timestamps.html
+- uid: Media-PLS-Playlists
+  name: PLS Playlists
+  href: articles/media-files/playlists-and-references/Media-PLS-Playlists.html
+- uid: Media-Probing
+  name: Media Probing
+  href: articles/media-files/inspection/Media-Probing.html
+- uid: Media-Streams-Tracks
+  name: Streams and Tracks
+  href: articles/media-files/fundamentals/Media-Streams-Tracks.html
+- uid: Media-STRM-Files
+  name: 'Media Pointer Files: STRM'
+  href: articles/media-files/playlists-and-references/Media-STRM-Files.html
+- uid: Media-Time-Bases
+  name: Time Bases
+  href: articles/media-files/container-structure/timing-and-navigation/Media-Time-Bases.html
+- uid: Media-Track-Language
+  name: Track Language Metadata
+  href: articles/media-files/container-structure/track-and-programme-descriptions/Media-Track-Language.html
+- uid: Monkeys-Audio-APE
+  name: Monkey's Audio (APE)
+  href: articles/audio/formats/lossless/Monkeys-Audio-APE.html
+- uid: Mono-Audio
+  name: Mono Audio
+  href: articles/audio/channels/layouts/Mono-Audio.html
+- uid: Motion-Interpolation
+  name: Motion Interpolation
+  href: articles/video/frame-timing/Motion-Interpolation.html
+- uid: MP2
+  name: MPEG Audio Layer II (MP2)
+  href: articles/audio/formats/lossy/MP2.html
+- uid: MP3
+  name: MP3 Audio
+  href: articles/audio/formats/lossy/MP3.html
+- uid: MP3-Files
+  name: MP3 Files and MPEG Audio Frames
+  href: articles/media-files/packaging/MP3-Files.html
+- uid: MP4-Container
+  name: MP4 and the ISO Base Media File Format
+  href: articles/media-files/containers/iso-base-media-and-quicktime/MP4-Container.html
+- uid: MP4-Fast-Start
+  name: MP4 Fast Start
+  href: articles/media-files/packaging/mp4/MP4-Fast-Start.html
+- uid: MPEG-Program-Stream
+  name: MPEG Program Stream
+  href: articles/media-files/containers/mpeg-systems/MPEG-Program-Stream.html
+- uid: MPEG-Transport-Stream
+  name: 'MPEG Transport Stream: TS and M2TS'
+  href: articles/media-files/containers/mpeg-systems/MPEG-Transport-Stream.html
+- uid: Multichannel-Audio
+  name: Multichannel Audio
+  href: articles/audio/channels/Multichannel-Audio.html
+- uid: Object-Based-Audio
+  name: Object-Based Audio
+  href: articles/audio/channels/object-based/Object-Based-Audio.html
+- uid: Ogg-Container
+  name: Ogg Container
+  href: articles/media-files/containers/Ogg-Container.html
+- uid: Opus
+  name: Opus Audio
+  href: articles/audio/formats/lossy/Opus.html
+- uid: P3-Color-Gamuts
+  name: P3 Color Gamuts
+  href: articles/video/color-standards/standards/P3-Color-Gamuts.html
+- uid: PCM-Sample-Formats
+  name: PCM Sample Formats
+  href: articles/audio/fundamentals/sample-representation/PCM-Sample-Formats.html
+- uid: Progressive-Video
+  name: Progressive Video
+  href: articles/video/frame-timing/interlacing-and-cadence/Progressive-Video.html
+- uid: QuickTime-Container
+  name: 'QuickTime: MOV Container'
+  href: articles/media-files/containers/iso-base-media-and-quicktime/QuickTime-Container.html
+- uid: Reference-Frames
+  name: Video Reference Frames
+  href: articles/video/compression/picture-prediction-and-random-access/Reference-Frames.html
+- uid: Speech-Coding
+  name: Speech Coding
+  href: articles/audio/formats/speech/Speech-Coding.html
+- uid: Speex
+  name: Speex Speech Audio
+  href: articles/audio/formats/speech/Speex.html
+- uid: Stereo-Audio
+  name: Stereo Audio
+  href: articles/audio/channels/layouts/Stereo-Audio.html
+- uid: Surround-Sound-5-1
+  name: 5.1 Surround Sound
+  href: articles/audio/channels/layouts/Surround-Sound-5-1.html
+- uid: Surround-Sound-7-1
+  name: 7.1 Surround Sound
+  href: articles/audio/channels/layouts/Surround-Sound-7-1.html
+- uid: Telecine-Pulldown
+  name: Telecine and 3:2 Pulldown
+  href: articles/video/frame-timing/interlacing-and-cadence/Telecine-Pulldown.html
+- uid: Tone-Mapping-Algorithm-Hable
+  name: 'Tone Mapping Curve: Hable'
+  href: articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Algorithm-Hable.html
+- uid: Tone-Mapping-Algorithm-Mobius
+  name: 'Tone Mapping Curve: Mobius'
+  href: articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Algorithm-Mobius.html
+- uid: Tone-Mapping-Algorithm-Reinhard
+  name: 'Tone Mapping Curve: Reinhard'
+  href: articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Algorithm-Reinhard.html
+- uid: Tone-Mapping-CPU
+  name: CPU Tone Mapping
+  href: articles/video/tone-mapping/execution/Tone-Mapping-CPU.html
+- uid: Tone-Mapping-CUDA
+  name: CUDA Tone Mapping
+  href: articles/video/tone-mapping/execution/gpu/Tone-Mapping-CUDA.html
+- uid: Tone-Mapping-Curve-BT2390
+  name: 'Tone Mapping Curve: BT.2390'
+  href: articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-BT2390.html
+- uid: Tone-Mapping-Curve-BT2446A
+  name: 'Tone Mapping Curve: BT.2446 Method A'
+  href: articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-BT2446A.html
+- uid: Tone-Mapping-Curve-Clip
+  name: 'Tone Mapping Curve: Clip'
+  href: articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Curve-Clip.html
+- uid: Tone-Mapping-Curve-Gamma
+  name: 'Tone Mapping Curve: Gamma'
+  href: articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Curve-Gamma.html
+- uid: Tone-Mapping-Curve-Linear
+  name: 'Tone Mapping Curve: Linear'
+  href: articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Curve-Linear.html
+- uid: Tone-Mapping-Curves
+  name: What a Tone-Mapping Curve Controls
+  href: articles/video/tone-mapping/curves/Tone-Mapping-Curves.html
+- uid: Tone-Mapping-Curve-Spline
+  name: 'Tone Mapping Curve: Spline'
+  href: articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Curve-Spline.html
+- uid: Tone-Mapping-Curve-ST2094-10
+  name: 'Tone Mapping Curve: ST 2094-10 in libplacebo'
+  href: articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-ST2094-10.html
+- uid: Tone-Mapping-Curve-ST2094-40
+  name: 'Tone Mapping Curve: ST 2094-40 in libplacebo'
+  href: articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-ST2094-40.html
+- uid: Tone-Mapping-HDR-to-HDR
+  name: HDR-to-HDR Tone Mapping
+  href: articles/video/tone-mapping/fundamentals/Tone-Mapping-HDR-to-HDR.html
+- uid: Tone-Mapping-HDR-to-SDR
+  name: How HDR-to-SDR Tone Mapping Works
+  href: articles/video/tone-mapping/fundamentals/Tone-Mapping-HDR-to-SDR.html
+- uid: Tone-Mapping-Highlight-Roll-Off
+  name: Highlight Roll-Off in Tone Mapping
+  href: articles/video/tone-mapping/color-and-luminance/Tone-Mapping-Highlight-Roll-Off.html
+- uid: Tone-Mapping-OpenCL
+  name: OpenCL Tone Mapping
+  href: articles/video/tone-mapping/execution/gpu/Tone-Mapping-OpenCL.html
+- uid: Tone-Mapping-Peak-Detection
+  name: Peak-Luminance Detection for Tone Mapping
+  href: articles/video/tone-mapping/color-and-luminance/Tone-Mapping-Peak-Detection.html
+- uid: Tone-Mapping-Playback-Path
+  name: Where Tone Mapping Happens in an Emby Playback Session
+  href: articles/video/tone-mapping/execution/Tone-Mapping-Playback-Path.html
+- uid: Tone-Mapping-Scene-Adaptive
+  name: Scene-Adaptive Tone Mapping
+  href: articles/video/tone-mapping/color-and-luminance/Tone-Mapping-Scene-Adaptive.html
+- uid: Tone-Mapping-Vulkan
+  name: Vulkan Tone Mapping
+  href: articles/video/tone-mapping/execution/gpu/Tone-Mapping-Vulkan.html
+- uid: Tone-Mapping-Why
+  name: Why Tone Mapping Is Needed
+  href: articles/video/tone-mapping/fundamentals/Tone-Mapping-Why.html
+- uid: Transfer-Function-BT1886
+  name: ITU-R BT.1886
+  href: articles/video/color-standards/transfer-functions/Transfer-Function-BT1886.html
+- uid: Transfer-Function-EOTF
+  name: Electro-Optical Transfer Function (EOTF)
+  href: articles/video/color-standards/transfer-functions/Transfer-Function-EOTF.html
+- uid: Transfer-Function-OETF
+  name: Opto-Electronic Transfer Function (OETF)
+  href: articles/video/color-standards/transfer-functions/Transfer-Function-OETF.html
+- uid: Transfer-Function-OOTF
+  name: Opto-Optical Transfer Function (OOTF)
+  href: articles/video/color-standards/transfer-functions/Transfer-Function-OOTF.html
+- uid: Transfer-Function-PQ
+  name: 'Perceptual Quantizer (PQ): SMPTE ST 2084'
+  href: articles/video/color-standards/transfer-functions/Transfer-Function-PQ.html
+- uid: Understanding-Audio-in-Media
+  name: Understanding Audio in Media
+  href: articles/audio/Understanding-Audio-in-Media.html
+- uid: Variable-Frame-Rate
+  name: Variable Frame Rate
+  href: articles/video/frame-timing/frame-rates/Variable-Frame-Rate.html
+- uid: Video-Codec-AV1
+  name: AV1 Video
+  href: articles/video/codecs/vpx-av1/Video-Codec-AV1.html
+- uid: Video-Codec-Compatibility
+  name: How Video Codecs Affect Playback Compatibility
+  href: articles/video/codecs/Video-Codec-Compatibility.html
+- uid: Video-Codec-DNxHD
+  name: Avid DNxHD Video
+  href: articles/video/codecs/production-preservation/Video-Codec-DNxHD.html
+- uid: Video-Codec-DNxHR
+  name: Avid DNxHR Video
+  href: articles/video/codecs/production-preservation/Video-Codec-DNxHR.html
+- uid: Video-Codec-DV
+  name: DV Video
+  href: articles/video/codecs/production-preservation/Video-Codec-DV.html
+- uid: Video-Codec-FFV1
+  name: FFV1 Lossless Video
+  href: articles/video/codecs/production-preservation/Video-Codec-FFV1.html
+- uid: Video-Codec-H264
+  name: H.264 / AVC Video
+  href: articles/video/codecs/mpeg-itu/Video-Codec-H264.html
+- uid: Video-Codec-HEVC
+  name: H.265 / HEVC Video
+  href: articles/video/codecs/mpeg-itu/Video-Codec-HEVC.html
+- uid: Video-Codec-Levels-Tiers
+  name: Video Codec Levels and Tiers
+  href: articles/video/compression/Video-Codec-Levels-Tiers.html
+- uid: Video-Codec-Motion-JPEG
+  name: Motion JPEG Video
+  href: articles/video/codecs/production-preservation/Video-Codec-Motion-JPEG.html
+- uid: Video-Codec-MPEG2
+  name: MPEG-2 Video
+  href: articles/video/codecs/mpeg-itu/Video-Codec-MPEG2.html
+- uid: Video-Codec-MPEG4-Part2
+  name: 'MPEG-4 Part 2: DivX and Xvid'
+  href: articles/video/codecs/mpeg-itu/Video-Codec-MPEG4-Part2.html
+- uid: Video-Codec-Profiles
+  name: Video Codec Profiles
+  href: articles/video/compression/Video-Codec-Profiles.html
+- uid: Video-Codec-ProRes
+  name: Apple ProRes Video
+  href: articles/video/codecs/production-preservation/Video-Codec-ProRes.html
+- uid: Video-Codec-VC1
+  name: VC-1 Video
+  href: articles/video/codecs/Video-Codec-VC1.html
+- uid: Video-Codec-VP8
+  name: VP8 Video
+  href: articles/video/codecs/vpx-av1/Video-Codec-VP8.html
+- uid: Video-Codec-VP9
+  name: VP9 Video
+  href: articles/video/codecs/vpx-av1/Video-Codec-VP9.html
+- uid: Video-Codec-VVC
+  name: H.266 / VVC Video
+  href: articles/video/codecs/mpeg-itu/Video-Codec-VVC.html
+- uid: Video-Compression
+  name: How Video Compression Works
+  href: articles/video/compression/Video-Compression.html
+- uid: Video-Compression-Artifacts
+  name: Video Compression Artifacts
+  href: articles/video/encoding-quality/quality-changes-artifacts/Video-Compression-Artifacts.html
+- uid: Video-Cropping
+  name: Cropping Video
+  href: articles/video/geometry/Video-Cropping.html
+- uid: Video-Display-Aspect-Ratio
+  name: Video Display Aspect Ratio
+  href: articles/video/geometry/aspect-ratios/Video-Display-Aspect-Ratio.html
+- uid: Video-Encoder-Presets
+  name: Video Encoder Presets
+  href: articles/video/encoding-quality/Video-Encoder-Presets.html
+- uid: Video-Encoding-Bitrate
+  name: Video Bitrate
+  href: articles/video/encoding-quality/rate-control/Video-Encoding-Bitrate.html
+- uid: Video-Encoding-CBR
+  name: Constant Bitrate Video Encoding
+  href: articles/video/encoding-quality/rate-control/Video-Encoding-CBR.html
+- uid: Video-Encoding-Constant-Quality
+  name: Constant Quality Video Encoding
+  href: articles/video/encoding-quality/rate-control/Video-Encoding-Constant-Quality.html
+- uid: Video-Encoding-CRF
+  name: Constant Rate Factor (CRF) for Video
+  href: articles/video/encoding-quality/rate-control/Video-Encoding-CRF.html
+- uid: Video-Encoding-QP
+  name: Video Quantization Parameter (QP)
+  href: articles/video/encoding-quality/rate-control/Video-Encoding-QP.html
+- uid: Video-Encoding-Two-Pass
+  name: Two-Pass Video Encoding
+  href: articles/video/encoding-quality/rate-control/Video-Encoding-Two-Pass.html
+- uid: Video-Encoding-VBR
+  name: Variable Bitrate Video Encoding
+  href: articles/video/encoding-quality/rate-control/Video-Encoding-VBR.html
+- uid: Video-Encoding-VBV
+  name: Video Buffering Verifier (VBV)
+  href: articles/video/encoding-quality/rate-control/Video-Encoding-VBV.html
+- uid: Video-Field-Order
+  name: Video Field Order
+  href: articles/video/frame-timing/interlacing-and-cadence/Video-Field-Order.html
+- uid: Video-Film-Grain
+  name: Film Grain in Compressed Video
+  href: articles/video/encoding-quality/quality-changes-artifacts/Video-Film-Grain.html
+- uid: Video-Frame-Rate
+  name: Video Frame Rate
+  href: articles/video/frame-timing/frame-rates/Video-Frame-Rate.html
+- uid: Video-Gamma
+  name: Video Gamma
+  href: articles/video/color-standards/transfer-functions/Video-Gamma.html
+- uid: Video-Generation-Loss
+  name: Video Generation Loss
+  href: articles/video/encoding-quality/quality-changes-artifacts/Video-Generation-Loss.html
+- uid: Video-GOP
+  name: Groups of Pictures (GOPs)
+  href: articles/video/compression/picture-prediction-and-random-access/Video-GOP.html
+- uid: Video-Keyframes
+  name: Video Keyframes and Random Access
+  href: articles/video/compression/picture-prediction-and-random-access/Video-Keyframes.html
+- uid: Video-Pixel-Aspect-Ratio
+  name: Video Pixel Aspect Ratio
+  href: articles/video/geometry/aspect-ratios/Video-Pixel-Aspect-Ratio.html
+- uid: Video-Quality-PSNR
+  name: Peak Signal-to-Noise Ratio (PSNR) for Video
+  href: articles/video/encoding-quality/quality-metrics/Video-Quality-PSNR.html
+- uid: Video-Quality-SSIM
+  name: Structural Similarity (SSIM) for Video
+  href: articles/video/encoding-quality/quality-metrics/Video-Quality-SSIM.html
+- uid: Video-Quality-VMAF
+  name: VMAF Video Quality Metric
+  href: articles/video/encoding-quality/quality-metrics/Video-Quality-VMAF.html
+- uid: Video-Resolution
+  name: Video Resolution
+  href: articles/video/geometry/Video-Resolution.html
+- uid: Video-Rotation-Metadata
+  name: Video Rotation Metadata
+  href: articles/video/geometry/Video-Rotation-Metadata.html
+- uid: Virtual-Surround
+  name: Virtual Surround
+  href: articles/audio/channels/Virtual-Surround.html
+- uid: Vorbis
+  name: Vorbis Audio
+  href: articles/audio/formats/lossy/Vorbis.html
+- uid: WavPack
+  name: WavPack Audio
+  href: articles/audio/formats/lossless/WavPack.html
+- uid: WAV-RIFF-Container
+  name: WAV and RIFF
+  href: articles/media-files/containers/audio-oriented/WAV-RIFF-Container.html
+- uid: WebM-Container
+  name: WebM Container
+  href: articles/media-files/containers/matroska-family/WebM-Container.html
+- uid: WMA
+  name: Windows Media Audio (WMA)
+  href: articles/audio/formats/lossy/WMA.html
+- uid: WMA-Lossless
+  name: WMA Lossless Audio
+  href: articles/audio/formats/lossless/WMA-Lossless.html
+- uid: xHE-AAC
+  name: xHE-AAC Audio
+  href: articles/audio/formats/lossy/aac-family/xHE-AAC.html
