@@ -106,36 +106,41 @@
 <h1>AAC Stream Packaging</h1>
 
 
-<p>Two files can contain the same AAC-encoded sound and still require different input handling. <strong>AAC is the compression family</strong>; its packaging tells a reader where encoded units begin and how to configure the decoder.</p>
-<p>The decoder needs information such as the audio object type, sample rate, and channel configuration. That information can be carried in transport headers or in a containing file's track description.</p>
+<p>An AAC decoder needs encoded audio units <strong>and configuration</strong>. Packaging decides where it obtains the unit boundaries, object type, sampling information, and channel description.</p>
 <table>
 <thead>
 <tr>
 <th>Packaging</th>
-<th>Where a reader finds structure and configuration</th>
+<th>Setup and boundaries</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><a href="AAC-ADTS.html">ADTS</a></td>
-<td>Repeated transport headers around encoded audio</td>
+<td>Repeated transport headers surrounding audio data</td>
 </tr>
 <tr>
 <td>MP4/M4A</td>
-<td>Container sample descriptions, timing, and stored decoder configuration</td>
+<td>Track setup plus sample sizes and timing in the container</td>
 </tr>
 <tr>
 <td><a href="AAC-LATM.html">LATM</a></td>
-<td>A multiplex structure carrying audio and configuration information</td>
+<td>Multiplex configuration and audio payload structure</td>
 </tr>
 </tbody>
 </table>
-<p>Those choices do not establish whether the audio is <a href="../../../audio/formats/lossy/aac-family/AAC-LC.html">AAC-LC</a>, <a href="../../../audio/formats/lossy/aac-family/HE-AAC.html">HE-AAC</a>, or another member of the family. Some coding tools and configurations need signalling beyond the basic fields in a particular wrapper.</p>
-<h2 id="copying-the-sound-can-still-change-bytes">Copying the sound can still change bytes</h2>
-<p>Moving AAC from ADTS into MP4 commonly removes the repeated ADTS headers and creates an AudioSpecificConfig in the container. This is a bitstream-packaging adjustment that can preserve the encoded audio without decoding and recompressing it.</p>
-<p>The resulting files will not be byte-for-byte identical, and their total sizes may differ. That difference is not by itself evidence of a quality change. Compare the encoded audio and configuration rather than treating container overhead as extra sound information.</p>
-<p>For an Emby source that is identified as AAC but behaves differently from another AAC source, check both the coding variant and the wrapper. A suitable decoder is insufficient if the input stage cannot understand the framing or discover the required configuration.</p>
-<p>Use <a href="../../inspection/Media-Inspection-MediaInfo.html">inspection information</a> that includes the container and profile, not only the word AAC. This avoids confusing a transport problem with a need to re-encode the soundtrack.</p>
+<p>Follow one ordinary <a href="../../../audio/formats/lossy/aac-family/AAC-LC.html">AAC-LC</a> stereo stream at 44.1 kHz from ADTS into MP4. The audio units can stay encoded while the descriptions around them change.</p>
+<h2 id="translate-the-setup">Translate the setup</h2>
+<p>In this AAC-LC case, an ADTS header's profile value is 1, which maps to MPEG-4 audio object type 2. Its sampling-frequency index is 4, meaning 44,100 Hz, and channel configuration 2 represents stereo.</p>
+<p>The writer constructs an <strong>AudioSpecificConfig</strong> for the destination track. For this simple case, the object type, frequency index, channel configuration, and basic general-audio flags form the familiar two-byte value 0x12 0x10. The decoder receives that setup from the track description rather than deriving it from a repeated ADTS header.</p>
+<p>Those bytes describe this particular AAC configuration. <a href="../../../audio/formats/lossy/aac-family/HE-AAC.html">HE-AAC</a> and other variants can need additional signalling and have core and output properties that differ; they must be parsed in their own terms rather than forced into this two-byte example.</p>
+<h2 id="translate-each-units-surrounding-structure">Translate each unit's surrounding structure</h2>
+<p>The converter reads an ADTS frame length, separates the header from its encoded audio, and writes the audio unit as a destination sample. It records that sample's size and duration through the container's structures.</p>
+<p>If an invented frame has a seven-byte unprotected header and 100 bytes of audio, the destination sample can hold those same 100 audio bytes. The original framed unit occupied 107 bytes. The MP4 also adds its own track and sample metadata, so removing seven bytes per unit does not by itself predict the total file-size difference.</p>
+<p>No sound has yet been decoded in this route. FFmpeg's aac_adtstoasc filter performs this sort of header/configuration translation for applicable inputs.</p>
+<h2 id="what-is-preserved">What is preserved?</h2>
+<p>The coded sound can be preserved while framing, setup location, and timing description change. A raw source may also lack the album tags or chapter information supplied by a more general container. These are distinct pieces of the result.</p>
+<p>For an Emby source comparison, record the AAC variant and how it is supplied to the decoder. A successful packaging-only route can avoid a new lossy audio generation; a route requiring another audio representation instead passes through decoded samples and an encoder.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

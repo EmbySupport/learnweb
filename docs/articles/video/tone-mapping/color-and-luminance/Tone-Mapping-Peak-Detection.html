@@ -106,40 +106,70 @@
 <h1>Peak-Luminance Detection for Tone Mapping</h1>
 
 
-<p>A tone mapper needs some idea of how much brightness it must fit into the output. That information can come from metadata, a configured assumption, or analysis of the decoded picture. <strong>Peak detection examines the picture itself.</strong> It does not measure the physical brightness of your television.</p>
-<p>The distinction matters because several different numbers can accompany HDR video:</p>
+<p>A mapper needs a source-range estimate. Peak detection obtains one by examining the decoded picture, rather than using only a mastering record or a configured assumption.</p>
+<h2 id="define-the-statistic-before-taking-its-maximum">Define the statistic before taking its maximum</h2>
+<p>Stored video values need their range, transfer, and color interpretation. Taking a raw integer maximum does not by itself give a light level. A detector analyzes a defined quantity, such as a light-domain component statistic or a perceptual representation, then supplies it in the units its mapper expects.</p>
+<p>For a neutral PQ-gray example, recovered light levels can be expressed in nits. Colored pictures need the statistic's component/luminance definition too: a maximum RGB component and weighted luminance are different quantities.</p>
+<h2 id="test-a-frame-with-a-few-extreme-samples">Test a frame with a few extreme samples</h2>
+<p>Suppose 10,000 neutral-gray samples consist of 9,990 at 100 nits and ten at 1,000 nits:</p>
 <table>
 <thead>
 <tr>
-<th>Value</th>
-<th>What it describes</th>
+<th>Estimate</th>
+<th style="text-align: right;">Result in this constructed frame</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Absolute maximum</td>
+<td style="text-align: right;">1,000 nits</td>
+</tr>
+<tr>
+<td>99.9th percentile, nearest-rank method</td>
+<td style="text-align: right;">100 nits</td>
+</tr>
+<tr>
+<td>Average</td>
+<td style="text-align: right;">100.9 nits</td>
+</tr>
+</tbody>
+</table>
+<p>The maximum sees the ten intense samples. The percentile selects the 9,990th sorted sample, at 100. The average is (9,990 × 100 + 10 × 1,000)/10,000 = 100.9.</p>
+<p>These statistics describe the same frame differently. Using the absolute maximum can reserve mapping range for a tiny sparkle. Discounting a small upper tail can give the rest of the scene more room but may compress or clip those rare highlights more strongly. The selected policy establishes that tradeoff.</p>
+<p>A practical detector can use sampled pixels or a histogram rather than sorting every value. Bin precision, selected picture area, and the treatment of exceptional values then affect the estimate. The example demonstrates percentile reasoning, not a particular library's binning or default setting.</p>
+<h2 id="keep-source-information-in-its-proper-role">Keep source information in its proper role</h2>
+<table>
+<thead>
+<tr>
+<th>Input to a mapping</th>
+<th>Role</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Mastering-display maximum</td>
-<td>The upper luminance capability reported for the display used in mastering</td>
+<td>Context about the grading reference</td>
 </tr>
 <tr>
 <td>MaxCLL</td>
-<td>The reported maximum content light level</td>
+<td>A reported sequence-level content bound</td>
 </tr>
 <tr>
-<td>MaxFALL</td>
-<td>The reported maximum average light level of a frame</td>
+<td>Dynamic scene statistics</td>
+<td>Prepared information for the current content interval</td>
 </tr>
 <tr>
-<td>Detected peak</td>
-<td>An estimate derived from the pixels currently being analyzed</td>
+<td>Runtime detected peak</td>
+<td>The detector's estimate from analyzed pictures</td>
+</tr>
+<tr>
+<td>Destination peak</td>
+<td>The output range to fit</td>
 </tr>
 </tbody>
 </table>
-<p><a href="https://github.com/FFmpeg/FFmpeg/blob/n8.1/libavutil/mastering_display_metadata.h">FFmpeg's metadata definitions</a> keep mastering-display information and content light levels separate. None of these values is the target screen's measured peak.</p>
-<h2 id="one-unusually-bright-pixel-can-matter">One unusually bright pixel can matter</h2>
-<p>Using the brightest pixel is straightforward, but a tiny sparkle may then influence how the whole frame is mapped. Some implementations can instead choose a very high percentile of the brightness distribution. This discounts a small number of extreme values, trading possible loss in tiny highlights for more room elsewhere.</p>
-<p><a href="https://github.com/haasn/libplacebo/blob/v7.349.0/src/include/libplacebo/shaders/colorspace.h">libplacebo exposes this distinction</a>. It also smooths measurements over time; without smoothing, small changes between frames could cause distracting brightness fluctuations. The balance between stability and reacting to a new scene is covered in <a href="Tone-Mapping-Scene-Adaptive.html">scene-adaptive tone mapping</a>.</p>
-<p>This explains why selecting the same curve name does not always reproduce the same picture. Two implementations can feed that curve different peak estimates. When comparing an Emby result, include a dim scene with isolated lights as well as a bright outdoor scene. A single paused frame does not reveal whether the estimate remains stable during motion.</p>
-<p>Peak detection can improve decisions when metadata is absent or unhelpful, but it adds processing work and remains an estimate. It cannot recover detail already clipped in the source.</p>
+<p>These values can be combined or selected according to the implementation. Missing metadata can make picture analysis especially useful, while a detector still needs an appropriate interpretation of the source.</p>
+<p>Finally, the estimate should be managed across time. A single flash can otherwise change a global curve for an unchanged face. <a href="Tone-Mapping-Scene-Adaptive.html">Scene-adaptive mapping</a> develops that stability problem. For an Emby comparison, record the source information and actual processing path, then watch a dim scene with isolated lights as well as a broadly bright one. Those scenes exercise the estimator's real decision.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

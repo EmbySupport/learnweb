@@ -106,34 +106,43 @@
 <h1>HDR Capture in Cameras</h1>
 
 
-<p>An HDR picture starts with information the camera actually captured. If a sunlit window has already become a featureless clipped patch in the recording, an HDR export label cannot bring its detail back.</p>
-<p>Capture dynamic range is often described in <strong>stops</strong>. Each additional stop represents a doubling of the light ratio. This describes the sensor and recording workflow; it is not a promise about how many nits the finished film will use.</p>
-<p>A useful distinction for home videos in an Emby library is whether the recording is ready for normal viewing or still needs production work.</p>
+<p>A sunlit window and a person inside a dim room place different demands on a camera. The sensor and recording path must retain useful information from both if a later HDR grade is to show their relationship. Capture is where that information first becomes available.</p>
+<h2 id="place-the-exposure-inside-the-usable-range">Place the exposure inside the usable range</h2>
+<p>A sensor has an upper signal limit and a low-light region increasingly affected by noise. If the window reaches the upper limit, several different bright scene values can produce the same recorded value. Its texture is clipped. If the face falls too far toward the low-light noise floor, later brightening exposes noise alongside the wanted detail.</p>
+<p>Exposure places the scene within those limits. Reducing exposure can protect a window while reducing the signal available for the interior. Lighting, framing, or another capture choice can change the scene's demands; a wide-range sensor gives more room to balance them.</p>
+<p>Capture range is often expressed in <strong>stops</strong>. Each stop doubles the light ratio. A hypothetical 15-stop range corresponds to a ratio of 2^15, or <strong>32,768:1</strong>, under the measurement's noise and clipping criteria. It is a relative capture range, not a declaration that the finished film uses a certain peak number of nits.</p>
+<h2 id="choose-the-recording-representation">Choose the recording representation</h2>
 <table>
 <thead>
 <tr>
 <th>Recording approach</th>
-<th>What happens next</th>
+<th>Information and next stage</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td>Raw</td>
+<td>Sensor-oriented data developed through an image-processing pipeline</td>
+</tr>
+<tr>
 <td>Log video</td>
-<td>A deliberately encoded source for grading and conversion into a viewing format</td>
+<td>Processed picture values encoded to retain grading latitude</td>
 </tr>
 <tr>
-<td>Raw capture</td>
-<td>Sensor-oriented data that needs development and an image-processing pipeline</td>
-</tr>
-<tr>
-<td>HLG recording</td>
-<td>Can provide a delivery-ready HDR signal for a compatible viewing path</td>
+<td>Delivery-oriented HLG</td>
+<td>An HDR signal suitable for a compatible presentation path</td>
 </tr>
 </tbody>
 </table>
-<p>A flat-looking log recording is therefore not necessarily broken HDR. Sony, for example, describes S-Log as intended for subsequent grading, while HLG recordings are intended for compatible HDR displays. Camera preview assistance can show a more normal-looking image without changing the underlying log recording.</p>
-<p>Exposure still matters. Preserving a bright sky by lowering exposure too far can leave important shadows noisy. HDR can make both clipped highlights and shadow noise more visible, because the final presentation has room to reveal them.</p>
-<p>For a personal-video library, identify the recording mode before diagnosing playback. <a href="HDR-Mastering.html">Grading and mastering</a> turn captured material into a finished image. <a href="../tone-mapping/fundamentals/Tone-Mapping-HDR-to-SDR.html">HDR-to-SDR tone mapping</a> solves a later display-range problem; it is not a substitute for developing or grading camera originals.</p>
+<p>Log encoding allocates values differently from ordinary viewing encodings. It can retain a useful span of captured information in the recording precision, but the intended rendering remains part of production. A flat-looking log image viewed without its appropriate transform can contain good capture data; it has not yet been presented in its intended finished form.</p>
+<p>Raw development performs the necessary camera-image operations before or during grading. The exact stages depend on the camera and format. Both raw and log workflows can lead to HDR or SDR deliverables, because capture representation and output rendering have different roles.</p>
+<p>HLG recording can place those roles differently by providing a defined HDR television signal. A compatible renderer knows how to interpret that signal. The recording mode and color descriptions identify which path a personal video needs.</p>
+<h3 id="use-the-preview-to-judge-the-picture-without-confusing-it-with-the-recording">Use the preview to judge the picture without confusing it with the recording</h3>
+<p>A camera's display assist or monitoring transform can show a more viewable preview of log material. The preview operation can leave the underlying recorded log values unchanged. ARRI and Sony document these separate monitoring and recording uses.</p>
+<p>This distinction matters when a camera image looked normal on set but the saved file looks flat in a player. Check which transform was used for monitoring and whether it was incorporated into the exported viewing copy. Repeating the preview's appearance requires the relevant rendering, not a new label on the original values.</p>
+<h2 id="carry-useful-source-information-into-the-master">Carry useful source information into the master</h2>
+<p><a href="HDR-Mastering.html">Grading and mastering</a> choose the output appearance from the retained source information. A colorist can place faces, windows, and highlights at suitable levels, match shots, and create different delivery versions. The source's captured range gives options for those decisions.</p>
+<p>For a home-video collection in Emby, keep camera originals and finished viewing copies identified. A log or raw original can need production work before routine playback. A delivery-ready HDR file instead needs a compatible display path or a suitable <a href="../tone-mapping/fundamentals/Tone-Mapping-HDR-to-SDR.html">HDR-to-SDR conversion</a>. Those stages solve different parts of the journey from captured light to the screen.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

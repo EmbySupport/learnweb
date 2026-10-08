@@ -106,41 +106,66 @@
 <h1>Linear PCM (LPCM)</h1>
 
 
-<p><strong>Linear PCM, or LPCM, is audio represented directly by sample values.</strong> “Linear” means that equal numerical steps correspond to equal amplitude steps, unlike the companded PCM used in some telephone systems.</p>
-<p>LPCM is the familiar basis of digital music and decoded audio output. A receiver showing “PCM” is describing the signal it receives; the original file might have contained a compressed soundtrack.</p>
-<h2 id="what-its-data-rate-means">What its data rate means</h2>
-<p>For tightly packed integer LPCM, the audio data rate is sample rate × bit depth × channel count.</p>
+<p>A signed integer LPCM sample is a direct amplitude value. If the stored code is twice as large, its represented amplitude is twice as large. <strong>Linear pulse-code modulation</strong> uses this linear relationship, unlike companded formats that assign finer and coarser amplitude spacing in different parts of their range.</p>
+<p>There is no compressed-audio prediction or transform to undo before interpreting the sample values.</p>
+<h2 id="read-a-tiny-stereo-sequence">Read a tiny stereo sequence</h2>
+<p>Assume signed 16-bit samples, little-endian storage, and interleaved left/right channels. Two sample frames contain:</p>
 <table>
 <thead>
 <tr>
-<th>Example</th>
-<th>Calculation</th>
-<th style="text-align: right;">Audio payload rate</th>
+<th style="text-align: right;">Time position</th>
+<th style="text-align: right;">Left</th>
+<th style="text-align: right;">Right</th>
+<th>Four stored bytes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Stereo, 44.1 kHz, 16-bit</td>
-<td>44,100 × 16 × 2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">+1,000</td>
+<td style="text-align: right;">−1,000</td>
+<td>E8 03 18 FC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">+2,000</td>
+<td style="text-align: right;">−2,000</td>
+<td>D0 07 30 F8</td>
+</tr>
+</tbody>
+</table>
+<p>Each two-byte signed code is the amplitude for one channel at that time. To turn the eight bytes into correctly timed samples, the reader still needs the format description: sample rate, signedness, precision/storage size, byte order, and channel layout.</p>
+<p>A <a href="../../media-files/containers/audio-oriented/WAV-RIFF-Container.html">WAV</a> or <a href="../../media-files/containers/audio-oriented/AIFF-Container.html">AIFF</a> supplies such a description with its sample data. Their different wrappers do not inherently change the represented sound.</p>
+<h2 id="count-the-uncompressed-payload">Count the uncompressed payload</h2>
+<p>At 48 kHz, each channel advances through 48,000 samples every second. With tightly packed 24-bit samples and six channels, each frame uses 144 bits:</p>
+<p>48,000 × 24 × 6 = <strong>6.912 Mbit/s</strong>.</p>
+<p>The rate follows directly from the sample representation. Unlike compressed bitrate, it does not decrease during a simple or quiet passage. All sample positions still occupy their storage.</p>
+<table>
+<thead>
+<tr>
+<th>LPCM example</th>
+<th style="text-align: right;">Raw audio payload</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>44.1 kHz, 16-bit, stereo</td>
 <td style="text-align: right;">1.4112 Mbit/s</td>
 </tr>
 <tr>
-<td>5.1, 48 kHz, 24-bit</td>
-<td>48,000 × 24 × 6</td>
+<td>48 kHz, 24-bit, 5.1</td>
 <td style="text-align: right;">6.912 Mbit/s</td>
 </tr>
 <tr>
-<td>7.1, 96 kHz, 24-bit</td>
-<td>96,000 × 24 × 8</td>
+<td>96 kHz, 24-bit, 7.1</td>
 <td style="text-align: right;">18.432 Mbit/s</td>
 </tr>
 </tbody>
 </table>
-<p>These figures exclude container and transport overhead. Storage can also use a wider word than the valid sample precision: 24 valid bits in a 32-bit slot occupy more space than tightly packed 24-bit samples.</p>
-<h2 id="the-outer-format-still-matters">The outer format still matters</h2>
-<p><a href="../../media-files/containers/audio-oriented/WAV-RIFF-Container.html">WAV</a>, <a href="../../media-files/containers/audio-oriented/AIFF-Container.html">AIFF</a>, and other containers can store LPCM with different byte order and channel descriptions. “PCM” alone does not specify those details or a particular sample rate.</p>
-<p>Decoding a <a href="lossless/FLAC.html">FLAC</a> file restores PCM values. Decoding a lossy track also produces PCM, but those values are the codec's reconstruction rather than an exact copy of the pre-encoding source. The output label cannot distinguish the two.</p>
-<p>In an Emby playback path, PCM output can therefore be the expected result of decoding a compatible soundtrack. Whether every original channel reaches the speakers depends on the player's <a href="../decoding-output/output-transport/Decoded-PCM-Output.html">output format</a> and the connected system.</p>
+<p>A wider storage word changes the payload calculation. For example, 24 valid bits carried in 32-bit words occupy more space without increasing recorded precision. <a href="../fundamentals/sample-representation/PCM-Sample-Formats.html">Sample formats</a> develops that distinction.</p>
+<h2 id="the-samples-can-come-from-several-earlier-representations">The samples can come from several earlier representations</h2>
+<p>A lossless decoder can restore the PCM values that its encoder preserved. A lossy decoder produces its encoded approximation as PCM. Both results can enter an ordinary sample-processing/output stage, where gain, mixing, or resampling operate on numbers.</p>
+<p>Thus a receiver's PCM indication describes the delivered representation. The original library track may have been FLAC, a movie codec, or LPCM itself. To assess preservation, follow what happened before those values reached the output, rather than treating direct sample representation as evidence of a particular recording history.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

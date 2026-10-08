@@ -106,39 +106,42 @@
 <h1>AIFF Container</h1>
 
 
-<p><strong>AIFF</strong>, the Audio Interchange File Format, is a familiar home for uncompressed audio in recording and editing workflows. Files commonly end in .aif or .aiff.</p>
-<p>AIFF uses an IFF-style structure of chunks inside a FORM container. Its original PCM representation stores multibyte numbers and samples in big-endian order, a useful distinction when diagnosing raw sample interpretation.</p>
+<p>An <strong>AIFF</strong> stores sample descriptions and sound data in separate chunks. Its outer FORM structure identifies the format; COMM describes the audio, and SSND holds its sound data and positioning fields.</p>
 <table>
 <thead>
 <tr>
-<th>Important AIFF chunk</th>
-<th>Information it supplies</th>
+<th>Chunk</th>
+<th>Reader use</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>COMM</td>
-<td>Channel count, sample count, precision, and sample rate</td>
+<td>Obtain channels, sample-frame count, precision, and sample rate</td>
 </tr>
 <tr>
 <td>SSND</td>
-<td>Audio sample data with positioning information</td>
+<td>Locate the actual sound samples, accounting for its offset information</td>
 </tr>
 <tr>
-<td>MARK, when present</td>
-<td>Named marker positions</td>
+<td>MARK, where present</td>
+<td>Read named positions in the recording</td>
 </tr>
 <tr>
-<td>Text or instrument chunks, when present</td>
-<td>Supporting descriptions or instrument information</td>
+<td>Descriptive/instrument chunks</td>
+<td>Interpret additional recording or instrument information</td>
 </tr>
 </tbody>
 </table>
-<p>The <strong>AIFF-C</strong> variant extends the format with an encoding identifier, allowing compressed audio and additional representations. An inspection report saying AIFF-C therefore needs the actual encoding alongside it; the name is not a complete decoder requirement.</p>
-<h2 id="comparing-it-with-wav">Comparing it with WAV</h2>
-<p>A <a href="WAV-RIFF-Container.html">WAV</a> and an AIFF can hold the same decoded PCM samples without one having better sound. Their chunk layouts and storage conventions differ. Converting between those packages need not reduce precision, but a tool can also change sample rate, bit depth, or encoding if instructed to do so.</p>
-<p>For an Emby music collection, those audio properties are more informative than the file extension when comparing an imported master with a listening copy. Check duration, channels, and <a href="../../../audio/fundamentals/sample-representation/PCM-Sample-Formats.html">sample format</a> after conversion, along with the tags the library actually receives.</p>
-<p>Metadata handling varies between writing and reading tools. The survival of a title or artwork should be checked separately from the preservation of the audio samples. A technically lossless audio conversion can still lose useful descriptive information.</p>
+<p>The reader follows sizes through the chunk structure. It does not infer where samples begin solely from the filename or one assumed header length.</p>
+<h2 id="interpret-the-bytes-in-the-declared-order">Interpret the bytes in the declared order</h2>
+<p>Original AIFF PCM stores multibyte values in <strong>big-endian</strong> order: the most significant byte comes first. For a positive 16-bit value of 291, hexadecimal 0123, the stored bytes are 01 followed by 23. Swapping their interpretation produces hexadecimal 2301, or 8,961, a very different sample.</p>
+<p>This does not give big-endian audio a sound-quality advantage. It specifies how bytes represent the same numbers. A proper conversion into a little-endian PCM arrangement swaps storage order as required while preserving the decoded values.</p>
+<p>For stereo, one sample frame contains a value for each channel. If COMM reports 44,100 sample frames at 44.1 kHz, the audio lasts one second. At 16 bits per channel, the uncompressed sample data occupies 44,100 × 2 × 2 = 176,400 bytes, before container structures.</p>
+<h2 id="aiff-c-describes-more-encodings">AIFF-C describes more encodings</h2>
+<p>AIFF-C extends the description with an encoding identifier, allowing compressed audio and further representations. The extra letter therefore changes what the reader must interpret, rather than simply naming a smaller version of the same original PCM layout.</p>
+<p>To compare an AIFF master with a WAV listening copy in an Emby collection, compare decoded format, rate, channel layout, and complete duration. A conversion preserving those samples can still write different bytes and different tags because the destination structures differ.</p>
+<p>An accurate sample comparison begins after each container and byte arrangement has been interpreted. Comparing the raw file bytes would conflate the sample values with their storage order, headers, and descriptive chunks.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

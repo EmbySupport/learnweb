@@ -106,34 +106,80 @@
 <h1>HDR10+</h1>
 
 
-<p>HDR10+ adds <strong>dynamic metadata</strong> to an HDR10-compatible picture. This gives a supporting playback system more information about the current scene when fitting it to the display.</p>
-<p>Consider a film that cuts from a dim candlelit room to a bright snowfield. A single program-wide maximum cannot describe the distribution of brightness in both scenes very well. HDR10+ metadata can provide information specific to each scene or frame.</p>
+<p>A movie cuts from a candlelit room to a bright snowfield. A program-wide peak gives a converter a useful bound, but says little about how those two scenes distribute their light. HDR10+ adds scene- or frame-specific information to an HDR10-compatible picture so a supporting renderer can adapt each part with more context.</p>
+<h2 id="what-travels-with-the-picture">What travels with the picture?</h2>
+<p>The base video retains the <a href="HDR10.html">HDR10</a> signal relationship. Dynamic metadata defined by <strong>SMPTE ST 2094-40, Application 4</strong> supplies picture characteristics and mapping guidance. These can include brightness-distribution information and parameters for shaping a mapping to a target.</p>
+<p>The metadata is compact information about the existing picture. It is not a second coded image layer. The decoded image remains the material being adapted, while the additional information helps select how it uses the destination's available brightness and color range.</p>
+<h2 id="follow-the-two-scenes-through-adaptation">Follow the two scenes through adaptation</h2>
+<p>In the candlelit room, preserving the face and ordinary surfaces may be more valuable than reserving a large part of the output range for a rare high peak elsewhere in the film. The snowfield has a different distribution: much more of the picture is bright, and retaining visible separation among clouds, snow, and reflections may require another mapping balance.</p>
+<p>Scene-specific metadata can make those differences available without the playback device relying solely on its own picture analysis. The renderer combines the information with its output target. It still has to produce valid colors and maintain sensible transitions as the metadata changes.</p>
+<p>The destination's physical capabilities remain inputs to this operation. Two displays with different useful peaks can choose different adaptations from the same prepared source information. The question is how the image's relationships survive those limits.</p>
+<h3 id="interpret-an-actual-distribution-item">Interpret an actual distribution item</h3>
+<p>ST 2094-40 can report a percentile of the scene's linearized maximum RGB component values. For neutral gray, those component-light levels coincide with luminance. Consider median and 90th-percentile items in two illustrative scenes:</p>
 <table>
 <thead>
 <tr>
-<th>Playback path</th>
-<th>How the information can be used</th>
+<th>Scene</th>
+<th style="text-align: right;">Percentile</th>
+<th style="text-align: right;">Normalized maxRGB value</th>
+<th style="text-align: right;">Corresponding gray light</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>HDR10+ processing available</td>
-<td>Dynamic metadata can guide the adaptation</td>
+<td>Interior</td>
+<td style="text-align: right;">50th</td>
+<td style="text-align: right;">0.002</td>
+<td style="text-align: right;">20 nits</td>
 </tr>
 <tr>
-<td>HDR10 processing available, HDR10+ ignored</td>
-<td>The compatible HDR10 picture can still be used</td>
+<td>Interior</td>
+<td style="text-align: right;">90th</td>
+<td style="text-align: right;">0.008</td>
+<td style="text-align: right;">80 nits</td>
 </tr>
 <tr>
-<td>SDR output required</td>
-<td>The picture still needs HDR-to-SDR conversion</td>
+<td>Snowfield</td>
+<td style="text-align: right;">50th</td>
+<td style="text-align: right;">0.020</td>
+<td style="text-align: right;">200 nits</td>
+</tr>
+<tr>
+<td>Snowfield</td>
+<td style="text-align: right;">90th</td>
+<td style="text-align: right;">0.050</td>
+<td style="text-align: right;">500 nits</td>
 </tr>
 </tbody>
 </table>
-<p>The dynamic metadata is standardized in <strong>SMPTE ST 2094-40</strong>. It describes characteristics and mapping guidance; it is not a second image layer containing extra picture detail.</p>
-<p>Dynamic metadata cannot recover detail already removed during mastering or compression. It also cannot make two displays with very different brightness and color capabilities look physically identical. Its benefit is better-informed adaptation of the available picture.</p>
-<p>In Emby, separate the source format from the whole playback path. The file may contain HDR10+ metadata, but retaining and using it depends on the delivered stream, player, output connection, and display. A television showing ordinary HDR rather than HDR10+ can be using the compatible base picture; that is a different outcome from a failed decode.</p>
-<p>When comparing the two modes, use the same release and scene. A different encode or grade can create a larger difference than the metadata system itself.</p>
+<p>The normalization uses the 10,000-nit reference range. The interior record says at least 90% of the scene's selected sample values are at or below 80 nits. The snowfield's median establishes that at least half its selected samples reach 200 nits or more, while its 90th-percentile level is 500. Both scenes could still have a 1,000-nit peak.</p>
+<p>For a 100-nit target, at least 90% of the interior samples fit below the ceiling. At least half of the snowfield samples exceed it, so a larger part of that scene's sampled distribution requires fitting. A renderer can use this distribution to decide which tonal intervals need room and where to place a transition or curve anchors. The statistic supplies information for that decision; the implementation and target determine the resulting mapping. <a href="../../tone-mapping/curves/standards-based/Tone-Mapping-Curve-ST2094-40.html">The ST 2094-40 curve page</a> works through how anchors change a curve.</p>
+<h3 id="there-are-three-useful-playback-outcomes">There are three useful playback outcomes</h3>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Presentation information available</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Supporting HDR10+ route</td>
+<td>Compatible picture plus dynamic adaptation metadata</td>
+</tr>
+<tr>
+<td>HDR10 route that ignores the extension</td>
+<td>The compatible base image and its HDR10 information</td>
+</tr>
+<tr>
+<td>SDR conversion</td>
+<td>A newly prepared SDR rendition, using the converter's supported source information</td>
+</tr>
+</tbody>
+</table>
+<p>In the middle path, the movie can decode correctly even though scene-specific HDR10+ guidance is unused. That differs from a decoder failing to reconstruct the picture.</p>
+<p>An Emby source report establishes what was detected in the file. Actual use requires the delivered stream, app, output path, and display to retain and interpret the extension where appropriate. A video transcode creates another presentation, so its output should be inspected as a new rendition rather than assumed to have copied every source operation.</p>
+<p>For a comparison, use the same release and examine both scenes across a cut. Look at middle tones and texture, and check temporal stability as well as the brightest point. Those observations show what the additional adaptation information changed in this particular picture.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

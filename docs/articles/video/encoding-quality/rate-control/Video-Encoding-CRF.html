@@ -106,40 +106,52 @@
 <h1>Constant Rate Factor (CRF) for Video</h1>
 
 
-<p><strong>Constant rate factor (CRF)</strong> is a quality-control method used by encoders such as x264 and x265. It allows bitrate to vary while adjusting quantization and other decisions around an encoder-defined quality target.</p>
-<p>A lower CRF in these encoders generally means finer quantization and a larger result; a higher value generally means stronger compression. CRF does not specify a target bitrate or exact output size.</p>
+<p>At one <strong>constant rate factor (CRF)</strong> setting, a video can produce different bitrates and different picture quantizers from scene to scene. The constant is an encoder model's selected rate-factor control, rather than the number of bytes allocated to each second.</p>
+<p>x264 and x265 use CRF as quality-led variable rate control. Within a fixed setup, lowering the selected value generally moves toward finer reconstruction and more data; raising it moves toward stronger approximation.</p>
+<p>For exact sample preservation, use the encoder's documented lossless mode. x265 documents an explicit mode for that purpose; CRF 0 is not a universal lossless convention. This separates quality-led approximation from a different reconstruction guarantee.</p>
+<h2 id="separate-the-control-from-the-quantizer-it-produces">Separate the control from the quantizer it produces</h2>
+<p><a href="Video-Encoding-QP.html">QP</a> selects quantization strength. CRF guides the decisions that produce those quantizers.</p>
+<p>The controller analyzes the source and applies its quality/importance model. It can choose a different baseline or regional QP as content and picture role change while retaining the same user CRF.</p>
 <table>
 <thead>
 <tr>
-<th>Change within the same encoding setup</th>
-<th>Typical consequence</th>
+<th>Observation at one CRF</th>
+<th>Reason it can change</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Lower CRF</td>
-<td>More data to preserve the source</td>
+<td>Frame QP</td>
+<td>Picture role and rate-control analysis</td>
 </tr>
 <tr>
-<td>Higher CRF</td>
-<td>Less data and greater compression compromises</td>
+<td>Regional QP</td>
+<td>Adaptive precision/importance decisions</td>
 </tr>
 <tr>
-<td>More demanding source at the same CRF</td>
-<td>A larger result</td>
+<td>Bits per frame</td>
+<td>Source information and selected representation</td>
 </tr>
 <tr>
-<td>Add a restrictive rate cap</td>
-<td>The quality target may no longer be maintained</td>
+<td>Whole-file average</td>
+<td>The accumulated demands of that source</td>
 </tr>
 </tbody>
 </table>
-<p><em>Directions, not measured results or a guarantee for every individual encode.</em></p>
-<h2 id="the-number-belongs-to-the-encoder">The number belongs to the encoder</h2>
-<p>CRF 20 in x264 and CRF 20 in x265 are not equivalent quality levels. An AV1 encoder's CRF-like control uses its own model and scale. Compare settings within the same encoder, version, preset, and sample format before drawing conclusions from the number.</p>
-<p>CRF is also different from <a href="Video-Encoding-QP.html">constant QP</a>. In CRF mode, the quantizers can change with the pictures and the encoder's analysis. The word “constant” refers to the chosen rate factor, not a fixed quantizer or identical visible quality.</p>
-<p>Do not interpret zero as a universal lossless switch. Encoders have different lossless conventions; x265, for example, documents an explicit lossless mode. A low CRF is not by itself proof of exact sample preservation.</p>
-<p>For an Emby source file, CRF explains how the file was encoded, not how it will be delivered to every app. A playback limit may still trigger conversion. A <a href="Video-Encoding-VBV.html">rate cap and buffer constraint</a> can help control an encode's delivery demand, but they introduce a separate tradeoff when difficult scenes reach that cap.</p>
+<p>The CRF number therefore does not mean “all frames used QP 23” or “every second received the same rate.” Those would be different control policies.</p>
+<h2 id="follow-the-source-into-the-model">Follow the source into the model</h2>
+<p>An encoder's analysis estimates how well the pictures can be predicted and how much correction their structure leaves. More complicated content can have more significant information to represent.</p>
+<p>In x265's implementation, a fixed rate factor participates in the conversion from modeled terms into quantizer scale. Additional picture and regional analysis changes the resulting allocation. The full code has separate branches for its enabled analysis tools, rather than one equation directly mapping CRF to visible error.</p>
+<p>Picture role is important. An independently coded anchor establishes information needed by later pictures. A region reused by many future predictions can be worth reconstructing more carefully than a region that disappears immediately. Adaptive decisions can distribute precision accordingly.</p>
+<p>The encoder then chooses partitions, predictors and coded corrections at those quantizers. The actual produced bits update its coding estimates. Size emerges from this process instead of being an exact budget requested for the film.</p>
+<h2 id="what-a-rate-cap-changes">What a rate cap changes</h2>
+<p>A CRF encode can also have a maximum rate and <a href="Video-Encoding-VBV.html">buffer constraint</a>. The model's preferred representation must then fit local delivery deadlines.</p>
+<p>If a demanding section needs more data than the cap allows, the controller changes its reconstruction choices to satisfy the constraint. Its output can depart from the unconstrained quality policy there. The cap is therefore part of the encoding setup, not an invisible accessory to the CRF value.</p>
+<p>The same CRF with two different caps can create different results in the scene that binds those caps.</p>
+<h2 id="evaluate-the-value-with-the-encoder-fixed">Evaluate the value with the encoder fixed</h2>
+<p>Choose representative passages that include the important source characteristics: grain or clean animation, motion, fine static detail and smooth shading. Make candidate encodes that differ in the CRF value while keeping the codec implementation, version, preset, sample format and other constraints stable.</p>
+<p>Then compare the decoded pictures and their observed rate/size. A setting is useful when the reconstruction serves the intended viewing context and its data demand serves the intended delivery. The source's easy passages and difficult ones need to be assessed together.</p>
+<p>CRF 20 in x264, CRF 20 in x265, and a CRF-like AV1 control belong to different models. Their shared number is not an equal-quality specification. Record the implementation and settings with the result so the comparison can be repeated.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

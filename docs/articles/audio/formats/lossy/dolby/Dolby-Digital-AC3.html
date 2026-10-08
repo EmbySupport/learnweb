@@ -106,44 +106,66 @@
 <h1>Dolby Digital (AC-3)</h1>
 
 
-<p><strong>Dolby Digital and AC-3 name the same audio coding format.</strong> It is a lossy format found on DVDs, in television broadcasts, and in many stored movie soundtracks.</p>
-<p>AC-3 supports up to five full-bandwidth channels plus a low-frequency effects channel: the familiar <a href="../../../channels/layouts/Surround-Sound-5-1.html">5.1 layout</a>. An AC-3 track can also be mono or stereo. The codec name alone does not identify a surround presentation.</p>
+<p>A 5.1 Dolby Digital track carries five main signals and LFE inside a lossy coded stream. <strong>AC-3 and Dolby Digital name this same format.</strong> Its frame structure describes the sound, while metadata helps a decoder present it for the listening situation.</p>
+<h2 id="read-a-frame-as-a-timed-unit">Read a frame as a timed unit</h2>
+<p>A standard AC-3 synchronization frame represents 1,536 samples per channel. At 48 kHz, that is 1,536/48,000 = <strong>32 ms</strong> of sound.</p>
+<p>For three selected encoded rates:</p>
 <table>
 <thead>
 <tr>
-<th>Property</th>
-<th>AC-3 context</th>
+<th style="text-align: right;">Bitrate</th>
+<th style="text-align: right;">Bytes for a 32 ms frame at 48 kHz</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Compression</td>
-<td>Lossy</td>
+<td style="text-align: right;">384 kbit/s</td>
+<td style="text-align: right;">1,536</td>
 </tr>
 <tr>
-<td>Common coded sample rates</td>
-<td>32, 44.1, or 48 kHz</td>
+<td style="text-align: right;">448 kbit/s</td>
+<td style="text-align: right;">1,792</td>
 </tr>
 <tr>
-<td>Maximum standard encoded bitrate</td>
-<td>640 kbit/s</td>
-</tr>
-<tr>
-<td>DVD-Video application limit</td>
-<td>448 kbit/s</td>
-</tr>
-<tr>
-<td>Metadata</td>
-<td>Can describe dialogue level, dynamic-range control, and downmixing</td>
+<td style="text-align: right;">640 kbit/s</td>
+<td style="text-align: right;">2,560</td>
 </tr>
 </tbody>
 </table>
-<p>A format's maximum and an application's limit are different. A 640 kbit/s AC-3 track need not indicate damage merely because it exceeds the DVD-Video limit.</p>
-<h2 id="metadata-influences-playback">Metadata influences playback</h2>
-<p>AC-3 can carry instructions that help a decoder present the same programme on different systems. A stereo downmix can include the center and surround information instead of discarding those channels. Dynamic-range processing can reduce the distance between loud and quiet moments when the playback mode applies it.</p>
-<p>These instructions do not turn AC-3 into lossless audio, and a 5.1 track need not sound identical through every decoder configuration.</p>
-<p>An Emby client can decode AC-3 and output PCM, or use <a href="../../../decoding-output/output-transport/Audio-Bitstream-Passthrough.html">bitstream passthrough</a> when its output path and receiver support that format. The latter moves decoding to the receiver; it is not synonymous with the server's Direct Play decision.</p>
-<p><a href="Dolby-Digital-Plus-EAC3.html">Dolby Digital Plus</a> is a related but different bitstream format. AC-3 support by itself does not establish native E-AC-3 decoding.</p>
+<p>The samples represented by a frame and the bytes storing it are different quantities. More encoded data gives the codec a different budget for describing the same timed sound.</p>
+<p>The format supports mono, stereo, and surround modes. Common coded rates include 32, 44.1, and 48 kHz. The standard maximum bitrate is 640 kbit/s, while DVD-Video applies a 448 kbit/s limit. An application's constraint is narrower than a format capability.</p>
+<h2 id="reconstruct-audio-using-its-coding-choices">Reconstruct audio using its coding choices</h2>
+<p>AC-3 represents audio in transformed blocks and uses allocated precision and related coding tools to fit its rate. The decoder reads those choices, reconstructs the frequency-domain data, and returns timed channel samples.</p>
+<p>That approximation is the lossy part. The receiver's later volume or speaker processing is another stage and can change what the listener hears without changing the stored AC-3 bitstream.</p>
+<h2 id="metadata-changes-the-presentation-not-the-source-recording">Metadata changes the presentation, not the source recording</h2>
+<p>Three useful metadata roles are:</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Decoder use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dialogue normalization</td>
+<td>Align programme playback level to the relevant reference</td>
+</tr>
+<tr>
+<td>Dynamic-range information</td>
+<td>Supply level-dependent adjustments for supported listening modes</td>
+</tr>
+<tr>
+<td>Downmix information</td>
+<td>Guide combining channels for fewer outputs</td>
+</tr>
+</tbody>
+</table>
+<p>For an illustrative dialogue-normalization report of −27 dB, compensation toward a −31 dB reference is <strong>−4 dB</strong>. Its amplitude factor is 10^(−4/20), approximately 0.631. This is a decoder-level adjustment, not a claim that every piece of spoken audio occupies one isolated channel.</p>
+<p>A decoder applying dynamic-range information can reduce loud/quiet contrast for a chosen mode. A downmix can incorporate center dialogue and surrounds into stereo instead of losing them by taking only the front pair.</p>
+<h2 id="place-the-decoder-in-the-session">Place the decoder in the session</h2>
+<p>An Emby player receiving a compatible AC-3 track can decode and output PCM, or pass a supported encoded presentation to a receiver's decoder. In either case, source coding and selected decoder processing explain the output.</p>
+<p>If two AC-3 paths sound different in level or dynamics, inspect which decoder and metadata/listening mode were used before attributing the difference to compressed bitrate. The related <a href="Dolby-Digital-Plus-EAC3.html">E-AC-3 format</a> requires its own bitstream handling; it is not obtained by changing the AC-3 name.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

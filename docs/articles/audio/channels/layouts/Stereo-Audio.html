@@ -106,35 +106,45 @@
 <h1>Stereo Audio</h1>
 
 
-<p><strong>Stereo audio carries left and right channels.</strong> Differences in their signals allow a mix to place voices and instruments across a soundstage, instead of presenting everything through one mono signal.</p>
-<p>Stereo does not require every sound to appear on only one side. A voice sent equally to both channels can seem centered between correctly arranged speakers. This is a <strong>phantom center</strong>: the apparent source exists between the speakers without a physical center speaker carrying its own channel.</p>
+<p>A singer appears halfway between two loudspeakers, yet no speaker is there. The mix carries the singer in both left and right channels. When their level and arrival time are suitably balanced, the listener perceives a <strong>phantom center</strong>.</p>
+<p>Stereo uses these relationships to construct a soundstage from two signals.</p>
+<h2 id="move-a-sound-using-channel-relationships">Move a sound using channel relationships</h2>
 <table>
 <thead>
 <tr>
-<th>Relationship between the channels</th>
-<th>Typical impression with suitable playback</th>
+<th>Treatment of the same sound</th>
+<th>Typical effect near the intended speaker listening position</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Equal, matching signal on both sides</td>
-<td>Centered image</td>
+<td>Matching signal equally in left and right</td>
+<td>A centered image</td>
 </tr>
 <tr>
-<td>More level on one side</td>
-<td>Image moves toward that side</td>
+<td>Stronger signal toward one side</td>
+<td>The apparent source shifts toward that side</td>
 </tr>
 <tr>
-<td>Different ambience or timing information</td>
-<td>Width and spatial character change</td>
+<td>Different ambience in the channels</td>
+<td>The soundstage gains width and spatial character</td>
+</tr>
+<tr>
+<td>Delays or phase differences</td>
+<td>The apparent location or width can change</td>
 </tr>
 </tbody>
 </table>
-<p>These are basic examples, not universal rules for every mix or room. The phantom center is strongest near the intended listening position; moving close to one speaker changes the balance and arrival times.</p>
-<h2 id="two-channels-do-not-settle-every-question">Two channels do not settle every question</h2>
-<p>Duplicating <a href="Mono-Audio.html">mono audio</a> into left and right produces two channels but no new stereo information. Two independent language programmes can also occupy two channels without being intended as one stereo soundstage.</p>
-<p><a href="../Binaural-Audio.html">Binaural audio</a> is commonly stored in two channels as well. Its signals are designed around the cues reaching each ear, usually for headphones. It shares the channel count with stereo while using a different spatial presentation.</p>
-<p>An Emby track described as stereo tells you that left and right signals are present. It does not specify the codec, recording method, or spatial processing applied by the output system. If a six-channel source is converted to stereo, the resulting two channels can include contributions from the center and surround channels; they are not simply the original front pair.</p>
+<p>A mix can contain many sounds with different relationships at once. A voice can be centered, an instrument farther left, and ambience spread across both sides. Stereo is not two independent mono performances that must keep every sound exclusively on one side.</p>
+<p>The channel amplitudes chosen while panning also affect total level. A common constant-power panning model uses gain coefficients whose squared sum is one. At its center, each side has gain 1/√2, approximately 0.707, rather than both receiving a full-gain copy. This is one panning convention, not a rule that all stereo recordings or acoustic listening positions use the same level law.</p>
+<h2 id="the-listener-completes-the-arrangement">The listener completes the arrangement</h2>
+<p>With speakers, both ears hear both channels, along paths shaped by head position and the room. Sitting closer to the left speaker changes both relative level and arrival time. The phantom center can consequently move toward that speaker.</p>
+<p>A dedicated center channel solves a different problem: it provides a real front-center output for a multichannel mix and helps anchor dialogue over a wider seating area. It is not part of the two-channel stereo source.</p>
+<p>Headphones deliver left and right more directly to their respective ears. A conventional stereo mix can consequently feel located inside or near the head. A <a href="../Binaural-Audio.html">binaural render</a> deliberately supplies ear-specific directional cues to create another spatial experience using the same number of stored channels.</p>
+<h2 id="preserve-the-relationships-when-changing-playback">Preserve the relationships when changing playback</h2>
+<p>A stereo downmix of a surround film can include center dialogue and surround ambience. Those two outputs are a new combined presentation, not simply the original front-left and front-right channels.</p>
+<p>Duplicating a mono signal into two channels gives no new stereo differences. Conversely, combining stereo into mono can cancel opposing components; the <a href="Mono-Audio.html">mono page</a> shows the arithmetic.</p>
+<p>When a stereo track in an Emby session sounds lopsided, compare whether a centered voice remains centered and whether a one-sided event goes to the intended side. That uses the relationships the mix relies on, rather than expecting every channel to have equal activity throughout the recording.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -154,6 +164,7 @@
 			            <li><a class="seealso-link" href="https://www.itu.int/rec/R-REC-BS.775-4-202212-I/en" title="ITU-R BS.775-4: Multichannel stereophonic sound system">ITU-R BS.775-4: Multichannel stereophonic sound system</a></li>
 			            <li><a class="seealso-link" href="https://www.w3.org/TR/webaudio-1.0/" title="W3C Web Audio API: Channel interpretation and HRTF panning">W3C Web Audio API: Channel interpretation and HRTF panning</a></li>
 			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows-hardware/drivers/audio/virtualized-surround-sound-over-headphones" title="Microsoft: Virtualized surround sound over headphones">Microsoft: Virtualized surround sound over headphones</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/webaudio-1.0/#StereoPannerNode" title="W3C Web Audio API: Equal-power panning">W3C Web Audio API: Equal-power panning</a></li>
 			          </ul>
             </article>
           </div>

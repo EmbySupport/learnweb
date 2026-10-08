@@ -106,39 +106,63 @@
 <h1>How Dolby Vision Works</h1>
 
 
-<p>Dolby Vision carries a picture together with information that helps reproduce it on displays with different capabilities. That information can describe the scene and preserve adjustments made while preparing the release.</p>
-<p>A useful way to follow the process is:</p>
+<p>A Dolby Vision release carries a produced picture and information for reproducing it on different display targets. To understand what reaches the screen, follow three jobs: prepare the intended image, represent it for delivery, and use the delivered image and metadata during playback.</p>
+<h2 id="begin-with-the-authored-picture">Begin with the authored picture</h2>
+<p>A colorist establishes the HDR master on a reference display. Faces, ordinary surfaces, bright reflections, and dark details receive deliberate relationships. The master can contain a large light range without making every shot use its extremes.</p>
+<p>Analysis then describes relevant picture characteristics over a shot or frame. A trim pass can review a mapped version for another target and adjust its balance where needed. The resulting information can travel alongside the image rather than requiring a complete independent movie for every possible display.</p>
+<p>Imagine a dim room followed by a bright exterior. A program-wide peak alone cannot describe the distribution within both shots. Scene-specific information lets the playback mapping use more context, while the creative trims can preserve decisions made during preparation.</p>
+<p>These are instructions about how an existing produced picture is handled. They do not replace the captured and encoded information that the picture contains.</p>
+<h2 id="separate-the-coded-image-from-its-accompanying-data">Separate the coded image from its accompanying data</h2>
+<p><img src="metadata-and-layers/images/dolby-vision-layers.svg" alt="Single-layer Dolby Vision contains a base picture and metadata; dual-layer delivery also supplies enhancement information for reconstruction."></p>
+<p><em>Conceptual delivery and reconstruction roles. The selected profile defines the signal interpretation, layers, and packaging.</em></p>
+<p>The <strong>base layer</strong> is the main coded picture. The <strong>RPU metadata</strong> supplies Dolby Vision information associated with that picture. Some profiles also contain an <strong>enhancement layer</strong>, which can contribute additional reconstruction information.</p>
+<p>A report of BL+RPU therefore identifies one picture layer plus metadata. BL+EL+RPU adds enhancement data. These names describe roles within the presentation, while container tracks describe how that data is packaged. One reported video track can carry more than one codec layer.</p>
+<p>The RPU has a relationship to the actual sequence. Analysis and trims belong to the pictures from which they were prepared. If an edit moves the pictures while leaving the old associations in place, the mapping can receive information for another shot. <a href="metadata-and-layers/Dolby-Vision-RPU.html">RPU metadata</a> follows that timing relationship in detail.</p>
+<p>For dual-layer content, full reconstruction may need both base and enhancement information. A compatible base can sometimes be used independently, but that is another reconstruction path. The <a href="metadata-and-layers/Dolby-Vision-Layers.html">layer article</a> explains the roles, and <a href="metadata-and-layers/Dolby-Vision-MEL-FEL.html">MEL/FEL</a> identifies whether a picture residual is present.</p>
+<h2 id="a-profile-defines-the-delivery-arrangement">A profile defines the delivery arrangement</h2>
+<p>Dolby Vision has several profiles because different applications need different codecs, layer structures, and base interpretations. A <a href="profiles-and-compatibility/Dolby-Vision-Profiles-Levels.html">profile</a> identifies that feature arrangement; its level specifies processing limits such as pixel rate, width, and bitrate.</p>
+<p>Some base signals have a defined HDR10 or HLG interpretation for a path that does not process Dolby Vision. Other signals use Dolby Vision-specific reshaping and color representation. In the latter case, a codec decoder can recover samples correctly while an ordinary HDR renderer assigns those samples the wrong color meaning.</p>
+<p>That distinction separates two kinds of support. <strong>Codec support</strong> reconstructs the compressed sample description. <strong>Dolby Vision profile support</strong> supplies the additional signal interpretation and metadata processing for the selected arrangement. Both are relevant to the full route.</p>
+<p>The profile family can be browsed through its individual pages. A higher profile number denotes another arrangement rather than a higher-quality grade of the movie.</p>
+<h2 id="follow-a-compatible-base-session">Follow a compatible-base session</h2>
+<p>Take a source whose base has a defined HDR10 interpretation. A container reader locates its video and Dolby Vision information. The selected decoder reconstructs the available image data. A Dolby Vision-capable processing route interprets the profile, associates the metadata with the right pictures, and performs the required reconstruction and display management.</p>
+<p>The mapping also needs a target. The output's useful brightness, color volume, and rendering mode help determine how the produced picture is adapted. Scene information and creative trims can guide that adaptation, while the physical output still supplies its own limits.</p>
+<p>If the route instead uses the compatible HDR10 base, it can present a valid HDR picture with a different set of adaptation inputs. That outcome differs from full Dolby Vision processing and from a failed decode. The base's correctness is established by its defined signal arrangement, not by the word Dolby Vision alone.</p>
+<p>An SDR destination requires another operation: interpreting the available image and producing suitable SDR brightness, color, and encoding. Removing Dolby Vision metadata does not carry out that conversion. <a href="profiles-and-compatibility/Dolby-Vision-Fallback.html">Fallback compatibility</a> distinguishes those paths.</p>
+<h2 id="locate-the-operations-in-an-emby-session">Locate the operations in an Emby session</h2>
+<p>The source record, server delivery, app processing, and display input each describe a stage:</p>
 <table>
 <thead>
 <tr>
 <th>Stage</th>
-<th>What happens</th>
+<th>Useful evidence</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Grading</td>
-<td>The finished HDR appearance is established</td>
+<td>Source</td>
+<td>Profile, base compatibility, codec, layers, detected RPU</td>
 </tr>
 <tr>
-<td>Analysis and optional trims</td>
-<td>Picture characteristics are measured and mapped results can be adjusted</td>
+<td>Server delivery</td>
+<td>Direct Play, stream copying, or newly encoded video</td>
 </tr>
 <tr>
-<td>Encoding</td>
-<td>Video and Dolby Vision metadata are packaged for distribution</td>
+<td>App and decoder</td>
+<td>Support for the delivered packaging and profile operations</td>
 </tr>
 <tr>
-<td>Playback</td>
-<td>A compatible processing path uses the signal and metadata for the target display</td>
+<td>Output and display</td>
+<td>The received presentation and active rendering mode</td>
 </tr>
 </tbody>
 </table>
-<p>The analysis need not involve a colorist manually adjusting every frame. Dolby describes both shot-based analysis, with optional creative trims, and automatic frame-based analysis for appropriate workflows.</p>
-<p><strong>Dolby Vision is not one interchangeable file format.</strong> Its <a href="profiles-and-compatibility/Dolby-Vision-Profiles-Levels.html">profiles</a> define different ways of delivering the picture. Some have an HDR10 or HLG-compatible base, while others require Dolby Vision-specific interpretation. Some use one video layer; others use two.</p>
-<p>This matters when two Dolby Vision files behave differently in the same Emby app. The label alone leaves out the profile, codec, container, and the capabilities of the complete playback path. Support for one profile is not proof of support for all of them.</p>
-<p>Nor does a Dolby Vision indicator reveal every internal processing step. To understand whether a compatible base picture is being used or additional data is involved, start with <a href="profiles-and-compatibility/Dolby-Vision-Fallback.html">fallback compatibility</a> and <a href="metadata-and-layers/Dolby-Vision-Layers.html">base and enhancement layers</a>.</p>
-<p>The purpose remains the picture: keep familiar midtones convincing while adapting bright detail and color to the screen available.</p>
+<p>Direct Play reports server delivery of the original file. The app still needs to open the packaging, decode the coded data, interpret the profile, and prepare its output. A video transcode instead creates a new picture presentation, whose output should be examined as that rendition.</p>
+<p>A display indicator is evidence about an output mode. It does not record every operation upstream. For example, an enhancement residual could be absent from the delivered stream or unused by the decoder while a later path still produces Dolby Vision output. Confirming an original enhancement contribution requires information about reconstruction, not only the final indicator.</p>
+<p>The same discipline applies to a metadata-present flag. It identifies source data that was detected, while correct timing, supported processing, and coherent output determine whether the intended information reached the picture.</p>
+<h2 id="compare-the-adaptation-in-the-same-produced-image">Compare the adaptation in the same produced image</h2>
+<p>Use the same release, same scene, and known playback routes. Inspect faces and ordinary surfaces as well as the brightest reflection. A mapping can make the peak fit while redistributing contrast elsewhere; temporal changes can matter across flashes and cuts.</p>
+<p>A separate HDR10 or SDR release may include another grade or trim. It gives context but is not automatically the required pixel result of this release's Dolby Vision processing. Keeping the produced source and each route identified turns the comparison into a concrete question: which image information and mapping inputs were used, and how did that change the displayed relationships?</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -158,6 +182,8 @@
 			            <li><a class="seealso-link" href="https://professionalsupport.dolby.com/s/article/Dolby-Vision-Metadata-Levels?language=en_US" title="Dolby Vision: Metadata levels">Dolby Vision: Metadata levels</a></li>
 			            <li><a class="seealso-link" href="https://professionalsupport.dolby.com/s/article/Dolby-Vision-metadata-shot-analysis-mode-vs-long-play-analysis-mode" title="Dolby Vision: Shot analysis and long-play analysis">Dolby Vision: Shot analysis and long-play analysis</a></li>
 			            <li><a class="seealso-link" href="https://ott.dolby.com/OnDelKits/Dolby_Vision_Online_Delivery_Kit/v1/Documentation/Specs/Visio_Profiles/help_files/topics/c_ov_signal_device_capabilities.html" title="Dolby Vision: Playback device capabilities">Dolby Vision: Playback device capabilities</a></li>
+			            <li><a class="seealso-link" href="https://ott.dolby.com/OnDelKits/Dolby_Vision_Online_Delivery_Kit/v1/Documentation/Specs/Visio_Profiles/help_files/topics/c_dovi_profiles_public.html" title="Dolby Vision: Public bitstream profile definitions">Dolby Vision: Public bitstream profile definitions</a></li>
+			            <li><a class="seealso-link" href="https://professional.dolby.com/siteassets/pdfs/dolby_vision_uhd_bluray_authoring_workflow.pdf" title="Dolby Vision: UHD Blu-ray authoring and reconstruction">Dolby Vision: UHD Blu-ray authoring and reconstruction</a></li>
 			          </ul>
             </article>
           </div>

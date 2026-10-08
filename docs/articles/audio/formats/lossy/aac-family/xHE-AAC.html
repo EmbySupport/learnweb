@@ -106,39 +106,45 @@
 <h1>xHE-AAC Audio</h1>
 
 
-<p><strong>xHE-AAC is Extended High Efficiency AAC</strong>, based on Unified Speech and Audio Coding (<strong>USAC</strong>) and paired with MPEG-D loudness and dynamic-range control. It is designed to handle speech, music, and mixtures of both across a broad bitrate range.</p>
-<p>That matters for material such as an audiobook with music, a radio programme, or a movie soundtrack. A codec optimized only for speech can struggle when the signal changes character. USAC combines coding tools suited to both speech and general audio.</p>
+<p>A podcast alternates spoken narration, music, and both together. At a tight delivery bitrate, a codec needs to handle the changes without the music collapsing when speech-oriented assumptions stop fitting.</p>
+<p><strong>xHE-AAC combines Extended HE-AAC based on Unified Speech and Audio Coding (USAC) with MPEG-D loudness and dynamic-range control.</strong> Its parts address the coded sound, switching among delivery versions, and playback level.</p>
+<h2 id="match-the-signals-character">Match the signal's character</h2>
+<p>Speech has predictable pitch and short-term spectral structure. Music and mixed content can require a broader representation of transients, tones, and textures.</p>
+<p>USAC includes predictive speech-oriented and transform-based coding tools. The encoder chooses an appropriate representation and signals what the decoder must reconstruct. This unification lets a programme move between voices and general audio within the format rather than requiring the listener to select a different codec for every segment.</p>
+<p>The reconstruction still represents a lossy approximation. Its efficiency is useful because a limited budget can be distributed using tools suited to different signal behavior.</p>
+<h2 id="adapt-delivery-without-changing-the-timeline">Adapt delivery without changing the timeline</h2>
+<p>An adaptive service can prepare several encoded representations of the same programme, then select among them as the connection permits. xHE-AAC's bitstream tools support suitable switching points and continuous reconstruction across prepared changes.</p>
 <table>
 <thead>
 <tr>
-<th>Feature</th>
-<th>Intended benefit</th>
+<th>Delivery condition</th>
+<th>Service action</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Unified speech and audio coding</td>
-<td>Consistent handling of voices and music</td>
+<td>More data budget available</td>
+<td>Select a higher-rate prepared version</td>
 </tr>
 <tr>
-<td>Wide bitrate range</td>
-<td>Adaptation to different data budgets</td>
+<td>A restricted connection</td>
+<td>Select a lower-rate prepared version</td>
 </tr>
 <tr>
-<td>Switching support</td>
-<td>Smooth transitions among suitably prepared bitrate versions</td>
-</tr>
-<tr>
-<td>MPEG-D loudness and dynamic-range control</td>
-<td>Controlled playback loudness and optional dynamics adjustment</td>
+<td>A switch point</td>
+<td>Continue the same programme timeline with the selected representation</td>
 </tr>
 </tbody>
 </table>
-<p>These features still require appropriate content preparation and a capable playback implementation. “Adaptive” does not mean that a stored file automatically changes its bitrate without separately encoded delivery versions.</p>
-<h2 id="a-new-member-with-a-different-core">A new member with a different core</h2>
-<p>Despite its AAC-family name, an xHE-AAC stream is not an AAC-LC stream with a few extra tags. An AAC-LC or HE-AAC decoder cannot be assumed to decode its USAC content.</p>
-<p>The xHE-AAC profile provides decoding capability for earlier AAC-family formats, but that relationship does not work in reverse. A broad “AAC supported” statement is consequently too vague for diagnosing a particular xHE-AAC track.</p>
-<p>For an Emby session, distinguish the selected source format from the <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">format delivered to the app</a>. A device's ability to handle ordinary AAC music says little about this newer profile, and a codec's technical capabilities are not a support guarantee for every app using that device.</p>
+<p>The decoder must initialize or update its coding state appropriately at a switch. The service must also align versions and supply the needed configuration. “Adaptive” therefore describes a complete prepared delivery process, not a stored file rewriting its own audio.</p>
+<h2 id="use-metadata-to-control-the-listening-level">Use metadata to control the listening level</h2>
+<p>MPEG-D loudness and dynamic-range control supplies information for consistent loudness and suitable level-dependent processing.</p>
+<p>For an illustrative normalization calculation, if a programme's measured loudness is 5 dB below a chosen playback target, a simple gain correction is +5 dB. The amplitude multiplier is 10^(5/20), about <strong>1.778</strong>.</p>
+<p>That also raises peaks, so loudness gain, available headroom, and dynamic-range processing need to cooperate. The purpose is to make programmes usable across listening situations without treating each encoded sample value as if it directly specified room volume.</p>
+<p>The loudness/control system is a defined part of xHE-AAC delivery, rather than a promise that any app reading an audio file will apply identical gain.</p>
+<h2 id="identify-the-actual-bitstream">Identify the actual bitstream</h2>
+<p>USAC content is not an ordinary AAC-LC stream with some new tags. It requires its own reconstruction tools. The xHE-AAC profile also provides earlier AAC-family decoding capability, but an older LC or HE-AAC decoder does not thereby gain USAC support.</p>
+<p>For an Emby item containing xHE-AAC, distinguish whether the client receives that source representation or a server-made compatible version. This identifies which decoder job is being performed, while the actual player's loudness/output processing determines how the decoded programme reaches the listening system.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

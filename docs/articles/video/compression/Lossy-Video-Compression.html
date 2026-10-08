@@ -106,41 +106,63 @@
 <h1>Lossy Video Compression</h1>
 
 
-<p><strong>Lossy video compression</strong> permits the decoded picture to differ from the picture supplied to the encoder. The aim is to reduce data while keeping the differences acceptable for the intended viewing conditions.</p>
-<p>In many modern codecs, an encoder predicts part of the picture, transforms the remaining difference, and quantizes the resulting values. Quantization approximates values using a chosen set of representable steps. Small differences can become zero, leaving less information to encode.</p>
+<p>Lossy video coding saves data by allowing a reconstructed picture to differ from the encoder's input. The useful question is <strong>which information was approximated, and what did that change in the picture?</strong></p>
+<h2 id="follow-three-corrections-through-the-codec">Follow three corrections through the codec</h2>
+<p>Suppose a predictor supplies values <strong>100, 100, 100</strong> for three positions. The actual input is <strong>117, 97, 139</strong>, so the differences needed to reproduce it are <strong>17, −3, 39</strong>.</p>
+<p>Now use a deliberately simple quantizer that rounds those corrections to the nearest multiple of eight:</p>
 <table>
 <thead>
 <tr>
-<th>Value before approximation</th>
-<th style="text-align: right;">Rounded to the nearest multiple of eight</th>
-<th style="text-align: right;">Difference</th>
+<th>Position</th>
+<th style="text-align: right;">Input</th>
+<th style="text-align: right;">Predictor</th>
+<th style="text-align: right;">Exact correction</th>
+<th style="text-align: right;">Rounded correction</th>
+<th style="text-align: right;">Decoded result</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>17</td>
+<td>1</td>
+<td style="text-align: right;">117</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">17</td>
 <td style="text-align: right;">16</td>
-<td style="text-align: right;">−1</td>
+<td style="text-align: right;">116</td>
 </tr>
 <tr>
-<td>−3</td>
+<td>2</td>
+<td style="text-align: right;">97</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">−3</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">+3</td>
+<td style="text-align: right;">100</td>
 </tr>
 <tr>
-<td>39</td>
+<td>3</td>
+<td style="text-align: right;">139</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">39</td>
 <td style="text-align: right;">40</td>
-<td style="text-align: right;">+1</td>
+<td style="text-align: right;">140</td>
 </tr>
 </tbody>
 </table>
-<p><em>Original scalar example illustrating irreversible rounding. These are not pixel measurements or the quantization equations of a particular codec.</em></p>
-<p>The decoder cannot know whether a decoded zero originally came from −3, +2, or exactly zero. That information has been discarded. The file can still look indistinguishable in ordinary viewing: “lossy” describes mathematical reconstruction, not a guarantee of visible damage.</p>
-<h2 id="what-becomes-noticeable-first">What becomes noticeable first?</h2>
-<p>Fine texture, grain, gradients, and fast movement can expose compromises differently. Too little data may soften detail, break up moving regions, or make smooth shading appear stepped. A bitrate that suits a quiet dialogue scene may be insufficient for dense grain or rapid action.</p>
-<p>Most films in an Emby library already use lossy video compression. <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">Direct Play</a> preserves that encoded video stream during delivery. Video transcoding creates another encoded representation; when that encoding is lossy, it can add differences on top of the original ones.</p>
-<p>Increasing the output bitrate cannot restore detail lost earlier. It can help the new encoding avoid further visible damage, but a larger converted file is not evidence that the picture became closer to the camera original.</p>
-<p>A good comparison therefore considers the actual pictures, playback conditions, and delivery requirements alongside the file size.</p>
+<p>The decoder adds the rounded correction to the predictor. Its errors relative to the input are <strong>−1, +3, +1</strong>.</p>
+<p><em>Original scalar example. It omits transform coding and uses arbitrary sample values to isolate quantization; it is not the exact quantizer of a named video codec.</em></p>
+<p>The compressed representation says “zero correction” for position 2. That could have arisen from −3, +2, or zero. Several different inputs map to the same coded result, so the decoder has no information with which to choose the original one. This many-to-one mapping is the irreversible step.</p>
+<h2 id="why-approximation-can-reduce-data">Why approximation can reduce data</h2>
+<p>Small corrections often occur where a predictor already describes the picture well. Rounding more of them to zero leaves fewer significant values to transmit. Coarser quantization can also reduce the precision required to describe the remaining values.</p>
+<p>In block-transform codecs, quantization operates on coefficients representing patterns across a region, rather than directly on the simple scalar corrections above. Removing or coarsening a coefficient changes the corresponding pattern when the block is reconstructed. A fine texture can weaken, or an edge can gain a faint oscillating outline.</p>
+<p><a href="Video-Compression.html">The complete compression walkthrough</a> connects prediction, transform, quantization, and reconstruction. Lossy behavior comes from the permitted approximation, rather than from the fact that prediction was used.</p>
+<h2 id="allocate-the-compromise-within-a-scene">Allocate the compromise within a scene</h2>
+<p>A stationary wall may have predictable regions and small corrections. Grainy foliage in motion can have more changing information. Preserving the latter at the same fidelity needs a different allocation of bits.</p>
+<p>An encoder makes decisions about predictors, block divisions, and quantization strength. With a constrained bitrate, difficult regions compete for that budget. With a quality target, the encoder can let size grow as the source becomes harder.</p>
+<p>The visible consequences follow the information affected. Simplified texture looks smoother; disagreeing neighboring regions can reveal block boundaries; coarse gradients can lose distinct levels. Some differences remain invisible at the intended display size, while others affect details the viewer notices quickly.</p>
+<h2 id="identify-the-stage-being-compared">Identify the stage being compared</h2>
+<p>For a library file that is played directly, the decoder reconstructs the representation already stored. During video transcoding, Emby Server reconstructs that source and supplies its decoded pictures to another encoder.</p>
+<p>The second encoder's input already contains the first encode's changes. Giving the second stage more bits can preserve that input more closely; it cannot reverse the first stage's many-to-one decisions. <a href="../encoding-quality/quality-changes-artifacts/Video-Generation-Loss.html">Generation loss</a> follows what happens when such stages are repeated.</p>
+<p>A useful comparison keeps the same source pictures, timing, and presentation and examines the converted reconstruction against them. That reveals the additional change caused by this encode, which is the quantity its quality settings can control.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

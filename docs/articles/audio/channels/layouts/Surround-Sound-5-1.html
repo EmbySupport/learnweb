@@ -106,40 +106,42 @@
 <h1>5.1 Surround Sound</h1>
 
 
-<p><strong>5.1 surround sound carries five main channels plus a low-frequency-effects channel.</strong> The conventional layout places three channels at the front and two around the sides or rear of the listener.</p>
-<p><img src="images/surround-5-1.svg" alt="A conventional five-main-channel layout around a listener, with a separate LFE label"></p>
-<p><em>Schematic top view of the conventional 5.1 layout. Speaker positions are illustrative; the LFE label identifies a signal, not a prescribed subwoofer location.</em></p>
+<p>A screen-centered voice, a vehicle moving across the front, and rain surrounding the listener can remain separate parts of a <strong>5.1 mix</strong>. Five main channels carry the spatial presentation; one additional LFE channel carries band-limited effects.</p>
+<p><img src="images/surround-5-1.svg" alt="Conventional 5.1 layout"></p>
+<p><em>Schematic top view. The LFE label names a signal, not a prescribed subwoofer location.</em></p>
+<h2 id="read-the-five-positions">Read the five positions</h2>
 <table>
 <thead>
 <tr>
-<th>Channel</th>
-<th>Role in the layout</th>
+<th>Main channel</th>
+<th>How it contributes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Left and right</td>
-<td>Front soundstage and panned front sounds</td>
+<td>Front left and right</td>
+<td>A front soundstage and movement across the screen</td>
 </tr>
 <tr>
 <td>Center</td>
-<td>Stable front-center position, often used for dialogue</td>
+<td>A stable front-center output, commonly including dialogue</td>
 </tr>
 <tr>
 <td>Left surround and right surround</td>
-<td>Side/rear effects and ambience</td>
-</tr>
-<tr>
-<td>LFE</td>
-<td>Separate low-frequency effects signal</td>
+<td>Sound around the sides/rear and surrounding ambience</td>
 </tr>
 </tbody>
 </table>
-<p>The “.1” describes the LFE's limited frequency range, not one tenth of a normal channel's loudness. There are six signals altogether. The main channels can contain bass too; <a href="../roles-and-ordering/Audio-LFE.html">LFE</a> is not the complete bass content of the soundtrack.</p>
-<p>ITU-R BS.775 gives a reference arrangement with the front left and right at ±30 degrees and surrounds in sectors 100–120 degrees from front center. Actual installations should follow the system's placement guidance and the room's constraints.</p>
-<h2 id="what-the-label-leaves-open">What the label leaves open</h2>
-<p>5.1 describes a layout, not a codec. Compressed and uncompressed formats can carry it. It also does not promise that the output system will reproduce six independent signals: a stereo destination needs an appropriate combined presentation.</p>
-<p>When playing a 5.1 track through Emby, distinguish the source channel layout from the player's final output. A subwoofer can receive redirected bass even from a stereo source, while a 5.1 source can play without a physical subwoofer if the system routes bass appropriately. The number of physical bass speakers is therefore not a reliable way to identify the source track.</p>
+<p>The center avoids relying entirely on a stereo phantom center for screen dialogue. The surrounds let the mix place sound outside the front arc. A surround pair can carry different effects or shared ambience; neither channel must be continuously active.</p>
+<p>ITU-R BS.775's reference geometry places front left/right at ±30 degrees and surrounds in sectors 100–120 degrees from the center-front direction. This gives the listener a defined relationship between channel roles and physical directions. Room-specific installation guidance can adapt the arrangement.</p>
+<h2 id="account-for-the-sixth-signal">Account for the sixth signal</h2>
+<p>The “.1” is the <strong>low-frequency effects channel</strong>. It identifies a limited-band signal, not one tenth of the volume of a main channel. There are six decoded channels altogether.</p>
+<p>The main channels can carry substantial bass too. A playback system's bass management can redirect their low-frequency portions to a subwoofer, where they may join LFE. A subwoofer sounding during stereo playback is therefore understandable even though the stereo source has no “.1.” The <a href="../roles-and-ordering/Audio-LFE.html">LFE page</a> separates these paths.</p>
+<h2 id="a-smaller-output-needs-a-new-combination">A smaller output needs a new combination</h2>
+<p>If a 5.1 film is played on a stereo television, center and surround contributions have to be incorporated into two outputs. Simply selecting the original front-left/right signals can remove much of the dialogue and ambience.</p>
+<p>The downmix uses coefficients to combine the channels and manage level. Its left/right result is a useful two-channel presentation, while the original individual positions cease to be independently available at that output.</p>
+<p>In an Emby session, first identify which track was chosen; a film can have both surround and stereo versions. Then follow whether the six-channel track stayed multichannel or was downmixed during server/client processing. A 5.1 source description and a stereo output can both be correct descriptions of that route.</p>
+<p>Adding more playback speakers can distribute or derive sound differently, but the particular 5.1 mix remains organized around these five main roles and the separate LFE signal.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

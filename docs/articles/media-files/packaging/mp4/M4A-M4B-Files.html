@@ -106,40 +106,42 @@
 <h1>M4A and M4B File Conventions</h1>
 
 
-<p><strong>M4A</strong> and <strong>M4B</strong> usually describe audio-oriented members of the <a href="../../containers/iso-base-media-and-quicktime/MP4-Container.html">MP4 container family</a>. The extensions help software recognize the intended use; they do not name an audio codec.</p>
-<p>M4A is common for music. M4B is commonly used for audiobooks, often with chapters and applications that remember a listening position. Those behaviours are implemented by the player and library, rather than guaranteed solely by the final letter of the filename.</p>
+<p>A music album and a spoken book can use the same MP4-family audio structure. <strong>M4A</strong> commonly identifies audio such as music; <strong>M4B</strong> commonly identifies a book-oriented use, often with chapters.</p>
+<p>The file still needs a coded audio track. An M4A can contain <a href="../../../audio/formats/lossy/aac-family/AAC-LC.html">AAC</a> or <a href="../../../audio/formats/lossless/ALAC.html">Apple Lossless</a>, so the extension does not prescribe one audio representation.</p>
 <table>
 <thead>
 <tr>
-<th>Property</th>
-<th>What the extension tells you</th>
+<th>Layer in an audiobook experience</th>
+<th>Information involved</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Intended content</td>
-<td>M4A usually suggests audio; M4B usually suggests a book</td>
+<td>Encoded sound</td>
+<td>Audio codec, sample rate, channels, and timing</td>
 </tr>
 <tr>
-<td>Audio encoding</td>
-<td>Must be read from the track; AAC and ALAC are possible examples</td>
+<td>Book navigation</td>
+<td>Chapter names and positions</td>
 </tr>
 <tr>
-<td>Chapters</td>
-<td>Must actually be present in a supported chapter representation</td>
+<td>Library description</td>
+<td>Book, author, cover, and organization</td>
 </tr>
 <tr>
-<td>Resume behaviour</td>
-<td>Depends on the library and playback app</td>
+<td>Listening history</td>
+<td>The user's position in a particular item</td>
 </tr>
 </tbody>
 </table>
-<p>An M4A can contain lossy <a href="../../../audio/formats/lossy/aac-family/AAC-LC.html">AAC</a> or lossless <a href="../../../audio/formats/lossless/ALAC.html">ALAC</a>. Treating all M4A files as the same audio quality therefore overlooks a more important property than the extension.</p>
-<h2 id="book-structure-is-separate-from-sound-encoding">Book structure is separate from sound encoding</h2>
-<p>A long recording can be one continuous audio track with <a href="../../container-structure/timing-and-navigation/Media-Chapter-Markers.html">chapter markers</a>. The chapter boundaries do not imply that the encoded sound is stored as separate files or separately compressed tracks.</p>
-<p>Several chapter conventions exist in the MP4/QuickTime family. A conversion can preserve audio but omit the particular chapter information an app understands. Inspect the resulting chapter list and listening position behaviour separately from the audio properties.</p>
-<p>For Emby, use the appropriate library context and <a class="xref" href="https://emby.media/support/articles/Audio-Book-Naming.html">audiobook organization guidance</a>. Renaming an audio file to .m4b does not add chapter titles, repair album metadata, or ensure that every client treats it as a book.</p>
-<p>When comparing a source with its converted copy, check encoding, complete duration, chapters, and descriptive tags. Those four facts explain much more than the filename convention.</p>
+<h2 id="follow-a-stop-at-3712">Follow a stop at 37:12</h2>
+<p>An uninterrupted book track can carry a chapter list without being split into separate sound files. A chapter at 30:00 names a position within that track. If a listener stops at 37:12, the playback/library system can retain 2,232 seconds as that user's position.</p>
+<p>On resuming, the system requests the corresponding source time. The container's <a href="../../container-structure/timing-and-navigation/Media-Container-Seeking.html">sample navigation</a> gets it to the encoded data. Chapter descriptions can supply names near that point, while the user's remembered position supplies the specific resume request. These are different records used together.</p>
+<p>Changing .m4a to .m4b changes a filename convention; it does not add the chapter list or populate listening history. A particular app may use the convention to classify the item, but the underlying data still has to exist.</p>
+<h2 id="preserve-the-right-book-information-in-a-conversion">Preserve the right book information in a conversion</h2>
+<p>MP4/QuickTime supports different chapter representations. A converter that retains the sound may omit the chapter representation another reader expects. Compare chapter names and exact positions alongside decoded sound and duration.</p>
+<p>If an introduction is removed, later chapter positions and any retained listening position need interpretation against the edited timeline. An audio-preserving remux with unchanged timing is a different operation from such an edit.</p>
+<p>For Emby, <a class="xref" href="https://emby.media/support/articles/Audio-Book-Naming.html">audiobook organization</a> supplies the library context for this book experience. The file's track and chapters describe the recording; the item's metadata and playback records describe how it is presented and used.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

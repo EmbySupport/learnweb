@@ -106,13 +106,41 @@
 <h1>Dolby Vision Base and Enhancement Layers</h1>
 
 
-<p>The <strong>base layer (BL)</strong> is the main encoded picture in a Dolby Vision stream. Some profiles also have an <strong>enhancement layer (EL)</strong>. Dolby Vision metadata accompanies the video but is a different kind of data.</p>
-<p><img src="images/dolby-vision-layers.svg" alt="Single-layer delivery contains a base picture and metadata; dual-layer delivery adds an enhancement layer before display management."></p>
-<p><em>Conceptual structure. Packaging and decoder details depend on the profile.</em></p>
-<p>An enhancement layer is not simply a second, independently watchable version of the film. In the UHD Blu-ray workflow, it can contain a residual: information used with the base layer to reconstruct the intended signal. The <a href="Dolby-Vision-MEL-FEL.html">MEL/FEL distinction</a> describes whether that residual contributes additional picture information.</p>
-<p>The base layer's standalone usefulness depends on the profile. <a href="../profiles-and-compatibility/Dolby-Vision-Profile-7.html">Profile 7</a> has an HDR10-compatible base. A <a href="../profiles-and-compatibility/Dolby-Vision-Profile-5.html">Profile 5</a> base requires Dolby Vision-specific interpretation; treating it as ordinary HDR10 is not an equivalent fallback.</p>
-<p>There is an important packaging trap here: <strong>one file or one reported video track does not necessarily mean one coded layer</strong>. Container tracks, codec layers, and metadata units describe different levels of the format.</p>
-<p>For Emby comparisons, a Dolby Vision badge alone is insufficient to establish that enhancement data affected the displayed pixels. Record the source profile and layer information, then identify the player and delivery method. Playback can look plausible when a compatible base is used, even though it is not the complete Dolby Vision reconstruction.</p>
+<p>Start with the diagram's reconstruction roles. A Dolby Vision <strong>base layer (BL)</strong> contains the main coded picture. An optional <strong>enhancement layer (EL)</strong> supplies additional reconstruction information, while <strong>RPU</strong> names accompanying metadata.</p>
+<p><img src="images/dolby-vision-layers.svg" alt="One-layer delivery supplies a base picture and metadata; two-layer delivery also supplies enhancement data to the reconstruction path."></p>
+<p><em>Conceptual roles. The selected profile determines the actual signal, packaging, and decoder operations.</em></p>
+<h2 id="why-an-enhancement-is-not-a-second-independent-movie">Why an enhancement is not a second independent movie</h2>
+<p>In the UHD Blu-ray workflow, the enhancement can code a residual associated with the base and the prepared Dolby Vision source. The composer uses the relevant base, enhancement, and metadata information to reconstruct the intended signal. Watching the enhancement alone would not perform those operations.</p>
+<p>A useful analogy is a correction associated with another representation: its meaning depends on the thing being corrected. The exact Dolby Vision reconstruction also includes its specified transformations, so the diagram is a role description rather than an instruction to add two decoded photographs numerically.</p>
+<p>The <a href="Dolby-Vision-MEL-FEL.html">MEL/FEL distinction</a> identifies whether the enhancement contains a nonzero picture residual. RPU metadata remains another part of the system; enhancement size and metadata presence answer different questions.</p>
+<h2 id="separate-three-levels-of-packaging">Separate three levels of packaging</h2>
+<table>
+<thead>
+<tr>
+<th>Reported item</th>
+<th>What it names</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>File</td>
+<td>A stored container</td>
+</tr>
+<tr>
+<td>Video track</td>
+<td>A container's selected coded presentation</td>
+</tr>
+<tr>
+<td>Codec layer and metadata units</td>
+<td>Roles inside that presentation</td>
+</tr>
+</tbody>
+</table>
+<p>A muxing arrangement can carry multiple coded layers within one reported video track, while another layout can expose them differently. Counting tracks therefore does not establish the number of reconstruction layers. Inspect the stream's profile and layer indicators.</p>
+<h2 id="follow-the-available-picture-when-a-layer-is-unused">Follow the available picture when a layer is unused</h2>
+<p><a href="../profiles-and-compatibility/Dolby-Vision-Profile-7.html">Profile 7</a> provides an HDR10-compatible base. A path using that base can show a valid HDR10 picture while leaving the complete Dolby Vision reconstruction unused.</p>
+<p><a href="../profiles-and-compatibility/Dolby-Vision-Profile-5.html">Profile 5</a> is a single-picture-layer arrangement with Dolby Vision-specific signal interpretation. The presence of a base there does not define the same HDR10 fallback.</p>
+<p>For an Emby playback comparison, identify which source layers survive delivery and which operations the decoder performs. A stream-copy operation can preserve selected coded bytes, while removing an enhancement can remove information from the original reconstruction. The resulting picture must be described in terms of the layers and interpretation actually used.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

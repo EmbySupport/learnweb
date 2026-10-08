@@ -106,41 +106,22 @@
 <h1>M3U Playlists</h1>
 
 
-<p>An M3U file lists where media can be found. It does not contain the picture or sound itself. A plain list can name local files; an extended playlist adds lines describing the entries.</p>
+<p>Open this <strong>M3U playlist</strong> and the reader sees an ordered set of media locations, with optional descriptions immediately before them:</p>
 <pre><code class="lang-text">#EXTM3U
 #EXTINF:180,Opening song
 Music/Opening.flac
 #EXTINF:240,Second song
 Music/Second.flac
 </code></pre>
-<p><em>Illustrative local playlist. Durations are in seconds; the media paths supply the actual content.</em></p>
-<p>The path after each description is the important part for opening the media. A relative path is generally resolved against the playlist's location, so moving the playlist without its referenced files can break it.</p>
-<h2 id="the-same-family-serves-different-jobs">The same family serves different jobs</h2>
-<table>
-<thead>
-<tr>
-<th>Use</th>
-<th>What its entries point to</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Music playlist</td>
-<td>Individual songs or recordings</td>
-</tr>
-<tr>
-<td>IPTV channel list</td>
-<td>Sources for television channels</td>
-</tr>
-<tr>
-<td>HLS playlist</td>
-<td>Media segments or other playlists in a streaming presentation</td>
-</tr>
-</tbody>
-</table>
-<p>HLS defines its own tags and behavior in RFC 8216. A file ending in <code>.m3u8</code> usually indicates UTF-8 text, but the extension alone does not prove that it is an HLS presentation.</p>
-<p>Emby's <a class="xref" href="https://emby.media/support/articles/M3U-Tuners.html">M3U tuner setup</a> uses a channel list and its associated source information. That is different from a listening queue of songs.</p>
-<p>If a list loads but an entry fails, check the destination itself: a working text file cannot guarantee that a media URL is reachable, current, or suitable for the receiving app. Titles and channel tags help organize entries; they do not change the codecs carried by the referenced source.</p>
+<p>#EXTM3U identifies the extended convention. Each #EXTINF line supplies a duration in seconds and a display title for the following location. The title is descriptive; the path is what the reader must open to obtain the sound.</p>
+<h2 id="follow-one-relative-path">Follow one relative path</h2>
+<p>If the playlist is stored in a folder called Concert, Music/Opening.flac conventionally refers to Concert/Music/Opening.flac. Moving only the playlist into another folder changes that relationship. An absolute location instead identifies its destination independently of the playlist's folder.</p>
+<p>Opening the text succeeds before opening the media. A list can therefore display both song titles even if one referenced file is missing. That gives two distinct stages to test: parsing entries and obtaining each entry's content.</p>
+<p>M3U8 commonly denotes UTF-8 text. That convention determines how text characters are represented; it does not turn every M3U8 into one particular kind of streaming presentation.</p>
+<h2 id="what-hls-adds-to-the-family">What HLS adds to the family</h2>
+<p>An ordinary music list describes an order of independent items. <strong>HLS</strong> gives playlists protocol-specific meanings: a media playlist lists timed segments of one presentation, while a multivariant/master playlist describes alternative streams. Tags govern durations, sequence updates, and other playback behaviour in addition to locations.</p>
+<p>The reader must interpret the appropriate conventions, rather than merely follow every path as a new song. <a class="xref" href="https://emby.media/support/articles/M3U-Tuners.html">Emby's M3U tuner guidance</a> concerns a channel list and its source descriptions, another distinct use of related text syntax.</p>
+<p>When inspecting a playlist, first identify its job. Then read the actual location associated with the failing entry and the base location used to resolve it. The playlist organizes access; the referenced resource supplies the codec and container data.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

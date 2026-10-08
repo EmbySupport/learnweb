@@ -106,39 +106,49 @@
 <h1>VC-1 Video</h1>
 
 
-<p><strong>VC-1</strong> is a compressed video format standardized in SMPTE ST 421. It is associated with the Windows Media video ecosystem and appears in older media collections. It is a distinct codec from H.264 and MPEG-2 Video.</p>
-<p>The standard defines Simple, Main, and Advanced profiles. The stream's profile is more informative than a generic “Windows Media” label, which can refer to several generations of video formats.</p>
+<p><strong>VC-1</strong> is the video coding format standardized in SMPTE ST 421. It is associated with the Windows Media video ecosystem and older movie collections. The useful source description includes its <strong>Simple, Main, or Advanced profile</strong>, rather than only the broader Windows Media name.</p>
+<p>The standard reconstructs <strong>8-bit 4:2:0</strong> picture samples. Its coding tools determine how the compressed track turns into those samples.</p>
+<h2 id="reconstruct-an-inter-coded-region">Reconstruct an inter-coded region</h2>
+<p>The decoder selects the available reference information and applies the coded motion description to form a predictor. A correction block describes how the target region differs from that predictor.</p>
+<p>VC-1 can use different transform shapes for inter-coded corrections:</p>
 <table>
 <thead>
 <tr>
-<th>VC-1 characteristic</th>
-<th>Practical meaning</th>
+<th>Transform shape</th>
+<th>Region it represents</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>8-bit, 4:2:0 samples</td>
-<td>The decoded sample format specified by ST 421</td>
+<td>8 × 8</td>
+<td>A square correction block</td>
 </tr>
 <tr>
-<td>Profiles</td>
-<td>Different permitted tools and stream structures</td>
+<td>8 × 4</td>
+<td>A horizontally extended sub-block</td>
 </tr>
 <tr>
-<td>Advanced-profile interlaced coding</td>
-<td>Field handling may be part of decoding</td>
+<td>4 × 8</td>
+<td>A vertically extended sub-block</td>
 </tr>
 <tr>
-<td>Metadata for display</td>
-<td>Aspect ratio and color information still matter after decoding</td>
+<td>4 × 4</td>
+<td>A smaller square sub-block</td>
 </tr>
 </tbody>
 </table>
-<p>VC-1 combines spatial prediction, transformed differences, and prediction from reference pictures. The standard defines the required decoding process; an encoder can choose among the permitted tools to meet a bitrate or quality goal.</p>
-<h2 id="decoder-availability-can-differ-by-route">Decoder availability can differ by route</h2>
-<p>A playback app can have a usable decoder for one VC-1 stream but not another profile or interlaced form. Software decoding and a hardware media engine also need not offer the same capabilities. Check the complete path before attributing failure to the file itself.</p>
-<p>For Emby, successful server decoding for video transcoding does not imply direct decoding in every app. Likewise, support for the container does not supply a missing VC-1 decoder. Repackaging changes the container while retaining that requirement.</p>
-<p>When a VC-1 source is interlaced, conversion should account for its <a href="../frame-timing/interlacing-and-cadence/Interlaced-Video.html">field timing</a> as well as the target codec. A file that opens successfully can still show incorrect motion if the fields are handled incorrectly. Preserve the source while assessing a conversion's picture and timing.</p>
+<p>Transform signaling and sub-block patterns tell the decoder which structure to apply. Different shapes can describe a localized correction more effectively than one fixed square basis for every region.</p>
+<p>The coded coefficients are inverse-quantized and inverse-transformed. The decoder adds the resulting samples to the predictor. Applicable overlap-smoothing and loop-filter operations complete the specified reconstruction behavior.</p>
+<p>As in other predictive codecs, the encoder chooses a representation, while the decoder follows its syntax. Quantization controls reconstruction precision; selecting a transform shape is a way to represent the correction, rather than a new display resolution.</p>
+<h2 id="interpret-the-pictures-scan-structure">Interpret the picture's scan structure</h2>
+<p>Advanced profile includes interlaced picture coding. The picture structure tells decoding and motion handling how its line sets relate.</p>
+<p>For a native interlaced scene, alternating rows come from successive field times. Frame-shaped and field-shaped coding decisions have to preserve that relationship. A final progressive presentation then needs the appropriate <a href="../frame-timing/interlacing-and-cadence/Deinterlacing.html">field reconstruction</a>.</p>
+<p>For a film transfer, repeated or related field presentation can instead reflect a progressive source cadence. The picture's format and timing information help identify that case, with <a href="../frame-timing/interlacing-and-cadence/Inverse-Telecine.html">inverse telecine</a> providing the corresponding recovery process.</p>
+<p>This makes interlaced VC-1 more than a progressive picture with an “i” label: its decoder needs the relevant prediction and picture-structure operations.</p>
+<h2 id="keep-reconstruction-and-display-interpretation-together">Keep reconstruction and display interpretation together</h2>
+<p>ST 421 specifies coded reconstruction, while a complete player also interprets sample aspect, color, and timing information for presentation. Reconstructed samples with the wrong display shape are still being interpreted incorrectly.</p>
+<p>In an Emby library inspection, record the actual VC-1 profile and scan structure along with its raster and rate. That identifies the reconstruction job before a playback route either presents the decoded source or supplies it to another encoder.</p>
+<p>The format's standard reference is <strong>SMPTE ST 421:2013, VC-1 Compressed Video Bitstream Format and Decoding Process</strong>. It supplies the profile-specific syntax and reconstruction rules behind those observations.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

@@ -106,44 +106,87 @@
 <h1>Video Compression Artifacts</h1>
 
 
-<p><strong>Compression artifacts</strong> are visible changes caused by the compromises in compressed video. They become noticeable when coding decisions fail to preserve an important feature of the picture, such as texture, a smooth gradient, or a sharp moving edge.</p>
-<p>Lossy compression does not always produce visible artifacts. Visibility depends on the source, settings, screen, and viewing distance. A clean dialogue scene can look convincing at a rate that damages a grainy action scene.</p>
+<p>A moving fabric texture becomes smooth, an edge gains faint ripples, or a dark sky breaks into steps. <strong>Compression artifacts</strong> are the visible effects of reconstruction decisions that failed to retain an important part of the source's appearance.</p>
+<p>Different appearances come from different relationships inside the picture.</p>
+<h2 id="boundaries-between-coded-regions">Boundaries between coded regions</h2>
+<p>Block-based coding gives neighboring regions their own predictions and corrections. If quantization simplifies them differently, their reconstructed edge values may disagree.</p>
+<p>A smooth surface can then acquire a rectangular boundary that was not in the source. In-loop deblocking can address selected discontinuities, but the reconstructed representation still reflects how the regions were coded.</p>
+<p>The visible block size need not equal one fixed macroblock size: partitioning, motion, filtering and error propagation can produce larger or less regular patches.</p>
+<h2 id="patterns-around-a-sharp-edge">Patterns around a sharp edge</h2>
+<p>A sharp transition needs a combination of spatial patterns to represent it. Transform coding describes those patterns with coefficients. Coarsening or dropping coefficients changes their balance when the block is reconstructed.</p>
+<p>The edge can soften or gain small alternating ripples around it, often called ringing. Similar appearances can also arise from scaling or sharpening filters, so compare where the ripple first appears in the processing path.</p>
+<p>This is more informative than treating every halo as proof that a particular codec was selected.</p>
+<h2 id="follow-a-smooth-ramp-through-fewer-levels">Follow a smooth ramp through fewer levels</h2>
+<p>Use a simple scalar quantizer that rounds to multiples of four:</p>
 <table>
 <thead>
 <tr>
-<th>Visible symptom</th>
-<th>Useful interpretation</th>
+<th>Source values</th>
+<th style="text-align: right;">100</th>
+<th style="text-align: right;">101</th>
+<th style="text-align: right;">102</th>
+<th style="text-align: right;">103</th>
+<th style="text-align: right;">104</th>
+<th style="text-align: right;">105</th>
+<th style="text-align: right;">106</th>
+<th style="text-align: right;">107</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Block-shaped patches</td>
-<td>Neighboring coded regions differ noticeably</td>
-</tr>
-<tr>
-<td>Halos or ripples near edges</td>
-<td>Coding or processing struggles with abrupt detail</td>
-</tr>
-<tr>
-<td>Soft or smeared texture</td>
-<td>Fine information was simplified</td>
-</tr>
-<tr>
-<td>Texture that shimmers or changes</td>
-<td>Successive pictures preserve detail inconsistently</td>
-</tr>
-<tr>
-<td>Steps in a gradient</td>
-<td>Limited precision or coding compromises become visible</td>
+<td>Rounded values</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">104</td>
+<td style="text-align: right;">104</td>
+<td style="text-align: right;">104</td>
+<td style="text-align: right;">104</td>
+<td style="text-align: right;">108</td>
+<td style="text-align: right;">108</td>
 </tr>
 </tbody>
 </table>
-<p>These appearances are clues, not unique diagnoses. Banding can already be in the source, and ringing can come from scaling or sharpening. A file can contain both earlier processing defects and new compression artifacts.</p>
-<h2 id="compare-the-same-picture-at-the-same-point">Compare the same picture at the same point</h2>
-<p>For an Emby session, compare the original video with the delivered version when transcoding occurs. A visible defect that appears in both may originate in the library file. A new defect in the converted output points toward that conversion or its processing.</p>
-<p>Check difficult sections in motion as well as paused frames. A still picture can miss flickering grain, pulsing texture, or a defect that appears only around fast movement. Keep scale and display settings consistent.</p>
-<p>A higher bitrate or a more effective encoder can reduce <em>additional</em> coding damage when that is the cause. It cannot recover source detail already removed. Filters may conceal some artifacts, but can also remove legitimate detail; a smoother picture is not automatically a more faithful one.</p>
-<p>Use <a href="../rate-control/Video-Encoding-QP.html">quantizer information</a> and bitrate as context for the comparison, rather than as a diagnosis by themselves.</p>
+<p>The source advances one unit at a time. The reconstructed array repeats a few levels and jumps between them. Spread such repeated values over a visible gradient and the smooth transition can appear as bands.</p>
+<p><em>Original rounding example with half-step ties upward. Real video transforms and sample processing introduce their own region and precision behavior.</em></p>
+<p>Limited source precision or a later display conversion can also create stepped gradients. The calculation demonstrates the loss of distinct levels; locating the responsible stage determines which operation can change it.</p>
+<h2 id="texture-can-change-in-time">Texture can change in time</h2>
+<p>Fine detail and grain need many changing correction values. A constrained encoder can simplify them, making a region smoother. When the allocation or prediction changes in later pictures, the amount of retained texture can change too.</p>
+<p>A surface may then shimmer, pulse, or briefly become sharper at certain picture boundaries. A still frame does not reveal that temporal inconsistency.</p>
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th>Relationship worth inspecting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rectangular surface changes</td>
+<td>Region reconstruction and boundaries</td>
+</tr>
+<tr>
+<td>Edge ripples</td>
+<td>Transform approximation and later filters</td>
+</tr>
+<tr>
+<td>Soft detail</td>
+<td>Retained high-frequency patterns</td>
+</tr>
+<tr>
+<td>Pulsing texture</td>
+<td>Picture-to-picture allocation or prediction</td>
+</tr>
+<tr>
+<td>Stepped shading</td>
+<td>Available sample/reconstruction levels</td>
+</tr>
+</tbody>
+</table>
+<h2 id="find-the-first-changed-representation">Find the first changed representation</h2>
+<p>For an Emby conversion, compare the selected source with the delivered result at the same picture time and presentation scale. If the source already contains the defect, the output is working from that reconstruction. If it appears only in the new stream, examine that encode and any preceding processing.</p>
+<p>Then view the passage in motion. Grain consistency, flickering outlines and movement-specific breakup can be missed by paused comparisons.</p>
+<p>A controlled second encode with more available precision or data can test whether the new coding compromise caused the change. A filter can instead conceal it by removing or modifying detail; that is another picture operation, not recovery of the original coefficients.</p>
+<p>The comparison identifies the actual transformation to improve, while <a href="Video-Generation-Loss.html">generation lineage</a> identifies which earlier source information is still available.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

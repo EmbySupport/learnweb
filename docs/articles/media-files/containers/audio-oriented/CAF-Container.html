@@ -106,40 +106,45 @@
 <h1>CAF: Core Audio Format</h1>
 
 
-<p>A long recording can run into the size conventions of classic WAV or AIFF before the recording software runs out of disk space. <strong>Core Audio Format (CAF)</strong> was designed to avoid that limitation while accommodating different audio encodings.</p>
-<p>CAF is Apple's chunk-based audio container. It uses 64-bit chunk sizes and can represent both uncompressed samples and packet-based compressed audio. The .caf extension therefore describes the package, not one particular sound format.</p>
+<p>A recording can outgrow a classic 32-bit chunk length, and compressed audio can contain packets whose byte sizes vary. <strong>Core Audio Format (CAF)</strong> describes both the large-file storage and the packet information needed to interpret such audio.</p>
+<p>CAF uses 64-bit chunk size fields. The Audio Description identifies the encoding, sample rate, channel count, and packet/sample conventions. The Audio Data holds the actual content. Other chunks can supply layout, markers, metadata, and a Packet Table.</p>
+<h2 id="when-a-fixed-calculation-is-enough">When a fixed calculation is enough</h2>
+<p>For ordinary PCM with a known number of bytes per sample frame, the reader can translate a frame index into a data offset by multiplication. The same logic works for packets when their byte length and frame count are fixed and known.</p>
+<p>Variable packets require more information. Suppose three invented encoded packets occupy 180, 240, and 190 bytes. Their data offsets from the start of this packet sequence are 0, 180, and 420 bytes. A reader cannot locate packet 3 by multiplying one assumed length by two; it needs the intervening sizes or equivalent indexing information.</p>
 <table>
 <thead>
 <tr>
-<th>CAF information</th>
-<th>Its purpose</th>
+<th>Packet</th>
+<th style="text-align: right;">Bytes</th>
+<th style="text-align: right;">Start offset</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Audio description</td>
-<td>Defines encoding, sample rate, and other audio properties</td>
+<td>1</td>
+<td style="text-align: right;">180</td>
+<td style="text-align: right;">0</td>
 </tr>
 <tr>
-<td>Audio data</td>
-<td>Contains the actual samples or encoded packets</td>
+<td>2</td>
+<td style="text-align: right;">240</td>
+<td style="text-align: right;">180</td>
 </tr>
 <tr>
-<td>Packet table, where needed</td>
-<td>Describes variable packets and valid audio length</td>
-</tr>
-<tr>
-<td>Channel layout and metadata chunks</td>
-<td>Describe speaker roles and supporting information</td>
+<td>3</td>
+<td style="text-align: right;">190</td>
+<td style="text-align: right;">420</td>
 </tr>
 </tbody>
 </table>
-<p>Some codecs produce packets of varying size or duration. A packet table lets the reader connect those packets to usable audio instead of guessing from the overall file size.</p>
-<h2 id="an-editing-file-is-not-automatically-a-delivery-file">An editing file is not automatically a delivery file</h2>
-<p>CAF's flexibility is valuable in capture and production workflows, including recordings that grow while they are being written. It does not imply that every music player implements every CAF encoding or optional feature.</p>
-<p>If material from such a workflow is intended for an Emby collection, inspect the audio format first. The useful decision is which encoding and container the intended listening app can handle, while retaining the precision and channels that matter for that recording.</p>
-<p><a href="WAV-RIFF-Container.html">WAV</a>, <a href="AIFF-Container.html">AIFF</a>, and CAF can all store uncompressed audio. Switching between them does not inherently improve its sound. A container change can preserve samples, but conversion settings may also resample or alter their precision, and metadata can need separate handling.</p>
-<p>Keep the original production file until the listening copy has been checked for complete duration, expected channels, and correct descriptive information.</p>
+<p>CAF's Packet Table provides packet descriptions as needed for variable-size or variable-duration arrangements. The description and table together let the reader locate and count the audio it will decode.</p>
+<h2 id="decoded-frames-and-valid-frames">Decoded frames and valid frames</h2>
+<p>A compressed codec can produce initial <strong>priming</strong> frames and trailing remainder frames beyond the intended recording. CAF can describe those alongside the number of valid frames.</p>
+<p>For an illustrative 48 kHz case, suppose three packets decode 1,024 frames each, with 256 priming frames and 256 remainder frames. The valid recording contains 3,072 − 256 − 256 = 2,560 frames, lasting approximately 53.333 ms. The encoded packet count alone would instead suggest 64 ms.</p>
+<p>These fields describe which reconstructed samples belong to the presentation. They are not another codec compressing the audio a second time.</p>
+<h2 id="the-production-file-and-its-listening-copy">The production file and its listening copy</h2>
+<p>CAF's size and packet conventions are useful in capture or editing workflows, including arrangements where data continues to be written. Its description can carry different encodings, so the playback requirements come from the actual encoding and layout inside.</p>
+<p>If a CAF production source is to be used in an Emby collection, preserve its intended valid audio interval when making a more convenient listening copy. Compare the decoded start and end, channels, and sample format—not just the nominal packet duration. Keeping the valid-frame accounting explains why a correct copy can differ in stored structure while containing the same intended sound.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

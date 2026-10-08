@@ -106,40 +106,43 @@
 <h1>AAC: Low Overhead Audio Transport Multiplex (LATM)</h1>
 
 
-<p>A broadcast recording may report <strong>AAC with LATM</strong> rather than the familiar ADTS packaging. That extra name identifies an input structure the player must understand before it can decode the sound.</p>
-<p><strong>Low Overhead Audio Transport Multiplex (LATM)</strong> carries MPEG-4 audio data with multiplex and configuration information. Configuration can be supplied in-band and reused, avoiding the need to repeat a full independent description around every audio unit.</p>
+<p>A source described as <strong>AAC/LATM</strong> combines an audio coding format with a multiplex structure. The receiver first interprets LATM's configuration and payload arrangement, then supplies the encoded audio to the appropriate decoder.</p>
+<p><strong>Low Overhead Audio Transport Multiplex</strong> groups audio data and the information needed to interpret it. <strong>LOAS</strong>, Low Overhead Audio Stream, can provide synchronization and length framing around that multiplex. They are different layers, not two names for one AAC codec.</p>
 <table>
 <thead>
 <tr>
 <th>Layer</th>
-<th>Its job</th>
+<th>Reader's operation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>AAC coding tools</td>
-<td>Represent the compressed sound</td>
+<td>LOAS, when used</td>
+<td>Find the framed LATM data in a continuing byte sequence</td>
 </tr>
 <tr>
 <td>LATM</td>
-<td>Organize audio payloads and the information needed to interpret them</td>
+<td>Interpret multiplex setup, payload boundaries, and configuration reuse</td>
 </tr>
 <tr>
-<td>LOAS, when used</td>
-<td>Add synchronization and length framing around LATM data</td>
+<td>AAC coding</td>
+<td>Reconstruct the sound from encoded audio units</td>
 </tr>
 <tr>
-<td>Outer delivery, such as TS or RTP</td>
-<td>Carry the packaged audio to the receiver</td>
+<td>TS or RTP carriage</td>
+<td>Obtain this component through the outer delivery structure</td>
 </tr>
 </tbody>
 </table>
-<p><strong>LOAS</strong>, Low Overhead Audio Stream, is a related framing layer, not a synonym for the multiplex itself. RFC 6416 also defines carriage of LATM audio elements in RTP, illustrating why LATM need not always arrive with the same outer wrapper.</p>
-<h2 id="the-receiver-needs-both-parsing-and-decoding">The receiver needs both parsing and decoding</h2>
-<p>A device can support an AAC variant yet lack the input path for LATM in a particular container. Conversely, recognizing LATM does not establish support for every MPEG-4 audio coding tool its configuration can describe.</p>
-<p>For an Emby recording with sound problems, inspect the transport and the audio profile together. A successful probe on the server does not by itself establish that the selected app can consume the original packaging directly. The delivered stream and its handling on that platform matter.</p>
-<p>Changing LATM to <a href="AAC-ADTS.html">ADTS</a> or MP4 is not a filename operation. A converter must interpret the configuration and translate the framing, and some combinations may need more than a simple header rewrite.</p>
-<p>Retain the original when investigating such a conversion. Check channel layout, output sample rate, timing, and playback through the affected programme transition, where a fresh configuration can become important.</p>
+<h2 id="follow-configuration-across-several-elements">Follow configuration across several elements</h2>
+<p>RFC 6416 describes a LATM audioMuxElement carrying payload and, in its in-band configuration mode, a useSameStreamMux indication. A <strong>StreamMuxConfig</strong> describes how the audio and its configuration are arranged.</p>
+<p>An initial element can supply configuration A and its audio. A following element can indicate that the previous setup is reused and carry the next payload without a complete repeat of A. The receiver retains A and applies it while parsing and decoding that next payload.</p>
+<p>This saves repeated descriptions, but makes retained setup part of the receiving state. If the reader joins after A and receives only reuse indications, it needs the applicable configuration before it can interpret those payloads. Repeating configuration periodically helps a receiver joining or recovering from loss.</p>
+<p>If the stream changes to configuration B, the reader must follow the new description rather than continue using A. A change near a programme transition is therefore meaningful evidence when sound begins failing at that point.</p>
+<h2 id="configuration-can-arrive-elsewhere">Configuration can arrive elsewhere</h2>
+<p>LATM over RTP can use out-of-band setup supplied through session description. That route does not need to repeat the same configuration within every audioMuxElement. The delivery convention establishes how the receiver obtains it.</p>
+<p>This is why stripping a supposed fixed header from every packet is not a general LATM-to-ADTS conversion. A converter needs to parse the multiplex, recover setup and encoded units, and write the destination's actual conventions. Some audio configurations cannot be represented by the same simple ADTS fields as another stream.</p>
+<p>For an Emby recording, compare the coding variant, multiplex/configuration handling, and output package. Reading AAC from one wrapper and reading it from LATM are different input paths to potentially the same audio decoder. The configuration trace explains a startup or transition failure more precisely than treating every AAC-labelled source as identical.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

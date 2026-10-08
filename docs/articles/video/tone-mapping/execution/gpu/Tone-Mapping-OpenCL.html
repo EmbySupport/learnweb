@@ -106,35 +106,39 @@
 <h1>OpenCL Tone Mapping</h1>
 
 
-<p>OpenCL is an interface for running parallel computations on supported devices. An OpenCL tone mapper divides picture processing into many small pieces that can run concurrently, commonly on a GPU.</p>
-<p>The word OpenCL tells you how the work is submitted, not which <a href="../../curves/Tone-Mapping-Curves.html">tone-mapping curve</a> is used. A filter can offer several curves through the same OpenCL execution path. OpenCL itself also supports device types other than GPUs, so the selected device matters.</p>
-<h2 id="three-pieces-have-to-fit">Three pieces have to fit</h2>
+<p>An OpenCL filter is selected, but processing fails before a picture is delivered. Locating that failure requires three distinct pieces: the application's filter, the runtime's selected device, and the frame representation passed between stages.</p>
 <table>
 <thead>
 <tr>
 <th>Piece</th>
-<th>Its role</th>
+<th>Responsibility</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Application and filter</td>
-<td>Provide the tone-mapping code and supported input/output formats</td>
+<td>Application/filter</td>
+<td>Supplies the mapping program and accepted formats</td>
 </tr>
 <tr>
-<td>OpenCL runtime and driver</td>
-<td>Discover the device, compile or load its program, and submit work</td>
+<td>OpenCL platform/runtime</td>
+<td>Discovers devices and compiles or loads programs</td>
 </tr>
 <tr>
-<td>Device and frame access</td>
-<td>Supply the required capabilities and make the decoded pixels accessible</td>
+<td>Device/context/queue</td>
+<td>Executes the work and provides accessible frame resources</td>
 </tr>
 </tbody>
 </table>
-<p>A working hardware video decoder does not automatically establish that all three are available. Decoding and OpenCL compute are separate capabilities, even when they use the same physical GPU.</p>
-<p><a href="https://github.com/FFmpeg/FFmpeg/blob/n8.1/libavfilter/vf_tonemap_opencl.c">FFmpeg 8.1's OpenCL filter</a> provides a concrete example: it accepts specific hardware-frame formats, checks the source transfer characteristics, and launches an OpenCL tone-mapping kernel. Its accepted formats are implementation constraints, not universal limits of the OpenCL standard.</p>
-<p>That distinction is useful when reading an Emby transcoding log. Successfully selecting a decoder or encoder is only one part of the path. An OpenCL device initialization or filter-format error points to a different stage from a codec error. In a container, the application also needs access to the appropriate runtime and device; success on the host alone does not describe the application's environment.</p>
-<p>Once it runs, performance depends on more than the curve's arithmetic. Transferring frames between memory domains or incompatible processing stages can add overhead. Whether a particular Emby installation uses this path depends on the platform, bundled implementation, driver, and selected session; OpenCL support on the GPU alone is not a support guarantee.</p>
+<p>OpenCL can target supported CPUs or GPUs. The interface name alone does not identify which device was selected or which curve the application implements.</p>
+<h2 id="follow-initialization-into-picture-processing">Follow initialization into picture processing</h2>
+<p>The application chooses a platform and device, creates the relevant context, and obtains a command queue for submitted work. It supplies a kernel program: a function executed across many work items so regions of a picture can be processed in parallel.</p>
+<p>Decoded pictures must be made accessible in the filter's expected hardware-frame arrangement. The filter then supplies its color descriptions, range and mapping parameters, launches the program, and makes the result available to the next stage after the required synchronization.</p>
+<p>FFmpeg 8.1's OpenCL tone mapper provides a concrete implementation. It checks supported source transfer and component information, prepares the corresponding color/transfer operations, and uses the selected mapping function in its OpenCL program. Its accepted hardware formats constrain that filter's path rather than defining all OpenCL devices' possible formats.</p>
+<h2 id="resolve-two-different-failure-cases">Resolve two different failure cases</h2>
+<p><strong>No usable OpenCL device appears.</strong> Check the runtime and device access in the application's environment. A hardware video decoder can work while a separate compute runtime is absent. A container also needs the applicable runtime and device resources, not only a device visible to the host.</p>
+<p><strong>A device is selected but the frame format cannot reach the filter.</strong> Inspect the preceding decoder's frame format, the required mapping or upload, and any supported sharing between APIs. Successful device discovery does not supply the missing representation or interoperability operation.</p>
+<p>In Emby logs, those stage failures differ from an inability to decode the source codec. <a class="xref" href="https://emby.media/support/articles/Hardware-Acceleration-Overview.html">Hardware-acceleration documentation</a> describes the surrounding platform options; the bundled implementation and session specify the actual filter route.</p>
+<p>Once the path works, frame transfers and synchronization remain part of its cost. Keeping accessible frames across decoding, filtering, and encoding can avoid unnecessary copies. A faster kernel alone may leave the surrounding traffic or another stage as the limiting operation.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

@@ -106,48 +106,49 @@
 <h1>ITU-R BT.2020</h1>
 
 
-<p><strong>BT.2020</strong>, also called Rec. 2020, defines UHD television parameters, including a color gamut wider than <a href="Color-Standard-BT709.html">BT.709</a>. In media information, it is especially familiar as the color-primary label attached to HDR video.</p>
-<p>That label describes the encoding space. It does not promise that every scene uses extremely saturated colors or that a connected television can reproduce the entire gamut.</p>
+<p>BT.2020 defines a set of wide-gamut RGB primaries for UHD television. Their coordinates identify the colors from which mixtures are formed:</p>
 <table>
 <thead>
 <tr>
-<th>Parameter</th>
-<th>BT.2020 definition</th>
+<th>Primary</th>
+<th style="text-align: right;">CIE 1931 x</th>
+<th style="text-align: right;">CIE 1931 y</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Red primary, CIE xy</td>
-<td>0.708, 0.292</td>
+<td>Red</td>
+<td style="text-align: right;">0.708</td>
+<td style="text-align: right;">0.292</td>
 </tr>
 <tr>
-<td>Green primary, CIE xy</td>
-<td>0.170, 0.797</td>
+<td>Green</td>
+<td style="text-align: right;">0.170</td>
+<td style="text-align: right;">0.797</td>
 </tr>
 <tr>
-<td>Blue primary, CIE xy</td>
-<td>0.131, 0.046</td>
+<td>Blue</td>
+<td style="text-align: right;">0.131</td>
+<td style="text-align: right;">0.046</td>
 </tr>
 <tr>
-<td>Reference white</td>
-<td>D65</td>
-</tr>
-<tr>
-<td>UHD image sizes</td>
-<td>3840 × 2160 and 7680 × 4320</td>
-</tr>
-<tr>
-<td>Signal precision</td>
-<td>10 or 12 bits per component</td>
+<td>Reference white, D65</td>
+<td style="text-align: right;">0.3127</td>
+<td style="text-align: right;">0.3290</td>
 </tr>
 </tbody>
 </table>
-<p>The <a href="../Color-Gamut.html">gamut diagram</a> shows how its primaries compare with P3 and BT.709. The coordinate values identify colors; they are not percentages of saturation.</p>
-<h2 id="bt2020-and-hdr-are-separate-clues">BT.2020 and HDR are separate clues</h2>
-<p>BT.2020 itself includes a conventional transfer characteristic. HDR systems specified by <a href="Color-Standard-BT2100.html">BT.2100</a> use the same primaries with PQ or HLG. Consequently, “BT.2020” in the primaries field is insufficient to identify the brightness encoding.</p>
-<p>Matrix information matters too. BT.2020 defines both constant-luminance and non-constant-luminance representations. A report that says “BT.2020 non-constant” is describing the matrix, not a different gamut.</p>
-<p>Imagine importing two 4K files into Emby: one SDR and one HDR. Matching resolution and BT.2020 primaries would not make them interchangeable. Their transfer characteristics can require different rendering, and an SDR output may need tone mapping for the HDR file.</p>
-<p>Likewise, a film graded within a smaller gamut can be encoded using BT.2020 primaries. Think of the encoding space as the available coordinates, not evidence that the picture visits every corner.</p>
+<p><img src="../images/color-gamut-triangles.png" alt="The BT.2020 triangle extends beyond the P3 and BT.709 triangles."></p>
+<p><em>Coordinates show the encoding gamut. The diagram omits luminance; its line colors identify the triangles.</em></p>
+<h2 id="an-encoding-space-can-be-larger-than-the-colors-in-the-movie">An encoding space can be larger than the colors in the movie</h2>
+<p>Suppose a film is graded with colors that fit in <a href="P3-Color-Gamuts.html">P3</a>, then represented with BT.2020 coordinates for delivery. The converter finds BT.2020 RGB mixtures for those existing colors. The film does not acquire more saturated objects simply because the available coordinate space grew.</p>
+<p>This is similar to choosing a larger map for a journey: the map has room for more places, while the route still visits its actual locations. In video, the important operation is converting coordinates correctly. Reusing P3 numbers and merely changing the primary label would describe different colors.</p>
+<p>The standard also defines UHD image sizes of 3840 × 2160 and 7680 × 4320 and 10- or 12-bit signal precision. The color-primary label in a media report identifies only the primary-coordinate part of that system. A renderer still needs the rest of the signal description.</p>
+<h3 id="read-the-other-fields-beside-the-primaries">Read the other fields beside the primaries</h3>
+<p><strong>Transfer characteristics:</strong> BT.2020 includes a conventional nonlinear transfer characteristic. HDR television systems in <a href="Color-Standard-BT2100.html">BT.2100</a> reuse these primaries with PQ or HLG. Consequently, the transfer field tells a player which light interpretation applies.</p>
+<p><strong>Matrix coefficients:</strong> The standard defines constant-luminance and non-constant-luminance component representations. A report of BT.2020 non-constant describes the nonlinear RGB-to-luma/chroma arrangement; it is not another set of primaries. Reconstructing RGB needs the corresponding matrix interpretation.</p>
+<p><strong>Range and precision:</strong> These establish how code values carry the signal. Ten bits give the number of levels; numerical range establishes the code positions for nominal black and white. Neither replaces the transfer characteristic.</p>
+<p>For an Emby source with BT.2020 primaries and PQ, the playback path needs the PQ interpretation, then appropriate rendering for the output display. A BT.2020 SDR signal follows a different light relationship. Comparing the fields together lets two apparently similar 4K files be distinguished before choosing color or tone-mapping processing.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

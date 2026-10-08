@@ -106,40 +106,58 @@
 <h1>Multichannel Audio</h1>
 
 
-<p><strong>Multichannel audio carries several sound channels within one audio presentation.</strong> A film's left, center, right, and surround signals can therefore remain separate until the playback system decides how to reproduce them.</p>
-<p>Channels are not the same as selectable tracks. A single 5.1 English track normally contains six channels. A second 5.1 French track contains another complete presentation; it is not one of the first track's six channels.</p>
+<p>A six-channel English soundtrack and a six-channel French soundtrack are <strong>two tracks, each containing a complete multichannel presentation</strong>. Channels are the separate signals within that presentation, such as front left, center, or surround right.</p>
+<p>Keeping those signals separate lets a mix place sound around the listener. It also gives playback software meaningful components to combine when the listening system has fewer outputs.</p>
+<h2 id="follow-one-sample-frame">Follow one sample frame</h2>
+<p>In a conventional 5.1 presentation, a single time position contains six values. An illustrative frame might be:</p>
 <table>
 <thead>
 <tr>
-<th>Information</th>
-<th>What it answers</th>
+<th>Channel role</th>
+<th style="text-align: right;">Sample value at this instant</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Channel count</td>
-<td>How many signals the presentation carries</td>
+<td>Front left</td>
+<td style="text-align: right;">+0.10</td>
 </tr>
 <tr>
-<td>Channel layout</td>
-<td>Which roles those signals have</td>
+<td>Front right</td>
+<td style="text-align: right;">+0.12</td>
 </tr>
 <tr>
-<td>Channel order</td>
-<td>Where each role appears in the data</td>
+<td>Center</td>
+<td style="text-align: right;">+0.60</td>
 </tr>
 <tr>
-<td>Output arrangement</td>
-<td>Which speakers or headphone rendering will reproduce it</td>
+<td>LFE</td>
+<td style="text-align: right;">+0.05</td>
+</tr>
+<tr>
+<td>Left surround</td>
+<td style="text-align: right;">−0.20</td>
+</tr>
+<tr>
+<td>Right surround</td>
+<td style="text-align: right;">+0.25</td>
 </tr>
 </tbody>
 </table>
-<p>The layout matters as much as the count. Four signals intended for front and rear positions are different from four unrelated recording stems. Software needs their meaning, not just the number four.</p>
-<h2 id="a-source-layout-is-not-a-speaker-inventory">A source layout is not a speaker inventory</h2>
-<p>A six-channel soundtrack can be played on a stereo television by combining its channels appropriately. A receiver can also redirect bass from main channels to a subwoofer. Neither operation changes how many channels the original soundtrack contains.</p>
-<p>When Emby reports a source as <a href="layouts/Surround-Sound-5-1.html">5.1</a>, that identifies the track, not a guarantee of six independent output paths all the way to the room. The client, connection, and audio system must support the presentation, or a conversion is needed.</p>
-<p>Likewise, <a href="object-based/Object-Based-Audio.html">object-based audio</a> can carry spatial instructions beyond the channels visible in a basic media report. A plain channel count cannot establish whether those instructions survive playback.</p>
-<p>If dialogue comes from an unexpected speaker or effects appear in front instead of behind, check <a href="roles-and-ordering/Audio-Channel-Order.html">channel mapping</a>. More channels cannot compensate for channels sent to the wrong places.</p>
+<p>The values do not have to match. At this moment, the center contains a stronger signal, but a different scene can use other channels more heavily. All six advance on the same sample timeline, keeping their combined presentation aligned.</p>
+<p>A compressed codec can exploit similarities between channels to store them efficiently. Separate decoded channels do not imply that the file stores six literal uncompressed arrays. The codec reconstructs their values and provides the layout describing their meaning.</p>
+<h2 id="count-layout-order-and-routing-each-do-a-job">Count, layout, order, and routing each do a job</h2>
+<ul>
+<li><strong>Count</strong> says how many signals exist.</li>
+<li><strong>Layout</strong> says which roles they represent.</li>
+<li><strong>Order</strong> associates those roles with array positions or buffers.</li>
+<li><strong>Routing</strong> sends those signals to the available outputs.</li>
+</ul>
+<p>Six arbitrary recording stems are not automatically a 5.1 soundtrack. Likewise, six properly decoded channel waveforms routed using the wrong order can place dialogue behind the listener. The <a href="roles-and-ordering/Audio-Channel-Order.html">channel-order page</a> follows this mapping explicitly.</p>
+<h2 id="adapt-the-presentation-to-the-listening-system">Adapt the presentation to the listening system</h2>
+<p>A surround receiver can keep the principal channels separate and route bass according to its speaker configuration. A stereo television needs a <a href="../decoding-output/conversion-fallback/Audio-Downmixing.html">downmix</a>. That operation combines center and surround contributions into the left/right result; it does more than discard unused array positions.</p>
+<p>This adaptation explains an Emby session that starts with a 5.1 source but reaches the output as stereo. The source description remains six-channel even though that particular listening presentation has two channels.</p>
+<p>For <a href="object-based/Object-Based-Audio.html">object-based audio</a>, spatial descriptions can accompany a compatible channel presentation. A renderer uses that additional information to make an output for the system. Channel decoding, layout conversion, and object rendering therefore solve related but distinct parts of turning stored sound into a listening arrangement.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

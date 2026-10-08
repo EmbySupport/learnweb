@@ -106,40 +106,44 @@
 <h1>MPEG Audio Layer II (MP2)</h1>
 
 
-<p><strong>MP2 is MPEG Audio Layer II</strong>, an audio codec often encountered in broadcast recordings. It is a different layer from <a href="MP3.html">MP3</a>; its name does not mean “any audio accompanying MPEG-2 video.”</p>
-<p>Layer II divides the signal into frequency subbands and allocates bits among them. Its lossy coding preserves an approximation of the source rather than every original sample.</p>
-<h2 id="why-it-turns-up-in-a-library">Why it turns up in a library</h2>
+<p>A television recording can contain MPEG-2 video and <strong>MPEG Audio Layer II</strong>, commonly abbreviated MP2. The names share a standards history, but the video and audio are separate coded streams.</p>
+<p>Layer II is a lossy subband audio codec used in broadcast systems and older media. Conventional DAB uses Layer II; DAB+ instead uses the AAC family.</p>
+<h2 id="allocate-precision-across-subbands">Allocate precision across subbands</h2>
+<p>Layer II divides the signal through a filter bank into frequency subbands. The encoder estimates how much precision each needs, then describes their sampled values with the selected quantization and scaling information.</p>
+<p>The decoder reads those choices, reconstructs the subband values, and combines them through the synthesis filter bank into the audio waveform. Giving one subband more precision can reduce its coding error, while the total bitrate constrains the available allocation.</p>
+<p>The subbands are frequency regions within audio channels. They are not separately selectable language tracks or physical surround speakers.</p>
+<h2 id="decode-the-channel-mode-as-well-as-the-samples">Decode the channel mode as well as the samples</h2>
 <table>
 <thead>
 <tr>
-<th>Encounter</th>
-<th>What MP2 tells you</th>
+<th>Layer II mode</th>
+<th>Intended relationship</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>An older television recording</td>
-<td>The soundtrack may be Layer II even when the video is MPEG-2</td>
+<td>Mono</td>
+<td>One presentation signal</td>
 </tr>
 <tr>
-<td>Conventional DAB radio</td>
-<td>Layer II is part of the original DAB audio system</td>
+<td>Stereo</td>
+<td>A related left/right presentation</td>
 </tr>
 <tr>
-<td>DAB+ radio</td>
-<td>The audio system uses the AAC family instead</td>
+<td>Joint stereo</td>
+<td>Shared coding treatment for suitable channel information</td>
 </tr>
 <tr>
-<td>An MP2 elementary stream</td>
-<td>It contains encoded audio, not the whole TV programme</td>
+<td>Dual channel</td>
+<td>Two independently intended channel signals</td>
 </tr>
 </tbody>
 </table>
-<p>Broadcast recordings commonly package the soundtrack inside a transport stream with video and timing. A file extension such as TS does not identify the audio codec by itself.</p>
-<p>Two-channel Layer II audio can be stereo or dual-channel material, depending on its coding mode. A channel count alone therefore does not tell you whether those channels should be heard together as a stereo pair.</p>
-<h2 id="compatibility-after-recording">Compatibility after recording</h2>
-<p>Keeping a recording's video intact does not require keeping an unsupported soundtrack unchanged. In an Emby <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">Direct Stream session</a>, compatible video can be copied while audio is converted for the client.</p>
-<p>Conversion may make an MP2 recording easier to play on a particular device, but another lossy encoding cannot improve on the retained source. For diagnosis, inspect the actual track's codec and channel information; changing the extension or assuming that the video codec dictates the audio does not resolve a decoding mismatch.</p>
+<p>Dual-channel material can carry two language programmes. Treating those as left and right of one stereo soundstage can make both languages play simultaneously. Track selection and channel interpretation are therefore different operations.</p>
+<h2 id="keep-the-broadcast-context-while-converting">Keep the broadcast context while converting</h2>
+<p>A transport-stream recording supplies programme selection and timestamps around the coded audio. The MP2 decoder reconstructs the sound; the systems reader keeps it associated with the correct programme and timeline.</p>
+<p>If an Emby client accepts the recorded video but needs a different audio codec, a <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">Direct Stream path</a> can retain compatible video and create a suitable soundtrack. That operation must preserve the selected programme, intended channel presentation, and timing.</p>
+<p>The converted audio starts from the Layer II reconstruction. Repackaging the original MP2 into another supported wrapper instead retains its coded representation. The choice follows whether the target needs another wrapper or another audio decoder.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

@@ -106,36 +106,52 @@
 <h1>Constant Quality Video Encoding</h1>
 
 
-<p><strong>Constant quality encoding</strong> starts with a quality target and lets the encoder use different amounts of data as the source changes. The target is defined by the encoder's method; it is not a guarantee that every scene looks equally good to every viewer.</p>
-<p>This is useful when creating a library copy whose acceptable appearance matters more than meeting an exact file size. A clean animation and a grainy live-action recording can produce very different sizes at the same setting.</p>
+<p>When preparing a library viewing copy, one possible objective is to preserve an acceptable appearance and let the resulting size follow the source. <strong>Constant quality encoding</strong> starts with that kind of quality policy instead of requiring the video to spend exactly a chosen amount of data.</p>
+<p>The policy belongs to the encoder. It guides reconstruction choices; it is not a measurement stamped onto every finished scene.</p>
+<h2 id="follow-the-controllers-decisions">Follow the controller's decisions</h2>
+<p>The encoder analyzes picture structure and predicts how difficult regions will be to represent. It chooses prediction, partition and quantization decisions that serve its quality objective.</p>
+<p>A largely static region may need only a short correction. Changing fine texture can need many significant coefficients. The same quality policy can therefore produce a small description of one region and a larger description of another.</p>
+<p>After coding those choices, the number of produced bits is the result. Across a film, varying source difficulty makes bitrate fluctuate and determines the final size.</p>
+<p>This reverses an average-budget control priority:</p>
 <table>
 <thead>
 <tr>
-<th>What you choose</th>
-<th>What is mostly allowed to vary</th>
+<th>Objective</th>
+<th>Held as the main target</th>
+<th>Allowed to respond to content</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>An encoder-specific quality target</td>
-<td>The resulting bitrate and size</td>
+<td>Average bitrate</td>
+<td>Overall data budget</td>
+<td>Reconstruction compromise and local allocation</td>
 </tr>
 <tr>
-<td>A fixed quantizer mode</td>
-<td>The picture error and bitrate as content changes</td>
+<td>Quality-led encoding</td>
+<td>Encoder-defined quality policy</td>
+<td>Overall size and local bitrate</td>
 </tr>
 <tr>
-<td>A quality target with a rate cap</td>
-<td>Bitrate, and potentially quality when the cap binds</td>
+<td>Fixed quantizer mode</td>
+<td>Selected quantizer policy</td>
+<td>Bits and scene-dependent visible error</td>
 </tr>
 </tbody>
 </table>
-<p>The methods are related but not interchangeable. <a href="Video-Encoding-CRF.html">CRF</a> adapts encoding decisions around a rate factor. <a href="Video-Encoding-QP.html">Constant QP</a> holds a quantization setting according to its implementation. Some hardware encoders offer their own target-quality modes.</p>
-<h2 id="a-cap-creates-another-constraint">A cap creates another constraint</h2>
-<p>A quality target can be combined with a maximum rate and a buffer size. When the encoder cannot meet both the unconstrained quality target and the rate constraint, it must compromise. A difficult section may therefore look worse than the target would suggest.</p>
-<p>The numerical scales also differ. A quality value in one software encoder, hardware API, or codec should not be copied into another and assumed to represent the same result.</p>
-<p>For an Emby library, a quality-controlled source can still require conversion because its peaks, format, or profile exceed what the app can accept. Check the delivered stream before concluding that the library encode is responsible for a visible change.</p>
-<p>Use representative difficult scenes when assessing a setting: grain, dark gradients, fast movement, and fine texture reveal different compromises. The eventual file size is an outcome of that evaluation, not proof of quality on its own.</p>
+<p>The last row is related, but not identical to the middle one. Holding one quantizer does not ensure equal perceptual quality across different scenes.</p>
+<h2 id="preserve-the-parts-that-matter-to-later-pictures">Preserve the parts that matter to later pictures</h2>
+<p>A reference region can influence more than its own displayed picture. If later predictions reuse it repeatedly, improving that reconstruction can benefit many dependent pictures.</p>
+<p>An encoder can incorporate that importance into its quantization decisions. Regional adaptation can also distribute precision differently between smooth areas, detail, and motion according to the chosen model.</p>
+<p>These operations explain why the same quality setting does not require a single unchanging QP. <a href="Video-Encoding-CRF.html">CRF</a>, hardware target-quality controls, and <a href="Video-Encoding-QP.html">CQP</a> have different mechanisms and scales.</p>
+<p>The model need not be an external score such as VMAF. Its internal coding estimates and perceptual priorities guide the encode; a later quality measurement evaluates the resulting pictures using another defined method.</p>
+<h2 id="a-delivery-cap-adds-a-competing-requirement">A delivery cap adds a competing requirement</h2>
+<p>Suppose the quality-led choices for a difficult section would require more coded data than its permitted rate and buffer deadline. The encoder cannot both transmit that full representation and satisfy the restrictive deadline.</p>
+<p>It must change the picture description: coarser quantization, another prediction/partition choice, or other permitted rate-control behavior. The desired quality becomes a goal constrained by delivery. <a href="Video-Encoding-VBV.html">VBV</a> provides the buffer model behind that decision.</p>
+<p>The source and chosen cap determine when this tradeoff occurs. Without the cap, the encode can use more data for that section; with it, the output has another obligation besides the quality policy.</p>
+<h2 id="evaluate-the-policy-on-the-actual-source">Evaluate the policy on the actual source</h2>
+<p>A useful evaluation includes material that exercises the policy differently: static detail, grain, rapid movement and smooth gradients. Compare candidate settings using the same source and encoder configuration, looking at the reconstruction as well as its data demand.</p>
+<p>For an Emby viewing copy, this establishes both the picture you want to retain and the stream the playback route must supply. Size is then an observed outcome of those decisions, rather than a quality value selected independently of the source.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

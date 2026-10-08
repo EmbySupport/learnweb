@@ -106,34 +106,38 @@
 <h1>Dolby Vision Profile 7</h1>
 
 
-<p>Dolby Vision Profile 7 is the dual-layer format used in the Dolby Vision UHD Blu-ray workflow. It combines an <strong>HDR10-compatible base</strong> with an enhancement layer and Dolby Vision metadata.</p>
+<p>The Dolby Vision UHD Blu-ray workflow prepares three related parts of a Profile 7 presentation:</p>
 <table>
 <thead>
 <tr>
 <th>Part</th>
-<th>Purpose</th>
+<th>Role</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Base layer</td>
+<td>Ten-bit HEVC base</td>
 <td>A complete HDR10-compatible picture</td>
 </tr>
 <tr>
-<td>Enhancement layer</td>
-<td>Additional reconstruction information, according to the authoring mode</td>
+<td>Enhancement</td>
+<td>Additional reconstruction information according to the authoring mode</td>
 </tr>
 <tr>
 <td>RPU metadata</td>
-<td>Dolby Vision processing information associated with the pictures</td>
+<td>Dolby Vision information associated with the pictures</td>
 </tr>
 </tbody>
 </table>
-<p>A non-Dolby Vision HDR10 path can use the base picture, provided the container, codec, and playback path are otherwise supported. That fallback is an intentional property of the format, not a sign that the file has necessarily been damaged.</p>
-<p>For full Dolby Vision reconstruction, the enhancement details matter. A <a href="../metadata-and-layers/Dolby-Vision-MEL-FEL.html">minimum enhancement layer</a> has no additional picture residual to reconstruct. A full enhancement layer carries a nonzero residual. These can place different demands on a decoder even though both files say Profile 7.</p>
-<p>When the same movie behaves differently in an Emby app and a disc player, compare the complete delivery path. Moving compressed data into another container does not automatically give the destination player the disc player's Dolby Vision decoding capabilities.</p>
-<p>A Dolby Vision indicator is useful evidence about the selected output mode, but it is not proof that every original enhancement-layer contribution survived or was used. Conversely, an HDR10 indicator can describe a valid fallback picture.</p>
-<p>If a tool converts Profile 7 to a single-layer profile, examine what happened to the enhancement layer and metadata. The new label alone does not establish that all the original reconstruction information was retained.</p>
+<p>Base and enhancement must stay aligned. The profile defines a dual-layer delivery arrangement rather than two independently watchable releases.</p>
+<h2 id="choose-the-reconstruction-path-not-merely-the-final-indicator">Choose the reconstruction path, not merely the final indicator</h2>
+<p>A supporting Dolby Vision path can use the base, metadata, and relevant enhancement operations. With <a href="../metadata-and-layers/Dolby-Vision-MEL-FEL.html">FEL</a>, the nonzero picture residual supplies information for complete reconstruction. With MEL, no nonzero picture residual needs to contribute, while Dolby Vision interpretation and metadata remain part of the presentation.</p>
+<p>Another path can use the compatible HDR10 base. That gives a valid HDR10 image if the surrounding container, codec, and output path support it. It can be an intentional fallback rather than damaged content.</p>
+<p>The two paths use different information. A Dolby Vision output indicator identifies a presentation mode, while confirming an enhancement contribution requires evidence of the decoder/composer operations. An HDR10 indicator can instead describe the compatible-base path.</p>
+<h2 id="follow-a-repackaging-or-conversion">Follow a repackaging or conversion</h2>
+<p>Moving preserved coded data from disc packaging into another container changes the reader's arrangement, not the source's required reconstruction jobs. The destination app needs to locate and process the layers correctly. A disc player and an app receiving a file can consequently choose different available paths.</p>
+<p>A conversion to a single-picture-layer profile also needs its operation described. Did it keep the base, transform the metadata, or omit enhancement information? Copying the base without re-encoding preserves that coded base, while a discarded FEL can remove information from the original complete presentation.</p>
+<p>For an Emby comparison, record the source layer type, delivered stream, player support, and output mode. Those observations distinguish preserved Profile 7 delivery, compatible-base playback, and a newly prepared rendition.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

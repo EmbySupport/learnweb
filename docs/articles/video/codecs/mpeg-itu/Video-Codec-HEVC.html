@@ -106,14 +106,41 @@
 <h1>H.265 / HEVC Video</h1>
 
 
-<p><strong>H.265</strong> and <strong>HEVC</strong> identify the same coding standard. HEVC stands for <em>High Efficiency Video Coding</em>. It is frequently encountered in UHD films and recordings, including files carrying HDR video.</p>
-<p>The format offers more flexible ways to divide and predict pictures than <a href="Video-Codec-H264.html">H.264</a>. The practical aim is to preserve useful picture quality with less data. There is no fixed file-size saving that applies to every source or encoder: texture, grain, settings, and the quality being compared all affect the result.</p>
+<p><strong>H.265</strong>, or <strong>High Efficiency Video Coding (HEVC)</strong>, represents pictures with a flexible block structure and prediction/correction tools designed to use data efficiently. A common place to encounter it is a UHD film or recording, where there are many picture positions to describe.</p>
+<p>The way a picture is divided helps explain that efficiency.</p>
+<h2 id="start-with-a-coding-tree">Start with a coding tree</h2>
+<p>A stream can organize the picture in <strong>64 × 64 coding-tree blocks</strong>. An encoder does not have to give every part of such a region the same small-block description. It can subdivide where detail or movement makes a smaller region useful.</p>
+<p>Imagine a 64 × 64 region with mostly smooth background and a detailed lower-right corner. One illustrative tree splits it into four 32 × 32 regions, then splits only the lower-right one into four 16 × 16 regions:</p>
+<pre><code class="lang-text">64 × 64
+├─ 32 × 32, retained
+├─ 32 × 32, retained
+├─ 32 × 32, retained
+└─ 32 × 32
+   ├─ 16 × 16
+   ├─ 16 × 16
+   ├─ 16 × 16
+   └─ 16 × 16
+</code></pre>
+<p>There are seven leaf coding blocks. Their areas still total the original region:</p>
+<p><strong>3 × 32² + 4 × 16² = 4,096 = 64².</strong></p>
+<p>This is a possible partition illustration, not the mandatory layout of every HEVC picture. The stream's coding parameters and rules determine its allowed tree choices.</p>
+<p>The larger flat regions can use fewer region descriptions, while the detailed corner gets more local choices. Subdivision therefore follows the information the encoder is trying to represent rather than a single grid size chosen for every scene.</p>
+<h2 id="prediction-and-transform-divisions-have-different-jobs">Prediction and transform divisions have different jobs</h2>
+<p>A coding block's <strong>prediction</strong> describes what reconstructed scene information can be reused. Intra modes use same-picture boundaries, including directional or smoothly varying predictions. Inter modes use decoded reference pictures and motion information.</p>
+<p>The <strong>transform</strong> division describes how the remaining correction is represented. A coding region and its residual transform blocks are related but do not have to be one identical subdivision. The decoder follows the supplied tree and modes to form predictions and reconstruct corrections.</p>
+<p>Quantization selects the precision of those corrections. Extra partition choices can help an encoder describe a region effectively, while the rate-control settings decide how much data it is allowed to spend.</p>
+<p>A good tree choice does not remove the need to encode changed or unpredictable content. Grain, newly revealed scenery, and complicated movement still require information.</p>
+<h2 id="finish-the-reconstruction-inside-the-coding-loop">Finish the reconstruction inside the coding loop</h2>
+<p>HEVC includes in-loop deblocking and <strong>sample-adaptive offset (SAO)</strong> tools. Deblocking addresses selected discontinuities around coded block boundaries. SAO can apply signaled corrections to categories of reconstructed samples, such as brightness bands or local edge relationships.</p>
+<p>These operations help form the reconstruction that later prediction references. The decoder must apply the applicable signaled behavior, and the encoder's reconstruction loop must make corresponding reference samples available for its next decisions.</p>
+<p>The decoded picture then participates in reference storage and presentation ordering, much as the dependency principles described in the <a href="../../compression/picture-prediction-and-random-access/Reference-Frames.html">reference-picture</a> and <a href="../../compression/picture-prediction-and-random-access/Video-GOP.html">GOP</a> articles.</p>
+<h2 id="identify-the-sample-representation">Identify the sample representation</h2>
 <table>
 <thead>
 <tr>
 <th>Common HEVC profile</th>
 <th>Sample depth</th>
-<th>Color sampling</th>
+<th>Sampling</th>
 </tr>
 </thead>
 <tbody>
@@ -129,12 +156,9 @@
 </tr>
 </tbody>
 </table>
-<p><em>Selected profiles only. Other HEVC profiles cover additional formats and tools.</em></p>
-<p>A Main 10 label does not establish that the pictures are HDR. <a href="../../hdr/formats/HDR10.html">HDR10</a> uses HEVC in common delivery workflows, but HDR also involves transfer characteristics, color information, metadata, and the display path. An SDR file can use 10-bit HEVC.</p>
-<h2 id="check-decoding-separately-from-encoding">Check decoding separately from encoding</h2>
-<p><strong>x265</strong> is one software encoder that creates HEVC. It is not another name for the format, and a player does not need x265 to decode the result.</p>
-<p>For an Emby playback session, check the app's decoder, profile, level, resolution, and frame rate. The server's ability to decode a source for transcoding is a separate capability from the app's ability to play it directly. Hardware decoding and hardware encoding are separate capabilities too.</p>
-<p>A supported HEVC source can still be transcoded because of a bitrate limit, subtitle processing, or another playback requirement. Conversely, a smaller HEVC file is not necessarily easier for an older device to decode than a larger H.264 file.</p>
+<p>These are selected profiles. Additional HEVC profiles define other permitted sample/tool sets.</p>
+<p>Main 10 is common for HDR delivery, but its name describes sample precision and coding permissions. The transfer/color information establishes how those values represent SDR or HDR light. <a href="../../hdr/formats/HDR10.html">HDR10</a> combines the relevant HDR interpretation and metadata in common HEVC delivery workflows.</p>
+<p><strong>x265</strong> is one encoder that chooses an HEVC representation. A hardware encoder is another implementation of that job. Their effort and rate-control decisions can produce different pictures and sizes within the standard.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

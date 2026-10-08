@@ -106,40 +106,66 @@
 <h1>AMR-NB Speech Audio</h1>
 
 
-<p><strong>AMR-NB is narrowband Adaptive Multi-Rate speech coding.</strong> It is associated with mobile voice and can appear in older phone recordings and messaging files.</p>
-<p>The codec supports several speech bitrates so that a system can choose an appropriate mode. Adaptive does not mean that the same file can recover more detail simply by being played on a faster network.</p>
 <table>
 <thead>
 <tr>
-<th>Codec property</th>
+<th>AMR-NB property</th>
 <th>Value</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Sample rate</td>
+<td>PCM sample rate</td>
 <td>8 kHz</td>
 </tr>
 <tr>
-<td>Speech-frame duration</td>
+<td>Coded speech-frame duration</td>
 <td>20 ms</td>
 </tr>
 <tr>
-<td>Samples per speech frame</td>
+<td>Reconstructed samples per channel/frame</td>
 <td>160</td>
 </tr>
 <tr>
 <td>Speech coding modes</td>
-<td>Eight rates, from 4.75 to 12.2 kbit/s</td>
+<td>Eight, from 4.75 to 12.2 kbit/s</td>
 </tr>
 </tbody>
 </table>
-<p>Those are coded speech rates; file headers, framing, and silence-related data affect the overall file size.</p>
-<p>AMR-NB is designed for voices in a restricted bandwidth. A thin or telephone-like quality can therefore be an expected property of a valid recording, rather than an Emby playback fault.</p>
-<h2 id="preserve-what-is-actually-there">Preserve what is actually there</h2>
-<p>An AMR file stores coded frames, while a 3GP file can package them alongside other media. The codec and its storage wrapper should be identified separately.</p>
-<p>Converting AMR-NB to 48 kHz PCM or to a high-bitrate music codec can make a compatible listening copy. It cannot recreate the original high-frequency detail or remove the earlier speech-coding approximation. <a href="AMR-WB.html">AMR-WB</a> is a different wideband codec, not an output setting that upgrades a narrowband source.</p>
-<p>For an Emby session, check whether the original speech track is delivered or <a href="../../decoding-output/conversion-fallback/Audio-Transcoding.html">converted</a> for the client before comparing formats.</p>
+<p><strong>Narrowband Adaptive Multi-Rate</strong> is a speech codec used in mobile voice and stored voice recordings. Its modes allocate different amounts of coded information to the same 20 ms speech interval.</p>
+<h2 id="count-what-a-mode-actually-stores">Count what a mode actually stores</h2>
+<p>At 4.75 kbit/s, one 20 ms speech frame contains 4,750 × 0.020 = <strong>95 coded bits</strong>. At 12.2 kbit/s, it contains <strong>244 coded bits</strong>. The decoder reconstructs 160 speech samples in either case.</p>
+<p>The difference is the amount of information describing the voice model and excitation, not playback speed. The <a href="Speech-Coding.html">speech-coding article</a> explains that reconstruction.</p>
+<p>RFC 4867's octet-aligned file storage adds a frame-header octet and packs the coded bits into whole bytes:</p>
+<table>
+<thead>
+<tr>
+<th>Active-speech mode</th>
+<th style="text-align: right;">Coded bits</th>
+<th style="text-align: right;">Padded payload bytes</th>
+<th style="text-align: right;">Bytes with one frame header</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4.75 kbit/s</td>
+<td style="text-align: right;">95</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr>
+<td>12.2 kbit/s</td>
+<td style="text-align: right;">244</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">32</td>
+</tr>
+</tbody>
+</table>
+<p>With 50 active frames per second, the second case uses 1,600 bytes/s, or <strong>12.8 kbit/s</strong>, before the initial file header. That explains why a stored-file data rate can exceed the nominal speech-mode rate. Silence-related frames and other containers change the overall accounting.</p>
+<h2 id="interpret-the-narrowband-sound">Interpret the narrowband sound</h2>
+<p>The 8 kHz grid supports the narrowband speech system. Its restricted frequency range and voice-model approximation can give an intelligible recording a telephone-like character.</p>
+<p>A 48 kHz output version can reproduce that signal on another grid, but the original coded bandwidth remains the source of its tonal character. <a href="AMR-WB.html">AMR-WB</a> is a different wideband codec with different reconstruction, not a setting that expands the old narrowband recording.</p>
+<p>AMR frames can be stored directly or inside 3GP media. For an Emby phone recording, identify that wrapper and channel presentation alongside the speech mode. It tells the reader how to retrieve the correctly timed coded frames without treating the nominal bitrate as the exact file-size rate.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

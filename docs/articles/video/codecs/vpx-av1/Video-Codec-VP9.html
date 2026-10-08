@@ -106,8 +106,44 @@
 <h1>VP9 Video</h1>
 
 
-<p><strong>VP9</strong> is a video coding format developed by the WebM Project. It is often encountered in web-origin video, including high-resolution content, but the codec is separate from its container.</p>
-<p>Compared with <a href="Video-Codec-VP8.html">VP8</a>, VP9 provides additional coding tools and supports higher sample depths in selected profiles. Its profile number is especially useful when one VP9 file plays directly and another needs a different path.</p>
+<p><strong>VP9</strong> organizes video reconstruction around flexible picture regions and retained reference pictures. It is often found in web-origin media and is commonly carried by WebM.</p>
+<h2 id="build-the-picture-in-regions">Build the picture in regions</h2>
+<p>The coded picture is organized into <strong>64 × 64 superblocks</strong>, with smaller blocks selected for local content. A broad predictable area can use a larger region while a changing edge can be split more finely.</p>
+<p>The decoder constructs the selected intra or inter predictor, decodes the transformed correction, and applies the specified reconstruction and loop filtering. Prediction divisions and transform choices let different parts of a picture use different descriptions.</p>
+<p>Tiles organize groups of coded blocks and provide processing boundaries useful for parallel decoding. The picture header and the required references supply state beyond an individual block's local bytes.</p>
+<h2 id="choose-from-retained-views">Choose from retained views</h2>
+<p>A VP9 decoder maintains <strong>eight reference slots</strong>. The frame header selects at most <strong>three</strong> of those reference pictures for its prediction choices.</p>
+<p>Blocks then choose the applicable reference or permitted compound pair. This separates two decisions:</p>
+<table>
+<thead>
+<tr>
+<th>Decision</th>
+<th>Scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Which decoded pictures are retained?</td>
+<td>Reference-slot state across frames</td>
+</tr>
+<tr>
+<td>Which references are available for this frame?</td>
+<td>Frame-header selection</td>
+</tr>
+<tr>
+<td>Which available reference prediction is used?</td>
+<td>Block-level coding choice</td>
+</tr>
+</tbody>
+</table>
+<p>A frame can refresh selected slots with its reconstructed picture. A useful older view can remain in another slot while newer views are decoded.</p>
+<p>For <strong>compound prediction</strong>, the decoder forms predictions from two references and combines them. If they describe the scene from useful neighboring views, their combination can leave a smaller residual than either alone. The coded residual still defines the necessary correction.</p>
+<p>VP9 also permits reference pictures of different dimensions under its scaling and format constraints. Prediction can include the specified reference rescaling rather than assuming every stored view has the current picture's grid.</p>
+<h2 id="reconstruction-and-display-are-separate-instructions">Reconstruction and display are separate instructions</h2>
+<p>A coded frame can be <strong>hidden</strong>: decoded and retained without being shown as the next visible picture. The format can also instruct the decoder to show an existing retained picture rather than send a complete new reconstruction.</p>
+<p>These choices explain why coded-frame count and visible-picture count can differ. They are part of the representation, not evidence that a camera necessarily recorded an additional moment.</p>
+<p>The container timeline schedules visible output, while the VP9 header and block syntax rebuild the reference state and picture content needed for it.</p>
+<h2 id="identify-the-sample-format-precisely">Identify the sample format precisely</h2>
 <table>
 <thead>
 <tr>
@@ -139,12 +175,9 @@
 </tr>
 </tbody>
 </table>
-<p><em>Format permissions, not a claim that a particular device supports every combination.</em></p>
-<p>A decoder that handles Profile 0 may lack the required support for Profile 2. Even within Profile 2, do not infer 12-bit support from successful playback of a 10-bit stream. The selected decoder and its integration into the app determine the actual usable capabilities.</p>
-<h2 id="read-hdr-information-separately">Read HDR information separately</h2>
-<p>A higher bit depth can help represent HDR pictures, but a VP9 profile alone does not identify <a href="../../hdr/HDR-Video.html">HDR</a>. Transfer characteristics, color information, and the display path still need to agree.</p>
-<p>In Emby, the source codec and profile describe the library file. If video transcoding is required, the delivered stream may use a different format. Repackaging without video conversion keeps the VP9 stream and its decoding requirements.</p>
-<p>The WebM Project links its bitstream description as a <strong>draft</strong> specification. Its published profile page and the implementation provide useful references; the draft's status should remain visible when using it as a technical source. There is no need to infer a universal bitrate or quality advantage from the codec name.</p>
+<p>The depth and sampling determine the sample arrays those operations reconstruct. Color and transfer information then establish their display interpretation, including an appropriate <a href="../../hdr/HDR-Video.html">HDR</a> path for HDR content.</p>
+<p>A decoder target is consequently described by the actual profile, sample format and resource limits, rather than just “VP9.” In an Emby conversion, those source arrays are reconstructed before processing creates the output representation.</p>
+<p>The WebM Project labels its linked bitstream/decoding description a <strong>draft</strong>. Its published profile definition and implementation provide the accompanying reference context; the draft's status should remain explicit when using its detailed coding rules.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

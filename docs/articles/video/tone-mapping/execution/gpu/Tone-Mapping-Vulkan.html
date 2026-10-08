@@ -106,35 +106,35 @@
 <h1>Vulkan Tone Mapping</h1>
 
 
-<p>Vulkan gives applications explicit access to graphics and compute work on a GPU. A renderer can use that access to run shaders that convert color and compress the brightness range of HDR pictures.</p>
-<p>A shader is a program executed by the GPU. The tone-mapping behavior comes from that program and its parameters; Vulkan supplies the execution interface. Choosing Vulkan does not choose a particular <a href="../../curves/Tone-Mapping-Curves.html">curve</a> or guarantee better highlight detail.</p>
-<h2 id="the-renderer-sits-above-the-api">The renderer sits above the API</h2>
-<p><a href="https://github.com/haasn/libplacebo/blob/v7.349.0/src/include/libplacebo/vulkan.h">libplacebo</a> is an example of a rendering library with a Vulkan backend. It provides picture-processing operations above the lower-level device interface. FFmpeg can use libplacebo as a video filter, showing how the same kind of GPU processing can form part of a conversion rather than only drawing directly to a screen.</p>
+<p>A renderer can use Vulkan to submit shader work on a GPU. The shader supplies the picture calculations; Vulkan provides the device, resources, command submission, and synchronization used to execute them.</p>
+<h2 id="follow-a-picture-through-a-renderer">Follow a picture through a renderer</h2>
+<p>A decoded picture becomes accessible as the required GPU image or buffer. A rendering library can assemble operations such as source interpretation, color conversion, tone mapping, scaling, and output preparation into shader processing.</p>
+<p>The application submits the work and manages when resources can be read or written. A following presentation or encoding operation must wait for the prepared result. These relationships matter when frames are shared with another API or transferred from a decoder using a different memory arrangement.</p>
+<p>libplacebo is a rendering-library example with a Vulkan backend. Its image-processing controls sit above Vulkan's lower-level interface. The source/target descriptions, selected curve, and adaptation inputs determine the brightness relationship that its programs perform.</p>
+<h2 id="use-the-result-in-either-of-two-contexts">Use the result in either of two contexts</h2>
 <table>
 <thead>
 <tr>
-<th>Layer</th>
-<th>What it determines</th>
+<th>Consumer of the processed picture</th>
+<th>Purpose</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Tone-mapping implementation</td>
-<td>The curve, peak handling, and color decisions</td>
+<td>Display presentation</td>
+<td>Prepare the image for an output surface and screen</td>
 </tr>
 <tr>
-<td>Rendering library</td>
-<td>How the image-processing operations are assembled</td>
-</tr>
-<tr>
-<td>Vulkan driver and device</td>
-<td>The available GPU capabilities and execution of the submitted work</td>
+<td>Video encoder</td>
+<td>Produce another compressed rendition from processed frames</td>
 </tr>
 </tbody>
 </table>
-<p>This separation helps explain why two players can both use Vulkan and still look different. Their processing options, library versions, and assumptions about the display can differ.</p>
-<p>Vulkan support is also distinct from Vulkan Video codec support. Running tone-mapping shaders does not require that decoding use Vulkan Video; frames can originate from another decoder when the application supports the necessary transfer or sharing. Those connections have their own format and synchronization requirements.</p>
-<p>In an Emby discussion, first identify <a href="../Tone-Mapping-Playback-Path.html">whether processing occurs on the server or in the player</a>. A Vulkan-related renderer setting or message concerns that particular application's path. It does not establish that a separate server transcode uses the same API. Availability and performance depend on the complete implementation and driver, not merely a Vulkan version listed for the graphics card.</p>
+<p>FFmpeg's libplacebo filter demonstrates the second use. GPU rendering calculations can be part of a conversion pipeline even when their immediate result is not being drawn to a window.</p>
+<p>Vulkan Video decoding is another capability. Running a tone-mapping shader does not imply that the source was decoded using Vulkan Video; an application can support another decoder and the needed upload or resource sharing. The representation and synchronization at that boundary decide whether the pieces can connect efficiently.</p>
+<h2 id="locate-a-vulkan-message-in-the-emby-path">Locate a Vulkan message in the Emby path</h2>
+<p>A renderer's Vulkan-related message describes that renderer's execution route. A separate server transcode can use another filter and API. Start with the <a href="../Tone-Mapping-Playback-Path.html">playback-path diagram</a>, then identify the application and stage producing the message.</p>
+<p>Two routes using Vulkan can choose different image-processing programs, target descriptions, or library versions. Holding those inputs steady is what makes an image comparison meaningful; following the resource handoffs is what makes an execution comparison meaningful.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

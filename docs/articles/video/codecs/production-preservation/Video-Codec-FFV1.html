@@ -106,40 +106,56 @@
 <h1>FFV1 Lossless Video</h1>
 
 
-<p><strong>FFV1</strong> is a lossless video coding format. After correct decoding, the stored sample values match the values supplied to its encoder. This makes it useful when preserving video samples is more important than minimizing a delivery file's bitrate.</p>
-<p>FFV1 compresses spatial relationships within pictures without the lossy approximation used in ordinary delivery encodes. Its compression ratio depends on the input: noisy or grainy pictures generally leave less predictable information to compress.</p>
+<p><strong>FFV1</strong> preserves the sample values supplied to its encoder. Its compression comes from prediction and compact coding of exact corrections, rather than rounding away the parts that require more bits.</p>
 <p><img src="images/ffv1-sample-preservation.svg" alt="Input samples pass through FFV1 encoding and decoding and emerge with the same values."></p>
-<p><em>Conceptual lossless round trip. The comparison applies at the codec's input and output, using the same sample format.</em></p>
-<h2 id="define-what-is-being-preserved">Define what is being preserved</h2>
-<p>Encoding into FFV1 cannot undo an earlier conversion. If a process first reduces bit depth, changes color sampling, or applies a lossy filter, FFV1 preserves the resulting samples. It does not preserve the discarded input information.</p>
+<p><em>The equality is between codec input and reconstructed output in the same sample representation.</em></p>
+<h2 id="calculate-the-specified-predictor">Calculate the specified predictor</h2>
+<p>For an ordinary 8-bit sample example, let:</p>
+<ul>
+<li><code>l</code>, the reconstructed left neighbor, be 40.</li>
+<li><code>t</code>, the reconstructed upper neighbor, be 42.</li>
+<li><code>tl</code>, the upper-left neighbor, be 41.</li>
+</ul>
+<p>FFV1's median predictor is:</p>
+<p><strong>median(l, t, l + t − tl).</strong></p>
+<p>Here the three candidates are <strong>40,42,41</strong>, so the median is <strong>41</strong>. If the actual sample is 44, the encoded residual is <strong>44 −41 =3</strong>. Decode that exact residual and add it to the same predictor: <strong>41 +3 =44</strong>.</p>
+<p>The local difference estimate can adapt to edges. With left 40, top 70 and upper-left 30, the extrapolated candidate is 80. The median of 40, 70 and 80 is 70, so the predictor stays within the range supplied by the two immediate neighbors.</p>
+<p><em>The values demonstrate the specified ordinary-sample rule. The RFC defines separate handling for certain 16-bit coding cases and for slice borders.</em></p>
+<h2 id="use-context-to-code-the-residual">Use context to code the residual</h2>
+<p>Nearby sample differences describe whether a region is smooth, changing gradually, or crossing an edge. FFV1 uses such context information to select coding behavior for residuals.</p>
+<p>A smooth area can contain many predictable small corrections. The coder can describe those common events compactly. Grain or noise leaves less predictable residual data and may require more bits.</p>
+<p>Either way, the correction is retained exactly. A different compression result does not select a different decoded picture quality.</p>
+<p>The <a href="../../compression/Lossless-Video-Compression.html">lossless coding example</a> illustrates this principle with a small reversible prefix rule. FFV1's actual range/Golomb coding and context rules are defined in its specification rather than by that toy code.</p>
+<h2 id="slices-and-coding-state">Slices and coding state</h2>
+<p>Version 3 organizes a frame into slices with relevant headers, sample content and footer information. Dividing the picture provides independent regional work and a useful boundary for error checking.</p>
+<p>The decoder also needs configuration and entropy-coder state. An FFV1 keyframe initializes the applicable coding states. In this format, “no temporal sample prediction” should not be confused with “any packet can be decoded without its coding configuration or state.”</p>
+<p>RFC 9043 defines versions 0, 1 and 3, including how version 3 configuration is carried by supporting containers such as Matroska. That supplies the information needed to interpret each coded frame's samples.</p>
+<h2 id="verify-reconstruction-and-integrity-separately">Verify reconstruction and integrity separately</h2>
 <table>
 <thead>
 <tr>
-<th>Property</th>
-<th>What it does and does not establish</th>
+<th>Check</th>
+<th>Question it answers</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Lossless sample coding</td>
-<td>Exact reconstruction of the encoder's input samples</td>
+<td>Compare decoded samples with the encoder input</td>
+<td>Did this round trip preserve the same values?</td>
 </tr>
 <tr>
-<td>Version 3 slice CRCs, when enabled</td>
-<td>Detection of damaged slice data, not automatic repair</td>
+<td>Validate the configuration CRC</td>
+<td>Is the stored configuration consistent with its checksum?</td>
 </tr>
 <tr>
-<td>A container such as Matroska</td>
-<td>Packaging for video, audio, and metadata</td>
-</tr>
-<tr>
-<td>A preserved file</td>
-<td>Still requires storage checks and separate backups</td>
+<td>Validate enabled version 3 slice CRCs</td>
+<td>Are the coded slice bytes consistent with their checksums?</td>
 </tr>
 </tbody>
 </table>
-<p>RFC 9043 describes FFV1 versions 0, 1, and 3. Version 3 includes configuration and slice structures that can support error checking and parallel processing. These features do not guarantee that a consumer app has an appropriate decoder.</p>
-<p>For Emby, an FFV1 preservation file may serve as a source for a separate playback version, provided the server can decode it. Direct decoding in the app and the bitrate needed for delivery remain independent questions. Keep the preservation copy when creating a lossy derivative: that derivative no longer carries the same exact sample guarantee.</p>
+<p>A CRC detects corruption; it does not contain the missing sample information needed to repair an arbitrary damaged slice.</p>
+<p>If a source was resized before FFV1 encoding, the exact round trip preserves the resized array. Place the sample comparison at the encoder's actual input to verify that intended preservation boundary.</p>
+<p>This makes an FFV1 master useful as a stable source for future viewing conversions: its decoder restores the retained samples, and each derivative begins from that defined input rather than from an earlier lossy delivery copy.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

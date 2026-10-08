@@ -106,39 +106,50 @@
 <h1>FLAC Audio</h1>
 
 
-<p><strong>FLAC preserves integer PCM audio without compression loss.</strong> Its decoder reconstructs the encoded sample values exactly, making it useful for a music master that can later be copied into other listening formats.</p>
-<p>The format is defined in RFC 9639. It supports one to eight channels and sample precision from 4 to 32 bits, although a particular player may support a narrower practical subset.</p>
+<p>A FLAC frame can describe a waveform with a predictor and exact residuals rather than storing every PCM sample literally. The decoder reconstructs those samples exactly. RFC 9639 defines the format, including integer PCM precision from 4 to 32 bits and one to eight channels.</p>
+<p>The residual coding makes its lossless promise easier to understand.</p>
+<h2 id="follow-four-illustrative-values">Follow four illustrative values</h2>
+<p>Consider the sequence 100, 104, 108, 112 within a channel. A previous-sample predictor stores the initial value 100 and residuals +4, +4, +4.</p>
 <table>
 <thead>
 <tr>
-<th>FLAC information</th>
-<th>Useful meaning</th>
+<th style="text-align: right;">Decoder state</th>
+<th style="text-align: right;">Residual</th>
+<th style="text-align: right;">Restored next sample</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Sample rate and bit depth</td>
-<td>Describe the preserved PCM audio</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">+4</td>
+<td style="text-align: right;">104</td>
 </tr>
 <tr>
-<td>Compression preset</td>
-<td>Trades encoding effort against file size</td>
+<td style="text-align: right;">104</td>
+<td style="text-align: right;">+4</td>
+<td style="text-align: right;">108</td>
 </tr>
 <tr>
-<td>Encoded bitrate</td>
-<td>Depends on both the source and compression efficiency</td>
-</tr>
-<tr>
-<td>Audio MD5, when present</td>
-<td>Helps verify the reconstructed sample data</td>
+<td style="text-align: right;">108</td>
+<td style="text-align: right;">+4</td>
+<td style="text-align: right;">112</td>
 </tr>
 </tbody>
 </table>
-<p>FLAC's usual compression presets, 0 through 8, do not change decoded quality. A smaller level-8 file and a larger level-0 file made from the same input can restore the same samples.</p>
-<h2 id="checking-the-right-thing">Checking the right thing</h2>
-<p>FLAC includes frame checks and can carry an MD5 signature for the decoded audio. The reference tool's test mode validates decoding without writing a new audio file. An integrity check establishes consistency with stored checks, not whether the original rip or recording was accurate.</p>
-<p>A native FLAC file can also contain tags and artwork. Repacking or retagging it can change the file checksum while leaving the audio unchanged.</p>
-<p>During Emby playback, FLAC is typically decoded before it reaches an amplifier as <a href="../LPCM.html">PCM</a>. Seeing “PCM” therefore does not indicate that the server replaced the lossless source with a lossy one. Check any server conversion and client <a href="../../fundamentals/Audio-Resampling.html">resampling</a> separately; lossless storage alone does not guarantee an unchanged output path.</p>
+<p>FLAC can use fixed predictors, transmitted linear-predictor coefficients, constant subframes, or direct sample storage. The encoder chooses an efficient representation for the data; every valid choice still supplies what the decoder needs to restore it.</p>
+<h2 id="give-the-residuals-compact-codes">Give the residuals compact codes</h2>
+<p>FLAC's Rice coding first maps signed residuals to nonnegative integers. Under its folding rule, 0 becomes 0, −1 becomes 1, +1 becomes 2, and +4 becomes 8.</p>
+<p>For an illustrative Rice parameter k=2, split 8 into quotient 2 and a two-bit remainder 0. Encode the quotient as two zero bits followed by one, then the remainder as 00. The code is <strong>00100</strong>, five bits.</p>
+<p>A decoder reads the zero run, obtains quotient 2, reads remainder 0, reconstructs 2 × 4 + 0 = 8, and unfolds that to +4.</p>
+<p>The initial 8-bit sample plus three five-bit residual codes would use 23 bits, compared with 32 bits for four direct 8-bit samples. This is only the illustrated payload arithmetic within an excerpt. Real subframe/frame headers, parameters, block sizing, and checks also take space; it is not a claimed four-sample FLAC file.</p>
+<h2 id="frames-make-the-audio-readable-and-checkable">Frames make the audio readable and checkable</h2>
+<p>Frame information identifies sample/block properties and position. Checks help detect corrupted frame data. File-level metadata describes stream properties and can contain tags, artwork, seek information, and an MD5 for the decoded audio.</p>
+<p>A seek table assists finding an audio position; it is separate from the prediction that makes the audio smaller. Tags can change while the audio frames remain the same.</p>
+<p>The reference tool's verification/test facilities decode and validate the stream. A stored audio MD5, when present, is useful for comparing the reconstruction to the encoded signature. It confirms consistency with that signature, not the accuracy of the original recording or disc rip.</p>
+<h2 id="choose-compression-effort-without-choosing-audio-quality">Choose compression effort without choosing audio quality</h2>
+<p>FLAC's usual presets 0 through 8 select groups of encoding decisions. Greater search effort can find a smaller reversible description. The restored samples are unchanged by choosing another valid lossless preset.</p>
+<p>A dense or noisy passage can have a higher encoded bitrate than a simpler passage from the same recording. Both remain exact descriptions; the difference is how predictable the samples were.</p>
+<p>During playback, those samples normally become PCM for processing/output. An Emby receiver displaying PCM can therefore be showing a correctly decoded FLAC. Any subsequent rate or layout conversion is another stage, rather than a quality setting inside FLAC.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

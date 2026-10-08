@@ -106,46 +106,110 @@
 <h1>Deinterlacing</h1>
 
 
-<p><strong>Deinterlacing</strong> turns alternating fields into complete pictures suitable for progressive display. Its difficult case is motion: the two fields were captured at different times, so simply weaving their lines together can produce comb-like edges.</p>
+<p>A progressive screen needs a complete picture for each presentation time. A native interlaced field supplies only alternating rows at that time. <strong>Deinterlacing</strong> solves the resulting reconstruction problem: keep the known rows and produce the rows needed between them.</p>
+<p>The difficult part is that the other field's existing rows come from a different moment. They may be ideal for a stationary background and wrong for a moving object.</p>
 <p><img src="images/deinterlacing-reconstruction.svg" alt="A woven moving edge has combing, while reconstruction from a single field estimates the absent lines."></p>
-<p><em>Original reduced-line schematic. The reconstruction illustrates the principle of retaining one field's time and estimating its missing lines; it is not a measured output from a named filter.</em></p>
+<p><em>Original reduced-line schematic. It shows the principle of selecting one field's time and estimating its missing rows, rather than measured output from a named filter.</em></p>
+<h2 id="choose-the-time-of-the-output-picture">Choose the time of the output picture</h2>
+<p>Take a top-first 50-field/s recording:</p>
+<ul>
+<li>The top field describes the scene at 0 ms.</li>
+<li>The bottom field describes it at 20 ms.</li>
+<li>The next top field describes it at 40 ms.</li>
+</ul>
+<p>To make a complete progressive picture at <strong>0 ms</strong>, the top-field rows are observations from the correct time. The bottom-field rows are later observations. If an object moved during those 20 ms, directly inserting its later rows puts two positions into one picture.</p>
+<p>A deinterlacer therefore needs more than the frame's height. It needs the field times, their <a href="Video-Field-Order.html">order</a>, and a rule for reconstructing the absent rows at the selected time.</p>
+<h2 id="the-simplest-reconstruction-estimate-between-known-rows">The simplest reconstruction: estimate between known rows</h2>
+<p>Suppose one column in the top field contains these three brightness values at 0 ms:</p>
 <table>
 <thead>
 <tr>
-<th>Approach</th>
-<th>Useful property</th>
-<th>Typical limitation</th>
+<th>Row</th>
+<th style="text-align: right;">Known value at 0 ms</th>
+<th style="text-align: right;">Simple complete-picture estimate</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Weave both fields</td>
-<td>Retains existing lines in a static area</td>
-<td>Moving edges can comb</td>
+<td>0</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">10</td>
 </tr>
 <tr>
-<td>Reconstruct from each field</td>
-<td>Can retain every field's motion time</td>
-<td>Missing lines require estimation</td>
+<td>1</td>
+<td style="text-align: right;">Missing</td>
+<td style="text-align: right;">20</td>
 </tr>
 <tr>
-<td>Blend fields</td>
-<td>Can soften combing</td>
-<td>Moving objects can leave double edges</td>
+<td>2</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">30</td>
 </tr>
 <tr>
-<td>Motion-adaptive reconstruction</td>
-<td>Treats static and moving regions differently</td>
-<td>Accuracy depends on detecting motion correctly</td>
+<td>3</td>
+<td style="text-align: right;">Missing</td>
+<td style="text-align: right;">50</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">70</td>
 </tr>
 </tbody>
 </table>
-<p>Algorithms can combine these ideas; the rows describe principles rather than four exclusive codec modes.</p>
-<h2 id="the-output-rate-matters">The output rate matters</h2>
-<p>A native 50-field/s source contains 50 motion times each second. Generating one complete picture per field produces 50p output and can preserve that motion cadence. Generating one picture per pair produces 25p output and generally retains fewer temporal samples. Corresponding fractional-rate examples are 59.94p and 29.97p.</p>
-<p>For Emby playback, deinterlacing can happen in the player or during server <a class="xref" href="https://emby.media/support/articles/Transcoding.html">transcoding</a>, depending on the route and capabilities. Check the delivered video's scan type and rate when a broadcast recording becomes less fluid after conversion. A “1080” height alone does not show whether its motion cadence survived.</p>
-<p>Correct <a href="Video-Field-Order.html">field order</a> is essential: reversing the temporal order can create backward steps. A progressive picture flagged as interlaced should not automatically be processed as native interlaced capture.</p>
-<p>For a clean film pulldown sequence, <a href="Inverse-Telecine.html">inverse telecine</a> may recover original complete pictures more faithfully than estimating their missing lines. Mixed material needs processing that handles the changes between film and video sections.</p>
+<p>A simple vertical interpolator estimates row 1 as <strong>(10 + 30)/2 = 20</strong> and row 3 as <strong>(30 + 70)/2 = 50</strong>. It retains the known rows and constructs the missing ones from nearby spatial information.</p>
+<p><em>These are arbitrary sample values demonstrating interior-row interpolation. They are not a named filter's output or a claim that the estimates equal the unavailable camera samples. Frame-edge handling requires an additional rule.</em></p>
+<p>This basic “bob” idea can produce one complete picture for each field time. It avoids weaving a later moving edge into the earlier picture. However, fine vertical patterns have been observed only on alternating rows, so their absent samples must be inferred. Thin horizontal details can soften or shimmer.</p>
+<p>A more sophisticated spatial method can interpolate along a diagonal edge instead of only between the values immediately above and below. Following an edge's direction can keep it sharper, provided the direction estimate is sound.</p>
+<h2 id="use-the-other-field-where-time-does-not-matter">Use the other field where time does not matter</h2>
+<p>For a stationary area, both fields describe the same scene. <strong>Weaving</strong> their existing rows retains more direct line information than reconstructing half the rows from one field.</p>
+<p>The result changes with movement. Suppose the bottom field at 20 ms gives values 80 and 90 in rows 1 and 3 because a bright object has crossed the column. Weaving them into the 0 ms top field gives <strong>10, 80, 30, 90, 70</strong>. The added rows are real observations, but of a later scene.</p>
+<p>A moving outline can then alternate between its old and new positions on successive rows, producing combing. This is a time mismatch, not necessarily damage in the compressed file.</p>
+<p><strong>Blending</strong> tries a different compromise by combining information from both times. It can reduce the stark row alternation, but a moving object may leave two partially visible outlines. The picture has integrated two scene states rather than reconstructed one sharply.</p>
+<h2 id="motion-adaptation-combines-decisions-within-a-picture">Motion adaptation combines decisions within a picture</h2>
+<p>A motion-adaptive approach asks where temporal information agrees and where it changes. It can use neighboring fields or frames to compare the relevant regions.</p>
+<p>In an area judged stationary, it can retain existing rows from both fields. In an area judged moving, it reconstructs the missing rows using spatial information and carefully selected temporal evidence. One frame can therefore contain different reconstruction decisions for its background and its moving foreground.</p>
+<p>Detection matters because a change in sample values can come from motion, noise, lighting, or a scene cut. Repeated textures can also make matches ambiguous. A wrong stationary decision leaves combing; a wrong moving decision can unnecessarily soften a static pattern. Switching decisions around an uncertain boundary can create flicker.</p>
+<p>FFmpeg's <code>bwdif</code> is documented as motion-adaptive, based on <code>yadif</code> with additional interpolation methods. These names identify particular implementations. The principles explain their task without assuming that every Emby server or client uses that implementation.</p>
+<h2 id="preserve-the-field-cadence">Preserve the field cadence</h2>
+<p>At 50 fields/s, the source has 50 native motion times. One-output-per-field reconstruction can make:</p>
+<table>
+<thead>
+<tr>
+<th>Output time</th>
+<th>Field providing the known rows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 ms</td>
+<td>Top at 0 ms</td>
+</tr>
+<tr>
+<td>20 ms</td>
+<td>Bottom at 20 ms</td>
+</tr>
+<tr>
+<td>40 ms</td>
+<td>Top at 40 ms</td>
+</tr>
+<tr>
+<td>60 ms</td>
+<td>Bottom at 60 ms</td>
+</tr>
+</tbody>
+</table>
+<p>The result is <strong>50p</strong>, with complete estimated pictures 20 ms apart.</p>
+<p>One-output-per-pair processing instead makes <strong>25p</strong>, with pictures 40 ms apart. For example, retaining the earlier time in each pair keeps 0, 40, 80 ms and omits the intervening field times. Another algorithm may blend or otherwise combine them, but it still supplies fewer distinct output moments.</p>
+<p>Both outputs can have 1080 rows and the same programme duration. The 50p representation retains the source's more frequent motion sampling. The corresponding fractional-rate pair is approximately 59.94p versus 29.97p.</p>
+<h2 id="establish-what-the-fields-actually-contain">Establish what the fields actually contain</h2>
+<p>The reconstruction choice begins with the source:</p>
+<p><strong>Native interlaced movement:</strong> each field has a new camera moment. Reconstruct complete pictures while retaining the desired field cadence.</p>
+<p><strong>Progressive segmented frame:</strong> both segments belong to one captured progressive frame. Pairing the correct segments recovers it; treating them as different moving moments introduces unnecessary estimation.</p>
+<p><strong>Telecined film:</strong> fields repeat parts of a progressive film sequence. <a href="Inverse-Telecine.html">Field matching and cadence recovery</a> can reconstruct the film pictures from existing rows and remove their repeated presentations.</p>
+<p>A recording can contain more than one of these structures, especially around edits and graphics. Its scan flag describes part of the format, while moving picture content reveals the capture relationship.</p>
+<p>In an Emby playback route, reconstruction may happen in the client or during server video conversion. To understand the resulting motion, compare the source fields with the delivered progressive rate and a moving passage.</p>
+<p>A filter can need a later field before it finishes an earlier picture, adding processing latency. The output timestamps still describe the original programme moments. Correctly scheduled audio and reconstructed pictures remain aligned even though processing took time to produce them.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

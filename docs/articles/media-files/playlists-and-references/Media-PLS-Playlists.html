@@ -106,8 +106,8 @@
 <h1>PLS Playlists</h1>
 
 
-<p>A PLS file is a playlist written as key/value pairs. It is often encountered when a radio station provides a small download that opens its stream in a media player.</p>
-<p>A simple version looks like this:</p>
+<p>A radio station's small <strong>PLS download</strong> can contain only an address and descriptive text. A playlist reader opens that address to obtain the ongoing audio; the downloaded text is not the recording.</p>
+<p>The syntax associates fields through a shared entry number:</p>
 <pre><code class="lang-ini">[playlist]
 File1=Music/Opening.mp3
 Title1=Opening song
@@ -118,12 +118,12 @@ Length2=240
 NumberOfEntries=2
 Version=2
 </code></pre>
-<p>The matching numbers associate each location with its title and duration. Length values are conventionally seconds; a value of <code>-1</code> is commonly used when the duration is unknown, as with a live stream.</p>
-<h2 id="the-playlist-is-not-the-recording">The playlist is not the recording</h2>
-<p>The PLS file can be tiny because it stores only references and descriptions. Downloading it does not save the radio audio for offline playback.</p>
-<p>If a referenced URL changes or a relative file moves, the entry can stop working while the playlist remains readable. Inspect the <code>FileN</code> values rather than treating the displayed title as the source address.</p>
-<p>For an Emby user collecting media references, distinguish this playlist syntax from <a href="Media-STRM-Files.html">STRM pointer files</a> and from the <a href="Media-M3U-Playlists.html">M3U channel lists</a> used by Live TV. They may all point to media, but their readers expect different text structures.</p>
-<p>There is no universal rule that renaming a PLS file to another playlist extension converts it. Conversion needs to preserve the media locations in the destination syntax. Player-specific handling can also affect which optional fields are used.</p>
+<p>File1, Title1, and Length1 describe one entry. The second group describes another. Length values conventionally use seconds; −1 commonly represents an unknown duration, such as a continuing radio source.</p>
+<h2 id="reading-an-entry">Reading an entry</h2>
+<p>The reader obtains the location from FileN and uses TitleN for its description. Replacing “Opening song” with a new title changes how the entry is displayed, not what plays. Replacing File1 changes its destination even if the visible title remains unchanged.</p>
+<p>For a local relative path, the playlist's location supplies the base relationship. Keeping the playlist and its referenced Music folder together preserves that relationship when the collection moves. A remote location instead needs the relevant network access each time playback obtains it.</p>
+<p>A conversion to <a href="Media-M3U-Playlists.html">M3U</a> writes the locations in that format's sequence and translates useful titles or lengths. Renaming .pls to .m3u does not perform this parse-and-write operation.</p>
+<p>PLS is useful to recognize when a media shortcut opens in a desktop player but is mistaken for a saved song. The contents of FileN identify the actual source; its availability and format can then be examined separately from the playlist text.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

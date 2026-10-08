@@ -106,44 +106,50 @@
 <h1>Cropping Video</h1>
 
 
-<p><strong>Cropping</strong> selects a smaller rectangular region of a video picture. It can remove baked-in black bars or unwanted edges, but it also discards whatever lies outside that rectangle.</p>
-<p>A crop is described by its output width and height and by where its upper-left corner begins. For example, suppose a 1920 × 1080 frame contains a 1920 × 800 film centered vertically:</p>
+<p>Suppose a 1920 × 1080 frame contains a 1920 × 800 film centered vertically. A crop can make the film rectangle the output picture, removing the black rows around it.</p>
+<p>First find the top edge:</p>
+<p><strong>(1080 − 800) ÷ 2 = 140.</strong></p>
+<p>Then describe the retained rectangle by its upper-left coordinate and its dimensions:</p>
 <table>
 <thead>
 <tr>
 <th>Crop property</th>
-<th style="text-align: right;">Value in this example</th>
+<th style="text-align: right;">Value</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Left edge</td>
+<td>Left coordinate, x</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr>
-<td>Top edge</td>
+<td>Top coordinate, y</td>
 <td style="text-align: right;">140</td>
 </tr>
 <tr>
-<td>Width retained</td>
+<td>Width</td>
 <td style="text-align: right;">1920</td>
 </tr>
 <tr>
-<td>Height retained</td>
+<td>Height</td>
 <td style="text-align: right;">800</td>
-</tr>
-<tr>
-<td>Rows removed</td>
-<td style="text-align: right;">140 above and 140 below</td>
 </tr>
 </tbody>
 </table>
-<p>These numbers describe an illustrative source, not a crop preset for every widescreen film. At square pixels the result has an aspect ratio of 2.4:1.</p>
-<h2 id="cropping-is-not-resizing">Cropping is not resizing</h2>
-<p>Cropping keeps the selected samples and changes the picture boundary. Resizing reconstructs a picture at a new resolution. A workflow can do both, but scaling a 1920 × 1080 frame to 1920 × 800 without a crop squashes the whole image instead of removing its bars.</p>
-<p>A visible crop can be performed while displaying video, or during conversion to a new encoded stream. Some formats also signal a display crop without deleting coded samples. These approaches can produce the same visible rectangle while leaving different data in the file.</p>
-<p>For an Emby library, inspect more than one scene before making a cropped copy. Variable-aspect-ratio sequences, end credits, and subtitles can extend into an area that appeared empty earlier. Automatic black-border detection can also mistake a dark scene for a border.</p>
-<p>Cropping may reduce the work of a later encoder because it has fewer samples to encode. It does not guarantee a particular file-size saving, and changing the rectangle can affect the <a href="aspect-ratios/Video-Display-Aspect-Ratio.html">display aspect ratio</a>. Keep the intended picture shape consistent with the final dimensions and pixel aspect ratio.</p>
+<p>With zero-based source rows, the crop keeps rows <strong>140 through 939</strong>, inclusive. Output row 0 comes from source row 140; output row 799 comes from source row 939. There are 140 discarded rows on each side of that retained region.</p>
+<p>This mapping is the essence of <strong>cropping</strong>. The samples inside the rectangle remain in their relative positions; the boundary moves inward.</p>
+<h2 id="crop-and-resize-have-different-mappings">Crop and resize have different mappings</h2>
+<p>For square pixels, this crop has a display ratio of 1920/800 = <strong>2.4:1</strong>.</p>
+<p>If instead the complete 1920 × 1080 frame is resized to 1920 × 800, every row contributes to the compressed vertical extent. The black borders remain in scaled form, and the people become shorter. The output dimensions are the same as the crop's, but the mapping from source samples is different.</p>
+<p>A crop followed by a proportional resize is another useful operation. It first identifies the composition to retain, then reconstructs it at a chosen output size. Keep the <a href="aspect-ratios/Video-Display-Aspect-Ratio.html">display ratio</a> and pixel aspect information consistent with those choices.</p>
+<h2 id="where-a-crop-can-happen">Where a crop can happen</h2>
+<p>A player can select a region while displaying the decoded frame. The stored video remains intact, so another viewing mode can show its edges again.</p>
+<p>A conversion can crop the decoded samples before encoding a new stream. That saved copy contains the smaller picture array. Edges omitted from that copy cannot be recovered from it.</p>
+<p>A codec or container can also describe a <strong>display crop</strong> around a larger coded picture. The decoder still handles the coded data, but the signaled visible rectangle excludes selected edges. This is how a picture boundary can change without treating all coded samples as visible content.</p>
+<h2 id="why-exact-coordinates-sometimes-need-format-handling">Why exact coordinates sometimes need format handling</h2>
+<p>Color-subsampled picture formats share color samples between neighboring brightness positions. Crop boundaries can therefore need alignment to that sampling grid. A processing tool may round dimensions or coordinates to supported boundaries, or offer an exact-crop mode with explicit handling of the sample planes.</p>
+<p>FFmpeg's crop filter documents this distinction in its <code>exact</code> option. It also has a separate option that changes pixel aspect ratio to preserve the original DAR. That is a presentation choice beyond simply retaining the source's existing sample spacing.</p>
+<p>For a border-removal job, inspect several scenes before choosing the rectangle. A dark image region is not automatically a border; changing film ratios and subtitles can reveal valid content there later. The crop coordinates should follow the composition actually being retained.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

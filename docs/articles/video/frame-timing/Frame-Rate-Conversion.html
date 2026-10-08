@@ -106,46 +106,91 @@
 <h1>Frame-Rate Conversion</h1>
 
 
-<p><strong>Frame-rate conversion</strong> adapts video to a different picture rate. The result depends on how pictures are added, removed, or retimed; selecting a higher number does not automatically create more captured motion.</p>
+<p>A 24 fps source provides pictures every 41.667 ms. A 30 fps output needs one every 33.333 ms. <strong>Frame-rate conversion</strong> decides what picture to put at each new output time.</p>
+<p>There are two separate questions: should the programme retain its duration, and should the additional output pictures be copies or newly constructed images? Answering them leads to different results.</p>
+<h2 id="place-existing-pictures-on-the-new-timeline">Place existing pictures on the new timeline</h2>
+<p>Take four consecutive 24 fps pictures:</p>
 <table>
 <thead>
 <tr>
-<th>Method</th>
-<th>What happens to the pictures</th>
-<th>Effect on programme duration</th>
+<th>Source picture</th>
+<th style="text-align: right;">Start time</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Repeat or drop</td>
-<td>Existing pictures fill new time slots</td>
-<td>Can remain unchanged</td>
+<td>A</td>
+<td style="text-align: right;">0 ms</td>
 </tr>
 <tr>
-<td>Blend</td>
-<td>Neighbouring pictures are mixed</td>
-<td>Can remain unchanged</td>
+<td>B</td>
+<td style="text-align: right;">41.667 ms</td>
 </tr>
 <tr>
-<td>Motion interpolation</td>
-<td>Estimated intermediate pictures are created</td>
-<td>Can remain unchanged</td>
+<td>C</td>
+<td style="text-align: right;">83.333 ms</td>
 </tr>
 <tr>
-<td>Speed change</td>
-<td>Existing pictures are played at a different pace</td>
-<td>Changes unless another operation compensates</td>
+<td>D</td>
+<td style="text-align: right;">125 ms</td>
 </tr>
 </tbody>
 </table>
-<p>Repeating pictures is inexpensive, but uneven repetition can cause judder. Blending can leave ghost-like edges. <a href="Motion-Interpolation.html">Motion interpolation</a> can look smoother while introducing errors in the estimated movement.</p>
-<h2 id="display-cadence-can-change-without-a-new-file">Display cadence can change without a new file</h2>
-<p>A 24 fps film fits a 120 Hz display evenly: each picture lasts five refreshes. On a 60 Hz display, a common presentation alternates two and three refreshes per picture.</p>
+<p>The four-picture span ends at 166.667 ms. Five 30 fps intervals fit the same duration.</p>
+<p>One illustrative policy selects whichever source picture was already visible at the requested output instant:</p>
+<table>
+<thead>
+<tr>
+<th>30 fps output time</th>
+<th>Selected source picture</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 ms</td>
+<td>A</td>
+</tr>
+<tr>
+<td>33.333 ms</td>
+<td>A</td>
+</tr>
+<tr>
+<td>66.667 ms</td>
+<td>B</td>
+</tr>
+<tr>
+<td>100 ms</td>
+<td>C</td>
+</tr>
+<tr>
+<td>133.333 ms</td>
+<td>D</td>
+</tr>
+</tbody>
+</table>
+<p>The output is <strong>A, A, B, C, D</strong>. Its duration is unchanged, but A receives two output intervals while the others receive one. For steady movement, the object pauses longer at A's position, then advances through the others more quickly.</p>
+<p>This table is a declared hold-latest policy, not a claim that every converter chooses that phase. Nearest-time selection or other timestamp rules can repeat a different picture. The unequal allocation remains a property of fitting these rates together with existing pictures.</p>
+<p>Converting to a lower rate has the corresponding selection problem. Some source pictures have no output slot and are omitted. The programme can remain the same length while containing fewer motion observations.</p>
+<h2 id="construct-a-picture-for-the-requested-time">Construct a picture for the requested time</h2>
+<p>Instead of copying A at an intermediate time, a converter can combine or estimate the scene between A and B.</p>
+<p><strong>Blending</strong> combines sample values from neighboring pictures. It can make the transition less abrupt, but a moving object may appear at both positions with partial opacity.</p>
+<p><strong>Motion interpolation</strong> estimates correspondence and movement, then constructs an intermediate position. It can make the output motion more evenly sampled, while adding pictures inferred from the source. The <a href="Motion-Interpolation.html">interpolation article</a> follows that reconstruction in detail.</p>
+<p>These methods preserve the intended programme timeline when their output timestamps remain tied to it. They change the images used at those times.</p>
+<h2 id="retiming-the-source-changes-duration">Retiming the source changes duration</h2>
+<p>A different operation plays every original picture once, but at another speed.</p>
+<p>A one-hour, exact 24 fps sequence has <strong>86,400 pictures</strong>. Present those pictures at 25 fps:</p>
+<p><strong>86,400 ÷ 25 = 3,456 seconds = 57 minutes 36 seconds.</strong></p>
+<p>The playback speed increases by <strong>25/24</strong>, about 4.167%. Duration is multiplied by <strong>24/25 = 0.96</strong>, a reduction of 4%. No extra picture has been created and no original one need be dropped.</p>
+<p>Audio events and subtitles must follow the new timeline. An event at 120 seconds in the original belongs at <strong>115.2 seconds</strong> in this speed-changed version. Audio processing then needs to decide how to handle pitch as well as duration.</p>
+<p>This is why changing an fps description can be consequential if it changes timestamps, while merely displaying a rounded rate label is harmless.</p>
+<h2 id="a-screen-can-change-the-holds-without-changing-the-file">A screen can change the holds without changing the file</h2>
+<p>A 24 fps film fits a 120 Hz display with five refreshes per picture. At 60 Hz, a common presentation alternates two and three refreshes.</p>
 <p><img src="images/display-cadence.svg" alt="24 fps pictures held for alternating two and three refreshes on a 60 Hz display."></p>
-<p><em>Original cadence schematic for exact 24 fps and 60 Hz. Ten refresh intervals present four film pictures. These are display holds, not interlaced fields or newly captured frames.</em></p>
-<p>Display mode selection can sometimes avoid the need to convert the encoded video. Support depends on the Emby app, operating system, and connected display. A server's output frame rate and the display's active refresh rate should therefore be checked separately.</p>
-<p>A speed change has a different purpose. Playing a 24 fps sequence at 25 fps makes it about 4.17% faster and shortens it. Audio and subtitles must follow the new timing; pitch handling is another processing decision.</p>
-<p>When comparing an original file with a converted Emby stream, ask whether the timeline stayed the same, whether the number of unique pictures changed, and where any repetition was introduced. Those questions explain the visible result more accurately than the output fps value alone.</p>
+<p><em>One illustrative display-hold phase for exact 24 fps and 60 Hz. Ten refresh intervals present four film pictures; these are not newly captured frames.</em></p>
+<p>Selecting a compatible display mode can retain the encoded picture sequence while making its display holds uniform. Creating a 60 fps file by repetition instead stores an output schedule that a 60 Hz display can follow, but does not remove the underlying uneven hold of the film pictures.</p>
+<h2 id="follow-the-operations-in-playback-order">Follow the operations in playback order</h2>
+<p>For an interlaced recording, identify and reconstruct the field times before treating a reported pair rate as a progressive rate. A 25-frame-pair source can contain 50 motion times. Converting those pairs as if they were 25 complete camera moments can omit motion before later processing gets a chance to preserve it.</p>
+<p>For an Emby conversion, compare source timestamps, output timestamps and pictures, programme duration, and display refresh. A rate change with the same duration indicates picture allocation or synthesis; a proportional duration change indicates retiming. The visible result follows the operation performed, rather than the fps number alone.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

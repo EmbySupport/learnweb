@@ -106,37 +106,40 @@
 <h1>Tone Mapping Curve: Linear</h1>
 
 
-<p>Linear tone mapping applies a proportional range adjustment. If a linear-light input reaches eight times the desired output white, dividing every value by eight makes the brightest value fit.</p>
-<p>The arithmetic is simple. Its consequence matters more: ordinary objects are darkened along with the brightest highlight.</p>
-<p><img src="images/tone-mapping-curve-linear.png" alt="Two linear mappings: proportional scaling in linear light and proportional scaling in PQ, plotted on linear-light axes."></p>
-<p><em>Peak ratio 8:1. Green scales linear light; blue stretches PQ values using libplacebo's convention, with output white at 203 nits. Both are shown on relative linear-light axes. Gain is 1 and black is zero.</em></p>
-<h2 id="linear-in-which-space">Linear in which space?</h2>
-<p>A straight line in one signal representation need not be straight in another. The blue line bends here because its proportional operation happens in <a href="../../../color-standards/transfer-functions/Transfer-Function-PQ.html">PQ</a>, not in the linear-light values used by the axes.</p>
-<p>This distinction appears in real software. FFmpeg's CPU <code>linear</code> tone mapper works on linear-light samples. libplacebo distinguishes <code>linear</code>, a PQ-space stretch, from <code>linearlight</code>. Matching the option name alone does not match their output.</p>
+<p>Divide each linear-light input by the peak ratio, and the source range fits proportionally. For a ratio of eight, <strong>T(x) = x/8</strong>:</p>
 <table>
 <thead>
 <tr>
-<th>Linear-light example</th>
-<th>Output</th>
+<th style="text-align: right;">Input</th>
+<th style="text-align: right;">Output</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Input 0.8</td>
-<td>0.1</td>
+<td style="text-align: right;">0.8</td>
+<td style="text-align: right;">0.1</td>
 </tr>
 <tr>
-<td>Input 4</td>
-<td>0.5</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.125</td>
 </tr>
 <tr>
-<td>Input 8</td>
-<td>1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.5</td>
+</tr>
+<tr>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">1</td>
 </tr>
 </tbody>
 </table>
-<p>Unlike <a href="Tone-Mapping-Curve-Clip.html">clipping</a>, proportional scaling does not flatten all over-range values into the same white. It keeps differences between them, but allocates less brightness to the whole picture.</p>
-<p>That can make it understandable for a modest range adjustment and disappointing for a large HDR-to-SDR reduction. When an Emby comparison looks dark, check which processing stage and working space produced it before interpreting a setting labeled Linear as one universal curve.</p>
+<p>The output preserves the ratios of these light values. It also darkens every lower value by the same factor, which can spend too little brightness on ordinary objects when the source has only a small very bright highlight.</p>
+<p><img src="images/tone-mapping-curve-linear.png" alt="Linear-light scaling and a proportional PQ-space mapping shown on linear-light axes."></p>
+<p><em>Peak ratio 8:1. Green scales linear light; blue follows libplacebo's PQ-space stretch with output white 203 nits. Both axes show relative linear light; gain is one and black is zero.</em></p>
+<h3 id="why-the-blue-proportional-mapping-bends">Why the blue proportional mapping bends</h3>
+<p>PQ coordinates are nonlinear with respect to light. The blue operation proportionally changes those coordinates, then the figure converts its result back to linear light. The operation is linear in its selected representation, while its plotted light relationship is curved.</p>
+<p>This distinction occurs in software: FFmpeg's CPU linear mapper operates on linear-light samples; libplacebo distinguishes its PQ-space linear option from linearlight. The selected space is part of the method, not a minor naming detail.</p>
+<p>A useful Emby comparison therefore starts with the implementation, source range, target, and working space. For the green example, input 4 and input 8 stay distinct at 0.5 and one. <a href="Tone-Mapping-Curve-Clip.html">Clipping</a> would merge both at one. That retained separation is what proportional fitting buys, and the lower-value arithmetic shows what it costs.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

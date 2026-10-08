@@ -106,38 +106,39 @@
 <h1>Monkey's Audio (APE)</h1>
 
 
-<p><strong>Monkey's Audio compresses audio without losing the source data.</strong> Its familiar file extension is APE. Different compression levels change the balance between compression and processing effort; they do not select different decoded audio quality.</p>
+<p>An APE album may be one long audio stream with a separate CUE sheet identifying track boundaries. <strong>Monkey's Audio compresses the audio losslessly; the CUE sheet describes navigation through it.</strong> Moving one without the other can therefore preserve the music while changing how the album is presented.</p>
+<h2 id="keep-the-three-pieces-distinct">Keep the three pieces distinct</h2>
 <table>
 <thead>
 <tr>
-<th>Choice</th>
-<th>What changes</th>
+<th>Piece</th>
+<th>Role</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Faster compression setting</td>
-<td>Usually less encoding effort and a larger result</td>
+<td>APE audio</td>
+<td>Reversibly encoded sample data</td>
 </tr>
 <tr>
-<td>Stronger compression setting</td>
-<td>More processing effort to reduce size</td>
+<td>APE tags</td>
+<td>Descriptions such as artist and album</td>
 </tr>
 <tr>
-<td>Verification mode</td>
-<td>Checks an APE file's integrity</td>
-</tr>
-<tr>
-<td>Conversion to another compatible lossless codec</td>
-<td>Changes the representation while preserving the audio</td>
+<td>CUE sheet, if used</td>
+<td>Track positions in the album audio</td>
 </tr>
 </tbody>
 </table>
-<p>The codec uses prediction and compact coding of the remaining information. The project's SDK and source code are the implementation reference for decoding, encoding, and related file handling.</p>
-<h2 id="an-album-can-still-be-one-audio-stream">An album can still be one audio stream</h2>
-<p>APE collections sometimes use a single album file with a <a href="../../../media-files/playlists-and-references/Media-CUE-Sheets.html">CUE sheet</a> describing track boundaries. The CUE sheet does not contain the music and is not part of the compression algorithm. Keeping it associated with the audio can matter when moving such a collection.</p>
-<p>APE tags are another separate detail: they describe metadata and can also occur outside Monkey's Audio files. A tag-format name is not sufficient to identify the soundtrack's codec.</p>
-<p>When an Emby client needs a converted version, a supported lossless conversion can preserve the decoded PCM, while a lossy delivery version introduces its own tradeoff. A smaller APE file than a FLAC made from the same samples does not imply better sound; successful lossless decoding returns the same audio.</p>
+<p>APE tags are a metadata convention and can occur beyond Monkey's Audio files. Their presence alone does not identify the audio codec.</p>
+<h2 id="why-compression-levels-do-not-change-the-sound">Why compression levels do not change the sound</h2>
+<p>The codec predicts sample relationships and compactly codes the remaining information. More demanding compression settings can spend more processing work finding a smaller reversible description.</p>
+<p>After successful decoding, the original supported audio is restored at every setting. “High” or “Insane” compression is consequently a size/processing decision, not an extra audio-quality grade.</p>
+<p>This matters for a constrained reader: a setting's decoding work or seeking behavior can be relevant even when the restored sound is identical. The project's SDK and source are the implementation reference.</p>
+<h2 id="verify-an-album-conversion-as-an-album">Verify an album conversion as an album</h2>
+<p>The tool's verification mode checks encoded integrity. For a conversion, also compare decoded audio count/rate/channels and preserve the intended <a href="../../../media-files/playlists-and-references/Media-CUE-Sheets.html">CUE boundaries</a> and tags.</p>
+<p>A single stream can be split into tracks at the declared positions without making those boundaries part of the compression algorithm. A copy of the audio with missing boundaries can play continuously while losing useful album navigation.</p>
+<p>For an Emby collection using such material, this distinction identifies which component needs attention: audio decode, navigation description, or library metadata. The codec's lossless guarantee answers the first preservation question, not all three at once.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

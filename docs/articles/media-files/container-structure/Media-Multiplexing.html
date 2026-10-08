@@ -106,15 +106,25 @@
 <h1>Multiplexing and Demultiplexing</h1>
 
 
-<p>Picture, sound, and subtitles are separate sequences of data. <strong>Multiplexing</strong>, usually shortened to <em>muxing</em>, combines them into a container with track descriptions and timing. <strong>Demultiplexing</strong>, or <em>demuxing</em>, reads that structure and routes each component to the appropriate decoder or renderer.</p>
+<p>A video encoder and an audio encoder produce different sequences. A <strong>multiplexer</strong>, or muxer, writes those sequences into one package. A <strong>demultiplexer</strong>, or demuxer, reads the package and routes the data back to its component streams.</p>
 <p><img src="images/mux-demux.svg" alt="A muxer interleaves video and audio packets, and a demuxer separates those packets into their original track sequences."></p>
-<p><em>The packet sequence is illustrative. Container packets are not network packets, and track timing need not be evenly spaced.</em></p>
-<p>Interleaving places portions of related tracks near one another. A player can then obtain upcoming picture and sound without jumping across large sections of a file. It does not change how either stream was compressed.</p>
-<h2 id="what-a-remux-preserves">What a remux preserves</h2>
-<p>A <strong>remux</strong> demultiplexes one source and multiplexes selected encoded streams into another output. It can change track order, container headers, indexing, and metadata while preserving encoded media.</p>
-<p>That is why a remux can finish much faster than re-encoding and can preserve picture quality. However, the destination needs a valid <a href="Media-Container-Codec-Support.html">mapping for each codec</a>. Some formats require different headers or bitstream framing, and some metadata may not have an equivalent destination field.</p>
-<p>Emby can use this kind of repackaging in a <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">Direct Stream</a> session. If the video is copied but the audio is converted, the overall job combines remuxing with audio transcoding.</p>
-<p>When comparing before and after, inspect track count, languages, and duration as well as codecs. Preserving the main video alone does not prove that every soundtrack, subtitle, chapter, or attachment survived.</p>
+<p><em>Illustrative interleaving. These media packets are distinct from network packets, and their sizes and durations need not match.</em></p>
+<h2 id="why-alternate-the-stored-data">Why alternate the stored data?</h2>
+<p>Suppose a film stored all its video first and all its audio at the end. To play the opening, a reader would need bytes near the beginning for picture and bytes much later for sound. A reader obtaining the file only from front to back would not have the opening audio when it needed it.</p>
+<p><strong>Interleaving</strong> puts portions of related streams near one another. The muxer can write an upcoming group of video and audio, then another group, while preserving each stream's own timestamps. It does not make audio packets and video frames share one fixed duration. It arranges their storage to make nearby media time practical to read.</p>
+<p>A demuxer parses the surrounding headers and obtains stream identifiers, encoded bytes, timestamps, and configuration. It sends each encoded component to a matching decoder. The file's alternating storage order is therefore turned into several queues, rather than decoded as one undifferentiated sequence.</p>
+<h2 id="trace-a-remux">Trace a remux</h2>
+<p>Take an MKV with one video, two soundtracks, and subtitles. A remux selecting video and Audio 1 follows this sequence:</p>
+<ol>
+<li>Read Matroska track descriptions and blocks.</li>
+<li>Identify the selected tracks and retain their encoded data and timing.</li>
+<li>Translate configuration, timestamp units, or framing where the destination requires it.</li>
+<li>Write the new container's descriptions, sample storage, and navigation information.</li>
+</ol>
+<p>Audio 2 is absent because of selection, not because the main picture was recompressed. A chapter list or font attachment needs its own preservation decision because it is not one of the two selected encoded streams.</p>
+<p>Stream copy skips picture reconstruction and new video encoding. It can still alter bytes around the encoded units. For example, AVC units may be stored with start codes in one arrangement and length prefixes in another; translating those delimiters leaves the encoded picture information intact.</p>
+<p>For an Emby <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">Direct Stream</a> route, this is how compatible video can be delivered in a package the app expects. If audio is also converted, its branch passes through an audio decoder and encoder while the video branch remains a copy.</p>
+<p>An effective comparison lists the intended output components first, then verifies their content and timing. It checks what the muxer was asked to write rather than assuming that an unchanged video codec implies an unchanged whole presentation.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

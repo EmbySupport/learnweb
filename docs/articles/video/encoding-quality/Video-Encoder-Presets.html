@@ -106,40 +106,73 @@
 <h1>Video Encoder Presets</h1>
 
 
-<p>An <strong>encoder preset</strong> chooses a bundle of settings controlling how much work an encoder spends on its decisions. It can change searches for motion, picture partitioning, reference use, lookahead, and other analysis.</p>
-<p>A slower preset often gives the encoder more opportunities to use its bitrate efficiently. That can improve the picture at a fixed rate or reduce the data needed for a comparable picture. The result depends on the encoder and source; “slow” is not a fixed quality level.</p>
+<p>An encoder can describe the same picture region in several valid ways. It must decide how much time to spend searching for a useful representation. An <strong>encoder preset</strong> packages those search and coding-effort choices.</p>
+<h2 id="search-another-candidate">Search another candidate</h2>
+<p>Use a toy decision cost <strong>J =D +0.1R</strong>, where D is a declared distortion measure and R is the number of coded bits.</p>
 <table>
 <thead>
 <tr>
-<th>Choice</th>
-<th>What it controls</th>
+<th>Candidate</th>
+<th style="text-align: right;">Distortion D</th>
+<th style="text-align: right;">Bits R</th>
+<th style="text-align: right;">Cost J</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Preset</td>
-<td>Encoding effort and tool choices</td>
+<td>A, found early</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">26</td>
 </tr>
 <tr>
-<td>Bitrate or quality target</td>
-<td>The rate-control objective</td>
-</tr>
-<tr>
-<td>Profile and level</td>
-<td>Bitstream compatibility constraints</td>
-</tr>
-<tr>
-<td>Tuning</td>
-<td>Priorities for a source type or use case</td>
+<td>B, found after more search</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">16</td>
 </tr>
 </tbody>
 </table>
-<p>These controls interact. Changing a preset while retaining the same CRF can change the size and picture, because the encoder makes different decisions. It is not safe to assume that the slower result must always be smaller.</p>
-<h2 id="the-labels-are-implementation-specific">The labels are implementation-specific</h2>
-<p>x265 names presets from ultrafast through placebo. A hardware encoder can use a different scale and different internal tools. A “medium” preset in two encoders does not establish equivalent speed, efficiency, or resource use.</p>
-<p>More encoding work also does not translate directly into more decoding work. The encoder's search can be expensive while producing a stream with similar decoder requirements. Check its actual profile and tool choices rather than judging playback compatibility from the preset name.</p>
-<p>For Emby video transcoding, the encoder has to supply pictures quickly enough for playback. Extra analysis is useful only within the available processing budget, including other sessions and required filters.</p>
-<p>For an offline library conversion, more time may be acceptable. Compare representative scenes and the resulting rate or size, and keep the source fixed. Moving from a fast to a slow preset cannot recover detail that the source's earlier compression has already removed.</p>
+<p>Under this cost, B is better even though it uses more bits. Its lower distortion outweighs that cost. If the search stops after A, the encoder never gets the chance to select B.</p>
+<p><em>Original arithmetic illustration of a decision objective, not an encoder benchmark, preset score or exact x265 configuration.</em></p>
+<p>A different candidate could improve both size and reconstruction. More search creates opportunities to find a better tradeoff; it does not define “better” as the smallest possible file regardless of picture damage.</p>
+<h2 id="which-decisions-take-time">Which decisions take time?</h2>
+<p>Motion search evaluates possible reference positions. Partition search evaluates ways to divide a region. Transform and quantization decisions assess alternative corrections. Lookahead examines later pictures to plan relationships and resource allocation.</p>
+<p>Faster presets take shortcuts or limit these choices. Slower presets can evaluate more candidates or use more detailed decision procedures. The resulting stream contains the choices selected, rather than the entire search history.</p>
+<p>This explains why encoder computation and decoder computation are different quantities. A costly search can produce a relatively straightforward predictor. Some enabled tools also change decoder work, so the final tool/profile structure remains part of the output description.</p>
+<h2 id="read-an-implementations-actual-preset">Read an implementation's actual preset</h2>
+<p>The published x265 table gives these selected examples:</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th style="text-align: right;">medium</th>
+<th style="text-align: right;">slow</th>
+<th>What the difference affects</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lookahead pictures</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">25</td>
+<td>Amount of later picture analysis</td>
+</tr>
+<tr>
+<td>Reference setting</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+<td>Candidate retained views for prediction</td>
+</tr>
+</tbody>
+</table>
+<p>These are selected settings from that documented implementation, not all the changes or a portable comparison with another encoder. Its presets also vary motion/partition and decision options.</p>
+<p>The <strong>rate or quality target</strong> supplies the allocation objective. The <strong>preset</strong> supplies the effort used to serve it. A <strong>tuning</strong> changes priorities for a source/use case, such as grain or low latency. Keep these controls distinct when evaluating an encode.</p>
+<h2 id="supply-pictures-fast-enough-for-playback">Supply pictures fast enough for playback</h2>
+<p>Suppose an encoder can sustainably produce 20 output pictures per wall-clock second while the requested playback needs 30 per media second. Encoding one second of media takes <strong>30/20 =1.5 seconds</strong>.</p>
+<p>Under this model, the playback reservoir shrinks by <strong>30 −20 =10 pictures per wall-clock second</strong>. A 300-picture prefill lasts 30 seconds of that continuing deficit. A short finite clip can finish within an adequate prefill; a continuous session cannot rely on a finite reservoir indefinitely. This is a declared throughput example, not the speed of any named preset or hardware.</p>
+<p>Processing can have multiple frames in flight. The relevant requirement is sustained output throughput, rather than insisting that each individual frame's processing latency be shorter than 1/30 second.</p>
+<p>For an Emby transcode, input decoding and required filters also share the processing job. A preset's useful additional search has to fit that complete supply path. An offline derivative can instead spend more time before the file is played, making a different effort tradeoff practical.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

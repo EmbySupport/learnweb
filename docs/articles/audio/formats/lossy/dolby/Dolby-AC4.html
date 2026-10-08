@@ -106,40 +106,51 @@
 <h1>Dolby AC-4 Audio</h1>
 
 
-<p><strong>AC-4 is a separate Dolby audio format</strong>, used in newer broadcast and delivery systems. It is not an AC-3 or E-AC-3 track with a new filename.</p>
-<p>The format can describe several ways to present the same programme. A presentation selects and combines the necessary audio components, allowing language, accessibility, or immersive choices within the coded structure.</p>
+<p>One AC-4 programme can offer several listening choices without storing a separate complete soundtrack for every choice. The decoder selects a <strong>presentation</strong>: the relevant audio components and the information needed to combine and render them.</p>
+<p>This is a central reason AC-4 is more than a newly named AC-3 bitstream.</p>
+<h2 id="assemble-a-hypothetical-programme">Assemble a hypothetical programme</h2>
+<p>Suppose a programme supplies music/effects, English dialogue, French dialogue, and associated description narration. It can define presentations using different combinations:</p>
 <table>
 <thead>
 <tr>
-<th>AC-4 concept</th>
-<th>Practical meaning</th>
+<th>Presentation</th>
+<th>Illustrative selected components</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Audio component</td>
-<td>A coded part of the programme</td>
+<td>English main</td>
+<td>Music/effects + English dialogue</td>
 </tr>
 <tr>
-<td>Presentation</td>
-<td>A selected combination of components and rendering information</td>
+<td>French main</td>
+<td>Music/effects + French dialogue</td>
 </tr>
 <tr>
-<td>Channel-based audio</td>
-<td>A defined speaker-channel arrangement</td>
-</tr>
-<tr>
-<td>Object-based audio</td>
-<td>Sound and associated spatial information for rendering</td>
+<td>English described</td>
+<td>Music/effects + English dialogue + description</td>
 </tr>
 </tbody>
 </table>
-<p>Not every AC-4 programme uses every feature. Dialogue enhancement or audio description depends on what the content provides and what the playback system exposes.</p>
-<h2 id="why-the-recording-can-be-harder-to-interpret">Why the recording can be harder to interpret</h2>
-<p>A conventional list of tracks may not capture every selectable presentation inside one AC-4 bitstream. Seeing one audio stream does not necessarily mean that only one language or listening arrangement is available.</p>
-<p>AC-4 is one of the audio systems specified for ATSC 3.0 broadcasts. A recording can therefore contain usable video while its audio requires a different decoder from older TV recordings. Changing the container or relabeling the audio cannot supply that decoder.</p>
-<p>When an Emby library encounters such a recording, identify the actual audio format and presentation before investigating the <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">delivery path</a>. Support for Dolby Digital Plus or Dolby Atmos in another delivery form does not establish AC-4 support.</p>
-<p>If conversion is available, the resulting ordinary channel track represents a chosen presentation. It should not be assumed to retain all of the original bitstream's alternate languages, accessibility choices, or object information.</p>
+<p>The table illustrates a permitted component-oriented approach, not a rule that all AC-4 programmes use this exact structure. A programme can also use a complete main mix or other defined component types.</p>
+<p>Sharing music/effects avoids duplicating that content in every language combination. The presentation metadata tells the decoder which components belong together and how the available controls should affect them.</p>
+<h2 id="follow-selection-into-sound">Follow selection into sound</h2>
+<ol>
+<li>Read the available presentation information.</li>
+<li>Select an appropriate language/accessibility presentation.</li>
+<li>Find and decode its required substreams.</li>
+<li>Apply the supplied mixing, gain, loudness, and rendering information.</li>
+<li>Produce the supported channel or spatial output.</li>
+</ol>
+<p>If description narration is an associated component, the decoder may also need instructions for balancing it with the main material. A standalone narration component is not necessarily the whole film soundtrack.</p>
+<p>This also explains why one container audio-stream entry can expose several meaningful choices. A conventional track list and an AC-4 presentation list describe different layers.</p>
+<h2 id="channel-and-object-components-support-different-render-jobs">Channel and object components support different render jobs</h2>
+<p>Channel-based material has defined output roles. Object-based material supplies sound with spatial information for rendering. AC-4's standards cover both traditional channel coding and immersive/personalized uses.</p>
+<p>Dialogue enhancement depends on what the delivery provides. Separate dialogue or suitable enhancement information can enable a controlled change; a decoder cannot assume an arbitrary mixed recording contains an independently adjustable voice merely because the codec is AC-4.</p>
+<h2 id="preserve-a-selected-result-or-the-selectable-structure">Preserve a selected result or the selectable structure</h2>
+<p>AC-4 is specified in the ATSC 3.0 AC-4 audio system and other delivery contexts. An Emby recording can therefore contain picture that is readily decoded while the soundtrack needs AC-4-specific presentation handling.</p>
+<p>Converting a selected presentation to ordinary stereo or surround creates a useful listening result. It generally flattens the selected components into that mix, so the output no longer contains all the original language/accessibility choices as separately selectable AC-4 presentations.</p>
+<p>Preserving the encoded structure and creating a compatible listening copy are different goals. The distinction follows directly from which components and presentation instructions survived the operation.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

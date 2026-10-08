@@ -106,39 +106,50 @@
 <h1>H.266 / VVC Video</h1>
 
 
-<p><strong>H.266</strong> is the standard also known as <strong>VVC</strong>, or <em>Versatile Video Coding</em>. It continues the development of block-based video compression beyond <a href="Video-Codec-HEVC.html">HEVC</a>, with additional prediction, partitioning, and coding tools.</p>
-<p>The goal is improved compression for a range of video uses. A smaller stream can reduce storage and delivery needs, but a codec's efficiency potential does not establish a particular saving for your files. That requires a comparison using the same source and an appropriate quality target.</p>
-<p>VVC is a distinct bitstream format. A decoder that understands H.264 or HEVC cannot decode VVC merely because all three belong to the same standards family.</p>
+<p><strong>H.266</strong>, also called <strong>Versatile Video Coding (VVC)</strong>, extends block-based picture coding with additional ways to divide, predict, and reconstruct regions. Its aim is to give encoders useful choices for different scenes and delivery uses.</p>
+<p>The “versatile” part becomes concrete when looking at a region's shape.</p>
+<h2 id="fit-the-coding-regions-to-the-picture">Fit the coding regions to the picture</h2>
+<p>A VVC picture can use a 128 × 128 coding-tree footprint and subdivide it into smaller coding regions. Alongside a four-way square split, its multi-type tree can use <strong>binary</strong> and <strong>ternary</strong> splits.</p>
+<p>For an illustrative 64 × 64 region:</p>
 <table>
 <thead>
 <tr>
-<th>Capability to establish</th>
-<th>Question it answers</th>
+<th>Split</th>
+<th>Resulting regions</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>VVC input decoding on the server</td>
-<td>Can this server build reconstruct the source for conversion?</td>
+<td>Quad</td>
+<td>Four 32 × 32 squares</td>
 </tr>
 <tr>
-<td>VVC decoding in the receiving app</td>
-<td>Can the app play the video without changing its codec?</td>
+<td>Vertical binary</td>
+<td>Two 32 × 64 rectangles</td>
 </tr>
 <tr>
-<td>Compatible container handling</td>
-<td>Can the playback framework identify and extract the VVC track?</td>
-</tr>
-<tr>
-<td>Required profile and resource limits</td>
-<td>Can the selected decoder handle this particular stream?</td>
+<td>Vertical ternary</td>
+<td>16 × 64, 32 × 64, and 16 × 64 rectangles</td>
 </tr>
 </tbody>
 </table>
-<h2 id="a-format-name-is-not-a-playback-promise">A format name is not a playback promise</h2>
-<p>For an Emby library, verify the actual server and app versions and their available decoders before relying on a VVC file. Software availability, hardware capabilities, and integration into a playback framework are different pieces of the path.</p>
-<p>If the server can decode the source, conversion into a format the app accepts may be possible. If source decoding is unavailable, changing the output codec or renaming the file cannot solve that missing first step.</p>
-<p>A successful test on one computer also does not establish compatibility on a TV or phone. Keep the original source while testing the intended playback devices, and use <a href="../Video-Codec-Compatibility.html">stream-level compatibility information</a> to explain any differences.</p>
+<p>The ternary regions cover the same area:</p>
+<p><strong>16 × 64 + 32 × 64 + 16 × 64 = 4,096 = 64².</strong></p>
+<p>The middle region can receive one coding description while narrower regions around it use others. A tall moving subject, a sharp vertical boundary, and broad flat surroundings can benefit from different region shapes.</p>
+<p>These are coding possibilities, not a compulsory layout. The stream's tree-size, depth, and split restrictions determine which choice is permitted at a particular point. The decoder reads the selected structure and reconstructs its leaves.</p>
+<h2 id="describe-more-than-a-uniform-shift">Describe more than a uniform shift</h2>
+<p>A basic motion vector translates a reference region by one displacement. Real camera movement can also rotate or zoom a region, making the displacement vary across it.</p>
+<p>VVC includes motion tools that can describe such varying relationships, including affine prediction. Rather than assuming every point in a region moves identically, a motion model can determine related displacements at different locations. Other prediction choices and coded residuals still provide the information needed to reconstruct the target.</p>
+<p>The benefit is a potentially better predictor for that region. A better predictor leaves less correction to describe. A poor model still needs larger corrections or another coding choice.</p>
+<h2 id="the-encoder-explores-the-decoder-follows">The encoder explores; the decoder follows</h2>
+<p>More region shapes and prediction tools give an encoder a larger set of candidates to evaluate. Its search must balance reconstructed-picture error against the bits needed for tree decisions, motion information, and corrections.</p>
+<p>The decoder does not repeat that entire search. It follows the signaled candidates, but it must implement their syntax, interpolation, transforms, filtering, and reference rules. This is why a HEVC decoder cannot simply treat VVC as another HEVC profile.</p>
+<p>Compression efficiency comes from the selected representation and settings. To measure a particular saving, compare encodes of the same source under an appropriate picture-quality evaluation; the standard's name does not supply a fixed percentage.</p>
+<h2 id="put-the-format-into-a-playback-path">Put the format into a playback path</h2>
+<p>For direct playback, a receiving app needs a usable VVC decoder and compatible extraction/presentation of that stream. For conversion into another codec, the server needs the VVC <strong>input</strong> decoder first:</p>
+<p><strong>VVC source → VVC reconstruction → processing → target encoder → target playback decoder.</strong></p>
+<p>The target encoder cannot bypass the source reconstruction. The source's profile, workload, and packaging determine that input job, while the output format determines the client's job.</p>
+<p>For a VVC file in an Emby library, inspect the actual server and app implementations at those boundaries. The format explanation describes the work that needs to exist; it does not declare a particular Emby version or device to implement it.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

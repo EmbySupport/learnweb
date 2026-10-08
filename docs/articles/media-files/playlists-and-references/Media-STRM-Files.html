@@ -106,15 +106,17 @@
 <h1>Media Pointer Files: STRM</h1>
 
 
-<p>A STRM file supplies a location for media rather than storing the media itself. Emby can use it to present an externally located video as a library item, provided the referenced source uses a supported format and delivery method.</p>
-<p>The <a class="xref" href="https://emby.media/support/articles/Strm-Files.html">STRM documentation</a> describes a plain text file containing a direct media URL or a path to a local or shared file. Name the pointer according to the library's content naming rules and give it the <code>.strm</code> extension.</p>
+<p>A <strong>STRM file</strong> lets an Emby library item point to media stored elsewhere. The pointer is small because it stores a location; the movie's encoded tracks remain at that destination.</p>
 <p><img src="images/strm-pointer.svg" alt="A library item uses a STRM text pointer to locate the actual media, whose tracks are then read for playback."></p>
-<p><em>A pointer supplies an address. The referenced source still determines the playback requirements.</em></p>
-<h2 id="a-direct-media-address-matters">A direct media address matters</h2>
-<p>A webpage with a video player is not necessarily the media address that player opens. A pointer to the webpage can therefore return HTML instead of playable media.</p>
-<p>Likewise, a location that works on an administrator's desktop may not be accessible from the server. The relevant path, permissions, and network access need to work where the source is opened.</p>
-<p>The pointer's small size says nothing about the bitrate or size of the movie. Downloading or backing up the STRM file preserves the reference, not the referenced recording. A changed or expired source address can stop playback while the library item remains.</p>
-<p>When troubleshooting in Emby, verify the text contents and the destination separately. If the address is correct and reachable, <a href="../inspection/Media-Probing.html">inspect the actual media</a> and selected tracks just as you would for a local file. Changing the pointer filename cannot alter an unsupported codec or repair damaged content.</p>
+<p><em>The library description, the pointer, and the media are three different objects.</em></p>
+<p>Follow the address through the system. Emby recognizes the named library item and reads its text pointer. The media-opening path obtains the referenced source. That source is then examined for its tracks and delivered through an appropriate playback route. <a class="xref" href="https://emby.media/support/articles/Strm-Files.html">The STRM documentation</a> defines the supported pointer contents and organization.</p>
+<h2 id="two-addresses-that-look-similar-can-return-different-data">Two addresses that look similar can return different data</h2>
+<p>A website's video page supplies HTML and player code. The player can make another request for the actual movie or a streaming playlist. A pointer needs the media location supported by the opening path, rather than an arbitrary webpage that happens to display a video.</p>
+<p>Similarly, a shared-file path is interpreted from the environment that opens it. A drive letter visible on an administrator's desktop may not exist for a server service. A network path can identify the same source more clearly, but access still depends on that process's credentials and connectivity. This is a location-resolution question before any codec is decoded.</p>
+<h2 id="what-is-preserved-when-the-library-is-copied">What is preserved when the library is copied?</h2>
+<p>Copying the STRM file preserves its text address. Copying local library descriptions can preserve the displayed item. Neither operation copies the distant recording. The pointer's storage size therefore does not represent the movie's size, and an offline copy of the pointer does not provide offline movie bytes.</p>
+<p>If the destination changes or an expiring address stops granting access, the item can remain visible while playback can no longer obtain its source. Update the address relationship or source availability; the library's retained title is not evidence that the media was fetched.</p>
+<p>A useful failure trace follows the same boundaries: recognized item, readable pointer, resolved address, returned media rather than HTML, then <a href="../inspection/Media-Probing.html">source initialization</a>. Once the actual media is obtained, its container and selected tracks determine the playback work just as they do for an ordinary local source.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

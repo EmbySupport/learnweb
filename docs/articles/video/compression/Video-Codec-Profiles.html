@@ -106,14 +106,15 @@
 <h1>Video Codec Profiles</h1>
 
 
-<p>A <strong>codec profile</strong> describes a permitted set of tools and sample formats within one codec. It helps establish what a decoder must understand. It is a compatibility description, rather than a picture-quality setting.</p>
-<p>For example, “H.264 support” does not establish support for every H.264 profile. An app's decoder can handle ordinary 8-bit H.264 while lacking a path for a 10-bit variant.</p>
+<p>A decoder needs to understand every coding operation a stream can ask it to perform. A <strong>profile</strong> selects a permitted set of those operations and sample formats within a codec.</p>
+<p>This is useful both for designing a decoder and for creating a file for a known playback target. The encoder can restrict its choices to the target's tool set, rather than asking the decoder to handle every feature in the complete standard.</p>
+<h2 id="selected-sample-format-permissions">Selected sample-format permissions</h2>
 <table>
 <thead>
 <tr>
-<th>Profile example</th>
-<th>Bit-depth support</th>
-<th>Color sampling in this example</th>
+<th>Profile</th>
+<th>Sample depth</th>
+<th>Sampling covered by this row</th>
 </tr>
 </thead>
 <tbody>
@@ -130,12 +131,12 @@
 <tr>
 <td>H.264 High</td>
 <td>8-bit</td>
-<td>4:2:0, also monochrome permitted</td>
+<td>4:2:0; monochrome also permitted</td>
 </tr>
 <tr>
 <td>H.264 High 10</td>
 <td>Up to 10-bit</td>
-<td>4:2:0, also monochrome permitted</td>
+<td>4:2:0; monochrome also permitted</td>
 </tr>
 <tr>
 <td>HEVC Main</td>
@@ -144,18 +145,26 @@
 </tr>
 <tr>
 <td>HEVC Main 10</td>
-<td>Up to 10-bit</td>
+<td>8-bit or 10-bit</td>
 <td>4:2:0</td>
 </tr>
 </tbody>
 </table>
-<p><em>Selected profile constraints, not the entire feature list or a decoder support guarantee. A permitted maximum does not mean every stream uses it.</em></p>
-<p>Baseline, Main, and High differ even though their common color depth and sampling can match. For instance, H.264 Main permits coding tools excluded from Baseline, while High adds further tools. The codec specifications define the full restrictions.</p>
-<h2 id="read-the-whole-description">Read the whole description</h2>
-<p>A profile belongs to its codec. H.264 High and HEVC Main cannot be ranked by comparing the words “High” and “Main.” HEVC Main 10 also does not mean HDR: a 10-bit stream can carry SDR content.</p>
-<p><a href="Video-Codec-Levels-Tiers.html">Levels and tiers</a> describe another part of compatibility: resource limits such as picture size, throughput, buffering, and bitrate. They should be checked alongside the profile.</p>
-<p>For Emby, a profile mismatch can make video transcoding necessary for a particular app even when another file using the same codec plays directly. Changing the profile label alone does not convert the stream's tools or sample format. The encoded content must actually satisfy the target profile.</p>
-<p>Support depends on the complete playback path, including the app's selected decoder, operating system, and hardware. Treat the media information and the device's documented capabilities as complementary evidence.</p>
+<p>These rows describe selected format permissions, rather than a complete profile specification. They show why a decoder for an ordinary 8-bit stream may need additional sample-processing capability for a 10-bit stream.</p>
+<h2 id="the-tools-can-differ-even-at-the-same-depth">The tools can differ even at the same depth</h2>
+<p>H.264 Baseline, Main, and High can all represent 8-bit 4:2:0 pictures, yet their bitstreams can use different operations.</p>
+<p><strong>Entropy coding:</strong> CABAC encodes syntax through context-adaptive binary arithmetic coding. Its decoder follows a probability state and arithmetic decoding process. H.264 Main and High permit it; Baseline uses the permitted non-CABAC coding route. Identical final pixel depth does not make those compressed syntax representations interchangeable.</p>
+<p><strong>Picture prediction:</strong> Main and High permit B-slices. The associated reference choices and possible reordering require the relevant prediction and buffering behavior. Baseline's restrictions exclude that B-slice tool set.</p>
+<p><strong>Block transforms:</strong> High adds permission for an 8×8 transform tool, while Main's transform set is narrower. The decoder must apply the transform described by the stream to reconstruct its corrections.</p>
+<p>The profile label identifies these restrictions as a package. More tools give an encoder different options for representing the source, but the label itself does not select its quantization strength or measure the finished picture.</p>
+<h2 id="make-a-stream-conform-to-another-profile">Make a stream conform to another profile</h2>
+<p>Suppose a target requires H.264 Baseline, while the source uses High with CABAC and 8×8 transforms. Changing the word “High” in metadata leaves the CABAC-coded syntax and transformed blocks in place. The decoder would still encounter operations excluded from the claimed profile.</p>
+<p>Creating the target requires decoding the source and encoding its pictures using the target's actual permitted tools. The encoder restricts entropy coding, prediction, transforms, and any other relevant choices together.</p>
+<p>A High 10 source converted to an 8-bit target also needs a change of sample representation. That happens in the processing/encoding path, rather than being accomplished by relabeling a 10-bit payload.</p>
+<p>A Main 10 HEVC stream can contain SDR or HDR. HDR interpretation comes from the appropriate transfer/color signaling and content; the profile's depth permission describes the sample/tool set.</p>
+<h2 id="pair-the-profile-with-its-resource-limits">Pair the profile with its resource limits</h2>
+<p>“HEVC Main 10, Level 5.1, Main tier” describes three aspects: a permitted tool/sample set, a workload level, and a bitrate/buffering tier. The <a href="Video-Codec-Levels-Tiers.html">level and tier</a> need to accompany the profile when establishing a decoder target.</p>
+<p>For an Emby playback route, identifying the source profile and the app's usable decoder makes a profile-related conversion understandable. The target encode supplies a representation that conforms to the chosen tool set; it does not improve the source merely by giving it a different profile name.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

@@ -106,35 +106,42 @@
 <h1>AVI Container</h1>
 
 
-<p><strong>AVI</strong>, short for Audio Video Interleave, is a longstanding container for audio and video. Its RIFF-based structure divides the file into chunks, with stream descriptions near the beginning and encoded media in a media-data list.</p>
-<p>An old AVI may contain MPEG-4 Part 2 video and MP3 audio; a capture AVI may contain DV or uncompressed media. None of those codecs is defined by the .avi extension itself.</p>
+<p>An <strong>AVI</strong> reader first learns the streams, then reads alternating chunks of their data. Audio Video Interleave uses the RIFF chunk structure, with AVI as its file type.</p>
+<p>A RIFF chunk contains a four-character ID, a size, and data. LIST chunks group child chunks. The size lets a reader advance over a section instead of interpreting every byte as media; alignment rules can add a padding byte for odd-sized data.</p>
 <table>
 <thead>
 <tr>
-<th>AVI component</th>
-<th>Purpose</th>
+<th>AVI structure</th>
+<th>Information used by the reader</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Header list, hdrl</td>
-<td>Describes the file and its streams</td>
+<td>hdrl list</td>
+<td>File and stream descriptions</td>
 </tr>
 <tr>
-<td>Media list, movi</td>
-<td>Holds interleaved stream chunks</td>
+<td>Stream header/format descriptions</td>
+<td>Track timing conventions and codec setup</td>
 </tr>
 <tr>
-<td>Indexes, such as idx1 or OpenDML indexes</td>
-<td>Locate media chunks for navigation</td>
+<td>movi list</td>
+<td>Media chunks assigned to the streams</td>
+</tr>
+<tr>
+<td>idx1 or OpenDML indexes</td>
+<td>Media locations and information used for navigation</td>
 </tr>
 </tbody>
 </table>
-<p>OpenDML extensions allow AVI to handle larger files and provide extended indexing. That is different from assuming every legacy AVI reader understands every extension.</p>
-<h2 id="why-the-index-is-worth-noticing">Why the index is worth noticing</h2>
-<p>A file can sometimes play sequentially while seeking badly because its <a href="../container-structure/timing-and-navigation/Media-Container-Seeking.html">index</a> is absent or damaged. Rebuilding an index may improve navigation, but it cannot restore missing media or repair the encoded contents of a broken chunk.</p>
-<p>AVI also predates many modern delivery conventions. It is a less natural fit for some combinations of advanced codecs, per-sample timing, and subtitle features than newer containers. A successful mux is not proof that every target player will interpret the result as intended.</p>
-<p>For an AVI in Emby, start with <a href="../inspection/Media-Inspection-MediaInfo.html">stream inspection</a>. If the app can decode the video but needs a different package, a remux may be enough. If the selected codec itself is unsuitable, changing AVI to MP4 or MKV while copying the stream will leave that limitation in place. Check synchronization and seeking as well as the first few seconds of playback.</p>
+<h2 id="follow-one-compressed-frame">Follow one compressed frame</h2>
+<p>A media chunk's ID associates it with a stream and a data kind. The reader uses that stream's header and format description to interpret the payload, then passes compressed video to its decoder. AVI can therefore hold different codecs, including <a href="../../video/codecs/mpeg-itu/Video-Codec-MPEG4-Part2.html">MPEG-4 Part 2</a> or <a href="../../video/codecs/production-preservation/Video-Codec-DV.html">DV</a>, without AVI itself defining their compression.</p>
+<p>The timing model also comes from the stream description and chunk sequence. It predates the flexible per-sample composition conventions of some newer formats. Writers and readers have developed extensions and conventions to accommodate different encoded arrangements; those details matter when handling an unusual legacy file.</p>
+<h2 id="the-same-opening-two-different-seeks">The same opening, two different seeks</h2>
+<p>A reader can scan a readable movi list sequentially. To jump into a long movie, a useful index gives it the corresponding chunk locations and restart information. If navigation is absent or damaged, the opening can still play while the reader spends much longer finding a later location.</p>
+<p>OpenDML extensions provide additional indexing and larger-file arrangements using RIFF/AVIX structures. A large AVI is therefore not simply a classic small AVI with more bytes; the reader must follow the applicable extended organization.</p>
+<p>A remux of intact streams can write different indexes in a new package. It need not reconstruct pictures to improve navigation. If a particular media chunk is damaged, rebuilding the index only supplies a better route to that damaged data.</p>
+<p>For an Emby file comparison, distinguish a sequential-read result from a seek result and record the detected codec and legacy format properties. The source's age does not name a failure stage; chunk interpretation, navigation, and decoding do.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

@@ -106,36 +106,66 @@
 <h1>DTS-HD Master Audio</h1>
 
 
-<p><strong>DTS-HD Master Audio is a lossless audio format.</strong> In its common disc arrangement, a compatible lossy DTS core is combined with extension information that allows a full decoder to reconstruct the source audio exactly.</p>
-<p>The core's lossy nature does not make the complete Master Audio result lossy. The additional information corrects what the lossy representation alone cannot preserve.</p>
+<p>How can a soundtrack with a <strong>lossy DTS core</strong> give a lossless result? DTS-HD Master Audio includes the information needed to correct or reconstruct what the compatible core alone does not preserve.</p>
+<p>In a common core-plus-lossless-extension arrangement, the full decoder combines the required components. A core-only decoder plays a different, compatible result.</p>
+<h2 id="reconstruct-the-exact-difference">Reconstruct the exact difference</h2>
+<p>Use an illustrative pair of samples:</p>
 <table>
 <thead>
 <tr>
-<th>Data used by the decoder</th>
-<th>Result</th>
+<th style="text-align: right;">Source</th>
+<th style="text-align: right;">Core reconstruction</th>
+<th style="text-align: right;">Exact correction</th>
+<th style="text-align: right;">Full result</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>DTS core alone</td>
-<td>A compatible lossy presentation</td>
+<td style="text-align: right;">1,020</td>
+<td style="text-align: right;">1,001</td>
+<td style="text-align: right;">+19</td>
+<td style="text-align: right;">1,020</td>
 </tr>
 <tr>
-<td>Core plus the required lossless extension</td>
-<td>The full lossless presentation</td>
-</tr>
-<tr>
-<td>A supported extension-only lossless stream</td>
-<td>Lossless decoding without a legacy core fallback</td>
+<td style="text-align: right;">1,025</td>
+<td style="text-align: right;">1,028</td>
+<td style="text-align: right;">−3</td>
+<td style="text-align: right;">1,025</td>
 </tr>
 </tbody>
 </table>
-<p>The last arrangement matters: the DTS specification permits lossless streams without a backward-compatible lossy component. “DTS-HD” should not be treated as proof that an extractable core exists.</p>
-<h2 id="interpreting-playback-information">Interpreting playback information</h2>
-<p>A player that decodes the complete Master Audio presentation can output <a href="../../decoding-output/output-transport/Decoded-PCM-Output.html">PCM</a>. The receiver then identifies PCM rather than Master Audio because it receives decoded samples. That label does not imply an extra lossy conversion.</p>
-<p>A receiver showing ordinary DTS can indicate core-only delivery, but check its actual input information and the player's output before drawing that conclusion. A listening-mode name may describe processing applied after input detection.</p>
-<p>In Emby, the selected source track, server delivery, player decoding, and output transport form separate steps. A compatible video stream can reach the screen while the audio takes a fallback route.</p>
-<p><a href="../../channels/object-based/DTS-X.html">DTS:X</a> can add immersive information in a compatible DTS-HD delivery form. Lossless reconstruction of a channel presentation and preservation of the immersive metadata are related but separate capabilities. <a href="../lossy/DTS-HD-High-Resolution.html">DTS-HD High Resolution Audio</a> is another distinct format and should not be substituted for Master Audio merely because both share “DTS-HD.”</p>
+<p>The core's errors do not remain in the final result when the additional information restores the exact source values. This table models the lossless-correction principle; DTS's XLL processing and channel/frequency organization are more elaborate than two literal correction numbers.</p>
+<p>A lossy enhancement that quantizes its correction can merely reduce an error. The full Master Audio reconstruction must retain the information required for the exact encoded audio result. That is the distinction from <a href="../lossy/DTS-HD-High-Resolution.html">DTS-HD High Resolution Audio</a>.</p>
+<h2 id="choose-the-component-set">Choose the component set</h2>
+<table>
+<thead>
+<tr>
+<th>Components decoded</th>
+<th>Audio result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Existing core alone</td>
+<td>Lossy compatible presentation</td>
+</tr>
+<tr>
+<td>Required core and lossless extension information</td>
+<td>Full lossless presentation</td>
+</tr>
+<tr>
+<td>Supported extension-only lossless stream</td>
+<td>Lossless presentation without a legacy core fallback</td>
+</tr>
+</tbody>
+</table>
+<p>The standard allows lossless streams without a backward-compatible core. For those, an older destination cannot obtain a missing core simply by asking to “strip HD.” The actual stream structure controls the available fallback.</p>
+<p>A core and extensions can also appear as one container soundtrack. They need not be separately selectable language tracks.</p>
+<h2 id="place-output-after-reconstruction">Place output after reconstruction</h2>
+<p>Once the full presentation has been decoded, the player can output PCM. The receiver sees sample values rather than a request to decode Master Audio, so its input label can change to PCM without a lossy conversion.</p>
+<p>If a receiver instead gets an extracted core, it decodes the lossy compatible presentation. If the server decodes and re-encodes another codec, there is a new encoding generation. Those three routes can be distinguished by their actual delivered components.</p>
+<p>For an Emby source, this explains why “DTS-HD Master Audio” in the library and “DTS” or “PCM” downstream require a route trace rather than a verdict based on either label alone.</p>
+<p><a href="../../channels/object-based/DTS-X.html">DTS:X</a> can add immersive information in a compatible delivery context. Preserving the lossless audio values and passing the required spatial instructions to an immersive renderer are additional, distinct jobs in that trace.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

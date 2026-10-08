@@ -106,46 +106,41 @@
 <h1>Why Tone Mapping Is Needed</h1>
 
 
-<p>An HDR film can contain a bright reflection on a car alongside a face in shadow. An SDR screen cannot reproduce the same range of light. <strong>Tone mapping fits that range into the available output</strong>, deciding how much room to give the face, the reflection, and everything between them.</p>
-<p>Simply cutting off everything above the screen's limit loses differences between bright objects. Darkening the entire picture can fit the highlights, but make the rest unnecessarily dim. A tone-mapping curve makes a more selective compromise.</p>
-<p>For scale, an SDR reference viewing setup uses a peak of 100 nits, while an HDR highlight might reach 1,000 nits. A nit is a unit of luminance (one candela per square metre). Dividing every light level by ten would fit that example, but would also turn a 100-nit object into a 10-nit one.</p>
-<h2 id="why-changing-the-playback-quality-is-not-enough">Why changing the playback quality is not enough</h2>
+<p>An HDR source asks for a 1,000-nit reflection beside a 100-nit surface. A destination with a 100-nit output peak has room for the surface, but cannot reproduce the reflection at its requested absolute light level. Tone mapping chooses how both parts fit into the available picture.</p>
+<p>There are two simple solutions with visibly different costs:</p>
 <table>
 <thead>
 <tr>
-<th>Change</th>
-<th>What it changes</th>
-<th>Does it solve the brightness mismatch?</th>
+<th>Choice in this example</th>
+<th style="text-align: right;">Surface</th>
+<th style="text-align: right;">Reflection</th>
+<th>Result</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Lower the resolution</td>
-<td>The number of pixels</td>
-<td>No</td>
+<td>Clip at 100 nits</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">100</td>
+<td>Brightness separation is lost</td>
 </tr>
 <tr>
-<td>Reduce the bitrate</td>
-<td>The amount of compressed data</td>
-<td>No</td>
-</tr>
-<tr>
-<td>Relabel HDR as SDR</td>
-<td>How a player interprets the signal</td>
-<td>No; the picture values still need conversion</td>
-</tr>
-<tr>
-<td>Tone-map the picture</td>
-<td>The relationship between input and output brightness</td>
-<td>Yes, as part of a correctly configured conversion</td>
+<td>Divide all light by ten</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">100</td>
+<td>The whole lower range is darkened</td>
 </tr>
 </tbody>
 </table>
-<p>Tone mapping is one part of <a href="Tone-Mapping-HDR-to-SDR.html">HDR-to-SDR conversion</a>. Color also needs appropriate handling; fixing brightness alone does not guarantee correct color.</p>
-<h2 id="where-emby-fits">Where Emby fits</h2>
-<p>The work can happen at different points in a playback session. Emby Server can tone-map during video transcoding. A player can also do it locally: the <a class="xref" href="https://emby.media/support/articles/apps/windows/Emby-Windows-FAQ.html">Emby Windows FAQ</a> describes tone mapping in the app's rendering stage.</p>
-<p>That is why the server's <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">playback method</a> and the final appearance are separate questions. Direct Play describes delivery from the server; it does not mean the player or display leaves the picture untouched.</p>
-<p>Different mappings can retain different amounts of highlight contrast or change the apparent brightness of faces. They cannot reproduce all the original HDR brightness on an SDR screen, or guarantee the same result as a separately graded SDR release.</p>
+<p>A nonlinear mapping can give ordinary levels more room while compressing highlights more strongly. It redistributes contrast according to the source and destination instead of making only an all-or-nothing cutoff decision.</p>
+<h2 id="why-this-is-an-image-operation">Why this is an image operation</h2>
+<p>Changing resolution alters the spatial sample grid. Changing bitrate alters how the encoder describes the picture. Neither operation, on its own, changes the light interpretation enough to solve this range mismatch.</p>
+<p>A transfer-function label describes the meaning of the samples. Relabeling HDR as SDR would ask the player to apply another meaning to the existing values. Correct conversion first interprets the source, adapts its brightness and colors, then prepares suitable output values and signaling.</p>
+<p>The <a href="Tone-Mapping-HDR-to-SDR.html">HDR-to-SDR walkthrough</a> follows those steps. <a href="../curves/Tone-Mapping-Curves.html">Curves</a> show the brightness relationship; gamut and color-volume handling also matter for a bright colored object.</p>
+<h2 id="place-the-mapping-in-the-playback-path">Place the mapping in the playback path</h2>
+<p>Emby Server can process pictures during a video transcode. A renderer can also adapt them locally; the <a class="xref" href="https://emby.media/support/articles/apps/windows/Emby-Windows-FAQ.html">Windows app documentation</a> describes presentation-stage tone mapping. Direct Play identifies delivery from the server, while later app and display processing still determines the light produced.</p>
+<p>Mapping can also be needed between two HDR ranges, not only from HDR to SDR. A source peak above an HDR display's usable output presents the same fitting problem, even when the destination remains HDR.</p>
+<p>The useful comparison is the relationship among objects in the same scene: ordinary surfaces, dark detail, and bright texture. A good peak fit is one part of that relationship. The mapping's available range and its chosen distribution explain the rest.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

@@ -106,37 +106,52 @@
 <h1>Video Keyframes and Random Access</h1>
 
 
-<p>When you seek into a film, the next picture you want may depend on earlier decoded pictures. A <strong>random-access point</strong> gives the decoder a suitable place to begin reconstructing the stream. Containers and tools commonly mark these entry points as <strong>keyframes</strong>.</p>
-<p>The player can start before your requested time, decode the necessary pictures, and suppress them until the requested picture is ready. That is why an exact seek and the physical start of decoding need not be the same position.</p>
+<p>You seek to 11.3 seconds in a film, but the picture you want is predicted from earlier decoded pictures. Jumping directly to its compressed bytes would leave the decoder without those references.</p>
+<p>A <strong>random-access point</strong>, commonly marked as a <strong>keyframe</strong>, provides a place from which the required state can be rebuilt.</p>
+<h2 id="follow-one-seek-request">Follow one seek request</h2>
+<p>Assume a constant 24 fps stream with clean entry points every two seconds. For this example, the player selects the first picture at or after the requested time.</p>
+<p><strong>11.3 × 24 = 271.2</strong>, so that picture is frame <strong>272</strong>, at <strong>11.3333 seconds</strong>. The preceding entry point is frame <strong>240</strong>, at <strong>10 seconds</strong>.</p>
 <table>
 <thead>
 <tr>
-<th>Example with entry points every two seconds</th>
-<th>What decoding may need</th>
+<th>Stage</th>
+<th>Work performed</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Seek to 10.0 seconds</td>
-<td>Start at the entry point at 10.0 seconds</td>
+<td>Locate an entry</td>
+<td>Find the coded access point at 10 seconds</td>
 </tr>
 <tr>
-<td>Seek to 11.3 seconds</td>
-<td>Start at 10.0 seconds and decode forward</td>
+<td>Configure decoding</td>
+<td>Supply the codec's required stream parameters</td>
 </tr>
 <tr>
-<td>Seek to 12.0 seconds</td>
-<td>Start at the next entry point at 12.0 seconds</td>
+<td>Rebuild pictures</td>
+<td>Decode from frame 240 toward the target</td>
+</tr>
+<tr>
+<td>Begin requested presentation</td>
+<td>Show the selected picture at its assigned time</td>
 </tr>
 </tbody>
 </table>
-<p><em>Illustrative timeline. Real files can have irregular entry points, preroll rules, and container-specific seeking behaviour.</em></p>
-<h2 id="an-i-picture-is-only-part-of-the-story">An I-picture is only part of the story</h2>
-<p>An intra-coded picture does not predict its own samples from other pictures. However, following pictures or pictures reordered around it may still depend on earlier references. A clean entry point must satisfy the codec's dependency rules, not merely have an “I” label.</p>
-<p>H.264's IDR pictures establish a reference reset. HEVC also defines several kinds of random-access pictures, with rules for pictures that lead the access point in display order. The decoder still needs suitable stream configuration.</p>
-<p>For Emby, the spacing and validity of these points can affect seeking responsiveness and the start of transcoded output. A longer gap can mean more source pictures must be decoded before reaching the chosen time. Network delivery, storage speed, and decoder performance also contribute.</p>
-<p>Changing a packet's keyframe flag cannot remove prediction dependencies. A damaged index or incorrectly marked entry point can therefore cause seeking failures even when uninterrupted playback seems fine.</p>
-<p><a href="Video-GOP.html">Groups of pictures</a> describe the surrounding structure; shorter groups can provide more frequent entry points at a potential compression cost.</p>
+<p>For a deliberately simple I/P-only chain where each picture depends on its predecessor, frames 240 through 272 require <strong>33 picture decodes</strong>, including both endpoints. The earlier output pictures are not necessarily shown; they supply reference state and are discarded from the requested presentation.</p>
+<p><em>The selection policy and dependency chain are declared examples. Reordered structures can need additional anchors or different preroll handling.</em></p>
+<p>The container index helps locate byte positions associated with access points. The codec determines whether the decoder can actually begin there. Both pieces are needed for a useful seek.</p>
+<h2 id="supply-the-configuration">Supply the configuration</h2>
+<p>An independently reconstructable picture still needs its codec configuration. The decoder must know dimensions, sample format, and the applicable coding parameters. These can be supplied by the container or repeated in the stream, depending on its format.</p>
+<p>For H.264, sequence and picture parameter sets are part of that configuration. A bare picture payload without the needed parameters is not a complete decoding starting package.</p>
+<h2 id="an-i-picture-answers-a-narrower-question">An I-picture answers a narrower question</h2>
+<p>An intra-coded picture reconstructs its own samples without temporal prediction from another picture. That says nothing by itself about dependencies of following or reordered pictures.</p>
+<p>Consider a group that starts with an ordinary I-picture but also contains leading B-pictures using an older reference. Starting with an empty decoder at the I-picture cannot reconstruct those leading pictures just because the I-picture itself is independent.</p>
+<p>H.264 <strong>IDR</strong> pictures establish a reference reset: subsequent prediction cannot rely on pictures preceding that reset. HEVC defines IDR and additional access types, including <strong>CRA</strong>, with specific handling for leading pictures when playback begins at the access point. These rules determine which pictures can validly be presented after a random start.</p>
+<h2 id="access-spacing-changes-the-work">Access spacing changes the work</h2>
+<p>More frequent clean entries can reduce how far the decoder needs to work forward after a seek. In the example, starting at 10 seconds is much closer to the target than starting at the beginning of the film.</p>
+<p>Encoders also spend data establishing new independently usable pictures. Access-point spacing is therefore a tradeoff between prediction efficiency and convenient starts, with scene changes sometimes creating additional entries.</p>
+<p>In Emby, the same source reconstruction can precede transcoded output after seeking. Its delay can include storage reads, decoder work, and output initialization; the reference chain explains the part due to picture dependencies.</p>
+<p>Changing an index flag does not rewrite those dependencies. If a byte location is incorrectly marked as an entry, uninterrupted playback can work because the decoder already has state, while seeking there fails. The useful repair is a correct access description or a newly encoded entry structure, rather than an unsupported “keyframe” label.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

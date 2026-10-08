@@ -106,40 +106,46 @@
 <h1>DSF: DSD Stream File</h1>
 
 
-<p><strong>DSF</strong> means DSD Stream File. It is a container for <a href="../../../audio/formats/DSD.html">Direct Stream Digital audio</a>, a one-bit representation commonly described with sample rates in the megahertz range.</p>
-<p>DSD names the audio representation; DSF names one way to store it. A .dsf extension does not mean the audio output reaches a DAC as native DSD.</p>
+<p>A <strong>DSF</strong>, or DSD Stream File, stores <a href="../../../audio/formats/DSD.html">Direct Stream Digital</a> audio as channel blocks plus a format description and optional tags. Its sample count is especially useful because the final stored block may include padding.</p>
+<p>Sony's specification describes a DSD header, a fmt description, a data chunk, and an optional ID3v2 metadata area at the end. The header supplies the file size and a pointer to the metadata; the format description supplies channel arrangement, sampling frequency, and sample count.</p>
+<h2 id="follow-one-second-through-the-blocks">Follow one second through the blocks</h2>
+<p>Take an illustrative stereo DSD source at 2,822,400 one-bit samples per second per channel. Its unpadded audio needs:</p>
+<p><code>2,822,400 ÷ 8 = 352,800 bytes per channel per second</code></p>
+<p>The stereo total is 705,600 bytes. DSF groups the data into 4,096-byte blocks for each channel, with a block for one channel followed by a block for the other before the next block group.</p>
+<p>One second requires ceil(352,800 / 4,096) = 87 blocks per channel. Those blocks occupy 356,352 bytes per channel, or 712,704 for stereo. The difference, 7,104 bytes across both channels, is final-block padding in this simplified one-second example. Container headers and optional tags add further bytes.</p>
 <table>
 <thead>
 <tr>
-<th>DSF component</th>
-<th>What it contributes</th>
+<th>Quantity</th>
+<th>Reader interpretation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>DSD header</td>
-<td>File size and optional metadata location</td>
+<td>Sampling frequency</td>
+<td>How many one-bit sample instants occur per second</td>
 </tr>
 <tr>
-<td>Format chunk</td>
-<td>Channel layout, sample rate, and sample count</td>
+<td>Sample count</td>
+<td>How many of those instants belong to each channel</td>
 </tr>
 <tr>
-<td>Data chunk</td>
-<td>Raw DSD in blocks for each channel</td>
+<td>Channel type and count</td>
+<td>Which channel sequences are present</td>
 </tr>
 <tr>
-<td>Optional metadata</td>
-<td>ID3v2 tags stored at the end of the file</td>
+<td>Block size</td>
+<td>How the channel data is arranged in storage</td>
 </tr>
 </tbody>
 </table>
-<p>Sony's published specification describes 4,096-byte blocks per channel. Padding can occupy the final block, so the stored sample count matters when determining the actual audio duration.</p>
-<h2 id="storage-and-output-are-separate-questions">Storage and output are separate questions</h2>
-<p>DSF can store album and track descriptions through ID3v2. That makes it useful for tagged DSD collections, but the particular reader still decides which tags it exposes. Preserve and check the tags separately when changing packaging.</p>
-<p>For an Emby playback investigation, distinguish the source file from the output path. A pipeline may read DSD and convert it to PCM for the selected app or device. That conversion concerns sample representation, not merely the DSF container. Native output needs compatible handling throughout the path.</p>
-<p><a href="DSDIFF-Container.html">DSDIFF, usually .dff</a>, is another container used for DSD. Its data arrangement and metadata conventions differ. Renaming DSF to DFF does not translate those structures.</p>
-<p>Likewise, repackaging raw DSD is different from decoding it to PCM. Before comparing two copies, inspect their <a href="../../../audio/fundamentals/sample-representation/Audio-Sample-Rate.html">sample rates</a>, channels, audio representation, and full duration. A new extension alone says little about whether the original signal or useful tags were preserved.</p>
+<p>The reader stops presenting according to the valid sample count. Dividing the whole padded file size by an assumed audio rate would overestimate its duration.</p>
+<h2 id="bits-in-a-byte-are-part-of-the-storage-convention">Bits in a byte are part of the storage convention</h2>
+<p>Eight successive one-bit samples are packed into a byte. The format's representation fields specify how the bits are interpreted; reversing their order changes their time sequence, even though it does not change the number of bytes. A package conversion must respect the bit and channel arrangement rather than treat the data as PCM integers.</p>
+<p><a href="DSDIFF-Container.html">DSDIFF</a> arranges DSD differently. A converter can translate that arrangement while preserving the DSD sequence. Converting DSD to PCM instead constructs a different sample representation and requires audio-processing work.</p>
+<h2 id="tags-do-another-job">Tags do another job</h2>
+<p>DSF's optional ID3v2 area can describe artist, album, title, or artwork. It is located through the header pointer, independently of the samples' duration. A music library's title information can therefore change without changing the stored one-bit signal.</p>
+<p>For an Emby session, distinguish reading this source from the subsequent output. The actual route may preserve DSD or convert it for the app and device. The DSF header explains what was stored; the delivered format explains what the next stage receives.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

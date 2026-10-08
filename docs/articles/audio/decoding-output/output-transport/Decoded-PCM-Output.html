@@ -106,39 +106,78 @@
 <h1>Decoded PCM Output</h1>
 
 
-<p>When a receiver displays <strong>PCM</strong>, it is receiving sample values rather than being asked to decode the file's original compressed codec. The player or an earlier component has already reconstructed the audio.</p>
-<p>This can be the normal result of playing a lossless soundtrack. Decoding FLAC or a supported TrueHD presentation to PCM does not itself introduce lossy compression.</p>
+<p>After a decoder reconstructs audio, its output is usually <strong>PCM sample values</strong> for the next processing stage. A receiver that detects PCM is being given those values rather than the original compressed soundtrack to decode.</p>
+<p>Follow a lossless music example to see where preservation can change.</p>
+<h2 id="trace-the-samples-not-just-the-output-label">Trace the samples, not just the output label</h2>
+<p>Consider 24-bit stereo FLAC at 44.1 kHz, a player with a volume setting of one half, and an output fixed at 48 kHz:</p>
 <table>
 <thead>
 <tr>
-<th>What to check</th>
-<th>Why it matters</th>
+<th>Stage</th>
+<th>Audio representation or operation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Output channel count and layout</td>
-<td>Confirm whether the intended speaker presentation survived</td>
+<td>FLAC source</td>
+<td>Compressed description of the original integer samples</td>
 </tr>
 <tr>
-<td>Output sample rate</td>
-<td>Identify any rate conversion</td>
+<td>Decode</td>
+<td>Restore those samples into a working representation</td>
 </tr>
 <tr>
-<td>Valid sample precision</td>
-<td>Separate audio precision from storage-word size</td>
+<td>Volume</td>
+<td>Multiply their amplitudes by 0.5</td>
 </tr>
 <tr>
-<td>Volume, mixing, and effects</td>
-<td>Identify processing applied after decoding</td>
+<td>Rate conversion</td>
+<td>Calculate the signal at 48,000 positions per second</td>
+</tr>
+<tr>
+<td>Output formatting</td>
+<td>Pack the result for the device's PCM interface</td>
 </tr>
 </tbody>
 </table>
-<p>A 24-bit signal can travel in a 32-bit storage word, so those two numbers need not match. Similarly, a high-rate PCM output can contain resampled lower-rate content rather than a high-rate original recording.</p>
-<h2 id="pcm-does-not-identify-the-source">PCM does not identify the source</h2>
-<p>Both lossy and lossless decoders produce PCM. A receiver's PCM label therefore cannot tell you whether the library file was MP3, FLAC, or another codec.</p>
-<p>Ordinary channel PCM also does not carry the original object-position metadata of an immersive bitstream. A supported player can first render an immersive mix into output channels, or use a metadata-bearing path such as <a href="Dolby-MAT.html">Dolby MAT</a>. Those are different results.</p>
-<p>In an Emby session, compare the selected source, <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">server delivery</a>, and actual PCM output. A change from 7.1 to 2.0 needs investigation; a change from a compressed format's name to PCM can simply show that decoding happened in the player.</p>
+<p>Lossless decoding restores the source values. The next steps intentionally make another output representation. The PCM label alone cannot tell you whether those steps occurred.</p>
+<p>A source sample of +0.6 becomes +0.3 under half gain. If a fractional result cannot fit the final integer grid exactly, rounding/dither becomes another conversion decision. Rate conversion also changes the sequence's positions and count while preserving its intended duration.</p>
+<h2 id="read-the-complete-output-format">Read the complete output format</h2>
+<table>
+<thead>
+<tr>
+<th>Output property</th>
+<th>Why it is needed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sample rate</td>
+<td>Defines when each frame is presented</td>
+</tr>
+<tr>
+<td>Channel layout/order</td>
+<td>Associates values with intended positions</td>
+</tr>
+<tr>
+<td>Number representation</td>
+<td>Specifies integer or float interpretation</td>
+</tr>
+<tr>
+<td>Storage size and valid precision</td>
+<td>Defines how meaningful bits occupy sample words</td>
+</tr>
+</tbody>
+</table>
+<p>A 24-bit presentation can occupy 32-bit words. A six-channel output also needs named roles; an array size of six is insufficient to establish where the center belongs.</p>
+<p>For a block of 480 sample frames at 48 kHz, playback time is 10 ms, regardless of how many channels the frame contains. A device consumes complete frames on that timeline.</p>
+<h2 id="lossy-decoders-produce-pcm-too">Lossy decoders produce PCM too</h2>
+<p>MP3 and other lossy codecs reconstruct their encoded approximation as PCM. Sending those samples uncompressed to an amplifier does not restore the missing original data, but it can avoid another lossy encoding.</p>
+<p>The decoded representation describes the current signal. Its source history must be obtained earlier in the path.</p>
+<h2 id="place-an-immersive-render-deliberately">Place an immersive render deliberately</h2>
+<p>An object-aware player can render spatial content into speaker-channel PCM or binaural ear signals. Those can be useful finished spatial outputs. They no longer give a later receiver the source's original object instructions to adapt again.</p>
+<p>A supported metadata-bearing path such as <a href="Dolby-MAT.html">Dolby MAT</a> can instead carry the relevant audio and spatial information onward. It should not be confused with ordinary channel PCM.</p>
+<p>For an Emby session, record which source was reconstructed and which gain, layout, rate, or spatial operation followed. That explains a PCM result as a sequence of decisions rather than as a verdict that compression quality or immersive content must have been lost.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

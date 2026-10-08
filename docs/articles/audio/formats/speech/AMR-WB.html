@@ -106,40 +106,38 @@
 <h1>AMR-WB Speech Audio</h1>
 
 
-<p><strong>AMR-WB is the wideband member of Adaptive Multi-Rate speech coding.</strong> It carries a broader voice spectrum than AMR-NB and is also standardized by ITU-T as G.722.2.</p>
-<p>The similar names G.722 and G.722.2 do not make them the same codec. A decoder must support the specific format.</p>
+<p>The “wideband” in <strong>AMR-WB</strong> means that its speech representation retains a broader voice spectrum than AMR-NB. It is also standardized as <strong>ITU-T G.722.2</strong>, a distinct codec from G.722.</p>
+<p>At 16 kHz, each 20 ms frame corresponds to 320 sample positions. That greater time-grid capacity helps preserve upper-frequency speech cues, while the codec still uses a lossy voice-model reconstruction.</p>
+<h2 id="use-more-coded-bits-for-the-same-speech-duration">Use more coded bits for the same speech duration</h2>
 <table>
 <thead>
 <tr>
-<th>AMR-WB property</th>
-<th>Value</th>
+<th>AMR-WB mode endpoint</th>
+<th style="text-align: right;">Bits per 20 ms active-speech frame</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Sample rate</td>
-<td>16 kHz</td>
+<td>6.60 kbit/s</td>
+<td style="text-align: right;">132</td>
 </tr>
 <tr>
-<td>Speech-frame duration</td>
-<td>20 ms</td>
-</tr>
-<tr>
-<td>Samples per frame</td>
-<td>320</td>
-</tr>
-<tr>
-<td>Speech coding modes</td>
-<td>Nine rates, from 6.60 to 23.85 kbit/s</td>
+<td>23.85 kbit/s</td>
+<td style="text-align: right;">477</td>
 </tr>
 </tbody>
 </table>
-<p>The codec uses algebraic code-excited linear prediction. In practical terms, it stores a compact voice model and the information needed to drive it, rather than an exact copy of every source sample.</p>
-<p>Wideband speech can retain more of the upper-frequency cues that make voices sound clear. It is still lossy speech coding, and does not automatically offer faithful music reproduction.</p>
-<h2 id="recognizing-a-stored-recording">Recognizing a stored recording</h2>
-<p>AMR-WB frames can be stored using the RFC 4867 file format, conventionally ending in AWB, or inside a 3GP container. The header and codec identifier are better evidence than a renamed extension.</p>
-<p>An AMR-WB recording in an Emby library should be evaluated as the source actually encoded. A later high-rate output or conversion cannot make it an uncompressed studio recording, and a client's AMR-NB decoder should not be assumed to decode AMR-WB.</p>
-<p>If a file sounds unexpectedly narrow, inspect its codec and source properties before treating the amplifier's output sample rate as evidence of the recording's bandwidth.</p>
+<p>There are nine speech modes between those endpoints. The algebraic CELP reconstruction uses the selected parameters/excitation to create the frame's speech samples. A higher mode supplies more information within the same time interval; it does not make the speech play more slowly.</p>
+<p>The sample rate's 8 kHz Nyquist boundary is a property of the grid. The codec's defined filtering and coding determine its actual preserved band. Grid capacity and recording bandwidth should therefore be read separately.</p>
+<h2 id="account-for-a-stored-awb-file">Account for a stored AWB file</h2>
+<p>RFC 4867 stores active-speech frame data in whole bytes, with a frame-header octet. At the 23.85 kbit/s mode, 477 bits need 60 bytes when padded. The frame occupies <strong>61 bytes</strong> including its header.</p>
+<p>At 50 such frames per second:</p>
+<p>61 × 50 × 8 = <strong>24,400 bit/s</strong>.</p>
+<p>That is above the nominal 23,850 bit/s because of padding and framing. The initial file header adds a small further amount; silence modes or 3GP packaging can change the complete file rate.</p>
+<h2 id="compare-speech-representations-meaningfully">Compare speech representations meaningfully</h2>
+<p>An older narrowband recording can sound dull next to a genuine AMR-WB source because frequency cues were never retained in the older source. Merely converting that old recording to an AMR-WB or high-rate PCM file cannot supply them.</p>
+<p>Conversely, an AMR-WB source can legitimately reach an Emby player as resampled PCM after decoding. The output label describes its current representation; the actual source's codec and coded band explain what was available to reconstruct.</p>
+<p>For an AWB or 3GP recording, keep those observations with the active mode, channel count, and full duration. They distinguish a storage-rate calculation, a decoder-format issue, and the expected character of a compressed voice recording.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

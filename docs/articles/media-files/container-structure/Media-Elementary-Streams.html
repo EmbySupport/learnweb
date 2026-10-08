@@ -106,14 +106,40 @@
 <h1>Elementary Streams</h1>
 
 
-<p>An elementary stream is one encoded component, such as a sequence of H.264 video data or AAC audio data. It is the material a container packages, rather than the complete movie presentation.</p>
-<p>The word <em>elementary</em> does not mean simple to decode. The stream can contain sophisticated compression, reference pictures, and codec-specific headers.</p>
-<h2 id="what-can-be-missing-outside-the-container">What can be missing outside the container</h2>
-<p>A raw video stream can describe the pictures without carrying the same presentation timeline, chapter list, language tags, or track-selection information as a container file. Some timing and configuration may be available inside the codec data, but the available information depends on the format.</p>
-<p>That distinction matters when an extracted video stream plays too quickly or loses synchronization after being combined with audio. The original container may have supplied timing that extraction did not preserve.</p>
-<p>A <strong>packetized elementary stream (PES)</strong> adds a systems-layer wrapper around elementary-stream data in MPEG systems. That wrapper can carry timestamps; it is still a different layer from the smaller transport-stream packets that deliver it.</p>
-<p>For an Emby library, keeping a suitable container is usually the more useful arrangement because it carries the presentation as a whole. Extracting a raw stream can be helpful for technical diagnosis, but it is not a general compatibility fix.</p>
-<p>Even copying encoded data between containers can require <a href="Media-Multiplexing.html">framing changes</a>. For example, H.264 units can be represented with start codes or with lengths, depending on their packaging. Changing that framing is not the same as recompressing the picture.</p>
+<p>After a demuxer opens a movie, the video decoder receives encoded video rather than the entire movie file. That one coded component is an <strong>elementary stream</strong>. Its codec syntax describes how to reconstruct the media; the outer container supplies additional presentation organization.</p>
+<p>For AVC/H.264, the elementary data contains units such as sequence configuration, picture configuration, and coded slices. The decoder interprets these to reconstruct pictures and maintain the reference state needed for later pictures. The elementary stream is thus structured data, even without a container around it.</p>
+<h2 id="encoded-picture-packetized-picture-transport-packets">Encoded picture, packetized picture, transport packets</h2>
+<p>These three layers are easy to confuse:</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>What is added or described</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Elementary stream</td>
+<td>Codec configuration and encoded media syntax</td>
+</tr>
+<tr>
+<td>Packetized elementary stream, PES</td>
+<td>MPEG systems framing that can include presentation and decoding timestamps</td>
+</tr>
+<tr>
+<td>MPEG transport packets</td>
+<td>Small fixed-size units carrying pieces of PES data or signalling, identified by PID</td>
+</tr>
+</tbody>
+</table>
+<p>A PES packet can span many transport packets. Neither boundary necessarily marks one independently displayed picture. Demultiplexing transport stream removes the delivery structure to recover the appropriate component and its timing.</p>
+<h2 id="what-happens-when-the-component-is-extracted">What happens when the component is extracted?</h2>
+<p>Consider variable-frame-rate video whose first pictures are meant to appear at 0, 40, and 100 milliseconds. An extraction that retains only coded picture data may lose the container's distinction between the 40-millisecond and 60-millisecond gaps. If a later tool assumes evenly spaced 25 fps pictures, it would schedule them at 0, 40, and 80 milliseconds instead.</p>
+<p>Whether timing survives depends on the codec data, extraction format, and writing tool. The example shows why “the encoded picture bytes were copied” and “the presentation was preserved” are different observations.</p>
+<p>A container also carries language, track selection, subtitles, and chapters outside the video elementary stream. Extracting video alone omits those components by definition. For a usable Emby library copy, <a href="Media-Multiplexing.html">remuxing</a> into a suitable container normally retains more of the presentation than a raw extraction does.</p>
+<h2 id="framing-can-change-without-picture-decoding">Framing can change without picture decoding</h2>
+<p>An AVC unit needs an identifiable boundary. One packaging convention prefixes a start code; another prefixes a byte length. A bitstream filter can translate that framing and move configuration to the required place. It does not need to reconstruct and re-encode each picture to do so.</p>
+<p>When investigating an extracted source, ask which layer the tool wrote and which information that layer actually retains. That makes a missing timeline or track description an identifiable result of extraction, rather than a mysterious change in the codec.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

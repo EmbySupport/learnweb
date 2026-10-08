@@ -106,16 +106,49 @@
 <h1>Container Indexes and Seeking</h1>
 
 
-<p>Moving a playback slider to 10 minutes asks a time question. The file is stored as bytes. A container index helps the player translate between those two views.</p>
-<p>Without useful navigation information, the reader may have to scan data to find a suitable position. An index can shorten that search, especially for large files or remote storage.</p>
+<p>Move the playback slider to a scene and the player receives a time, not a file address. <strong>Seeking</strong> must turn that time into readable bytes and then rebuild enough decoding state to produce the requested picture.</p>
 <p><img src="images/seeking-timeline.svg" alt="Seeking to a target between random access points starts at an earlier point and decodes forward to the requested picture."></p>
-<p><em>Simplified timeline. Exact seeking behavior depends on the codec, index, and player.</em></p>
-<h2 id="finding-bytes-is-only-the-first-step">Finding bytes is only the first step</h2>
-<p>Compressed video often needs earlier reference pictures. The player therefore commonly seeks to a suitable <strong>random access point</strong>, then decodes forward to the requested moment. The index cannot make every picture independently decodable.</p>
-<p>In Matroska, <strong>Cues</strong> provide timestamp-to-cluster references, and the specification recommends referencing video keyframes. Other containers use their own tables or indexes.</p>
-<p>An Emby seek can involve several delays: locating data, reading it from storage, obtaining network bytes, and restarting decoding or a server conversion. A slow jump is not enough by itself to identify which stage is responsible.</p>
-<p>Compare a file that starts normally but seeks poorly with one that is slow in both cases. Missing indexes can be rebuilt by a suitable remux when the media remains readable; damaged encoded pictures require a different response.</p>
-<p><a href="Media-Chapter-Markers.html">Chapter markers</a> give named destinations on the timeline. They are navigation labels, not a substitute for the container's means of locating and decoding the requested media.</p>
+<p><em>Conceptual seek. Random-access positions and index detail depend on the actual codec and container.</em></p>
+<h2 id="a-target-at-10-minutes-and-3-seconds">A target at 10 minutes and 3 seconds</h2>
+<p>Suppose a simplified index records usable video restart positions at 600 and 605 seconds. The viewer requests 603 seconds. The reader chooses the earlier suitable position, 600 seconds, and obtains its location in the file.</p>
+<p>In Matroska, a <strong>Cue</strong> can identify a timestamp, track, and location within the segment, typically referring to a cluster holding a video random-access point. The reader follows that reference, parses the cluster's blocks, and supplies the relevant encoded data to the decoder.</p>
+<p>It then decodes forward. Pictures before the requested moment can be reconstructed without being shown; they establish the reference state required by later pictures. Once the requested time is reached, normal presentation resumes.</p>
+<table>
+<thead>
+<tr>
+<th>Part of the seek</th>
+<th>Question answered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Timeline lookup</td>
+<td>Which earlier usable entry covers 603 s?</td>
+</tr>
+<tr>
+<td>Container lookup</td>
+<td>Where are its bytes and selected tracks?</td>
+</tr>
+<tr>
+<td>Input read</td>
+<td>Can the storage or server deliver those bytes promptly?</td>
+</tr>
+<tr>
+<td>Decoder restart</td>
+<td>What references or preroll must be reconstructed?</td>
+</tr>
+<tr>
+<td>Output scheduling</td>
+<td>Which decoded picture and audio samples should first be presented?</td>
+</tr>
+</tbody>
+</table>
+<p>At an illustrative 25 fps, three seconds contain 75 picture intervals. This gives a sense of the forward-decoding work in the example; a real restart depends on dependencies and preroll, not just multiplying the requested gap by frame rate.</p>
+<h2 id="what-an-index-changes">What an index changes</h2>
+<p>Without suitable entries, a reader may scan media to discover timestamps and restart positions. An index avoids much of that search. It is navigation information about the media, so adding it can improve a slow seek without recompressing the pictures.</p>
+<p><a href="Media-Chapter-Markers.html">Chapters</a> answer a different question: they give names to times. “Scene 4 starts at 603 seconds” still needs this byte lookup and decoding process.</p>
+<p>An HTTP reader can request a byte range corresponding to the seek rather than fetch the whole prefix. A server transcoding for an Emby app may instead restart source reading and conversion, then generate new output around the desired time. These paths put the same time request through different combinations of storage, network, and processing.</p>
+<p>Compare where the delay occurs. A reader spending time scanning a source has a different problem from one that locates the bytes quickly but cannot fetch or decode them fast enough. A readable file with missing navigation can often be <a href="../Media-Multiplexing.html">remuxed</a> to create new indexes. An unreadable or damaged payload needs a response directed at the media itself.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

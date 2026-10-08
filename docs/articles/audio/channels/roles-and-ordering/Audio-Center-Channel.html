@@ -106,35 +106,42 @@
 <h1>The Audio Center Channel</h1>
 
 
-<p>The <strong>center channel</strong> is a separate signal assigned to the front-center position in a multichannel layout. It is commonly used for dialogue anchored to the screen, but can also carry music, effects, or other front sounds.</p>
-<p>A dedicated center helps keep that position stable for listeners who are not seated exactly between the front left and right speakers. Stereo can create a <a href="../layouts/Stereo-Audio.html">phantom center</a> by sending matching signals to both sides, but its apparent position changes more with the listening position.</p>
+<p>The effects are loud, but the actors seem almost silent. One plausible cause is that a surround mix's <strong>center signal is missing from the output</strong>. Many screen-centered voices live there, while substantial music and effects remain in left/right or surrounds.</p>
+<p>The center is a separate front-center channel, not a special filter that detects speech. A mix can place music, effects, and panned voices there as well.</p>
+<h2 id="why-the-channel-exists">Why the channel exists</h2>
+<p>Stereo can put matching dialogue in left and right to create a <a href="../layouts/Stereo-Audio.html">phantom center</a>. That image is most stable near the intended listening position. Listeners sitting closer to one speaker hear different levels and arrival times, so the voice can appear to move toward that side.</p>
+<p>A dedicated center speaker supplies an actual source near the picture. Its placement helps anchor screen dialogue across a wider seating area. This is the physical reason for the channel, rather than a requirement that every spoken word be isolated into it.</p>
+<h2 id="preserve-it-when-reducing-the-layout">Preserve it when reducing the layout</h2>
+<p>Consider an illustrative surround moment with front-left +0.10, front-right +0.10, and center +0.60. A stereo fold-down using a center contribution of 0.707 gives each front output:</p>
+<p>0.10 + (0.707 × 0.60) ≈ <strong>0.524</strong>.</p>
+<p>Taking only front left and right instead yields +0.10 per side. It has lost the much stronger center contribution.</p>
 <table>
 <thead>
 <tr>
-<th>Presentation</th>
-<th>How a centered voice can be carried</th>
+<th>Operation</th>
+<th>Center content in the two outputs</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Stereo</td>
-<td>Shared between left and right</td>
+<td>Retain only the original front pair</td>
+<td>Omitted</td>
 </tr>
 <tr>
-<td>Conventional 5.1 or 7.1</td>
-<td>Often in the separate center channel</td>
+<td>Proper fold-down</td>
+<td>Combined using the selected mixing matrix</td>
 </tr>
 <tr>
-<td>Stereo conversion of surround</td>
-<td>Center contribution combined into left and right</td>
+<td>Use a separate supplied stereo track</td>
+<td>Present according to that track's own mix</td>
 </tr>
 </tbody>
 </table>
-<p>These are common mixing choices, not a guarantee that all spoken words occupy one channel. A character speaking from elsewhere in the scene may be deliberately panned, and ambience can accompany dialogue across several positions.</p>
-<h2 id="why-voices-can-disappear-while-effects-remain">Why voices can disappear while effects remain</h2>
-<p>If a surround track's center is sent to an unavailable output or omitted during an incorrect conversion, much of its dialogue may be lost while music and effects remain audible. Taking only front left and right from a 5.1 track is not the same operation as making a proper stereo presentation.</p>
-<p>The opposite is also possible: a center speaker can be present but level, placement, or room acoustics can make voices difficult to understand. Channel routing and dialogue intelligibility are related checks, not interchangeable diagnoses.</p>
-<p>When playing through Emby, inspect the selected track and the actual output arrangement before concluding that the source mix is defective. A stereo version of the same material, if available, can provide a useful comparison. Increasing overall volume cannot restore a channel that never reaches the output.</p>
+<p>The coefficient is an illustration of a common contribution, not a complete universal downmix recipe. Other channels and simultaneous peaks require appropriate headroom. The <a href="../../decoding-output/conversion-fallback/Audio-Downmixing.html">downmixing page</a> develops that combination.</p>
+<h2 id="separate-missing-content-from-poor-intelligibility">Separate missing content from poor intelligibility</h2>
+<p>If the channel never arrives, changing the receiver's overall volume cannot restore it. The useful comparison is whether center material survives the selected track's decode, layout conversion, and output routing.</p>
+<p>If the channel does arrive, a different problem can make speech hard to understand: an incorrectly set center level, placement relative to the listener, room reflections, or the mix itself. A receiver's local channel test can verify its speaker route, while a known multichannel identification file can test more of the media path.</p>
+<p>In an Emby movie, a supplied stereo mix can be a useful comparison with the surround track's stereo conversion. If one retains clear dialogue and the other loses it, the specific fold-down or routing deserves attention. These tests distinguish an absent signal from a signal that is present but obscured.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

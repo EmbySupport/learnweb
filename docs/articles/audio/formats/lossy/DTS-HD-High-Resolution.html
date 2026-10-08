@@ -106,35 +106,47 @@
 <h1>DTS-HD High Resolution Audio</h1>
 
 
-<p><strong>DTS-HD High Resolution Audio is lossy.</strong> Its name refers to an enhanced audio presentation, not to exact preservation of every original PCM sample. It is distinct from the lossless <a href="../lossless/DTS-HD-Master-Audio.html">DTS-HD Master Audio</a> format.</p>
-<p>In disc soundtracks, the High Resolution format can extend the conventional DTS core with additional audio information. Consumer presentations support up to 7.1 channels and 96 kHz sampling, according to the format description in Denon's receiver documentation.</p>
+<p><strong>DTS-HD High Resolution Audio is the lossy enhanced DTS-HD presentation.</strong> It is different from lossless DTS-HD Master Audio. Consumer descriptions include up to 7.1 channels and 96 kHz capability, providing more presentation scope than conventional core-only playback.</p>
+<p>The important word “lossy” remains compatible with improvements over a core.</p>
+<h2 id="additional-information-can-reduce-an-error-without-eliminating-it">Additional information can reduce an error without eliminating it</h2>
+<p>The DTS extension family includes XBR, which can encode quantized residual information describing what a core representation did not retain. Its decoder adds the reconstructed residual to the corresponding core representation.</p>
+<p>A numerical illustration makes the distinction clear:</p>
 <table>
 <thead>
 <tr>
-<th>Playback result</th>
-<th>What has happened</th>
+<th>Step</th>
+<th style="text-align: right;">Illustrative value</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>DTS-HD High Resolution decoding</td>
-<td>The supported enhanced presentation is reconstructed</td>
+<td>Source component</td>
+<td style="text-align: right;">+0.83</td>
 </tr>
 <tr>
-<td>DTS core decoding</td>
-<td>Only the compatible lossy core presentation is used</td>
+<td>Core reconstruction</td>
+<td style="text-align: right;">+0.75</td>
 </tr>
 <tr>
-<td>PCM received by the amplifier</td>
-<td>Decoding happened earlier in the path</td>
+<td>Difference to be corrected</td>
+<td style="text-align: right;">+0.08</td>
+</tr>
+<tr>
+<td>Quantized extension correction</td>
+<td style="text-align: right;">+0.05</td>
+</tr>
+<tr>
+<td>Enhanced reconstruction</td>
+<td style="text-align: right;">+0.80</td>
 </tr>
 </tbody>
 </table>
-<p>A PCM input label does not tell you which of the first two presentations was decoded. Channel count and the player's reported output can help distinguish them.</p>
-<h2 id="two-easily-confused-quality-labels">Two easily confused quality labels</h2>
-<p>A 24-bit or 96 kHz description concerns the audio sample representation supported by the format. It does not make lossy compression reversible. Likewise, a receiver that abbreviates its input as “DTS-HD” may not distinguish High Resolution from Master Audio on that particular display.</p>
-<p>An Emby movie can retain its High Resolution soundtrack while the player chooses a supported decoding or output route. The receiver's processing mode is another separate choice: upmixing a conventional input cannot recreate extension information that never reached it.</p>
-<p>When a setup plays DTS but not this DTS-HD variant, inspect the full source profile, available fallback component, and output path. Merely enabling a generic DTS option does not establish that every component understands the High Resolution extensions.</p>
+<p>The enhancement moved the result closer to +0.83 but did not restore it exactly. These values illustrate quantized correction; they are not a DTS packet example or a complete specification of every High Resolution stream's extension combination.</p>
+<p>Lossless correction must preserve the necessary difference exactly. That is a different reconstruction promise, developed in <a href="../lossless/DTS-HD-Master-Audio.html">DTS-HD Master Audio</a>.</p>
+<h2 id="follow-the-selected-presentation">Follow the selected presentation</h2>
+<p>A compatible core-only route uses the existing lossy core and misses the supported enhanced result. A full High Resolution decoder uses the appropriate extensions. Either decoder can then output ordinary PCM.</p>
+<p>A receiver's PCM label consequently identifies where decoding finished, not which DTS presentation was reconstructed. To distinguish the routes, identify the player's selected decoder/result and output layout.</p>
+<p>High-rate or 24-bit descriptions concern supported sample representation. They do not make the quantized correction in a lossy coding process reversible. The useful distinction is the reconstructed presentation and its codec profile, rather than treating every “DTS-HD” display abbreviation as Master Audio.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

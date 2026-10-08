@@ -106,38 +106,40 @@
 <h1>Luminance and Nits</h1>
 
 
-<p><strong>One nit equals one candela per square metre (cd/m²).</strong> Both units describe luminance: the light leaving a surface in a particular direction, weighted for human vision.</p>
-<p>In video discussions, nits help distinguish a small bright reflection from the ordinary white objects around it. They are not a measure of resolution, color saturation, or the electricity a television consumes.</p>
+<p><strong>1 nit = 1 candela per square metre (cd/m²).</strong> The unit expresses luminance: light leaving a surface in a specified direction, weighted for human vision.</p>
+<p>The number is useful only when its object is identified:</p>
 <table>
 <thead>
 <tr>
-<th>Number being discussed</th>
-<th>What it describes</th>
+<th>Stated number</th>
+<th>Read it as</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>A pixel or patch at 500 nits</td>
-<td>The intended or measured luminance of that part of the image</td>
+<td>A patch at 500 nits</td>
+<td>The intended or measured luminance of that patch</td>
 </tr>
 <tr>
-<td>A 1,000-nit mastering display</td>
-<td>A capability or configuration of the reference display used during grading</td>
+<td>Mastering maximum of 1,000 nits</td>
+<td>The mastering display's configured maximum</td>
 </tr>
 <tr>
-<td>A display's advertised peak</td>
-<td>A measured capability under particular test conditions</td>
+<td>Television peak of 1,000 nits</td>
+<td>A display result under stated test conditions</td>
 </tr>
 <tr>
 <td>MaxFALL of 200 nits</td>
-<td>The highest frame-average content light level reported for the program</td>
+<td>A reported frame-average content-light bound</td>
 </tr>
 </tbody>
 </table>
-<p>The same unit does not make these interchangeable. A small patch at 1,000 nits and an entire frame averaging 1,000 nits are very different demands on a display.</p>
-<p>HDR production guidance uses a reference white of 203 nits in specified reference conditions. This leaves space above ordinary white for highlights; it is not a requirement that every white shirt in every film measure 203 nits.</p>
-<p>There is another easy trap: <strong>twice the nits does not mean twice the perceived brightness</strong>. Vision adapts to the scene and surroundings. Nor is twice the video code value necessarily twice the luminance: transfer functions such as PQ are nonlinear.</p>
-<p>For an Emby playback comparison, keep the distinction between the source's light levels and the screen's actual output. <a href="../tone-mapping/fundamentals/Tone-Mapping-Why.html">Tone mapping</a> can deliberately make them different. A source metadata number is not a measurement of your television.</p>
+<h3 id="patch-size-makes-a-practical-difference">Patch size makes a practical difference</h3>
+<p>A small 1,000-nit reflection and a large 1,000-nit field have the same local luminance, but ask the screen to illuminate different areas. The screen's power and thermal behavior can make the sustainable result depend on patch size and duration. A peak measurement therefore needs its test conditions beside the number.</p>
+<h3 id="signal-coordinates-and-light-units-are-different">Signal coordinates and light units are different</h3>
+<p>Video transfer functions establish the relationship between stored signal and light. With PQ, a normalized signal near 0.508 represents approximately 100 nits for neutral gray; doubling that signal would not double the nits. The <a href="../color-standards/transfer-functions/Transfer-Function-PQ.html">PQ curve</a> shows the nonlinear relationship.</p>
+<p>HDR production guidance uses a 203-nit reference white under specified reference conditions, leaving space above ordinary white for highlights. Actual object placement is a grading decision.</p>
+<p>During playback, <a href="../tone-mapping/fundamentals/Tone-Mapping-Why.html">tone mapping</a> can change source light levels to fit the output. Keep the source request, metadata field, and measured screen output named separately when comparing an Emby session.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

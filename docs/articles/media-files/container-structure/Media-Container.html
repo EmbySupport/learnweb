@@ -106,16 +106,18 @@
 <h1>What Is a Media Container?</h1>
 
 
-<p>A container gives encoded picture and sound a usable file structure. It identifies the tracks, describes their formats, and provides timing so the player can put the right sound alongside the right picture.</p>
-<p>It can also carry navigation and descriptive material, such as chapters, language tags, titles, and attachments. Those features vary by format.</p>
+<p>Imagine extracting a film's encoded picture bytes and soundtrack bytes into two separate files. To play them together, software still needs to know which decoders to use, when each piece belongs, and how to find the point you ask to watch. A <strong>container</strong> supplies the organization around those components.</p>
 <p><img src="images/container-structure.svg" alt="Container structures describe tracks, hold encoded media, and provide timing and navigation."></p>
-<p><em>Conceptual components; their order and byte layout depend on the container.</em></p>
-<p>A container does not necessarily compress anything itself. Its video and audio tracks may already be compressed by their <a href="../fundamentals/Containers-and-Codecs.html">codecs</a>, or may contain uncompressed samples.</p>
-<h2 id="why-packaging-affects-playback">Why packaging affects playback</h2>
-<p>The app needs a container reader as well as decoders for the selected streams. Reading a familiar video codec out of an unfamiliar package is still a compatibility problem.</p>
-<p>Some containers concentrate navigation information in a central set of tables. Others distribute it among packets or fragments. This affects startup, seeking, and how useful an unfinished file may be. It does not establish picture quality.</p>
-<p>For Emby, a packaging problem can sometimes be solved by <a href="Media-Multiplexing.html">remuxing</a> compatible tracks into a different container. That can preserve the encoded picture while making the delivered stream easier for the app to read.</p>
-<p>When checking a file, look beyond the extension: verify its container, track descriptions, and <a href="timing-and-navigation/Media-Container-Seeking.html">seeking information</a>. A valid package and a supported decoder are separate parts of a successful playback path.</p>
+<p><em>The jobs are shared across container families; the arrangement of bytes differs.</em></p>
+<p>A file reader typically obtains three kinds of information. <strong>Track descriptions</strong> identify encoded components and their configuration. <strong>Media storage</strong> divides or groups their data so it can be read. <strong>Timing and navigation</strong> connect the groups with positions in the presentation.</p>
+<h2 id="follow-a-subtitle-alongside-a-scene">Follow a subtitle alongside a scene</h2>
+<p>Suppose a dialogue subtitle should appear from 12.4 to 14.0 seconds. The file must identify it as a subtitle component, store its text or bitmap, and associate it with those times. The video for that scene and its sound are other components. Reading them from one file does not make their internal encodings the same.</p>
+<p>The container reader extracts the chosen components and passes them to the appropriate decoder or renderer. The playback system schedules their results against a shared presentation time. That is how several differently encoded sequences become one viewing experience.</p>
+<p>Additional information can describe the track's language, name a chapter, or carry a font used by the subtitle renderer. These objects do not all behave like timed media: an attached font is a supporting file, while a subtitle event has a presentation interval.</p>
+<h2 id="a-seek-asks-a-different-question-from-ordinary-reading">A seek asks a different question from ordinary reading</h2>
+<p>Reading sequentially asks for the next data. Seeking to 12 minutes asks where data for that time lives and where decoding can restart. A container's <a href="timing-and-navigation/Media-Container-Seeking.html">index</a> or sample tables can map time to locations. Codec dependencies then determine whether earlier pictures must also be decoded.</p>
+<p><a href="../containers/iso-base-media-and-quicktime/MP4-Container.html">MP4</a> commonly describes stored samples through tables; <a href="../containers/matroska-family/Matroska-Container.html">Matroska</a> groups media in clusters and can index them with Cues. The general job is the same, even though a reader follows different structures.</p>
+<p>For Emby, this distinction makes a packaging change useful when the selected streams already suit an app but their container reader does not. <a href="Media-Multiplexing.html">Remuxing</a> recreates those descriptions and data arrangements in another format. Decoding the picture is a separate job, so the encoded picture can travel unchanged through a new container.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

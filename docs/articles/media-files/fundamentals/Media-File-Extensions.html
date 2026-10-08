@@ -106,13 +106,36 @@
 <h1>Media File Extensions</h1>
 
 
-<p>The ending of a filename helps an operating system choose an application and helps media software decide which files to examine. It is a useful clue, but it is not a technical report.</p>
-<p>A container extension such as <code>.mkv</code> normally tells you how tracks are packaged. It does not tell you the video codec, audio languages, resolution, or HDR format. Other endings, such as <code>.mp3</code>, are more closely associated with a particular encoded audio format.</p>
-<h2 id="renaming-does-not-convert">Renaming does not convert</h2>
-<p>Renaming <code>Movie.mkv</code> to <code>Movie.mp4</code> leaves every byte inside the file unchanged. A player that recognizes the contents may still open it; another may reject the mismatch. Neither outcome means conversion took place.</p>
-<p>Changing containers requires <a href="../container-structure/Media-Multiplexing.html">remultiplexing</a>. Changing a codec requires re-encoding the relevant stream.</p>
-<p>Emby library discovery and naming rules also depend on filenames and folder structure. Keep the expected extension for the actual file format, then use <a href="../inspection/Media-Probing.html">media inspection</a> to identify its contents. If a download or recording has a misleading ending, find out what it contains before renaming it.</p>
-<p>A small practical trap is hidden extensions: a file shown as <code>Movie.strm</code> may actually be <code>Movie.strm.txt</code>. Showing the full filename is often enough to explain why software does not recognize a newly created pointer file.</p>
+<p>A <strong>file extension</strong> is the part of a name after its final dot. It helps software choose an application or decide which files to examine. Some endings describe containers, while others conventionally identify one audio coding family.</p>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Usual interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Movie.mkv</td>
+<td>Matroska video container</td>
+</tr>
+<tr>
+<td>Recording.mov</td>
+<td>QuickTime container</td>
+</tr>
+<tr>
+<td>Song.mp3</td>
+<td>MPEG Layer III audio file</td>
+</tr>
+<tr>
+<td>Movie.strm</td>
+<td>A text pointer to another media source</td>
+</tr>
+</tbody>
+</table>
+<p>Consider a downloaded film named Movie.mp4. Changing that name to Movie.mkv alters the directory entry; its internal headers and media bytes stay the same. A real <a href="../container-structure/Media-Multiplexing.html">container conversion</a> reads those bytes and writes new packaging. The two operations affect different parts of the stored item.</p>
+<p>If the ending disagrees with <a href="../inspection/Media-Probing.html">inspection</a>, use the detected format to establish what the file actually is. Some readers examine its signature and open it despite the name; filename-based discovery can make a different choice.</p>
+<p>A second naming issue arises when extensions are hidden. A text editor may save Movie.strm.txt while the file browser displays Movie.strm. The full filename reveals why it is treated as ordinary text rather than a <a href="../playlists-and-references/Media-STRM-Files.html">media pointer</a>. Reading the internal format and viewing the full name resolve different kinds of naming mistake.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

@@ -106,16 +106,51 @@
 <h1>Blu-ray File Structure</h1>
 
 
-<p>A Blu-ray film does not have to live in one enormous .m2ts file. Its <strong>BDMV</strong> structure can define a feature through a playlist that selects ranges from several clips.</p>
-<p>That separation lets different presentations reuse media. It also explains why copying the largest stream file may omit parts of a movie, choose the wrong version, or lose chapter navigation.</p>
+<p>A Blu-ray feature can reuse some clips across different cuts and languages. Its <strong>BDMV</strong> structure keeps the stored media separate from the playlist selecting which ranges form a presentation.</p>
 <p><img src="images/bluray-file-structure.svg" alt="A BDMV directory contains playlists, clip information, media streams, and presentation entry files."></p>
-<p><em>Original simplified BDMV schematic. It shows the main relationships, not every directory or optional feature.</em></p>
-<p><strong>PLAYLIST</strong> holds .mpls files describing the clip sequence and playback ranges. <strong>CLIPINF</strong> holds .clpi files describing clips and access information. <strong>STREAM</strong> contains the actual .m2ts media, using <a href="../../containers/mpeg-systems/MPEG-Transport-Stream.html">transport-stream</a> packaging.</p>
-<p>The index and movie-object information provide entry and navigation logic. Interactive BD-J material can add further application behaviour, which is separate from simply decoding a stream file.</p>
-<h2 id="the-playlist-establishes-what-to-play">The playlist establishes what to play</h2>
-<p>Several playlists can reuse the same clips in different orders or ranges. Similar durations and sizes therefore do not always identify the version a viewer expects. Selecting a stream file bypasses the playlist's presentation decisions.</p>
-<p>For an Emby collection, distinguish the disc presentation from a remuxed movie in MKV or MP4. Playing the encoded feature and reproducing the disc's full menu or application behaviour are different capabilities. The result depends on the app, platform, and source layout; see the <a class="xref" href="https://emby.media/support/articles/Movie-Naming.html">movie organization guidance</a>.</p>
-<p>When making a self-contained copy of the feature, verify its scene order, full duration, audio, subtitles, and <a href="../../container-structure/timing-and-navigation/Media-Chapter-Markers.html">chapters</a>. Preserving the codecs is valuable, but it is not enough if the wrong playlist was selected. Keep the complete source until those presentation details have been checked.</p>
+<p><em>Simplified directory relationships. Optional directories and application details are omitted.</em></p>
+<p>PLAYLIST contains .mpls descriptions. CLIPINF contains .clpi clip information and access descriptions. STREAM contains the .m2ts encoded media. The playlist uses clip identities and ranges; the clip information helps the reader obtain suitable positions in the corresponding stream.</p>
+<h2 id="follow-one-playlist-through-three-clips">Follow one playlist through three clips</h2>
+<p>Take an invented feature playlist with these entries:</p>
+<table>
+<thead>
+<tr>
+<th>Clip</th>
+<th>Source range</th>
+<th style="text-align: right;">Length</th>
+<th>Position in the presentation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>00010</td>
+<td>10–70 s</td>
+<td style="text-align: right;">60 s</td>
+<td>0–60 s</td>
+</tr>
+<tr>
+<td>00020</td>
+<td>0–600 s</td>
+<td style="text-align: right;">600 s</td>
+<td>60–660 s</td>
+</tr>
+<tr>
+<td>00030</td>
+<td>5–95 s</td>
+<td style="text-align: right;">90 s</td>
+<td>660–750 s</td>
+</tr>
+</tbody>
+</table>
+<p>The viewer sees 750 seconds, or 12 minutes 30 seconds. A request for presentation time 700 seconds falls into clip 00030 at source time 5 + (700 − 660) = 45 seconds.</p>
+<p>The reader resolves that clip's information, locates the relevant <a href="../../containers/mpeg-systems/MPEG-Transport-Stream.html">M2TS</a> data, and begins decoding from an appropriate access point. It then maps the chosen source interval into the presentation's clock. The stored clip's complete duration is not the same as its selected contribution here.</p>
+<p>Another playlist could use an alternate middle clip or different ranges while reusing the opening and ending. Its scene sequence can differ even if the largest individual stream file is shared.</p>
+<h2 id="entry-logic-surrounds-the-playlist">Entry logic surrounds the playlist</h2>
+<p>index.bdmv and movie-object information provide presentation entry and navigation. Interactive BD-J material can implement further application behaviour. Reading one playlist's video is a narrower task than executing the entire disc's menus and application.</p>
+<p>A reader selecting the actual feature should therefore identify the intended playlist or disc navigation choice. File size and duration can be clues, but cannot uniquely distinguish reused clips, alternative cuts, or different branching arrangements.</p>
+<h2 id="create-a-self-contained-feature">Create a self-contained feature</h2>
+<p>A remux must follow the selected playlist, obtain each requested range, and write an output timeline with the chosen audio and subtitles. <a href="../../container-structure/timing-and-navigation/Media-Chapter-Markers.html">Chapter positions</a> need to map to that assembled timeline rather than remain unrelated clip-local times.</p>
+<p>For Emby, a disc presentation and a linear MKV/MP4 feature are different source forms. <a class="xref" href="https://emby.media/support/articles/Movie-Naming.html">Library organization</a> gives their context, while the playlist trace explains why copying one M2TS can produce the wrong movie. Preserving encoded streams is valuable only after the requested ranges and sequence have been identified.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

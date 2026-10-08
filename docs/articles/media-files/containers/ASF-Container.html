@@ -106,36 +106,40 @@
 <h1>ASF Container</h1>
 
 
-<p>Files ending in .wmv and .wma often use <strong>Advanced Systems Format (ASF)</strong> as their container. WMV and WMA also name codec families, which is why these extensions can blur the distinction between packaging and encoding.</p>
-<p>ASF organizes the file into identified objects. Its design includes timed data packets and optional navigation indexes, supporting both file playback and streaming-oriented uses.</p>
+<p>The Windows Media file extensions WMV and WMA often sit above an <strong>ASF</strong> package. Advanced Systems Format stores descriptions, timed media packets, and optional navigation as identified objects.</p>
+<p>ASF objects begin with a <strong>GUID</strong> identifying their kind and a size indicating their extent. A reader can recognize the descriptions it implements and use the object size to navigate through the structure.</p>
 <table>
 <thead>
 <tr>
-<th>Main ASF object</th>
-<th>What it provides</th>
+<th>Top-level object</th>
+<th>What the reader obtains</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Header</td>
-<td>Descriptions of streams and file properties</td>
+<td>File properties, stream descriptions, and optional metadata</td>
 </tr>
 <tr>
 <td>Data</td>
-<td>Packets carrying the encoded content</td>
+<td>Encoded media in packets</td>
 </tr>
 <tr>
-<td>Index objects, when present</td>
-<td>Information for finding positions efficiently</td>
+<td>Index objects</td>
+<td>Time-based access to packet positions</td>
 </tr>
 </tbody>
 </table>
-<p>The codec carried by a stream is a separate property. An ASF reader can recognize the structure and still lack the decoder needed for the audio or video inside.</p>
-<h2 id="understanding-an-older-windows-media-file">Understanding an older Windows Media file</h2>
-<p>For a file in an Emby collection, inspect the precise video and audio codec names before looking for a compatibility solution. Different members of the Windows Media families have different decoder requirements. The extension alone does not tell you which member is present.</p>
-<p>ASF also supports content-protection mechanisms. A structurally recognized file is not necessarily usable outside the software authorized to decrypt it. Repackaging does not remove that requirement.</p>
-<p>When investigating slow seeking, compare normal playback with jumps into the middle of the file. The presence and quality of <a href="../container-structure/timing-and-navigation/Media-Container-Seeking.html">index information</a> can matter independently of decoding. A stream-copy remux can change the way timing and navigation are stored, but the destination must support the codecs, and metadata may not transfer unchanged.</p>
-<p>ASF remains worth recognizing when handling older collections. Its age is context, not a diagnosis: identify the actual streams, protection status, and symptom before attributing a failure to the container.</p>
+<h2 id="initialize-then-deliver-packets">Initialize, then deliver packets</h2>
+<p>The Header appears first and describes the source and its streams. The stream properties identify the media representations and setup needed to decode them. Global properties include information such as packet counts, size conventions, and duration.</p>
+<p>The Data object follows. Its packets have parsing information and payloads associated with one or more streams. Packet presentation timing helps organize their delivery. A reader routes the appropriate payloads to video or audio decoding rather than asking a decoder to consume ASF object headers.</p>
+<p>This separation explains a readable Windows Media file whose picture still needs conversion for an Emby app: the server can identify the ASF structure and its codec, while the receiving framework may need a different encoded representation or package.</p>
+<h2 id="how-a-later-position-is-found">How a later position is found</h2>
+<p>An index can map a requested time to a useful packet position. Without appropriate index information, finding that time can involve more reading or scanning. Sequential playback and fast random access consequently exercise different parts of the same package.</p>
+<p>A new mux can change the packet organization, timing description, and navigation while copying suitable encoded media. Descriptive tags require their own destination representation. The copied codec name describes the media branch, not every ASF object retained by the output.</p>
+<h2 id="recognized-content-and-protected-content">Recognized content and protected content</h2>
+<p>ASF can also describe content-protection information. Recognition lets software explain what kind of resource it has encountered; obtaining usable media may additionally require an authorized decryption path. An object parser or a new filename does not supply that authorization.</p>
+<p>For an older collection, follow this sequence: Header interpretation, Data reading, source decoding, and the particular output needed. It places a failure at an actual boundary instead of attributing it broadly to “Windows Media.”</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

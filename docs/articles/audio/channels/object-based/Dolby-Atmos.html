@@ -106,20 +106,22 @@
 <h1>Dolby Atmos</h1>
 
 
-<p><strong>Dolby Atmos carries spatial information beyond a conventional fixed surround mix.</strong> A renderer uses that information to place sounds around and above the listener, according to the supported speaker or headphone arrangement.</p>
-<p>Atmos is not one fixed channel count or one storage bitrate. A basic media report can show 5.1 or 7.1 for a track whose encoded data also contains Atmos information. That number alone cannot confirm or rule out immersive rendering.</p>
-<h2 id="the-delivery-form-matters">The delivery form matters</h2>
+<p>An Atmos soundtrack can report “5.1” in a media tool and still supply sound above the listener. The number can describe a compatible channel presentation inside the delivery format. <strong>The Atmos information adds what a renderer needs to produce the immersive presentation.</strong></p>
+<p>To understand a session, follow that information from the mix to the listening system.</p>
+<h2 id="from-a-scene-to-a-delivery-track">From a scene to a delivery track</h2>
+<p>An Atmos production uses sound components and spatial instructions. A moving effect can have position updates; channel-based beds can provide other parts of the mix. The consumer delivery encodes a representation of this material and the information required for supported playback.</p>
+<p>That delivery is not a census of every individual object used in the studio. Encoders can use spatial coding and component reconstruction to fit the presentation into the delivery system.</p>
 <table>
 <thead>
 <tr>
-<th>Common form</th>
-<th>Role in the playback path</th>
+<th>Common delivery or transport</th>
+<th>Audio role</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Dolby Digital Plus with Atmos</td>
-<td>Compressed delivery using audio and additional object information; lossy</td>
+<td>Lossy compressed audio with compatible channel playback and additional spatial information</td>
 </tr>
 <tr>
 <td>Dolby TrueHD with Atmos</td>
@@ -127,15 +129,32 @@
 </tr>
 <tr>
 <td>Dolby MAT with Atmos</td>
-<td>Metadata-bearing transport used to carry decoded audio and Atmos information to a compatible system</td>
+<td>A supported transport for audio and spatial information, including PCM-based Atmos delivery</td>
 </tr>
 </tbody>
 </table>
-<p>Dolby Digital Plus object carriage is specified in ETSI TS 103 420. It uses a compatible channel mix together with information for recovering and rendering objects. A decoder that supports the conventional presentation can play that presentation without reproducing the full Atmos experience.</p>
-<p>Dolby MAT is especially relevant to interpreting a receiver's input. Decoding an Atmos track does not necessarily destroy its spatial information: an object-aware path can carry the decoded audio and metadata onward. <strong>Ordinary channel PCM without that metadata</strong> is a different result.</p>
-<h2 id="source-format-and-final-rendering-are-separate">Source format and final rendering are separate</h2>
-<p>A speaker description such as 5.1.4 describes the listening arrangement, not the number of objects in the file. The renderer distributes the spatial presentation over its supported outputs. A headphone render uses ear cues instead of separate physical height speakers.</p>
-<p>For Emby playback, check the selected track, the <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">server's delivery method</a>, and what the player sends to the audio system. Support for one Atmos delivery form does not establish support for every other one. A receiver can also apply an immersive listening mode to ordinary audio, so its processing-mode name and its detected input format answer different questions.</p>
+<p>The rows answer different parts of the chain. The first two identify common encoded source forms. MAT is especially relevant to what is sent over an output connection after the player has received or decoded its source.</p>
+<h2 id="why-dolby-digital-plus-can-have-two-useful-results">Why Dolby Digital Plus can have two useful results</h2>
+<p>ETSI TS 103 420 describes backwards-compatible object carriage using Enhanced AC-3. The delivery includes a compatible channel presentation together with information used for component recovery and object rendering.</p>
+<p>A conventional supported decoder can play the compatible channel mix. An object-aware decoder uses the additional information to prepare the immersive presentation. This allows the same delivered programme to remain audible on conventional systems while enabling more spatial rendering on capable ones.</p>
+<p>The difference is not merely adding height speakers to the conventional decode. The renderer must receive the relevant spatial representation. An upmixer can derive height activity from channel audio, but it is working from a different set of information.</p>
+<h2 id="follow-a-movie-to-a-514-system">Follow a movie to a 5.1.4 system</h2>
+<p>Suppose an Emby library contains a TrueHD-with-Atmos soundtrack, and the listening system has five main speakers, one bass output, and four height speakers.</p>
+<ol>
+<li>The selected source supplies the encoded audio and Atmos information.</li>
+<li>Emby's <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">delivery path</a> either retains a suitable source representation or makes another presentation where required.</li>
+<li>The player can pass the supported encoded presentation onward for decoding, or use an object-aware decode and suitable output such as MAT.</li>
+<li>The renderer uses the supplied spatial information and its known speaker configuration to generate outputs for the five main and four height positions.</li>
+<li>The system reproduces those outputs and handles bass according to its configuration.</li>
+</ol>
+<p>The <strong>5.1.4</strong> label describes the speaker arrangement, not five audio objects plus four more stored tracks. An effect between available positions can use contributions to several speakers; another moment can use a different combination.</p>
+<p>If stage 3 instead outputs an ordinary 7.1 channel render, the receiver can play that presentation, but it no longer has the source's original object metadata to render as Atmos. If the player has already rendered a binaural presentation for headphones, the ear signals are likewise a finished spatial result.</p>
+<h2 id="decoding-and-compression-quality-are-separate">Decoding and compression quality are separate</h2>
+<p>An object-aware decoder can preserve the metadata needed for later rendering. Decoding therefore does not inevitably remove Atmos. <a href="../../decoding-output/output-transport/Dolby-MAT.html">Dolby MAT</a> develops this route through a concrete session.</p>
+<p>Likewise, lossless PCM-based transport does not turn a lossy Dolby Digital Plus source into a lossless studio master. It can avoid another lossy encoding while still carrying that source's decoded approximation. TrueHD's lossless property applies to its encoded audio presentation.</p>
+<h2 id="interpret-the-receivers-displays">Interpret the receiver's displays</h2>
+<p>A receiver may show both a detected input format and a selected processing mode. “Dolby Surround” upmixing on ordinary channel audio and an accepted Atmos input are different observations. Height-speaker activity alone cannot distinguish them.</p>
+<p>A more useful report records the selected source form, delivered audio, player's output, detected receiver input, and speaker/rendering arrangement. That identifies where the scene information was retained, rendered, or replaced by a conventional presentation.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

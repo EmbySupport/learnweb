@@ -106,44 +106,59 @@
 <h1>Video Frame Rate</h1>
 
 
-<p><strong>Frame rate</strong> describes how many complete video pictures are presented each second, usually written as frames per second or fps. At 24 fps, successive pictures are normally about 41.7 milliseconds apart; at 60 fps, they are about 16.7 milliseconds apart.</p>
+<p>At 24 frames per second, a video supplies a new picture every <strong>1/24 second</strong>, or about <strong>41.67 ms</strong>. At 60 fps, the interval is <strong>16.67 ms</strong>. Frame rate describes this temporal sampling: how frequently the scene is represented by a new picture.</p>
+<p>Imagine an object moving steadily across the image at 600 picture positions per second. At 24 fps, it moves 25 positions between captures. At 60 fps, it moves 10. The second recording supplies more intermediate positions, so motion can be followed in smaller steps.</p>
 <table>
 <thead>
 <tr>
-<th>Constant frame rate</th>
-<th style="text-align: right;">Time between pictures, approximately</th>
+<th>Constant picture rate</th>
+<th style="text-align: right;">Interval between pictures</th>
+<th style="text-align: right;">Object movement at 600 positions/s</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>24 fps</td>
 <td style="text-align: right;">41.67 ms</td>
+<td style="text-align: right;">25 positions</td>
 </tr>
 <tr>
 <td>25 fps</td>
-<td style="text-align: right;">40.00 ms</td>
+<td style="text-align: right;">40 ms</td>
+<td style="text-align: right;">24 positions</td>
 </tr>
 <tr>
 <td>30 fps</td>
 <td style="text-align: right;">33.33 ms</td>
+<td style="text-align: right;">20 positions</td>
 </tr>
 <tr>
 <td>50 fps</td>
-<td style="text-align: right;">20.00 ms</td>
+<td style="text-align: right;">20 ms</td>
+<td style="text-align: right;">12 positions</td>
 </tr>
 <tr>
 <td>60 fps</td>
 <td style="text-align: right;">16.67 ms</td>
+<td style="text-align: right;">10 positions</td>
 </tr>
 </tbody>
 </table>
-<p>More captured pictures can describe motion more frequently. That is especially noticeable in sport, camera pans, or scrolling text. It does not automatically make each individual picture sharper: shutter exposure, motion blur, resolution, and compression still matter.</p>
-<h2 id="the-screen-has-a-rate-of-its-own">The screen has a rate of its own</h2>
-<p>A display's refresh rate is how often it updates, measured in hertz. A 120 Hz display can show a 24 fps film by holding each picture for five refreshes. Those extra refreshes do not contain additional recorded moments.</p>
-<p>If the rates do not divide evenly, some pictures may remain visible longer than others, producing an uneven cadence. <a href="../Frame-Rate-Conversion.html">Frame-rate conversion</a> and display mode selection are different ways of dealing with rate mismatches.</p>
-<p>In Emby media information, the file's frame rate describes the source stream. An app or television can present it using a different refresh rate or additional motion processing. Check both when investigating judder; a smooth server delivery path does not establish a uniform display cadence.</p>
-<p>Also check whether the source is progressive or <a href="../interlacing-and-cadence/Interlaced-Video.html">interlaced</a>. A reported 25-frame/s interlaced recording can contain 50 field times per second. Treating it as 25 progressive motion samples loses an important part of its description.</p>
-<p>Finally, “24 fps” in a short label may actually mean <a href="Fractional-Frame-Rates.html">24000/1001 fps</a>. The precise rate matters when matching timestamps and subtitles.</p>
+<p><em>An ideal steady-motion example, not a measurement of a camera.</em></p>
+<h2 id="exposure-happens-inside-that-timing">Exposure happens inside that timing</h2>
+<p>The camera also integrates light for an exposure. If this moving object is exposed for 1/48 second, it travels <strong>12.5 positions during the exposure</strong>. Its image can therefore cover more than one sharply defined position in a single frame.</p>
+<p>Frame interval and exposure duration do different jobs. More frames provide more recorded motion steps. A shorter exposure can make each step crisper; a longer one can blur the movement within it. A recording can have frequent but blurred pictures, or infrequent but sharply edged ones.</p>
+<p>The player's task is then to present these existing pictures at their assigned times. Simply repeating them more often does not change the recorded exposure.</p>
+<h2 id="put-a-24-fps-film-on-a-120-hz-screen">Put a 24 fps film on a 120 Hz screen</h2>
+<p>A screen's refresh rate is how often it updates. At exactly 120 Hz, the screen has five refresh intervals for each 24 fps picture:</p>
+<p><strong>120 ÷ 24 = 5.</strong></p>
+<p>It can hold A for five refreshes, B for five, then C for five. Each picture remains visible for 5/120 second = 1/24 second. The display refreshes frequently, but the video still supplies 24 different pictures per second.</p>
+<p>At 60 Hz, the ratio is <strong>2.5</strong>. A common cadence alternates two and three refreshes. Some pictures remain for 33.33 ms and others for 50 ms, rather than a uniform 41.67 ms. During a steady pan, this alternating hold can produce judder.</p>
+<p><a href="../Frame-Rate-Conversion.html">Frame-rate conversion</a> can allocate pictures to another schedule; <a href="../Motion-Interpolation.html">interpolation</a> can estimate additional pictures. Choosing a display mode with an evenly divisible refresh rate is a separate route that preserves the existing picture sequence.</p>
+<h2 id="read-the-rate-at-the-right-stage">Read the rate at the right stage</h2>
+<p>In an Emby session, the source rate describes the library track. A video transcode has an output picture rate, and the display has an active refresh rate. Observing each stage explains whether a motion change came from the source, picture conversion, or screen cadence.</p>
+<p>Interlaced sources need their unit named as well. A stream reported as 25 frame pairs per second can contain 50 field capture times; its <a href="../interlacing-and-cadence/Interlaced-Video.html">fields</a> are not 25 complete progressive motion samples.</p>
+<p>Short labels may also round <a href="Fractional-Frame-Rates.html">24000/1001</a> to “24.” Exact timing calculations use the rational rate and the actual presentation timestamps. The interval between recorded pictures and the interval between screen refreshes remain separate quantities.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

@@ -106,38 +106,58 @@
 <h1>HDR Metadata</h1>
 
 
-<p>HDR metadata is information that accompanies the picture. It can tell a player what the encoded values mean, describe the display used for mastering, or guide adaptation as the scene changes.</p>
-<p>These are different jobs. A useful way to read a media-information report is to separate them:</p>
+<p>A media report can show BT.2020 primaries, PQ transfer, a 1,000-nit mastering maximum, content-light fields, and dynamic-metadata information. Those fields describe different parts of the picture's journey. Read them by role before treating them as one HDR quality score.</p>
 <table>
 <thead>
 <tr>
-<th>Information</th>
-<th>The question it helps answer</th>
+<th>Role</th>
+<th>Typical information</th>
+<th>What a renderer learns</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Transfer characteristics, primaries, matrix</td>
-<td>How should the pixel values be interpreted?</td>
+<td>Signal interpretation</td>
+<td>Primaries, transfer, matrix, range</td>
+<td>What the decoded numbers mean</td>
 </tr>
 <tr>
-<td>Mastering display metadata</td>
-<td>What color volume was used for grading?</td>
+<td>Mastering context</td>
+<td>Display primaries, white point, luminance limits</td>
+<td>The reference volume used for judgment</td>
 </tr>
 <tr>
-<td>MaxCLL and MaxFALL</td>
-<td>What light-level bounds are reported for the content?</td>
+<td>Content bounds</td>
+<td>MaxCLL, MaxFALL</td>
+<td>Reported light-level bounds of the produced sequence</td>
 </tr>
 <tr>
-<td>Dynamic metadata</td>
-<td>What additional information applies to this shot or frame?</td>
+<td>Adaptive instructions or statistics</td>
+<td>Format-specific dynamic metadata</td>
+<td>Information applicable to a shot or frame</td>
 </tr>
 </tbody>
 </table>
-<p>The first row is often called <strong>color signaling</strong> rather than HDR metadata in a narrower sense. It is still essential to correct playback. A ten-bit stream with the wrong transfer-function tag can be interpreted incorrectly even when its video compression is valid.</p>
-<p><strong>Static</strong> metadata applies to the program or sequence; <strong>dynamic</strong> metadata can change during it. Dynamic does not mean that every pixel carries a separate instruction, nor does a metadata block contain a hidden higher-resolution copy of the movie.</p>
-<p>For Emby troubleshooting, distinguish the source from the delivered stream. During <a class="xref" href="https://emby.media/support/articles/Transcoding.html">video transcoding</a>, a new picture stream is encoded. Its signaling must describe that output; copying an HDR label onto tone-mapped SDR would not turn it back into HDR.</p>
-<p>Metadata also depends on accurate authoring. A plausible-looking number is not proof that it was measured correctly. <a href="HDR-MaxCLL-MaxFALL.html">MaxCLL and MaxFALL</a> are particularly easy to misread as display specifications, while <a href="HDR-Mastering-Display-Metadata.html">ST 2086</a> describes the mastering display instead.</p>
+<p>Signal interpretation is often called <strong>color signaling</strong> rather than HDR metadata in the narrower sense. It is essential because a valid compressed stream can reconstruct samples whose meaning still depends on those descriptions.</p>
+<h2 id="follow-a-simple-metadata-record-through-playback">Follow a simple metadata record through playback</h2>
+<p>Suppose a source has BT.2020 primaries and PQ, a mastering maximum of 1,000 nits, and a reported MaxCLL of 600 nits. The first pair specifies color and light coordinates. The mastering number describes a display configuration. The content number supplies a bound for the picture under its measurement definition.</p>
+<p>A compatible app can interpret the source, read whichever metadata its rendering path supports, and adapt the produced picture to its output. A display with a different range does not have to imitate the mastering monitor's hardware; it needs an appropriate reproduction of the authored image.</p>
+<p>Some metadata is carried in codec supplemental messages; other signal descriptions can also appear in container structures. The container reader and video decoder make the needed information available to later processing. Correct packaging and interpretation are both parts of preserving it.</p>
+<h2 id="static-and-dynamic-describe-when-information-applies">Static and dynamic describe when information applies</h2>
+<p>Static information applies to the relevant sequence or program. A mastering-display description can remain constant while the movie cuts between a dim room and a bright outdoor scene.</p>
+<p>Dynamic metadata can vary with a shot or frame. It can describe that image's brightness distribution or carry adjustments intended for a mapping target. A converter can therefore choose different parameters for scenes with different demands, while managing transitions over time.</p>
+<p>The format defines what those parameters mean. A dynamic block is not a hidden higher-resolution picture, and dynamic metadata from one format cannot simply be assigned to a different one. It needs the corresponding processing that interprets its values.</p>
+<p>The individual subjects—<a href="HDR-Mastering-Display-Metadata.html">mastering metadata</a>, <a href="HDR-MaxCLL-MaxFALL.html">content-light bounds</a>, and <a href="../formats/dolby-vision/metadata-and-layers/Dolby-Vision-RPU.html">Dolby Vision RPU</a>—explain their particular roles.</p>
+<h2 id="when-the-pixels-change-their-descriptions-need-review">When the pixels change, their descriptions need review</h2>
+<p>During Emby <a class="xref" href="https://emby.media/support/articles/Transcoding.html">video transcoding</a>, a new picture stream is created. Several possible operations have different metadata consequences:</p>
+<ul>
+<li>Copying the encoded video into another container can preserve its picture values, while requiring correct carriage of their descriptions.</li>
+<li>Resizing retains or changes the relevant color representation according to the processing path; spatial size alone does not select a new transfer function.</li>
+<li>HDR-to-SDR conversion changes brightness, color, and transfer representation. The output descriptions must identify that converted SDR picture.</li>
+<li>Cutting or reordering a sequence changes which pictures correspond to timed dynamic information. The metadata must still match the delivered sequence.</li>
+</ul>
+<p>Blindly copying a source field after processing can leave a plausible number attached to the wrong output. Conversely, dropping essential color signaling can make the destination assign another interpretation to otherwise valid samples.</p>
+<p>For a playback investigation, compare the stored source record with the stream actually delivered to the app and the output mode used for presentation. That locates the change: source information, carriage, picture conversion, or final rendering.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -158,6 +178,7 @@
 			            <li><a class="seealso-link" href="https://pub.smpte.org/pub/st2086/st2086-2018.pdf" title="SMPTE ST 2086: Mastering display color volume metadata">SMPTE ST 2086: Mastering display color volume metadata</a></li>
 			            <li><a class="seealso-link" href="https://pub.smpte.org/pub/st2094-40/st2094-40-2020.pdf" title="SMPTE ST 2094-40: Dynamic metadata, Application 4">SMPTE ST 2094-40: Dynamic metadata, Application 4</a></li>
 			            <li><a class="seealso-link" href="https://professionalsupport.dolby.com/s/article/Dolby-Vision-Metadata-Levels?language=en_US" title="Dolby Vision: Metadata levels">Dolby Vision: Metadata levels</a></li>
+			            <li><a class="seealso-link" href="https://www.itu.int/rec/T-REC-H.274" title="ITU-T H.274: Supplemental messages for coded video">ITU-T H.274: Supplemental messages for coded video</a></li>
 			          </ul>
             </article>
           </div>

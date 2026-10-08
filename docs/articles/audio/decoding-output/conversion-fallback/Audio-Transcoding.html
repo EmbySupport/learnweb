@@ -106,40 +106,85 @@
 <h1>Audio Transcoding</h1>
 
 
-<p><strong>Audio transcoding makes a new encoded audio stream from a decoded source.</strong> It can change the codec, bitrate, channel layout, or sample rate to suit the playback device and delivery conditions.</p>
-<p>In Emby, incompatible audio does not necessarily require re-encoding compatible video. A Direct Stream session can copy video while converting the soundtrack.</p>
+<p>A movie's video can fit a client while its soundtrack does not. A server can keep the video and construct a new audio presentation. <strong>Audio transcoding is the decode/process/encode part of that route.</strong></p>
+<p>The operation is easier to assess when its intermediate representation is made visible.</p>
+<h2 id="follow-a-surround-source-into-stereo-delivery">Follow a surround source into stereo delivery</h2>
+<p>Consider a hypothetical 48 kHz 7.1 source and a client requiring stereo AAC:</p>
 <table>
 <thead>
 <tr>
-<th>Audio operation</th>
-<th>What happens to the samples</th>
+<th>Stage</th>
+<th>Representation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Compatible lossless-to-lossless conversion</td>
-<td>Can preserve them when the formats and processing allow it</td>
+<td>Source reading</td>
+<td>Coded eight-channel presentation and timestamps</td>
 </tr>
 <tr>
-<td>Lossless to lossy</td>
-<td>Introduces the destination codec's approximation</td>
+<td>Audio decoding</td>
+<td>Reconstructed samples with eight named roles</td>
 </tr>
 <tr>
-<td>Lossy to lossy</td>
-<td>Encodes an already reconstructed signal again</td>
+<td>Layout conversion</td>
+<td>Two-channel result incorporating the appropriate source contributions</td>
 </tr>
 <tr>
-<td>Downmixing or resampling during conversion</td>
-<td>Changes the presentation even before the final encoder</td>
+<td>AAC encoding</td>
+<td>New coded stereo approximation</td>
+</tr>
+<tr>
+<td>Delivery packaging</td>
+<td>Compatible video and new timed audio in the target package</td>
 </tr>
 </tbody>
 </table>
-<p>By contrast, copying encoded packets into different packaging is <strong>remuxing</strong>. It does not make a new audio encoding.</p>
-<h2 id="why-the-target-bitrate-is-not-a-restoration-tool">Why the target bitrate is not a restoration tool</h2>
-<p>Giving an encoder a larger data budget can reduce new compression damage. It cannot restore detail discarded by an earlier lossy codec. A high-bitrate AAC delivery made from a low-bitrate MP3 remains limited by that input.</p>
-<p>Transcoding can also change more than fidelity. A multichannel track may become stereo, and an ordinary channel encoder may omit the object information of an immersive source. Producing another E-AC-3 stream, for example, does not automatically recreate an original Atmos presentation.</p>
-<p>For diagnosis, compare the source track with the delivered audio: codec, channel layout, bitrate, and relevant spatial information. The server's activity label tells you that conversion occurred; those details explain what changed.</p>
-<p>A converted stream can be the appropriate compatible result for a client. Keeping the original library file preserves the option to use its original presentation on another supported playback path.</p>
+<p>The audio decoder and encoder are different jobs. The decoder reconstructs what the source represents. The encoder analyzes its supplied PCM and chooses a new representation that meets its settings.</p>
+<p>Emby's <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">Direct Stream description</a> includes compatible video retained while audio or packaging changes. The overall delivery label does not imply the source soundtrack's layout or codec remained unchanged.</p>
+<h2 id="separate-conversions-inside-the-pipeline">Separate conversions inside the pipeline</h2>
+<p>Downmixing changes spatial channels. Resampling calculates another time grid. Gain or dynamics processing changes amplitudes. The final encoder changes the coded representation.</p>
+<p>These can occur together, but each has its own preservation effect:</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Consequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Exact supported lossless decode/re-encode, no intervening changes</td>
+<td>Can preserve the samples</td>
+</tr>
+<tr>
+<td>Downmix</td>
+<td>Combines independent channels</td>
+</tr>
+<tr>
+<td>Resample</td>
+<td>Changes sample positions/count while retaining intended time</td>
+</tr>
+<tr>
+<td>Lossy encode</td>
+<td>Adds its representation's approximation</td>
+</tr>
+<tr>
+<td>Ordinary channel encode of an immersive result</td>
+<td>Does not retain original objects merely by using the same codec family</td>
+</tr>
+</tbody>
+</table>
+<p>An encoder generally also introduces buffering, delay, and final padding. The delivery's timing must account for those so the new soundtrack remains aligned and has the intended audible boundaries.</p>
+<h2 id="distinguish-a-new-encoding-from-remuxing">Distinguish a new encoding from remuxing</h2>
+<p>A remux reads coded packets and writes another supported package, translating necessary configuration and timing. It can leave the coded audio intact.</p>
+<p>A transcode instead reconstructs the signal and invokes an encoder. Moving AAC from ADTS into a compatible MP4 arrangement may be a framing change; changing AAC into another codec is a reconstruction-and-encoding operation.</p>
+<h2 id="understand-generation-loss-at-the-right-boundary">Understand generation loss at the right boundary</h2>
+<p>If the source is already lossy, the new encoder receives that reconstruction. A larger target budget can avoid adding much more error, but cannot recover the source details previously merged or discarded.</p>
+<p>A lossless source avoids that prior approximation, yet a subsequent lossy delivery still makes a new approximation. Keeping the source master allows future sessions to start from it rather than repeatedly converting intermediate copies.</p>
+<h2 id="verify-what-the-destination-received">Verify what the destination received</h2>
+<p>Compare source and delivered codec, layout, rate, and timeline. Then check whether the output added further processing. For missing dialogue, inspect the layout conversion; for a timing shift, inspect delay compensation; for altered texture, inspect coding generations and settings.</p>
+<p>This makes a transcoding report about identifiable operations and outcomes, rather than treating “conversion happened” as a complete explanation.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

@@ -106,37 +106,41 @@
 <h1>CPU Tone Mapping</h1>
 
 
-<p>CPU tone mapping carries out the brightness conversion on the computer's general-purpose processor. It is still the same kind of picture operation as GPU tone mapping; the processor doing the calculations does not define the artistic result.</p>
-<p>For example, FFmpeg's software tonemap filter operates on floating-point RGB values in linear light. Other processing must interpret the incoming HDR signal and prepare the final output format. The tone curve is only one step in that conversion.</p>
-<h2 id="the-work-scales-with-the-pictures-not-just-the-bitrate">The work scales with the pictures, not just the bitrate</h2>
-<p>A frame contains pixels to process even when its compressed file is small. These simple counts show why resolution and frame rate matter:</p>
+<p>A CPU tone mapper processes reconstructed pictures in system memory. Its work follows the picture grid and processing representation, even if the source's compressed file is small.</p>
+<h2 id="count-the-picture-work-before-the-compressed-bytes">Count the picture work before the compressed bytes</h2>
 <table>
 <thead>
 <tr>
-<th>Video size and rate</th>
-<th style="text-align: right;">Pixels per second, approximately</th>
+<th>Grid and rate</th>
+<th style="text-align: right;">Picture positions per second</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1920 × 1080 at 24 fps</td>
-<td style="text-align: right;">50 million</td>
+<td style="text-align: right;">49,766,400</td>
 </tr>
 <tr>
 <td>3840 × 2160 at 24 fps</td>
-<td style="text-align: right;">199 million</td>
+<td style="text-align: right;">199,065,600</td>
 </tr>
 <tr>
 <td>3840 × 2160 at 60 fps</td>
-<td style="text-align: right;">498 million</td>
+<td style="text-align: right;">497,664,000</td>
 </tr>
 </tbody>
 </table>
-<p><em>Pixel counts only, not a performance benchmark. Color conversion, decoding, encoding, and memory traffic add their own costs.</em></p>
-<p>Four times as many pixels does not guarantee exactly four times the processing time, but it does explain why a comfortable 1080p workload says little about 4K at a higher frame rate. Multiple simultaneous sessions add to the total.</p>
-<p>In an Emby transcoding session, CPU use may also come from decoding, subtitle rendering, audio conversion, or encoding. A high CPU reading alone does not identify tone mapping as the bottleneck. Likewise, an accelerated encoder does not prove that all preceding filters run on the GPU.</p>
-<p>Software processing can be useful when the required GPU path is unavailable or when the frames are already in system memory. Moving them to a GPU and back has a cost of its own. The <a class="xref" href="https://emby.media/support/articles/apps/windows/Emby-Windows-FAQ.html">Emby Windows FAQ</a> gives a concrete example of a player combining software decoding with GPU presentation.</p>
-<p>Compare <a href="Tone-Mapping-Playback-Path.html">the whole playback path</a>, including whether it keeps up with the source frame rate. The labels CPU and GPU are execution choices, not quality ratings.</p>
+<p>These are input sizes, not measured CPU throughput. Each position can require component conversion, transfer-function calculations, curve evaluation, and output preparation. The chosen implementation determines how those operations are combined or accelerated with vector instructions and threads.</p>
+<h2 id="follow-a-software-filter-representation">Follow a software-filter representation</h2>
+<p>FFmpeg's CPU tonemap filter operates on floating-point RGB in linear light. A suitable surrounding path interprets the incoming HDR signal, supplies that working representation, runs the mapping, and prepares the final output format.</p>
+<p>For a 3840 × 2160 picture with three 32-bit float components, the logical sample storage is:</p>
+<p><strong>3840 × 2160 × 3 × 4 = 99,532,800 bytes</strong>, about <strong>99.53 MB per picture</strong> before padding.</p>
+<p>At 24 fps, one full read and one full write of that representation account for approximately <strong>4.78 GB/s of logical traffic</strong>. Additional passes can require more; cache reuse and implementation choices change the physical traffic. This is a storage calculation, not a benchmark or a required network bitrate.</p>
+<p>The example explains why an operation's cost includes memory access as well as the scalar curve formula. A decoded working picture can be much larger than the compressed data used to deliver it.</p>
+<h2 id="keep-the-other-cpu-jobs-visible">Keep the other CPU jobs visible</h2>
+<p>An Emby transcode can also decode, rescale, render subtitles, convert audio, and encode. A high total CPU reading covers those jobs together. To locate a bottleneck, inspect the actual stages and whether their completed-picture rate keeps up with the source.</p>
+<p>A hardware encoder at the end does not move all earlier filtering to the GPU. Conversely, software decoding can feed GPU presentation; the <a class="xref" href="https://emby.media/support/articles/apps/windows/Emby-Windows-FAQ.html">Windows FAQ</a> describes that combination. A transfer between system and device memory may be needed at that boundary.</p>
+<p>When frames already occupy system memory and the required software path is supported, CPU mapping avoids introducing an additional device-transfer stage solely for the curve. When a supported GPU path can keep frames accessible across several operations, its residency changes the traffic picture. The <a href="Tone-Mapping-Playback-Path.html">playback-path article</a> locates those choices within the session.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

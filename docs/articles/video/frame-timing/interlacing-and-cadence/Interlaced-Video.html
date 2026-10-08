@@ -106,36 +106,81 @@
 <h1>Interlaced Video</h1>
 
 
-<p><strong>Interlaced video</strong> alternates between two sets of picture lines, called <strong>fields</strong>. One field contains the top set of alternating lines; the other contains the bottom set. In native interlaced capture, they describe successive moments rather than one shared picture time.</p>
-<p>That is why weaving two moving fields together can reveal comb-like edges. An object has moved between captures, so its position differs on alternating lines.</p>
-<p><img src="images/interlaced-fields.svg" alt="Two fields from different times combine into a picture with combing on a moving object."></p>
-<p><em>Original schematic with a reduced line count. Green lines belong to the earlier top field and blue lines to the later bottom field; their horizontal positions differ because the object moved.</em></p>
+<p>In a native <strong>interlaced</strong> recording, the camera represents movement with alternating sets of picture rows called <strong>fields</strong>. The first field supplies one row set; the next supplies the rows between them at a later capture time.</p>
+<p>For a simplified zero-based grid, the top set contains rows 0, 2, 4, and so on. The bottom set contains rows 1, 3, 5, and so on. Each set spans the full height of the image. It is not the upper or lower half of the scene.</p>
+<h2 id="capture-a-moving-edge-twice">Capture a moving edge twice</h2>
+<p>In a 50-field/s sequence, a new field time occurs every <strong>20 ms</strong>. Suppose a moving vertical edge is at horizontal position 20 in the top field at 0 ms, then at position 30 in the bottom field at 20 ms.</p>
+<p>Weave the row sets together:</p>
 <table>
 <thead>
 <tr>
-<th>Interlaced timing</th>
-<th style="text-align: right;">Field times per second</th>
+<th>Displayed row</th>
+<th style="text-align: right;">Field's capture time</th>
+<th style="text-align: right;">Edge position</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0, top</td>
+<td style="text-align: right;">0 ms</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td>1, bottom</td>
+<td style="text-align: right;">20 ms</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr>
+<td>2, top</td>
+<td style="text-align: right;">0 ms</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td>3, bottom</td>
+<td style="text-align: right;">20 ms</td>
+<td style="text-align: right;">30</td>
+</tr>
+</tbody>
+</table>
+<p>The alternating edge positions create a comb-shaped outline. Both fields can be correctly recorded and decoded: the error is treating their two times as one complete moving picture.</p>
+<p><img src="images/interlaced-fields.svg" alt="Two fields from different times combine into a picture with combing on a moving object."></p>
+<p><em>Original reduced-line schematic. Green lines belong to the earlier top field and blue lines to the later bottom field.</em></p>
+<p>A static background can weave cleanly because it has not changed between field times. The same frame can therefore contain a sharp stationary region and a combed moving object.</p>
+<h2 id="count-fields-and-pairs-separately">Count fields and pairs separately</h2>
+<table>
+<thead>
+<tr>
+<th>System timing</th>
+<th style="text-align: right;">Distinct field times per second</th>
 <th style="text-align: right;">Pairs of fields per second</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>50-field/s system</td>
+<td>50-field system</td>
 <td style="text-align: right;">50</td>
 <td style="text-align: right;">25</td>
 </tr>
 <tr>
-<td>60000/1001-field/s system</td>
-<td style="text-align: right;">About 59.94</td>
-<td style="text-align: right;">About 29.97</td>
+<td>60000/1001-field system</td>
+<td style="text-align: right;">Approximately 59.94</td>
+<td style="text-align: right;">Approximately 29.97</td>
 </tr>
 </tbody>
 </table>
-<p>A label such as “1080i50” commonly counts fields. A media inspector may instead report the pair rate as 25 fps. These can describe the same stream, so check the convention before deciding that half the motion is missing.</p>
-<h2 id="preserve-the-motion-not-just-the-height">Preserve the motion, not just the height</h2>
-<p>Modern flat-panel presentation uses complete pictures. <a href="Deinterlacing.html">Deinterlacing</a> reconstructs them from the fields. Producing one output picture per field can preserve the source's 50 or 59.94 motion samples per second; producing one per pair usually retains fewer temporal samples.</p>
-<p>For an Emby library containing broadcast recordings, the source scan type and <a href="Video-Field-Order.html">field order</a> help explain combing, jitter, or unexpectedly less fluid motion after processing. Correct delivery alone cannot repair an incorrect interpretation of the fields.</p>
-<p>Not every interlace-marked file contains native interlaced capture. <a href="Telecine-Pulldown.html">Telecine</a> can distribute progressive film pictures across fields, and progressive segmented frame transport is another distinct case. Choosing the right reconstruction depends on what the fields actually represent.</p>
+<p>A media inspector reporting 25 frame pairs/s and a television description using 50 fields/s can be describing the same recording. The pair combines enough rows for the full raster, but native capture supplied those rows at two different times.</p>
+<p><a href="Video-Field-Order.html">Field order</a> says which row set came first. Reversing it swaps the temporal order within each pair, producing backward steps in otherwise steady movement.</p>
+<h2 id="why-interlacing-was-a-useful-tradeoff">Why interlacing was a useful tradeoff</h2>
+<p>A 1920 × 1080 interlaced raster has 540 main-grid rows in each field. At 50 fields/s:</p>
+<p><strong>1920 × 540 × 50 = 51,840,000 sample positions/s.</strong></p>
+<p>A 1920 × 1080 progressive sequence at 25 frames/s has the same main-grid count per second:</p>
+<p><strong>1920 × 1080 × 25 = 51,840,000.</strong></p>
+<p>The interlaced representation allocates that sample count to more frequent motion times, with only alternating rows available at each one. A 1080p50 sequence supplies the complete raster at all 50 times and doubles this particular sample count.</p>
+<p>These are uncompressed grid counts, not encoded bitrate predictions. They expose the spatial-versus-temporal allocation that explains the format.</p>
+<h2 id="present-it-on-a-progressive-screen">Present it on a progressive screen</h2>
+<p><a href="Deinterlacing.html">Deinterlacing</a> builds complete output pictures from the available fields. For native 50-field movement, producing one progressive picture for each field gives 50 output times. Each picture must reconstruct the rows missing at its own time.</p>
+<p>Producing only one picture per pair gives 25 output times. It can preserve the programme's duration while retaining fewer of its original motion moments. This is why a converted broadcast recording can keep its 1080-line height yet become less fluid.</p>
+<p>Finally, inspect what the fields represent. <a href="Telecine-Pulldown.html">Telecine</a> distributes existing progressive film pictures over repeated field intervals, while <a href="Progressive-Video.html">PsF</a> divides one progressive frame into two segments. Those sources call for matching existing picture rows rather than treating every field as a new camera moment.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

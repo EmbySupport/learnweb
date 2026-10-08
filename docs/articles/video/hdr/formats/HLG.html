@@ -106,34 +106,70 @@
 <h1>Hybrid Log-Gamma (HLG)</h1>
 
 
-<p>Hybrid Log-Gamma, usually shortened to <strong>HLG</strong>, is an HDR system developed by the BBC and NHK. It is useful in television production because its basic HDR presentation does not depend on per-program mastering metadata.</p>
-<p>The name describes its encoding shape: the lower section uses a gamma-like relationship and the upper section uses a logarithmic one. This allocates signal space to both ordinary scene content and strong highlights.</p>
+<p>A broadcaster needs one HDR signal that can be distributed and rendered on displays with different useful brightness ranges. <strong>Hybrid Log-Gamma (HLG)</strong> approaches this with a relative scene-light representation and a defined system relationship to the display. The basic rendering does not need a separate content-dependent mastering record for each program.</p>
+<p>The BBC and NHK developed HLG for television use. Its capture curve combines a lower power segment with an upper logarithmic segment, while its display processing establishes an appropriate scene-to-screen rendering.</p>
+<p><img src="images/hlg-capture-display.png" alt="HLG camera encoding and calculated neutral-gray output curves for ideal reference displays with 500-, 1,000-, and 2,000-nit peaks."></p>
+<p><em>Calculated BT.2100 examples under reference conditions, with zero black. The display examples use the specified peak-dependent system gamma within the 400–2,000-nit monitoring range. They are not television or Emby measurements.</em></p>
+<h2 id="the-camera-curve-assigns-scene-light-to-signal-values">The camera curve assigns scene light to signal values</h2>
+<p>Let E be normalized scene light and V its encoded signal. The reference OETF uses:</p>
+<ul>
+<li><strong>V = sqrt(3E)</strong> for E up to 1/12.</li>
+<li><strong>V = a × ln(12E − b) + c</strong> above 1/12.</li>
+</ul>
+<p>The constants are a = 0.17883277, b = 1 − 4a, and c = 0.5 − a × ln(4a). The two segments meet at E = 1/12 and V = 0.5. That join divides the lower power portion from the upper logarithmic portion; it is not a physical maximum for the camera.</p>
+<p>The curve assigns signal positions to relative captured light. An output still needs to decide what light those positions produce on its screen. Camera exposure and production choices establish how the scene is placed within this representation.</p>
+<h2 id="rendering-adds-the-scene-to-display-relationship">Rendering adds the scene-to-display relationship</h2>
+<p>A renderer first interprets the signal and recovers the relevant scene-light values using the inverse OETF. It then applies the overall rendering relationship, or <a href="../../color-standards/transfer-functions/Transfer-Function-OOTF.html">OOTF</a>, for the display and environment.</p>
+<p>For neutral gray, an ideal zero-black reference example can be expressed as <strong>L = Lw × E^gamma</strong>, where Lw is the nominal peak luminance. At a 1,000-nit reference peak, system gamma is 1.2.</p>
+<p>Follow V = 0.75 through that example:</p>
+<ol>
+<li>Inverting the HLG OETF gives E of approximately <strong>0.265</strong>.</li>
+<li>Applying the reference relationship gives 1,000 × E^1.2.</li>
+<li>The resulting neutral-gray light is approximately <strong>203 nits</strong>.</li>
+</ol>
+<p>This is a complete system calculation under its stated conditions. Interpreting V = 0.75 as 75% of 1,000 nits would skip both nonlinear operations.</p>
+<p>For colored pictures, the reference OOTF uses the scene's luminance to determine a common scaling of the linear RGB components. It does not independently raise each colored component to the system-gamma power. That preserves the intended component relationships during this part of rendering. Numerical range, primaries, and component-matrix interpretation are still required before the calculation.</p>
+<h2 id="the-same-signal-adapts-to-different-peak-targets">The same signal adapts to different peak targets</h2>
+<p>Within the reference monitoring range, BT.2100 specifies <strong>gamma = 1.2 + 0.42 × log10(Lw/1,000)</strong>. Black-level treatment and viewing conditions also belong to the full system. The zero-black examples isolate the peak-dependent effect:</p>
 <table>
 <thead>
 <tr>
-<th>Part of the HLG chain</th>
-<th>Main purpose</th>
+<th style="text-align: right;">Nominal display peak</th>
+<th style="text-align: right;">System gamma</th>
+<th style="text-align: right;">Light for neutral V = 0.75</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Camera encoding</td>
-<td>Represent relative scene light in the video signal</td>
+<td style="text-align: right;">500 nits</td>
+<td style="text-align: right;">About 1.074</td>
+<td style="text-align: right;">About 120 nits</td>
 </tr>
 <tr>
-<td>Display processing</td>
-<td>Adapt the relationship between scene light and displayed light</td>
+<td style="text-align: right;">1,000 nits</td>
+<td style="text-align: right;">1.200</td>
+<td style="text-align: right;">About 203 nits</td>
 </tr>
 <tr>
-<td>Output display</td>
-<td>Reproduce the result within its brightness capability</td>
+<td style="text-align: right;">2,000 nits</td>
+<td style="text-align: right;">About 1.326</td>
+<td style="text-align: right;">About 343 nits</td>
 </tr>
 </tbody>
 </table>
-<p>Unlike PQ's absolute light-output scale, HLG's end-to-end rendering allows adaptation to the display and viewing environment. The same encoded HLG signal therefore does not imply one fixed luminance for every pixel on every screen.</p>
-<p>HLG is sometimes described as backward compatible with SDR. That needs context: an SDR path may obtain a usable picture under suitable signaling and color handling, but this does not guarantee correct results on every older TV or player. Gamut and transfer-function interpretation still matter.</p>
-<p>For an Emby library, HLG can appear in broadcast material and camera recordings. Do not assume that an HDR badge always means PQ or HDR10. If the image looks wrong after conversion, identifying the actual source transfer characteristics is more useful than increasing the bitrate.</p>
-<p>An HLG recording can also form the compatible base of some <a href="dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-8.html">Dolby Vision Profile 8</a> content. In that case, HLG and Dolby Vision describe related parts of the same stream rather than two unrelated movies.</p>
+<p>Each uses the same encoded value and the same recovered relative scene value. The overall display relationship changes to fit the target. The right-hand plot makes that difference visible across the whole signal range.</p>
+<p><a href="../../color-standards/transfer-functions/Transfer-Function-PQ.html">PQ</a> places an absolute reference-display light meaning on the encoded values. HLG instead includes this display-adapted overall relationship in its system. A PQ/HLG conversion must account for where that relationship is applied; swapping transfer labels would not perform the conversion.</p>
+<h2 id="why-the-metadata-model-suits-television-workflows">Why the metadata model suits television workflows</h2>
+<p>A relative scene-based signal can move through conventional production and playout operations without requiring each program to supply dynamic content analysis for its basic HDR display relationship. The receiving system still needs <strong>signaling</strong> identifying HLG and the correct color representation. “No content-dependent metadata required” does not mean “no interpretation information needed.”</p>
+<p>The defined rendering also gives different output targets a common system starting point. Content can still be graded and monitored creatively: scene-referred describes the relationship of the representation, rather than implying that a finished broadcast is an untouched sensor recording.</p>
+<p>A <a href="../HDR-Camera-Capture.html">camera HLG recording</a> can provide a viewing-oriented HDR signal. Camera log footage has another representation and normally needs its production transform. The recording mode identifies which relationship is in the file.</p>
+<h2 id="what-the-sdr-compatibility-claim-means">What the SDR-compatibility claim means</h2>
+<p>HLG's shape was designed to provide a degree of useful compatibility with suitable conventional television paths. That does not make HLG samples numerically identical to a finished BT.709 SDR master. The wide color representation also has to be addressed when producing a BT.709 output.</p>
+<p>An HDR-aware conversion can interpret the HLG system and prepare an SDR rendition deliberately. A legacy path that applies a conventional component response can approximate aspects of the picture without completing the specified HLG rendering. These are different presentation paths, which is why compatibility must be tied to actual signal handling.</p>
+<h2 id="locate-hlg-within-the-delivered-stream">Locate HLG within the delivered stream</h2>
+<p>HLG appears in broadcast recordings and personal videos served by Emby. Inspect the source transfer field, the server's delivered rendition, and the app/display output mode when tracing a result. A source identified as HDR is not necessarily PQ or HDR10.</p>
+<p>If the server converts an HLG recording to SDR, check the newly produced output interpretation. If it delivers HLG unchanged, the later renderer needs to complete the appropriate system relationship. A change in bitrate alone would not explain or correct a mistaken transfer interpretation.</p>
+<p>Some <a href="dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-8.html">Dolby Vision Profile 8</a> material uses an HLG-compatible base with additional Dolby Vision information. In that case, base signal and dynamic system describe two parts of one presentation. Identify which path is actually being used before comparing the resulting picture.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

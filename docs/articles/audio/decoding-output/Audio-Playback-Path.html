@@ -106,17 +106,99 @@
 <h1>The Audio Playback Path</h1>
 
 
-<p>The soundtrack in a file and the format arriving at an amplifier are <strong>two different observations</strong>. Following the stages between them helps explain why a TrueHD source can correctly reach a receiver labeled “PCM,” or why a multichannel source ends up as stereo.</p>
-<p><img src="images/audio-playback-stages.svg" alt="Selected track, Emby delivery, player, audio output, and receiver or DAC"></p>
-<p><em>Original schematic: these are logical stages. A television, soundbar, or integrated player may combine several in one device.</em></p>
-<h2 id="delivery-comes-before-output">Delivery comes before output</h2>
-<p>Emby's <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">playback method</a> describes what the server sends. Direct Play can deliver the stored track unchanged. Direct Stream can repackage compatible media, and may convert audio while retaining the video. Transcoding creates a new encoded presentation where required.</p>
-<p>After delivery, the player can <a href="output-transport/Decoded-PCM-Output.html">decode the audio to PCM</a> or send a supported encoded format onward using <a href="output-transport/Audio-Bitstream-Passthrough.html">passthrough</a>. The operating system and physical output then impose their own format and channel requirements.</p>
-<p>Finally, a receiver or DAC turns the delivered presentation into sound. Speaker routing, bass management, headphone rendering, and an optional listening mode can affect this stage.</p>
-<h2 id="inspect-the-labels-in-context">Inspect the labels in context</h2>
-<p>Start with the selected track's codec and layout. Then check the server session, the player's output choice, and the receiver's <strong>detected input</strong>, in that order. The receiver's surround-processing mode may be a separate label.</p>
-<p>If a 7.1 source becomes 2.0 PCM, locate where the channel count changed. It could be server conversion, player downmixing, or the output configuration. If the output is 7.1 PCM, the absence of the compressed codec's name on the receiver is not itself a fault.</p>
-<p>This approach is more informative than treating a single “Direct Play,” “PCM,” or “Atmos” label as a description of the entire session.</p>
+<p>The library says <strong>Dolby Digital 5.1</strong>, the server says <strong>Direct Play</strong>, and the receiver says <strong>Multichannel PCM</strong>. Those observations can describe one successful session: the source was delivered unchanged, then decoded in the player.</p>
+<p>Following the actual presentation through the stages resolves apparent contradictions.</p>
+<p><img src="images/audio-playback-stages.svg" alt="Selected track, server delivery, player, audio output, and receiver"></p>
+<p><em>Logical-stage schematic. Several stages can share a physical device.</em></p>
+<h2 id="trace-a-retained-channel-presentation">Trace a retained channel presentation</h2>
+<p>Consider a player that accepts the chosen AC-3 track and can output its six channels as PCM:</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Representation or job</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Selected library track</td>
+<td>AC-3 5.1 with language and timing</td>
+</tr>
+<tr>
+<td>Server delivery</td>
+<td>The compatible stored audio is retained</td>
+</tr>
+<tr>
+<td>Player decoder</td>
+<td>Reconstructs six PCM channel signals</td>
+</tr>
+<tr>
+<td>Output path</td>
+<td>Supplies those signals in its declared layout/order</td>
+</tr>
+<tr>
+<td>Receiver</td>
+<td>Receives PCM and routes the presentation to the system</td>
+</tr>
+</tbody>
+</table>
+<p>The receiver no longer needs an AC-3 decoder for that input because the player already performed the reconstruction. Its PCM label is expected.</p>
+<p>The result can still use decoder metadata, output gain, or bass management. To determine whether those altered the presentation, identify the specific operation rather than treating the change of codec label as the operation itself.</p>
+<h2 id="trace-an-audio-only-compatibility-conversion">Trace an audio-only compatibility conversion</h2>
+<p>Now consider a seven-main-channel/LFE soundtrack whose video fits the client, but whose audio needs a stereo-compatible delivery.</p>
+<ol>
+<li>The server reads the selected audio track and decodes its channel presentation.</li>
+<li>A downmix combines the center and surround contributions with the fronts to produce two channels.</li>
+<li>A suitable audio encoder creates a stereo delivery stream.</li>
+<li>Compatible video is copied into the delivery package with the audio and timing.</li>
+<li>The client decodes that new soundtrack for its output.</li>
+</ol>
+<p>Emby's <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">Direct Stream description</a> includes situations where compatible video is retained and audio is converted. The overall label therefore does not imply that every audio property stayed unchanged.</p>
+<p>Here the source's eight channels and the receiver's two channels describe different points in the trace. The causal changes are downmixing and re-encoding, not simply “the receiver shows stereo.”</p>
+<h2 id="place-decoding-and-rendering-independently">Place decoding and rendering independently</h2>
+<p>With <a href="output-transport/Audio-Bitstream-Passthrough.html">bitstream passthrough</a>, a supported encoded presentation reaches another device that decodes it. With ordinary <a href="output-transport/Decoded-PCM-Output.html">PCM output</a>, decoding already happened earlier.</p>
+<p>For an immersive source, there is also a <strong>rendering</strong> job: spatial information becomes speaker or ear signals. A player can finish the render itself or carry suitable audio/metadata onward using an object-aware path such as <a href="output-transport/Dolby-MAT.html">MAT</a>.</p>
+<p>This makes four separate questions:</p>
+<ul>
+<li>Which presentation was selected?</li>
+<li>What did the server deliver?</li>
+<li>Where was it decoded or rendered?</li>
+<li>What did the output system receive?</li>
+</ul>
+<h2 id="record-changes-at-boundaries">Record changes at boundaries</h2>
+<p>A useful session report is a trace, rather than a single preferred label:</p>
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th>Useful details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Source</td>
+<td>Track role/language, codec, channel layout, rate, spatial form</td>
+</tr>
+<tr>
+<td>Delivery</td>
+<td>Copied/remuxed/encoded audio and resulting properties</td>
+</tr>
+<tr>
+<td>Player output</td>
+<td>Encoded passthrough, PCM, or metadata-bearing transport</td>
+</tr>
+<tr>
+<td>Receiver input</td>
+<td>Detected input, separate from listening mode</td>
+</tr>
+<tr>
+<td>Reproduction</td>
+<td>Speaker routing, bass handling, headphone/spatial processing</td>
+</tr>
+</tbody>
+</table>
+<p>If dialogue vanishes between a six-channel decode and stereo output, investigate that combination. If timing changes after switching output devices, investigate that boundary's delay. If object information is retained at delivery but a receiver gets ordinary PCM, identify where the render or metadata loss occurred.</p>
+<p>Each observation now points to a particular transformation, which is more useful than treating Direct Play, PCM, or a surround-mode name as a verdict on the whole session.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

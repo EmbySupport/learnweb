@@ -106,40 +106,84 @@
 <h1>Lossy Audio Compression</h1>
 
 
-<p>Lossy audio compression makes a tradeoff: <strong>use fewer bits while keeping the audible result close to the source.</strong> The decoder reconstructs a signal that can sound convincing, but it cannot restore every original sample.</p>
-<p>Many codecs use knowledge of hearing. A loud sound can conceal a weaker sound nearby in frequency or time, so an encoder can spend fewer bits on information unlikely to be noticed. This is more nuanced than simply removing all high frequencies.</p>
-<h2 id="where-the-tradeoff-becomes-audible">Where the tradeoff becomes audible</h2>
+<p>A compact audio file can contain an excellent-sounding approximation of a recording while having very different sample values from the master. <strong>Lossy compression spends a limited data budget on a representation intended to preserve what matters perceptually.</strong></p>
+<p>To see where the approximation enters, follow a short section of sound through encoding and reconstruction.</p>
+<h2 id="1-describe-a-section-of-the-signal">1. Describe a section of the signal</h2>
+<p>Many general-audio codecs divide the waveform into overlapping sections and transform them into a representation of frequency content. The transform itself need not discard information. It provides components that the encoder can handle differently.</p>
+<p>Other coding tools can exploit prediction, shared information between channels, or models of suitable sound types. The essential distinction remains: the encoder chooses what information will describe the section, and the decoder reconstructs from that information.</p>
+<h2 id="2-decide-where-precision-is-useful">2. Decide where precision is useful</h2>
+<p>A psychoacoustic model estimates which errors are likely to be noticed. A strong sound can mask weaker sound or error in nearby frequency/time regions. The encoder can permit more error there while spending precision elsewhere.</p>
+<p>That does not mean it simply deletes everything above a fixed frequency, or selects a list of inaudible instruments. Audibility depends on the current signal and the type of error. A quiet tone in isolation can need careful treatment even when it costs few total bits; a dense passage can have useful masking but many components to describe.</p>
+<p>The model is an estimate. A difficult signal or inadequate data budget can expose its compromise.</p>
+<h2 id="3-quantize-the-chosen-representation">3. Quantize the chosen representation</h2>
+<p>Consider two illustrative transform-component values, +0.83 and +0.12. Suppose the encoder rounds them onto steps of 0.25:</p>
 <table>
 <thead>
 <tr>
-<th>Material or constraint</th>
-<th>Possible effect at an insufficient bitrate</th>
+<th>Component</th>
+<th style="text-align: right;">Source value</th>
+<th style="text-align: right;">Stored grid value</th>
+<th style="text-align: right;">Difference</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Sharp attacks, such as percussion</td>
-<td>Smearing or a faint sound before the attack</td>
+<td>A</td>
+<td style="text-align: right;">+0.83</td>
+<td style="text-align: right;">+0.75</td>
+<td style="text-align: right;">−0.08</td>
 </tr>
 <tr>
-<td>Cymbals, applause, or dense ambience</td>
-<td>Swirling, metallic, or watery texture</td>
-</tr>
-<tr>
-<td>Very restricted data rate</td>
-<td>Reduced bandwidth or less stable detail</td>
-</tr>
-<tr>
-<td>Repeated lossy conversions</td>
-<td>New artifacts added to an already altered signal</td>
+<td>B</td>
+<td style="text-align: right;">+0.12</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">−0.12</td>
 </tr>
 </tbody>
 </table>
-<p>These are possibilities, not a promise that every encoded track has audible damage. Codec design, encoder settings, source material, and listening conditions all influence the result. Equal bitrates also do not imply equal quality across different codecs.</p>
-<p>A higher-quality lossy version should normally be made from the original or a lossless master. Converting an existing low-bitrate file to a larger MP3 does not bring the discarded information back. Saving its decoded output as FLAC preserves that output, not the earlier source.</p>
-<h2 id="during-playback">During playback</h2>
-<p>Emby may <a href="../../decoding-output/conversion-fallback/Audio-Transcoding.html">convert audio</a> for a client's capabilities or available bandwidth. If both the source and delivery codec are lossy, this is another encoding generation. Keep that separate from ordinary decoding, which simply reconstructs the signal described by the existing bitstream.</p>
-<p>A compatible original track can avoid that extra conversion, but file size or a codec name alone cannot tell you whether a difference will be audible.</p>
+<p>This is a toy quantizer, not the exact operation of MP3, AAC, or Opus. It shows the point where multiple possible source values become one stored value.</p>
+<p>The decoder can recover +0.75 and 0 from the coded information. It cannot know whether the first originally was +0.83, +0.78, or another value in that quantization interval.</p>
+<p>Using finer steps reduces those errors but usually requires more information. Real encoders allocate steps or other precision controls according to their tools and data budget. Encoding the resulting symbols efficiently can reduce file size further without adding another approximation; lossless entropy coding and lossy quantization can coexist inside one codec.</p>
+<h2 id="4-reconstruct-and-join-the-sections">4. Reconstruct and join the sections</h2>
+<p>The decoder reverses the defined coding operations, reconstructs the signal representation, and combines overlapping sections into an output waveform.</p>
+<p>The reconstructed waveform reflects the stored quantized values. Replaying this existing bitstream does not normally create another lossy encoding generation: it reconstructs the same represented signal each time. A later output stage can still change gain, layout, or sample rate for other reasons.</p>
+<h2 id="why-transients-and-textures-are-difficult">Why transients and textures are difficult</h2>
+<p>A sudden attack contains energy concentrated in time. If an encoder uses an unsuitable long window or insufficient precision, quantization error associated with that section can spread around the attack, including before it. Short-window tools help localize the problem, with their own coding tradeoffs.</p>
+<p>Noise-like textures such as cymbals or applause distribute energy over many components. They can require substantial detail to retain a stable texture. Inadequate coding can produce fluctuating, metallic, or watery impressions.</p>
+<table>
+<thead>
+<tr>
+<th>Audible change</th>
+<th>Relevant kind of coding compromise</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Smearing around a sharp attack</td>
+<td>Time localization and quantization of the transient</td>
+</tr>
+<tr>
+<td>Fluctuating texture</td>
+<td>Representation of dense or noise-like content</td>
+</tr>
+<tr>
+<td>Reduced upper-frequency detail</td>
+<td>Bandwidth/precision allocation</td>
+</tr>
+<tr>
+<td>Altered stereo impression</td>
+<td>Shared or simplified channel representation</td>
+</tr>
+</tbody>
+</table>
+<p>These are mechanisms to investigate, not a rule that all tracks using a particular bitrate will exhibit the same artifact.</p>
+<h2 id="what-another-generation-does">What another generation does</h2>
+<p>If decoded audio is passed to a new lossy encoder, that encoder receives the first reconstruction. It applies its own analysis and approximation to that signal. The new errors can combine with or change the first generation's artifacts.</p>
+<p>Encoding the result at a high bitrate can avoid making it much worse, but it cannot identify the original information that the earlier quantizer merged together. Saving the decoded result as FLAC preserves that reconstruction exactly; it does not restore the pre-compression source.</p>
+<p>This distinction matters in an Emby <a href="../../decoding-output/conversion-fallback/Audio-Transcoding.html">audio-transcoding session</a>. A second encoding is a real generation change, while decoding an unchanged delivered track is not.</p>
+<h2 id="compare-versions-for-the-listening-job">Compare versions for the listening job</h2>
+<p>Use the same source passage and matched listening level. Include the kinds of material that matter: quiet tones, attacks, ambience, or dialogue over music. A louder version can seem more detailed even when coding is not better.</p>
+<p>Bitrate is a useful size/delivery constraint, but quality depends on the codec tools, encoder decisions, channels, and signal. The best master for making further versions retains the source information, so each new listening copy begins from that master rather than from an already compromised intermediate.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -164,6 +208,7 @@
 			          <ul class="seealso-list reference-list">
 			            <li><a class="seealso-link" href="https://publica-rest.fraunhofer.de/server/api/core/bitstreams/02820baa-82ed-4a16-80c3-c4c974362413/content" title="Fraunhofer: Psychoacoustic models for perceptual audio coding">Fraunhofer: Psychoacoustic models for perceptual audio coding</a></li>
 			            <li><a class="seealso-link" href="https://xiph.org/vorbis/faq/" title="Xiph.Org: Vorbis FAQ">Xiph.Org: Vorbis FAQ</a></li>
+			            <li><a class="seealso-link" href="https://www.iis.fraunhofer.de/content/dam/iis/de/doc/ame/conference/AES-17-Conference_mp3-and-AAC-explained_AES17.pdf" title="Karlheinz Brandenburg: MP3 and AAC explained">Karlheinz Brandenburg: MP3 and AAC explained</a></li>
 			          </ul>
             </article>
           </div>

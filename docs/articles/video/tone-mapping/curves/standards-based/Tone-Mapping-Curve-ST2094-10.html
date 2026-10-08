@@ -106,16 +106,38 @@
 <h1>Tone Mapping Curve: ST 2094-10 in libplacebo</h1>
 
 
-<p>SMPTE ST 2094-10 describes dynamic metadata for a color-volume transform. libplacebo's option with this name implements a brightness-mapping function based on the standard's informative Annex B.2.</p>
-<p>A useful way to picture it is as a curve constrained by three points: the dark end, the bright end, and an adaptation point between them. Moving the middle point changes the treatment of ordinary scene brightness.</p>
-<p><img src="images/tone-mapping-curve-st2094-10.png" alt="Example libplacebo ST 2094-10 curve from a source peak of 1,000 nits to a target of 100 nits."></p>
-<p><em>libplacebo 7.360.1, default constants, 1,000 → 100 nits, zero black levels, no scene-average value. The default adaptation-point selection is used.</em></p>
-<h2 id="a-family-of-curves">A family of curves</h2>
-<p>The line shown is not a fixed curve embedded in every ST 2094-10 picture. Source statistics and target assumptions can select a different middle point. The resulting curve may therefore change with the content.</p>
-<p>That also explains why a maximum-brightness value alone does not fully describe an adaptive mapping. Two scenes with the same brightest reflection can have very different average brightness.</p>
-<p>There are boundaries to the option's name. The standard contains more than this brightness function, and libplacebo documents that its mapper does not implement the subjective gain, offset, and gamma controls described in Annex B.3.</p>
-<p>Selecting this curve is consequently not equivalent to decoding and reproducing the complete <a href="../../../hdr/formats/dolby-vision/Dolby-Vision.html">Dolby Vision</a> processing chain. A curve label cannot establish profile support, enhancement-layer use, or preservation of all metadata.</p>
-<p>For Emby troubleshooting, separate those format/decoding questions from the mapping applied after decoding. The <a href="../../execution/Tone-Mapping-Playback-Path.html">playback path</a> tells you where that work happens; the mapper's implementation and input information tell you which member of this curve family is used.</p>
+<p>libplacebo's ST 2094-10 option fits a brightness relationship through a dark endpoint, a bright endpoint, and a selected adaptation point between them. It is based on the standard's informative Annex B.2, with source and destination assumptions supplied to the mapper.</p>
+<h2 id="the-middle-point-can-change-the-whole-curve">The middle point can change the whole curve</h2>
+<p>Use a constructed zero-black example with source peak 1,000 nits and target peak 100. Two rational functions can meet those same endpoints while assigning another output to an input of 100:</p>
+<table>
+<thead>
+<tr>
+<th>Illustrative function</th>
+<th style="text-align: right;">At input 100 nits</th>
+<th style="text-align: right;">At input 1,000 nits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.9x / (1 + 0.008x)</td>
+<td style="text-align: right;">50 nits</td>
+<td style="text-align: right;">100 nits</td>
+</tr>
+<tr>
+<td>0.3x / (1 + 0.002x)</td>
+<td style="text-align: right;">25 nits</td>
+<td style="text-align: right;">100 nits</td>
+</tr>
+</tbody>
+</table>
+<p>The changed intermediate constraint moves ordinary content even though black and peak stay fixed. This arithmetic illustrates why source statistics and adaptation-point selection are substantive inputs to a fitted mapping.</p>
+<p><img src="images/tone-mapping-curve-st2094-10.png" alt="The libplacebo ST 2094-10 default selection for 1,000-nit input and 100-nit output."></p>
+<p><em>libplacebo 7.360.1 defaults, zero black, no scene-average value. This plot uses the implementation's default selection, not either illustrative function above.</em></p>
+<p>For the plotted selection, 100 nits maps to about <strong>41.21 nits</strong>, and 500 maps to about <strong>86.32</strong>. Providing another scene-average input can change the selected middle relationship.</p>
+<h2 id="supply-the-information-before-interpreting-the-name">Supply the information before interpreting the name</h2>
+<p>The mapper can use scene brightness together with range information. A default selection still works when average information is absent. <a href="../../color-and-luminance/Tone-Mapping-Scene-Adaptive.html">Scene adaptation</a> covers how changing inputs are measured and stabilized across time.</p>
+<p>The standard describes a wider color-volume metadata system. This specific library function implements the Annex B.2 brightness fit; its documented scope excludes the subjective gain, offset, and gamma controls of Annex B.3. Choosing this scalar function therefore identifies a mapping job, rather than a complete <a href="../../../hdr/formats/dolby-vision/Dolby-Vision.html">Dolby Vision decoder</a>.</p>
+<p>An Emby route can decode and interpret source material through one stage, then apply an available mapper with the information that reaches it. The <a href="../../execution/Tone-Mapping-Playback-Path.html">playback-path article</a> locates those jobs. The intermediate-point example explains why the mapper's supplied information changes the resulting picture.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

@@ -106,45 +106,60 @@
 <h1>Video Generation Loss</h1>
 
 
-<p><strong>Generation loss</strong> is the extra change introduced when lossy video is decoded and then encoded again. Each new encoder works from the pictures it receives, including compromises introduced by earlier encodes.</p>
-<p>A high-quality conversion can make those additional changes hard to see. It cannot know the detail discarded before its input was created.</p>
+<p>If two viewing copies are made separately from the same retained source, each begins with that source's picture information. If a third copy is made from one of the viewing copies, it begins with an already altered reconstruction.</p>
+<p>That difference is the useful way to understand <strong>generation loss</strong>.</p>
 <p><img src="images/generation-loss-paths.svg" alt="Two delivery versions are made from a retained source, while a successive conversion starts from an already reduced version."></p>
-<p><em>Conceptual workflows. The diagram shows where another lossy generation can occur, not the measured amount of visible loss.</em></p>
+<p><em>The diagram shows conversion lineage, not measured visible damage.</em></p>
+<h2 id="separate-new-encodes-from-a-chain">Separate new encodes from a chain</h2>
+<p>Let M be a retained master. Make A for one playback target and B for another:</p>
+<p><strong>M →A</strong> and <strong>M →B</strong>.</p>
+<p>B does not inherit A's encoding errors because A was not its input. Ordinary Emby playback conversions that each read the retained library source have this branching relationship. Repeated viewing does not itself turn the previous delivery stream into the next source.</p>
+<p>A chain instead looks like <strong>M →A →C</strong>. A user might create it by converting a small copy and later using that copy for another export.</p>
+<p>Each stage's encoder receives the samples reconstructed at the preceding stage.</p>
+<h2 id="follow-the-errors-at-one-aligned-position">Follow the errors at one aligned position</h2>
+<p>For pictures in the same sample representation, let A's error relative to M be <code>A −M</code>, and C's new error relative to A be <code>C −A</code>.</p>
+<p>Then:</p>
+<p><strong>C −M =(A −M) +(C −A).</strong></p>
+<p>Take a scalar example: M is 17, A is 16, and C is 18. The first stage changes the value by −1, the second by +2, and the final error relative to M is +1.</p>
+<p>This does not mean every encode adds the same visible damage, or that each sample's absolute error must increase. Errors can reinforce or partly cancel at a position. The equation identifies the inputs whose differences are being combined.</p>
+<p><em>Original scalar illustration; it is not a prediction of a named codec's multigeneration quality.</em></p>
+<h2 id="why-lost-distinctions-cannot-be-recovered-from-size">Why lost distinctions cannot be recovered from size</h2>
+<p>Suppose a first quantizer rounds both 17 and 19 to 16. The stored result no longer identifies which of those two inputs occurred.</p>
+<p>A later process might produce 18, but it cannot know which original input to recover from the shared 16. More output bits can describe that input reconstruction more accurately; they do not supply the discarded distinction.</p>
+<p>In a picture, such distinctions can correspond to texture, grain or subtle gradients. A delivery copy can therefore be an adequate viewing source while being a reduced input for later production.</p>
+<h2 id="locate-the-operation-that-creates-a-generation">Locate the operation that creates a generation</h2>
 <table>
 <thead>
 <tr>
-<th>Operation on a video stream</th>
-<th>Another lossy video generation?</th>
+<th>Operation</th>
+<th>Video sample/coding effect</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Copy the original file</td>
-<td>No</td>
+<td>Copy the file</td>
+<td>Existing coded video is retained</td>
 </tr>
 <tr>
-<td>Repackage the same encoded video</td>
-<td>No</td>
+<td>Repackage the same video packets</td>
+<td>Existing picture coding is retained</td>
 </tr>
 <tr>
-<td>Convert only the audio while copying video</td>
-<td>No</td>
+<td>Convert audio while copying video</td>
+<td>No new video encode</td>
 </tr>
 <tr>
-<td>Decode video and encode it with lossy settings</td>
-<td>Yes</td>
+<td>Decode and encode video with lossy settings</td>
+<td>A new video reconstruction is created</td>
 </tr>
 <tr>
-<td>Losslessly encode decoded samples</td>
-<td>No new codec loss at that stage; earlier losses remain</td>
+<td>Losslessly encode the decoded samples</td>
+<td>That stage retains its input exactly</td>
 </tr>
 </tbody>
 </table>
-<h2 id="file-size-cannot-reverse-the-process">File size cannot reverse the process</h2>
-<p>If fine texture disappeared in the first encode, the next encoder sees a smoother surface. Giving that surface more bits can preserve it accurately, but it does not recreate the original texture.</p>
-<p>Repeated conversions also need not add the same amount of damage each time. Codec, quantization, resizing, filtering, and source content all matter. There is no universal number of “safe generations.”</p>
-<p>For an Emby library, retain the best source when preparing versions for different devices. Make each derivative from that source rather than converting one small playback copy into another. A ProRes or lossless intermediate can be useful in an editing workflow, but converting an already lossy source into it does not remove previous losses.</p>
-<p><a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">Direct Play and stream-copy delivery</a> preserve the encoded video. Video transcoding can add another generation. If only the sound changes, do not attribute a picture-quality difference to video generation loss without checking what actually happened to the video stream.</p>
+<p>Display metadata or timestamps can also change presentation without a new video encode. Cropping/resizing/filtering followed by encoding changes the input array as well as its later coding. Identify those operations before interpreting a difference between copies.</p>
+<p>A useful source strategy follows from the lineage: keep the best retained input and make needed derivatives from it. When editing requires an intermediate, a suitable lossless or production representation can serve the next stage, while its guarantee remains tied to the samples it actually received.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

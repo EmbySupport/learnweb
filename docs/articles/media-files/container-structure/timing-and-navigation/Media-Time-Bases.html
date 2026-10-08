@@ -106,43 +106,75 @@
 <h1>Time Bases</h1>
 
 
-<p>A timestamp value of 45,000 does not mean 45,000 seconds. It needs a scale. If the stream's time base is <code>1/90000</code>, each tick lasts one ninety-thousandth of a second, and 45,000 ticks means half a second.</p>
-<pre><code class="lang-text">time in seconds = timestamp × time base
-45,000 × (1/90,000) = 0.5 seconds
-</code></pre>
-<p>Different tracks can use different scales while referring to the same moment:</p>
+<p>A timestamp is a counter. Its <strong>time base</strong> tells you how much time one count represents:</p>
+<p><code>seconds = timestamp × time base</code></p>
+<p>For a time base of 1/90,000 second per tick, a counter value of 45,000 represents half a second. An audio clock counting at 48,000 ticks per second uses 24,000 for that same moment.</p>
 <table>
 <thead>
 <tr>
-<th>Time base</th>
-<th style="text-align: right;">Timestamp</th>
-<th style="text-align: right;">Time in seconds</th>
+<th>Tick duration</th>
+<th style="text-align: right;">Counter</th>
+<th style="text-align: right;">Converted time</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>1/90000</code></td>
+<td>1/90,000 s</td>
 <td style="text-align: right;">45,000</td>
-<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">0.5 s</td>
 </tr>
 <tr>
-<td><code>1/48000</code></td>
+<td>1/48,000 s</td>
 <td style="text-align: right;">24,000</td>
-<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">0.5 s</td>
 </tr>
 <tr>
-<td><code>1/1000</code></td>
+<td>1/1,000 s</td>
 <td style="text-align: right;">500</td>
-<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">0.5 s</td>
 </tr>
 </tbody>
 </table>
-<p>These are illustrative scales, not a rule that every audio or video track must use one of them.</p>
-<h2 id="a-time-base-is-not-a-frame-rate">A time base is not a frame rate</h2>
-<p>A stream at 25 frames per second might advance by 3,600 ticks per frame on a 90,000-tick scale. Its time base is still <code>1/90000</code>, not <code>1/25</code>. Variable-frame-rate video can advance by different amounts while keeping one time base.</p>
-<p>When remuxing, software may rescale timestamps into the destination container's units. Larger integer values after the operation do not mean the movie became slower.</p>
-<p>For an Emby synchronization investigation, compare timestamps converted to seconds. <a href="../../inspection/Media-Inspection-ffprobe.html">ffprobe</a> reports values such as <code>pts_time</code> and <code>dts_time</code> for this purpose. The raw integers from two tracks are not directly comparable until their scales have been applied.</p>
-<p>A nonzero starting timestamp is not automatically an error either. The relative alignment of the tracks and the presentation's start handling determine what the listener sees and hears.</p>
+<h2 id="frame-rate-chooses-the-gaps-not-the-counters-units">Frame rate chooses the gaps, not the counter's units</h2>
+<p>At 25 frames per second, consecutive evenly spaced pictures are 0.04 seconds apart. On a 90,000-tick clock they can advance by 3,600 ticks each. The clock's time base remains 1/90,000; the picture rate is 25 fps.</p>
+<p>At 30,000/1,001 fps, the gap on that clock is 90,000 × 1,001 / 30,000 = 3,003 ticks. Keeping the rational values avoids treating the rounded display label 29.97 as the exact rate.</p>
+<p>Variable-frame-rate pictures can use different gaps on one unchanged clock. A counter that advances irregularly is therefore not itself evidence that the time base changed.</p>
+<h2 id="rescaling-into-another-container">Rescaling into another container</h2>
+<p>Suppose an audio component advances by 1,024 samples on a 48 kHz clock. Its packet starts are:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Source ticks</th>
+<th style="text-align: right;">Exact start in milliseconds</th>
+<th style="text-align: right;">Nearest millisecond counter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: right;">1,024</td>
+<td style="text-align: right;">21.333…</td>
+<td style="text-align: right;">21</td>
+</tr>
+<tr>
+<td style="text-align: right;">2,048</td>
+<td style="text-align: right;">42.666…</td>
+<td style="text-align: right;">43</td>
+</tr>
+<tr>
+<td style="text-align: right;">3,072</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">64</td>
+</tr>
+</tbody>
+</table>
+<p>Rescaling preserves the represented time as closely as the new integer units permit. The resulting millisecond gaps are 21, 22, and 21, not one fixed rounded gap. Multiplying a rounded 21 ms duration three times would give 63 ms instead of the correct 64 ms. This is why rescaling absolute positions or using careful rational accumulation matters.</p>
+<p>The rounding error is bounded by the destination's resolution; it should not accumulate as if every packet independently shortened the programme. A finer destination clock can represent more of the original positions exactly.</p>
+<p><a href="../../inspection/Media-Inspection-ffprobe.html">ffprobe</a> exposes both raw counters and converted fields such as pts_time. For an Emby timing investigation, the converted positions show how audio and video align. Keep any start offsets as part of that comparison: a counter's zero is a convention, while the relative schedules determine synchronization.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

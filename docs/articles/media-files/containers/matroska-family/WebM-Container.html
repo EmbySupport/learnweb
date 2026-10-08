@@ -106,35 +106,42 @@
 <h1>WebM Container</h1>
 
 
-<p>A WebM download may resemble an MKV internally because <strong>WebM is based on Matroska</strong>. Its more constrained format and web-oriented guidelines give producers a clearer target for browser playback.</p>
-<p>That relationship does not make the extensions interchangeable. Renaming an MKV containing H.264 video to .webm leaves the H.264 data and container declarations untouched; it does not create a conforming WebM file.</p>
+<p>A WebM recording uses the same kind of EBML element hierarchy as Matroska, with a constrained set of media and feature conventions suited to web delivery. <strong>WebM</strong> gives the reader a more specific contract than “some Matroska tracks.”</p>
 <table>
 <thead>
 <tr>
-<th>Common WebM component</th>
-<th>Role</th>
+<th>WebM component</th>
+<th>Reader's job</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>VP8, VP9, or <a href="../../../video/codecs/vpx-av1/Video-Codec-AV1.html">AV1</a></td>
-<td>Encoded video</td>
+<td>EBML header and WebM document type</td>
+<td>Establish which container conventions apply</td>
 </tr>
 <tr>
-<td><a href="../../../audio/formats/lossy/Vorbis.html">Vorbis</a> or <a href="../../../audio/formats/lossy/Opus.html">Opus</a></td>
-<td>Encoded audio</td>
+<td>Track descriptions</td>
+<td>Identify codec and initialization information</td>
 </tr>
 <tr>
-<td>Matroska elements with the WebM document type</td>
-<td>Structure and timing</td>
+<td>Clusters and timed blocks</td>
+<td>Supply each component's encoded data at its media time</td>
+</tr>
+<tr>
+<td>Cues, when present</td>
+<td>Locate suitable media positions for seeking</td>
 </tr>
 </tbody>
 </table>
-<p>The published project guidelines describe VP8/VP9 with Vorbis/Opus. Modern implementations also write AV1: FFmpeg n8.1 explicitly includes it in its WebM codec mappings. That establishes a valid writing path, not support in every browser or device.</p>
-<h2 id="why-browser-playback-still-needs-a-check">Why browser playback still needs a check</h2>
-<p>A browser receives both a media type and the encoded content. A codec parameter can make a <a href="../../fundamentals/Media-MIME-Types.html">MIME type</a> more precise than video/webm alone. Decoding requirements such as profile, resolution, and bit depth still apply; recognizing the container is only the first step.</p>
-<p>For a WebM file in an Emby collection, inspect its actual video and audio streams. A client may accept the original file, need different packaging, or need one of the streams converted. The result depends on that app and platform, as described in Emby's <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">playback methods</a>.</p>
-<p>WebM is useful when the encoded streams and the intended web player agree. It is less suitable as a general archive wrapper for every track type found in a movie collection. <a href="Matroska-Container.html">Matroska</a> can accommodate a broader set of components without pretending they all fit the WebM delivery conventions.</p>
+<p>The project guidelines enumerate VP8/VP9 video with Vorbis/Opus audio. Modern writers also handle <a href="../../../video/codecs/vpx-av1/Video-Codec-AV1.html">AV1</a>: the pinned FFmpeg n8.1 WebM codec map explicitly includes it. That is useful when a newer file reports AV1 while an older summary of the format mentions only VP8 and VP9.</p>
+<h2 id="follow-an-audiovideo-recording-into-a-browser">Follow an audio/video recording into a browser</h2>
+<p>A reader parses the document type and Tracks information. It creates a video decoding path for the declared codec and an audio path for <a href="../../../audio/formats/lossy/Opus.html">Opus</a> or <a href="../../../audio/formats/lossy/Vorbis.html">Vorbis</a>. Cluster blocks supply encoded packets and presentation timing. The playback framework schedules the reconstructed pictures and samples together.</p>
+<p>The HTTP response's <a href="../../fundamentals/Media-MIME-Types.html">media type and codec parameters</a> can identify this combination before the reader has parsed the complete source. The combination must still match the actual bytes. A declaration of VP9 does not convert an AV1 track into VP9, and the receiving framework needs the appropriate decoder.</p>
+<p>An Emby library source can be opened and repackaged on the server or delivered in its original arrangement. Identify the selected output when comparing a browser's behaviour with another app: decoding the source on a server and decoding it in the browser are different routes.</p>
+<h2 id="what-changing-an-mkv-into-webm-involves">What changing an MKV into WebM involves</h2>
+<p>Suppose an MKV contains H.264, AAC, an ASS subtitle, and attached fonts. Changing the extension does not change its document declaration, codec mappings, or feature set. A real conversion must choose a WebM-compatible representation for each component it retains.</p>
+<p>If the input video is already AV1 and the soundtrack already Opus, a writer supporting that combination can instead copy suitable encoded media into WebM. It recreates the allowed structure and setup; it does not need to recompress the sound and picture merely because the file's name changes.</p>
+<p>The distinction is between meeting the destination's contract and doing new coding work. The general <a href="Matroska-Container.html">Matroska format</a> can retain a broader range of original components, while WebM provides a narrower delivery arrangement.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

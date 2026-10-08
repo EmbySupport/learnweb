@@ -106,16 +106,47 @@
 <h1>Matroska Ordered Chapters</h1>
 
 
-<p>Ordinary chapter markers help you jump to a scene in a movie whose sequence is already fixed. <strong>Ordered chapters</strong> can define the sequence itself, by listing the ranges a Matroska presentation should play.</p>
-<p>An ordered edition can refer to different portions of the current segment or to linked segments identified by their unique identifiers. A shared opening could therefore be stored once and referenced by several episode presentations.</p>
+<p>An <strong>ordered edition</strong> in Matroska can describe what should play, rather than merely name positions in a fixed movie. Its chapter ranges form a virtual timeline using material from the current segment or referenced segments.</p>
 <p><img src="images/matroska-ordered-chapters.svg" alt="An ordered edition can play a shared opening, then the main episode, then a shared ending."></p>
-<p><em>Original conceptual example using linked segments. It illustrates the sequence, not a claim about support in a particular player.</em></p>
-<h2 id="a-chapter-list-can-be-a-playback-recipe">A chapter list can be a playback recipe</h2>
-<p>A reader that follows the ordered edition plays the declared ranges in their specified order. A reader that only plays the physical media linearly may produce a different duration or omit the linked material. Recognizing basic MKV tracks is insufficient to establish support for this feature.</p>
-<p>This is useful context for an Emby item that plays a body of content but misses an opening, repeats scenes, or differs from a desktop player. Inspect the edition and segment references as well as the audio and video codecs. A codec conversion alone does not reconstruct the intended sequence.</p>
-<p>All referenced media must remain available to a reader that resolves the links. Copying only one file from a collection can leave a presentation incomplete even though that file's encoded data is intact.</p>
-<p>A conversion to one self-contained movie needs to resolve the edition and assemble its intended ranges with correct timing. Merely copying the current file's streams ignores that extra presentation logic.</p>
-<p>Use <a href="../../container-structure/timing-and-navigation/Media-Chapter-Markers.html">ordinary chapter markers</a> when all you need is navigation within a conventional fixed sequence. Ordered chapters introduce another compatibility and dependency question that should be checked on the intended playback path.</p>
+<p><em>Conceptual linked-segment presentation. The numerical example below uses the same opening/body/ending arrangement.</em></p>
+<h2 id="assemble-the-editions-clock">Assemble the edition's clock</h2>
+<p>Suppose three stored segments contain an opening, an episode body, and an ending. An ordered edition requests these ranges:</p>
+<table>
+<thead>
+<tr>
+<th>Source range</th>
+<th style="text-align: right;">Selected length</th>
+<th>Position in the played edition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Opening: 0–90 s</td>
+<td style="text-align: right;">90 s</td>
+<td>0–90 s</td>
+</tr>
+<tr>
+<td>Body: 0–1,200 s</td>
+<td style="text-align: right;">1,200 s</td>
+<td>90–1,290 s</td>
+</tr>
+<tr>
+<td>Ending: 0–90 s</td>
+<td style="text-align: right;">90 s</td>
+<td>1,290–1,380 s</td>
+</tr>
+</tbody>
+</table>
+<p>The resulting presentation lasts 1,380 seconds, or 23 minutes. Each range has source coordinates and a place in the concatenated output. The next episode can reference the same opening and ending while selecting a different body.</p>
+<p>A seek to 430 seconds in this edition falls inside the body. Its corresponding body-source position is 430 − 90 = 340 seconds. A reader must resolve that range and then perform a normal seek within the referenced media. Seeking directly to source time 430 would land at a different scene.</p>
+<h2 id="the-references-are-part-of-the-presentation">The references are part of the presentation</h2>
+<p>Segment links identify the target through its unique segment identifier. The reader needs to locate the matching media and initialize its tracks; the chapter range alone contains no encoded picture or sound.</p>
+<p>Copying the body file while leaving behind the shared opening and ending can thus leave an otherwise readable body with unresolved presentation dependencies. The body has not necessarily lost bytes. The edition has lost access to requested ranges in other media.</p>
+<p>Another edition could omit the opening and present 1,290 seconds instead. The same stored body then occupies a different position in the output timeline. An edition's duration is therefore a result of its chosen ranges, not simply the physical file's linear duration.</p>
+<h2 id="what-a-flattened-movie-needs">What a flattened movie needs</h2>
+<p>To produce a self-contained movie, a converter must follow the selected edition, obtain every range, and map their audio/video timing onto one output timeline. It must also handle decoding restart and transitions at the range boundaries. Copying only the body's streams skips that assembly step.</p>
+<p>This explains an Emby item whose linear media plays but differs from an ordered-edition-aware desktop player. Compare which edition was followed and whether linked segments were resolved before comparing codecs. The requested presentation may be different even though the stored picture data is identical.</p>
+<p><a href="../../container-structure/timing-and-navigation/Media-Chapter-Markers.html">Ordinary chapters</a> only offer named destinations in a fixed sequence. Ordered editions add source-range selection and timeline assembly; those are the mechanisms that distinguish this feature.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

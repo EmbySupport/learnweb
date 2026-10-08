@@ -106,15 +106,59 @@
 <h1>Bitrate Variation</h1>
 
 
-<p>A quiet conversation is usually easier to compress than a crowd moving through rain. A variable-bitrate encode can spend fewer bits on the conversation and more on the difficult scene. The rate printed in a media report is often an average across both.</p>
+<p>A film's encoded data can be unevenly distributed. In this constructed example, each interval represents four seconds of media:</p>
 <p><img src="images/bitrate-variation.svg" alt="Four equal-duration intervals use 6, 12, 24, and 6 megabits per second, averaging 12 megabits per second."></p>
-<p><em>Illustrative four-second intervals. These are encoded media rates, not measurements of network traffic.</em></p>
-<p>This example averages 12 Mb/s, but its busiest interval needs twice that rate. Over four seconds, the 24 Mb/s interval contains 96 megabits, or 12 MB.</p>
-<h2 id="why-buffers-help">Why buffers help</h2>
-<p>A player can receive data ahead of the play position and keep it in memory. If a connection delivers 18 Mb/s during that demanding interval, it falls 24 megabits behind over four seconds. About 3 MB of already buffered media can bridge that simplified gap. Protocol overhead and changes in connection speed require additional allowance.</p>
-<p>The same average rate can hide very different demands: a short spike is easier to absorb than a long scene that stays above the connection's capacity. Measured peaks also depend on the interval used; a frame-level peak and a ten-second average are different statistics.</p>
-<p>In Emby, repeated buffering around the same busy scenes can suggest a sustained throughput or buffer limitation. The source rate is a useful clue, but the active playback method and delivered stream determine what actually crosses the network.</p>
-<p>A file need not use variable-bitrate encoding to arrive in bursts. Even constant-rate media can be fetched faster than playback speed, followed by pauses while the player consumes its buffer.</p>
+<p><em>Encoded media rates in four-second intervals. These are illustrative allocations, not network measurements.</em></p>
+<p>The four intervals contain 24, 48, 96, and 24 megabits. That is 192 megabits over 16 seconds, giving a whole-example average of 12 Mb/s. The same average could describe a much flatter allocation.</p>
+<h2 id="follow-the-buffered-data">Follow the buffered data</h2>
+<p>Now give the connection an uninterrupted 18 Mb/s arrival rate and start the simplified calculation with an empty playback buffer. Assume playback consumes data at each interval's listed rate and the reader can fetch ahead.</p>
+<table>
+<thead>
+<tr>
+<th>Interval</th>
+<th style="text-align: right;">Media consumes</th>
+<th style="text-align: right;">Connection supplies</th>
+<th style="text-align: right;">Change in buffered data</th>
+<th style="text-align: right;">Buffer after interval</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First four seconds</td>
+<td style="text-align: right;">24 Mb</td>
+<td style="text-align: right;">72 Mb</td>
+<td style="text-align: right;">+48 Mb</td>
+<td style="text-align: right;">48 Mb</td>
+</tr>
+<tr>
+<td>Next four seconds</td>
+<td style="text-align: right;">48 Mb</td>
+<td style="text-align: right;">72 Mb</td>
+<td style="text-align: right;">+24 Mb</td>
+<td style="text-align: right;">72 Mb</td>
+</tr>
+<tr>
+<td>Demanding four seconds</td>
+<td style="text-align: right;">96 Mb</td>
+<td style="text-align: right;">72 Mb</td>
+<td style="text-align: right;">−24 Mb</td>
+<td style="text-align: right;">48 Mb</td>
+</tr>
+<tr>
+<td>Final four seconds</td>
+<td style="text-align: right;">24 Mb</td>
+<td style="text-align: right;">72 Mb</td>
+<td style="text-align: right;">+48 Mb</td>
+<td style="text-align: right;">96 Mb</td>
+</tr>
+</tbody>
+</table>
+<p>The demanding interval uses data faster than it arrives, but it finishes successfully because earlier intervals stored enough data. The 24-megabit deficit consumes 3 MB of that reserve.</p>
+<p>This calculation omits finite buffer capacity, headers, request delays, and variable throughput. Its purpose is to expose the causal relationship: <strong>arrival minus consumption changes the reserve</strong>. In a real finite file the reader also stops requesting once it has obtained the remaining content; the final row is a notional continuing-arrival calculation.</p>
+<h2 id="seeking-changes-the-starting-state">Seeking changes the starting state</h2>
+<p>Start directly at the demanding interval instead. Without its earlier reserve, the same 18 Mb/s connection cannot supply the whole 24 Mb/s interval in real time. The player must accumulate data before presenting it, obtain it faster, or use a lower-demand output.</p>
+<p>That explains why a movie can play smoothly from the beginning yet pause after a seek, or buffer around the same busy scene in an Emby session. The important quantities are the delivered media's demand, available arrival rate, and reserve at that moment.</p>
+<p>A peak must also have a measurement interval. One unusually large frame, four demanding seconds, and a ten-minute high-rate section put different demands on a buffer. A single peak number loses that duration information.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

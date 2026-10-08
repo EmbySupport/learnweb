@@ -106,41 +106,60 @@
 <h1>Lossless Video Compression</h1>
 
 
-<p><strong>Lossless video compression</strong> allows a decoder to reproduce exactly the picture samples supplied to the encoder. It still saves space by representing repetition, prediction errors, and other patterns more efficiently.</p>
-<p>For example, a sequence of sample values can be represented by a starting value and exact differences:</p>
+<p>The samples <strong>40, 42, 43, 43</strong> can be stored in four 8-bit words, requiring 32 payload bits. They can also be stored as a starting sample plus differences:</p>
+<p><strong>40; +2, +1, 0.</strong></p>
+<p>Nothing has been rounded. Knowing the starting value, the decoder can reverse every addition and recover all four samples exactly.</p>
+<h2 id="a-complete-small-coding-rule">A complete small coding rule</h2>
+<p>Give common differences short prefix codes:</p>
 <table>
 <thead>
 <tr>
-<th>Representation</th>
-<th>Values</th>
+<th>Difference</th>
+<th>Code</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Input samples</td>
-<td>40, 42, 43, 43</td>
+<td>0</td>
+<td><code>0</code></td>
 </tr>
 <tr>
-<td>Starting sample</td>
-<td>40</td>
+<td>+1</td>
+<td><code>10</code></td>
 </tr>
 <tr>
-<td>Following differences</td>
-<td>+2, +1, 0</td>
+<td>+2</td>
+<td><code>110</code></td>
 </tr>
 <tr>
-<td>Reconstructed samples</td>
-<td>40, 42, 43, 43</td>
+<td>Anything else</td>
+<td><code>111</code>, followed by a signed 9-bit difference</td>
 </tr>
 </tbody>
 </table>
-<p><em>Original arithmetic example. Compact coding of the differences can save bits, but the saving depends on the data and coding method.</em></p>
-<p>A real lossless codec uses more elaborate predictors and coding rules. FFV1, for example, is a lossless format documented in RFC 9043 and used for preservation and intermediate workflows.</p>
-<h2 id="lossless-relative-to-which-input">Lossless relative to which input?</h2>
-<p>The guarantee begins at the encoder's input. If a lossy film is decoded and then encoded losslessly, the new file preserves those already decoded samples. It cannot reconstruct detail discarded by the original lossy encoding.</p>
-<p>Likewise, a workflow can change the samples before the lossless stage: resizing, color conversion, reduced bit depth, or chroma subsampling may already have altered the picture. “Lossless video codec” does not certify every operation that preceded it.</p>
-<p>For an Emby library, lossless masters can be useful when preserving home recordings or avoiding repeated encoding damage during editing. They often need substantially more storage and delivery bandwidth than a viewing copy. Compression savings depend strongly on the picture: noise and fine random texture are difficult to represent compactly without approximation.</p>
-<p>Client support also matters. A format well suited to preservation may need server <a class="xref" href="https://emby.media/support/articles/Transcoding.html">transcoding</a> for a particular app. Keeping a lossless master and a compatible playback version can serve different purposes without treating the smaller viewing copy as the preservation original.</p>
+<p>No complete prefix is the start of another. The decoder can distinguish the short codes and knows to read nine more bits after the escape prefix. Nine signed bits cover differences between arbitrary 8-bit sample values.</p>
+<p>For the four-sample example, store:</p>
+<pre><code class="lang-text">starting sample 40     +2    +1   0
+00101000              110   10   0
+</code></pre>
+<p>The payload is <strong>8 + 3 + 2 + 1 = 14 bits</strong>, instead of 32. Real byte storage can add padding, and a real format must communicate length and coding rules. This is an original toy codec, not FFV1's entropy coding.</p>
+<p>Decode it:</p>
+<ol>
+<li>Read the first eight bits: 40.</li>
+<li>Read <code>110</code>: add 2, giving 42.</li>
+<li>Read <code>10</code>: add 1, giving 43.</li>
+<li>Read <code>0</code>: add zero, giving 43.</li>
+</ol>
+<p>The values and their order are identical. That is <strong>lossless sample compression</strong>.</p>
+<h2 id="a-good-predictor-saves-space-without-taking-a-risk">A good predictor saves space without taking a risk</h2>
+<p>A predictor tries to make differences small and statistically common. In the toy rule, zero needs only one bit. An unpredictable sequence uses the escape code more often and can become larger.</p>
+<p>The decoder still recovers the exact values because every difference is retained. A poor prediction hurts compression efficiency, not correctness. Real lossless codecs use more capable predictors and coding methods to exploit picture structure.</p>
+<p><a href="../codecs/production-preservation/Video-Codec-FFV1.html">FFV1</a> is a specified video format built for this kind of exact reconstruction. Some delivery codecs also have lossless modes, with their own format and decoder requirements.</p>
+<h2 id="place-the-guarantee-around-the-encoder">Place the guarantee around the encoder</h2>
+<p>Imagine decoding an existing lossy film, resizing it, then losslessly encoding the result. The lossless decoder recovers the resized samples exactly. It does not recover the earlier camera samples, because the losses and resize happened before that codec received its input.</p>
+<p>This identifies a practical verification boundary: compare the samples immediately supplied to the lossless encoder with the samples restored by its decoder, in the same sample format and order.</p>
+<p>A file checksum answers a different question. Repackaging or changing tags can change file bytes while leaving decoded video identical. Conversely, an intact file can faithfully preserve an input that already contained damage.</p>
+<p>For an Emby preservation master, the exact sample representation can be retained separately from a smaller delivery version. The master supplies the stable input for future derivatives; the playback copy supplies the representation appropriate for its viewing route.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

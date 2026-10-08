@@ -106,18 +106,23 @@
 <h1>Dolby Vision Profile 10</h1>
 
 
-<p>Dolby Vision Profile 10 brings Dolby Vision delivery to <strong>AV1</strong>. It uses a single ten-bit picture layer with metadata carried in AV1's metadata structure.</p>
+<p>Moving a Dolby Vision presentation from HEVC delivery to AV1 delivery changes the picture codec, not merely the container. <strong>Profile 10</strong> supplies the single-picture-layer ten-bit AV1 arrangement, with Dolby Vision data carried in an ITU-T T.35 metadata OBU using an EMDF wrapper.</p>
+<h2 id="trace-the-preparation-of-an-av1-delivery">Trace the preparation of an AV1 delivery</h2>
+<p>An encoder can use an existing produced Dolby Vision master and its corresponding information to prepare an AV1 stream. The compressed picture needs real AV1 encoding. The associated metadata must be carried and remain consistent with those encoded pictures.</p>
+<p>At playback, the reader locates AV1 picture data and metadata. The decoder reconstructs the AV1 samples; supported Profile 10 processing supplies the Dolby Vision interpretation; the output route presents the resulting image.</p>
+<p>This separates three capability jobs: opening the packaging, decoding AV1, and using the selected Dolby Vision arrangement. A device's support for HEVC-based Dolby Vision does not complete the AV1 decoding job. AV1 decode support alone likewise does not supply the profile's metadata processing.</p>
+<h3 id="read-the-base-variant">Read the base variant</h3>
 <table>
 <thead>
 <tr>
-<th>Variant</th>
-<th>Base-picture compatibility</th>
+<th>Shorthand</th>
+<th>Available base interpretation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>10.0</td>
-<td>Dolby Vision-specific interpretation</td>
+<td>Dolby Vision-specific</td>
 </tr>
 <tr>
 <td>10.1</td>
@@ -129,11 +134,8 @@
 </tr>
 </tbody>
 </table>
-<p>These are different base arrangements within the profile, not three steps on a quality ladder. Dolby's Profile 10 introduction describes using an existing Dolby Vision master to prepare AV1 delivery; a new profile number does not inherently mean that the film was remastered.</p>
-<p>For an Emby playback path, there are two separate capability questions: <strong>can it decode AV1, and can it use this Dolby Vision profile?</strong> Support for HEVC-based Dolby Vision does not answer either question by itself. Likewise, AV1 hardware decoding alone does not establish Dolby Vision Profile 10 support.</p>
-<p>The fallback picture also depends on the variant. A properly supported HDR10 or HLG base can be useful when Dolby Vision processing is unavailable, while the 10.0 signal needs the appropriate interpretation or conversion.</p>
-<p>Changing a container or codec label cannot turn HEVC Profile 8 into AV1 Profile 10. The compressed picture format differs, so a real change of codec requires decoding and encoding. Metadata handling must stay consistent with the resulting pictures.</p>
-<p>When comparing files, retain the codec and base-compatibility details alongside the Dolby Vision label. They explain far more about a playback mismatch than the profile number alone.</p>
+<p>These forms determine the base presentation a supporting fallback path can use. Their numbers identify compatibility choices rather than steps in picture quality. The level remains another field describing processing limits.</p>
+<p>For an Emby session, retain the AV1 and base-compatibility information beside the complete Dolby Vision record. If the destination uses the base, its light interpretation must match that variant. If video is transcoded, inspect the resulting codec and representation as the new output rather than assuming the source Profile 10 operations remained unchanged.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

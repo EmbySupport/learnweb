@@ -106,37 +106,74 @@
 <h1>Inter-Frame Video Prediction</h1>
 
 
-<p><strong>Inter-frame prediction</strong> uses other decoded pictures to predict parts of the current picture. The bitstream describes where to find the reference samples and how to correct the prediction.</p>
-<p>If a camera pans across a wall, the wall may appear shifted between pictures. A motion vector can describe that shift. The encoder then represents the remaining difference, called the <strong>residual</strong>. New objects, changing light, and exposed areas still require appropriate information.</p>
+<p>A new video picture often contains much of the scene already visible in another one. <strong>Inter-frame prediction</strong> describes a useful part of that decoded scene, then sends the information needed to correct it into the new picture.</p>
+<p>The decoder is not asked to identify the object or guess its true movement. The encoded stream tells it which reference to use, where to sample it, and which correction to apply.</p>
 <p><img src="images/inter-frame-prediction.svg" alt="A region from a reference picture is shifted to predict a region in the current picture, followed by a correction."></p>
-<p><em>Original qualitative schematic. Motion prediction plus a residual reconstructs an encoded picture; the drawing is not a measured codec output.</em></p>
+<p><em>Conceptual motion prediction plus residual reconstruction, not a measured codec result.</em></p>
+<h2 id="find-a-useful-reference-region">Find a useful reference region</h2>
+<p>Suppose a reconstructed reference row is:</p>
+<p><strong>10, 20, 30, 40, 50, 60.</strong></p>
+<p>The current four-sample region needs values <strong>31, 39, 53, 60</strong>. The reference region starting two positions to the right of the current block's coordinate is <strong>30, 40, 50, 60</strong>, already a close match.</p>
+<p>The encoder can select that reference and transmit an offset corresponding to <strong>+2</strong> reference-sample positions in this declared convention. A motion vector locates the predictor. Its sign describes that coordinate relationship, rather than directly declaring a person's real-world velocity.</p>
+<p>A camera pan, object movement, or a repetitive texture can all make a shifted region useful. The encoder searches among permitted predictors and balances their fit against the cost of describing them.</p>
+<h2 id="add-the-residual">Add the residual</h2>
+<p>The required difference between the current input and predictor is:</p>
 <table>
 <thead>
 <tr>
-<th>Information</th>
-<th>What the decoder needs it for</th>
+<th>Position</th>
+<th style="text-align: right;">Input</th>
+<th style="text-align: right;">Predictor</th>
+<th style="text-align: right;">Residual</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Reference selection</td>
-<td>Chooses an available decoded picture</td>
+<td>1</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">+1</td>
 </tr>
 <tr>
-<td>Motion information</td>
-<td>Locates the region used for prediction</td>
+<td>2</td>
+<td style="text-align: right;">39</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">−1</td>
 </tr>
 <tr>
-<td>Residual</td>
-<td>Corrects the estimate to reconstruct the coded result</td>
+<td>3</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">+3</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">0</td>
 </tr>
 </tbody>
 </table>
-<p>Some regions can be predicted so well that little or no residual is needed. Others may be coded using <a href="Intra-Frame-Compression.html">intra prediction</a> instead. An inter-predicted picture need not use one method everywhere.</p>
-<h2 id="pictures-can-arrive-in-a-different-order">Pictures can arrive in a different order</h2>
-<p>A reference picture can appear later in <strong>display order</strong> but be decoded earlier. The decoder buffers pictures so it can satisfy the prediction dependencies and then present the result at the correct times. <a href="Video-GOP.html">GOP structure</a> helps describe those relationships.</p>
-<p>For Emby playback, efficient prediction can reduce delivery bitrate, while dependencies affect random access and buffering. To show a picture reached by seeking, the decoder may need to begin at an earlier <a href="Video-Keyframes.html">keyframe</a> and reconstruct the intervening references first.</p>
-<p>This process does not invent extra moments of motion. It reconstructs the pictures already represented by the encoded stream. <a href="../../frame-timing/Motion-Interpolation.html">Motion interpolation</a> has a different goal: estimating additional pictures for new presentation times.</p>
+<p>These are the <strong>residual</strong> values. A real codec can transform and quantize them before entropy coding. In a lossless representation they can be retained exactly. In a lossy representation the reconstructed corrections can differ.</p>
+<p>For a toy quantizer rounding these corrections to multiples of four, none of the values are half-step ties:</p>
+<p><strong>+1, −1, +3, 0 → 0, 0, +4, 0.</strong></p>
+<p>Add those decoded corrections to the predictor and the result is <strong>30, 40, 54, 60</strong>. Its errors relative to the input are <strong>−1, +1, +1, 0</strong>.</p>
+<p><em>The sample arithmetic isolates prediction and approximation. It omits the named codecs' transform, quantization, and filtering details.</em></p>
+<p>A well-matched predictor leaves a small correction. A region containing a new object, an uncovered background, or different lighting can need larger corrections. The encoder can select another reference or use <a href="Intra-Frame-Compression.html">intra prediction</a> for that region instead.</p>
+<h2 id="reconstruct-the-same-reference-on-both-sides">Reconstruct the same reference on both sides</h2>
+<p>Now imagine using this reconstructed picture to predict the next one. The decoder has <strong>30, 40, 54, 60</strong>, not the encoder's original <strong>31, 39, 53, 60</strong>.</p>
+<p>The encoder must build the next predictor from the reconstructed picture too. It therefore contains a local reconstruction loop that follows the decoder's operations. If it predicted from the original input instead, its transmitted residual would assume values the decoder does not have, causing a mismatch that could propagate into later pictures.</p>
+<p>This is why decoded reference pictures are part of the coding process. They are not merely pictures the player happened to retain for display.</p>
+<h2 id="the-vector-can-point-between-samples">The vector can point between samples</h2>
+<p>Movement need not be an exact number of sample positions. A codec can specify fractional-position prediction, using defined interpolation rules to construct reference values between the stored grid points.</p>
+<p>For example, a requested reference position halfway between two samples needs a calculated predictor rather than an integer array lookup. Each codec specifies its filters and rounding so compatible decoders construct the expected values. The residual then corrects this calculated predictor just as it corrects an integer-position one.</p>
+<p>This interpolation forms a predictor for a coded picture. It does not add new video presentation times.</p>
+<h2 id="combine-available-references">Combine available references</h2>
+<p>A predictor can also combine information from two decoded references. For a scalar illustration, reference predictions of 40 and 44 average to 42. A residual of +1 reconstructs 43.</p>
+<p>A full picture can have different reference choices and coding modes in different regions. The picture's “P” or “B” description does not mean every sample uses one identical operation.</p>
+<p>One reference may be earlier and another later in <strong>display order</strong>. A decoder can process the later-displayed anchor first, retain it, then decode pictures scheduled before it on screen. The coded order satisfies the dependencies; presentation timestamps and the picture order then restore the viewing sequence.</p>
+<p><a href="Video-GOP.html">GOP structure</a> and <a href="Reference-Frames.html">reference storage</a> follow those relationships in more detail. When seeking into an Emby film, reconstruction starts from a suitable access point and rebuilds the needed reference state before the requested picture can be shown.</p>
+<p><a href="../../frame-timing/Motion-Interpolation.html">Motion interpolation</a> performs a different job: it estimates an extra picture at a time never supplied by the original coded sequence. Inter-frame coding instead has a represented target picture and transmitted corrections that define its reconstructed result.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

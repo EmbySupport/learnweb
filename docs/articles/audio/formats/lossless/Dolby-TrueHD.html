@@ -106,37 +106,45 @@
 <h1>Dolby TrueHD Audio</h1>
 
 
-<p><strong>Dolby TrueHD preserves the encoded audio without lossy compression.</strong> It is found in Blu-ray and Ultra HD Blu-ray movie soundtracks and may also carry Dolby Atmos information.</p>
-<p>Inspection tools can identify the stream using an MLP-related label, reflecting its Meridian Lossless Packing heritage. That does not make every MLP-based format interchangeable with TrueHD.</p>
-<h2 id="reading-the-format-limits">Reading the format limits</h2>
+<p>A receiver changes from “TrueHD” to “PCM” when a player decodes the soundtrack locally. The lossless representation has not necessarily been lost: <strong>TrueHD decoding restores its encoded audio presentation, and PCM is the form of those reconstructed samples.</strong></p>
+<p>The important questions are what was decoded and what processing happened afterward.</p>
+<h2 id="a-lossless-description-can-have-a-changing-bitrate">A lossless description can have a changing bitrate</h2>
+<p>TrueHD uses Meridian Lossless Packing-related technology to describe audio reversibly. Like other lossless coding, it can exploit predictable signal relationships and retain the exact information needed to reconstruct the encoded presentation.</p>
+<p>Simple passages can require fewer bits than difficult ones. The source's sample rate and precision remain fixed while its compressed data rate can vary.</p>
+<p>For example, eight channels of 48 kHz, 24-bit PCM require 48,000 × 24 × 8 = <strong>9.216 Mbit/s</strong> before compression. TrueHD's encoded rate depends on how efficiently that particular audio can be described; it is not the PCM calculation repeated with a fixed reduction ratio.</p>
 <table>
 <thead>
 <tr>
 <th>Blu-ray capability described by Dolby</th>
-<th>Supported configuration</th>
+<th>Context</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Up to eight full-range channels</td>
-<td>96 kHz, 24-bit audio</td>
+<td>Up to eight full-range channels at 96 kHz/24-bit</td>
+<td>A supported source configuration</td>
 </tr>
 <tr>
-<td>Up to six full-range channels</td>
-<td>192 kHz, 24-bit audio</td>
+<td>Up to six full-range channels at 192 kHz/24-bit</td>
+<td>Another supported source configuration</td>
 </tr>
 <tr>
-<td>Maximum encoded data rate</td>
-<td>Up to 18 Mbit/s</td>
+<td>Encoded data rates up to 18 Mbit/s</td>
+<td>A format/application capacity, not every track's average</td>
 </tr>
 </tbody>
 </table>
-<p>These are capabilities, not the properties of every soundtrack. An actual track can use fewer channels, a lower sample rate, and a much lower average bitrate. Lossless compression also allows the encoded rate to vary with the content.</p>
-<h2 id="where-decoding-happens">Where decoding happens</h2>
-<p>A capable player can decode TrueHD and send the resulting PCM channels to the audio system. If that output preserves the relevant sample values and channel presentation, local decoding does not itself introduce lossy compression.</p>
-<p>Alternatively, a supported bitstream output path lets a downstream device perform the decoding. TrueHD transport over HDMI uses <a href="../../decoding-output/output-transport/Dolby-MAT.html">Dolby MAT</a> packaging; the details of that transport should not be confused with the codec stored in the file.</p>
-<p>For a TrueHD track with <a href="../../channels/object-based/Dolby-Atmos.html">Atmos</a>, ordinary channel PCM and metadata-bearing Atmos output are different results. Preserving lossless channel audio does not alone prove that the immersive information survived.</p>
-<p>An Emby movie may offer a separate AC-3 fallback, but TrueHD does not contain the same kind of embedded lossy core used by common DTS-HD disc streams. Confirm the available tracks rather than expecting an AC-3 mix to be extractable from any TrueHD file.</p>
+<p>MLP-related labels in an inspection report reflect the coding heritage. They do not mean every earlier MLP-based delivery format is interchangeable with TrueHD.</p>
+<h2 id="compare-two-decode-placements">Compare two decode placements</h2>
+<p><strong>Receiver decode:</strong> a supported path carries the encoded TrueHD presentation onward, using suitable HDMI/MAT transport, and the receiver reconstructs it.</p>
+<p><strong>Player decode:</strong> the player reconstructs the supported presentation and outputs PCM. If it keeps the intended sample values and channel roles, moving decoding into the player does not add lossy encoding.</p>
+<p>Subsequent downmixing, resampling, gain changes, or another codec conversion are additional operations. They should be recorded separately from the successful lossless decode.</p>
+<h2 id="atmos-adds-a-spatial-information-boundary">Atmos adds a spatial-information boundary</h2>
+<p>A TrueHD track can carry <a href="../../channels/object-based/Dolby-Atmos.html">Atmos information</a>. Ordinary channel PCM supplies a fixed channel presentation; an object-aware path can carry the required spatial information onward, including supported <a href="../../decoding-output/output-transport/Dolby-MAT.html">MAT</a> output.</p>
+<p>Lossless channel reconstruction and retaining a scene for later immersive rendering are thus different preservation questions. A player-rendered spatial output can still be useful even after the original metadata is no longer carried to the receiver.</p>
+<h2 id="where-a-conventional-fallback-comes-from">Where a conventional fallback comes from</h2>
+<p>A disc arrangement may provide companion AC-3 audio for compatibility. TrueHD does not contain the DTS-HD-style embedded lossy core that can be extracted from common core-plus-extension soundtracks.</p>
+<p>For an Emby item with a TrueHD and separate AC-3 track, selecting the latter chooses another encoded presentation. If the server decodes TrueHD and encodes a compatible codec instead, that creates a new presentation. Comparing the selected track and route resolves which of these occurred.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -156,7 +164,8 @@
 
 			          <h4 class="references seealso-heading">References</h4>
 			          <ul class="seealso-list reference-list">
-			            <li><a class="seealso-link" href="https://developer.dolby.com/globalassets/technology/dolby-truehd/dolbytruehdhighlevelbitstreamdescription.pdf" title="Dolby: TrueHD high-level bitstream description">Dolby: TrueHD high-level bitstream description</a></li>
+			            <li><a class="seealso-link" href="https://web.archive.org/web/20250810135349/https://developer.dolby.com/globalassets/technology/dolby-truehd/dolbytruehdhighlevelbitstreamdescription.pdf" title="Dolby: TrueHD (MLP) high-level bitstream description &#8212; February 2018 archived specification">Dolby: TrueHD (MLP) high-level bitstream description &#8212; February 2018 archived specification</a></li>
+			            <li><a class="seealso-link" href="https://datatracker.ietf.org/doc/html/draft-ietf-cellar-codec-18#TRUEHD" title="IETF CELLAR codec draft-18: TrueHD bibliography (work in progress)">IETF CELLAR codec draft-18: TrueHD bibliography (work in progress)</a></li>
 			            <li><a class="seealso-link" href="https://professional.dolby.com/tv/dolby-truehd" title="Dolby: TrueHD lossless audio">Dolby: TrueHD lossless audio</a></li>
 			            <li><a class="seealso-link" href="https://professional.dolby.com/siteassets/tv/home/dolby-atmos/dolby-atmos-for-home-theater.pdf" title="Dolby Atmos for the Home Theater: Delivery and Dolby MAT">Dolby Atmos for the Home Theater: Delivery and Dolby MAT</a></li>
 			          </ul>

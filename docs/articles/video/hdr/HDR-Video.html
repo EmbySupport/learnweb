@@ -106,38 +106,44 @@
 <h1>What HDR Video Adds to SDR</h1>
 
 
-<p>A lamp and the wall it illuminates do not look equally bright in real life. HDR video gives a picture more room to preserve that difference: the lamp can stand out while the wall remains at a comfortable level.</p>
-<p>The improvement is about the range within the image. An HDR film can still contain a dark room, a muted landscape, or an intentionally low-contrast shot. Making every part of the image brighter would change the creative decision rather than demonstrate HDR.</p>
+<p>Picture a dim room with a face beside a window and a reflection on glass. In the finished image, the face should remain readable, the window should feel brighter, and the reflection can be brighter still. HDR gives the filmmaker more room to separate those light levels in one picture.</p>
+<p>A conventional SDR rendition has a smaller reference range. Its production or conversion must fit bright areas closer together, choose which differences to compress, and establish a coherent image within that range. HDR can retain more of the separation, so a reflection stands out without requiring the whole room to become bright.</p>
+<h2 id="what-changes-in-the-picture">What changes in the picture?</h2>
 <table>
 <thead>
 <tr>
-<th>Picture characteristic</th>
-<th>What it tells you</th>
+<th>Part of the scene</th>
+<th>Use of the additional range</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Dynamic range</td>
-<td>How far the picture can extend between dark and bright levels</td>
+<td>Face and ordinary surfaces</td>
+<td>Can remain at a deliberately chosen comfortable level</td>
 </tr>
 <tr>
-<td>Resolution</td>
-<td>How many picture samples describe the scene</td>
+<td>Bright window</td>
+<td>Can stay distinct from the interior</td>
 </tr>
 <tr>
-<td>Color gamut</td>
-<td>Which colors can be represented</td>
+<td>Small reflection</td>
+<td>Can stand out above nearby bright surfaces</td>
 </tr>
 <tr>
-<td>Bit depth</td>
-<td>How finely the signal values are divided</td>
+<td>Dark folds and corners</td>
+<td>Can retain useful low-level distinctions in an appropriate presentation</td>
 </tr>
 </tbody>
 </table>
-<p>These characteristics can improve together, but they are separate. A 4K file is not necessarily HDR, and ten-bit encoding alone is not enough to identify HDR. <a href="../color-standards/standards/Color-Standard-BT2100.html">BT.2100</a> defines HDR image parameters, including the PQ and HLG systems.</p>
-<h2 id="why-two-hdr-screens-can-look-different">Why two HDR screens can look different</h2>
-<p>A file describes an image; it cannot guarantee that every display has enough brightness or color capability to reproduce it exactly. <a href="../tone-mapping/fundamentals/Tone-Mapping-Why.html">Tone mapping</a> adapts the image to those limits. Room lighting and display settings also affect what you see.</p>
-<p>When comparing playback through Emby, use the same scene and note the <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">playback method</a>. The source's HDR label and the display's active output mode answer different questions. A file can begin as HDR and reach an SDR screen after conversion, or arrive unchanged and be adapted by the player.</p>
+<p>The creative choice comes first. A night scene can remain dark, a gray day can remain muted, and a deliberately flat shot can remain low in contrast. The extra range is available room for the image, rather than an instruction to fill every shot from black to the highest supported light level.</p>
+<h3 id="dynamic-range-has-its-own-place-beside-resolution-and-color">Dynamic range has its own place beside resolution and color</h3>
+<p>Resolution determines how many samples describe the scene. Bit depth determines the possible numerical precision of the signal. Gamut determines its color-coordinate reach. HDR's light relationship can improve alongside those properties, but each answers a different question.</p>
+<p>For example, a 4K SDR video can contain fine spatial detail while still using an SDR light representation. A 1080p HDR picture can use a wider light range with fewer spatial samples. A ten-bit file provides more levels than an eight-bit file, while its transfer characteristic determines whether those levels describe SDR, PQ, HLG, or another representation.</p>
+<p><a href="../color-standards/standards/Color-Standard-BT2100.html">BT.2100</a> specifies HDR television image parameters. <a href="../color-standards/transfer-functions/Transfer-Function-PQ.html">PQ</a> and <a href="formats/HLG.html">HLG</a> establish different HDR light relationships. Delivery formats add their particular packaging and metadata conventions.</p>
+<h2 id="follow-the-release-to-the-screen">Follow the release to the screen</h2>
+<p>The source describes a produced image. A receiving display has a usable light range and color volume of its own, and the room affects the appearance. When source requests exceed the destination, <a href="../tone-mapping/fundamentals/Tone-Mapping-Why.html">tone mapping</a> fits the picture while deciding where to retain contrast.</p>
+<p>An Emby server can deliver HDR unchanged for a compatible playback path or produce a converted rendition for the destination. Local presentation can also adapt an unchanged source to the screen. The <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">playback method</a> identifies server delivery, while the app's output and display mode identify the later presentation.</p>
+<p>To compare HDR results, keep the same source release and scene, then inspect ordinary objects, dark detail, and bright texture together. That evaluates how the image uses its range, rather than judging only the largest brightness number.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

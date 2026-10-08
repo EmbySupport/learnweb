@@ -106,35 +106,51 @@
 <h1>Lossy and Lossless Compression</h1>
 
 
-<p>A lossless codec reconstructs exactly the digital samples supplied to its encoder. A lossy codec allows differences in the decoded result in exchange for a smaller representation, often concentrating its effort on changes people are less likely to notice.</p>
-<p>Both can make files smaller than uncompressed media. “Lossless” does not mean “uncompressed,” and “lossy” does not necessarily mean an obvious defect.</p>
+<p>Take four invented digital sample values:</p>
+<p><code>100, 101, 101, 100</code></p>
+<p>One way to describe them is to store the first value and then the differences: <code>100, +1, 0, −1</code>. Reconstruction adds each difference to the previous result: 100, then 101, then 101, then 100. Nothing was approximated. A compressor can exploit such predictable differences to use fewer bits, while retaining a reversible description.</p>
+<p>That is the essential bargain of <strong>lossless compression</strong>. The exact representation differs among codecs, but a correct decoder recovers the encoder's input samples. <a href="../../audio/formats/lossless/FLAC.html">FLAC</a>, for example, predicts audio samples and codes the remaining differences without discarding them.</p>
+<h2 id="what-changes-when-approximation-is-allowed">What changes when approximation is allowed?</h2>
+<p>Now round the invented inputs to the nearest multiple of four:</p>
 <table>
 <thead>
 <tr>
-<th>Operation</th>
-<th>What is preserved?</th>
+<th style="text-align: right;">Input</th>
+<th style="text-align: right;">Rounded output</th>
+<th style="text-align: right;">Output minus input</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Lossless encode and decode</td>
-<td>The encoder's input samples</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0</td>
 </tr>
 <tr>
-<td>Lossy encode and decode</td>
-<td>An approximation of those samples</td>
+<td style="text-align: right;">101</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">−1</td>
 </tr>
 <tr>
-<td>Copy encoded tracks into another container</td>
-<td>The copied encoded media, without another compression pass</td>
+<td style="text-align: right;">101</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">−1</td>
+</tr>
+<tr>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0</td>
 </tr>
 </tbody>
 </table>
-<h2 id="the-source-still-matters">The source still matters</h2>
-<p>Converting an MP3 recording to a lossless format preserves the samples decoded from that MP3. It cannot recover the information discarded when the MP3 was created. A lossless label describes the new compression step, not the history of the recording.</p>
-<p>The same principle applies to <a href="../../video/compression/Video-Compression.html">video compression</a>. A lossless encode of a previously compressed film preserves that decoded picture, including any existing artifacts. Pixel-format conversions, scaling, or resampling before encoding may also change the material independently of the codec's lossless mode.</p>
-<p>For Emby, the source's compression type and the <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">playback method</a> answer separate questions. Direct Play can deliver a lossy source unchanged. A lossless source may need conversion for a particular app or output route.</p>
-<p>Repeated lossy re-encoding can introduce additional changes. If only the container needs changing, <a href="../container-structure/Media-Multiplexing.html">remuxing</a> can often avoid that extra generation. Whether the tracks fit the destination container is a separate compatibility check.</p>
+<p>The resulting constant sequence may be easier to describe. However, decoding it yields four values of 100. It gives no way to determine that the middle two were originally 101. Several possible inputs have become the same output.</p>
+<p>This is a simplified example of <strong>lossy</strong> approximation, not the full operation of an audio or video codec. Real codecs apply coding tools, predictions, transforms, and models that decide which changes are worthwhile. The <a href="../../video/compression/Video-Compression.html">video compression walkthrough</a> follows those stages. A changed numerical value may have little visible or audible effect, so lossiness and an obvious defect are different judgments.</p>
+<h2 id="locate-the-lossless-boundary-in-a-conversion">Locate the lossless boundary in a conversion</h2>
+<p>Consider this route:</p>
+<p><code>MP3 file → MP3 decoder → PCM samples → FLAC encoder → FLAC decoder</code></p>
+<p>The two PCM sequences surrounding FLAC can match exactly. They are still the samples reconstructed from MP3, including changes made when that MP3 was encoded. A lossless stage preserves its own input; it cannot infer an earlier input that no longer exists.</p>
+<p>A resampler, a volume adjustment, or a pixel-format conversion before the lossless encoder introduces another boundary. To test the lossless codec itself, compare the samples immediately before encoding with those immediately after decoding in the same representation. Comparing entire files also includes containers and tags, which may differ even with identical samples.</p>
+<p>For an Emby collection, copying the encoded source or <a href="../container-structure/Media-Multiplexing.html">remuxing</a> its tracks can preserve an existing lossy representation without adding a new coding generation. Re-encoding reconstructs samples and produces a new encoded representation; a lossless encoding stage can retain their values exactly. The useful question is which representation you want to preserve and at which stage you are comparing it.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

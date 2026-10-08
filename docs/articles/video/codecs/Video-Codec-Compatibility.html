@@ -106,39 +106,55 @@
 <h1>How Video Codecs Affect Playback Compatibility</h1>
 
 
-<p>Two files can have the same extension and resolution but take different playback paths. The <strong>video codec</strong> tells the player how to reconstruct the pictures; the <a href="../../media-files/fundamentals/Containers-and-Codecs.html">container</a> tells it how to find and deliver that encoded stream.</p>
-<p>For Emby, a useful starting question is whether the receiving app can decode this particular stream. A codec name is only the beginning of that check.</p>
+<p>Consider a playback target with this <strong>illustrative</strong> usable video capability:</p>
+<ul>
+<li>H.264 High, 8-bit 4:2:0.</li>
+<li>Up to a suitable 1080p30 workload and its supported level/buffer limits.</li>
+<li>MP4 packaging accepted by the selected player.</li>
+<li>Compatible audio, no subtitle rendering requirement, and adequate delivery bandwidth.</li>
+</ul>
+<p>This is a declared example, <strong>not an Emby device support table</strong>. It lets us follow why three similar-looking files take different paths.</p>
 <table>
 <thead>
 <tr>
-<th>Part of the stream description</th>
-<th>Why it matters</th>
+<th>Source</th>
+<th>Video decision</th>
+<th>Packaging decision</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Codec, such as H.264 or AV1</td>
-<td>The decoder must understand that format</td>
+<td>H.264 High, 8-bit 1080p24, in MP4</td>
+<td>Matches the declared video target</td>
+<td>Matches</td>
 </tr>
 <tr>
-<td>Profile and sample format</td>
-<td>The supported tools, bit depth, and color sampling can differ</td>
+<td>The same encoded video, in an unsupported wrapper</td>
+<td>Video still matches</td>
+<td>Repackage if a compatible mapping is available</td>
 </tr>
 <tr>
-<td>Level, resolution, and frame rate</td>
-<td>The required processing and buffering may exceed a decoder's limits</td>
-</tr>
-<tr>
-<td>Container and codec signaling</td>
-<td>The app must recognize and extract the stream correctly</td>
+<td>H.264 High 10, 10-bit 1080p24, in MP4</td>
+<td>Sample/profile requirement differs</td>
+<td>Already acceptable</td>
 </tr>
 </tbody>
 </table>
-<p>A decoder implemented in software and a hardware video decoder can support different subsets. The app also needs a usable route to that decoder through its operating system or playback framework. A chip's capability list alone does not establish support in every app using the device.</p>
-<h2 id="what-changes-when-playback-needs-conversion">What changes when playback needs conversion?</h2>
-<p><a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">Direct Play</a> delivers supported media without converting the streams. A container mismatch can sometimes be addressed by repackaging the video, while an unsupported video codec requires decoding and encoding into a suitable format. Audio and subtitles can impose additional requirements even when the video is compatible.</p>
-<p>For example, successful playback of an 8-bit file does not prove that a 10-bit file using the same codec will follow the same path. Inspect the <a href="../compression/Video-Codec-Profiles.html">profile</a> and <a href="../compression/Video-Codec-Levels-Tiers.html">level</a> before treating the second result as inconsistent.</p>
-<p>Changing an extension or codec label cannot add missing decoder support. The practical evidence is the file's media information, the app's capabilities, and the playback session's reported conversion reason.</p>
+<p>The first source can be delivered without video conversion. The second may only need the video packets placed into compatible packaging. The third needs a new video representation even though “H.264,” “1080p,” and “MP4” all appear in both descriptions.</p>
+<h2 id="locate-the-boundary-that-failed">Locate the boundary that failed</h2>
+<p>The <a href="../../media-files/fundamentals/Containers-and-Codecs.html">container reader</a> first needs to identify and extract the track correctly. It supplies the codec configuration and coded data to a decoder. Repackaging changes this outer representation while preserving video coding when the new mapping supports it.</p>
+<p>The decoder then needs the stream's <strong>actual tools and sample format</strong>. A 10-bit High 10 stream asks for different processing from an 8-bit High stream. A profile conversion requires reconstructing the source and encoding pictures using the target's permitted format and tools.</p>
+<p>Next come <strong>resource requirements</strong>. The same codec and profile at a higher rate or larger raster can exceed the target's throughput or decoded-buffer limits. The <a href="../compression/Video-Codec-Levels-Tiers.html">level calculations</a> show how those demands are assessed.</p>
+<p>Finally, the player must present the decoded pictures with their timing, aspect, and color information. A successful decode is a necessary stage, while display processing gives the samples their intended presentation.</p>
+<h2 id="a-hardware-capability-has-to-be-usable-by-the-app">A hardware capability has to be usable by the app</h2>
+<p>A chip's media engine, the operating-system API that exposes it, and the playback framework selected by the app are separate components. The app needs a working route through them for the requested format.</p>
+<p>A software decoder can provide another route. Its required picture processing still has to finish quickly enough for playback. Whether a given source uses hardware, software, or another conversion therefore depends on the active implementation, rather than simply on the codec's name.</p>
+<h2 id="put-the-server-decoder-into-a-conversion-path">Put the server decoder into a conversion path</h2>
+<p>Video transcoding contains two decoder boundaries:</p>
+<p><strong>Source file → server input decoder → processing and output encoder → client decoder → display.</strong></p>
+<p>For the High 10 example, the server must first understand the source's 10-bit AVC. It can then construct the required 8-bit target representation and encode it for the client. The client only decodes that new stream.</p>
+<p>The source and delivered video may both be labeled H.264 because their codec family is the same. The profile, precision, bitrate, or other properties changed. Conversely, a server that can encode a target codec still needs an input decoder for the source before it can perform that conversion.</p>
+<p>In an Emby session, compare the selected source track with the delivered stream and the reported conversion reason. If the video already matches but audio, subtitles, or a delivery limit needs work, those requirements can choose another route. The case analysis locates the operation instead of treating every change as a missing codec.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

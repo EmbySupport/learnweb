@@ -106,40 +106,48 @@
 <h1>Disc Images: ISO Files</h1>
 
 
-<p>An <strong>ISO file</strong> is usually a disc image: a file containing the logical sectors of a disc volume, including its filesystem and the files within it. It packages the disc as a whole rather than combining its movie tracks into a new media container.</p>
-<p>The extension does not guarantee ISO 9660. Images can contain UDF or a bridge of filesystem conventions, depending on the source disc. A DVD or Blu-ray image also retains application structures above that filesystem layer.</p>
+<p>Mount an <strong>ISO image</strong> and a file browser can show a disc's folders. The operation interprets a stored volume; it has not yet selected a movie, separated its tracks, or decoded its pictures.</p>
+<p>A conventional .iso image commonly stores the logical data sectors of a disc as one file. The extension does not guarantee that the contained filesystem is ISO 9660: UDF or a bridge arrangement can also be present.</p>
+<h2 id="follow-a-request-through-the-layers">Follow a request through the layers</h2>
 <table>
 <thead>
 <tr>
-<th>Layer inside a movie-disc image</th>
-<th>Example</th>
+<th>Layer</th>
+<th>Reader operation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Volume and filesystem</td>
-<td>Directory entries and file locations</td>
+<td>Image and volume</td>
+<td>Obtain logical sectors and recognize the filesystem</td>
+</tr>
+<tr>
+<td>Filesystem</td>
+<td>Resolve names such as VIDEO_TS or BDMV into file locations</td>
 </tr>
 <tr>
 <td>Disc presentation</td>
-<td>VIDEO_TS or BDMV navigation structures</td>
+<td>Select a title, playlist, branches, and media ranges</td>
 </tr>
 <tr>
-<td>Media files</td>
-<td>VOB or M2TS encoded streams</td>
+<td>Media containers</td>
+<td>Read VOB or M2TS timing and encoded components</td>
 </tr>
 <tr>
-<td>Codecs within those streams</td>
-<td>The actual picture and sound representations</td>
+<td>Codecs</td>
+<td>Reconstruct the chosen picture and sound</td>
 </tr>
 </tbody>
 </table>
-<p>Mounting an image exposes its contained files as a volume. It does not convert those files to MP4 or MKV, decode the video, or remove content protection.</p>
-<h2 id="a-disc-copy-and-a-movie-copy-answer-different-needs">A disc copy and a movie copy answer different needs</h2>
-<p>Preserving a disc image can retain menus, extras, multiple presentations, and their relationships. A self-contained movie remux instead selects a presentation and packages its chosen tracks for ordinary file playback. It may omit menus or extras by design while preserving the encoded feature.</p>
-<p>For an Emby library, the image adds a disc-reading requirement before the usual container and codec checks. Playback depends on the app and platform; a device that accepts an MKV movie need not accept the equivalent disc image. Use the <a class="xref" href="https://emby.media/support/articles/Movie-Naming.html">movie organization guidance</a> to keep those sources recognizable.</p>
-<p>Inspect the contained <a href="DVD-Video-File-Structure.html">DVD</a> or <a href="Blu-ray-File-Structure.html">Blu-ray</a> structure when a title or duration is unexpected. Renaming the image .mp4 cannot bypass its filesystem or select the feature.</p>
-<p>An image is also a copy, not an integrity guarantee. Unreadable source sectors or incomplete copying can leave damaged content inside an otherwise recognized volume.</p>
+<p>Each layer supplies information to the next. A volume can mount successfully while a particular contained file is damaged. A media stream can decode successfully while an incorrect playlist produces the wrong feature.</p>
+<h2 id="what-preserving-an-image-retains">What preserving an image retains</h2>
+<p>Keeping the volume can retain directory structure, menus, extras, several cuts, and relationships between files. It preserves a disc-shaped source rather than merely one movie's selected tracks.</p>
+<p>A filesystem can describe a file through sector locations or extents. The image reader resolves those locations when another reader requests the named file. Copying an individual M2TS or VOB removes that outer filesystem context but still leaves the disc presentation choices to consider.</p>
+<p>A <strong>feature remux</strong> goes further: it follows the intended <a href="DVD-Video-File-Structure.html">DVD title</a> or <a href="Blu-ray-File-Structure.html">Blu-ray playlist</a>, obtains selected media, and writes a new linear container. Its output can preserve the encoded feature while omitting menus and extras. The difference is a selected presentation, not simply a different spelling of the same image.</p>
+<h2 id="access-and-protection-remain-at-their-boundaries">Access and protection remain at their boundaries</h2>
+<p>Mounting supplies a way to access stored bytes. It does not authorize decryption of protected media. A disc-aware playback path and an ordinary movie-file reader also perform different jobs; a decoder accepting the underlying codec does not supply the filesystem and navigation stages by itself.</p>
+<p>For an Emby library, <a class="xref" href="https://emby.media/support/articles/Movie-Naming.html">identify and organize</a> the actual source form. If an image reports the wrong title or duration, inspect the contained disc structure and selected presentation before judging codec conversion.</p>
+<p>An image's completeness is tested by its content and readability, not by a successful mount alone. This layered view places a missing file, wrong playlist, damaged stream, or unavailable decoder at the stage that actually failed.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

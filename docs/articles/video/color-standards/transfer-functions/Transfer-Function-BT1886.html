@@ -106,15 +106,53 @@
 <h1>ITU-R BT.1886</h1>
 
 
-<p><strong>BT.1886</strong> specifies a reference display <a href="Transfer-Function-EOTF.html">EOTF</a> for HDTV production. It provides a consistent SDR target for displays that do not naturally behave like the CRT monitors used in earlier television workflows.</p>
-<p>Its exponent is 2.4, but the complete curve also depends on the display's black and white luminance. With a zero black level, it reduces to a pure 2.4 power curve. With a nonzero black level, the lower part of the response changes.</p>
-<p><img src="images/transfer-bt1886.png" alt="BT.1886 curves for zero and 0.1-nit black, both with 100-nit white, including a shadow close-up."></p>
-<p><em>Calculated reference curves. Both examples reach 100-nit white; the second has a 0.1-nit black floor. These are illustrative display parameters.</em></p>
-<p>The equation is <code>L = a × max(V + b, 0)^2.4</code>. The parameters <code>a</code> and <code>b</code> are calculated from measured black and white so that signal values 0 and 1 reach those endpoints. The graph's shadow panel makes the difference easier to see than the full-range panel.</p>
-<h2 id="what-it-does-not-change">What it does not change</h2>
-<p>BT.1886 describes the display response. It does not change BT.709's encoded signal parameters, and a BT.709 file does not need to be relabeled “BT.1886” for ordinary SDR playback.</p>
-<p>Consider a dark jacket with several almost-black folds. The amount of separation that reaches your eyes depends on the display response and its black floor, as well as the source picture. A gamma label by itself cannot tell you whether those folds remain visible.</p>
-<p>If the same SDR file looks different between an Emby app and another player, compare the output and display modes as well as the server's playback method. A difference near black can arise after decoding. Applying HDR tone mapping to an SDR signal would address a different problem and is not a substitute for correct SDR rendering.</p>
+<p>A reference SDR display response needs more than a gamma number: its black floor and white level determine the light available at the endpoints. <strong>BT.1886</strong> defines an EOTF for HDTV reference displays using those measured endpoint luminances and an exponent of 2.4.</p>
+<p><img src="images/transfer-bt1886.png" alt="BT.1886 responses at 100-nit white with black levels of zero and 0.1 nit, including a shadow close-up."></p>
+<p><em>Calculated reference responses. The shadow panel shows the effect of the black floor; these are selected display parameters, not measurements of a television.</em></p>
+<h2 id="calculate-the-response-from-its-endpoints">Calculate the response from its endpoints</h2>
+<p>Let Lw be white luminance, Lb black luminance, and V the normalized signal. With gamma = 2.4:</p>
+<pre><code class="lang-text">a = (Lw^(1/gamma) − Lb^(1/gamma))^gamma
+b = Lb^(1/gamma) / (Lw^(1/gamma) − Lb^(1/gamma))
+L = a × max(V + b, 0)^gamma
+</code></pre>
+<p>The coefficients make V = 0 reach the specified black and V = 1 reach the specified white. If black is zero, b becomes zero and a becomes Lw, leaving the familiar pure power response L = Lw × V^2.4.</p>
+<p>For 100-nit white, compare zero black with 0.1-nit black:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Signal V</th>
+<th style="text-align: right;">Light at zero black</th>
+<th style="text-align: right;">Light at 0.1-nit black</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0 nits</td>
+<td style="text-align: right;">0.1 nit</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.398 nit</td>
+<td style="text-align: right;">1.064 nits</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">18.946 nits</td>
+<td style="text-align: right;">21.605 nits</td>
+</tr>
+<tr>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">100 nits</td>
+<td style="text-align: right;">100 nits</td>
+</tr>
+</tbody>
+</table>
+<p>The second response reaches the higher black floor and redistributes the lower tones to meet the same white. It is not obtained simply by adding 0.1 nit to every output of the zero-black curve.</p>
+<h2 id="use-the-shadow-panel-to-interpret-a-dark-scene">Use the shadow panel to interpret a dark scene</h2>
+<p>A dark jacket can contain several distinct low-level folds. Their encoded values have a display-light relationship; the black floor and response determine how much separation is produced. Room reflections and the viewer's adaptation can further affect whether that separation is visible.</p>
+<p>BT.1886 gives a reference response for this part of the system. It is distinct from the <a href="../standards/Color-Standard-BT709.html">BT.709 source transfer characteristic</a>, so a conventional BT.709 file is not retagged BT.1886 to describe reference display behavior.</p>
+<p>In a playback comparison, use the same SDR source and inspect the app's output and screen mode. A difference in shadow appearance can arise after decoding. Keeping the response's endpoints and middle-tone behavior visible makes the investigation more precise than comparing a single “gamma” label.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

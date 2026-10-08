@@ -106,40 +106,60 @@
 <h1>AV1 Video</h1>
 
 
-<p><strong>AV1</strong> is a video coding format defined by the Alliance for Open Media. It specifies the bitstream and how a decoder reconstructs pictures. Software such as libaom or SVT-AV1 and hardware encoders are implementations that can produce this format.</p>
-<p>An encoder's compression efficiency and speed are separate from a player's decoding capabilities. AV1 is therefore neither a promise of a particular file-size reduction nor proof that a device can play the result in hardware.</p>
+<p><strong>AV1</strong> is the video coding format defined by the Alliance for Open Media. Its bitstream contains instructions for reconstructing picture samples, maintaining reference state, and preparing visible output.</p>
+<p>One useful AV1 distinction is that the picture retained for later prediction and the picture prepared for display can pass through different operations.</p>
+<h2 id="read-the-sequence-and-frame-instructions">Read the sequence and frame instructions</h2>
+<p>AV1 organizes coded data into <strong>Open Bitstream Units (OBUs)</strong>. Sequence information establishes the applicable profile, sample format, and other stream parameters. Frame information describes the picture's reconstruction choices, reference updates, and output behavior. Tile data supplies the coded regional information.</p>
+<p>A decoder needs the relevant headers as well as the block payloads. The picture isn't described by an isolated list of pixel values.</p>
+<p>Its block organization can start with <strong>64 × 64 or 128 × 128 superblocks</strong>. Regions are partitioned further to fit the picture structure. The chosen partitions define where prediction and correction decisions apply.</p>
+<h2 id="construct-the-scene-and-its-correction">Construct the scene and its correction</h2>
+<p>Intra modes use reconstructed information within the picture. Inter modes use retained decoded pictures with motion information, including permitted compound predictions from multiple views.</p>
+<p>A compound predictor can combine corresponding estimates of a region. Masks or weights can give different contributions where the coding mode permits them. The aim is to leave a correction that can be described efficiently.</p>
+<p>Transform and quantization operations represent that remaining correction. The decoder recovers coefficients, constructs the correction, and adds it to the predictor. Quantization settings control the approximation in ordinary lossy AV1, while the partition and prediction choices control how effectively the input is represented.</p>
+<h2 id="filter-the-reconstructed-picture-inside-the-coding-loop">Filter the reconstructed picture inside the coding loop</h2>
+<p>AV1 includes several reconstruction-filtering stages. Deblocking addresses selected block-boundary behavior. <strong>CDEF</strong>, the Constrained Directional Enhancement Filter, identifies a local direction and constrains its filtering so the operation can address artifacts while respecting that structure. Loop restoration supplies additional signaled processing of reconstructed regions.</p>
+<p>The result used for reference updates is the applicable loop-restored picture. Later prediction needs these samples, so the encoder must locally reconstruct corresponding reference state.</p>
+<p>This separates coding-loop work from optional presentation processing. A filter used outside the reference loop can change what is shown without changing the samples later blocks predict from.</p>
+<h2 id="add-grain-to-output-when-it-is-signaled">Add grain to output when it is signaled</h2>
+<p>Some AV1 streams describe <strong>film grain</strong> with parameters rather than coding every original grain sample as picture texture. An encoder can represent a cleaner scene and supply information for synthesizing grain in output processing.</p>
+<p>Those parameters describe such things as how grain strength varies with brightness, how nearby grain samples relate, and the generation seed. The decoder uses the specified process to produce the intended grain-like appearance.</p>
+<p>Grain is applied to output samples; the loop-restored reference picture remains the predictor state. Keeping the newly synthesized pattern outside that reference avoids making future scene prediction depend on that particular display grain realization.</p>
+<p><a href="../../encoding-quality/quality-changes-artifacts/Video-Film-Grain.html">The film-grain explanation</a> follows the preservation and modeling tradeoff. The metadata describes an appearance model, rather than an exact archive of every grain sample captured in the source.</p>
+<h2 id="decoded-pictures-and-visible-pictures">Decoded pictures and visible pictures</h2>
+<p>AV1 can decode a hidden reference picture and later show a retained picture through its output instructions. A coded unit count therefore need not equal the number of new visible camera moments.</p>
+<p>The container's timeline and the format's picture/output instructions cooperate to schedule the visible result. In an Emby conversion, the chosen decoded output needs to include the applicable grain and presentation interpretation for the result being encoded or displayed.</p>
+<h2 id="reference-details-for-the-format">Reference details for the format</h2>
 <table>
 <thead>
 <tr>
-<th>AV1 detail</th>
-<th>What it tells you</th>
+<th>Detail</th>
+<th>Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Main profile, sequence profile 0</td>
-<td>8-bit or 10-bit, 4:2:0 or monochrome</td>
+<td>8-bit or 10-bit, 4:2:0 or monochrome sample permissions</td>
 </tr>
 <tr>
-<td>Higher profiles</td>
-<td>Additional sample formats are permitted</td>
+<td>Other profiles</td>
+<td>Additional permitted sample formats</td>
 </tr>
 <tr>
 <td>Level and tier</td>
-<td>Resource and bitrate constraints</td>
+<td>Workload and coded-rate constraints</td>
 </tr>
 <tr>
-<td>Film-grain parameters, when present</td>
-<td>Grain is synthesized as part of output processing</td>
+<td>libaom, SVT-AV1, hardware encoder</td>
+<td>Implementations choosing an AV1 representation</td>
+</tr>
+<tr>
+<td>Grain parameters</td>
+<td>An optional output-synthesis description</td>
 </tr>
 </tbody>
 </table>
-<p><em>Selected distinctions; a profile's permitted formats are not a device support list.</em></p>
-<h2 id="the-complete-playback-path-still-matters">The complete playback path still matters</h2>
-<p>For an Emby app, AV1 decoding must be available through the playback framework it uses. A software decoder can be an option, but real-time performance depends on the particular source and device. Hardware capability also needs suitable app and operating-system integration.</p>
-<p>The server needs its own input decoder when converting AV1 into another codec. That capability does not establish that it can encode AV1, or that a receiving app can play AV1 directly.</p>
-<p>Some streams use <a href="../../encoding-quality/quality-changes-artifacts/Video-Film-Grain.html">film-grain synthesis</a>. The encoder can carry a cleaner coded picture plus parameters for generating grain during output, rather than preserving every source grain sample. This is part of reconstructing the intended appearance and should be considered when comparing decoded output.</p>
-<p>A 10-bit AV1 file can carry SDR or HDR. Use its color and transfer information alongside the codec details, and inspect the delivered stream when transcoding changes the playback path.</p>
+<p>An encoder's search and rate-control decisions determine which valid representation is produced. A decoder follows its AV1 syntax and reconstruction rules; it does not need to be the implementation that created the stream.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

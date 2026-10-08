@@ -106,40 +106,53 @@
 <h1>Speech Coding</h1>
 
 
-<p>Speech coding focuses on <strong>making voices intelligible and natural with a small data budget</strong>. Instead of describing every sample independently, a speech codec can model how a voice is produced and how its characteristics change.</p>
-<p>Many designs use linear prediction: a filter describes short-term spectral structure, while an excitation signal supplies the energy and pitch behavior needed to reconstruct speech. This is an approximation of the recorded waveform, not a transcript and not a perfect model of the speaker.</p>
+<p>A spoken vowel is not a random collection of samples. The vocal source supplies excitation, and the vocal tract shapes its spectrum. <strong>Speech coding exploits these relationships</strong> to describe a voice with fewer bits than a literal waveform requires.</p>
+<p>Many speech codecs use a signal model that resembles these two jobs: an excitation signal drives a filter whose parameters change with the speech.</p>
+<h2 id="separate-pitch-from-the-spectral-shape">Separate pitch from the spectral shape</h2>
+<p>For voiced sound, recurring excitation contributes a pitch pattern. At an illustrative 100 Hz pitch, a period lasts 10 ms. On an 8 kHz sample grid, that is 80 sample intervals.</p>
+<p>The mouth and vocal tract also create resonances. Changing those resonances changes the vowel's character without requiring the same change in pitch. A coding model can therefore describe pitch-related repetition and the shorter-term spectral envelope separately.</p>
+<p>Unvoiced consonants need noise-like excitation rather than a simple periodic pulse. Real speech mixes and changes these behaviors, so a codec sends updated parameters as it progresses.</p>
 <table>
 <thead>
 <tr>
-<th>Coding choice</th>
-<th>Why it is useful for speech</th>
+<th>Model information</th>
+<th>Reconstruction role</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Pitch-related prediction</td>
-<td>Describes repeating patterns efficiently</td>
+<td>Short-term predictor/filter parameters</td>
+<td>Shape the spectrum</td>
 </tr>
 <tr>
-<td>Spectral-envelope modeling</td>
-<td>Represents the resonances that distinguish speech sounds</td>
+<td>Pitch-related information</td>
+<td>Describe useful longer-term repetition</td>
 </tr>
 <tr>
-<td>Voice-activity detection</td>
-<td>Identifies active speech and quieter intervals</td>
+<td>Excitation information</td>
+<td>Supply remaining signal detail</td>
 </tr>
 <tr>
-<td>Discontinuous transmission</td>
-<td>Can reduce data use during inactive intervals</td>
+<td>Gains</td>
+<td>Set the contributions' levels</td>
 </tr>
 </tbody>
 </table>
-<p>Not every codec uses all these mechanisms, and behavior during silence depends on the format and encoder configuration.</p>
-<h2 id="why-music-can-reveal-the-compromise">Why music can reveal the compromise</h2>
-<p>A speech-focused model has an easier task with a single voice than with applause, several instruments, or dense background noise. A recording can be perfectly understandable while sounding restricted or synthetic on non-speech material.</p>
-<p>The encoded bandwidth is another constraint. Replaying a narrowband voice recording through a high-rate PCM output does not recover frequencies the recording never retained.</p>
-<p>An Emby collection can encounter speech codecs in older phone videos, voice messages, or spoken recordings. The right question is often whether the stored sound is intelligible and whether the player can decode its specific format, rather than whether its bitrate matches a music file.</p>
-<p><a href="../lossy/Opus.html">Opus</a> illustrates a broader approach: it includes speech-oriented and music-oriented coding tools. For a preserved original voice recording, keep the source while making any needed compatible listening copy.</p>
+<h2 id="choose-a-coded-excitation-by-trying-reconstructions">Choose a coded excitation by trying reconstructions</h2>
+<p>In <strong>code-excited linear prediction (CELP)</strong>, the encoder searches for excitation information that produces a good reconstruction through the synthesis filter. A perceptually weighted error comparison helps choose the candidate and its gains.</p>
+<p>The decoder does not repeat the encoder's whole search. It reads the selected information, reconstructs the excitation, and applies the specified filter/state updates. Compact parameter coding thus describes a time-varying approximation of the recording.</p>
+<p><strong>Algebraic CELP</strong> can define excitation patterns through compact rules and pulse positions rather than a large stored waveform dictionary. The result remains driven by the recorded speech's analyzed parameters. It is not text-to-speech and does not require recognizing the words.</p>
+<h2 id="give-the-model-a-sequence-of-frames">Give the model a sequence of frames</h2>
+<p>The codec updates its description over short intervals. A frame must contain enough information for useful analysis, and some encoders need additional look-ahead. Those contribute latency before transport or playback buffering is considered.</p>
+<p>A format can offer several bitrate modes. More coded information can describe excitation or other parameters with greater accuracy, while the decoder follows the selected mode's defined reconstruction.</p>
+<h2 id="handle-pauses-without-confusing-silence-and-time">Handle pauses without confusing silence and time</h2>
+<p>Voice-activity detection identifies periods that can use another coding treatment. In a discontinuous-transmission system, less data can be sent during inactivity while comfort-noise information represents the background.</p>
+<p>The programme timeline still progresses. The receiver uses the format and transport's timing/state rules; absence of a voice packet is not an instruction to join the next word immediately onto the previous one.</p>
+<p>Noise suppression and automatic gain control before encoding are separate processing operations. They change the input the codec receives, whereas the codec describes that input.</p>
+<h2 id="why-a-speech-model-can-struggle-with-music">Why a speech model can struggle with music</h2>
+<p>An isolated voice often fits prediction and excitation assumptions well. Dense music, applause, or several competing sounds have different structures and may require tools or data the speech-focused model does not provide.</p>
+<p>A narrowband recording also lacks some frequency content before or during encoding. Decoding it onto a 48 kHz output grid cannot recreate those missing frequencies.</p>
+<p>For a voice recording in an Emby collection, intelligibility, encoded bandwidth, model artifacts, and source fidelity answer different questions. <a href="../lossy/Opus.html">Opus</a> illustrates a codec that joins speech-oriented and general-audio tools for programmes whose character changes.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

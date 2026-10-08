@@ -106,40 +106,75 @@
 <h1>Video Bitrate</h1>
 
 
-<p><strong>Video bitrate</strong> describes the amount of coded picture data per second. It excludes the soundtrack and container overhead. When choosing an encode, the number can be a target average, a local rate limit, or the measured result of a quality-based encode; those meanings should not be mixed.</p>
-<p>A bitrate is a data budget, not a picture-quality score. Its effect depends on the source, codec, resolution, frame rate, and the encoder's decisions.</p>
 <table>
 <thead>
 <tr>
-<th>Illustrative video rate</th>
-<th>Data for one second</th>
-<th>Video-only size for two hours</th>
+<th>Average video rate</th>
+<th style="text-align: right;">Bytes for one second of pictures</th>
+<th style="text-align: right;">Video-only size over two hours</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>4 Mb/s</td>
-<td>0.5 MB</td>
-<td>3.6 GB</td>
+<td style="text-align: right;">0.5 MB</td>
+<td style="text-align: right;">3.6 GB</td>
 </tr>
 <tr>
 <td>8 Mb/s</td>
-<td>1 MB</td>
-<td>7.2 GB</td>
+<td style="text-align: right;">1 MB</td>
+<td style="text-align: right;">7.2 GB</td>
 </tr>
 <tr>
 <td>16 Mb/s</td>
-<td>2 MB</td>
-<td>14.4 GB</td>
+<td style="text-align: right;">2 MB</td>
+<td style="text-align: right;">14.4 GB</td>
 </tr>
 </tbody>
 </table>
-<p><em>Decimal units and an exact average over 7,200 seconds. Audio and packaging are excluded; these are size calculations, not recommended quality settings.</em></p>
-<h2 id="what-must-fit-into-that-budget">What must fit into that budget?</h2>
-<p>At the same bitrate, doubling the frame rate halves the average number of bits available per picture. It does not follow that the rate must always double to preserve quality: neighboring pictures can share predictable information. Dense grain or complicated motion may be much harder to compress than a quiet scene.</p>
-<p>A slower <a href="../Video-Encoder-Presets.html">preset</a> can give an encoder more time to use its tools. That can improve the result within a fixed budget, but it does not add missing source detail or guarantee a particular quality.</p>
-<p>In Emby, compare the library video's bitrate with the delivered stream when video conversion occurs. The playback quality setting can constrain delivery; it is not a measurement of how faithfully every scene will survive that constraint.</p>
-<p>For storage, <a href="../../../media-files/fundamentals/bitrate-and-file-size/Media-Bitrate.html">average bitrate</a> is useful. For playback, short demanding periods and the available buffer matter too. Treat a video's reported average as one part of the delivery requirement, rather than assuming the connection needs exactly that rate at every instant.</p>
+<p><em>Decimal units. Two hours is 7,200 seconds; the calculation excludes soundtracks and packaging.</em></p>
+<p><strong>Video bitrate</strong> counts coded picture data against media duration. It is the video's data budget or measured rate, rather than the whole file's rate when that file also contains audio and other tracks.</p>
+<h2 id="divide-one-second-among-its-pictures">Divide one second among its pictures</h2>
+<p>At 8 Mb/s, one media second contains <strong>1,000,000 video bytes</strong> on average.</p>
+<p>At 24 fps, the average allocation is <strong>1,000,000/24 =41,666.67 bytes per picture</strong>. At 60 fps it is <strong>16,666.67 bytes</strong>. The same per-second budget is spread among more pictures.</p>
+<p>Actual pictures need not have those average sizes. Consider a deliberately constructed 24-picture interval:</p>
+<table>
+<thead>
+<tr>
+<th>Pictures</th>
+<th style="text-align: right;">Bytes per picture</th>
+<th style="text-align: right;">Combined bytes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One independently coded picture</td>
+<td style="text-align: right;">195,000</td>
+<td style="text-align: right;">195,000</td>
+</tr>
+<tr>
+<td>23 predicted pictures</td>
+<td style="text-align: right;">35,000</td>
+<td style="text-align: right;">805,000</td>
+</tr>
+<tr>
+<td>Total</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">1,000,000</td>
+</tr>
+</tbody>
+</table>
+<p>The interval still has 8 Mb/s of coded video. The large picture establishes content that the following pictures can reuse. Their sample count is not smaller; their encoded descriptions are.</p>
+<p>This example explains why a source can contain substantial frame-size variation at a stated average bitrate.</p>
+<h2 id="decide-what-the-encoder-is-trying-to-hold">Decide what the encoder is trying to hold</h2>
+<p>A <strong>target average rate</strong> tells rate control to allocate data around an overall budget. It may use more in difficult sections and less elsewhere.</p>
+<p>A <strong>rate/buffer limit</strong> constrains local coded demand. Its meaning includes the relevant time and buffering model, not only a maximum number printed beside a file.</p>
+<p>A <strong>quality-based encode</strong> lets the resulting average rate emerge from its source and target. The measured bitrate is then an outcome rather than an exact amount selected in advance.</p>
+<p><a href="Video-Encoding-CBR.html">CBR</a>, <a href="Video-Encoding-VBR.html">VBR</a>, and <a href="Video-Encoding-CRF.html">CRF</a> develop these policies separately.</p>
+<h2 id="connect-the-budget-to-the-source">Connect the budget to the source</h2>
+<p>An encoder can reuse a wall across neighboring pictures with small corrections. Grain, fine texture and changing scenery require more information. Adding more frames also creates additional prediction opportunities, so a simple bits-per-picture division does not by itself determine visible quality.</p>
+<p>Presets change how thoroughly the encoder searches for a representation; quantization changes what approximation it accepts. The rate budget constrains their result.</p>
+<p>In an Emby session, compare the <strong>source video's measured rate</strong> with the <strong>delivered video's rate</strong>. Video conversion can create a different allocation while the original library file keeps its own rate. A file-wide bitrate can also include unused soundtracks, so keep the measurement's counted streams and duration explicit.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

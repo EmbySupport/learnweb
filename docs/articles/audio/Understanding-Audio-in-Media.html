@@ -106,47 +106,52 @@
 <h1>Understanding Audio in Media</h1>
 
 
-<p>A film can have a surround soundtrack, a stereo commentary, and another language version inside the same file. Each is an <strong>audio track</strong>. Selecting a different track in Emby chooses a different presentation; it does not simply change the volume of the current one.</p>
-<p>An audio description such as “48 kHz, 5.1, 640 kbit/s” combines several independent facts. Understanding which number answers which question makes media information much easier to read.</p>
+<p>A movie has three English soundtracks: 7.1 surround, stereo commentary, and audio description. Which one should you select? Start with <strong>what the track contains</strong>, then consider how it will play on your listening system. The most impressive channel count is irrelevant if you have selected the director discussing the film instead of the film's dialogue.</p>
+<h2 id="read-a-track-as-a-presentation">Read a track as a presentation</h2>
+<p>Each audio track is a separate timed stream in the media file. Its language, title, and accessibility role help identify the intended presentation. Its codec and channel layout describe how that presentation is represented.</p>
 <table>
 <thead>
 <tr>
-<th>Part of the description</th>
-<th>What it tells you</th>
+<th>Part of an example track</th>
+<th>The question it answers</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Codec</td>
-<td>How the sound is encoded and which decoder is needed</td>
+<td>English — Main</td>
+<td>Is this the language and presentation I want?</td>
 </tr>
 <tr>
-<td>Sample rate</td>
-<td>How many sample positions each channel has per second</td>
+<td>E-AC-3</td>
+<td>Which decoding format is required?</td>
 </tr>
 <tr>
-<td>Bit depth, when applicable</td>
-<td>The numerical precision of PCM samples</td>
+<td>5.1</td>
+<td>Which channel roles are in the compatible channel presentation?</td>
 </tr>
 <tr>
-<td>Channel layout</td>
-<td>Which sound positions the channels represent</td>
+<td>48 kHz</td>
+<td>What sample timeline does decoded audio use?</td>
 </tr>
 <tr>
-<td>Bitrate</td>
-<td>How much encoded data is carried per second</td>
-</tr>
-<tr>
-<td>Language and track title</td>
-<td>Which presentation the track is intended to provide</td>
+<td>640 kbit/s</td>
+<td>How much encoded audio data is carried per second?</td>
 </tr>
 </tbody>
 </table>
-<p>The <a href="../media-files/fundamentals/Containers-and-Codecs.html">container and codec</a> are separate. A file extension describes the outer file; it does not tell you which soundtrack is inside. Likewise, six channels do not specify whether the audio is compressed, lossless, or <a href="channels/object-based/Object-Based-Audio.html">object-based</a>.</p>
-<h2 id="following-the-sound">Following the sound</h2>
-<p>The player reads the selected track, decodes it or sends it to a compatible decoder, and arranges the result for the listening system. A stereo television, headphones, and a receiver with separate surround speakers can therefore present the same soundtrack differently.</p>
-<p>Emby's <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">playback method</a> describes how the server delivers the media. Direct Play can still involve decoding, volume adjustment, or spatial processing after delivery. If the audio needs conversion for the client, the server can change the soundtrack while leaving compatible video intact.</p>
-<p>Start with <a href="fundamentals/sample-representation/Digital-Audio-Sampling.html">sampling</a> for how sound becomes numbers, or <a href="channels/Multichannel-Audio.html">multichannel audio</a> for how those numbers become a soundstage.</p>
+<p>Those numbers are not different ways of expressing one quality setting. Changing 5.1 to stereo combines spatial channels. Changing 48 kHz to another sample rate changes the time grid. Changing the encoded bitrate gives a compressed-audio encoder a different data budget. Each operation solves a different problem.</p>
+<p>A <a href="../media-files/fundamentals/Containers-and-Codecs.html">container</a> keeps the tracks together with timing and metadata. That is how a viewer can switch language or commentary while the video remains the same. The selected soundtrack must stay aligned with the picture even when its packets and video packets represent different amounts of time.</p>
+<h2 id="follow-one-soundtrack-to-the-speakers">Follow one soundtrack to the speakers</h2>
+<p>Suppose you choose the 5.1 film track and listen on a stereo television:</p>
+<ol>
+<li>Emby selects that track for delivery. If its codec and packaging fit the app, the server may send the stored audio.</li>
+<li>A decoder reconstructs audio samples for the track's channels. This might happen in the player or during server conversion.</li>
+<li>A downmix combines those channels into two outputs, including center-channel dialogue that would be lost by simply discarding all but front left and right.</li>
+<li>The television converts the final signal into sound.</li>
+</ol>
+<p>On a compatible surround system, the same track can instead keep its separate channel presentation. An <a href="channels/object-based/Object-Based-Audio.html">object-based soundtrack</a> can additionally supply spatial information that a renderer uses for the connected speaker or headphone arrangement.</p>
+<p>This is why the source format, Emby's <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">delivery method</a>, and a receiver's input display can have different labels. “PCM” at the receiver can mean that decoding already happened in the player. “Stereo” can describe the final output even though the stored soundtrack has six channels.</p>
+<p>Use <a href="fundamentals/sample-representation/Digital-Audio-Sampling.html">sampling</a> to understand the numbers representing sound, <a href="channels/Multichannel-Audio.html">channels</a> to understand its spatial arrangement, or <a href="decoding-output/Audio-Playback-Path.html">the playback path</a> to locate a conversion between the file and what you hear.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

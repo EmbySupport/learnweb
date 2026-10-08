@@ -106,37 +106,91 @@
 <h1>Telecine and 3:2 Pulldown</h1>
 
 
-<p><strong>Telecine</strong> adapts film pictures to television timing. The familiar <strong>3:2 pulldown</strong> cadence presents successive film pictures for alternating three-field and two-field intervals. Four source pictures occupy ten field intervals, fitting a 24-to-60 relationship.</p>
-<p>For the common fractional-rate version, 24000/1001 film pictures per second become 60000/1001 field intervals per second. Those fields are often stored or reported as 30000/1001 frame pairs per second.</p>
+<p>Film and television can require different presentation schedules. Four pictures at 24 fps span <strong>1/6 second</strong>. A 60-field/s television schedule has <strong>ten field intervals</strong> in that same time. Ten cannot be divided evenly between four film pictures.</p>
+<p><strong>3:2 pulldown</strong> solves the scheduling problem by holding successive pictures for alternating three and two field intervals. Starting at a two-field phase, one cycle is:</p>
+<p><strong>A A B B B C C D D D.</strong></p>
+<p>The extra field intervals repeat parts of existing film pictures. They do not contain newly photographed moments.</p>
 <p><img src="images/telecine-cadence.svg" alt="Four film pictures become ten fields and five field pairs, including two pairs assembled from different film pictures."></p>
-<p><em>Original cadence schematic, starting at a two-field phase: A A B B B C C D D D. Top and bottom fields alternate. Adjacent pairs are AA, BB, BC, CD, and DD; a different starting phase shifts the pattern.</em></p>
-<h2 id="more-fields-the-same-film-motion">More fields, the same film motion</h2>
-<p>The repeated fields do not record new moments. They hold existing film pictures for different lengths of time. That uneven hold can create familiar film judder, especially during horizontal pans.</p>
+<p><em>Original cycle starting at the two-field phase. A different starting phase shifts the pattern.</em></p>
+<h2 id="follow-the-fields-into-stored-pairs">Follow the fields into stored pairs</h2>
+<p>Top and bottom field parity alternate even while the source picture is repeated:</p>
 <table>
 <thead>
 <tr>
-<th>Source within one cycle</th>
-<th>Television representation</th>
+<th>Field interval</th>
+<th>Parity</th>
+<th>Source picture</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Four progressive film pictures</td>
-<td>Ten field intervals</td>
+<td>0</td>
+<td>Top</td>
+<td>A</td>
 </tr>
 <tr>
-<td>Equal source picture durations</td>
-<td>Alternating two- and three-field holds</td>
+<td>1</td>
+<td>Bottom</td>
+<td>A</td>
 </tr>
 <tr>
-<td>One picture time per film frame</td>
-<td>Some stored pairs combine different picture times</td>
+<td>2</td>
+<td>Top</td>
+<td>B</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Bottom</td>
+<td>B</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Top</td>
+<td>B</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Bottom</td>
+<td>C</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Top</td>
+<td>C</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Bottom</td>
+<td>D</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Top</td>
+<td>D</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Bottom</td>
+<td>D</td>
 </tr>
 </tbody>
 </table>
-<p>In <strong>hard telecine</strong>, the repetitions are represented in the stored pictures or fields. In <strong>soft telecine</strong>, signaling can instruct presentation to repeat fields without storing all those repetitions as separate coded pictures. The handling depends on the codec and transport.</p>
-<p>For an Emby library of older film transfers or television recordings, a 29.97 fps interlaced description therefore does not necessarily mean the camera captured 59.94 distinct motion moments. The source may instead contain a recoverable 23.976 fps film sequence.</p>
-<p><a href="Inverse-Telecine.html">Inverse telecine</a> tries to recover that sequence. It is useful when this cadence is present; applying it to native interlaced sport can remove real motion samples. Mixed programmes may contain both kinds of material.</p>
+<p>Pair neighboring fields into five television frames and the sequence becomes:</p>
+<p><strong>AA, BB, BC, CD, DD.</strong></p>
+<p>AA, BB, and DD combine rows from one film picture. BC and CD combine rows from different pictures. A moving object can therefore show combing in two pairs even though the original film frames were progressive.</p>
+<p>This pattern is useful when inspecting older film transfers in an Emby library. The stored interlaced-looking pairs can be evidence of a film-to-television cadence rather than native interlaced camera capture.</p>
+<h2 id="the-fractional-version-fits-exactly-too">The fractional version fits exactly too</h2>
+<p>Common film transfers use <strong>24000/1001 pictures/s</strong> and <strong>60000/1001 fields/s</strong>. Their ratio is still 2.5 fields per film picture.</p>
+<p>Four source picture durations:</p>
+<p><strong>4 × 1001/24000 = 0.166833… seconds.</strong></p>
+<p>Ten field durations:</p>
+<p><strong>10 × 1001/60000 = 0.166833… seconds.</strong></p>
+<p>The whole cycle retains its duration. Within the cycle, however, a two-field hold lasts <strong>33.3667 ms</strong> and a three-field hold <strong>50.05 ms</strong>, instead of the film's uniform <strong>41.7083 ms</strong> picture spacing. A steady pan is presented with unequal holds, which is the source of pulldown judder.</p>
+<h2 id="store-the-repetitions-or-describe-them">Store the repetitions, or describe them</h2>
+<p>In <strong>hard telecine</strong>, the stored picture/field sequence already contains the repetitions and mixed pairs. Recovering the film sequence requires identifying which row sets belong together and which presentations are redundant.</p>
+<p>In <strong>soft telecine</strong>, a format can retain the underlying coded film pictures and signal field repeats for presentation. The display schedule has more intervals than the coded picture count. Different inspection stages can consequently report the coded-picture rate or the intended repeated-field presentation.</p>
+<p>Modern playback can sometimes use the underlying film sequence directly with a suitable progressive display cadence. The old television scheduling problem and the display's current refresh schedule are separate stages.</p>
+<p><a href="Inverse-Telecine.html">Inverse telecine</a> reverses a recoverable film cadence. In the illustrated hard-telecine cycle, it must join B's or C's matching rows across pair boundaries before removing redundancy. Simply throwing away one of the five existing pairs would leave BC or CD incomplete as film pictures.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

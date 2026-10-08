@@ -106,39 +106,43 @@
 <h1>Container Overhead</h1>
 
 
-<p>The size of a media file is not simply the sum of its video and audio payloads. The container also needs headers, track descriptions, timestamps, and navigation structures. Those bytes are <strong>container overhead</strong>.</p>
-<p>Some costs occur once, such as a track description. Others repeat for each packet, group of samples, or fragment.</p>
+<p>A transport packet makes the cost of organization visible. A basic MPEG-TS packet occupies <strong>188 bytes</strong>. Its minimum header occupies four, leaving at most 184 for the remaining packet data.</p>
+<p><code>minimum header fraction = 4 ÷ 188 = approximately 2.128%</code></p>
+<p>To carry a simplified one million payload bytes using full 184-byte payload spaces requires ceil(1,000,000 / 184) = 5,435 packets. Those packets occupy 1,021,780 bytes. Their headers occupy 21,740 bytes, and the final packet has 40 bytes of otherwise unused space in this simplified accounting.</p>
+<p>This is a worked minimum-header example, not a total overhead prediction for a real TS. Actual adaptation fields, programme tables, packet filling, and other structures change the allocation.</p>
+<h2 id="repeated-costs-and-one-time-costs">Repeated costs and one-time costs</h2>
 <table>
 <thead>
 <tr>
-<th>Added bytes</th>
-<th>Purpose</th>
+<th>Organizational cost</th>
+<th>How it contributes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Track headers and codec configuration</td>
-<td>Tell the reader what each track contains</td>
+<td>Track descriptions and codec setup</td>
+<td>Usually a small amount compared with a long movie</td>
 </tr>
 <tr>
-<td>Timing and indexes</td>
-<td>Synchronize playback and locate seek positions</td>
+<td>Per-packet framing</td>
+<td>Repeats as more media packets are stored</td>
 </tr>
 <tr>
-<td>Repeated packet headers</td>
-<td>Identify and delimit media in the stored sequence</td>
+<td>Timing, sample tables, and seek indexes</td>
+<td>Grows with the media organization</td>
 </tr>
 <tr>
 <td>Padding or reserved space</td>
-<td>Maintain an output layout or allow later changes</td>
+<td>Allocates space for layout or later updates</td>
 </tr>
 </tbody>
 </table>
-<p>For scale, a standard MPEG-TS packet occupies 188 bytes and has at least a four-byte header. That minimum header alone is about 2.1% of the packet. Adaptation fields, tables, and padding can add more, so 2.1% is not a general total-overhead estimate.</p>
-<h2 id="why-remuxed-files-differ-in-size">Why remuxed files differ in size</h2>
-<p>Copying the same encoded tracks into another container can produce a different file length without changing their decoded picture or sound. Different indexing, packetization, metadata, and padding account for some of the difference.</p>
-<p>Removing an audio track or an attachment changes the size too, but that is removed content, not improved container efficiency. Compare the track list when assessing a remux.</p>
-<p>For Emby network estimates, distinguish container overhead from HTTP, TCP, IP, and other delivery overhead. The file's overall bitrate includes its container bytes; a network transfer includes additional protocol costs. Neither is a direct measure of compression quality.</p>
+<p>These bytes are <strong>container overhead</strong>: information or space needed around the encoded media. The encoded video and soundtrack have their own sizes before this additional packaging is considered.</p>
+<h2 id="compare-the-right-quantities-after-a-remux">Compare the right quantities after a remux</h2>
+<p>Suppose a remux copies the same selected video and audio into a format with different packet grouping and index structures. The whole output can have fewer bytes even though its decoded picture and sound are unchanged. The difference belongs to packaging.</p>
+<p>Now remove a 384 kb/s soundtrack lasting two hours. That eliminates 345.6 MB of encoded content, not merely overhead. Similarly, removing a large font or cover attachment changes stored resources. To understand a size difference, account for selected components before comparing the organizational cost.</p>
+<p>Overall file bitrate includes container bytes because it divides total file size by duration. A network transfer adds HTTP, transport, and link costs outside the file. An Emby delivery estimate therefore needs to identify whether a rate describes encoded streams, the whole packaged file, or network traffic.</p>
+<p>The distinction prevents a shorter remux from being mistaken for a better video encode: fewer organization bytes and a changed representation of the picture are different improvements.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

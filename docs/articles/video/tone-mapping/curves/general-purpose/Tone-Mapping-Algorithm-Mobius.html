@@ -106,32 +106,57 @@
 <h1>Tone Mapping Curve: Mobius</h1>
 
 
-<p>Mobius asks a practical question: if a darker part of the picture already fits, why compress it? Its curve leaves values below a transition point unchanged, then smoothly bends the higher values into the available output range. The name comes from the mathematical <em>Möbius transformation</em> used for that upper section. <a href="https://libplacebo.org/options/">libplacebo describes the curve and its relationship to Reinhard</a>.</p>
-<p><img src="images/tone-mapping-curve-mobius.png" alt="Mobius curve with a lower-range close-up marking the knee at 0.3, where the curve leaves the unchanged-input line smoothly."></p>
-<p><em>FFmpeg 8.1 Mobius curve: knee 0.3, source peak 8, output white 1, relative linear-light values for neutral gray. Dashed gray shows clipping. This illustrates the curve, not an Emby preset.</em></p>
-<p>In the close-up, the lines coincide up to the knee and then separate smoothly. The knee marks the start of compression without introducing a sharp corner.</p>
-<p>The transition is often called the <strong>knee</strong>. Moving it changes where the compromise begins:</p>
+<p>Mobius leaves a lower interval unchanged, then joins it to a curved upper section. The knee is where the mapping begins reducing the extra output assigned to brighter inputs.</p>
+<p><img src="images/tone-mapping-curve-mobius.png" alt="Mobius mapping with knee 0.3 and peak eight, including a close-up around the transition."></p>
+<p><em>FFmpeg 8.1 scalar mapping, knee 0.3, source peak 8, output white 1, neutral gray in relative linear light. Dashed gray shows clipping.</em></p>
+<h2 id="move-the-knee-and-follow-the-same-input">Move the knee and follow the same input</h2>
 <table>
 <thead>
 <tr>
-<th>Knee position</th>
-<th>Effect on the curve</th>
+<th style="text-align: right;">Input</th>
+<th style="text-align: right;">Knee 0.3</th>
+<th style="text-align: right;">Knee 0.6</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Lower</td>
-<td>Compression begins earlier, spreading it across more of the input range.</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.1</td>
 </tr>
 <tr>
-<td>Higher</td>
-<td>More values remain unchanged, leaving less output range for the brightest details.</td>
+<td style="text-align: right;">0.3</td>
+<td style="text-align: right;">0.3</td>
+<td style="text-align: right;">0.3</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.6</td>
+<td style="text-align: right;">About 0.516</td>
+<td style="text-align: right;">0.6</td>
+</tr>
+<tr>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">About 0.667</td>
+<td style="text-align: right;">About 0.806</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">About 0.937</td>
+<td style="text-align: right;">About 0.976</td>
+</tr>
+<tr>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 </tr>
 </tbody>
 </table>
-<p>For example, <a href="https://ffmpeg.org/ffmpeg-filters.html#tonemap">FFmpeg's software <code>tonemap</code> filter</a> defaults to a knee of 0.3. At the curve itself, inputs of 0.1 and 0.3 stay at 0.1 and 0.3; higher inputs enter the curved section. These are normalized linear-light values, not a percentage of the film's HDR peak.</p>
-<p>That makes Mobius interesting when investigating an <a href="../../fundamentals/Tone-Mapping-HDR-to-SDR.html">HDR-to-SDR conversion</a> where ordinary objects look too dim. However, preserving the lower part of the curve does not guarantee an unchanged final pixel: surrounding color conversion and highlight desaturation can also affect it, as the <a href="https://github.com/FFmpeg/FFmpeg/blob/n8.1/libavfilter/vf_tonemap.c">FFmpeg implementation</a> shows.</p>
-<p>When comparing playback through Emby, look at both familiar midtones and bright textured areas. A higher knee can preserve the former while making the latter harder to distinguish. Mobius explains that tradeoff clearly; its presence in an implementation is not a claim that it is the best current choice. <a href="https://libplacebo.org/options/">libplacebo classifies it as a legacy option</a>.</p>
+<p>The plot shows the first column's mapping. Raising the knee keeps more inputs on the unchanged line, but leaves less output range above that point. For example, the knee-0.6 version places input 4 at about 0.976, leaving only 0.024 before the peak. The knee-0.3 version leaves about 0.063 there.</p>
+<p>These numbers make the tradeoff visible: more preservation in the lower region means stronger compression of the remaining highlight interval. The knee uses the input working units; 0.3 is not 30% of a source peak of eight.</p>
+<h2 id="the-join-is-constrained-not-an-arbitrary-corner">The join is constrained, not an arbitrary corner</h2>
+<p>The upper part uses a rational Möbius relationship, a scaled ratio of two linear functions. Its coefficients are chosen so it meets three conditions: output equals input at the knee, the slope there is one, and the source peak maps to output white.</p>
+<p>Matching both value and slope makes the transition continuous without a sharp first-derivative corner. Above it, the curve gradually becomes shallower. The unchanged portion and the compressed portion therefore form one coherent response.</p>
+<p>In an <a href="../../fundamentals/Tone-Mapping-HDR-to-SDR.html">HDR-to-SDR path</a>, surrounding color and output operations also act on the picture. An Emby comparison can use this plot to separate the curve's lower-interval behavior from those other stages: inspect an ordinary object below the knee and bright texture above it under the same conversion conditions.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

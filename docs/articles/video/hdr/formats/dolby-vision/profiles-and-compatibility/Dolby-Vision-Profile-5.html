@@ -106,37 +106,40 @@
 <h1>Dolby Vision Profile 5</h1>
 
 
-<p>Dolby Vision Profile 5 uses one ten-bit HEVC picture layer with Dolby Vision metadata. Its most important compatibility property is that the base picture is <strong>not a standalone HDR10 or SDR picture</strong>.</p>
+<p>A Profile 5 file can decode as HEVC yet show badly shifted colors if its samples are sent through an ordinary HDR10 interpretation. The compression decoder and the signal renderer have different jobs.</p>
+<h2 id="follow-the-samples-past-the-decoder">Follow the samples past the decoder</h2>
+<p>Profile 5 carries a single ten-bit HEVC picture layer with Dolby Vision RPU metadata. Its signal uses PQ with reshaping and the <strong>IPT-PQ-C2</strong> component representation. It does not provide an ordinary HDR10 or SDR-compatible base.</p>
+<p>The HEVC decoder reconstructs those coded component samples. The Dolby Vision processing path then supplies their required interpretation and associated operations. Treating the decoded components as conventional BT.2020 YCbCr would use a different relationship to reconstruct color.</p>
+<p>That difference explains why a codec-capable player can produce an image while rendering it incorrectly. The necessary next stage is appropriate interpretation or a real conversion to another coherent representation.</p>
 <table>
 <thead>
 <tr>
-<th>Component</th>
-<th>Profile 5 arrangement</th>
+<th>Required job</th>
+<th>Evidence to look for</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Video codec</td>
-<td>Ten-bit HEVC</td>
+<td>Open the delivery</td>
+<td>Supported container and configuration</td>
 </tr>
 <tr>
-<td>Picture layers</td>
-<td>One base layer</td>
+<td>Decode the picture</td>
+<td>Ten-bit HEVC capability</td>
 </tr>
 <tr>
-<td>Dolby Vision metadata</td>
-<td>Present alongside the video</td>
+<td>Interpret Profile 5</td>
+<td>Supported reshaping, color, and metadata operations</td>
 </tr>
 <tr>
-<td>Standard HDR10 or SDR fallback</td>
-<td>Not provided by the base signal</td>
+<td>Present the result</td>
+<td>A suitable output/rendering path</td>
 </tr>
 </tbody>
 </table>
-<p>The signal uses Dolby Vision reshaping and the IPT-PQ-C2 color representation. A decoder that understands HEVC compression but then treats the decoded components as ordinary HDR10 can interpret the colors incorrectly. Being able to decompress the frames is only one part of playing them correctly.</p>
-<p>For an Emby library, this explains why “the device plays HEVC” is not enough evidence that it can display a particular Profile 5 file. The selected player and rendering path must interpret the Dolby Vision signal, or a converter must produce a different correctly encoded output.</p>
-<p>Removing the Dolby Vision metadata or changing the file's label does not perform that conversion. The underlying sample values still represent the Profile 5 signal.</p>
-<p>A useful comparison is <a href="Dolby-Vision-Profile-8.html">Profile 8.1</a>: its compatible base can be used as HDR10 when the rest of the path supports it. Profile 5 makes a different delivery choice. Neither profile number tells you whether one release has a better grade, fewer compression artifacts, or more carefully preserved detail.</p>
+<p>Removing metadata or changing labels leaves the underlying picture representation in place. It does not reconstruct a new HDR10 or SDR picture from those values.</p>
+<p>During Emby playback, inspect the selected app and delivered rendition as well as the stored source. A server conversion can prepare another output if the path supports the required source interpretation. Direct delivery needs that interpretation later in the route.</p>
+<p><a href="Dolby-Vision-Profile-8.html">Profile 8.1</a> makes a different choice by providing an HDR10-compatible base. The contrast identifies why one source can have a straightforward base fallback while another needs Profile 5-aware processing.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

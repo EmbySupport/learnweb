@@ -106,40 +106,43 @@
 <h1>Vorbis Audio</h1>
 
 
-<p>Vorbis is a <strong>lossy, general-purpose audio codec</strong> developed by Xiph.Org. “Ogg Vorbis” names both the codec and a common container pairing: Ogg stores the packets; Vorbis describes how those packets represent sound.</p>
-<p>An Ogg extension alone cannot establish that the audio is Vorbis. Other codecs also use Ogg, including <a href="Opus.html">Opus</a>.</p>
-<h2 id="what-the-decoder-needs">What the decoder needs</h2>
+<p>A Vorbis decoder begins with three header packets, then reconstructs successive audio packets using the configuration they supplied. This structure explains both how its sound is represented and why extracting packets without the setup can fail.</p>
+<p>Vorbis is a lossy general-audio codec. Ogg is a common wrapper, but it is not part of the audio-compression algorithm itself.</p>
+<h2 id="set-up-the-decoder-before-the-music-starts">Set up the decoder before the music starts</h2>
 <table>
 <thead>
 <tr>
-<th>Vorbis packet type</th>
-<th>Purpose</th>
+<th>Header</th>
+<th>What it supplies</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Identification header</td>
-<td>Describes channels, sample rate, and basic stream information</td>
+<td>Identification</td>
+<td>Codec identity, channel count, sample rate, and basic properties</td>
 </tr>
 <tr>
-<td>Comment header</td>
-<td>Carries textual metadata</td>
+<td>Comment</td>
+<td>Textual metadata</td>
 </tr>
 <tr>
-<td>Setup header</td>
-<td>Provides the coding configuration needed for decoding</td>
-</tr>
-<tr>
-<td>Audio packets</td>
-<td>Carry the encoded sound</td>
+<td>Setup</td>
+<td>Codebooks, floor/residue configurations, mappings, and modes</td>
 </tr>
 </tbody>
 </table>
-<p>The setup header is particularly important for seeking and extraction. Audio packets are not interchangeable with a completely self-contained file header. A player needs the correct setup information before decoding packets at a later position.</p>
-<p>Vorbis normally uses variable bitrate coding. A quality setting lets the encoder vary the number of bits according to the material. A “nominal bitrate” reported from a header can be a hint rather than a precise measurement of the whole track's average.</p>
-<h2 id="keeping-audio-and-packaging-apart">Keeping audio and packaging apart</h2>
-<p>A Vorbis soundtrack inside a movie is still Vorbis even if its container is not Ogg. Moving compatible packets into another supported wrapper can preserve the encoded sound, whereas changing the codec requires decoding and re-encoding.</p>
-<p>For a Vorbis collection in Emby, check <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">whether the original track is delivered</a> before attributing a difference to the stored format. The quality of a lossy master, a later conversion, and the output processing are separate influences. If exact source-sample preservation is required, Vorbis is not a substitute for a lossless master.</p>
+<p>The setup information gives meaning to the encoded symbols in later packets. Its codebooks are the dictionaries used for compact value descriptions; mappings and modes identify how those descriptions assemble the channels and transforms.</p>
+<p>A seek-capable reader retains this initialization, then locates appropriate audio packets and handles overlap/timing. Moving to a later byte position without the header state is not the same as seeking through a properly initialized Vorbis stream.</p>
+<h2 id="rebuild-one-audio-section">Rebuild one audio section</h2>
+<p>Vorbis describes a section using a spectral <strong>floor</strong> and <strong>residue</strong>. The floor captures a coarser spectral envelope; the residue carries detail relative to that envelope.</p>
+<p>A simplified numerical model illustrates the relationship: if the floor magnitude for a frequency region is 0.4 and a relative detail factor is 1.2, their product is 0.48. This is not a Vorbis packet decoder or a claim about exact quantized values; it shows how envelope and relative detail work together instead of storing unrelated full magnitudes everywhere.</p>
+<p>The specified decoder reconstructs these parts, reverses any channel coupling, combines the channel spectra, performs the inverse transform, and joins overlapping output sections. The resulting samples are the signal represented by the bitstream.</p>
+<h2 id="share-channel-relationships-efficiently">Share channel relationships efficiently</h2>
+<p>Stereo channels often have related content. Vorbis coupling can describe those relationships more compactly, then decouple them during reconstruction. The format supports different coding choices, including tradeoffs in the stereo image.</p>
+<p>A lossless channel-coupling step inside the decoder does not make the whole codec lossless: earlier quantization of the audio representation still determines its approximation.</p>
+<h2 id="let-the-encoders-budget-follow-the-material">Let the encoder's budget follow the material</h2>
+<p>Vorbis encoders commonly offer a quality-oriented variable-rate mode. A difficult attack or dense texture can use more data than a simpler passage at that selected quality policy. The header's nominal bitrate can be a hint, while a measured track average comes from actual bytes and duration.</p>
+<p>For an Emby music file, this distinguishes an expected bitrate change from an audio fault. Its metadata, initialization, packet timing, and coded sound remain separate preservation tasks when it is repackaged. A compatible remux can retain those coded packets; a conversion to another codec reconstructs them and creates a new audio representation.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -161,6 +164,7 @@
 			          <ul class="seealso-list reference-list">
 			            <li><a class="seealso-link" href="https://www.xiph.org/vorbis/doc/Vorbis_I_spec.html" title="Xiph.Org: Vorbis I specification">Xiph.Org: Vorbis I specification</a></li>
 			            <li><a class="seealso-link" href="https://xiph.org/vorbis/faq/" title="Xiph.Org: Vorbis FAQ">Xiph.Org: Vorbis FAQ</a></li>
+			            <li><a class="seealso-link" href="https://www.xiph.org/vorbis/doc/stereo.html" title="Xiph.Org: Vorbis stereo coupling mechanisms">Xiph.Org: Vorbis stereo coupling mechanisms</a></li>
 			          </ul>
             </article>
           </div>

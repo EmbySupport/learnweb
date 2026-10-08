@@ -106,39 +106,46 @@
 <h1>P3 Color Gamuts</h1>
 
 
-<p><strong>P3</strong> identifies red, green, and blue primaries originally associated with digital cinema. Those primaries cover a wider gamut than BT.709, particularly toward saturated reds and greens. The name alone does not fully specify how picture values should be interpreted.</p>
-<p>The same primaries can be combined with different white points and transfer functions. These distinctions explain why “P3” on a display specification, an image file, and a mastering report need not describe identical encodings.</p>
+<p>The name P3 turns up on cinema standards, photographs, mastering reports, and television specifications. Resolve the context before treating those uses as the same color encoding:</p>
 <table>
 <thead>
 <tr>
-<th>Name or context</th>
-<th>What else matters</th>
+<th>Name or use</th>
+<th>Primaries</th>
+<th>White/transfer information</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Cinema DCI-P3</td>
-<td>Cinema white point and a 2.6 display gamma</td>
+<td>P3</td>
+<td>Cinema white point and 2.6 display gamma</td>
 </tr>
 <tr>
 <td>P3-D65</td>
-<td>P3 primaries with D65 white; the transfer function still needs specifying</td>
+<td>P3</td>
+<td>D65 white; specify the transfer characteristic separately</td>
 </tr>
 <tr>
 <td>Display P3</td>
-<td>D65 white and the sRGB transfer curve</td>
+<td>P3</td>
+<td>D65 white with the sRGB transfer curve</td>
 </tr>
 <tr>
-<td>P3 colors in a BT.2020 video signal</td>
-<td>The video's declared encoding remains BT.2020</td>
+<td>“P3 coverage” on a screen</td>
+<td>A measured capability relative to P3</td>
+<td>Depends on the stated measurement method</td>
 </tr>
 </tbody>
 </table>
-<p>Display P3 is explicitly defined in the W3C color specification. It is not a synonym for a PQ-encoded HDR signal. A wide-gamut photograph can be SDR.</p>
-<h2 id="reading-a-p3-claim">Reading a “P3” claim</h2>
-<p>A television advertised as covering a percentage of P3 is describing a measured color capability, subject to the stated measurement method. It does not follow that its video input should be forced into a P3 mode for every film.</p>
-<p>For example, a movie can be mastered using a display with approximately P3 capabilities and delivered in a <a href="Color-Standard-BT2020.html">BT.2020</a> signal. The mastering display and the signal's primaries describe different things. Reinterpreting the encoded numbers as P3 would change their meaning.</p>
-<p>During Emby playback, use the file's declared color information and the actual output path together. A display's marketing gamut is not a replacement for those signal descriptions. For bright colored highlights, <a href="../Color-Volume.html">color volume</a> adds another question: how much of that gamut remains available as luminance rises?</p>
+<p>All three named spaces use the same primary coordinates: red (0.680, 0.320), green (0.265, 0.690), and blue (0.150, 0.060) in CIE 1931 xy. P3 reaches farther than BT.709 toward saturated red and green. The coordinates determine the gamut; the white and transfer choices complete the interpretation.</p>
+<h2 id="two-uses-that-are-easy-to-confuse">Two uses that are easy to confuse</h2>
+<p><strong>An image in Display P3.</strong> Its RGB values use P3 primaries, D65 white, and the defined nonlinear transfer curve. A color-managed image viewer can convert those values to the destination screen while preserving their intended colors. Display P3 provides a wider gamut than sRGB without, by itself, defining a PQ HDR presentation.</p>
+<p><strong>A movie graded within P3 and delivered using BT.2020.</strong> The movie can fit within the grading display's P3 capabilities while its encoded video uses <a href="Color-Standard-BT2020.html">BT.2020</a> coordinate values. The conversion expresses the same intended colors as mixtures of different primaries. The player's input interpretation follows the delivered video fields.</p>
+<p>In the second case, choosing a P3 input mode merely because the film was graded on a P3-capable display would assign the wrong meaning to the delivered numbers. The mastering range and encoding space have separate places in the production chain.</p>
+<h2 id="use-a-coverage-claim-for-the-question-it-answers">Use a coverage claim for the question it answers</h2>
+<p>A percentage of P3 describes a screen's measured reach relative to a reference gamut under particular conditions. Different area or volume methods can give different numbers, so compare measurements that state the same reference and method.</p>
+<p>For an Emby video, record the signal's primaries and transfer characteristic independently of the display's P3 coverage. The signal tells the renderer what colors were requested; measured capability tells it what can be reproduced. For bright colored highlights, <a href="../Color-Volume.html">color volume</a> extends that second question across light levels.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

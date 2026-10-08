@@ -106,39 +106,59 @@
 <h1>Color Volume</h1>
 
 
-<p><strong>Color volume adds light level to color gamut.</strong> It asks which colors a display can reproduce from its darkest output to its brightest, rather than describing only the reach of its red, green, and blue primaries.</p>
-<p>Consider two imaginary screens that can produce the same saturated red at a moderate light level. One can keep that red saturated as it becomes brighter; the other must reduce its brightness or move it toward white. Their gamut coverage at the tested level can look similar, while their handling of bright colored objects differs.</p>
+<p>A red light and a white reflection can ask very different things of a screen. The reflection can use all three RGB components. A saturated red uses mostly the red component, so it can run out of available output well before the screen reaches its maximum white brightness.</p>
+<p><strong>Color volume</strong> describes colors together with their light levels. It extends the two-dimensional idea of <a href="Color-Gamut.html">color gamut</a> into the brightness dimension: which colors can be reproduced near black, at middle levels, and near the brightest output?</p>
+<h2 id="why-the-volume-is-not-a-straight-stack-of-gamut-triangles">Why the volume is not a straight stack of gamut triangles</h2>
+<p>Imagine an ideal additive RGB display using BT.709 primaries, with linear component values limited to zero through one and 100-nit white. Its neutral white is R = G = B = 1. In this example, luminance is:</p>
+<p><strong>Y = 100 × (0.2126R + 0.7152G + 0.0722B) nits</strong></p>
+<p>The coefficient sum is one. Setting all components to one produces 100 nits, but setting just one component to one gives different results:</p>
 <table>
 <thead>
 <tr>
-<th>Picture detail</th>
-<th>What matters</th>
+<th>Linear RGB setting</th>
+<th>Color</th>
+<th style="text-align: right;">Calculated luminance</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>A deep red costume in a dim room</td>
-<td>Low-light color and shadow separation</td>
+<td>1, 0, 0</td>
+<td>Red primary</td>
+<td style="text-align: right;">21.26 nits</td>
 </tr>
 <tr>
-<td>A red traffic signal at night</td>
-<td>Saturation at a higher luminance</td>
+<td>0, 1, 0</td>
+<td>Green primary</td>
+<td style="text-align: right;">71.52 nits</td>
 </tr>
 <tr>
-<td>A white reflection on chrome</td>
-<td>Peak white and highlight handling</td>
+<td>0, 0, 1</td>
+<td>Blue primary</td>
+<td style="text-align: right;">7.22 nits</td>
 </tr>
 <tr>
-<td>A bright orange flame</td>
-<td>Color and luminance together</td>
+<td>1, 1, 0</td>
+<td>Red plus green</td>
+<td style="text-align: right;">92.78 nits</td>
+</tr>
+<tr>
+<td>1, 1, 1</td>
+<td>White</td>
+<td style="text-align: right;">100 nits</td>
 </tr>
 </tbody>
 </table>
-<p>This is why a peak-brightness number alone cannot describe HDR picture quality. A white patch and a saturated color ask different things of a display. Test-window size and duration also matter when interpreting brightness measurements; one brief small highlight does not describe a whole bright scene.</p>
-<h2 id="from-the-mastering-display-to-yours">From the mastering display to yours</h2>
-<p>HDR mastering-display metadata records a display's primaries, white point, and luminance limits. It describes the mastering reference, not every color actually used in the film and not the capability of your television.</p>
-<p>During Emby playback, the file can therefore describe a larger volume than the output display can reproduce. <a href="../tone-mapping/fundamentals/Tone-Mapping-Why.html">Tone mapping</a> and <a href="../tone-mapping/color-and-luminance/Gamut-Mapping.html">gamut mapping</a> address related parts of this problem. Preserving highlight brightness while ignoring saturation can still change the appearance of a flame or neon sign.</p>
-<p>For comparisons, look for measured performance across brightness and color, with a stated test method. A single percentage without its reference volume and measurement conditions is hard to interpret.</p>
+<p><em>An idealized calculation with fixed primaries and component limits. It is not a measurement of a television.</em></p>
+<p>To make that pure red brighter while retaining the same chromaticity would require increasing its red component beyond one. The display has already reached the limit. Adding green and blue can raise luminance, but moves the color toward a less saturated mixture. This is the brightness/saturation tradeoff the word “volume” helps describe.</p>
+<p>Near the top of this ideal volume, fewer saturated colors remain available. At the very highest white level, all components are already at their maxima. Real displays add other limits: their primaries and channel behavior vary, their black floor affects dark colors, and power or thermal control can change output during a bright scene.</p>
+<h2 id="follow-a-bright-colored-object-to-the-display">Follow a bright colored object to the display</h2>
+<p>Consider an HDR picture containing a bright orange flame. Its encoded RGB values describe both its color and light level. The display may have sufficient reach toward orange at a moderate luminance but insufficient output to reproduce that particular orange at the requested high luminance.</p>
+<p>A conversion can reduce the flame's brightness, reduce its saturation, or combine adjustments. Keeping only the brightness target and clipping individual color components can shift hue. Keeping only the hue and saturation target can require a larger luminance reduction. A useful mapping balances the relationships that make the flame look convincing alongside the rest of the scene.</p>
+<p>This is why <a href="../tone-mapping/fundamentals/Tone-Mapping-Why.html">tone mapping</a> and <a href="../tone-mapping/color-and-luminance/Gamut-Mapping.html">gamut mapping</a> interact. Their jobs can be integrated into one color-volume mapping. Treating the output as a brightness ceiling plus an independent fixed triangle misses part of the problem.</p>
+<h2 id="read-measurements-with-their-conditions">Read measurements with their conditions</h2>
+<p>A color-volume percentage needs a reference volume and a specified measurement method. Different coordinate systems weight color differences differently; a percentage relative to one reference cannot be compared directly with an unrelated percentage.</p>
+<p>Test conditions also matter. A brief small white patch, a large bright area, and a sustained colored patch can produce different output limits on the same screen. Measurements across luminance and color give more information than one peak-white number. Near black, useful separation between dark colors matters even when the high-brightness result is impressive.</p>
+<p><a href="../hdr/metadata-and-light-levels/HDR-Mastering-Display-Metadata.html">Mastering-display metadata</a> records properties of the mastering reference. During Emby playback, the receiving screen can have a different volume. The renderer adapts the produced image to the output; retaining the original source allows that adaptation to be chosen again for another display.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -157,6 +177,7 @@
 			          <ul class="seealso-list reference-list">
 			            <li><a class="seealso-link" href="https://www.smpte.org/hubfs/er0997-2015.pdf?hsLang=en" title="SMPTE study group report: HDR ecosystem">SMPTE study group report: HDR ecosystem</a></li>
 			            <li><a class="seealso-link" href="https://www.itu.int/rec/T-REC-H.274" title="ITU-T H.274: Supplemental enhancement information">ITU-T H.274: Supplemental enhancement information</a></li>
+			            <li><a class="seealso-link" href="https://www.itu.int/rec/R-REC-BT.709/en" title="ITU-R BT.709: Primary coordinates and luminance weights">ITU-R BT.709: Primary coordinates and luminance weights</a></li>
 			          </ul>
             </article>
           </div>

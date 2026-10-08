@@ -106,13 +106,44 @@
 <h1>Direct Stream Digital (DSD)</h1>
 
 
-<p>DSD represents sound as a very fast stream of <strong>one-bit values</strong>. It is associated with Super Audio CD and downloadable music, and uses a different sample representation from ordinary multibit <a href="LPCM.html">linear PCM</a>.</p>
-<p>Its large sample-rate number needs context. DSD64 uses 2,822,400 one-bit samples per second per channel: 64 times 44.1 kHz. That is not equivalent to PCM at the same numerical rate and a 16- or 24-bit word length.</p>
+<p>How can a recording with only <strong>one bit per sample</strong> represent a quiet voice and a loud orchestra? Direct Stream Digital uses a very fast one-bit sequence whose behavior over time represents the waveform. An individual bit is not a miniature multibit PCM amplitude measurement.</p>
+<p>DSD is associated with Super Audio CD and downloadable music. Its usual DSD64 rate is 2,822,400 bits per second per channel: 64 × 44,100.</p>
+<h2 id="read-density-as-the-starting-idea">Read density as the starting idea</h2>
+<p>In a simple illustration, map one to +1 and zero to −1. The average of a short bit group then changes with the balance:</p>
 <table>
 <thead>
 <tr>
-<th>Common label</th>
-<th style="text-align: right;">One-bit sample rate per channel</th>
+<th>Eight illustrative bits</th>
+<th>Ones / zeros</th>
+<th style="text-align: right;">Average of the mapped levels</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>11110000</td>
+<td>4 / 4</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td>11111100</td>
+<td>6 / 2</td>
+<td style="text-align: right;">+0.5</td>
+</tr>
+<tr>
+<td>11000000</td>
+<td>2 / 6</td>
+<td style="text-align: right;">−0.5</td>
+</tr>
+</tbody>
+</table>
+<p>This is a teaching model of pulse density, <strong>not a DSD encoding algorithm</strong>. The actual order of bits and the feedback process matter. Two sequences with the same count in one group can have different high-frequency behavior.</p>
+<p>A DSD modulator uses a rapidly running quantizer and feedback. Noise shaping arranges much of the quantization error outside the desired audio band, where subsequent filtering can attenuate it. This lets useful low-frequency amplitude information emerge from a stream whose instantaneous values have only two states.</p>
+<h2 id="the-very-high-rate-serves-the-representation">The very high rate serves the representation</h2>
+<table>
+<thead>
+<tr>
+<th>Common label, 44.1 kHz rate family</th>
+<th style="text-align: right;">One-bit rate per channel</th>
 </tr>
 </thead>
 <tbody>
@@ -130,11 +161,19 @@
 </tr>
 </tbody>
 </table>
-<p>These labels describe the usual 44.1 kHz family of rates. DSD encoding uses noise shaping to keep much of its quantization noise outside the audible band; playback and conversion require appropriate filtering. A higher DSD rate alone cannot establish that one release sounds better than another master.</p>
-<h2 id="representation-file-and-output">Representation, file, and output</h2>
-<p><strong>DSD is not a container.</strong> <a href="../../media-files/containers/audio-oriented/DSF-Container.html">DSF</a> and <a href="../../media-files/containers/audio-oriented/DSDIFF-Container.html">DSDIFF</a> are file formats that can store it. <a href="lossless/WavPack.html">WavPack</a> can compress DSD losslessly, preserving the one-bit data for later restoration.</p>
-<p>A player may send DSD through a supported DSD output path or convert it to PCM. Conversion to PCM involves filtering and a change of representation; it is not the same operation as losslessly unpacking a compressed DSD file.</p>
-<p>For DSD music in an Emby library, distinguish the stored stream from the stream delivered to the client and the signal received by the DAC. The source's DSD label alone does not confirm native DSD output. Its unusual rate and bit depth are useful identifiers, not a direct quality score against PCM.</p>
+<p>The rate and one-bit representation belong together. Comparing “2.8 MHz” with “96 kHz PCM” as if they measured one identical precision system discards the most important part of the description.</p>
+<p>For raw stereo DSD64, the data rate is 2,822,400 × 1 × 2 = <strong>5.6448 Mbit/s</strong>. One minute uses 5,644,800 / 8 × 60 = <strong>42.336 MB</strong> before file overhead. This is four times the raw data rate of 44.1 kHz, 16-bit stereo PCM, despite the one-bit samples.</p>
+<p>Those arithmetic relationships describe storage demand, not an audible ranking of music releases.</p>
+<h2 id="filtering-turns-the-stream-into-a-usable-output">Filtering turns the stream into a usable output</h2>
+<p>The desired audio and shaped high-frequency error coexist in the sequence. Playback needs suitable reconstruction/filtering so that unwanted high-frequency energy is not simply sent onward as part of the audible signal.</p>
+<p>A DSD-to-PCM conversion also filters, then produces multibit values on a new time grid. For an illustrative 88.2 kHz target, DSD64 has 32 input bit positions per output sample interval. A proper converter uses a designed filter and rate conversion; merely counting ones in successive isolated 32-bit groups is not a complete high-quality converter.</p>
+<p>The result is a PCM representation of the available audio band. It is not byte-preserving restoration of the original DSD sequence. The filter, target rate, and numerical precision become part of that conversion.</p>
+<h2 id="keep-packaging-and-compression-separate">Keep packaging and compression separate</h2>
+<p><a href="../../media-files/containers/audio-oriented/DSF-Container.html">DSF</a> and <a href="../../media-files/containers/audio-oriented/DSDIFF-Container.html">DSDIFF</a> are containers for DSD-related data. They have different channel-block, bit-packing, and metadata conventions.</p>
+<p>DST and <a href="lossless/WavPack.html">WavPack</a> can losslessly compress DSD: after unpacking, the original one-bit sequence can be restored. That operation differs from converting the audio to PCM.</p>
+<p>A useful source-to-output trace is therefore:</p>
+<p><strong>DSF/DFF reader → any required lossless decompression → DSD sequence → native supported output or filtered PCM conversion → playback.</strong></p>
+<p>For a DSD item in Emby, these stages explain why a file remains labeled DSD in the library while the client receives PCM. The stored representation, delivery representation, and DAC input are distinct observations. A DAC can additionally use its own internal processing; “DSD input” describes the accepted signal, not every internal circuit stage.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

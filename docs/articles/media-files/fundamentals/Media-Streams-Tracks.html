@@ -106,39 +106,53 @@
 <h1>Streams and Tracks</h1>
 
 
-<p>A film with two audio languages usually stores two audio tracks alongside one video track. Selecting another language changes which audio sequence is played; it does not require a second copy of the film's picture.</p>
-<p>In file discussions, <strong>stream</strong> and <strong>track</strong> often refer to the same component. Track emphasizes its place in the container; stream emphasizes the sequence of media data read from it. A network stream is a broader use of the word and may deliver an entire container with several tracks.</p>
+<p>Here is a possible track list for one film:</p>
 <table>
 <thead>
 <tr>
-<th>Example file component</th>
-<th>What selecting it changes</th>
+<th>Track in the file</th>
+<th>Contents</th>
+<th>Selected for this viewing?</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Main video</td>
-<td>The moving picture</td>
+<td>Video</td>
+<td>The film's picture</td>
+<td>Yes</td>
 </tr>
 <tr>
-<td>Original-language audio</td>
-<td>The dialogue and soundtrack</td>
+<td>Audio 1</td>
+<td>English 5.1 soundtrack</td>
+<td>Yes</td>
 </tr>
 <tr>
-<td>Commentary audio</td>
-<td>An alternative soundtrack</td>
+<td>Audio 2</td>
+<td>German stereo soundtrack</td>
+<td>No</td>
 </tr>
 <tr>
-<td>Subtitle track</td>
-<td>Text or images displayed over the picture</td>
+<td>Audio 3</td>
+<td>English commentary</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Subtitle 1</td>
+<td>English dialogue subtitles</td>
+<td>Optional</td>
 </tr>
 </tbody>
 </table>
-<p>One audio track can contain several <a href="../../audio/Understanding-Audio-in-Media.html">audio channels</a>, such as a 5.1 soundtrack. Six channels are not six selectable audio tracks.</p>
-<h2 id="why-the-track-list-matters">Why the track list matters</h2>
-<p>An Emby playback decision depends on the selected components. A compatible video track may play directly with one audio choice but need audio conversion with another. Choosing an image-based subtitle track can also change the work required to display it.</p>
-<p>Track numbers help inspection tools distinguish components, but they are not durable identities across editing. A remux that adds or removes tracks may reorder them. Language, codec, channel layout, and track title make a more useful comparison.</p>
-<p>A title such as “English commentary” is descriptive metadata. The actual <a href="../container-structure/track-and-programme-descriptions/Media-Track-Language.html">language tag</a> and any <a href="../container-structure/track-and-programme-descriptions/Media-Default-Track-Flags.html">selection flags</a> are separate fields. Checking all three helps explain why a player offers or chooses a particular track.</p>
+<p>Each <strong>track</strong> is a separately described sequence. The picture can be paired with any of the soundtracks because their timestamps refer to the same presentation. Switching languages chooses another audio sequence; it does not require another copy of the video.</p>
+<p><strong>Stream</strong> often means the same component when discussing a file. It emphasizes the sequence of packets extracted from that track. A “network stream” can instead mean the whole delivery, including a container holding several such components.</p>
+<h2 id="what-is-inside-an-audio-track">What is inside an audio track?</h2>
+<p>The English 5.1 track contains <a href="../../audio/channels/Multichannel-Audio.html">six audio channels</a>: five main speaker roles and a low-frequency effects channel. A channel describes one component of the sound being decoded together. It is not a separately selectable soundtrack.</p>
+<p>At a sample rate of 48 kHz, one second of decoded 5.1 audio contains 48,000 sample values for each of six channels. The decoder produces those channels together from one encoded audio track. Selecting commentary changes tracks; changing the receiver's speaker layout changes what happens to channels within the selected track.</p>
+<h2 id="selection-changes-the-work-even-with-the-same-picture">Selection changes the work, even with the same picture</h2>
+<p>An Emby session playing Audio 1 may use a different audio output path from one playing Audio 2. The German stereo track may already suit the output, while a surround track might need <a href="../../audio/decoding-output/conversion-fallback/Audio-Downmixing.html">downmixing</a> or a codec conversion. The video sequence remains the same.</p>
+<p>Subtitle selection is another independent choice. A timed text sequence can be rendered by the app; a selected subtitle that the route cannot render separately may need to be incorporated into the video. The complete session therefore depends on the chosen combination, not every track stored in the source.</p>
+<p>A track description normally includes a codec, technical properties, language, and sometimes a title and <a href="../container-structure/track-and-programme-descriptions/Media-Default-Track-Flags.html">selection flags</a>. “English commentary” in a title is separate from the <a href="../container-structure/track-and-programme-descriptions/Media-Track-Language.html">language code</a>. Those fields help distinguish two soundtracks with the same language.</p>
+<p>When comparing a remux with its original, match tracks by these descriptions. Inspection tools may renumber the output after a track is removed, so “track 2” can refer to different content in the two files.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

@@ -106,35 +106,42 @@
 <h1>Codec Support in Containers</h1>
 
 
-<p>A container is not an unrestricted box into which any codec can be placed. The format needs a defined way to identify that codec, store its configuration, and represent its encoded units.</p>
-<p>Matroska supports a broad collection of mappings. WebM uses a more restricted set of video and audio formats. Those different design choices affect whether a file can be repackaged without changing its codecs.</p>
+<p>A muxer needs more than the encoded bytes of a soundtrack. It needs a <strong>codec mapping</strong> telling it how to describe those bytes in the chosen container.</p>
+<p>A mapping supplies a codec identifier, a place for decoder configuration, boundaries for encoded units, and any timing or initialization rules particular to that codec. The corresponding reader follows the same rules in reverse.</p>
+<p>For example, AAC in Matroska has an A_AAC identifier and defined configuration handling. AAC in MP4 has an audio sample entry and its own configuration representation. Copying the sound between them can retain the coded audio while translating those surrounding descriptions.</p>
+<h2 id="a-proposed-output-with-three-tracks">A proposed output with three tracks</h2>
+<p>Suppose a source has H.264 video, AAC sound, and a subtitle track. The destination is WebM. First ask whether the destination defines acceptable mappings for the selected components. WebM's video/audio conventions cover a constrained collection, rather than all the mappings available in Matroska. The H.264/AAC pair cannot simply be relabelled as WebM.</p>
+<p>At that point there are distinct choices: keep an accommodating container, or convert the encoded components to formats the destination supports. A subtitle that does not fit introduces its own choice to omit, convert, render, or use another package. Those are content and processing decisions, not a failed compression of the movie.</p>
 <table>
 <thead>
 <tr>
-<th>Compatibility question</th>
-<th>What must be checked</th>
+<th>Check</th>
+<th>Evidence that answers it</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Can the format describe this codec?</td>
-<td>Its specification and codec mapping</td>
+<td>Format mapping exists</td>
+<td>The container's specification or registration and applicable carriage rules</td>
 </tr>
 <tr>
-<td>Can the writing tool create that combination?</td>
-<td>The muxer's implementation</td>
+<td>Writer implements it</td>
+<td>The muxer's documented support for this combination</td>
 </tr>
 <tr>
-<td>Can the target app open and decode it?</td>
-<td>Its container reader and decoder capabilities</td>
+<td>Reader implements it</td>
+<td>The app or playback framework's container and mapping support</td>
+</tr>
+<tr>
+<td>Decoder handles the track</td>
+<td>The codec, configuration, and resource limits available in that path</td>
 </tr>
 </tbody>
 </table>
-<p>These checks can have different answers. A recognized codec registration is not proof that every muxer, browser, television, or app implements it.</p>
-<h2 id="why-a-remux-can-fail">Why a remux can fail</h2>
-<p>A video track may fit the destination while an audio or subtitle track does not. A conversion tool must then omit that track, convert it, or choose a different output format. A successful output file does not prove that all original components were preserved.</p>
-<p>For Emby, the relevant combination is the one delivered to the selected app. If the picture codec is suitable but its packaging is unsuitable, <a href="Media-Multiplexing.html">remuxing</a> may help. If the decoder cannot handle the codec's properties, changing the container alone is insufficient.</p>
-<p>Inspect the full track list before and after a packaging change. This is especially useful for alternate audio, subtitles, and metadata that might otherwise disappear unnoticed.</p>
+<p>These checks are ordered because each solves a different problem. A registered MP4 code tells developers how a representation is identified; it does not install that representation in an older writer or reader.</p>
+<h2 id="why-one-conversion-can-combine-copying-and-encoding">Why one conversion can combine copying and encoding</h2>
+<p>If a different destination accepts the video mapping but needs another audio format, the video branch can be a <a href="Media-Multiplexing.html">copy</a> while the audio branch decodes and re-encodes. Emby can similarly choose a delivery route based on the selected combination rather than one global “supported file” label.</p>
+<p>A useful before/after record lists the selected components and the treatment of each. It makes an absent commentary track or a changed subtitle visible, even when the main video was copied successfully.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

@@ -106,36 +106,81 @@
 <h1>Structural Similarity (SSIM) for Video</h1>
 
 
-<p><strong>Structural Similarity (SSIM)</strong> compares the local statistical structure of two pictures. It considers more than pixel-by-pixel error, aiming to reflect the importance of recognizable patterns and edges.</p>
-<p>In video evaluation, one sequence is the reference and the other is the test result. Corresponding decoded pictures are compared, often through small windows, before results are combined into an overall score.</p>
+<p>Take a small reference patch with values <strong>40,40,60,60</strong>. It contains a step from a darker region to a lighter one.</p>
+<p>Now compare two reconstructions:</p>
 <table>
 <thead>
 <tr>
-<th>Part of the original SSIM comparison</th>
-<th>What it describes</th>
+<th>Patch</th>
+<th>Values</th>
+<th style="text-align: right;">Mean squared error from reference</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Luminance</td>
-<td>Local average sample value</td>
+<td>A: brightness shifted</td>
+<td>50,50,70,70</td>
+<td style="text-align: right;">100</td>
 </tr>
 <tr>
-<td>Contrast</td>
-<td>Variation around the local average</td>
-</tr>
-<tr>
-<td>Structure</td>
-<td>How the local variations correspond</td>
+<td>B: step flattened</td>
+<td>50,50,50,50</td>
+<td style="text-align: right;">100</td>
 </tr>
 </tbody>
 </table>
-<p>A blurred texture and a small uniform brightness change can have similar squared error but affect these relationships differently. SSIM can therefore distinguish cases that <a href="Video-Quality-PSNR.html">PSNR</a> treats as equal. This does not make it a perfect predictor of what every viewer prefers.</p>
-<h2 id="read-the-implementation-as-well-as-the-score">Read the implementation as well as the score</h2>
-<p>A value of <strong>1</strong> represents identical compared content in the original formulation. SSIM is unitless, and negative values are possible; it is not universally confined to 0–1. A result such as 0.99 does not mean “99% picture quality.”</p>
-<p>Single-scale SSIM, multi-scale variants, and different implementations need not produce interchangeable numbers. Windowing, color handling, downsampling, and aggregation all matter. The reference implementation's suggested scaling is one reason tools can disagree even when using the same videos.</p>
-<p>For an Emby library conversion, compare candidate encodes against the same retained source with consistent timing, dimensions, and sample preparation. A different crop or one-frame offset can measure a mismatch rather than the effect of the encoder.</p>
-<p>Inspect difficult scenes in motion alongside the aggregate result. A whole-film score can hide a short bad section, and an image-similarity measurement does not describe network stalls or playback compatibility. SSIM helps evaluate the reconstruction; it does not prove the source was good or that the output retained every original sample.</p>
+<p>Both have the same squared sample error. A retains the step and its contrast, while B removes it. <strong>Structural Similarity (SSIM)</strong> compares local statistical relationships that distinguish those results.</p>
+<h2 id="separate-mean-contrast-and-structure">Separate mean, contrast and structure</h2>
+<p>The original SSIM approach uses three relationships:</p>
+<p><strong>Local mean:</strong> the average sample value. This is its luminance comparison; in this grayscale example it refers to code values, not physical display luminance.</p>
+<p><strong>Local contrast:</strong> the spread around that mean, described by variance or standard deviation. The step patch has variation; the flat patch has none.</p>
+<p><strong>Local structure:</strong> how corresponding deviations vary together, described by covariance. When both pictures put their below-mean and above-mean values in the same places, that correspondence is positive.</p>
+<p>For the reference, the mean is <strong>50</strong>. Its deviations are <strong>−10,−10,+10,+10</strong>. Using sample variance with denominator N−1:</p>
+<p><strong>(100 +100 +100 +100)/3 =133.333…</strong></p>
+<p>Patch A has mean 60 and the same deviations. Patch B has mean 50 but all its deviations are zero.</p>
+<h2 id="calculate-the-combined-comparison">Calculate the combined comparison</h2>
+<p>For this illustration, use the original combined form:</p>
+<p><code>SSIM =((2µxµy +C1)/(µx² +µy² +C1)) ×((2σxy +C2)/(σx² +σy² +C2))</code></p>
+<p>Here µ denotes the local mean, σx² and σy² are variances, and σxy is covariance. Choose an 8-bit peak convention L = 255, with K1 =0.01 and K2 =0.03:</p>
+<p><strong>C1 =(K1L)² =6.5025</strong>, and <strong>C2 =(K2L)² =58.5225</strong>.</p>
+<p>The constants stabilize comparisons when a mean or variation is small; two identical flat patches should not require dividing zero by zero.</p>
+<table>
+<thead>
+<tr>
+<th>Test patch</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Variance</th>
+<th style="text-align: right;">Covariance with reference</th>
+<th style="text-align: right;">Calculated SSIM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">133.333…</td>
+<td style="text-align: right;">133.333…</td>
+<td style="text-align: right;">0.983624…</td>
+</tr>
+<tr>
+<td>B</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.305034…</td>
+</tr>
+</tbody>
+</table>
+<p>A's contrast/structure factor is 1, with a smaller change in its mean factor. B's mean matches, but its variance and covariance describe the missing step.</p>
+<p><em>Original four-value arithmetic using uniform local statistics and N−1 variance/covariance. It demonstrates the formula, not the output of a particular video tool's 2D windowing implementation.</em></p>
+<h2 id="reverse-the-step">Reverse the step</h2>
+<p>A third patch, <strong>60,60,40,40</strong>, has the same mean and variance as the reference, but its deviations are opposite at every position. Its covariance is <strong>−133.333…</strong>.</p>
+<p>With the declared constants, its SSIM is approximately <strong>−0.640071</strong>. Negative covariance can therefore produce a negative index. SSIM is not universally a 0–1 percentage of retained picture quality.</p>
+<p>Identical local content gives 1 in this original formulation. That identity case and the reversed-pattern example describe what the mathematical comparison is measuring.</p>
+<h2 id="move-from-a-patch-to-a-video">Move from a patch to a video</h2>
+<p>A real implementation calculates local windows across each picture and combines their results. Window size and weighting, color/plane handling, scale preparation and frame aggregation all affect the number.</p>
+<p>The author's suggested image scaling is one concrete example. Netflix's VMAF FAQ documents that its included SSIM applies empirical downsampling that differs from FFmpeg's SSIM filter. Equal input filenames do not make those preprocessing choices identical.</p>
+<p>For a conversion comparison, align the picture content and times and declare the measurement geometry. Then examine local or per-frame results where detail changed, rather than relying only on a whole-film aggregate.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

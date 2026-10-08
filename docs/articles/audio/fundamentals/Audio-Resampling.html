@@ -106,39 +106,86 @@
 <h1>Audio Resampling</h1>
 
 
-<p><strong>Resampling changes an audio signal's sample rate.</strong> It produces values on a new time grid while keeping the intended duration and pitch. It is more than changing the sample-rate number in the file header.</p>
-<p>For example, one second of 44.1 kHz audio contains 44,100 samples per channel. Converting that second to 48 kHz produces 48,000 samples per channel. The new positions generally fall between the old ones, so the converter calculates their values using interpolation and filtering.</p>
+<p>A music track contains 44,100 sample frames for one second, but the output device consumes 48,000 per second. Sending the old frames faster would shorten the second. <strong>Resampling instead computes the signal at 48,000 new time positions</strong>, keeping its intended duration and pitch.</p>
+<p>That makes sample-rate conversion a signal-processing problem, not a header edit.</p>
+<h2 id="separate-time-from-the-array-index">Separate time from the array index</h2>
+<p>For input sample index n at 44.1 kHz, time is n/44,100 seconds. Output index m at 48 kHz refers to m/48,000 seconds. The desired output is the value of the same signal at that new time.</p>
 <table>
 <thead>
 <tr>
-<th>Treatment of a one-second 44.1 kHz signal</th>
-<th style="text-align: right;">Samples per channel</th>
-<th style="text-align: right;">Resulting duration</th>
+<th>Treatment of one second of 44.1 kHz input</th>
+<th style="text-align: right;">Output sample frames</th>
+<th style="text-align: right;">Playback duration</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Keep its original rate</td>
+<td>Retain 44.1 kHz</td>
 <td style="text-align: right;">44,100</td>
-<td style="text-align: right;">1.000 seconds</td>
+<td style="text-align: right;">1 second</td>
 </tr>
 <tr>
-<td>Resample to 48 kHz</td>
+<td>Convert correctly to 48 kHz</td>
 <td style="text-align: right;">48,000</td>
-<td style="text-align: right;">1.000 seconds</td>
+<td style="text-align: right;">1 second</td>
 </tr>
 <tr>
-<td>Only relabel it as 48 kHz</td>
+<td>Relabel existing frames as 48 kHz</td>
 <td style="text-align: right;">44,100</td>
 <td style="text-align: right;">0.91875 seconds</td>
 </tr>
 </tbody>
 </table>
-<p><em>Calculated example without encoder padding or other timing adjustments. The relabeled case also raises pitch.</em></p>
-<h2 id="filtering-is-part-of-the-conversion">Filtering is part of the conversion</h2>
-<p>When reducing the rate, frequencies above the new Nyquist limit must be attenuated to avoid aliasing. When increasing it, the converter must avoid creating unwanted spectral images. The exact filter determines how close the result comes to the desired conversion, including its transition band and processing cost.</p>
-<p>Upsampling does not invent information above the original recording's frequency limit. A 48 kHz file converted to 96 kHz has more sample positions, but that alone does not make the recording more detailed.</p>
-<p>An Emby client, an operating-system mixer, or a server conversion may need a different rate for the destination. If playback is smooth and correctly timed, a rate change is not automatically a problem. The useful questions are whether conversion is required and whether it is performed well. If integer precision is reduced as part of the same processing, <a href="Audio-Dithering.html">dithering</a> is a separate decision.</p>
+<p>Relabeling also multiplies every frequency by 48,000/44,100, approximately 1.0884. A 1 kHz tone becomes about 1,088.4 Hz. A correct converter supplies more values for the same original 1 kHz tone.</p>
+<h2 id="work-out-a-new-value-between-two-old-ones">Work out a new value between two old ones</h2>
+<p>Consider a simpler rate doubling: the existing figure on the <a href="sample-representation/Digital-Audio-Sampling.html">sampling page</a> represents a 1 kHz sine sampled at 8 kHz. Its first two values are:</p>
+<ul>
+<li>At 0 ms: 0.</li>
+<li>At 0.125 ms: approximately +0.7071.</li>
+</ul>
+<p>A 16 kHz output needs another sample at 0.0625 ms. Because we know the example's exact sine, its correct amplitude is sin(π/8), approximately <strong>+0.3827</strong>.</p>
+<p>Simply averaging the neighbors gives (0 + 0.7071)/2 = <strong>+0.3536</strong>. That is an interpolation, but it does not give the correct sine value. The error becomes more consequential for frequencies closer to the sampling limit.</p>
+<p>A high-quality resampler uses a suitable interpolation filter and a neighborhood of input samples. The values before and after the desired time jointly inform the result. Ideal bandlimited reconstruction uses sinc-shaped contributions from the whole sequence; practical filters approximate that operation using a finite number of samples.</p>
+<p>The converter does not discover new information in the recording. It evaluates the available, bandlimited signal on another grid. Upsampling to 96 kHz can be useful for a processing or hardware stage without extending the original recording's captured frequency range.</p>
+<h2 id="rate-reduction-needs-a-narrower-signal-first">Rate reduction needs a narrower signal first</h2>
+<p>Downsampling must satisfy the new sampling condition. Suppose 48 kHz input includes a 23 kHz component and is converted to 44.1 kHz output. The new Nyquist boundary is 22.05 kHz. Retaining that component while sampling at the lower rate can turn it into an alias at 44.1 − 23 = <strong>21.1 kHz</strong>.</p>
+<p>A low-pass filter attenuates such content before the reduced grid is taken. This preserves the wanted lower-frequency band and prevents unsuitable input frequencies from masquerading as different output frequencies.</p>
+<p>Real filters need a transition region between a passband that they preserve and a stopband that they attenuate. The engineering tradeoff includes how close the passband approaches the limit, residual unwanted energy, computational work, and transient behavior. “Keeps every frequency right up to Nyquist” is not an adequate practical filter description.</p>
+<p>Increasing the rate also needs filtering to avoid spectral images of the original sampled signal. In both directions, interpolation and filtering are parts of one conversion, rather than optional cleanup afterward.</p>
+<h2 id="how-a-converter-implements-a-fractional-ratio">How a converter implements a fractional ratio</h2>
+<p>48,000/44,100 simplifies to <strong>160/147</strong>. A conceptual rational-rate converter can increase the internal grid by 160, filter, and keep every 147th position. This produces the correct relationship between input and output counts.</p>
+<p>Inserting zeros during the conceptual increase is a way to prepare a sequence for filtering; those zeros are not supposed to become silent samples in the finished signal. Filtering fills in the values appropriate to the new time positions.</p>
+<p>A practical <strong>polyphase</strong> implementation reorganizes the filter into phases so it computes the samples it actually needs. It does not have to construct an enormous intermediate array. That implementation detail explains how an apparently complicated fractional conversion can run efficiently during playback.</p>
+<h2 id="account-for-filter-delay-and-boundaries">Account for filter delay and boundaries</h2>
+<p>A filter that uses neighboring samples needs stored input and may require future samples before it can produce the intended output. This creates latency. For illustration, a symmetric 64-tap linear-phase FIR filter has a group delay of (64−1)/2 = 31.5 sample intervals. At a 48 kHz filter rate that is about 0.656 ms. A complete resampler's buffering and boundary handling can add further delay.</p>
+<p>At the start and end of a finite file, the implementation must handle missing neighbors and flush delayed results. Correct timestamps and output length keep this implementation delay from becoming a missing ending or a permanent audio/video offset.</p>
+<p>A low-latency filter and one optimized for stronger rejection can therefore differ in more than CPU use. Their choices affect delay and transients as well as frequency response.</p>
+<h2 id="follow-the-conversion-in-an-actual-session">Follow the conversion in an actual session</h2>
+<p>For an Emby session that changes 44.1 kHz input to 48 kHz output, inspect the stages that require that change: server encoding, the player's decoder/output, or an operating-system mixer. An output fixed at 48 kHz naturally needs a conversion for a 44.1 kHz source.</p>
+<p>Then distinguish three observed problems:</p>
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th>Relevant part of the conversion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pitch and duration both change</td>
+<td>Samples may have been interpreted at a different rate instead of resampled</td>
+</tr>
+<tr>
+<td>An unwanted high-frequency tone appears</td>
+<td>Anti-alias filtering and rate interpretation deserve investigation</td>
+</tr>
+<tr>
+<td>The sound is aligned differently from picture</td>
+<td>Filter/buffer delay and timestamp handling are relevant</td>
+</tr>
+</tbody>
+</table>
+<p>Reducing integer precision during the same operation introduces quantization too. <a href="Audio-Dithering.html">Dither</a> addresses that amplitude-grid conversion; it is a separate operation from calculating the new time grid.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -157,6 +204,7 @@
 			          <ul class="seealso-list reference-list">
 			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-resampler.html" title="FFmpeg: Audio resampler documentation">FFmpeg: Audio resampler documentation</a></li>
 			            <li><a class="seealso-link" href="https://www.analog.com/media/en/training-seminars/tutorials/MT-002.pdf" title="Analog Devices MT-002: Sampling and the Nyquist criterion">Analog Devices MT-002: Sampling and the Nyquist criterion</a></li>
+			            <li><a class="seealso-link" href="https://www.dsprelated.com/freebooks/pasp/Windowed_Sinc_Interpolation.html" title="Julius O. Smith: Windowed sinc interpolation and sample-rate conversion">Julius O. Smith: Windowed sinc interpolation and sample-rate conversion</a></li>
 			          </ul>
             </article>
           </div>

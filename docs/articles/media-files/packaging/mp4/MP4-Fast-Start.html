@@ -106,15 +106,38 @@
 <h1>MP4 Fast Start</h1>
 
 
-<p>An MP4 can contain perfectly good media while making a player fetch the end of the file before it knows how to play the beginning. <strong>Fast start</strong> changes the layout so that the movie description arrives early.</p>
-<p>In a conventional nonfragmented MP4, the <strong>moov</strong> box describes tracks, sample timing, and data locations. Writers commonly finish that information after writing the encoded media, leaving moov near the end. Fast-start processing moves it ahead of the bulk media data and updates locations that changed.</p>
+<p>A reader receiving an MP4 from beginning to end needs the movie description before it can interpret its samples. <strong>Fast start</strong> places that description ahead of the bulk media data.</p>
+<p>A conventional writer may finish its moov box after writing mdat, because only then are all the sample locations and timing known. The resulting file is complete and usable for readers that can seek to the description, but a sequential reader encounters the payload first.</p>
 <p><img src="images/mp4-fast-start.svg" alt="Fast start moves the movie description ahead of the media data without changing the encoded samples."></p>
-<p><em>Original simplified layouts. Box widths do not represent actual sizes.</em></p>
-<h2 id="the-benefit-depends-on-how-the-file-is-read">The benefit depends on how the file is read</h2>
-<p>A reader downloading bytes sequentially can reach the description quickly and begin once enough media is available. A server and reader that support byte-range requests can instead fetch a trailing moov directly; they need not download the entire file first.</p>
-<p>For an Emby library, this means fast start can help some direct file-delivery paths, while a repackaged streaming path may have its own initialization structure. It is not a universal explanation for every startup delay. Network access, decoding, and server processing still matter.</p>
-<p>Moving moov is a packaging operation. It does not reduce bitrate, improve sound, or make an unsupported codec decodable. The bulk picture and sound samples can remain unchanged, although the file's overall bytes and offsets differ.</p>
-<p>Fast start is also distinct from <a href="Fragmented-MP4.html">fragmented MP4</a>. A conventional fast-start file places its overall sample description early; a fragmented file describes successive groups of samples. Choose the layout the intended reader expects, and check both startup and <a href="../../container-structure/timing-and-navigation/Media-Container-Seeking.html">seeking</a> after a packaging change.</p>
+<p><em>Simplified before/after layouts. Box widths are not file-size proportions.</em></p>
+<h2 id="what-actually-moves">What actually moves?</h2>
+<p>Suppose an illustrative layout has 24 bytes of file-type information followed by an eight-byte mdat header. The first media sample begins at byte 32, and a completed moov of 100,000 bytes sits after the media.</p>
+<p>Move that moov between the file-type box and mdat, keeping the other relevant sizes unchanged. The first sample now starts at byte 100,032. A later chunk previously at byte 1,050,032 moves to 1,150,032. The sample bytes themselves are the same.</p>
+<p>The chunk-location tables must be rewritten to reference the new addresses. Moving a block of metadata without updating its stored offsets would give the reader a valid-looking table that points at the wrong bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Changed by this operation</th>
+<th>Retained by this operation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>moov placement and affected chunk offsets</td>
+<td>The coded media samples</td>
+</tr>
+<tr>
+<td>The order in which a sequential reader encounters setup</td>
+<td>The codec's picture/sound representation</td>
+</tr>
+</tbody>
+</table>
+<p>Actual rewriting can also need larger offset fields or layout adjustments. The numerical example isolates the relocation mechanism rather than prescribing every writer's result.</p>
+<h2 id="compare-two-access-paths">Compare two access paths</h2>
+<p>For a purely sequential transfer of a 250 MB file at 5 MB/s, trailing setup could remain unavailable until roughly 50 seconds of data has been received. In the simplified early-moov layout, reading 100 kB at that rate takes roughly 0.02 seconds; codec setup, required media, and request latency still add startup work.</p>
+<p>A byte-range-capable reader can instead fetch the trailing description directly and then request the needed media. It need not transfer the 250 MB prefix to reach moov. Fast-start placement therefore changes one access pattern more than another.</p>
+<p>For an Emby session, establish whether the app receives this original file layout or a repackaged output. <a href="Fragmented-MP4.html">Fragmented delivery</a> supplies initialization and successive sample descriptions through its own arrangement.</p>
+<p>The useful result of fast start is earlier availability of the instructions for reading the movie. Its offsets and encoded samples explain that result; no new picture encoding is required.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

@@ -106,39 +106,43 @@
 <h1>Media MIME Types</h1>
 
 
-<p>An HTTP response can announce <code>Content-Type: video/mp4</code>. That label is a <strong>media type</strong>, commonly called a MIME type. It helps the receiving software interpret the content before examining the bytes.</p>
-<p>The type has two parts: <code>video</code> is the top-level category and <code>mp4</code> is the subtype. Some types also define parameters that describe the contents more precisely.</p>
+<p>When a player fetches a resource over HTTP, the response can include:</p>
+<p><code>Content-Type: video/mp4</code></p>
+<p>This is a <strong>media type</strong>, commonly called a MIME type. It describes the response body. The URL may have no extension, and the bytes may be delivered dynamically, so the HTTP label has a job independent of the filename.</p>
+<p>The first part, video, is the broad category; mp4 is the subtype. A parameter adds information whose meaning is defined for that type.</p>
 <table>
 <thead>
 <tr>
-<th>Label</th>
-<th>What it communicates</th>
+<th>Media type</th>
+<th>What the response represents</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>video/mp4</code></td>
-<td>MP4-family content containing video</td>
+<td>video/mp4</td>
+<td>MP4-family content with video</td>
 </tr>
 <tr>
-<td><code>audio/mp4</code></td>
-<td>MP4-family content containing audio without video</td>
+<td>audio/mp4</td>
+<td>MP4-family audio without video</td>
 </tr>
 <tr>
-<td><code>audio/mpeg</code></td>
-<td>MPEG audio content</td>
+<td>audio/mpeg</td>
+<td>MPEG audio</td>
 </tr>
 <tr>
-<td><code>application/vnd.apple.mpegurl</code></td>
-<td>An HLS playlist, not the encoded movie itself</td>
+<td>application/vnd.apple.mpegurl</td>
+<td>An HLS playlist describing other resources</td>
 </tr>
 </tbody>
 </table>
-<p>The registered meanings come from IANA and the relevant format specifications. Labels used in older software can differ.</p>
-<h2 id="a-label-is-only-part-of-compatibility">A label is only part of compatibility</h2>
-<p>A generic container type does not establish which codecs the client can decode. The standardized <code>codecs</code> parameter can provide more detail, but the actual media must still match what the sender declares.</p>
-<p>For Emby playback through a browser or another HTTP-based app, the delivered response type concerns what the server sends. It can differ from the original library file when the server repackages or converts the media.</p>
-<p>An incorrect Content-Type can affect how a browser handles a resource even when the file is valid. Changing the label, however, does not convert the data. Investigate it alongside the actual <a href="Containers-and-Codecs.html">container and codecs</a>, rather than treating it as a replacement for inspection.</p>
+<h2 id="from-a-playlist-to-media-bytes">From a playlist to media bytes</h2>
+<p>A streaming player can first receive an HLS playlist with the playlist media type. It reads that text to find media locations. A later request obtains an actual media segment whose type describes its own container. These responses participate in one presentation but contain different kinds of data.</p>
+<p>Emby can similarly deliver a package different from the library file. The Content-Type belongs to the response being sent, so it should describe that output rather than simply repeat the source's extension.</p>
+<h2 id="making-the-track-description-more-precise">Making the track description more precise</h2>
+<p>RFC 6381 defines a codecs parameter for supported media types. An MP4 type can, for example, be accompanied by <code>codecs=&quot;avc1.640028,mp4a.40.2&quot;</code>. The first token describes an AVC track: the hexadecimal profile value 64 means 100, the compatibility byte is 00, and the level value 28 means 40. The second identifies MPEG-4 audio object type 2, AAC-LC. These are declarations about encoded tracks within the package.</p>
+<p>That precision helps a browser or playback framework choose a decoding path before reading all the media. The byte contents still need to agree with the declaration. Merely changing the label cannot change an AVC profile or turn one audio codec into another.</p>
+<p>A useful HTTP investigation follows the resource sequence: which request returned the playlist, which returned media, which Content-Type each response supplied, and which codecs the actual tracks use. It distinguishes a wrong label from wrong media and from a reader that lacks the required decoding path.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

@@ -106,41 +106,35 @@
 <h1>Motion Interpolation</h1>
 
 
-<p><strong>Motion interpolation</strong> estimates pictures between existing frames. It tries to work out where objects move, then creates intermediate views for those extra presentation times.</p>
+<p>Suppose a ball is at position <strong>20</strong> in a picture at 0 ms and at position <strong>60</strong> in the next picture at 40 ms. A display wants another picture at 20 ms.</p>
+<p>Holding the first frame leaves the ball at 20. Blending the two frames can show faint balls at both 20 and 60. <strong>Motion interpolation</strong> instead tries to put the ball at a plausible intermediate position.</p>
 <p><img src="images/motion-interpolation.svg" alt="Two recorded object positions surround a dashed estimated intermediate position."></p>
-<p><em>Original qualitative schematic. The middle position is estimated from the two recorded pictures; it was not captured by the camera.</em></p>
-<p>Repeating a frame holds the same object position. Blending two frames can show both positions at once. Motion-based interpolation instead tries to move the object to a plausible position between them.</p>
-<table>
-<thead>
-<tr>
-<th>Situation</th>
-<th>Why estimation can be difficult</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>An object passes behind another</td>
-<td>Hidden areas are unavailable in one picture</td>
-</tr>
-<tr>
-<td>A rapid cut changes the scene</td>
-<td>There may be no matching movement across the cut</td>
-</tr>
-<tr>
-<td>Thin wires, lettering, or a ball move quickly</td>
-<td>Small structures are easily matched incorrectly</td>
-</tr>
-<tr>
-<td>Strong blur or flashing light</td>
-<td>Picture differences do not describe movement alone</td>
-</tr>
-</tbody>
-</table>
-<p>Errors can appear as warped outlines, halos, or briefly broken objects. Even a technically clean result changes the look of motion, which is why interpolated film can resemble high-frame-rate video.</p>
-<h2 id="it-can-happen-after-delivery">It can happen after delivery</h2>
-<p>Interpolation may be performed while making a new file, in a player, or by a television's motion processing. If a television applies it to an Emby app's output, the server can still report <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">Direct Play</a>: that delivery status does not describe every later display operation.</p>
-<p>When a film's motion looks unfamiliar, check the display's motion settings as well as the source frame rate. Different manufacturers use different names, and the settings can vary by input or picture mode.</p>
-<p>Interpolation cannot restore the actual camera exposures that were never recorded. It estimates plausible pictures from available evidence. Nor is it the same as <a href="../compression/picture-prediction-and-random-access/Inter-Frame-Prediction.html">inter-frame prediction</a>, which helps a codec reconstruct already encoded source pictures rather than invent additional presentation times.</p>
+<p><em>The middle picture is inferred from the two recorded pictures, rather than captured by the camera.</em></p>
+<h2 id="compute-the-requested-point-in-time">Compute the requested point in time</h2>
+<p>The requested instant is halfway between the source times:</p>
+<p><strong>α = (20 − 0) ÷ (40 − 0) = 0.5.</strong></p>
+<p>If the estimated motion is a straight, constant-speed displacement of 40 positions, the intermediate position is:</p>
+<p><strong>20 + 0.5 × (60 − 20) = 40.</strong></p>
+<p>At 10 ms, the same model would put it at position 30; at 30 ms, position 50. This is a trajectory estimate. The two observed endpoints do not reveal whether the real ball accelerated, curved, or briefly disappeared between them.</p>
+<h2 id="find-correspondence-in-the-pictures">Find correspondence in the pictures</h2>
+<p>The interpolator first needs to decide which regions in the two frames represent the same content. A block-based method can search for a similar patch and record its displacement as a motion vector. Other methods estimate a finer motion field.</p>
+<p>A whole scene has many such displacements. The camera may pan while a person moves independently, and different depths can shift by different amounts. Treating the complete picture as one translation would not handle all those regions.</p>
+<p>The image is then <strong>warped</strong> toward the requested time. For a halfway picture, content from the earlier frame can be moved halfway forward; corresponding content from the later frame can be moved halfway backward. If both mappings are correct, their ball images line up at position 40.</p>
+<p>The overlapping information can be combined to construct output samples. Spatial interpolation is still needed where a moved position falls between sample locations.</p>
+<h2 id="why-warping-differs-from-blending">Why warping differs from blending</h2>
+<p>Consider a simplified bright object with value 100 on a dark background with value 0. In the first frame it occupies position 20, and in the second position 60.</p>
+<p>An equal blend gives value 50 at both old positions. It averages the pictures without moving their content into alignment.</p>
+<p>A correct motion warp aligns both object observations at position 40 before combining them. The combined object can remain value 100 at that intermediate position. This is the difference between a double outline and a reconstructed movement.</p>
+<p><em>These scalar values illustrate the operations, not a filter's measured output or a complete image synthesis algorithm.</em></p>
+<h2 id="the-picture-may-contain-information-neither-endpoint-supplies">The picture may contain information neither endpoint supplies</h2>
+<p>An object can uncover a background that was hidden in one frame. A moving foreground edge also changes which surface occupies a sample. Forward and backward motion estimates may disagree around those <strong>occlusions</strong>.</p>
+<p>The interpolator must decide which observation to use and how to fill a gap. If it uses the wrong surface's motion, a foreground edge can drag background texture along with it, creating a halo or warped outline.</p>
+<p>Repeated patterns introduce another ambiguity: several fence bars may look equally similar. Thin lettering, a fast ball, motion blur, or a lighting change can also make correspondence unreliable. An incorrect match then becomes a visibly incorrect intermediate picture.</p>
+<p>A scene cut is more fundamental. There is no continuous trajectory between two unrelated shots. Implementations can detect the cut and repeat an endpoint instead of inventing movement across it. FFmpeg's <code>minterpolate</code> documents that kind of scene-change handling.</p>
+<h2 id="where-the-new-motion-appears">Where the new motion appears</h2>
+<p>Interpolation can be applied while producing a file, in a player, or in a television after an Emby app delivers its frames. In the television case, the source and server delivery remain unchanged while the display constructs additional presentation pictures.</p>
+<p>That can make a film look more like frequently sampled live video: the screen now shows more distinct intermediate positions. The source's photographed exposures and their blur still supplied the evidence. Synthesizing more positions does not recreate the actual camera observations between them.</p>
+<p><a href="../compression/picture-prediction-and-random-access/Inter-Frame-Prediction.html">Codec prediction</a> has a different purpose. It constructs a predictor for an already encoded source picture, then uses transmitted corrections to reconstruct that picture. Motion interpolation has no transmitted original intermediate picture to correct toward. Its output follows the estimated scene model.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

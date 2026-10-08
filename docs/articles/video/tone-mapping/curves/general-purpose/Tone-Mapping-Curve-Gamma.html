@@ -106,15 +106,43 @@
 <h1>Tone Mapping Curve: Gamma</h1>
 
 
-<p>A gamma tone mapper reshapes brightness with a power function. Compared with uniform scaling, this can give lower values more room while still bringing the source peak down to the output limit.</p>
-<p><img src="images/tone-mapping-curve-gamma.png" alt="FFmpeg gamma tone-mapping curve, with parameter 1.8 and source peak eight."></p>
-<p><em>FFmpeg 8.1 CPU tone mapper, gamma parameter 1.8, source peak 8 and output white 1. Axes are relative linear light for neutral gray; the very dark region uses FFmpeg's linear extension.</em></p>
-<p>For most of this example, the operation is <code>output = (input / 8)^(1 / 1.8)</code>. An input of 4 becomes about 0.68, rather than the 0.5 produced by dividing everything by eight. That raises the mapped brightness of this value without increasing the output ceiling.</p>
-<h2 id="the-near-black-detail-matters">The near-black detail matters</h2>
-<p>Applying a power function all the way to zero can give the darkest values a very steep response. FFmpeg switches to a small linear section below an input of 0.05. The graph represents that implementation detail as well as the main power curve.</p>
-<p>Other implementations use the name differently. libplacebo's gamma mapper retains an unchanged section below a knee, then fits a power curve above it. Its knee parameter is not interchangeable with FFmpeg's gamma parameter.</p>
-<p>Neither setting is simply the <a href="../../../color-standards/transfer-functions/Video-Gamma.html">display gamma</a>. One is a brightness remapping choice; the other describes a signal/display relationship.</p>
-<p>For Emby users reading logs or comparing images, the useful question is therefore which implementation and parameters are involved. A bare label of Gamma is insufficient to reproduce a result. Pay particular attention to shadow separation as well as overall brightness: lifting a dark region does not guarantee that it gains useful detail.</p>
+<p>A power mapping can give lower values more output room than uniform scaling. In the plotted FFmpeg example, most of the curve uses <strong>T(x) = (x/8)^(1/1.8)</strong>, fitting a source peak of eight into output white one.</p>
+<p><img src="images/tone-mapping-curve-gamma.png" alt="FFmpeg gamma mapping with parameter 1.8 and source peak eight."></p>
+<p><em>FFmpeg 8.1 scalar CPU function, relative linear light for neutral gray. Its very dark region uses the implementation's linear extension.</em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Input</th>
+<th style="text-align: right;">Mapped output</th>
+<th style="text-align: right;">Uniform division by eight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">About 0.315</td>
+<td style="text-align: right;">0.125</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">About 0.680</td>
+<td style="text-align: right;">0.500</td>
+</tr>
+<tr>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+<p>The endpoint fits in both cases. The power function assigns more output to the lower and middle inputs, changing the contrast distribution.</p>
+<h2 id="follow-the-darkest-part-separately">Follow the darkest part separately</h2>
+<p>A bare power with exponent below one becomes very steep near zero. FFmpeg replaces the part below input 0.05 with a straight extension that meets the power value there:</p>
+<p><strong>T(x) = x × (0.05/8)^(1/1.8) / 0.05</strong> for x up to 0.05.</p>
+<p>Input 0.01 therefore produces about 0.01193, and 0.05 produces about 0.05963. The plotted function includes that treatment; using the power expression down to zero would describe a different shadow response.</p>
+<h2 id="resolve-the-parameters-meaning-before-reproducing-a-result">Resolve the parameter's meaning before reproducing a result</h2>
+<p>libplacebo's mapper also uses the name gamma, but preserves an unchanged lower interval and chooses a power above its knee. Its knee parameter has a different role from FFmpeg's gamma parameter.</p>
+<p>Neither is simply the <a href="../../../color-standards/transfer-functions/Video-Gamma.html">display gamma</a>. This function remaps a brightness range. Display gamma participates in a signal-to-light response. During an Emby comparison, locating that operation within the <a href="../../execution/Tone-Mapping-Playback-Path.html">playback path</a> keeps the mapping arithmetic separate from output interpretation.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

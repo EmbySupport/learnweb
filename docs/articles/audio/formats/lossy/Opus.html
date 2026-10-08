@@ -106,39 +106,72 @@
 <h1>Opus Audio</h1>
 
 
-<p><strong>Opus handles speech and music in one lossy audio codec.</strong> Its design spans voice communication and full-band audio, making it useful for both conversational sound and stored media.</p>
-<p>It combines two approaches: linear prediction suited to speech, and transform coding suited to music and higher-frequency content. The encoder can use either approach or a hybrid arrangement according to the operating mode.</p>
+<p>One Opus stream can carry an intelligible low-rate voice, music, or a mixture. Its design joins <strong>predictive speech coding and transform coding</strong>, allowing the encoder to use the tools appropriate to the material and operating mode.</p>
+<p>The format is defined in RFC 6716. Its decode rules, coded-frame durations, and supported mode transitions make the relationship between data, delay, and output explicit.</p>
+<h2 id="follow-the-operating-modes">Follow the operating modes</h2>
 <table>
 <thead>
 <tr>
-<th>Description</th>
-<th>What it means for Opus</th>
+<th>Mode</th>
+<th>Main representation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Bitrate</td>
-<td>The amount of encoded audio data</td>
+<td>SILK-based predictive mode</td>
+<td>Speech-oriented linear prediction and excitation</td>
 </tr>
 <tr>
-<td>Audio bandwidth</td>
-<td>The frequency range the stream actually carries</td>
+<td>CELT-based transform mode</td>
+<td>Frequency-domain coding suited to music and other audio</td>
 </tr>
 <tr>
-<td>Frame duration</td>
-<td>The time represented by a coded audio frame</td>
-</tr>
-<tr>
-<td>Channel mapping</td>
-<td>How decoded channels are assigned to the presentation</td>
+<td>Hybrid mode</td>
+<td>Predictive lower-band speech plus transform-coded higher-band content</td>
 </tr>
 </tbody>
 </table>
-<p>These are separate properties. A high output sample rate does not prove that the encoder retained a full-band signal; it may be reconstructing a narrower-band source.</p>
-<h2 id="why-48-khz-appears-so-often">Why 48 kHz appears so often</h2>
-<p>Ogg Opus timing uses a <strong>48,000-sample-per-second clock</strong>, regardless of the original capture rate or the decoder's chosen output rate. The input-rate field in its header is information about the source, not an instruction to interpret timestamps using that rate.</p>
-<p>Opus can be stored in Ogg and other containers. Mono and stereo streams are straightforward; multichannel presentations require the appropriate stream and channel mapping. Renaming an Ogg file does not change its codec.</p>
-<p>For an Emby library, an Opus track's packaging and presentation matter alongside the name. The low-delay design does not itself guarantee low latency through the rest of the player, operating system, or wireless output. Likewise, <a href="../../decoding-output/conversion-fallback/Audio-Transcoding.html">transcoding</a> to another lossy codec is an additional conversion, not simply another way to unpack the existing Opus packets.</p>
+<p>Prediction describes recurring speech structure efficiently. Transform coding handles general audio and higher frequencies without forcing all content into a voice model. In the hybrid arrangement, the two parts cover their intended bands rather than redundantly encoding the same whole signal twice.</p>
+<p>Mode, audio bandwidth, and bitrate are related encoder choices. The output sample-rate number is another property: a decoder can put a narrower-band reconstruction on a 48 kHz time grid.</p>
+<h2 id="count-a-20-ms-frame">Count a 20 ms frame</h2>
+<p>At a 48 kHz output rate, 20 ms represents <strong>960 sample frames per channel</strong>. Uncompressed 16-bit stereo needs 960 × 2 × 2 = <strong>3,840 bytes</strong> for that span.</p>
+<p>At a nominal 96 kbit/s encoded data budget, 20 ms corresponds to 96,000 × 0.020 / 8 = <strong>240 bytes</strong>, before external transport overhead. This calculation illustrates the scale of compression, not a fixed packet size for every Opus mode or VBR frame.</p>
+<p>Shorter coded durations can reduce one contribution to latency, but increase framing overhead and change coding tradeoffs. Codec look-ahead, packet accumulation, network buffering, and output buffering are additional delays. A low-delay codec is only one component of a low-delay route.</p>
+<p>For suitable communication modes, optional packet-loss tools can provide concealment or forward-error-recovery information. They address missing data during transport; they do not make the stored lossy representation lossless.</p>
+<h2 id="why-an-ogg-opus-file-uses-a-48-khz-clock">Why an Ogg Opus file uses a 48 kHz clock</h2>
+<p>RFC 7845 defines Ogg Opus timing in 48,000 sample positions per second regardless of the original capture rate or a decoder's chosen output rate. The header's input-rate field describes source information; it does not redefine that clock.</p>
+<p>The mapping also describes pre-skip and final trimming so codec delay and padding do not become unwanted audible boundaries.</p>
+<p>For an illustrative one-second file:</p>
+<table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th style="text-align: right;">Sample frames on the 48 kHz clock</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>51 decoded packets, each representing 20 ms</td>
+<td style="text-align: right;">48,960</td>
+</tr>
+<tr>
+<td>Initial pre-skip</td>
+<td style="text-align: right;">240</td>
+</tr>
+<tr>
+<td>Final discarded padding</td>
+<td style="text-align: right;">720</td>
+</tr>
+<tr>
+<td>Audible duration</td>
+<td style="text-align: right;">48,000</td>
+</tr>
+</tbody>
+</table>
+<p>The final retained granule position is 48,240; subtracting the pre-skip gives 48,000, or one second. These selected values demonstrate the accounting, not universal Opus encoder delay settings.</p>
+<h2 id="keep-channel-mapping-with-the-stream">Keep channel mapping with the stream</h2>
+<p>A multichannel Opus presentation can use several coded streams and a mapping describing how their outputs become presentation channels. A packet reader must preserve that setup as well as the payloads and timing.</p>
+<p>For an Opus recording in Emby, inspect its container mapping and the delivered presentation when a duration or channel problem occurs. A bare 48 kHz label cannot diagnose a lost pre-skip instruction or an incorrectly applied channel map. Following those concrete structures explains the symptom.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -161,6 +194,7 @@
 			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc6716.html" title="RFC 6716: Definition of the Opus audio codec">RFC 6716: Definition of the Opus audio codec</a></li>
 			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc7845.html" title="RFC 7845: Ogg encapsulation for the Opus audio codec">RFC 7845: Ogg encapsulation for the Opus audio codec</a></li>
 			            <li><a class="seealso-link" href="https://opus-codec.org/" title="Opus codec: Features and reference implementation">Opus codec: Features and reference implementation</a></li>
+			            <li><a class="seealso-link" href="https://opus-codec.org/static/presentations/opus_celt_aes135.pdf" title="Opus authors: High-quality, low-delay music coding and operating modes">Opus authors: High-quality, low-delay music coding and operating modes</a></li>
 			          </ul>
             </article>
           </div>

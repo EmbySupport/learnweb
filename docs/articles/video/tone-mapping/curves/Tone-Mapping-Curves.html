@@ -106,37 +106,41 @@
 <h1>What a Tone-Mapping Curve Controls</h1>
 
 
-<p>A tone-mapping curve answers a simple question: <strong>for this input brightness, what output brightness should we use?</strong> Its shape controls which parts of the picture keep their contrast and which are squeezed together.</p>
-<p><img src="images/tone-mapping-curve-shapes.png" alt="Illustrative mappings of input light levels from zero to eight into an output range from zero to one: clipping flattens at the limit, straight scaling dims every level, and smooth compression gradually reduces the spacing between brighter levels."></p>
-<p><em>These are simplified mathematical examples, not Emby presets or a comparison of named curves. Both axes use relative linear-light values.</em></p>
-<p>The flat part of the clipping line turns several different inputs into the same output. Detail in those brightness differences is lost. Straight scaling keeps their proportions but reduces the entire range, including the darker values. Smooth compression changes the proportions: brighter inputs receive progressively less space.</p>
-<h2 id="reading-the-shape">Reading the shape</h2>
+<p>Choose an input on the horizontal axis, trace upward to a curve, then trace across to the vertical axis. The point answers: what output brightness does this mapping assign to that input?</p>
+<p><img src="images/tone-mapping-curve-shapes.png" alt="Clipping, straight scaling, and smooth compression fit an input range of zero to eight into an output range of zero to one."></p>
+<p><em>Calculated examples in relative linear light. Clipping is min(x,1), straight scaling is x/8, and the smooth curve is (9/8) × x/(1+x). These are illustrative relationships, not Emby presets.</em></p>
+<h2 id="read-a-pair-of-points-to-see-contrast">Read a pair of points to see contrast</h2>
+<p>On the clipping curve, inputs 2 and 4 both map to 1. Their separation has gone. On the scaling curve, they become 0.25 and 0.5. On the smooth curve, they become 0.75 and 0.9.</p>
 <table>
 <thead>
 <tr>
-<th>Part of the curve</th>
-<th>What it can change in the picture</th>
+<th>Inputs 2 and 4</th>
+<th style="text-align: right;">Output difference</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Dark end</td>
-<td>Separation of near-black details</td>
+<td>Clipping</td>
+<td style="text-align: right;">0</td>
 </tr>
 <tr>
-<td>Middle</td>
-<td>Apparent brightness and contrast of much of the scene</td>
+<td>Scaling</td>
+<td style="text-align: right;">0.25</td>
 </tr>
 <tr>
-<td>Bright end, often called the shoulder</td>
-<td>How gradually highlights approach the output limit</td>
+<td>Smooth example</td>
+<td style="text-align: right;">0.15</td>
 </tr>
 </tbody>
 </table>
-<p>To read a point on the graph, trace upwards from the input axis to the curve, then across to the output axis. Where the curve becomes shallower, equally spaced input levels become closer together at the output: less separation between those brightness levels.</p>
-<p>A tone-mapping implementation may use linear light, a perceptual signal representation, or another working space. Curves drawn in different spaces cannot be compared just by their shape on a graph.</p>
-<p>Names such as <a href="general-purpose/Tone-Mapping-Algorithm-Hable.html">Hable</a>, <a href="general-purpose/Tone-Mapping-Algorithm-Reinhard.html">Reinhard</a>, and <a href="general-purpose/Tone-Mapping-Algorithm-Mobius.html">Mobius</a> identify different approaches. The name alone does not specify the whole <a href="../fundamentals/Tone-Mapping-HDR-to-SDR.html">conversion pipeline</a>, its parameters, or whether a particular Emby playback path uses it.</p>
-<p>When comparing results, keep the source scene and playback path the same. Look at a face or another ordinary midtone as well as the brightest highlight: preserving one while making the other look wrong is still a compromise.</p>
+<p>The difference is part of the available output contrast. A flatter segment gives less separation to neighboring inputs; a steep segment gives more. Smooth compression can retain distinct highlight values while reducing their spacing substantially.</p>
+<p>Now check a lower input, x = 1. Scaling produces 0.125; the smooth curve produces 0.5625. A curve that makes the peak fit can consequently place an ordinary object very differently. The highest endpoint alone does not describe the picture.</p>
+<h3 id="look-across-the-shape">Look across the shape</h3>
+<p>The lower part controls separation near black. The middle affects a large amount of scene content. A shoulder gradually reduces the extra output assigned to very bright inputs. A knee marks a transition in behavior; its numerical meaning depends on the curve's working representation.</p>
+<p>The axes are therefore essential. A function that is straight in PQ coordinates can bend when plotted against linear light. Physical-nit axes, normalized-light axes, and signal-coordinate axes show different relationships. State the source peak, target, and parameters before comparing two plots.</p>
+<h2 id="use-curve-names-to-find-a-specific-relationship">Use curve names to find a specific relationship</h2>
+<p>The individual pages show <a href="general-purpose/Tone-Mapping-Algorithm-Hable.html">Hable</a>, <a href="general-purpose/Tone-Mapping-Algorithm-Reinhard.html">Reinhard</a>, <a href="general-purpose/Tone-Mapping-Algorithm-Mobius.html">Mobius</a>, and other curves. Each page identifies the plotted implementation and its assumptions.</p>
+<p>The curve is one part of a conversion. Input interpretation, color handling, adaptation over time, and output encoding affect the final picture too. In an Emby comparison, hold those conditions steady while examining how ordinary objects and bright texture move along the selected relationship. The <a href="../fundamentals/Tone-Mapping-HDR-to-SDR.html">conversion walkthrough</a> puts the curve into that full path.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

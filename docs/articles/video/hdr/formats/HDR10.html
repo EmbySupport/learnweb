@@ -106,41 +106,42 @@
 <h1>HDR10</h1>
 
 
-<p>HDR10 is a widely used HDR delivery format. The <strong>10</strong> refers to ten-bit signal precision; it does not mean a 10,000-nit television or ten times the brightness of SDR.</p>
-<p>Its core ingredients have separate roles:</p>
+<p>An HDR10 delivery combines a ten-bit picture signal with a defined light and color interpretation. Its components have separate jobs:</p>
 <table>
 <thead>
 <tr>
-<th>Ingredient</th>
-<th>Role</th>
+<th>Component</th>
+<th>What it supplies</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Ten-bit values</td>
-<td>Provide finer gradations than eight-bit values</td>
+<td>Ten-bit precision</td>
+<td>The possible signal levels</td>
 </tr>
 <tr>
-<td>PQ transfer characteristics</td>
-<td>Relate encoded values to intended light output</td>
+<td>PQ transfer characteristic</td>
+<td>Absolute reference-light interpretation</td>
 </tr>
 <tr>
-<td>BT.2020 color signaling</td>
-<td>Define the color representation</td>
+<td>BT.2020 primaries</td>
+<td>The color-coordinate space</td>
 </tr>
 <tr>
 <td>Static mastering metadata</td>
-<td>Describe the mastering display used for the release</td>
+<td>Context about the grading display</td>
 </tr>
 </tbody>
 </table>
-<p>Content may also carry <a href="../metadata-and-light-levels/HDR-MaxCLL-MaxFALL.html">MaxCLL and MaxFALL</a>. Those are reported content light levels, not television requirements.</p>
-<p>HDR10 does not specify one universal appearance on every display. A screen that cannot reproduce the source's brightest values still needs to fit the picture to its own range. Static metadata supplies context, while the display or player decides how to use it.</p>
-<h2 id="what-the-label-does-not-tell-you">What the label does not tell you</h2>
-<p>HDR10 is not a video codec or a filename extension. A file's codec, container, audio, and subtitles remain relevant to <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">Emby playback compatibility</a>.</p>
-<p>It is also not proof that the content uses the whole BT.2020 gamut or reaches PQ's upper limit. A restrained grade can be fully valid HDR10.</p>
-<p>If an Emby session produces SDR output, the picture needs <a href="../../tone-mapping/fundamentals/Tone-Mapping-HDR-to-SDR.html">HDR-to-SDR conversion</a>. Simply removing the HDR10 metadata leaves the original signal values in place. Conversely, adding HDR10 metadata to an SDR encode does not create new highlight information.</p>
-<p><a href="HDR10-Plus.html">HDR10+</a> builds on this delivery approach by adding information that can vary with the picture.</p>
+<p>Content can additionally carry <a href="../metadata-and-light-levels/HDR-MaxCLL-MaxFALL.html">MaxCLL and MaxFALL</a>, which provide reported content-light bounds. The number 10 refers to precision; peak brightness comes from the encoded picture and its interpretation.</p>
+<h2 id="from-the-encoded-picture-to-a-light-request">From the encoded picture to a light request</h2>
+<p>A video decoder reconstructs sample values. The range and component information establish the normalized nonlinear signal, <a href="../../color-standards/transfer-functions/Transfer-Function-PQ.html">PQ</a> supplies its light meaning, and the primaries establish its colors. These operations turn a compressed picture into an image suitable for rendering.</p>
+<p>The mastering description gives a renderer context about the source reference. The current picture can use much less of the available range than the mastering display allowed. A restrained night scene and a bright exterior can therefore share one HDR10 mastering record.</p>
+<h2 id="fit-the-source-to-the-output">Fit the source to the output</h2>
+<p>Suppose a reflection in the source requests 1,000 nits and the destination has a lower usable peak. The output path chooses how to fit that reflection alongside the face and background around it. <a href="../../tone-mapping/fundamentals/Tone-Mapping-Why.html">Tone mapping</a> redistributes brightness differences; color adaptation handles the destination gamut and volume.</p>
+<p>HDR10 supplies a stable signal interpretation and static context rather than a prescribed per-scene appearance for every output. Different implementations can use the available picture and metadata differently while adapting to different screens.</p>
+<p>In an Emby session, record the source and delivered stream separately. The source can be HDR10 while an SDR destination receives a <a href="../../tone-mapping/fundamentals/Tone-Mapping-HDR-to-SDR.html">converted rendition</a>. A Direct Play session can instead deliver the original picture for adaptation in the app or display.</p>
+<p>Codec, container, audio, and subtitle support determine other parts of <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">playback compatibility</a>. HDR10 describes the image interpretation within that route. <a href="HDR10-Plus.html">HDR10+</a> adds dynamic information to a compatible base so adaptation can also use scene-specific guidance.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

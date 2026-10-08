@@ -106,41 +106,43 @@
 <h1>Anamorphic Video</h1>
 
 
-<p><strong>Anamorphic video</strong> uses a stored picture grid whose proportions differ from the intended displayed picture. In a common digital example, a 1440 × 1080 grid is presented as 16:9 by making its samples wider than square.</p>
-<p>This describes digital storage and presentation. It does not prove that a film was photographed through an anamorphic camera lens; a digitally anamorphic recording can come from an ordinary camera.</p>
+<p>An older widescreen recording may report <strong>1440 × 1080</strong>, yet look properly proportioned on a 16:9 television. Its storage is <strong>anamorphic</strong>: the grid has been allocated fewer horizontal positions than a square-pixel representation of the intended picture would use.</p>
+<p>The missing width is described by <a href="Video-Pixel-Aspect-Ratio.html">pixel aspect information</a>, rather than supplied by another set of hidden columns.</p>
 <p><img src="images/anamorphic-presentation.svg" alt="A narrow stored picture is expanded horizontally to its intended widescreen shape."></p>
-<p><em>Original proportional example: 1440 × 1080 samples with PAR 4:3 have the same display proportions as 1920 × 1080 square pixels. The drawing shows presentation, not newly captured detail.</em></p>
+<p><em>1440 × 1080 samples with PAR 4:3 have the same display proportions as 1920 × 1080 square pixels.</em></p>
+<h2 id="follow-the-recording-to-the-display">Follow the recording to the display</h2>
+<p>The stored grid's width-to-height ratio is 1440/1080 = 4/3. The file tells the player that each sample interval should appear 4/3 as wide as tall. Applying that factor gives:</p>
+<p><strong>(4/3) × (4/3) = 16/9.</strong></p>
+<p>On a square-pixel screen, the player can present the decoded image across a 1920 × 1080 rectangle. It calculates the screen samples needed for that rectangle from the 1440-column source. The people and circles have their intended proportions, while the recorded horizontal detail still originates from 1440 sample positions.</p>
+<p>This arrangement allowed recording and delivery formats to carry a widescreen field of view in a constrained raster. It describes digital storage. A film need not have been photographed with an anamorphic lens to use this representation.</p>
+<h2 id="two-ways-to-make-a-correctly-shaped-copy">Two ways to make a correctly shaped copy</h2>
 <table>
 <thead>
 <tr>
-<th>Property</th>
-<th>Example value</th>
+<th>Copy</th>
+<th>Picture representation</th>
+<th>Presentation information</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Stored dimensions</td>
-<td>1440 × 1080</td>
+<td>Preserve the original encoding</td>
+<td>1440 × 1080 samples</td>
+<td>Retain PAR 4:3</td>
 </tr>
 <tr>
-<td>Stored width-to-height ratio</td>
-<td>4:3</td>
-</tr>
-<tr>
-<td>Pixel aspect ratio</td>
-<td>4:3</td>
-</tr>
-<tr>
-<td>Intended display aspect ratio</td>
-<td>16:9</td>
+<td>Convert to square pixels</td>
+<td>Resample to 1920 × 1080</td>
+<td>Use PAR 1:1</td>
 </tr>
 </tbody>
 </table>
-<p>The advantage is that the format can represent a wide image within a constrained sample grid. The tradeoff is fewer horizontal samples than an otherwise comparable 1920 × 1080 square-pixel recording. The actual quality also depends on the source and compression.</p>
-<h2 id="a-squeezed-picture-usually-has-an-explanation">A squeezed picture usually has an explanation</h2>
-<p>If an Emby app or another player displays this example as 4:3, it has not applied the intended <a href="Video-Pixel-Aspect-Ratio.html">pixel aspect ratio</a>, or the file lacks correct signaling. People look too thin and circles become narrow ovals. Stretching every file to 16:9 would fix this example while distorting a genuine 4:3 recording.</p>
-<p>A correctly handled anamorphic source can be displayed directly, or converted during processing to a square-pixel output. The output should retain the same intended shape. <a href="../Letterboxing-Pillarboxing.html">Letterboxing</a> is a different technique: it adds bars around a picture instead of describing wider or taller pixels.</p>
-<p>For older disc and broadcast material, inspect the display ratio as well as the width and height. The dimensions alone do not tell you whether the file is anamorphic.</p>
+<p>The first route can preserve the compressed video during compatible repackaging. The app applies its aspect information during display. The second route constructs a new sample grid and ordinarily needs video encoding if it is saved as a compressed file.</p>
+<p>Both routes aim at the same 16:9 composition. A square-pixel copy is a convenient representation of the source, rather than additional camera detail.</p>
+<h2 id="when-the-result-is-squeezed-or-too-wide">When the result is squeezed or too wide</h2>
+<p>If the original grid is treated as square, it displays as 4:3 and faces look thin. If it is resampled to 1920 × 1080 <strong>and</strong> its old PAR 4:3 is retained, its equivalent width becomes 2560 at height 1080: too wide.</p>
+<p>The processing error is the same presentation transformation being omitted or applied twice. This gives a useful way to examine a converted Emby recording: follow the source dimensions and PAR into the output dimensions and PAR, and calculate the intended ratio at each boundary.</p>
+<p><a href="../Letterboxing-Pillarboxing.html">Letterboxing</a> solves a different storage problem. It places a wider image inside a frame with border rows. An anamorphic source changes the sample spacing used for presentation. A file can combine both, so the stored frame's aspect information and the active image inside it should be interpreted separately.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

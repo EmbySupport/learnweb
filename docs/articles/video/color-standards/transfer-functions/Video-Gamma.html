@@ -106,15 +106,37 @@
 <h1>Video Gamma</h1>
 
 
-<p><strong>Gamma</strong> is the exponent in a power relationship between picture values and light. In a simplified display model, <code>output = input^gamma</code>, with input and output normalized between black and white.</p>
-<p>The curve matters most between the endpoints. Both of the example display curves below reach the same black and white, but the higher exponent produces less light at intermediate signal values.</p>
-<p><img src="images/video-gamma.png" alt="Display power curves with exponents 2.2 and 2.4."></p>
-<p><em>Idealized display curves with zero black and the same white level. The dotted diagonal is a linear reference; these are not tone-mapping presets.</em></p>
-<p>At a signal value of 0.5, gamma 2.2 produces about 0.218 of white, while gamma 2.4 produces about 0.189. On a hypothetical 100-nit display, that is roughly 21.8 versus 18.9 nits. The change can be visible without changing the maximum brightness at all.</p>
-<h2 id="why-the-direction-needs-stating">Why the direction needs stating</h2>
-<p>A camera encoding curve often has an exponent below one; a display curve often has an exponent above one. Both can be called “gamma” in informal discussion. Always ask whether the number describes encoding, display output, or an adjustment made on top of an existing image.</p>
-<p>Real standards need more than a bare exponent. BT.709's <a href="Transfer-Function-OETF.html">OETF</a> includes a linear segment near black. <a href="Transfer-Function-BT1886.html">BT.1886</a> accounts for display black and white. <a href="Transfer-Function-PQ.html">PQ</a> is not a single power curve at all.</p>
-<p>For playback troubleshooting, do not use a gamma adjustment to disguise a transfer-function or signal-range mismatch. It can make one scene look more acceptable while moving other tones farther from the intended result. In an Emby comparison, keep the file, output mode, and display settings consistent before judging whether two playback paths render the same picture.</p>
+<p>Both curves below reach the same black and white. Their difference is in the tones between those endpoints:</p>
+<p><img src="images/video-gamma.png" alt="Ideal display power curves with gamma 2.2 and 2.4."></p>
+<p><em>Zero-black display models with white normalized to one. The dotted diagonal is a linear reference.</em></p>
+<p><strong>Gamma</strong> is the exponent in a power relationship. For a display model written as L = V^gamma, a higher exponent gives less light at intermediate normalized signal values.</p>
+<p>At V = 0.5, gamma 2.2 gives about <strong>0.218 of white</strong>, while gamma 2.4 gives about <strong>0.189</strong>. With a hypothetical 100-nit white, that is 21.8 versus 18.9 nits. The darker middle tone does not require a change in peak white.</p>
+<h3 id="state-the-direction-of-the-relationship">State the direction of the relationship</h3>
+<table>
+<thead>
+<tr>
+<th>Use of a gamma number</th>
+<th>What the exponent acts on</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Capture or encoding shorthand</td>
+<td>Light values becoming a nonlinear signal</td>
+</tr>
+<tr>
+<td>Display response</td>
+<td>Signal values becoming light</td>
+</tr>
+<tr>
+<td>Image adjustment</td>
+<td>An existing image representation changed by another power</td>
+</tr>
+</tbody>
+</table>
+<p>For values between zero and one, a power below one raises the number; a power above one lowers it. That mathematical direction is why “increase gamma” can mean different visual changes in controls that apply different conventions.</p>
+<p>Real transfer functions can use more than a power. The <a href="Transfer-Function-OETF.html">BT.709 OETF</a> has a straight segment near black; <a href="Transfer-Function-BT1886.html">BT.1886</a> includes display black and white; <a href="Transfer-Function-PQ.html">PQ</a> uses a different nonlinear function.</p>
+<p>When comparing an Emby picture across playback paths, keep the output and display modes consistent. Then distinguish a deliberate tone adjustment from the transfer relationship the signal expects. The graph gives a concrete check: a pure power adjustment chiefly redistributes intermediate tones, while a range error can move the black and white endpoints too.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

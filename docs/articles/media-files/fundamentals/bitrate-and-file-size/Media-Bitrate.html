@@ -106,19 +106,19 @@
 <h1>Bitrate</h1>
 
 
-<p>A bitrate of 10 Mb/s means ten million bits for each second of media, averaged over the interval being measured. It describes the amount of data, not the resolution or a guaranteed level of quality.</p>
-<p>That rate is about 1.25 megabytes per second. The factor of eight matters because network speeds are usually shown in bits per second, while file sizes and copy speeds often use bytes.</p>
+<p><strong>Bitrate</strong> measures data against media time. At an average rate of 10 Mb/s, ten seconds of content accounts for 100 million bits, or 12.5 MB. It need not take ten seconds to download those bytes.</p>
+<p>That distinction gives a transfer graph and a media report different meanings. A connection delivering 25 Mb/s can fetch ten seconds of this simplified content in four seconds. The player can then consume those stored bytes over the following ten seconds.</p>
 <table>
 <thead>
 <tr>
-<th>What a reported rate covers</th>
-<th>What is included</th>
+<th>Reported rate</th>
+<th>The data being counted</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Video bitrate</td>
-<td>The encoded picture stream</td>
+<td>Encoded picture data</td>
 </tr>
 <tr>
 <td>Audio bitrate</td>
@@ -126,19 +126,21 @@
 </tr>
 <tr>
 <td>Overall file bitrate</td>
-<td>The whole file's bytes divided by its duration</td>
+<td>All file bytes divided by presentation duration</td>
 </tr>
 <tr>
-<td>Network transfer rate</td>
-<td>Bytes delivered over the connection, which may arrive in bursts</td>
+<td>Transfer rate</td>
+<td>Data arriving per second of real elapsed time</td>
 </tr>
 </tbody>
 </table>
-<p>A film's overall rate can include several soundtracks even though only one plays at a time. Direct delivery of the complete file and delivery of selected tracks can therefore move different amounts of data.</p>
-<h2 id="how-to-use-the-number">How to use the number</h2>
-<p>For storage, average bitrate and duration give a useful <a href="Media-File-Size-Duration.html">file-size estimate</a>. For streaming, the <a href="Media-Bitrate-Variation.html">variation over time</a> and the available buffer also matter. A connection that just matches the reported average can struggle during demanding scenes.</p>
-<p>When comparing quality, keep the codec, source, and encoding settings in mind. A more efficient codec can use fewer bits for a similar picture. Raising the rate of an already compressed source cannot restore detail that was discarded.</p>
-<p>In an Emby playback session, distinguish the source bitrate from the delivered bitrate. A quality limit may cause conversion, and the resulting stream can have different characteristics from the library file.</p>
+<h2 id="what-is-included-in-a-movies-rate">What is included in a movie's rate?</h2>
+<p>Imagine a file with 8 Mb/s of video and two 384 kb/s soundtracks. The streams total 8.768 Mb/s, before container structures and other content. A presentation that sends only the selected soundtrack has a different stream total: 8.384 Mb/s.</p>
+<p>Whether the complete file or a selected set of tracks crosses a connection depends on delivery. This is why an Emby source's overall rate and its delivered stream rate can legitimately differ even without changing the video encoding.</p>
+<h2 id="using-an-average">Using an average</h2>
+<p>For storage, multiply the average by duration and divide by eight to change bits to bytes. Ten minutes at an exact overall average of 10 Mb/s occupies 750 MB. <a href="Media-File-Size-Duration.html">File size and duration</a> develops this calculation for a complete file.</p>
+<p>For playback, the average hides <a href="Media-Bitrate-Variation.html">changes through the presentation</a>. Pictures with more encoded data consume the buffer faster than simpler pictures. A rate measured over one second and a rate measured across the whole film summarize different intervals.</p>
+<p>Bitrate is consequently a useful data budget, not a measurement of resolution or a quality score. To judge the encoding, compare the reconstructed pictures or sound. To judge delivery, compare data demand over time with arrival and available buffering.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

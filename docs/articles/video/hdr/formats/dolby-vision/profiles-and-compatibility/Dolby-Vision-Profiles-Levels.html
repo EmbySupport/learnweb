@@ -106,34 +106,38 @@
 <h1>Dolby Vision Profiles and Levels</h1>
 
 
-<p>A Dolby Vision <strong>profile</strong> describes a kind of stream. A <strong>level</strong> describes limits on the processing required for that stream. Neither is a picture-quality rating.</p>
+<p>Read <strong>dvhe.05.06</strong> as a delivery description: 05 identifies Dolby Vision Profile 5, while 06 identifies Level 6. The two numbers describe different axes of compatibility.</p>
 <table>
 <thead>
 <tr>
-<th>Term</th>
-<th>Question it answers</th>
+<th>Item</th>
+<th>Question answered</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Profile</td>
-<td>Which codec, layer structure, and signal arrangement are used?</td>
+<td>Which codec, signal interpretation, layer arrangement, and metadata carriage apply?</td>
 </tr>
 <tr>
 <td>Level</td>
-<td>What decoded pixel rate, width, and bitrate bounds apply?</td>
+<td>Which pixel-rate, width, and bitrate limits apply within that arrangement?</td>
 </tr>
 <tr>
-<td>Base-layer compatibility ID</td>
-<td>Can the base picture be interpreted by another defined HDR or SDR system?</td>
+<td>Base compatibility ID</td>
+<td>Which other defined signal interpretation can the base provide?</td>
 </tr>
 </tbody>
 </table>
-<p>For example, in a codec string such as <strong>dvhe.05.06</strong>, the 05 identifies Profile 5 and the 06 identifies Level 6. A higher level does not mean a newer or better Dolby Vision grade; it permits a different processing load.</p>
-<p>Resolution and frame rate work together. A 3,840 × 2,160 picture at 24 frames per second contains about 199 million pixel samples per second. At 60 frames per second, that becomes about 498 million. Bitrate and width limits also apply, so pixel rate alone is not a complete compatibility test.</p>
-<p>Be careful with the shorthand <strong>8.1</strong>. It commonly means Profile 8 with an HDR10-compatible base; it is not the same notation as the profile-and-level fields in a complete codec string. <a href="Dolby-Vision-Profile-8.html">Profile 8</a> explains this distinction.</p>
-<p>When reporting an Emby playback problem, include the complete media information rather than only “Dolby Vision.” The app version, device, container, profile, and playback method together make the report useful. A device's Dolby Vision capability can cover some profiles and levels without covering every possible stream.</p>
-<p>The individual profile pages explain the resulting compatibility questions; <a href="Dolby-Vision-Fallback.html">fallback compatibility</a> explains what happens when the Dolby Vision path is unavailable.</p>
+<h2 id="estimate-the-processing-dimension">Estimate the processing dimension</h2>
+<p>Pixel rate connects resolution and frame rate. A 3840 × 2160 picture has 8,294,400 pixel positions. At 24 frames per second, that is <strong>199,065,600 positions per second</strong>; at 60, it is <strong>497,664,000</strong>.</p>
+<p>The latter rate is 2.5 times the former even though both files are described as 4K. A higher permitted level can accommodate greater processing demand, while width and coded-bitrate limits also have to fit. Comparing only frame size misses those other limits.</p>
+<p>The Dolby Vision level and the underlying codec's own profile/level constraints both matter. Support needs to cover the delivered combination, not just one isolated label.</p>
+<h2 id="resolve-two-common-kinds-of-notation">Resolve two common kinds of notation</h2>
+<p><strong>A complete codec string:</strong> profile and level appear as separate fields in a defined syntax. It supplies a compact signal for capability matching.</p>
+<p><strong>Shorthand such as 8.1:</strong> this commonly names Profile 8 with base cross-compatibility ID 1, the HDR10-compatible form. The number after the point is not the level field. A report saying 8.1 and dvhe.08.06 can consequently describe one stream: Profile 8, HDR10-compatible base, Level 6.</p>
+<p>Profile numbers identify feature arrangements rather than chronological quality tiers. A different profile can change the codec or base interpretation without changing the production master.</p>
+<p>For an Emby playback report, retain the full codec, profile, compatibility, level, layer, and container information. Then place it beside the delivered stream and actual decoder/output capabilities. The <a href="Dolby-Vision-Profile-5.html">individual profile pages</a> explain the arrangements; <a href="Dolby-Vision-Fallback.html">fallback</a> describes which other presentation may be available.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

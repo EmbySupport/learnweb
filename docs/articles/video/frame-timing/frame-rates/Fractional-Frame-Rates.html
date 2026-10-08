@@ -106,40 +106,50 @@
 <h1>Fractional Frame Rates: 23.976, 29.97, and 59.94</h1>
 
 
-<p>The familiar labels <strong>23.976</strong>, <strong>29.97</strong>, and <strong>59.94</strong> are rounded names for precise ratios. They are not irregular frame rates: a stream can run at one of them with perfectly constant picture spacing.</p>
 <table>
 <thead>
 <tr>
 <th>Familiar label</th>
 <th>Exact rate</th>
-<th style="text-align: right;">Time per picture, approximately</th>
+<th>Exact picture duration</th>
+<th style="text-align: right;">Duration in milliseconds, rounded</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>23.976 fps</td>
 <td>24000/1001 fps</td>
-<td style="text-align: right;">41.7083 ms</td>
+<td>1001/24000 s</td>
+<td style="text-align: right;">41.7083</td>
 </tr>
 <tr>
 <td>29.97 fps</td>
 <td>30000/1001 fps</td>
-<td style="text-align: right;">33.3667 ms</td>
+<td>1001/30000 s</td>
+<td style="text-align: right;">33.3667</td>
 </tr>
 <tr>
 <td>59.94 fps</td>
 <td>60000/1001 fps</td>
-<td style="text-align: right;">16.6833 ms</td>
+<td>1001/60000 s</td>
+<td style="text-align: right;">16.6833</td>
 </tr>
 </tbody>
 </table>
-<p>Each is the corresponding integer rate multiplied by 1000/1001. ITU-R BT.709 includes these fractional alternatives alongside the integer-rate systems.</p>
-<h2 id="a-small-difference-adds-up">A small difference adds up</h2>
-<p>Suppose a sequence contains exactly 86,400 pictures. At 24 fps it lasts 3,600 seconds. At 24000/1001 fps it lasts 3,603.6 seconds. The difference is only 0.1% in duration, but it becomes 3.6 seconds across this example.</p>
-<p>That helps explain a subtitle track that starts in sync and gradually drifts when it was timed against a version played at a slightly different speed. A constant subtitle offset moves everything together; it cannot correct a speed difference.</p>
-<p>For an Emby library, keep the file's original timestamps and exact rate consistent. Rounding a label for readability is harmless. Rewriting timing as if 23.976 were exactly 24 changes the presentation unless a proper conversion accompanies it. Audio timing also has to stay aligned.</p>
-<p><a href="../interlacing-and-cadence/Telecine-Pulldown.html">Telecine</a> commonly connects 24000/1001 film pictures to 60000/1001 television fields. The ratios fit that repeating cadence exactly; using the rounded decimal values in long calculations introduces unnecessary error.</p>
-<p>Do not infer <a href="Variable-Frame-Rate.html">variable frame rate</a> merely because the rate is fractional. “Fractional” describes the numerical rate. “Variable” describes whether the spacing between successive pictures changes.</p>
+<p>These familiar decimals name <strong>precise rational frame rates</strong>. Each is its corresponding integer rate multiplied by <strong>1000/1001</strong>. The displayed decimal is rounded; use the fraction for timing calculations.</p>
+<p>The picture duration is the reciprocal of the rate. At 24000/1001 fps, every constant-rate picture occupies 1001/24000 second. Its spacing can be perfectly regular: “fractional” refers to the rate's value, while <a href="Variable-Frame-Rate.html">variable</a> describes spacing that changes.</p>
+<h2 id="calculate-a-whole-sequence">Calculate a whole sequence</h2>
+<p>Take exactly <strong>86,400 pictures</strong>.</p>
+<p>At 24 fps:</p>
+<p><strong>86,400 ÷ 24 = 3,600 seconds.</strong></p>
+<p>At 24000/1001 fps:</p>
+<p><strong>86,400 × 1001 ÷ 24,000 = 3,603.6 seconds.</strong></p>
+<p>The same picture count lasts 3.6 seconds longer. Its duration increases by exactly 0.1%; its playback rate is multiplied by 1000/1001.</p>
+<p>This calculation explains a subtitle or audio version that starts aligned but gradually diverges after the picture sequence is retimed. Moving the start by a fixed offset does not change the duration difference. Retiming a fixed sequence and converting its picture allocation while preserving duration are different operations.</p>
+<h2 id="the-film-to-television-ratio">The film-to-television ratio</h2>
+<p>Fractional film and field rates retain the same useful ratio:</p>
+<p><strong>(60000/1001) ÷ (24000/1001) = 2.5 fields per film picture.</strong></p>
+<p>Four film pictures therefore span ten field intervals. That is the basis of the repeating <a href="../interlacing-and-cadence/Telecine-Pulldown.html">3:2 pulldown</a> relationship at these rates. The 1001 denominator cancels exactly; rounding the rates to decimals is unnecessary for the calculation.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

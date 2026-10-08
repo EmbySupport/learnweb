@@ -106,39 +106,44 @@
 <h1>MPEG Program Stream</h1>
 
 
-<p>An older .mpg movie or a DVD's VOB data may use <strong>MPEG program stream (PS)</strong>. This systems format combines encoded streams into a presentation with timing information for coordinated playback.</p>
-<p>PS uses variable-size <strong>packs</strong> containing packetized elementary streams. Its original design suits storage or delivery environments where errors are less prominent than in broadcast reception. <a href="MPEG-Transport-Stream.html">Transport stream</a> instead divides delivery into small fixed-size packets and provides programme-discovery tables.</p>
+<p>An older MPG movie and the video objects on a DVD can organize media through <strong>MPEG program stream (PS)</strong>. This systems layer arranges encoded components for synchronized playback; it does not define their picture compression.</p>
+<p>PS uses <strong>packs</strong>, which contain a pack header and packetized elementary-stream data. Unlike the fixed small packets of <a href="MPEG-Transport-Stream.html">transport stream</a>, pack and PES organization is suited to a comparatively reliable source such as stored media.</p>
+<h2 id="read-one-pack">Read one pack</h2>
+<p>The reader identifies the pack structure and its systems clock information. It then examines PES packet headers to identify components and obtain timestamps where supplied. Payload belonging to video is routed to video decoding, while audio payload is routed to an audio decoder.</p>
 <table>
 <thead>
 <tr>
-<th>Item encountered in PS</th>
-<th>Meaning</th>
+<th>Information</th>
+<th>Role in this process</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Pack header</td>
-<td>Systems timing and delivery information</td>
-</tr>
-<tr>
-<td>PES packet</td>
-<td>Payload belonging to an encoded stream</td>
-</tr>
-<tr>
-<td>Presentation timestamps</td>
-<td>When decoded media should be presented</td>
+<td>Pack header and system timing</td>
+<td>Describe the multiplex's delivery timing</td>
 </tr>
 <tr>
 <td>Stream identifiers</td>
-<td>Distinguish components within the multiplex</td>
+<td>Distinguish components or private-data arrangements</td>
+</tr>
+<tr>
+<td>PES PTS/DTS, when present</td>
+<td>Schedule presentation and decoding</td>
+</tr>
+<tr>
+<td>Encoded payload</td>
+<td>Supplies the codec's media data</td>
 </tr>
 </tbody>
 </table>
-<p>Program stream is a container structure, not the name of the video compression. It is commonly associated with MPEG video, but identifying PS still leaves the individual codecs and their properties to inspect.</p>
-<h2 id="a-vob-is-part-of-a-larger-presentation">A VOB is part of a larger presentation</h2>
-<p>DVD-Video uses a constrained, extended form of program-stream packaging for its video objects. A VOB can contain audio and subtitle data as well as video. Its surrounding <a href="../../packaging/disc/DVD-Video-File-Structure.html">DVD navigation files</a> describe title order and other playback choices.</p>
-<p>Opening an isolated VOB therefore differs from opening the complete disc presentation. The visible file boundary may divide a longer title, and normal sequential playback need not reproduce the intended navigation.</p>
-<p>For an .mpg or VOB in an Emby collection, check the whole source and selected streams. Repackaging into a suitable modern container may preserve the encoded content, but simply joining VOBs by filename can select the wrong sequence or retain unrelated material. A reliable conversion follows the intended title and carries its <a href="../../container-structure/timing-and-navigation/Media-Packet-Timestamps.html">timing</a> into the new package.</p>
+<p>Stream identifiers do not all imply one universal codec choice. DVD, for example, defines additional conventions for private-stream audio and subpictures. The systems reader must understand the relevant arrangement before the appropriate codec receives its bytes.</p>
+<h2 id="reading-order-and-viewing-order">Reading order and viewing order</h2>
+<p>Interleaving puts pieces of different components within the package. Their timestamps associate them with a shared schedule. The file reader does not need to play the entire video portion before the entire audio portion; it supplies queues for both so the player can present them together.</p>
+<p>A component's timestamps and codec setup can therefore be essential when copying its elementary data into another package. Preserving only payload while losing <a href="../../container-structure/timing-and-navigation/Media-Packet-Timestamps.html">timing</a> is not the same as preserving the presentation.</p>
+<h2 id="what-a-dvd-adds-around-vob-media">What a DVD adds around VOB media</h2>
+<p>DVD-Video uses constrained program-stream-based video objects, commonly stored in VOB files. A title can span several such files and use navigation that chooses cells or angles. Its <a href="../../packaging/disc/DVD-Video-File-Structure.html">IFO descriptions</a> supply title and programme-chain organization outside the ordinary act of decoding a VOB's packets.</p>
+<p>Opening one VOB demonstrates that its media can be read. It does not resolve the disc's intended complete title. Joining filenames in order similarly follows storage naming rather than the navigation that selected the presentation.</p>
+<p>When preparing a disc-derived source for an Emby library, the useful boundary is the intended title and its selected components. A remux can retain their encoding while writing a new timed package, after the source's presentation choices have been resolved.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

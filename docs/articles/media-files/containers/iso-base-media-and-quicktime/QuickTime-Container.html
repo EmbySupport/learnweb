@@ -106,39 +106,45 @@
 <h1>QuickTime: MOV Container</h1>
 
 
-<p>A MOV from a phone and a MOV from a video editor can ask very different things of a player. <strong>QuickTime</strong> describes the package, not a fixed choice of codec, resolution, or bitrate.</p>
-<p>QuickTime files are organized into <strong>atoms</strong>, including movie descriptions and media data. Their structure was the basis for the <a href="MP4-Container.html">ISO base media file format</a>, but MOV and MP4 remain distinct file types. Changing the extension is not a format conversion.</p>
+<p>A phone recording can appear portrait even when its stored picture raster is landscape. A production export can be enormous while a phone file with the same MOV extension is small. These observations make sense once <strong>QuickTime MOV</strong> is read as a presentation structure around media, rather than one codec.</p>
+<p>The format uses <strong>atoms</strong>, each identifying a kind of data and its size. Movie descriptions contain track and timing information; media-data atoms contain the encoded samples. This design was the basis for <a href="MP4-Container.html">ISO base media formats</a>, although their file types and conventions remain distinct.</p>
+<h2 id="read-a-track-into-the-movie-timeline">Read a track into the movie timeline</h2>
+<p>A track describes its media type and sample representation. Sample tables identify encoded samples, how long they last, and where they live. The reader finds the bytes and hands them to the appropriate decoder.</p>
+<p>A movie can also use an <strong>edit list</strong> to relate media time to presentation time. A track may begin after an initial empty interval, or present a range beginning partway through its stored media. Reading every sample from media time zero need not reproduce the presentation described by those edits.</p>
 <table>
 <thead>
 <tr>
-<th>Information a MOV can contain</th>
-<th>Why a reader needs it</th>
+<th>Information layer</th>
+<th>What it changes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Track descriptions</td>
-<td>Identify the media and codec configuration</td>
+<td>Coded samples</td>
+<td>The reconstructed pictures or sound</td>
 </tr>
 <tr>
-<td>Sample timing and locations</td>
-<td>Find and schedule encoded samples</td>
+<td>Sample timing and location</td>
+<td>When samples belong and where their bytes are read</td>
 </tr>
 <tr>
-<td>Edit information</td>
-<td>Relate track media time to presentation time</td>
+<td>Track edits</td>
+<td>Which media range maps onto the movie timeline</td>
 </tr>
 <tr>
-<td>Display transformations</td>
-<td>Present a track at its intended orientation</td>
+<td>Display transformation</td>
+<td>How the reconstructed track is placed or oriented</td>
 </tr>
 </tbody>
 </table>
-<p>The container can describe several kinds of timed media. Practical support depends on which of those features the file uses and which the reader implements.</p>
-<h2 id="a-production-file-can-be-a-heavy-playback-source">A production file can be a heavy playback source</h2>
-<p>MOV is common in capture and editing workflows, where preserving quality and supporting further work can matter more than small files. A production codec at a high bitrate may be expensive to send over a home or remote connection, even though a compact phone MOV plays easily.</p>
-<p>When adding such material to an Emby library, inspect its <a href="../../fundamentals/Media-Streams-Tracks.html">streams</a> and bitrate before deciding that the extension is the problem. A supported codec may only need repackaging; a different codec or an unsuitable data rate can require re-encoding.</p>
-<p>Also check <a href="../../../video/geometry/Video-Rotation-Metadata.html">rotation metadata</a> when a phone recording appears sideways after conversion. A tool that copies the compressed video but drops its display transformation can change the visible result without changing a single encoded frame.</p>
+<p>These layers can change independently. Copying coded samples preserves one of them, not necessarily the complete presentation.</p>
+<h2 id="the-portrait-phone-example">The portrait phone example</h2>
+<p>Suppose the coded raster is 1920 × 1080 and the track describes a 90-degree display rotation. The decoder reconstructs the landscape raster. Applying the transform gives a portrait arrangement whose displayed dimensions exchange width and height.</p>
+<p>A conversion can bake the rotation into newly encoded pixels, or preserve the raster and transfer appropriate <a href="../../../video/geometry/Video-Rotation-Metadata.html">orientation information</a>. Copying only the picture bytes while losing the transform produces a sideways result. That error arises after successful decoding, in how the decoded track is presented.</p>
+<h2 id="an-editing-master-has-different-data-demands">An editing master has different data demands</h2>
+<p>A MOV can hold <a href="../../../video/codecs/production-preservation/Video-Codec-ProRes.html">ProRes</a> or other production media that spends much more data per second than a compact delivery encode. This serves editing and preservation of production information. The same container can also hold a camera's compressed delivery-like video.</p>
+<p>For an Emby source, inspect the actual codec, data rate, track edits, and orientation. Those properties explain why one MOV is straightforward to deliver while another benefits from a smaller viewing copy. An input that merely needs new packaging follows a different transformation from one whose pictures are resized, rotated into pixels, or newly compressed.</p>
+<p>The movie structure records how the media should be assembled. Following it explains both the sound/picture timing and the visible orientation of the final presentation.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

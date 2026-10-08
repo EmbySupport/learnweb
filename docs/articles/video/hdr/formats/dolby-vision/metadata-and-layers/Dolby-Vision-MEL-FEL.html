@@ -106,33 +106,41 @@
 <h1>Dolby Vision MEL and FEL</h1>
 
 
-<p><strong>MEL</strong> means minimum enhancement layer; <strong>FEL</strong> means full enhancement layer. These terms are especially relevant to <a href="../profiles-and-compatibility/Dolby-Vision-Profile-7.html">Profile 7</a> UHD Blu-ray content.</p>
+<p>For dual-layer Dolby Vision UHD Blu-ray delivery, ask whether the enhancement adds a picture residual:</p>
 <table>
 <thead>
 <tr>
-<th>Enhancement type</th>
+<th>Type</th>
+<th>Expanded name</th>
 <th>Picture residual</th>
-<th>Practical implication</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>MEL</td>
-<td>Zero residual</td>
-<td>No additional picture residual needs reconstruction</td>
+<td>Minimum enhancement layer</td>
+<td>Zero</td>
 </tr>
 <tr>
 <td>FEL</td>
-<td>Nonzero residual</td>
-<td>Full reconstruction needs the enhancement information</td>
+<td>Full enhancement layer</td>
+<td>Nonzero</td>
 </tr>
 </tbody>
 </table>
-<p>Both still belong to a Dolby Vision workflow with metadata. MEL therefore does not mean “Dolby Vision without dynamic metadata,” and FEL is not just a larger metadata file.</p>
-<p>A FEL can carry information needed to reconstruct differences between the encoded base picture and the source prepared for Dolby Vision. Depending on the authoring choices, those differences can involve precision and the brightness range. The visible effect depends on the actual title and processing path; the label alone is not a quality score.</p>
-<p>This is why a player showing a Dolby Vision indicator does not by itself prove full FEL processing. A useful test needs known content and evidence about the decoder path, not merely the logo appearing on screen.</p>
-<p>For a file served by Emby, keep three observations separate: the source contains an FEL, the session is using Dolby Vision output, and the additional residual contributes to reconstruction. They are related claims, but one does not establish all three.</p>
-<p>If an enhancement layer is discarded during a conversion, the resulting file may still produce a valid picture from its compatible base. Calling that operation lossless requires more care than observing that the main video was copied: information present in the original enhancement layer may no longer be available.</p>
+<p>Both remain part of a Dolby Vision presentation with associated metadata. The distinction concerns reconstruction information, rather than the amount of scene-specific guidance.</p>
+<h2 id="follow-the-residuals-role">Follow the residual's role</h2>
+<p>The authoring workflow prepares a base representation and an enhancement associated with it. With FEL, the enhancement supplies differences needed for the complete Dolby Vision reconstruction. The decoder/composer uses that information with the base and metadata.</p>
+<p>Those differences can involve the prepared signal's precision and range. Their significance depends on the authored title. A larger enhancement stream can carry more coded correction data, but its byte size alone does not predict how obvious that correction will be in a scene.</p>
+<p>With MEL, there is no nonzero picture residual to contribute. The presentation can still use Dolby Vision metadata and its specified base interpretation and mapping. “Minimum” therefore identifies the enhancement's residual role, rather than an absence of Dolby Vision processing.</p>
+<h2 id="compare-three-paths-from-the-same-source">Compare three paths from the same source</h2>
+<ol>
+<li><strong>Full FEL reconstruction:</strong> the relevant enhancement residual contributes to the composed picture before display adaptation.</li>
+<li><strong>Base plus supported Dolby Vision processing:</strong> a route may use the base and applicable metadata while omitting that residual contribution.</li>
+<li><strong>Compatible base presentation:</strong> <a href="../profiles-and-compatibility/Dolby-Vision-Profile-7.html">Profile 7</a> can provide an HDR10 picture through its compatible base.</li>
+</ol>
+<p>These paths can produce plausible images, but they use different source information. A final Dolby Vision output indicator cannot establish which reconstruction path occurred earlier.</p>
+<p>For an Emby test, retain the exact source, profile/layer record, delivered stream, and decoder information. Use known content when examining whether enhancement data affects the picture. If a conversion discards an FEL, report that information loss even when the main base video was copied without re-encoding.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

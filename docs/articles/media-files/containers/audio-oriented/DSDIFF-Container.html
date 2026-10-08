@@ -106,40 +106,36 @@
 <h1>DSDIFF: DFF Container</h1>
 
 
-<p>A file ending in <strong>.dff</strong> usually uses Philips' Direct Stream Digital Interchange File Format, or <strong>DSDIFF</strong>. It was designed for exchanging <a href="../../../audio/formats/DSD.html">DSD</a> material, including production and mastering information.</p>
-<p>Like <a href="DSF-Container.html">DSF</a>, DSDIFF is a package around an audio representation. The two containers organize their data differently, so changing the filename extension is insufficient to convert between them.</p>
+<p>A <strong>DSDIFF</strong> file, usually named .dff, carries either raw <a href="../../../audio/formats/DSD.html">DSD</a> or a losslessly compressed representation called <strong>DST</strong>. The format reader must identify which path applies before it can supply the one-bit audio sequence.</p>
+<p>The file's Form DSD structure contains a format-version description and sound properties. Those properties identify sample rate, channels, and a compression type. Raw DSD data and DST data occupy different sound-data structures.</p>
 <table>
 <thead>
 <tr>
-<th>DSDIFF information</th>
-<th>Why it is useful</th>
+<th>Declared sound type</th>
+<th>Route to the DSD sequence</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Format and sound properties</td>
-<td>Describe sample rate, channels, and encoding</td>
+<td>DSD</td>
+<td>Read and interpret the stored one-bit data arrangement</td>
 </tr>
 <tr>
-<td>DSD sound data</td>
-<td>Store uncompressed DSD</td>
-</tr>
-<tr>
-<td>DST sound data, when used</td>
-<td>Store a losslessly compressed DSD representation</td>
-</tr>
-<tr>
-<td>Optional markers and comments</td>
-<td>Describe production or editing context</td>
+<td>DST</td>
+<td>Read compressed frames and decode them back into DSD</td>
 </tr>
 </tbody>
 </table>
-<p><strong>DST</strong>, Direct Stream Transfer, is lossless compression of DSD. It is not another name for PCM, and a reader that handles raw DSD may need additional support to decode DST. The .dff extension does not settle which representation is inside.</p>
-<h2 id="why-two-dsd-files-can-behave-differently">Why two DSD files can behave differently</h2>
-<p>A DSF file may carry ID3v2 album information in the location specified by Sony. DSDIFF's own specification defines different descriptive and mastering structures. Some tools add further tagging conventions, whose handling should be checked rather than assumed universal.</p>
-<p>This distinction matters when a conversion preserves the sound but a music library loses artist, album, or artwork information. Audio preservation and metadata preservation are separate results.</p>
-<p>For playback through an Emby app, investigate the selected output path as well as the source. Reading DSDIFF, decoding DST if present, converting DSD to PCM when needed, and delivering native DSD are different capabilities.</p>
-<p>Inspect the file's audio representation, sample rate, channel layout, and duration before choosing a conversion. If the aim is a convenient listening copy, evaluate that copy on the actual app and output device. A package carrying the original DSD does not by itself establish what reaches the speakers.</p>
+<p>DST is Direct Stream Transfer, not a PCM conversion. Its lossless decoding reconstructs the DSD it encoded. Converting that result to PCM is another operation after the storage representation has been interpreted.</p>
+<h2 id="a-dst-frame-has-time-even-when-its-bytes-vary">A DST frame has time even when its bytes vary</h2>
+<p>The Philips specification relates a DST frame to 1/75 second. At a DSD64 rate of 2,822,400 one-bit samples per second, that interval contains 37,632 bits, or 4,704 bytes, per channel before compression. Stereo therefore corresponds to 9,408 raw bytes for that interval.</p>
+<p>DST can encode that interval in a different number of bytes according to the signal. A reader uses frame structure and, where present, indexing to navigate compressed data; it cannot derive every frame's address from one constant compressed size.</p>
+<p>This is the same distinction between represented duration and stored length that appears in many variable-size encodings, applied here to a one-bit signal.</p>
+<h2 id="production-descriptions-surround-the-sound">Production descriptions surround the sound</h2>
+<p>DSDIFF can carry channel descriptions, markers, comments, and edited-master information. These describe the source or intended production use; they do not constitute a second soundtrack.</p>
+<p><a href="DSF-Container.html">DSF</a> uses different channel blocking and its specified ID3v2 tagging arrangement. Translating raw DSD between these containers can preserve the signal while changing its byte arrangement and descriptive structures. Where the source uses DST, producing raw DSF also needs lossless DST decoding first.</p>
+<p>A conversion that preserves the sound but loses the album descriptions has preserved one layer and changed another. Likewise, a listening copy in PCM has changed the audio representation even when it retains all the titles and markers.</p>
+<p>For an Emby source, note DSD versus DST, rate, channel layout, valid duration, and the delivered output path. These properties establish which reading and decoding stages are required. They explain the work far more precisely than the shared description “a DSD file.”</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

@@ -106,14 +106,13 @@
 <h1>Electro-Optical Transfer Function (EOTF)</h1>
 
 
-<p>An <strong>electro-optical transfer function</strong>, or EOTF, answers a practical question: how much light should the screen produce for this signal value?</p>
-<p>A pixel value halfway between black and white does not usually request half the light of white. Video uses nonlinear encoding, so equal steps in the signal do not produce equal steps in emitted light.</p>
-<p>For an idealized SDR display with zero black, 100-nit white, and a 2.4 power response, the relationship is <code>L = 100 × V^2.4</code>. Here <code>V</code> is the normalized signal, and <code>L</code> is luminance in nits for neutral gray.</p>
+<p>What light should a screen produce for a signal value of 0.5? An <strong>electro-optical transfer function</strong>, or EOTF, supplies the relationship needed to answer. The signal is electrical or numerical; the result is light.</p>
+<p>For an ideal SDR display with zero black, 100-nit white, and a 2.4 power response, use <strong>L = 100 × V^2.4</strong>. V is the normalized signal and L is neutral-gray luminance:</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: right;">Normalized signal V</th>
-<th style="text-align: right;">Calculated light output</th>
+<th style="text-align: right;">Signal V</th>
+<th style="text-align: right;">Calculated light</th>
 </tr>
 </thead>
 <tbody>
@@ -135,11 +134,15 @@
 </tr>
 </tbody>
 </table>
-<p>These values are an example of <a href="Transfer-Function-BT1886.html">BT.1886's zero-black case</a>, not universal settings for every television. <a href="Transfer-Function-PQ.html">PQ</a> uses a different curve and an absolute light-level scale.</p>
-<h2 id="why-the-correct-curve-matters">Why the correct curve matters</h2>
-<p>Imagine passing the value 0.50 to two renderers with different assumptions about the EOTF. They can agree on the pixel number and still produce different light. That is why a transfer-function mismatch can make an otherwise intact file look too dark or wrong in contrast.</p>
-<p>The EOTF is also separate from numerical range. A limited-range signal must first be interpreted with the correct black and white code values before applying the transfer function.</p>
-<p>When Emby reports <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">Direct Play</a>, it describes delivery from the server. The player and display still have to interpret the video and render it. For HDR-to-SDR playback, the rendering path may need to recover light values using the source EOTF, adapt them through tone mapping, and encode a suitable output signal. None of that is determined by bitrate alone.</p>
+<p>Halfway through the signal range therefore produces about 19% of white's light in this example. Equal signal steps do not create equal light steps. These are the zero-black conditions of <a href="Transfer-Function-BT1886.html">BT.1886</a>; another EOTF gives another relationship.</p>
+<h2 id="apply-the-function-to-the-right-input">Apply the function to the right input</h2>
+<p>The stored video code first needs the correct numerical-range interpretation. Nominal black and white may occupy only part of the available integer range. Interpreting those endpoints produces a normalized signal; the EOTF then supplies its light meaning.</p>
+<p>The order is significant. If nominal black is mistakenly normalized to a positive signal, the EOTF produces light for a sample that was meant to be black. If a nonlinear sample is treated as already linear, later arithmetic also begins from the wrong light value.</p>
+<p>A color-processing path applies the relevant component relationships and transfer interpretation to obtain a suitable working representation. A neutral-gray calculation keeps the example above simple; colored pictures additionally need their primaries and component matrix interpreted correctly.</p>
+<h2 id="reconstruct-light-then-choose-what-the-output-can-show">Reconstruct light, then choose what the output can show</h2>
+<p><a href="Transfer-Function-PQ.html">PQ</a> gives HDR samples an absolute reference-light interpretation. Recovering that interpretation can reveal a 1,000-nit highlight, but a destination with a smaller usable range still needs a mapping decision. The EOTF identifies the requested light. <a href="../../tone-mapping/fundamentals/Tone-Mapping-HDR-to-SDR.html">Tone mapping</a> adapts it.</p>
+<p>After a light-domain operation, the output needs an encoding appropriate to its own display relationship. In the ideal SDR example, a desired 50-nit gray requires V = (50/100)^(1/2.4), approximately 0.749. Writing 0.5 instead would request 18.9 nits. That inverse operation explains why light values and final video signal values cannot be interchanged.</p>
+<p>An Emby Direct Play session identifies how the server delivers the file. The app and display still render the samples using their output path. Comparing displayed brightness therefore requires the source interpretation and the destination response alongside the delivery mode.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

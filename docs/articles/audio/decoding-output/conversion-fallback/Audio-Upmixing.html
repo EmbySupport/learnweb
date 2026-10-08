@@ -106,40 +106,49 @@
 <h1>Audio Upmixing</h1>
 
 
-<p><strong>Upmixing uses more output channels than the source provides.</strong> A receiver can spread stereo music across surround speakers, or derive height activity from a conventional movie soundtrack.</p>
-<p>This is processing applied to an existing presentation. It does not prove that the source contains an immersive mix.</p>
+<p>A stereo song sends a stable voice to the front center and ambience into the surrounds when a receiver's upmixer is enabled. <strong>The processor is deriving an expanded presentation from the relationships in its available inputs.</strong></p>
+<p>It is useful to inspect what it derived, rather than treating every active output as a newly discovered source channel.</p>
+<h2 id="start-with-shared-and-differing-content">Start with shared and differing content</h2>
+<p>A simple mid/side analysis illustrates relationships an upmixer can exploit:</p>
+<p>M = (L + R)/2; S = (L − R)/2.</p>
 <table>
 <thead>
 <tr>
-<th>Listening result</th>
-<th>What the processing can do</th>
+<th>Stereo pair</th>
+<th style="text-align: right;">Shared component M</th>
+<th style="text-align: right;">Difference component S</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>The same signal from several speakers</td>
-<td>Duplicate or redistribute channels</td>
+<td>L=0.6, R=0.6</td>
+<td style="text-align: right;">0.6</td>
+<td style="text-align: right;">0</td>
 </tr>
 <tr>
-<td>A stronger central image</td>
-<td>Derive center activity from relationships between channels</td>
+<td>L=0.8, R=0.2</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">0.3</td>
 </tr>
 <tr>
-<td>Surround ambience</td>
-<td>Analyze and redistribute less central or less correlated material</td>
-</tr>
-<tr>
-<td>Height-speaker activity</td>
-<td>Derive output for an expanded speaker layout</td>
+<td>L=0.4, R=−0.4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.4</td>
 </tr>
 </tbody>
 </table>
-<p>Methods differ. <a href="../../channels/Matrix-Surround.html">Matrix decoding</a> can recover cues deliberately encoded into a stereo signal. An adaptive upmixer can also infer useful spatial behavior from ordinary material, but cannot guarantee the original separate studio channels.</p>
-<h2 id="the-receivers-mode-is-not-its-input">The receiver's mode is not its input</h2>
-<p>Dolby Surround and DTS Neural:X are examples of processing used to expand compatible channel-based content. A receiver may show one of these mode names while its input is only 2.0 or 5.1.</p>
-<p>In an Emby movie session, check the receiver's detected input separately from the listening mode. Sound coming from height speakers may be the result of upmixing a conventional track. Native <a href="../../channels/object-based/Object-Based-Audio.html">object rendering</a> uses spatial information carried by an appropriate source and supported path.</p>
-<p>Whether an upmix sounds helpful depends on the material and listening arrangement. Comparing the same passage with the processing enabled and disabled can reveal changes to dialogue placement and ambience.</p>
-<p>A downmixed stereo version followed by upmixing is also not equivalent to preserving the original multichannel soundtrack. Once channels were combined, the upmixer has fewer independent signals to work with.</p>
+<p>A shared component can be useful for deriving a central image. Differences and less-correlated content can help derive width or ambience. These are only analysis illustrations: commercial upmixers use more elaborate time/frequency analysis, steering, and decorrelation.</p>
+<p>The processor must also decide how much derived center to remove from or retain in the fronts, how to preserve level, and how to avoid distracting motion when several sounds coexist. Merely copying M into another speaker is not a complete natural-sounding upmix.</p>
+<h2 id="directional-cues-and-independent-signals-are-different-resources">Directional cues and independent signals are different resources</h2>
+<p>With intentionally <a href="../../channels/Matrix-Surround.html">matrix-encoded material</a>, a decoder has relationships prepared for surround recovery. With arbitrary stereo, the upmixer infers a useful presentation from relationships that may have many origins.</p>
+<p>Two matching channels can represent one centered voice, several centered instruments, or a mono recording duplicated into stereo. The same inputs do not uniquely identify separate studio stems.</p>
+<p>This is why a stereo downmix followed by upmixing need not match the original multichannel mix. The earlier combination removed independent signals that the analysis cannot always distinguish again.</p>
+<h2 id="expand-a-conventional-surround-presentation">Expand a conventional surround presentation</h2>
+<p>An upmixer can also start with 5.1 and derive rear or height activity for a larger system. Existing discrete positions remain more information than ordinary stereo, but the additional outputs still come from a chosen rendering/analysis method.</p>
+<p>Dolby Surround and DTS Neural:X are examples of such processing. <a href="../../channels/object-based/Object-Based-Audio.html">Native object rendering</a> instead has supplied spatial instructions where the source and path provide them.</p>
+<h2 id="compare-the-result-as-a-presentation">Compare the result as a presentation</h2>
+<p>Use the same passage and a sensible level comparison. Listen for dialogue that stays anchored, movement that remains coherent, and ambience that surrounds without pulling a foreground voice behind the listener.</p>
+<p>For an Emby session, identify the receiver's detected source presentation separately from its upmix mode. A 2.0 input with expanded outputs is a legitimate upmix result; it is not evidence that the file secretly contained all those discrete channels.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

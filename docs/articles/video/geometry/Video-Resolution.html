@@ -106,14 +106,12 @@
 <h1>Video Resolution</h1>
 
 
-<p><strong>Video resolution</strong> is the number of picture samples across and down a frame. A 1920 × 1080 video has 2,073,600 positions in its main picture grid: a little over two million.</p>
-<p>A resolution label describes that grid, rather than the amount of visible detail. A sharp 1080p source can look better than a poorly compressed 4K copy. Enlarging an older recording adds output pixels, but cannot recover information that was absent from the recording.</p>
 <table>
 <thead>
 <tr>
-<th>Familiar label</th>
-<th style="text-align: right;">Common stored dimensions</th>
-<th style="text-align: right;">Main-grid samples per frame</th>
+<th>Familiar description</th>
+<th style="text-align: right;">Common picture dimensions</th>
+<th style="text-align: right;">Main-grid positions per frame</th>
 </tr>
 </thead>
 <tbody>
@@ -139,11 +137,21 @@
 </tr>
 </tbody>
 </table>
-<p><em>These are common full-frame formats. A cropped film can have a different height, and “4K” alone does not identify one exact width.</em></p>
-<h2 id="count-the-picture-then-interpret-its-shape">Count the picture, then interpret its shape</h2>
-<p>The width-to-height ratio of the stored grid is not always the displayed shape. <a href="aspect-ratios/Anamorphic-Video.html">Anamorphic video</a> uses nonsquare pixels, so a 1440 × 1080 grid can represent a 16:9 picture. Rotation metadata can also turn a landscape grid into a portrait presentation.</p>
-<p>Black bars introduce another distinction. A 1920 × 1080 file can include a film occupying only 1920 × 800 pixels, with the remaining rows storing the bars. The file is still 1920 × 1080; the active image is smaller.</p>
-<p>For Emby playback, more samples generally mean more scaling and decoding work. Ultra HD contains four times as many main-grid positions as Full HD. That does not guarantee a file four times as large: bitrate, frame rate, compression, and the scene itself also matter. Read the resolution alongside those properties when comparing versions of a film.</p>
+<p><strong>Resolution is the width and height of the picture's sample grid.</strong> The table counts that main grid, rather than all component samples or a file's compressed bytes. The “p” in labels such as 1080p describes <a href="../frame-timing/interlacing-and-cadence/Progressive-Video.html">progressive timing</a>; it is additional information about how the picture is formed.</p>
+<p>“4K” is a family of descriptions. Television UHD commonly uses 3,840 columns, while the full DCI cinema container uses 4,096. Cropped cinema images can have other heights. The explicit width and height are the useful values when calculating or comparing files.</p>
+<h2 id="the-uhd-calculation">The UHD calculation</h2>
+<p>Doubling the width doubles the number of positions in each row. Doubling the height doubles the number of rows. Together:</p>
+<p><strong>3840 × 2160 = 4 × (1920 × 1080).</strong></p>
+<p>This is why UHD contains four times as many main-grid positions as Full HD, rather than twice as many. At 30 frames/s, a 1920 × 1080 stream represents 62,208,000 such positions per second; a 3840 × 2160 stream represents 248,832,000.</p>
+<p>That count helps explain processing load. Scaling, filters, and picture reconstruction operate on the samples. Frame rate adds another dimension to the work: UHD at 60 fps represents twice as many picture positions per second as UHD at 30 fps.</p>
+<p>File size has a different calculation. An encoder can represent similar regions and neighboring pictures efficiently, so four times the positions need not mean four times the compressed data.</p>
+<h2 id="which-rectangle-is-being-described">Which rectangle is being described?</h2>
+<p>A media file can contain a 1920 × 1080 frame with a widescreen film occupying only 1920 × 800 positions. The remaining 280 rows are black borders. Its stored resolution is still 1920 × 1080, while the <strong>active image</strong> contains 1,536,000 positions.</p>
+<p>A cropped copy can store only that 1920 × 800 rectangle. These two copies can look the same when fitted to a 16:9 television, yet use different stored grids. <a href="Letterboxing-Pillarboxing.html">Bars supplied by the player</a> do not count as stored picture rows.</p>
+<p>The <strong>presented rectangle</strong> can differ again. A phone clip stored as 1920 × 1080 may display as 1080 × 1920 after its rotation is applied. An <a href="aspect-ratios/Anamorphic-Video.html">anamorphic</a> 1440 × 1080 grid can display as 16:9 because its samples are intended to appear wider than square.</p>
+<h2 id="samples-and-detail">Samples and detail</h2>
+<p>Two files with the same grid can resolve very different detail. A camera's optics, focus, exposure, processing, and compression determine what information reaches those positions. Scaling a 720p picture to a UHD grid calculates additional output samples from the existing ones; it changes the grid available for display, rather than adding new camera observations.</p>
+<p>When comparing library versions, first identify the stored and active rectangles. Then use frame rate and bitrate to understand processing and delivery needs. That keeps a resolution comparison attached to the pictures actually represented.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

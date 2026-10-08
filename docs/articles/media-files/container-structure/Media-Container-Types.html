@@ -106,39 +106,40 @@
 <h1>Types of Media Containers</h1>
 
 
-<p>Containers make different tradeoffs depending on how media will be stored and delivered. A file that can be opened at any byte position has different needs from a broadcast that a receiver joins halfway through.</p>
+<p><strong>Where can the reader start, and what information is available then?</strong> This question explains many structural differences between media containers.</p>
 <table>
 <thead>
 <tr>
+<th>Reading situation</th>
+<th>Information the format must provide</th>
 <th>Structural approach</th>
-<th>Why it is useful</th>
-<th>Familiar example</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Indexed file</td>
-<td>Describes stored tracks and their locations for navigation</td>
-<td>A conventional MP4 file</td>
+<td>A complete stored file</td>
+<td>Where its samples are and how they are timed</td>
+<td>Tables or indexes covering stored content</td>
 </tr>
 <tr>
-<td>Repeating transport packets</td>
-<td>Allows receivers to find stream descriptions in an ongoing transmission</td>
-<td>MPEG transport stream</td>
+<td>A receiver joining a transmission</td>
+<td>What programmes and streams are currently being sent</td>
+<td>Repeated identification and timing information</td>
 </tr>
 <tr>
-<td>Clustered or fragmented media</td>
-<td>Carries media in successive groups instead of depending entirely on one complete final index</td>
-<td>Matroska clusters or fragmented MP4</td>
+<td>A presentation that is still being produced</td>
+<td>Enough setup and timing for each newly available part</td>
+<td>Initial setup followed by successive media groups</td>
 </tr>
 </tbody>
 </table>
-<p>These are structural approaches, not exclusive product categories. A format may support both ordinary file playback and streaming arrangements.</p>
-<h2 id="a-streaming-format-needs-context">“A streaming format” needs context</h2>
-<p>An ordinary media file can be served over HTTP, especially when the client can request byte ranges. That does not make it the same thing as a live broadcast or an adaptive-streaming presentation.</p>
-<p>Conversely, transport packets can be recorded into a file. Their broadcast-oriented structure remains even though the programme is now on disk.</p>
-<p>When Emby delivers media, the server may use packaging that suits the receiving app rather than send the original file structure unchanged. The <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">playback method</a> tells you more about that session than a label such as “streaming container.”</p>
-<p>For a container choice, consider the actual question: can the target read its tracks, begin promptly, and seek reliably? A format's ability to store a codec or survive an <a href="Media-Damaged-Incomplete-Files.html">interrupted recording</a> is useful, but neither guarantees compatibility with every player.</p>
+<p>A conventional <a href="../containers/iso-base-media-and-quicktime/MP4-Container.html">MP4</a> can use a complete set of sample descriptions and locations. If its reader can request any file position, it can read that information and then fetch the relevant ranges. <a href="../packaging/mp4/MP4-Fast-Start.html">Fast-start placement</a> makes initialization convenient for readers obtaining bytes from the beginning.</p>
+<p>A television receiver has a different starting point. It may join an <a href="../containers/mpeg-systems/MPEG-Transport-Stream.html">MPEG transport stream</a> after the programme began. Repeated programme tables let it discover the components currently present, while packet framing lets it find boundaries in a continuing transmission. The reader does not need to wait for a final movie-wide table.</p>
+<p><a href="../packaging/mp4/Fragmented-MP4.html">Fragmented MP4</a> supplies track setup followed by descriptions of successive sample groups. The complete duration and future samples need not be known when the beginning is delivered. Matroska similarly carries media through clusters and has specific arrangements for <a href="../containers/matroska-family/Matroska-Container.html">file and live uses</a>.</p>
+<h2 id="storage-and-delivery-are-two-independent-choices">Storage and delivery are two independent choices</h2>
+<p>Recording transport packets onto disk creates a file, but preserves the packets' structure. Sending a stored MP4 over HTTP makes it a network-delivered resource, but preserves its file tables unless it is repackaged. “File format” and “streaming format” are therefore not two exclusive bins.</p>
+<p>The distinction becomes visible in an Emby session. An original stored container may be read on the server while a different package is written for the app. To understand startup or a seek, identify both the source arrangement and the delivered arrangement.</p>
+<p>The useful comparison is between concrete tasks: initialize from the available bytes, identify selected tracks, locate a requested time, and handle material that has not finished arriving. Format-specific pages explain the structures used to perform those tasks; this classification connects the structures to the reading situations that motivated them.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

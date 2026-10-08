@@ -106,39 +106,47 @@
 <h1>Default Track Flags</h1>
 
 
-<p>A file's default audio flag is a hint about which track should be considered for automatic playback. It is not a command that every player must follow.</p>
-<p>The distinction matters when a film starts with a different soundtrack in two apps. Language preferences, accessibility choices, and remembered selections can affect the result as well as the file's flags.</p>
+<p>Consider these audio descriptions in an MKV:</p>
 <table>
 <thead>
 <tr>
-<th>File property</th>
-<th>What it expresses</th>
+<th>Track</th>
+<th>Language</th>
+<th>Role</th>
+<th>Default eligibility</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Default audio flag</td>
-<td>Eligibility or preference for automatic selection</td>
+<td>Main soundtrack</td>
+<td>English</td>
+<td>Main programme</td>
+<td>Yes</td>
 </tr>
 <tr>
-<td>Track language</td>
-<td>Which language the track represents</td>
+<td>Translation</td>
+<td>German</td>
+<td>Main programme</td>
+<td>Yes</td>
 </tr>
 <tr>
-<td>Forced subtitle flag</td>
-<td>A subtitle selection hint for content such as foreign dialogue or signs</td>
-</tr>
-<tr>
-<td>Commentary or accessibility flags</td>
-<td>The track's intended service, where the format supports them</td>
+<td>Director commentary</td>
+<td>English</td>
+<td>Commentary</td>
+<td>No</td>
 </tr>
 </tbody>
 </table>
-<p>The precise semantics depend on the container. In Matroska, more than one track can be eligible as default, including different languages. A player may override the default hint to meet user preferences.</p>
-<h2 id="default-subtitles-are-not-forced-subtitles">Default subtitles are not forced subtitles</h2>
-<p>A default subtitle track might contain the full dialogue. A forced subtitle track commonly contains only the text needed alongside an otherwise understood soundtrack. Setting a forced flag on full subtitles can therefore produce an unwanted result.</p>
-<p>For an Emby selection problem, inspect the language and flags of the actual tracks, then compare the user's audio and subtitle preferences. A title containing the word “default” is merely text unless the relevant field is also set.</p>
-<p>Correcting these container fields usually does not require recompressing the picture or sound. It does require understanding the intended track: an English commentary track should not become the main soundtrack simply because its language matches the user.</p>
+<p>The <strong>default flag</strong> helps a player form an automatic choice. In Matroska it describes eligibility for default selection; it is not a universal command to play one numbered track. More than one language can be eligible.</p>
+<p>A viewer preferring German can therefore have a suitable default candidate even while English is also marked default. The player combines the file's information with its own selection policy, user preferences, accessibility choices, and any remembered or manual choice.</p>
+<h2 id="why-default-english-can-still-be-the-wrong-choice">Why “default English” can still be the wrong choice</h2>
+<p>Two English tracks satisfy the language preference in the example, but their roles differ. The commentary flag, title, and default eligibility help distinguish them. Marking commentary default just because its language is English blurs the intended automatic choice.</p>
+<p>A title containing “Default” is plain descriptive text. It does not set the structured flag. Likewise, removing a default flag does not remove the track: a user may still select the component explicitly.</p>
+<h2 id="subtitles-use-another-kind-of-hint">Subtitles use another kind of hint</h2>
+<p><strong>Default</strong> and <strong>forced</strong> subtitle flags answer different questions. A default subtitle may contain the full dialogue. A forced track commonly supplies text needed with the chosen soundtrack, such as a sign or a brief exchange in another language.</p>
+<p>The forced designation describes the intended selection role; it does not inspect or shorten the subtitle contents. If a full-dialogue track is marked forced, all its events remain in the track. A player following that hint may show far more text than the author intended.</p>
+<p>For an Emby selection comparison, start with the actual track combination: effective language, main versus commentary/accessibility role, default eligibility, and subtitle intent. Then compare the user's relevant preferences and whether the session has retained a manual selection. This explains a difference between two apps without assuming either has simply ignored the file.</p>
+<p>Correcting these descriptions normally edits the container metadata. The encoded soundtrack and subtitle events can remain the same; what changes is the information automatic selection receives.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

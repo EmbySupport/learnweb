@@ -106,37 +106,41 @@
 <h1>Mastering Display Metadata: SMPTE ST 2086</h1>
 
 
-<p>SMPTE ST 2086 records the <strong>color volume of the mastering display</strong>: the display configuration on which the finished picture was judged. It provides context for reproducing the picture elsewhere.</p>
+<p>A source report might contain this mastering-display record:</p>
 <table>
 <thead>
 <tr>
-<th>Metadata component</th>
-<th>What it describes</th>
+<th>Field</th>
+<th>Illustrative value</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Red, green, and blue primaries</td>
-<td>The display's configured primary colors</td>
+<td>Primaries</td>
+<td>P3 coordinates</td>
 </tr>
 <tr>
-<td>White point</td>
-<td>The chromaticity used for neutral white</td>
+<td>Reference white</td>
+<td>D65</td>
 </tr>
 <tr>
-<td>Maximum mastering luminance</td>
-<td>The top of the configured luminance range</td>
+<td>Minimum luminance</td>
+<td>0.005 nit</td>
 </tr>
 <tr>
-<td>Minimum mastering luminance</td>
-<td>The bottom of that range</td>
+<td>Maximum luminance</td>
+<td>1,000 nits</td>
 </tr>
 </tbody>
 </table>
-<p>Suppose a report lists a mastering maximum of 1,000 nits. That does not say that every frame, or even the brightest pixel, reaches 1,000 nits. The display could have been capable of showing a brighter highlight than the filmmaker chose to use. Content light levels are described separately by <a href="HDR-MaxCLL-MaxFALL.html">MaxCLL and MaxFALL</a>.</p>
-<p>Another apparently contradictory combination is a BT.2020 video signal with P3 mastering primaries. The encoded signal and the mastering display are different things: the wider encoding space can carry colors graded on the narrower display. The two labels do not need to match.</p>
-<p>ST 2086 also does not specify the complete tone-mapping recipe. It does not contain shot-by-shot creative adjustments or define the mastering display's transfer function.</p>
-<p>In an Emby media report, read these fields as source context, not as minimum requirements for your television. A display with a different color volume needs adaptation, but that alone does not make the file unsuitable for playback. <a href="../../tone-mapping/fundamentals/Tone-Mapping-Why.html">Tone mapping</a> explains the brightness part of that adaptation.</p>
+<p><strong>SMPTE ST 2086</strong> describes the configured color volume of the display on which the finished image was judged. Read the record as mastering context, not as a measurement of each frame.</p>
+<h2 id="interpret-the-two-apparent-mismatches">Interpret the two apparent mismatches</h2>
+<p><strong>The video uses BT.2020 primaries.</strong> That can coexist with P3 mastering primaries. The image was graded within one display's capabilities and expressed for delivery using a larger coordinate space. The two records name different stages. Correct coordinate conversion preserves the intended colors.</p>
+<p><strong>MaxCLL is below 1,000 nits.</strong> The mastering display could support a highlight brighter than any used in the actual sequence. <a href="HDR-MaxCLL-MaxFALL.html">Content-light metadata</a> describes that sequence under its definition, while ST 2086 records the configured display range. The numbers need not be equal.</p>
+<p>The minimum field likewise describes the mastering reference's lower luminance limit. It does not imply that every dark pixel reaches that level, or predict the black floor of the television currently showing the movie.</p>
+<h2 id="use-the-record-during-adaptation">Use the record during adaptation</h2>
+<p>A renderer can use the reference volume as one input when deciding how to fit the produced image to a different output. The metadata supplies primary coordinates, white point, and luminance endpoints. It does not specify a complete transfer function or a sequence of shot-specific creative trims.</p>
+<p>During an Emby comparison, keep this source record beside the actual delivered signal and display target. A display with another volume can use <a href="../../tone-mapping/fundamentals/Tone-Mapping-Why.html">tone mapping</a> and color adaptation. The record explains the source reference; the playback path determines how that reference is used.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

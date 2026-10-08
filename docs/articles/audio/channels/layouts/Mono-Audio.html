@@ -106,35 +106,61 @@
 <h1>Mono Audio</h1>
 
 
-<p><strong>Mono audio uses one channel for the complete presentation.</strong> It can contain dialogue, music, and effects together, but it does not assign separate left and right positions to them.</p>
-<p>That one signal can be reproduced by one speaker, both stereo speakers, or an appropriate route in a larger system. Hearing it from two speakers does not turn the source into stereo.</p>
+<p><strong>Mono is one complete sound signal.</strong> It can include an orchestra, dialogue, effects, and ambience, all mixed into that one channel. It is a spatial arrangement, not a measure of how simple the content is.</p>
 <table>
 <thead>
 <tr>
-<th>Stored presentation</th>
-<th>What the channels contain</th>
+<th>Stored arrangement</th>
+<th>Presentation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>One-channel mono</td>
+<td>One mono channel</td>
 <td>One complete signal</td>
 </tr>
 <tr>
-<td>Two channels with identical audio</td>
-<td>The same mono presentation in both channels</td>
+<td>Two identical copies</td>
+<td>The same mono presentation duplicated</td>
 </tr>
 <tr>
-<td>Two different independent mono programmes</td>
-<td>Two selections or signals; not necessarily a stereo mix</td>
+<td>Two independent mono programmes</td>
+<td>Different signals that should not necessarily be heard together</td>
 </tr>
 </tbody>
 </table>
-<p>Older television material, archival recordings, and some spoken-word content naturally use mono. Its usefulness does not depend on having fewer musical instruments or on using a low bitrate: a complex mix can still be mono.</p>
-<h2 id="mono-and-a-center-channel-are-different">Mono and a center channel are different</h2>
-<p>A mono track is the entire soundtrack. The <a href="../roles-and-ordering/Audio-Center-Channel.html">center channel</a> is one part of a multichannel soundtrack, commonly used for screen-centered dialogue and other front sounds. Selecting a mono track should not mean discarding all the other parts of a surround mix.</p>
-<p>Conversely, converting a <a href="Stereo-Audio.html">stereo mix</a> to mono requires combining left and right. Opposing signal components can partially cancel when summed, so a stereo mix with an unusual phase relationship may change noticeably in mono. Merely taking one side can lose material that exists on the other side.</p>
-<p>In Emby, a mono label helps identify the track's layout. It does not indicate an incomplete delivery or require audio conversion by itself. If an old programme sounds equally strong from both sides of a stereo system, that can be exactly the intended playback of its mono source.</p>
+<p>A playback system can send the mono signal to one speaker, both stereo speakers, or another configured output. Two speakers reproducing the same signal do not add a left/right distinction to the source.</p>
+<h2 id="make-mono-from-stereo">Make mono from stereo</h2>
+<p>A simple normalized stereo fold-down is M = (L + R)/2. The factor of one half gives headroom and keeps matching left/right values at their original level.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Left value</th>
+<th style="text-align: right;">Right value</th>
+<th style="text-align: right;">Resulting mono value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">+0.4</td>
+<td style="text-align: right;">+0.4</td>
+<td style="text-align: right;">+0.4</td>
+</tr>
+<tr>
+<td style="text-align: right;">+0.4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">+0.2</td>
+</tr>
+<tr>
+<td style="text-align: right;">+0.4</td>
+<td style="text-align: right;">−0.4</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+<p>The last row explains why phase relationships matter: opposing components cancel when combined. Taking only the left channel avoids that sum but omits anything present only on the right. Choosing a proper mono presentation and taking one side are different operations.</p>
+<p>A mono film soundtrack is also different from the <a href="../roles-and-ordering/Audio-Center-Channel.html">center channel</a> of a surround mix. The mono track contains the whole programme; a surround center is one component among several.</p>
+<p>For an archival mono programme selected in Emby, equal sound from two stereo speakers can be the intended reproduction of the original single signal. Its language, edition, and mix remain more useful selection criteria than the number of physical speakers playing it.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

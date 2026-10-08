@@ -106,39 +106,37 @@
 <h1>DTS Core Audio</h1>
 
 
-<p>The <strong>DTS core</strong> is an independently decodable lossy audio component. It provides the conventional DTS Digital Surround presentation and is also present in many DTS-HD movie soundtracks.</p>
-<p>“Core” describes its role in the stream. It is not necessarily a second selectable audio track beside the higher-quality presentation.</p>
+<p>A DTS-HD file can produce ordinary DTS at a receiver because the player delivered its <strong>compatible core</strong>. That core is an existing coded presentation, not a fresh low-quality version invented during playback.</p>
+<p>The independently decodable DTS core supplies conventional DTS Digital Surround and forms the foundation of many core-plus-extension streams.</p>
+<h2 id="separate-the-two-decoding-jobs">Separate the two decoding jobs</h2>
 <table>
 <thead>
 <tr>
-<th>Situation</th>
-<th>What the core provides</th>
+<th>Data handled</th>
+<th>Reconstruction job</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>A conventional DTS soundtrack</td>
-<td>The main encoded audio</td>
+<td>Core</td>
+<td>Reconstruct the compatible lossy channel presentation</td>
 </tr>
 <tr>
-<td>A compatible DTS-HD stream</td>
-<td>Audio an older core decoder can use</td>
-</tr>
-<tr>
-<td>Full DTS-HD decoding</td>
-<td>A foundation that can be combined with extension data</td>
-</tr>
-<tr>
-<td>Core-only fallback</td>
-<td>A lossy presentation without the full extension result</td>
+<td>Relevant extensions</td>
+<td>Enhance that presentation, add information, or supply lossless reconstruction where defined</td>
 </tr>
 </tbody>
 </table>
-<p>DTS Digital Surround commonly delivers up to 5.1 discrete channels at an encoded rate up to about 1.5 Mbit/s. The media report still needs to identify the actual presentation; the name is not a promise that every file has six channels.</p>
-<h2 id="decoding-less-is-different-from-re-encoding">Decoding less is different from re-encoding</h2>
-<p>A core-aware player can select an existing compatible component without creating a new lossy encoding. The result still has the losses of that core's original encoding. In particular, a core extracted from <a href="../lossless/DTS-HD-Master-Audio.html">DTS-HD Master Audio</a> is not the lossless Master Audio result.</p>
-<p>For an Emby playback session, a receiver showing “DTS” may be receiving this fallback even though the selected source track is labeled DTS-HD. Check the delivered audio and receiver's detected input before assuming that the full extension was decoded.</p>
-<p>The DTS family also permits extension-only arrangements. An embedded core should consequently be confirmed from the actual stream rather than inferred from every filename containing “DTS-HD.” This distinction becomes useful when a player can decode one DTS variant but cannot extract a fallback from another.</p>
+<p>The core does not depend on its extensions to be interpreted. A core decoder can reconstruct its own channels while leaving extension information unused. A full decoder reads the appropriate extension structure and performs the additional jobs.</p>
+<p>Conventional DTS Digital Surround commonly supplies up to 5.1 channels at an encoded rate up to about 1.5 Mbit/s. The exact source layout and rate are still properties of the selected track.</p>
+<h2 id="core-extraction-avoids-a-new-encoding-generation">Core extraction avoids a new encoding generation</h2>
+<p>Suppose a soundtrack contains a core and DTS-HD Master Audio information. A player can select or extract the existing core component for a destination that accepts it.</p>
+<p>The sound then has the approximation already encoded in that core. It lacks the full lossless reconstruction, but no second lossy encoder had to analyze the audio and add another approximation.</p>
+<p>By contrast, decoding the whole soundtrack and encoding AC-3 or AAC is <a href="../../decoding-output/conversion-fallback/Audio-Transcoding.html">transcoding</a>. That creates a different coded representation, even if its final speaker count resembles the core.</p>
+<h2 id="the-core-can-be-inside-one-selectable-track">The core can be inside one selectable track</h2>
+<p>A container often lists one DTS-HD soundtrack, while the decoder handles the core/extensions within it. The core is not necessarily another language-track choice in the UI.</p>
+<p>This is why an Emby source report can say DTS-HD while the receiver detects DTS. Locate the delivered component and output path before treating the two labels as contradictory.</p>
+<p>DTS also defines extension-only arrangements. For such a stream, there is no supplied legacy core to extract. The actual substream structure determines whether core fallback is available; the family name alone does not create that component.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

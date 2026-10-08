@@ -106,40 +106,50 @@
 <h1>Containers and Codecs</h1>
 
 
-<p>Two files ending in <code>.mp4</code> can have very different playback requirements. One might contain H.264 video and AAC audio; another might contain HEVC video and a different audio format. MP4 identifies the container, while H.264, HEVC, and AAC identify codecs.</p>
-<p>The distinction explains why changing a file extension cannot make a movie compatible. The player still has to open the package and decode the streams inside it.</p>
+<p>A file ending in MP4 may carry H.264 video with AAC sound. Another MP4 may carry HEVC with different audio. To understand the difference, follow the data through the player rather than treating the file as one indivisible format.</p>
 <table>
 <thead>
 <tr>
-<th>Layer</th>
-<th>Its job</th>
-<th>Example</th>
+<th>Stage</th>
+<th>What enters</th>
+<th>What comes out</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Container</td>
-<td>Stores tracks, timing, and descriptions</td>
-<td>MP4 or Matroska</td>
+<td>Container reader, or demuxer</td>
+<td>Bytes from the MP4</td>
+<td>Encoded packets belonging to separate tracks</td>
 </tr>
 <tr>
-<td>Video codec</td>
-<td>Represents the moving picture</td>
-<td>H.264 or HEVC</td>
+<td>Video decoder</td>
+<td>Encoded video and its configuration</td>
+<td>Reconstructed pictures</td>
 </tr>
 <tr>
-<td>Audio codec</td>
-<td>Represents the soundtrack</td>
-<td>AAC or FLAC</td>
+<td>Audio decoder</td>
+<td>Encoded audio and its configuration</td>
+<td>Sound samples</td>
+</tr>
+<tr>
+<td>Playback scheduling</td>
+<td>Pictures, samples, and timestamps</td>
+<td>Synchronized presentation</td>
 </tr>
 </tbody>
 </table>
-<p>These examples explain the layers; they are not a device support list.</p>
-<h2 id="repackaging-versus-re-encoding">Repackaging versus re-encoding</h2>
-<p>A <strong>remux</strong> copies encoded streams into a new container. The packaging changes, but the picture and sound need not be decoded or compressed again. A tool may adjust headers and metadata to meet the new container's requirements.</p>
-<p><strong>Transcoding</strong> decodes and re-encodes one or more streams. That can change codec, bitrate, resolution, or other properties and requires more processing.</p>
-<p>In Emby's <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">playback methods</a>, a container mismatch can sometimes be handled through Direct Stream. A video codec mismatch may require video transcoding. Audio can be converted while the video is copied, so the processing cost is not always all-or-nothing.</p>
-<p>To understand a specific file, inspect both its <a href="../container-structure/Media-Container-Codec-Support.html">container/codec combination</a> and the streams selected for playback. Knowing only the container leaves the most important compatibility questions unanswered.</p>
+<p>The <strong>container</strong> defines the package: how tracks are described, how their data is stored, and how their time and location are represented. A <strong>codec</strong> defines an encoded representation and the corresponding decoding rules. H.264 and AAC do different jobs inside the same package.</p>
+<h2 id="changing-the-package">Changing the package</h2>
+<p>Suppose the video already suits the receiving app, but the app expects different packaging. A <a href="../container-structure/Media-Multiplexing.html">remux</a> reads the input container and writes a new one. It copies encoded video packets through this route:</p>
+<p><code>input container → demuxer → encoded video → muxer → output container</code></p>
+<p>There is no picture reconstruction in that route. The output file's bytes differ because its headers, indexes, timestamps, or framing differ, while the encoded picture information can be preserved. Codec configuration may have to move from one header convention to another. That is still distinct from decoding and recompressing the pictures.</p>
+<p>The destination must have a defined way to store the chosen tracks. An audio track may fit while a subtitle format does not, so preserving the movie's picture is only one part of preserving its contents.</p>
+<h2 id="changing-the-representation">Changing the representation</h2>
+<p>If the app needs a different video codec, the route becomes:</p>
+<p><code>encoded video → decoder → pictures → encoder → new encoded video</code></p>
+<p>The encoder makes new coding decisions from reconstructed pictures. This costs processing time and, with lossy settings, introduces another compression generation. Resizing or filtering also acts on these decoded pictures.</p>
+<p>An audio-only conversion follows the same idea for sound while allowing video packets to be copied. The result can therefore involve transcoding without re-encoding the picture. That distinction explains why some Emby <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">playback conversions</a> need little video processing and others need substantial decoding, filtering, and encoding.</p>
+<p>For a concrete source, write down the <a href="Media-Streams-Tracks.html">selected tracks</a> separately: container, video codec, audio codec, and subtitles. Then compare those with the delivered stream. The question becomes which stage changed, rather than whether the file was broadly called “converted.”</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

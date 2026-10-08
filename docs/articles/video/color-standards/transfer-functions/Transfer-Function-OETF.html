@@ -106,15 +106,38 @@
 <h1>Opto-Electronic Transfer Function (OETF)</h1>
 
 
-<p>An <strong>opto-electronic transfer function</strong>, or OETF, converts scene-light values into a picture signal. It is associated with the capture side of the imaging chain: light measured by a camera is represented using nonlinear values suitable for a video system.</p>
-<p>The graph shows the reference BT.709 OETF. It rises steeply near black, allocating more signal space to low light levels than a straight linear encoding would.</p>
+<p>A camera measures light, but the video signal usually represents it nonlinearly. An <strong>opto-electronic transfer function</strong>, or OETF, supplies that light-to-signal relationship. The BT.709 reference below assigns more signal space to low scene-light levels than a straight linear encoding would.</p>
 <p><img src="images/transfer-oetf-bt709.png" alt="BT.709 OETF compared with a straight linear encoding."></p>
-<p><em>The axes show normalized scene light and signal values, not nits or raw camera sensor readings. The dashed line is a linear reference.</em></p>
-<p>For scene-light value <code>E</code>, the specified curve is <code>4.5 × E</code> below 0.018 and <code>1.099 × E^0.45 − 0.099</code> at or above that point. At <code>E = 0.18</code>, the resulting signal is about 0.409. The change from a straight lower segment to a power curve matters: “gamma 0.45” alone is only a shorthand.</p>
-<h2 id="the-inverse-is-not-the-whole-viewing-experience">The inverse is not the whole viewing experience</h2>
-<p>An OETF is not automatically the exact inverse of the display's <a href="Transfer-Function-EOTF.html">EOTF</a>. The complete camera-to-screen relationship also has to produce an appropriate image appearance. <a href="Transfer-Function-OOTF.html">The OOTF</a> describes that overall relationship.</p>
-<p>This distinction is useful when processing video. Suppose a filter needs to combine light contributions. Treating an encoded value of 0.4 as 40% of scene light would start from the wrong assumption. The processing stage needs the relevant inverse function before performing operations that require linear light.</p>
-<p>For an Emby library, camera footage may use a conventional video transfer characteristic, HDR, or a camera-specific log encoding. The filename and codec do not identify the curve. Correct signal interpretation must survive editing and export; merely adding a familiar transfer-function label does not convert footage to that representation.</p>
+<p><em>Normalized scene light becomes a normalized video signal. Neither axis is a raw sensor code or an absolute number of nits.</em></p>
+<h2 id="follow-one-scene-light-value">Follow one scene-light value</h2>
+<p>For normalized scene-light E, the BT.709 curve uses <strong>4.5E</strong> below 0.018 and <strong>1.099E^0.45 − 0.099</strong> at or above that point. The lower straight segment avoids the behavior of a bare power near zero. The full function is more precise than calling it simply “gamma 0.45.”</p>
+<p>At E = 0.18, the signal is approximately <strong>0.409</strong>. The encoded value has increased numerically, but that does not mean the camera recorded more light. It is another representation of the same input.</p>
+<p>To return from the upper segment's signal value V to scene light, use <strong>E = ((V + 0.099) / 1.099)^(1/0.45)</strong>. That inverse is what a light-domain processing stage needs when its input uses this encoding.</p>
+<h2 id="an-averaging-example-shows-why-the-distinction-is-useful">An averaging example shows why the distinction is useful</h2>
+<p>Suppose an operation is intended to average two light contributions: black at E = 0 and white at E = 1. Their light average is E = 0.5. Applying the OETF gives a signal of approximately <strong>0.706</strong>.</p>
+<p>Averaging their encoded values instead gives V = 0.5, because black and white encode to zero and one. Inverting that signal gives scene light of only about <strong>0.260</strong>. The two computations therefore describe different results:</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th style="text-align: right;">Resulting scene-light value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Average light, then encode</td>
+<td style="text-align: right;">0.500</td>
+</tr>
+<tr>
+<td>Average encoded signals, then interpret</td>
+<td style="text-align: right;">About 0.260</td>
+</tr>
+</tbody>
+</table>
+<p>The nonlinear relationship is the cause. This matters for operations whose purpose is to combine light contributions, such as a physically motivated blend. Other processing can deliberately choose a perceptual working space; its intended effect determines the right arithmetic.</p>
+<h3 id="capture-encoding-and-display-appearance-are-separate-stages">Capture encoding and display appearance are separate stages</h3>
+<p>An OETF is not automatically the exact inverse of the eventual <a href="Transfer-Function-EOTF.html">display EOTF</a>. The full imaging system also chooses an appropriate relationship between scene light and reproduced light for the viewing environment. The <a href="Transfer-Function-OOTF.html">OOTF</a> describes that overall relationship.</p>
+<p>For camera footage stored in an Emby library, preserve the actual transfer description through editing and export. A conventional camera signal, a camera-specific log representation, and HDR can use different light relationships even if they share a codec. Correctly converting footage requires interpreting the source, performing the intended rendering, and encoding the destination—not merely assigning it a familiar transfer label.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

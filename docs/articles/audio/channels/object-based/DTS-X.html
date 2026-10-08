@@ -106,36 +106,45 @@
 <h1>DTS:X</h1>
 
 
-<p><strong>DTS:X is an immersive audio technology that uses spatial information to place sound for the playback arrangement.</strong> Its description can include objects and channels, rather than requiring every sound to be tied to one fixed speaker position.</p>
-<p>A moving effect can therefore be rendered across the outputs the system supports. That flexibility is still bounded by the decoder, device, and its supported layouts; the DTS:X name does not promise an unlimited speaker configuration.</p>
-<h2 id="a-disc-track-can-have-a-compatible-presentation">A disc track can have a compatible presentation</h2>
-<p>DTS:X Master Audio delivery used on Blu-ray and UHD Blu-ray builds on the DTS-HD family. The encoder provides compatibility with legacy DTS-HD and DTS Digital Surround playback. An older compatible decoder can reproduce a conventional presentation while missing the additional immersive rendering.</p>
+<p>A Blu-ray soundtrack labeled DTS:X may remain audible through an older DTS decoder, yet lose its immersive presentation. The delivery contains compatible audio, while a DTS:X-capable route uses additional spatial information to render the scene.</p>
+<p><strong>DTS:X connects a spatial description with an output renderer</strong>, rather than requiring every source sound to name one fixed customer speaker.</p>
+<h2 id="follow-the-disc-based-presentation">Follow the disc-based presentation</h2>
+<p>DTS:X Master Audio delivery in the DTS-HD family supports channel and object-based material. Its encoded audio and spatial information prepare a presentation that a supported renderer can distribute across the listening arrangement.</p>
+<p>The DTS production tools describe backwards compatibility with DTS-HD and DTS Digital Surround devices. The result depends on which portions the path uses:</p>
 <table>
 <thead>
 <tr>
-<th>Observation</th>
-<th>What it establishes</th>
+<th>Decoder/output result</th>
+<th>Presentation available</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>A track contains DTS:X information</td>
-<td>Spatial information is present in the encoded source</td>
+<td>Compatible DTS core</td>
+<td>Conventional lossy channel audio where that core is supplied</td>
 </tr>
 <tr>
-<td>Playback falls back to compatible channel audio</td>
-<td>A soundtrack can remain audible without full DTS:X rendering</td>
+<td>Supported DTS-HD Master Audio presentation</td>
+<td>Lossless channel presentation</td>
 </tr>
 <tr>
-<td>The audio system renders DTS:X</td>
-<td>Its input path and renderer have accepted the required information</td>
+<td>Full supported DTS:X rendering</td>
+<td>Spatial information used for the immersive output</td>
 </tr>
 </tbody>
 </table>
-<p>The label also needs delivery context. ETSI TS 103 491 specifies <strong>DTS-UHD</strong> for channels, objects, and sound fields in streaming and broadcast applications. Compatibility with a disc-based DTS:X Master Audio track should not be assumed to cover every other DTS:X delivery form.</p>
-<h2 id="what-to-inspect-during-emby-playback">What to inspect during Emby playback</h2>
-<p>The source's channel count can describe its compatible presentation; it need not describe every spatial component. If a client or conversion produces ordinary channel PCM, the original object instructions are not conveyed by those samples alone. Compare the source label with the detected input at the audio system.</p>
-<p>Also distinguish DTS:X content from <strong>DTS Headphone:X</strong>, which is a headphone rendering technology. It can process ordinary stereo or multichannel sources. Hearing spatial processing through headphones does not by itself establish that the selected file contains a DTS:X soundtrack.</p>
+<p>A receiver playing one of the compatible presentations has not necessarily encountered a broken file. It can be reproducing the part it understands. The important change is which information reached the active renderer.</p>
+<h2 id="render-positions-rather-than-count-speakers">Render positions rather than count speakers</h2>
+<p>For a moving effect, spatial metadata describes its intended position through time. The renderer maps that movement onto the supported outputs. A denser supported speaker arrangement offers more physical positions; a smaller arrangement supplies another rendering of the available scene.</p>
+<p>That flexibility does not mean every DTS:X implementation supports every theoretical speaker count. The renderer's supported layouts and delivery form are part of the format route.</p>
+<p>If the player outputs only ordinary channel PCM after decoding, a later device receives a completed channel presentation. It cannot recover the original object instructions merely by recognizing that those samples came from a DTS-family source.</p>
+<h2 id="the-delivery-context-identifies-the-decoder-job">The delivery context identifies the decoder job</h2>
+<p>Disc-based DTS:X Master Audio and <strong>DTS-UHD</strong> should not be treated as interchangeable bitstreams. ETSI TS 103 491 specifies DTS-UHD channel, object, and sound-field delivery for other contexts, including streaming and broadcast.</p>
+<p>A “DTS:X supported” statement needs that context to tell you what source it covers. This is a concrete parsing and rendering distinction: software must understand the encoded presentation before its renderer can use the spatial information.</p>
+<p>For an Emby session, compare the exact selected source and delivered audio with the downstream input. A core-extraction or ordinary channel conversion is a different route from retaining a supported DTS:X presentation.</p>
+<h2 id="headphonex-performs-another-job">Headphone:X performs another job</h2>
+<p><strong>DTS Headphone:X</strong> is headphone spatial rendering. It can use conventional source material as well as spatial presentations. Its output consists of processed ear signals; its name does not establish that the stored file had DTS:X object information.</p>
+<p>Thus a conventional 5.1 input can produce virtual surround over headphones, while a DTS:X source can play as conventional channel audio on a fallback route. Content description, compatible decoding, and final rendering explain these different results.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

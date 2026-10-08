@@ -106,16 +106,53 @@
 <h1>Fragmented MP4</h1>
 
 
-<p>A live presentation cannot wait until its final frame exists before describing the entire movie. <strong>Fragmented MP4</strong>, often shortened to fMP4, solves that packaging problem by describing successive portions of the media as they become available.</p>
-<p>The initial information identifies tracks and codec configuration. Each movie fragment then describes samples associated with its media data.</p>
+<p>A conventional MP4 can describe the samples of a complete movie in tables. <strong>Fragmented MP4</strong> describes newly available groups of samples as the presentation proceeds. A writer can commit each group before the whole recording exists.</p>
 <p><img src="images/fragmented-mp4.svg" alt="An initialization section is followed by repeating movie-fragment and media-data boxes."></p>
-<p><em>Original schematic of a common streaming layout. Optional boxes are omitted; fragments need not have equal durations.</em></p>
-<p>The key boxes are <strong>moof</strong>, the movie-fragment description, and <strong>mdat</strong>, its encoded media. For browser Media Source Extensions, the W3C byte-stream note defines initialization and media-segment rules built on these structures. HLS also defines an fMP4 segment format.</p>
-<h2 id="a-fragment-is-not-automatically-a-standalone-movie">A fragment is not automatically a standalone movie</h2>
-<p>A media fragment can depend on the initialization information for its codec description. Decoding can also depend on earlier pictures unless the fragment begins at a suitable <a href="../../../video/compression/picture-prediction-and-random-access/Video-Keyframes.html">random access point</a>. Copying one downloaded fragment into a new file therefore does not necessarily produce something independently playable.</p>
-<p>Fragmentation describes the internal structure. It does not require one physical file per fragment: a fragmented presentation can be stored in a single file or delivered through separate segments.</p>
-<p>For an Emby playback investigation, distinguish the original library file from the package delivered to the app. A streaming path may use segmented media even when the source is a conventional MP4 or another container. The source extension alone cannot reveal that delivery structure.</p>
-<p>Unlike <a href="MP4-Fast-Start.html">fast start</a>, fragmentation repeatedly supplies sample information. Neither method changes the codec or encoded picture quality. Compatibility still depends on the chosen codecs and the player's support for the particular streaming conventions.</p>
+<p><em>Common conceptual layout. Optional boxes, size differences, and additional fragments are omitted.</em></p>
+<p>Initialization supplies track identities, time scales, and codec setup. Successive <strong>moof</strong> boxes describe movie fragments; accompanying <strong>mdat</strong> boxes hold their encoded media. This divides global track setup from information about the current samples.</p>
+<h2 id="read-three-samples-from-a-fragment">Read three samples from a fragment</h2>
+<p>Take an invented fragment for a video track whose clock uses 30,000 ticks per second. Let its base decode time be 60,000 ticks. Each of three samples lasts 1,000 ticks, and their byte sizes are 800, 500, and 650. For this example there is no picture reordering, so the presentation offsets are zero.</p>
+<p>Assume a 120-byte moof followed by an eight-byte mdat header. A sample run uses a data offset of 128 from the moof's beginning with movie-fragment-relative addressing.</p>
+<table>
+<thead>
+<tr>
+<th>Sample</th>
+<th style="text-align: right;">Decode time</th>
+<th style="text-align: right;">Time in seconds</th>
+<th style="text-align: right;">Byte start relative to moof</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align: right;">60,000</td>
+<td style="text-align: right;">2.0000</td>
+<td style="text-align: right;">128</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align: right;">61,000</td>
+<td style="text-align: right;">2.0333…</td>
+<td style="text-align: right;">928</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align: right;">62,000</td>
+<td style="text-align: right;">2.0666…</td>
+<td style="text-align: right;">1,428</td>
+</tr>
+</tbody>
+</table>
+<p>The reader obtains the time base from initialization, the base decode time from the track fragment, and durations/sizes from the sample run or its declared defaults. Cumulative durations produce the next decode positions; cumulative sizes produce the next byte addresses.</p>
+<p>The three media samples total 1,950 bytes. The fragment ends at relative byte 2,078 in this simplified layout, and its next decode time is 63,000 ticks, or 2.1 seconds. This is concrete work the fragment description performs: it turns one group's bytes into identified, scheduled samples.</p>
+<p>Real fragments can contain multiple tracks and runs, defaults, composition offsets, and additional boxes. The reader follows the applicable fields rather than assuming every fragment uses these invented sizes.</p>
+<h2 id="initialization-and-restart-are-separate-dependencies">Initialization and restart are separate dependencies</h2>
+<p>A media-only segment needs the associated track setup. Even after setup is available, a video sample may predict from an earlier picture. Beginning at a suitable <a href="../../../video/compression/picture-prediction-and-random-access/Video-Keyframes.html">random access point</a> supplies a usable decoding restart; storing a moof in front of arbitrary samples does not itself create one.</p>
+<p>The browser Media Source Extensions byte-stream note defines initialization and media-segment requirements for that path. HLS defines another fMP4 carriage convention. Those requirements build on ISO BMFF rather than describing every possible fragmented file arrangement.</p>
+<h2 id="stored-fragments-and-delivered-segments">Stored fragments and delivered segments</h2>
+<p>Fragments can occupy one physical file or several resources. A streaming playlist can identify separate initialization and media resources; another reader can traverse successive moof/mdat pairs in one file. Fragmentation is the internal description method, while the delivery system chooses how those groups are obtained.</p>
+<p>In an Emby session, the original library file can be read into such an output arrangement. It is the delivered initialization and fragments the app follows, even if the source was MKV or a conventional MP4.</p>
+<p><a href="MP4-Fast-Start.html">Fast start</a> solves another initialization problem by moving one conventional movie description early. Fragmentation instead keeps adding group descriptions as samples become known. That distinction explains its usefulness for ongoing recording and segmented delivery.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

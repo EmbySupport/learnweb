@@ -106,39 +106,44 @@
 <h1>VP8 Video</h1>
 
 
-<p><strong>VP8</strong> is a compressed video format associated with WebM files and web communication. Its coded pictures use 8-bit samples with 4:2:0 color sampling. The audio, timing, and container are separate parts of a complete media file.</p>
-<p>VP8 uses keyframes and pictures predicted from previously reconstructed content. It can retain selected reference pictures for later predictions. Those dependencies reduce repeated information, but a player still needs the relevant reference state to reconstruct a predicted picture.</p>
+<p>A web recording can contain a changing foreground over a mostly stable background. If every new picture used only the immediately preceding one, the best view of an uncovered background region might have disappeared behind the foreground.</p>
+<p><strong>VP8</strong> provides three logical reference roles so its predictor can use more than that immediately preceding view.</p>
 <table>
 <thead>
 <tr>
-<th>Part of a VP8 file</th>
-<th>Role</th>
+<th>Reference role</th>
+<th>Purpose in reconstruction</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>VP8 video stream</td>
-<td>Reconstructs the moving pictures</td>
+<td>Last</td>
+<td>A retained recent reconstructed picture</td>
 </tr>
 <tr>
-<td>Container, often WebM</td>
-<td>Carries streams and timestamps</td>
+<td>Golden</td>
+<td>A picture retained separately for later reuse</td>
 </tr>
 <tr>
-<td>Separate audio track</td>
-<td>Reconstructs the sound</td>
-</tr>
-<tr>
-<td>Keyframes</td>
-<td>Provide restart points for video decoding</td>
+<td>Altref</td>
+<td>An alternate retained picture available for prediction</td>
 </tr>
 </tbody>
 </table>
-<p>RFC 6386 documents the format and decoding process. It is an informational publication, and explicitly makes the supplied reference decoder authoritative where its narrative differs from the code. It should not be described as an IETF Internet Standard.</p>
-<h2 id="a-webm-extension-does-not-identify-the-codec">A WebM extension does not identify the codec</h2>
-<p>A WebM file can contain <a href="Video-Codec-VP9.html">VP9</a> or another permitted video format. VP8 and VP9 need different decoders; support for one is not evidence of support for the other.</p>
-<p>For Emby, inspect the stream information when an older web recording behaves differently across apps. If the video is compatible but its packaging is not, repackaging may preserve the video. When a different video codec is required, the server has to decode and encode it.</p>
-<p>Neither repackaging nor increasing the output bitrate restores fine detail that a lossy VP8 source has already discarded. Keep the source when creating a more convenient playback version.</p>
+<p>These are decoder reference roles, not three independently selectable video tracks.</p>
+<h2 id="retain-a-useful-view">Retain a useful view</h2>
+<p>Suppose a decoded picture shows the whole wall. The encoder can preserve it in a golden reference while later displayed pictures show a person crossing in front of it. When a wall region becomes visible again, a predictor can use the retained wall samples instead of the recently obscured region.</p>
+<p>The bitstream tells the decoder which available reference to select for each relevant block and which motion information locates its samples. A coded residual supplies the changes needed for the current picture.</p>
+<p>VP8 divides picture work into 16 × 16 macroblocks with smaller block operations. Its common reconstructed sample representation is <strong>8-bit 4:2:0</strong>. Integer reconstruction rules, transforms, quantization, and filtering define the result that later prediction will reuse.</p>
+<h2 id="refresh-the-reference-state">Refresh the reference state</h2>
+<p>A decoded frame can replace the last, golden, or alternate reference according to the stream's update instructions. A picture retained as golden need not be replaced just because another picture has been shown.</p>
+<p>A <strong>keyframe</strong> establishes independently reconstructed content and refreshes the relevant reference state. Initially several logical roles can refer to the same newly reconstructed picture. Their later updates create the differing views used for prediction.</p>
+<p>This makes reference updating part of decoding. A picture is not simply forgotten after display; the next blocks may still need its samples.</p>
+<h2 id="decode-a-frame-without-showing-it">Decode a frame without showing it</h2>
+<p>VP8 has a <code>show_frame</code> flag. A coded frame can reconstruct useful reference content while not becoming a displayed picture at that point.</p>
+<p>The decoder still performs its work and can retain the result. Later visible frames can predict from that state. Counting coded frames and counting displayed pictures therefore answer different questions.</p>
+<p>An output timeline is supplied by the surrounding media system. <strong>WebM</strong> is a common wrapper for VP8, carrying timestamps and other tracks. The coded reference operations and the container's scheduling cooperate to produce the recording.</p>
+<p>RFC 6386 documents the format and decoding process as an <strong>informational</strong> publication. It also says the supplied reference decoder takes precedence over conflicting narrative. This is the appropriate specification context when following the technical details.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

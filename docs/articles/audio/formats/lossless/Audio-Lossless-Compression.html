@@ -106,47 +106,83 @@
 <h1>Lossless Audio Compression</h1>
 
 
-<p><strong>Lossless compression changes how audio is stored, not the sample values recovered by decoding.</strong> For supported source data, the decoder reconstructs exactly the values supplied to the encoder.</p>
-<p>Audio samples often have predictable relationships. An encoder can store a prediction and the remaining error more efficiently than a full value for every position. The error is retained completely, so even an imperfect prediction can be reversed.</p>
-<h2 id="a-small-example">A small example</h2>
-<p>Suppose the samples are 100, 104, 107, and 109. Predicting each value from the previous one gives:</p>
+<p>The samples <strong>100, 104, 107, 109</strong> can be stored directly, or described as a starting value followed by differences. Both descriptions contain the same information. Lossless audio compression searches for a description that uses fewer bits without merging distinguishable source values.</p>
+<h2 id="reconstruct-the-differences-exactly">Reconstruct the differences exactly</h2>
 <table>
 <thead>
 <tr>
 <th>Stored item</th>
-<th style="text-align: right;">Value</th>
-<th style="text-align: right;">Reconstructed sample</th>
+<th>Decoder operation</th>
+<th style="text-align: right;">Restored sample</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Starting sample</td>
-<td style="text-align: right;">100</td>
+<td>Starting sample: 100</td>
+<td>Retain 100</td>
 <td style="text-align: right;">100</td>
 </tr>
 <tr>
-<td>Difference</td>
-<td style="text-align: right;">+4</td>
+<td>Difference: +4</td>
+<td>100 + 4</td>
 <td style="text-align: right;">104</td>
 </tr>
 <tr>
-<td>Difference</td>
-<td style="text-align: right;">+3</td>
+<td>Difference: +3</td>
+<td>104 + 3</td>
 <td style="text-align: right;">107</td>
 </tr>
 <tr>
-<td>Difference</td>
-<td style="text-align: right;">+2</td>
+<td>Difference: +2</td>
+<td>107 + 2</td>
 <td style="text-align: right;">109</td>
 </tr>
 </tbody>
 </table>
-<p>This is an illustration, not the complete algorithm of a particular codec. Real encoders use more sophisticated predictions and efficient integer coding.</p>
-<h2 id="what-exact-applies-to">What “exact” applies to</h2>
-<p>Converting the same supported PCM samples between <a href="FLAC.html">FLAC</a> and <a href="ALAC.html">ALAC</a> can preserve the audio. Tags, artwork, container headers, and file bytes may nevertheless change. Compare decoded samples when checking audio equality, rather than expecting the two files to have identical checksums.</p>
-<p>A compression setting normally trades encoding effort against file size. It does not make a lossless decoder restore a better or worse version of the samples.</p>
-<p>There are also two limits to the promise. A lossless copy of decoded MP3 audio cannot recover the pre-MP3 source. And a lossless file played through resampling, downmixing, or volume processing need not reach the output unchanged.</p>
-<p>In Emby, <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">delivery conversion</a> and the client's output are therefore worth checking separately from whether the stored codec is lossless.</p>
+<p>The decoder needs both the prediction rule and its initial values. It then follows the same arithmetic as the encoder. Even when the prediction is poor, keeping the entire difference allows exact reconstruction.</p>
+<p>A better predictor can make the remaining numbers smaller. Suppose the rule predicts the next sample as twice the preceding sample minus the one before it. Start with 100 and 104:</p>
+<ul>
+<li>Prediction for the third sample: 2 × 104 − 100 = 108. Store the residual −1 to restore 107.</li>
+<li>Prediction for the fourth: 2 × 107 − 104 = 110. Store another −1 to restore 109.</li>
+</ul>
+<p>These are illustrative predictors, not a complete implementation of a particular codec.</p>
+<h2 id="smaller-numbers-are-useful-only-if-they-are-coded-efficiently">Smaller numbers are useful only if they are coded efficiently</h2>
+<p>A residual array alone is not compressed merely because its numbers are smaller. The next step assigns compact bit representations to likely residual values and sufficient representations to larger ones.</p>
+<p>The encoder also stores the predictor description, initial samples, and framing. If an elaborate predictor saves too few bits to repay its description, a simpler one is better. A nearly unpredictable or already noisy passage may compress less efficiently; a format can use a direct representation where that is appropriate.</p>
+<p>This accounts for variable lossless bitrate: different source passages have different redundancy. The encoder is changing the size of a reversible description, not the accuracy of the reconstruction.</p>
+<h2 id="compression-levels-change-the-search">Compression levels change the search</h2>
+<p>A stronger compression preset can spend more effort finding predictors, partitions, or coding parameters. If two valid lossless encodes preserve the same supported input samples, decoding either returns those samples. Their different file sizes are a measure of representation efficiency.</p>
+<p>Decoding cost and random-access structure also matter. A music archive and a constrained player can prefer different compromises among size, encoding time, and reading requirements without choosing different audio fidelity.</p>
+<h2 id="decide-which-equality-to-verify">Decide which equality to verify</h2>
+<p>Two files using different lossless codecs cannot have identical compressed bytes. Their decoded audio can nevertheless be identical when sample representation, order, rate, and count are preserved.</p>
+<table>
+<thead>
+<tr>
+<th>Comparison</th>
+<th>Question answered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Whole-file checksum</td>
+<td>Are these exact files unchanged?</td>
+</tr>
+<tr>
+<td>Decoded sample comparison</td>
+<td>Do they represent the same audio values?</td>
+</tr>
+<tr>
+<td>Metadata comparison</td>
+<td>Did tags, artwork, and other descriptions survive?</td>
+</tr>
+<tr>
+<td>Actual output-path check</td>
+<td>Did playback later alter the decoded presentation?</td>
+</tr>
+</tbody>
+</table>
+<p>A lossless encode preserves <strong>its input</strong>. If that input was an MP3 reconstruction, the restored samples match that reconstruction, not an unavailable earlier master.</p>
+<p>Likewise, an Emby session can decode a lossless source exactly and then downmix or resample it. The source-codec promise has been fulfilled at decoding; preservation beyond that point is a separate question about the subsequent operations.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

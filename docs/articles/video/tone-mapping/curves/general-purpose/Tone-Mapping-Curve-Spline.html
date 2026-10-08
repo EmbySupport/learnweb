@@ -106,15 +106,43 @@
 <h1>Tone Mapping Curve: Spline</h1>
 
 
-<p>A spline is built from curve segments that meet smoothly. In libplacebo's tone mapper, two polynomial segments join at one pivot. That gives the mapper a way to shape the darker and brighter parts of the picture while keeping the transition continuous.</p>
-<p><img src="images/tone-mapping-curve-spline.png" alt="Calculated libplacebo spline brightness curve from 1,000 nits to 100 nits."></p>
-<p><em>libplacebo 7.360.1, default constants, zero black levels, 1,000-nit input peak and 100-nit output peak. Scene-average brightness is unspecified. This is the brightness function, not a complete color conversion.</em></p>
-<p>The plot is one member of a family, rather than the single shape that the word <strong>spline</strong> always means. With different source, target, or scene information, the pivot and the resulting curve can change.</p>
-<h2 id="what-the-pivot-does">What the pivot does</h2>
-<p>Think of the pivot as a point the two pieces agree to pass through. Changing its input position affects where the picture starts giving up more brightness separation. Changing its output position changes how bright that part of the scene becomes.</p>
-<p>The contrast control adjusts the slope around that region. Making a section steeper preserves more contrast there, but leaves less room elsewhere. It cannot create additional output range.</p>
-<p>This explains why an adaptive spline may behave differently on a dim interior and a bright exterior even when the selected curve name stays the same. <a href="../../color-and-luminance/Tone-Mapping-Scene-Adaptive.html">Scene-adaptive tone mapping</a> provides the changing information; the spline provides a shape that can respond to it.</p>
-<p>For an Emby playback comparison, keep the playback path and scene fixed before judging the setting. The <a class="xref" href="https://emby.media/support/articles/apps/windows/Emby-Windows-FAQ.html">Windows app's rendering stage</a> can perform tone mapping independently of server delivery. A server transcode and local player rendering are not automatically using the same spline or parameters.</p>
+<p>A spline lets the mapper shape two parts of a brightness relationship around a selected pivot. In the plotted libplacebo implementation, a quadratic lower segment and a cubic upper segment meet with the same value and slope.</p>
+<p><img src="images/tone-mapping-curve-spline.png" alt="Calculated libplacebo spline mapping from a 1,000-nit source to a 100-nit target."></p>
+<p><em>libplacebo 7.360.1 defaults, zero black, 1,000-nit input peak, 100-nit output peak, and no scene-average value. The function operates in PQ coordinates; the axes show light levels.</em></p>
+<h2 id="what-is-fixed-and-what-can-move">What is fixed and what can move?</h2>
+<p>The source and target endpoints set the range to fit. The pivot sets an input/output pair inside that range. A contrast control adjusts the slope at the pivot, while the polynomial coefficients make both segments meet their remaining constraints.</p>
+<p>Changing the pivot's output moves that part of the scene to another brightness. Changing its input moves where the two pieces meet. Changing the slope alters nearby contrast. These are different controls over the shape, even when its endpoints remain unchanged.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Input light</th>
+<th style="text-align: right;">Output in the displayed example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">10 nits</td>
+<td style="text-align: right;">About 5.98 nits</td>
+</tr>
+<tr>
+<td style="text-align: right;">100 nits</td>
+<td style="text-align: right;">About 36.16 nits</td>
+</tr>
+<tr>
+<td style="text-align: right;">500 nits</td>
+<td style="text-align: right;">About 76.78 nits</td>
+</tr>
+<tr>
+<td style="text-align: right;">1,000 nits</td>
+<td style="text-align: right;">100 nits</td>
+</tr>
+</tbody>
+</table>
+<p>The function distributes much of the available output below the highest input. A 500-nit difference from 500 to 1,000 nits becomes about 23.22 nits. Those values belong to the stated default selection, not to every spline.</p>
+<h2 id="feed-the-pivot-meaningful-information">Feed the pivot meaningful information</h2>
+<p>The library can select its pivot using range and scene-brightness information. A dim interior and a bright exterior can consequently receive different curves. With scene average absent, a defined fallback selection still produces a curve, as in the figure.</p>
+<p><a href="../../color-and-luminance/Tone-Mapping-Scene-Adaptive.html">Scene adaptation</a> provides and stabilizes changing information; the spline provides a form that responds to it. The mathematical join itself addresses spatial value continuity, while temporal stability depends on how its parameters change between pictures.</p>
+<p>For an Emby comparison, identify the actual mapper and its source/target inputs. The <a class="xref" href="https://emby.media/support/articles/apps/windows/Emby-Windows-FAQ.html">Windows rendering path</a> is one place where presentation can adapt the picture. The graph here explains the spline's selected brightness function within such a path.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

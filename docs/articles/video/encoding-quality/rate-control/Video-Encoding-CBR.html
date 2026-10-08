@@ -106,40 +106,26 @@
 <h1>Constant Bitrate Video Encoding</h1>
 
 
-<p><strong>Constant bitrate (CBR)</strong> encoding tries to keep coded output near a specified data rate under the encoder's buffering rules. It is useful when predictable delivery demand is more important than allowing complex scenes an unrestricted amount of extra data.</p>
-<p>“Constant” does not mean every picture has the same byte count. A keyframe can be much larger than a predicted picture, and the buffer allows that variation while maintaining the required delivery behavior. Some strict CBR implementations can add filler or padding.</p>
-<p><img src="images/encoding-rate-example.png" alt="Constructed CBR and VBR rates for eight one-second intervals share a 4 Mb/s average, but only the CBR example has equal interval totals."></p>
-<p><em>Illustrative interval totals, not output from an encoder. Both examples contain 32 megabits over eight seconds. Actual CBR control is governed by its buffer model and need not produce identical one-second totals.</em></p>
-<h2 id="the-compromise-moves-into-the-picture">The compromise moves into the picture</h2>
-<p>If a fixed budget must cover both an easy scene and a difficult one, the encoder has less freedom to preserve the difficult scene. It can increase quantization or choose other coding compromises to meet the rate.</p>
-<table>
-<thead>
-<tr>
-<th>CBR controls</th>
-<th>CBR does not guarantee</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>A target delivery rate</td>
-<td>Equal bytes in every frame</td>
-</tr>
-<tr>
-<td>Rate behavior within a buffer model</td>
-<td>Uniform visible quality</td>
-</tr>
-<tr>
-<td>Predictability for a constrained channel</td>
-<td>Constant speed of network downloads</td>
-</tr>
-<tr>
-<td>The encoded output budget</td>
-<td>Recovery of detail missing from the source</td>
-</tr>
-</tbody>
-</table>
-<p>In Emby, do not diagnose rate control solely from a fluctuating transfer-speed graph. Players can request or receive data in bursts even when the encoded stream was made with CBR.</p>
-<p>When evaluating a converted stream, inspect its encoder settings and <a href="Video-Encoding-VBV.html">buffer constraints</a>. A file's overall average being close to a round number is not enough to identify its rate-control method.</p>
+<p>A channel supplying <strong>4 Mb/s</strong> can deliver four million bits in one second. <strong>Constant bitrate (CBR)</strong> encoding controls the video around a selected rate and its buffering requirements so that delivery can be planned predictably.</p>
+<p>Pictures still require different amounts of data. A keyframe may establish an entire scene; a predicted picture may mainly describe what changed.</p>
+<h2 id="supply-a-large-picture-over-time">Supply a large picture over time</h2>
+<p>Suppose one coded picture contains <strong>one megabit</strong>. At 4 Mb/s, supplying it takes:</p>
+<p><strong>1,000,000 ÷4,000,000 =0.25 second.</strong></p>
+<p>A 30 fps presentation interval is only 33.33 ms. The complete picture therefore cannot be expected to arrive from an empty buffer solely during its own display interval. Its data must have been supplied ahead of its decoding deadline.</p>
+<p>Smaller surrounding pictures leave more opportunity to build that buffered supply. The model limits both data rate and how much data can be retained. <a href="Video-Encoding-VBV.html">VBV</a> follows the occupancy calculation in detail.</p>
+<p><img src="images/encoding-rate-example.png" alt="Constructed CBR and VBR interval totals share a 4 Mb/s average."></p>
+<p><em>The blue series uses equal one-second totals as a simple illustration. Actual CBR control need not make every one-second bucket or individual frame identical. Both plotted allocations contain 32 megabits over eight seconds.</em></p>
+<h2 id="rate-control-changes-the-picture-description">Rate control changes the picture description</h2>
+<p>The encoder estimates how many bits a candidate picture description will need. As the available budget tightens, it can increase quantization strength or choose a less expensive coding representation. After encoding, the actual number of produced bits updates its rate-control state.</p>
+<p>If a difficult scene needs more data than the permitted model allows, that feedback must affect the representation. Fine texture can be simplified or reconstructed less precisely. Easy scenes can meet the same delivery requirements with smaller corrections.</p>
+<p>This is why CBR places predictability in the data path while allowing picture fidelity to change with the source. It does not assign an equal-quality amount of data to every scene.</p>
+<h2 id="strict-output-can-include-filler">Strict output can include filler</h2>
+<p>An easy section may not need all the channel's allowed data to reach the intended coding result. Some implementations offer filler or padding to keep strict coded output at the required rate.</p>
+<p>NVIDIA's NVENC API explicitly documents filler/padding controls for that purpose. Their presence is an implementation and mode choice, rather than a requirement that all encoders calling a mode “CBR” produce identical bytes every instant.</p>
+<p>Filler occupies data capacity without adding new photographed picture information. Counting it as part of encoded traffic and evaluating picture payload alone are different measurements.</p>
+<h2 id="coded-rate-and-transfer-speed-are-separate-observations">Coded rate and transfer speed are separate observations</h2>
+<p>An Emby player can fetch data faster than it consumes it, then pause requests while buffered video plays. Its network graph can show bursts even when the video was encoded under CBR constraints.</p>
+<p>To interpret the result, use the coded stream's data across media time, its rate-control settings and relevant buffer model. Network arrival across wall-clock time describes how that representation was transported. The buffer bridges those two schedules.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

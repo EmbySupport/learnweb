@@ -106,39 +106,47 @@
 <h1>Codec Identifiers and FourCC</h1>
 
 
-<p>A media report may describe a video codec as HEVC while showing a codec ID of <code>hvc1</code>. Those fields are related, but they are not interchangeable.</p>
-<p>The readable codec name identifies the coding system. The container's identifier tells its reader which track representation it has encountered, sometimes including important packaging requirements.</p>
+<p>A report can show <strong>HEVC</strong> as the codec name and <strong>hvc1</strong> as its codec ID. The first names the compression system. The second identifies a particular representation of that system inside the container.</p>
+<p>The reader uses this identifier to choose the correct mapping: which configuration record to parse, how encoded units are delimited, and which placement conventions apply. It is more like a parser's dispatch key than a marketing name.</p>
 <table>
 <thead>
 <tr>
-<th>Where the identifier appears</th>
+<th>Container field</th>
 <th>Example</th>
-<th>Meaning</th>
+<th>Reader interpretation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>MP4 sample entry</td>
-<td><code>avc1</code></td>
-<td>An AVC video sample-entry type</td>
+<td>MP4 sample-entry type</td>
+<td>avc1</td>
+<td>AVC samples with the corresponding configuration and storage convention</td>
 </tr>
 <tr>
-<td>MP4 sample entry</td>
-<td><code>hvc1</code> or <code>hev1</code></td>
-<td>HEVC types with different parameter-set placement rules</td>
+<td>MP4 sample-entry type</td>
+<td>hvc1 or hev1</td>
+<td>HEVC samples with different parameter-set carriage rules</td>
 </tr>
 <tr>
 <td>Matroska CodecID</td>
-<td><code>V_MPEG4/ISO/AVC</code></td>
-<td>Matroska's mapping for AVC video</td>
+<td>V_MPEG4/ISO/AVC</td>
+<td>Matroska's defined mapping for AVC</td>
+</tr>
+<tr>
+<td>AVI video identifier</td>
+<td>A FourCC such as XVID</td>
+<td>A registered or implemented compressed-video representation</td>
 </tr>
 </tbody>
 </table>
-<p>A <strong>FourCC</strong> is a four-character code. It appears in several media systems, but not every codec identifier is four characters long, as the Matroska example shows.</p>
-<h2 id="why-changing-a-tag-can-be-misleading">Why changing a tag can be misleading</h2>
-<p>The distinction between <code>hvc1</code> and <code>hev1</code> includes where HEVC parameter sets are permitted. Replacing one label with another is only valid if the track meets the target label's requirements.</p>
-<p>A decoder also needs details beyond a short identifier: <a href="../../video/compression/Video-Codec-Profiles.html">profile</a>, <a href="../../video/compression/Video-Codec-Levels-Tiers.html">level</a>, dimensions, bit depth, and codec configuration can affect compatibility. A familiar code does not prove that every stream bearing it fits a device's capabilities.</p>
-<p>When troubleshooting through Emby, include the codec name and codec ID in the media report if packaging seems relevant. An incorrect or unusual tag can explain disagreement between players, but retagging blindly can conceal the actual problem rather than repair the stream.</p>
+<p><strong>FourCC</strong> means four-character code. Spaces and case can form part of the literal value. MP4 uses four-character sample-entry types, while the Matroska example is a longer string. An inspection tool's friendly display name can conceal that distinction, so retain the literal identifier when reporting a parsing problem.</p>
+<h2 id="follow-the-hevc-setup-information">Follow the HEVC setup information</h2>
+<p>An HEVC decoder needs parameter sets describing the sequence and pictures: <strong>VPS</strong>, <strong>SPS</strong>, and <strong>PPS</strong>. Encoded slices refer to that setup information. The container mapping establishes where the reader obtains it.</p>
+<p>For hvc1, the parameter sets must be supplied through the sample entry's HEVC configuration; they are not carried as in-band parameter-set units in samples. The hev1 representation permits parameter sets in samples as well as the configuration record. A reader expecting one arrangement can consequently behave differently with the other, although both tracks report HEVC.</p>
+<p>Retagging hev1 as hvc1 is therefore an assertion about the stream's organization. A correct conversion checks the configuration and sample contents and satisfies the new convention. Editing four characters alone does not move setup information out of samples or ensure that all required parameter sets are available in the configuration record.</p>
+<h2 id="from-identifier-to-decoder-requirements">From identifier to decoder requirements</h2>
+<p>After identifying the mapping, the reader can expose dimensions, <a href="../../video/compression/Video-Codec-Profiles.html">profile</a>, <a href="../../video/compression/Video-Codec-Levels-Tiers.html">level</a>, bit depth, and other configuration to a decoder. That is the next stage of interpretation. The identifier routes the track to a coding family; the configuration describes the actual demands within that family.</p>
+<p>This is useful in an Emby case where two HEVC files with apparently matching dimensions take different paths. Include the literal codec ID and setup properties in the comparison. It separates a packaging convention from a difference in decoded sample format or decoder resource requirements.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -164,6 +172,7 @@
 			            <li><a class="seealso-link" href="https://mp4ra.org/registered-types/codecs" title="MP4 Registration Authority: codec sample-entry codes">MP4 Registration Authority: codec sample-entry codes</a></li>
 			            <li><a class="seealso-link" href="https://www.matroska.org/technical/codec_specs.html" title="Matroska codec mappings">Matroska codec mappings</a></li>
 			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/medfound/video-fourccs" title="Microsoft: video FOURCC identifiers">Microsoft: video FOURCC identifiers</a></li>
+			            <li><a class="seealso-link" href="https://www.iso.org/standard/89118.html" title="ISO/IEC 14496-15:2024: NAL-structured video carriage in ISO BMFF">ISO/IEC 14496-15:2024: NAL-structured video carriage in ISO BMFF</a></li>
 			          </ul>
             </article>
           </div>

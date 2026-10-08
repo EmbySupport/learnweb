@@ -106,39 +106,50 @@
 <h1>MPEG-2 Video</h1>
 
 
-<p><strong>MPEG-2 Video</strong> is the picture-compression format standardized as ITU-T H.262 and ISO/IEC 13818-2. It appears in many older disc transfers and television recordings.</p>
-<p>The name “MPEG-2” can also refer to the broader standards family. In a file's media information, distinguish the video codec from an MPEG systems container: a transport stream can carry codecs other than MPEG-2 Video.</p>
+<p>An older television recording or disc-derived film often carries <strong>MPEG-2 Video</strong>, standardized as ITU-T H.262 and ISO/IEC 13818-2. Its compressed track describes how to build pictures; a transport or program stream supplies the packaging around that track.</p>
+<p>To understand the format, follow one of its coded pictures.</p>
+<h2 id="read-the-sequence-and-picture-information">Read the sequence and picture information</h2>
+<p>Sequence information establishes the picture grid and relevant timing/format parameters. Picture information identifies the coding type and applicable reconstruction choices.</p>
+<p>In common 8-bit 4:2:0 material, a macroblock covers a <strong>16 × 16 brightness region</strong>. Its brightness corrections are represented in four <strong>8 × 8 blocks</strong>, with corresponding color-difference blocks.</p>
+<p>The encoder uses a <strong>discrete cosine transform (DCT)</strong> to represent correction patterns as coefficients. Quantization reduces their precision. The decoder reconstructs those coefficients, applies the inverse transform, and adds the correction to the picture's predictor.</p>
+<p>The block representation explains familiar low-bitrate artifacts: lost fine patterns or disagreeing coded regions can reveal softened texture and block-shaped boundaries.</p>
+<h2 id="follow-the-i-p-and-b-pictures">Follow the I, P, and B pictures</h2>
+<p>An <strong>I-picture</strong> reconstructs its picture content without a temporal sample reference. A <strong>P-picture</strong> can predict from an available anchor and encode what changed. A <strong>B-picture</strong> can use the permitted prediction from surrounding anchors, which have to be decoded first.</p>
+<p>For a visible sequence <strong>I0, B1, B2, P3</strong>, the decoder can reconstruct I0 and P3 before B1 and B2. It then shows them in their original viewing order.</p>
+<p>MPEG-2's I/P anchor structure differs from modern structures that can use B-pictures as references. The <a href="../../compression/picture-prediction-and-random-access/Video-GOP.html">GOP explanation</a> gives the general dependency trace; the specific codec's rules determine the legal graph.</p>
+<p>An entry at a GOP boundary also needs appropriate access handling if picture dependencies extend across it.</p>
+<h2 id="interpret-a-broadcast-pictures-time">Interpret a broadcast picture's time</h2>
+<p>MPEG-2 can represent progressive and interlaced material. A reported <strong>25 fps</strong> recording can mean 25 field pairs containing <strong>50 native field times/s</strong>, rather than 25 complete progressive camera moments.</p>
+<p>Its picture and sequence signaling guide field presentation. Film transfers can instead use repeated-field timing to place a progressive source on a television cadence. The reconstruction task is then <a href="../../frame-timing/interlacing-and-cadence/Inverse-Telecine.html">cadence recovery</a>, while native interlaced movement calls for <a href="../../frame-timing/interlacing-and-cadence/Deinterlacing.html">deinterlacing</a> if the output is progressive.</p>
+<p>These differences matter when creating a new playback version: preserving a film's picture sequence and preserving a sport recording's field movement are different jobs.</p>
+<h2 id="identify-the-surrounding-names">Identify the surrounding names</h2>
 <table>
 <thead>
 <tr>
-<th>Name in a media discussion</th>
-<th>What it describes</th>
+<th>Name</th>
+<th>Place in the recording</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>MPEG-2 Video / H.262</td>
-<td>Compression of the moving pictures</td>
-</tr>
-<tr>
-<td>MPEG Program Stream</td>
-<td>A container combining streams</td>
+<td>Picture compression</td>
 </tr>
 <tr>
 <td>MPEG Transport Stream</td>
-<td>A packet-based container</td>
+<td>Packetized carriage of the video and other streams</td>
+</tr>
+<tr>
+<td>MPEG Program Stream</td>
+<td>Another systems packaging form</td>
 </tr>
 <tr>
 <td>MPEG Audio</td>
-<td>A separate family of audio coding formats</td>
+<td>Separate soundtrack coding</td>
 </tr>
 </tbody>
 </table>
-<p>MPEG-2 Video uses independently coded pictures and pictures predicted from others. Its <a href="../../compression/picture-prediction-and-random-access/Video-GOP.html">groups of pictures</a> affect random access and the amount of preceding video needed to reconstruct a chosen point. That explains why seeking is more involved than reading a single image.</p>
-<h2 id="preserve-the-recordings-timing">Preserve the recording's timing</h2>
-<p>MPEG-2 Video can carry progressive or interlaced material. Converting a television recording is not just a decision about its codec: <a href="../../frame-timing/interlacing-and-cadence/Interlaced-Video.html">field timing</a>, aspect ratio, and source cadence also matter. A careless conversion can discard motion detail or stretch the picture even when the new file is smaller.</p>
-<p>In Emby, an app with a suitable MPEG-2 decoder may play the source directly; another playback path may need video transcoding. Inspect the session's reason before assuming the format is damaged.</p>
-<p>Converting to H.264 or HEVC can make a derivative easier to deliver, but it cannot recreate detail the MPEG-2 source already discarded. The original recording remains the best reference when checking a conversion.</p>
+<p>A TS file can carry video codecs other than MPEG-2, and a MPEG-2 picture track can be carried in other supported packaging.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

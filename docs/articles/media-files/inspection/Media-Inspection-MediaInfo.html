@@ -106,44 +106,49 @@
 <h1>Media Stream Inspection with MediaInfo</h1>
 
 
-<p>MediaInfo is useful when “this file will not play” needs to become a more precise description. Open the file and use a detailed view, such as <strong>Tree</strong> or <strong>Text</strong>, to see the container and each media track separately.</p>
-<p>Read the report from the outside inward:</p>
+<p>An Emby playback question often starts with “this is a 4K MKV.” <strong>MediaInfo</strong> can turn that shorthand into a description of what the file actually asks a reader and decoder to handle.</p>
+<p>Use a detailed presentation such as Tree or Text, then read from the outside inward. The General section describes the package; each Video, Audio, or Text section describes a component inside it.</p>
 <table>
 <thead>
 <tr>
-<th>Report section</th>
-<th>Useful questions</th>
+<th>Section</th>
+<th>Details to retain for a playback comparison</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>General</td>
-<td>Which container is it, how long is it, and what is the overall bitrate?</td>
+<td>Format, duration, file size, and overall rate</td>
 </tr>
 <tr>
 <td>Video</td>
-<td>Which codec, profile, dimensions, bit depth, and color signaling are present?</td>
+<td>Codec, profile, dimensions, sample format, and color information</td>
 </tr>
 <tr>
-<td>Audio</td>
-<td>Which codec, language, channel arrangement, and sample rate belong to each track?</td>
+<td>Each Audio</td>
+<td>Codec, channels, sample rate, language, and title</td>
 </tr>
 <tr>
-<td>Text</td>
-<td>Which subtitle format and language does each track use?</td>
+<td>Each Text</td>
+<td>Subtitle format, language, and selection information</td>
 </tr>
 <tr>
-<td>Menu, when present</td>
-<td>Which chapters or navigation entries were detected?</td>
+<td>Menu, where detected</td>
+<td>Chapter or navigation positions</td>
 </tr>
 </tbody>
 </table>
-<p>Field availability depends on the file and the version of the tool.</p>
-<h2 id="bring-the-right-details-to-a-playback-question">Bring the right details to a playback question</h2>
-<p>For Emby troubleshooting, a text report is more useful than a screenshot showing only the extension and resolution. Keep the sections for the selected audio and subtitle tracks, because another track can change the playback requirements.</p>
-<p>MediaInfo's <strong>Format</strong> and <strong>Codec ID</strong> fields serve different purposes. “HEVC” names a coding system; <code>hvc1</code> identifies a particular container representation. <a href="../container-structure/Media-Codec-Identifiers.html">Both can matter</a> when players disagree about compatibility.</p>
-<p>Color and <a href="../../video/hdr/metadata-and-light-levels/HDR-Metadata.html">HDR metadata</a> fields describe information detected in the source. They do not show the display's active output mode or prove that the entire playback route preserved that information.</p>
-<p>MediaInfo is an inspector, not a decoder test or repair tool. If a film fails at one scene, a normal-looking summary does not rule out damage there. Include the failing time and playback method alongside the report, and use <a href="Media-Inspection-ffprobe.html">ffprobe</a> when packet or timing details are needed.</p>
+<h2 id="read-two-fields-together">Read two fields together</h2>
+<p>Imagine the video section says Format: HEVC and Codec ID: hvc1. HEVC names the compression system, while hvc1 identifies the <a href="../container-structure/Media-Codec-Identifiers.html">container representation</a>. They describe different layers of one track.</p>
+<p>Now add Main 10 and 3840 × 2160. That suggests a 10-bit-capable HEVC profile and a particular raster, but leaves frame rate, level, precise sample format, and the receiving decoder path to examine. Rather than collecting one label, build the complete description that explains a difference between files.</p>
+<p>A second file with the same General format can have a different video profile, a different soundtrack, or different subtitles. The section boundaries keep those differences visible.</p>
+<h2 id="choose-the-component-that-actually-played">Choose the component that actually played</h2>
+<p>If the source contains English surround audio and English stereo commentary, retain both descriptions and identify the session's selection. A report for the unselected surround track cannot explain the processing of the commentary track.</p>
+<p>The same principle applies to subtitles. Their format can change rendering or conversion work even when the video is identical. Keeping the relevant sections in a text report is more useful than a screenshot of only resolution and filename.</p>
+<p><a href="../../video/hdr/metadata-and-light-levels/HDR-Metadata.html">HDR fields</a> describe the source information that MediaInfo detected. The display's current output mode is measured elsewhere. In a comparison between direct and converted playback, first establish the source's signaling, then obtain evidence about the delivered output and display.</p>
+<h2 id="understand-the-reports-scope">Understand the report's scope</h2>
+<p>MediaInfo can show declared values, calculated values, or information derived by analyzing media. Different field names, rounding, or analysis versions can explain some disagreements with another inspector. The report is also not an exhaustive decode of the entire file.</p>
+<p>For a repeatable failure at a scene, retain the report as the source description and add the failing position and selected playback route. <a href="Media-Inspection-ffprobe.html">Packet or frame inspection</a> can then examine the particular timing or decoding question that the summary cannot answer.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

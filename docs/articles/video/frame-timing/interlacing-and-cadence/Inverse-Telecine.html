@@ -106,37 +106,108 @@
 <h1>Inverse Telecine</h1>
 
 
-<p><strong>Inverse telecine (IVTC)</strong> recovers progressive film pictures from a <a href="Telecine-Pulldown.html">telecined</a> sequence. When a clean 3:2 cadence is present, it can turn a 29.97-frame-pair/s transfer back into the original 23.976 progressive pictures per second without changing the programme's duration.</p>
-<p>There are usually two jobs: join the fields that belong to the same film picture, then remove the redundant reconstructed picture in each five-picture cycle.</p>
+<p>A film transfer can store five television field pairs for every four original film pictures. <strong>Inverse telecine (IVTC)</strong> recovers those original pictures and removes the redundant presentation created by <a href="Telecine-Pulldown.html">pulldown</a>.</p>
+<p>The recovery has two distinct operations: <strong>field matching</strong> reconstructs complete pictures; <strong>decimation</strong> removes duplicate presentations. Keeping them separate makes the process understandable.</p>
+<h2 id="start-with-the-stored-cycle">Start with the stored cycle</h2>
+<p>Use the two-field-phase sequence from the telecine example:</p>
 <table>
 <thead>
 <tr>
-<th>Stage in an illustrative cycle</th>
-<th>Pictures or field pairs</th>
+<th>Pair</th>
+<th>Top field</th>
+<th>Bottom field</th>
+<th>Woven result</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Stored telecined pairs</td>
-<td>AA, BB, BC, CD, DD</td>
+<td>0</td>
+<td>A, field 0</td>
+<td>A, field 1</td>
+<td>A</td>
 </tr>
 <tr>
-<td>Field matching using a suitable phase</td>
-<td>A, B, C, D, D</td>
+<td>1</td>
+<td>B, field 2</td>
+<td>B, field 3</td>
+<td>B</td>
 </tr>
 <tr>
-<td>Duplicate removal</td>
-<td>A, B, C, D</td>
+<td>2</td>
+<td>B, field 4</td>
+<td>C, field 5</td>
+<td>Mixed B/C</td>
+</tr>
+<tr>
+<td>3</td>
+<td>C, field 6</td>
+<td>D, field 7</td>
+<td>Mixed C/D</td>
+</tr>
+<tr>
+<td>4</td>
+<td>D, field 8</td>
+<td>D, field 9</td>
+<td>D</td>
 </tr>
 </tbody>
 </table>
-<p><em>Letters identify original film pictures. The matching phase can produce a different duplicate position while recovering the same four pictures.</em></p>
-<h2 id="recovery-differs-from-interpolation">Recovery differs from interpolation</h2>
-<p>When the fields match correctly, IVTC can reuse the original picture lines rather than estimating missing ones. That is an advantage over ordinary <a href="Deinterlacing.html">deinterlacing</a> for a film transfer. The final encoding may still be lossy if the reconstructed pictures are compressed again.</p>
-<p>FFmpeg separates field matching from duplicate removal with filters such as fieldmatch and decimate. This also allows a deinterlacing fallback for portions that do not match cleanly. That implementation is an example, rather than a promise about the processing used in every Emby session.</p>
-<p>For a film in an Emby library, look for a regular repetition pattern and combed pairs before deciding that IVTC is appropriate. A generic 29.97 fps label is insufficient. Edits can interrupt the cadence, and an episode can combine film footage, video-shot inserts, and animated captions.</p>
-<p>Dropping every fifth picture without first matching fields can discard needed lines or leave combing. Applying the same operation to native interlaced video removes genuinely different capture times.</p>
-<p>A successful restoration should retain the programme's timing and audio synchronization, show complete pictures in moving scenes, and avoid introducing a repeated hitch at cadence changes.</p>
+<p>The mixed pairs have enough data in their neighborhood to recover film pictures, but their own top and bottom fields do not belong together.</p>
+<h2 id="match-rows-from-the-same-film-picture">Match rows from the same film picture</h2>
+<p>A suitable matching phase can construct:</p>
+<table>
+<thead>
+<tr>
+<th>Reconstructed picture</th>
+<th>Fields selected</th>
+<th>Why they match</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Top 0 + bottom 1</td>
+<td>Both came from A</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Top 2 + bottom 3</td>
+<td>Both came from B</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Top 6 + bottom 5</td>
+<td>Both came from C, across a pair boundary</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Top 8 + bottom 7</td>
+<td>Both came from D, across a pair boundary</td>
+</tr>
+<tr>
+<td>D again</td>
+<td>Top 8 + bottom 9</td>
+<td>Another presentation of D</td>
+</tr>
+</tbody>
+</table>
+<p>The candidate result is <strong>A, B, C, D, D</strong>. Another matching phase can put the duplicate elsewhere. The desired result is the same four source pictures.</p>
+<p>This is reconstruction from existing rows. Ordinary <a href="Deinterlacing.html">deinterlacing</a> would instead estimate rows missing at a selected field time. For this clean film sequence, matching can retain the source picture's line detail because both row sets actually exist.</p>
+<p>In real compressed transfers, repeated fields can differ slightly after encoding or processing. Duplicate detection may therefore use similarity measurements rather than expecting identical file bytes or perfect pixel checksums.</p>
+<h2 id="remove-redundancy-and-rebuild-the-timeline">Remove redundancy and rebuild the timeline</h2>
+<p>Drop the redundant D, leaving <strong>A, B, C, D</strong>.</p>
+<p>At 30000/1001 frame pairs/s, the five-pair cycle lasts:</p>
+<p><strong>5 × 1001/30000 = 0.166833… seconds.</strong></p>
+<p>At 24000/1001 progressive pictures/s, four pictures last:</p>
+<p><strong>4 × 1001/24000 = 0.166833… seconds.</strong></p>
+<p>The picture count falls, but the programme's duration stays the same. Each recovered picture is now assigned its proper film duration instead of retaining the five-slot television schedule. Audio can remain on the original programme timeline.</p>
+<p>The operation is therefore more than deleting every fifth frame. Matching fixes the picture content; appropriate timestamps fix its presentation.</p>
+<h2 id="what-an-edit-changes">What an edit changes</h2>
+<p>An edit can begin a new cadence phase. A field matcher needs to examine neighboring candidates rather than assuming one phase for the whole file. A mismatched pair near a cut can combine two entirely different scenes, so the transition itself needs attention.</p>
+<p>FFmpeg's <code>fieldmatch</code> and <code>decimate</code> illustrate these separate stages. Field matching reconstructs pictures but does not drop duplicates. A deinterlacing fallback can handle pictures that remain combed before a later allocation stage.</p>
+<p>Mixed material introduces another decision. A programme may have telecined film plus a native video insert or a moving graphic. In the native section, successive fields contain new motion, not repeated film rows. Forcing a film-rate removal pattern there throws away temporal information.</p>
+<p>A recovery workflow can treat sections separately, retain variable picture timing, or choose an output schedule capable of representing both. What matters is following the capture relationships and the timeline of each section, rather than requiring every part of the programme to fit one cadence.</p>
+<p>When reviewing a restored Emby source, check clean moving frames across edits and the programme's duration. Those observations show whether both matching and presentation have been recovered.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

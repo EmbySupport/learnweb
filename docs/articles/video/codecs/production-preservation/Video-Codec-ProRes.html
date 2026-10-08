@@ -106,35 +106,56 @@
 <h1>Apple ProRes Video</h1>
 
 
-<p><strong>Apple ProRes</strong> is a family of codecs aimed at production and editing. Its ordinary video variants encode each picture independently, allowing editors to work without reconstructing a long chain of predicted pictures.</p>
-<p>That convenience and the retained picture information often come with a higher data rate than a delivery encode. A large ProRes export can therefore be useful as a production source while being inconvenient to stream to ordinary playback devices.</p>
+<p>An editor needs to jump to arbitrary frames, make cuts, combine layers, and render repeatedly. A streaming copy instead aims to deliver an acceptable finished picture with an economical data rate. <strong>Apple ProRes</strong> is designed around the production job, which explains why a ProRes export can be much larger than its playback derivative.</p>
+<h2 id="access-one-picture-without-a-long-prediction-chain">Access one picture without a long prediction chain</h2>
+<p>Conventional ProRes video encodes each picture independently. The decoder does not need earlier picture samples to predict a selected frame. It reconstructs that frame's block-coded data using the stream and frame information.</p>
+<p>This is useful for scrubbing and distributing complete pictures among processing tasks. Its within-picture transforms and quantization still compress the data; “independent” describes temporal dependence, rather than uncompressed storage.</p>
+<p>Keeping more picture information through a production workflow leaves later rendering and delivery encoders a useful source. A smaller <strong>proxy</strong> can serve the editing job when responsiveness or storage is more important, with finishing performed from the retained higher-quality media.</p>
+<h2 id="selected-422-variants-and-their-data-budgets">Selected 422 variants and their data budgets</h2>
+<p>Apple gives these approximate target rates for <strong>1920 × 1080 at 29.97 fps</strong>:</p>
 <table>
 <thead>
 <tr>
-<th>ProRes group</th>
-<th>Main distinction</th>
+<th>Variant</th>
+<th style="text-align: right;">Approximate target video rate</th>
+<th style="text-align: right;">Two-hour picture-only estimate</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>422 variants: Proxy, LT, 422, HQ</td>
-<td>Different quality and data-rate targets for 4:2:2 video</td>
+<td>ProRes 422 Proxy</td>
+<td style="text-align: right;">45 Mb/s</td>
+<td style="text-align: right;">40.5 GB</td>
 </tr>
 <tr>
-<td>4444 and 4444 XQ</td>
-<td>Higher-fidelity color workflows and optional alpha</td>
+<td>ProRes 422 LT</td>
+<td style="text-align: right;">102 Mb/s</td>
+<td style="text-align: right;">91.8 GB</td>
 </tr>
 <tr>
-<td>ProRes RAW and RAW HQ</td>
-<td>A separate RAW sensor-data workflow</td>
+<td>ProRes 422</td>
+<td style="text-align: right;">147 Mb/s</td>
+<td style="text-align: right;">132.3 GB</td>
+</tr>
+<tr>
+<td>ProRes 422 HQ</td>
+<td style="text-align: right;">220 Mb/s</td>
+<td style="text-align: right;">198 GB</td>
 </tr>
 </tbody>
 </table>
-<p>The 422 and 4444 picture coding is lossy, even when its output is visually very close to the input. Alpha in the 4444 variants is encoded losslessly; that does not make their color-picture coding lossless. ProRes RAW should not be treated as another ordinary 422 playback profile.</p>
-<h2 id="production-source-and-playback-version">Production source and playback version</h2>
-<p>A ProRes file's name does not establish its exact variant, color interpretation, or decoder requirements. Inspect the profile and stream details. A MOV extension only identifies packaging, and MOV can carry other codecs.</p>
-<p>For Emby, a ProRes master can be the input to a more suitable playback version when the server has the necessary decoder. Direct playback depends on the receiving app and its selected framework, rather than the codec's usefulness in an editing program.</p>
-<p>Transcoding a heavily compressed source into ProRes does not recreate camera detail. It can provide a convenient intermediate for further work, but the source's earlier losses remain. When possible, create delivery versions from the best retained master rather than from an already reduced streaming copy.</p>
+<p>The size estimate uses <strong>rate × 7,200 seconds ÷ 8</strong>. It assumes the listed target is the exact average for that example and excludes audio and container overhead. Actual ProRes rate varies with source characteristics, raster, rate, and encoding choices; the table is not a measurement of every export.</p>
+<p>The profile names select different coding-quality/data-rate priorities within the 422 family. They do not mean that a Proxy converted into HQ acquires source detail that the Proxy discarded.</p>
+<h2 id="color-and-alpha-are-separately-represented">Color and alpha are separately represented</h2>
+<p>The 422 variants support 10-bit source picture workflows with 4:2:2 sampling. ProRes 4444 and 4444 XQ provide higher-fidelity color representation and optional alpha, the transparency information used when compositing layers.</p>
+<p>Conventional 422/4444 color-picture coding is <strong>lossy</strong>. The 4444 variants can encode their alpha losslessly, up to the supported alpha precision. A graphic's transparency can therefore be preserved exactly while its color picture uses another reconstruction guarantee.</p>
+<p>This separation matters when inspecting a production asset: sample depth, color sampling, and alpha presence describe different parts of its usefulness in a composite.</p>
+<h2 id="raw-follows-another-input-path">RAW follows another input path</h2>
+<p><strong>ProRes RAW</strong> and RAW HQ represent a separate sensor-data workflow. Their input is intended for RAW processing rather than the conventional already formed video picture described by the 422/4444 coding family.</p>
+<p>A file using a logarithmic camera transfer is not automatically RAW. Its codec variant and its color/transfer description identify different stages of representation.</p>
+<h2 id="retain-the-source-for-finishing">Retain the source for finishing</h2>
+<p>A ProRes production copy can supply an Emby viewing version after the relevant decoder and processing stages reconstruct it. That viewing version can use temporal prediction and another rate allocation suited to delivery, while the production source remains available for later work.</p>
+<p>The useful choice is the role of each copy: proxy for efficient editing, retained production media for finishing, and delivery encode for viewing. The format and variant make those roles explicit.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

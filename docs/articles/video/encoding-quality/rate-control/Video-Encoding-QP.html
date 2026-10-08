@@ -106,40 +106,90 @@
 <h1>Video Quantization Parameter (QP)</h1>
 
 
-<p>A <strong>quantization parameter (QP)</strong> controls the strength of quantization in a codec's coding process. Quantization replaces precise values with coarser representable values, which can reduce the amount of information that needs encoding.</p>
-<p>Higher QP commonly means coarser quantization, but its numerical meaning belongs to the codec and implementation. In ordinary 8-bit H.264 luma coding, QP ranges from 0 to 51; increasing it by six doubles the quantization step size under otherwise unchanged scaling. Other formats and sample depths require their own interpretation.</p>
+<p>A coded correction value of 21 can be reconstructed as 20 with one quantizer and 24 with a coarser one. The choice changes both the value recovered and the amount of detail the encoder needs to describe.</p>
+<p>A <strong>quantization parameter (QP)</strong> selects quantizer strength through the particular codec's rules.</p>
 <p><img src="images/scalar-quantization-example.png" alt="An exact input line is compared with values rounded to multiples of four or eight."></p>
-<p><em>Generic scalar illustration: output = step × floor(input / step + 0.5), for input 0–32. Steps four and eight are arbitrary units, not a mapping from QP values to pixels or a particular codec's quantization equation.</em></p>
-<h2 id="a-fixed-qp-does-not-fix-visible-quality">A fixed QP does not fix visible quality</h2>
+<p><em>Original scalar model: output =step ×floor(input/step +0.5), with arbitrary steps 4 and 8. It isolates rounding, not the exact quantization equation of a named codec.</em></p>
+<h2 id="read-the-rounding-operation">Read the rounding operation</h2>
 <table>
 <thead>
 <tr>
-<th>Property</th>
-<th>What it means</th>
+<th>Input correction</th>
+<th style="text-align: right;">Round to multiples of 4</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">Round to multiples of 8</th>
+<th style="text-align: right;">Error</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Quantization step</td>
-<td>Spacing between reconstructed representable values</td>
+<td>3</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">+1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">−3</td>
 </tr>
 <tr>
-<td>A reported QP</td>
-<td>The codec's quantizer selection</td>
+<td>9</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">−1</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">−1</td>
 </tr>
 <tr>
-<td>Constant QP mode</td>
-<td>A quantizer-control policy, possibly with separate picture-type settings</td>
+<td>21</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">−1</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">+3</td>
 </tr>
 <tr>
-<td>CRF</td>
-<td>An adaptive quality-control method that can vary QP</td>
+<td>27</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">+1</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">−3</td>
 </tr>
 </tbody>
 </table>
-<p>A detailed moving scene and a quiet flat scene can expose different errors at the same quantizer setting. Bits per frame also vary: fixed quantization does not make an encode CBR.</p>
-<p>Actual encoders can adjust quantizers between picture types and, in some modes, between regions. An average QP in a log summarizes those decisions and hides their distribution. It is not a perceptual score.</p>
-<p>For Emby transcoding, a QP reported by the output encoder describes part of that conversion. Comparing it with a source encoded using another codec or sample format does not establish which picture is better. Compare the decoded pictures under matching conditions, and use the quantizer information to explain the encoder's choices.</p>
+<p>The coarser step has fewer reconstruction levels. Several precise input values share one output, leaving less precision to encode. The error can also change direction, depending on where the input falls between levels.</p>
+<p>In a transform codec, those quantized values describe patterns across a block. Changing a coefficient changes its contribution to the reconstructed correction, rather than necessarily changing only one visible pixel.</p>
+<h2 id="a-codec-maps-qp-onto-its-scale">A codec maps QP onto its scale</h2>
+<p>For ordinary 8-bit AVC luma coding, QP ranges from 0 to 51. With the same relevant scaling, an increase of <strong>six</strong> doubles the quantization step.</p>
+<p>Using QP 20's scale as 1 for a declared relative comparison:</p>
+<table>
+<thead>
+<tr>
+<th>QP</th>
+<th style="text-align: right;">Relative scale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>26</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td>32</td>
+<td style="text-align: right;">4</td>
+</tr>
+</tbody>
+</table>
+<p>These are relative factors at six-step separations, not a declaration that QP 20 has an absolute step of one sample unit. The transform/scaling context supplies the absolute meaning.</p>
+<p>Different codecs and greater sample depths use their own indices and conventions. AVC's higher-depth internal quantizer index includes a depth offset, for example. A reported QP needs that context before being compared to another encode.</p>
+<h2 id="a-mode-decides-how-the-parameters-are-assigned">A mode decides how the parameters are assigned</h2>
+<p><strong>Constant QP</strong> is an encoder's quantizer-control policy. It can define a base value and different picture-type settings or offsets. x265 documents its selected base for P-slices and related I/B values.</p>
+<p><strong>CRF</strong> uses an adaptive rate-factor model that can produce varying picture and region quantizers. <strong>Bitrate control</strong> can also change QP to fit a data/buffer budget.</p>
+<p>These modes operate at different levels of the decision. A fixed base quantizer does not impose equal frame bytes: one picture can contain far more information to code at that precision than another.</p>
+<h2 id="interpret-a-reported-average">Interpret a reported average</h2>
+<p>Imagine two equally weighted regions using QP 20 and QP 32. Their arithmetic mean QP is <strong>26</strong>.</p>
+<p>In the relative AVC scale above, their scales are 1 and 4, whose mean is <strong>2.5</strong>. A uniform QP 26 region instead uses relative scale 2. The equal mean QP has hidden a different distribution.</p>
+<p><em>This is a numerical illustration with equal weights and unchanged scaling, not a reconstruction-quality prediction.</em></p>
+<p>A log can also average over picture types, region sizes or other weights. Its number summarizes those assignments, while the actual bitstream reconstructs each region with its applicable quantizer.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

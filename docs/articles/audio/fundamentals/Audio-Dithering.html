@@ -106,36 +106,48 @@
 <h1>Audio Dithering</h1>
 
 
-<p><strong>Dither is a small noise signal added before audio is quantized.</strong> Adding noise can sound counterintuitive, but the purpose is to make rounding behave more predictably, especially for quiet material and fades.</p>
-<p>Without dither, a low-level signal can repeatedly land on the same few numerical levels. The resulting error follows the signal and can create distortion. Properly chosen dither prevents that pattern from dominating the result, at the cost of a little additional noise.</p>
+<p>A quiet fade can become rough when rounded to an integer grid. Its amplitude may move smoothly through small values, but the output jumps repeatedly between a few available levels. The pattern of those jumps can follow the waveform, producing distortion rather than an innocuous background noise.</p>
+<p><strong>Dither deliberately randomizes the rounding decision.</strong> The added noise is small and controlled; its purpose is to stop quantization error from tracing the signal's structure.</p>
+<h2 id="start-with-a-value-the-grid-cannot-hold">Start with a value the grid cannot hold</h2>
+<p>Use a deliberately coarse grid with steps of one unit. Ordinary rounding sends +0.2 to 0 every time. A waveform whose samples stay between −0.5 and +0.5 can collapse entirely to zeros on that grid.</p>
+<p>Now add a random value before rounding. Occasionally, +0.2 plus the noise crosses a threshold and becomes another output level. The individual output remains an integer; over repeated trials its behavior can preserve information about where +0.2 lay between the levels.</p>
+<p>One common non-subtractive choice is <strong>triangular-probability-density dither (TPDF)</strong>. It can be formed from the sum of two independent uniform random values, each between −0.5 and +0.5 quantizer steps. Their sum spans −1 to +1 step, with values near zero more likely than values near the extremes.</p>
+<p>For the +0.2 input on our unit-step grid, ideal TPDF and round-to-nearest give:</p>
 <table>
 <thead>
 <tr>
-<th>Operation</th>
-<th>What happens at the quantizer</th>
+<th style="text-align: right;">Quantized output</th>
+<th style="text-align: right;">Probability</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Round without dither</td>
-<td>Error can depend on the signal</td>
+<td style="text-align: right;">−1</td>
+<td style="text-align: right;">4.5%</td>
 </tr>
 <tr>
-<td>Apply suitable dither, then round</td>
-<td>Signal-dependent rounding artifacts are replaced by controlled noise</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">71.0%</td>
 </tr>
 <tr>
-<td>Use noise shaping</td>
-<td>The error spectrum is redistributed; the noise is not simply removed</td>
+<td style="text-align: right;">+1</td>
+<td style="text-align: right;">24.5%</td>
 </tr>
 </tbody>
 </table>
-<p>Triangular-probability-density dither is a common choice. The particular distribution and level matter; adding arbitrary background hiss is not equivalent to a properly designed dither process.</p>
-<h2 id="when-the-choice-matters">When the choice matters</h2>
-<p>Reducing a processed signal to a lower integer <a href="sample-representation/Audio-Bit-Depth.html">bit depth</a> is a typical place to use dither. Gain changes or mixing can create fractional values even when the input started as integer PCM. A final conversion to 16-bit samples must decide how to round them.</p>
-<p>Merely copying samples without changing their values or precision does not require another rounding operation. Repeatedly adding dither to unchanged copies would only add noise.</p>
-<p>Dither also does not recreate a lost high-resolution recording. It allows low-level signal behavior to survive quantization statistically; an individual output sample still occupies one of the available levels.</p>
-<p>In Emby playback, precision conversion may occur in an audio decoder, processing stage, or output system. Do not assume that every conversion uses the same dither settings. The FFmpeg resampler exposes several choices, but their existence does not establish which a particular playback path uses. A smoothly decaying fade is the practical goal, not the appearance of a higher bit-depth label.</p>
+<p>The expected output is (−1 × 0.045) + (0 × 0.71) + (1 × 0.245) = <strong>+0.2</strong>. This follows from the triangular distribution's areas beyond the rounding thresholds.</p>
+<p>The table is a statistical demonstration, not an instruction to average adjacent audio samples or use such coarse precision for playback. Audio samples vary with time. Proper dither controls the quantizer's error statistics at those successive values, allowing very quiet signal behavior to remain encoded among the noise.</p>
+<h2 id="the-trade-is-distortion-for-a-controlled-noise-floor">The trade is distortion for a controlled noise floor</h2>
+<p>Dither does not make every rounded sample accurate. The added noise and quantization still produce error. What improves is the relationship between that error and the signal: quiet tones and fades stop controlling a repeating rounding pattern.</p>
+<p>The distribution, level, and quantizer behavior matter. Arbitrary hiss added at an unrelated level is not equivalent to a designed dither process. The usual TPDF choice removes input-dependent behavior in the first two error moments for an ideal non-overloading uniform quantizer. Other choices make other tradeoffs.</p>
+<p>At normal 16-bit or 24-bit steps, the demonstration's one-unit excursions become correspondingly small. That is why the mechanism can improve low-level behavior without intentionally adding a loud sound.</p>
+<h2 id="put-it-at-the-precision-reduction">Put it at the precision reduction</h2>
+<p>Suppose a processor has mixed audio and adjusted gain using float. Its output can contain fractional values between 16-bit integer levels even if the input originally came from a 16-bit recording. Reducing this processed result to a 16-bit output creates a new quantization step; that is a useful place to consider dither.</p>
+<p>Copying unchanged integer samples to another file does not perform such a rounding operation. Adding dither to that copy would alter samples unnecessarily. Likewise, widening integer storage while retaining all original values does not need dither.</p>
+<p>Repeated processing and integer reduction can repeatedly add noise or distortion. A sensible pipeline preserves working precision during the operations, then chooses the necessary final conversion. The actual Emby player, server conversion, or operating-system output decides where those stages occur; a resampler's list of available dither methods does not tell us which was selected for a session.</p>
+<h2 id="noise-shaping-changes-where-error-lies">Noise shaping changes where error lies</h2>
+<p>Noise shaping uses feedback around quantization to redistribute error energy across frequency. It can reduce error in one band while raising it elsewhere. It is a separate design choice from creating suitable dither statistics, and it does not remove all error.</p>
+<p>This helps interpret a comparison between output methods: listen for both quiet-signal distortion and noise character. A smooth fade, a lower in-band noise level, and unchanged individual samples are different outcomes. Dither is aimed at the first; lossless copying at the last.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

@@ -106,35 +106,46 @@
 <h1>HE-AAC v2 Audio</h1>
 
 
-<p>For stereo audio, <strong>HE-AAC v2 adds Parametric Stereo, or PS, to HE-AAC</strong>. Instead of spending bits on two complete audio channels, it encodes a mono downmix plus information describing the stereo image.</p>
-<p>The decoder reconstructs that image from the mono signal and the parameters. The output is stereo, but the process is lossy: it does not preserve the original left and right sample streams exactly.</p>
+<p>A stereo radio programme is delivered with a mono core, yet a full decoder produces stereo. <strong>HE-AAC v2's Parametric Stereo (PS) tool describes the stereo relationship alongside a coded mono downmix.</strong> The output channels are reconstructed using both.</p>
+<h2 id="a-mono-combination-alone-is-insufficient">A mono combination alone is insufficient</h2>
+<p>If a downmix contains the average of L and R, the pairs (0.8,0.2) and (0.5,0.5) both give 0.5. Their stereo impressions differ, but the combined value does not identify which pair existed.</p>
+<p>PS sends information about the relationships that matter for reconstructing the stereo image. Its parameters describe properties such as relative channel energy and correlation in time/frequency regions. A decoder uses these descriptions to distribute and shape the reconstructed signal into two outputs.</p>
 <table>
 <thead>
 <tr>
-<th>Decoder capability</th>
-<th>Result for a compatible stereo stream</th>
+<th>What survives in the delivery</th>
+<th>What the decoder can do</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>AAC-LC core only</td>
-<td>Core audio without the full high-frequency reconstruction</td>
+<td>Mono downmix alone</td>
+<td>Reproduce the combined signal</td>
 </tr>
 <tr>
-<td>HE-AAC with SBR</td>
-<td>The reconstructed audio bandwidth, without PS stereo reconstruction</td>
+<td>Downmix plus stereo parameters</td>
+<td>Reconstruct the described stereo relationships</td>
 </tr>
 <tr>
-<td>HE-AAC v2 with SBR and PS</td>
-<td>The intended bandwidth and stereo image</td>
+<td>Original separate sample sequences</td>
+<td>Preserve more independent channel detail, at a different coding cost</td>
 </tr>
 </tbody>
 </table>
-<p>The table describes the tools required, not a promise that every player will accept every signaling or packaging variant. Some applications reject a profile they do not support rather than offering partial playback.</p>
-<h2 id="a-practical-low-bitrate-tool">A practical low-bitrate tool</h2>
-<p>PS is useful where the stereo data budget is particularly tight. For example, broadcast radio can retain a stereo impression without encoding two complete HE-AAC channels independently. Stereo imaging can become less faithful on difficult material, even when the result remains intelligible and pleasant.</p>
-<p>The v2 profile also permits multichannel configurations where PS is not used; there it uses the same relevant coding tools as HE-AAC. The v2 label therefore should not be interpreted as “every track is a mono signal expanded into stereo.”</p>
-<p>When investigating an Emby recording, check the profile and actual channel description together. A report of mono core audio does not by itself prove that a correctly decoded HE-AAC v2 stereo presentation is mono. For the relationship between the core rate and the output rate, see <a href="HE-AAC.html">HE-AAC</a>.</p>
+<p>The PS representation is lossy. Parameters describe aspects of the relationship rather than carrying a second complete waveform that uniquely restores every original left/right sample.</p>
+<h2 id="follow-the-reconstruction-stages">Follow the reconstruction stages</h2>
+<p>For a stereo presentation, the chain combines three jobs:</p>
+<ol>
+<li>The AAC core reconstructs its coded lower-band signal.</li>
+<li>Spectral Band Replication reconstructs the intended wider audio band.</li>
+<li>Parametric Stereo produces the stereo image from that signal and the PS information.</li>
+</ol>
+<p>The <a href="HE-AAC.html">HE-AAC article</a> explains the first two jobs and their possible core/output-rate difference. PS adds a channel-reconstruction task, not a different meaning for the sample timeline.</p>
+<p>A suitably compatible core-only decode can produce narrower-band audio. SBR without PS can restore the wider band but leave the mono presentation. Full stereo reconstruction requires the PS information to be used. A report showing a mono core is therefore consistent with a correctly reconstructed stereo programme.</p>
+<h2 id="spend-a-small-budget-on-useful-relationships">Spend a small budget on useful relationships</h2>
+<p>At restricted stereo bitrates, coding one main signal plus parameters can be more efficient than coding two complete HE-AAC signals. That can retain a useful stereo impression in broadcasts.</p>
+<p>The compromise becomes important when independent or rapidly changing channel detail is difficult to describe parametrically. A stereo result can be recognizable without matching every original spatial nuance.</p>
+<p>The HE-AAC v2 profile also permits multichannel configurations where PS is not used; those use the relevant HE-AAC tools instead. For an Emby recording, read its actual presentation and tool use rather than turning the profile label into a claim that every v2 track was encoded as mono-plus-PS.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

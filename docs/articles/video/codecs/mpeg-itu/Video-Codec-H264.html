@@ -106,39 +106,60 @@
 <h1>H.264 / AVC Video</h1>
 
 
-<p><strong>H.264</strong> and <strong>AVC</strong> are names for the same video coding standard. AVC means <em>Advanced Video Coding</em>; its corresponding MPEG specification is MPEG-4 Part 10. It is different from the older <a href="Video-Codec-MPEG4-Part2.html">MPEG-4 Part 2</a> format.</p>
-<p>H.264 is familiar in disc-derived media, camera recordings, and streaming files. Its encoded pictures may live in different containers, so an MP4, MKV, or transport stream is not a separate kind of H.264.</p>
+<p><strong>H.264</strong>, <strong>AVC</strong>, and <strong>MPEG-4 Part 10</strong> name the same video coding standard. It defines the instructions a decoder follows to reconstruct compressed pictures, rather than a particular encoder's recipe for choosing those instructions.</p>
+<p>A film in an MP4 file, a camera clip in another container, and a television stream can all carry AVC. Their packaging supplies the coded track to the same kind of reconstruction process.</p>
+<p>An Emby session can show AVC at both input and output when the server has decoded and encoded a new AVC representation. The reconstruction steps below explain what differs from copying the encoded track.</p>
+<h2 id="the-coded-data-comes-in-units">The coded data comes in units</h2>
+<p>AVC's <strong>Network Abstraction Layer units</strong>, or NAL units, organize the bitstream. Some carry coded picture regions called slices. Others supply configuration or additional information.</p>
+<p>A coded picture can contain several slice units. The media packet or container sample that carries them is a packaging boundary; the AVC units describe the coding boundary.</p>
+<p>Before reconstructing a slice, the decoder needs the applicable <strong>sequence parameter set (SPS)</strong> and <strong>picture parameter set (PPS)</strong>. These describe such things as the coded grid, permitted sample format, picture-order behavior, and relevant coding options. A slice identifies the parameters and coding decisions it uses.</p>
+<p>This is why extracting one piece of picture data without its configuration does not necessarily provide a complete decoder input.</p>
+<h2 id="divide-the-picture-into-reconstruction-work">Divide the picture into reconstruction work</h2>
+<p>AVC's basic macroblock footprint covers <strong>16 × 16 brightness positions</strong>. The picture is divided into those regions, with further partitions for prediction and transforms.</p>
+<p>For a progressive 1920 × 1080 presentation, the coded macroblock grid is 120 columns by 68 rows: <strong>8,160 macroblocks</strong>, representing a 1920 × 1088 grid before display cropping. The crop describes the visible picture boundary; the coding grid determines this part of the decoder's work.</p>
+<p>Different regions can use different prediction choices. An edge, a flat area, and a moving object need not receive the same description.</p>
+<h2 id="construct-a-predictor">Construct a predictor</h2>
+<p>An intra-coded region predicts from available reconstructed samples in the same picture. For example, values along an upper boundary can be extended in a chosen direction to form a candidate block.</p>
+<p>An inter-coded region identifies a decoded reference picture and motion information telling the decoder where to sample it. Fractional positions use the interpolation rules specified by AVC. A region can combine permitted reference information according to its coding type and mode.</p>
+<p>The encoder searches for a useful predictor. The decoder instead follows the predictor encoded in the syntax. Its task is deterministic reconstruction from the supplied information.</p>
+<h2 id="reconstruct-the-correction">Reconstruct the correction</h2>
+<p>The source region usually differs from its predictor. The encoder represents that difference as a <strong>residual</strong> and can transform it into coefficients describing patterns within blocks.</p>
+<p>The decoder entropy-decodes those coefficients, reconstructs their scale from the quantization parameters, and applies the specified inverse transform. It then adds the resulting correction to the predictor.</p>
+<p>AVC uses integer transform operations for common 4×4 residual blocks; selected profiles permit additional tools such as an 8×8 transform. Quantization can discard precision, so the decoded correction need not equal the original source difference. The <a href="../../compression/Video-Compression.html">compression walkthrough</a> demonstrates that approximation numerically.</p>
+<p>The entropy-coding mode is another syntax choice. CAVLC and CABAC use different coding procedures, so the decoder needs the selected mode even when both ultimately reconstruct the same kind of sample array.</p>
+<h2 id="filter-and-retain-the-reconstructed-picture">Filter and retain the reconstructed picture</h2>
+<p>AVC can apply its <strong>in-loop deblocking filter</strong> to reduce selected discontinuities between coded regions. “In-loop” matters: the appropriately filtered reconstruction can become a reference for later pictures.</p>
+<p>The encoder reconstructs the same result locally when preparing those later predictions. Otherwise it would predict from samples the decoder does not have.</p>
+<p>The decoded-picture buffer retains references and pictures waiting for their display times. An anchor can be decoded before a B-picture that will appear earlier on screen. Picture-order information and presentation timing restore the intended viewing sequence after the dependency work.</p>
+<h2 id="read-the-profile-and-the-names-you-encounter">Read the profile and the names you encounter</h2>
+<p><a href="../../compression/Video-Codec-Profiles.html">Profiles</a> restrict this tool/sample set. Baseline, Main, High, and High 10 are different permitted AVC representations. <a href="../../compression/Video-Codec-Levels-Tiers.html">Levels</a> constrain picture size, throughput, buffering, and other resources.</p>
 <table>
 <thead>
 <tr>
-<th>Label you may encounter</th>
-<th>What it identifies</th>
+<th>Label</th>
+<th>Place in the process</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>H.264 / AVC</td>
-<td>The coding standard and bitstream format</td>
+<td>The bitstream and reconstruction standard</td>
 </tr>
 <tr>
 <td>x264</td>
-<td>A software encoder that creates H.264</td>
+<td>One encoder implementation choosing valid AVC instructions</td>
 </tr>
 <tr>
-<td>Baseline, Main, High, High 10</td>
-<td>Different H.264 profiles</td>
+<td>High / High 10</td>
+<td>Profile constraints on tools and sample formats</td>
 </tr>
 <tr>
-<td>AVC1 or a similar container identifier</td>
-<td>How the container identifies its H.264 track</td>
+<td>A container's AVC track identifier</td>
+<td>The wrapper's description of its coded video</td>
 </tr>
 </tbody>
 </table>
-<p>An encoder chooses how to use the standard's tools. Different software or hardware encoders can therefore produce compatible H.264 streams with different bitrates, quality, and encoding effort. “Encoded with x264” does not require an x264 decoder.</p>
-<h2 id="which-h264-file">Which H.264 file?</h2>
-<p>The <a href="../../compression/Video-Codec-Profiles.html">profile</a> matters. Ordinary 8-bit H.264 and High 10 H.264 place different requirements on a decoder. A device can provide hardware decoding for one while relying on software, or lacking an app playback path, for the other.</p>
-<p>The <a href="../../compression/Video-Codec-Levels-Tiers.html">level</a> adds limits such as picture size, processing rate, and buffering. Resolution alone leaves out frame rate and other resource demands.</p>
-<p>In Emby, H.264 can be the original library format or the output of video transcoding. An H.264 source still needs conversion if other stream characteristics or delivery requirements are incompatible. Compare the source and delivered stream information when troubleshooting: seeing “H.264” in both places does not mean the video was copied unchanged.</p>
+<p>An x264-made track can be decoded by another conforming AVC implementation. The encoder's search effort and quality settings change which valid representation it creates, while the decoder follows that representation.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

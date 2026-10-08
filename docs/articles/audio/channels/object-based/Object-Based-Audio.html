@@ -106,37 +106,52 @@
 <h1>Object-Based Audio</h1>
 
 
-<p>A conventional surround mix assigns signals to fixed channel positions. <strong>Object-based audio describes sound components with spatial metadata</strong>, allowing a renderer to decide how to reproduce them on the available system.</p>
-<p>A helicopter can be described as moving above the listener rather than simply being assigned to one named surround channel. Its audio and its position through time are separate parts of the description. The renderer turns that description into speaker or headphone signals.</p>
-<p><img src="images/object-audio-renderer.svg" alt="Audio components and spatial metadata enter a renderer, which generates outputs for speakers or headphones"></p>
-<p><em>Conceptual rendering path. Delivery codecs can combine and reconstruct components in different ways; the diagram does not imply a separate file or transmitted channel for every object.</em></p>
-<p>An object-based production can also include <strong>beds</strong>: channel-based elements used alongside objects. The format is not required to turn every instrument, voice, or background sound into a separate object.</p>
-<h2 id="why-the-metadata-matters">Why the metadata matters</h2>
+<p>A helicopter travels from the front of the scene to a position above and behind the listener. A channel mix can describe the event by placing changing waveforms in particular speaker channels. <strong>An object-based description instead pairs the helicopter's sound with instructions about where it belongs over time.</strong></p>
+<p>A renderer translates those instructions into the outputs available for the listening system.</p>
+<p><img src="images/object-audio-renderer.svg" alt="Object audio and metadata enter a speaker or headphone renderer"></p>
+<p><em>Conceptual path. Delivery codecs can combine and reconstruct components; the drawing does not imply a separate transmitted track for every production object.</em></p>
+<h2 id="keep-the-sound-and-the-instructions-together">Keep the sound and the instructions together</h2>
+<p>The object's audio describes what the helicopter sounds like. Its metadata can describe position, gain, size or spread, and other rendering properties. Position updates have timing so that the movement matches the sound and picture.</p>
+<p>For an illustrative event:</p>
 <table>
 <thead>
 <tr>
-<th>Information kept in the playback path</th>
-<th>What remains possible</th>
+<th>Time in the event</th>
+<th>Object description</th>
+<th>Renderer's task</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Sound plus object metadata</td>
-<td>Rendering for a supported spatial arrangement</td>
+<td>Beginning</td>
+<td>In front of the listener</td>
+<td>Generate an appropriate front image</td>
 </tr>
 <tr>
-<td>A conventional channel render only</td>
-<td>Playback of that fixed presentation</td>
+<td>Middle</td>
+<td>Above the listener</td>
+<td>Use supported height outputs or ear cues</td>
 </tr>
 <tr>
-<td>A stereo render only</td>
-<td>Playback of its two-channel presentation</td>
+<td>End</td>
+<td>Behind the listener</td>
+<td>Move the presentation toward the supported rear image</td>
 </tr>
 </tbody>
 </table>
-<p>Once a mix is flattened to ordinary channel PCM, those samples alone do not preserve the original objects and their movement instructions. An object-aware transport can carry metadata alongside audio, but that is additional information beyond plain channel PCM.</p>
-<p>This explains why an Emby source may display a familiar channel count while also containing immersive information. The count can describe a compatible channel presentation rather than the complete spatial description.</p>
-<p><a href="Dolby-Atmos.html">Dolby Atmos</a> and <a href="DTS-X.html">DTS:X</a> are examples readers will encounter. Their rendering flexibility still depends on the exact encoding, player, and output path. Object-based audio adapts a mix to supported arrangements; it does not make missing hardware, metadata, or decoder capabilities appear automatically.</p>
+<p>The metadata supplies a desired scene relationship; it is not a recording of a particular customer's ceiling speaker. The renderer knows the target arrangement and chooses suitable output contributions.</p>
+<h2 id="render-the-same-description-for-different-systems">Render the same description for different systems</h2>
+<p>For speakers, rendering distributes the object among positions the supported system can reproduce. A sound between two speaker positions can be produced by contributions to both. With a denser supported layout, the renderer has more physical positions available.</p>
+<p>For headphones, it can filter the sound into left-ear and right-ear signals, using direction-dependent cues instead of a separate physical driver at each location. The <a href="../Binaural-Audio.html">binaural page</a> explains this operation.</p>
+<p>A system with fewer outputs does not need to invent new source sounds. It produces another presentation of the same encoded scene, subject to the delivery format's capabilities and the renderer's supported output.</p>
+<h2 id="beds-and-objects-can-coexist">Beds and objects can coexist</h2>
+<p>Production workflows can use <strong>beds</strong>: channel-based elements that coexist with movable or separately described objects. A background layer might be convenient to mix as channels while a moving effect benefits from object positioning.</p>
+<p>Delivery can then encode, combine, or spatially simplify those production elements to meet its data budget. A consumer decoder need not receive one independent file for every object that existed in the studio. It reconstructs the delivered representation needed for the supported render.</p>
+<p>This explains why a basic report on an Emby track can show a compatible 5.1 or 7.1 channel presentation while the bitstream contains additional immersive information.</p>
+<h2 id="decide-where-the-render-is-finished">Decide where the render is finished</h2>
+<p>If a player renders the scene into ordinary speaker-channel PCM, those samples already express one chosen layout. They remain playable, but the next component cannot recover the original object positions from those channels alone.</p>
+<p>An object-aware transport can instead carry the audio and required metadata together to a downstream renderer. <a href="../../decoding-output/output-transport/Dolby-MAT.html">Dolby MAT</a> is relevant to one such path.</p>
+<p>The useful distinction is between carrying a scene description onward and carrying an already rendered presentation. Both can produce spatial sound; only the former leaves the next renderer the supplied object instructions for adapting it again.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

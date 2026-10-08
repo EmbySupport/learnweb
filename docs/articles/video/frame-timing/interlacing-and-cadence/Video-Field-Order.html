@@ -106,36 +106,50 @@
 <h1>Video Field Order</h1>
 
 
-<p><strong>Field order</strong> tells a decoder or deinterlacer which field comes first in time. <strong>Top field first (TFF)</strong> presents the top field before the bottom field; <strong>bottom field first (BFF)</strong> does the reverse.</p>
-<p>“Top” and “bottom” identify alternating line sets. They do not mean the upper and lower halves of the image, and they do not determine which capture time is earlier without the field-order information.</p>
+<p>An interlaced pan can look as if it moves backward briefly, then jumps forward. One possible cause is <strong>reversed field order</strong>: the player has presented the two fields in each pair in the wrong temporal sequence.</p>
+<p><strong>Top field first (TFF)</strong> means the top line set was captured before the bottom line set. <strong>Bottom field first (BFF)</strong> means the opposite. “Top” and “bottom” identify alternating rows across the whole picture, rather than its upper and lower halves.</p>
+<h2 id="follow-one-moving-object">Follow one moving object</h2>
+<p>Take a native 50-field/s, top-first sequence. An object moves 10 horizontal positions between each 20 ms capture:</p>
 <table>
 <thead>
 <tr>
-<th>Correct 50-field/s example</th>
-<th>First pair</th>
-<th>Second pair</th>
+<th>Field</th>
+<th style="text-align: right;">Capture time</th>
+<th style="text-align: right;">Object position</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>TFF</td>
-<td>Top at 0 ms, bottom at 20 ms</td>
-<td>Top at 40 ms, bottom at 60 ms</td>
+<td>Top 0</td>
+<td style="text-align: right;">0 ms</td>
+<td style="text-align: right;">0</td>
 </tr>
 <tr>
-<td>BFF</td>
-<td>Bottom at 0 ms, top at 20 ms</td>
-<td>Bottom at 40 ms, top at 60 ms</td>
+<td>Bottom 0</td>
+<td style="text-align: right;">20 ms</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr>
+<td>Top 1</td>
+<td style="text-align: right;">40 ms</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td>Bottom 1</td>
+<td style="text-align: right;">60 ms</td>
+<td style="text-align: right;">30</td>
 </tr>
 </tbody>
 </table>
-<h2 id="why-reversed-order-looks-like-jitter">Why reversed order looks like jitter</h2>
-<p>For the TFF example, the intended motion order is 0 → 20 → 40 → 60 ms. Interpreting each pair backwards makes it 20 → 0 → 60 → 40 ms: the object repeatedly steps backward, then jumps forward. This can be more noticeable in a slow pan than in a still frame.</p>
+<p>The correct reconstructed order is <strong>0 → 10 → 20 → 30</strong>. Each movement is +10.</p>
+<p>If each pair is interpreted bottom-first, the order becomes <strong>10 → 0 → 30 → 20</strong>. Its displacements are <strong>−10, +30, −10</strong>: backward, a larger forward jump, then backward again.</p>
 <p><img src="images/field-order.svg" alt="The correct field sequence moves forward steadily; reversing each pair produces repeated backward steps."></p>
-<p><em>Original numerical schematic using the field times from the table. Each dot is a temporal sample of steady movement; the arrows show presentation order.</em></p>
-<p>For Emby recordings, check field order when motion jitters despite an apparently adequate frame rate. A file's tag is evidence, but a wrongly tagged source can still need investigation. Inspect a moving section and compare the result under the two interpretations.</p>
-<p>Changing a field-order label and converting the actual field arrangement are different operations. Relabeling is appropriate when the samples are correct and only their description is wrong. A genuine conversion must handle the line sets and timing coherently.</p>
-<p>Progressive frames do not acquire new motion samples by adding a field-order flag. <a href="Telecine-Pulldown.html">Telecined</a> sources also need their cadence understood before field reconstruction is chosen.</p>
+<p><em>Original schematic of this timing reversal. It illustrates steady movement, not the output of a named deinterlacer.</em></p>
+<p>A still picture cannot expose this temporal reversal clearly. A slow pan, moving text, or a steadily traveling object is more informative. In an Emby recording, comparing the two parity interpretations on that moving passage can identify the mismatch.</p>
+<h2 id="correct-the-description-or-the-arrangement">Correct the description or the arrangement</h2>
+<p>A wrongly tagged TFF sequence can have correct samples and incorrect metadata. Correcting the description lets processing use the existing top-before-bottom capture order.</p>
+<p>A genuine field-order conversion changes the relationship between the line sets and their temporal arrangement. It must preserve which rows represent which capture moment, rather than simply renaming the stream. Processing filters may shift or reconstruct line positions to produce the requested arrangement.</p>
+<p>The relevant boundary is the input to <a href="Deinterlacing.html">field reconstruction</a>. It needs the earlier field's actual time and parity to build a forward-moving output sequence. For <a href="Inverse-Telecine.html">film-cadence recovery</a>, that information instead guides the selection of fields belonging to the same source film picture.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

@@ -106,39 +106,47 @@
 <h1>AAC-LC Audio</h1>
 
 
-<p><strong>AAC-LC is Advanced Audio Coding, Low Complexity.</strong> It is the familiar AAC variant used for many music files and video soundtracks. “Low Complexity” names a coding design; it does not label a recording as low quality.</p>
-<p>In Emby media information, “AAC” may be an abbreviated codec label. The profile, channel layout, and sample rate give a more complete description of the selected track.</p>
+<p>“Low Complexity” in <strong>AAC-LC</strong> names a coding configuration, not a low-quality music grade. Advanced Audio Coding's LC form can represent mono, stereo, and multichannel material using a transform-based lossy codec.</p>
+<p>Consider a music passage containing a sustained note followed by a sharp drum hit. Those two events illustrate why its tools are useful.</p>
+<h2 id="sustained-detail-and-sudden-attacks-ask-different-things-of-a-window">Sustained detail and sudden attacks ask different things of a window</h2>
+<p>A transform represents a section of waveform through frequency components. A longer analysis window helps describe frequency detail over that section. A shorter window localizes changes more closely in time.</p>
+<p>For a steady tone, a longer window can be efficient. At the drum attack, spreading the section's coding error across a long window can make error audible before or around the hit. AAC supports switching to shorter windows to handle that transient. The encoder selects the window sequence and sends the information the decoder needs to reconstruct it.</p>
+<p>This is not switching sample rate or making the music play faster. Several shorter transforms describe the corresponding span of samples within the same timeline.</p>
+<h2 id="encode-the-representation-then-reconstruct-it">Encode the representation, then reconstruct it</h2>
+<p>The encoder selects precision for the frequency representation and codes the resulting values and side information. The decoder reconstructs those values, performs the defined inverse processing, and combines the overlapping sections into PCM.</p>
 <table>
 <thead>
 <tr>
-<th>AAC-LC characteristic</th>
-<th>Why it matters</th>
+<th>Stage</th>
+<th>What it contributes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Lossy compression</td>
-<td>Decoded samples approximate the source</td>
+<td>Window and transform</td>
+<td>A timed frequency-domain description</td>
 </tr>
 <tr>
-<td>Transform-based coding</td>
-<td>The encoder represents short sections in the frequency domain</td>
+<td>Precision allocation and quantization</td>
+<td>The main lossy approximation</td>
 </tr>
 <tr>
-<td>Mono, stereo, and multichannel capability</td>
-<td>AAC-LC is not restricted to two channels</td>
+<td>Symbol and side-information coding</td>
+<td>An efficient description of the chosen representation</td>
 </tr>
 <tr>
-<td>Separate stream packaging</td>
-<td>The codec can appear inside different file or transport formats</td>
+<td>Inverse processing and overlap</td>
+<td>A continuous decoded sample sequence</td>
 </tr>
 </tbody>
 </table>
-<p>The encoder spends bits on signal components and quantization accuracy rather than storing a PCM number for every sample. Shorter coding windows can help represent sudden attacks. Choosing a higher bitrate gives the encoder more room, but no one bitrate guarantees the same result for every source.</p>
-<h2 id="lc-support-is-a-specific-capability">LC support is a specific capability</h2>
-<p>AAC-LC does not include the high-frequency reconstruction tool used by <a href="HE-AAC.html">HE-AAC</a>, or the parametric stereo tool used by <a href="HE-AAC-v2.html">HE-AAC v2</a>. A device advertising AAC playback does not automatically promise every newer AAC-family profile.</p>
-<p>The stored file may be an <a href="../../../../media-files/packaging/mp4/M4A-M4B-Files.html">M4A</a>, an MP4 movie, or a differently packaged stream. <a href="../../../../media-files/packaging/aac/AAC-Stream-Packaging.html">Packaging</a> and decoding need to be compatible independently. If a client accepts the codec but not the container, remuxing can change the packaging while preserving encoded audio. If decoding is the issue, a different wrapper cannot fix it.</p>
-<p>A stereo AAC-LC file and a 5.1 AAC-LC movie track also ask different things of the audio output, despite sharing the codec name.</p>
+<p>Other AAC tools manage relationships between components or channels. Encoders can make different decisions while producing streams conforming to the same supported LC tools.</p>
+<h2 id="place-lc-in-the-aac-family">Place LC in the AAC family</h2>
+<p>HE-AAC adds spectral-band replication to an AAC core; HE-AAC v2 can add parametric stereo. Those names identify additional reconstruction jobs. <a href="HE-AAC.html">HE-AAC</a> explains why its core and output sample-rate reports can differ.</p>
+<p>AAC-LC reconstruction does not perform those extra tasks. A profile or audio-object-type description therefore tells you more than the bare “AAC” family label when comparing sources.</p>
+<h2 id="supply-the-decoder-configuration">Supply the decoder configuration</h2>
+<p>An AAC track needs coding configuration such as its audio object type, sample-rate arrangement, and channel configuration. <a href="../../../../media-files/packaging/mp4/M4A-M4B-Files.html">MP4/M4A</a> can store that information with its track description, while other <a href="../../../../media-files/packaging/aac/AAC-Stream-Packaging.html">AAC framing formats</a> provide it through their own structures.</p>
+<p>For an Emby source, this separates two operations. Repackaging compatible LC audio can preserve the coded sound while translating its framing/configuration. Re-encoding changes the audio representation itself. The useful choice follows whether the obstacle is supplying the existing LC bitstream correctly or reconstructing a format the destination does not support.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

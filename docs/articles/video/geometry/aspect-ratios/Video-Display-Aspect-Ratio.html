@@ -106,42 +106,46 @@
 <h1>Video Display Aspect Ratio</h1>
 
 
-<p><strong>Display aspect ratio (DAR)</strong> describes the intended shape of the video picture: its displayed width divided by its displayed height. A 16:9 picture is about 1.78 times as wide as it is tall, regardless of whether it fills a phone, a television, or a projector screen.</p>
+<p><strong>Display aspect ratio (DAR)</strong> is the intended width of a displayed picture divided by its height. A 16:9 picture keeps that shape on a phone, a television, and a projector even though its physical size changes.</p>
 <p><img src="images/display-aspect-ratios.svg" alt="Proportional outlines compare a 4:3 picture with a 16:9 picture at the same height."></p>
-<p><em>Original proportional drawing. Both pictures have the same height; the wider outline is 16:9.</em></p>
-<p>The stored dimensions are only part of the calculation. For an unrotated rectangular picture with no additional display crop:</p>
-<p><strong>DAR = (stored width ÷ stored height) × pixel aspect ratio</strong></p>
+<p><em>Both outlines have the same height. The 16:9 outline is wider.</em></p>
+<p>For an unrotated rectangular frame, with no additional display crop:</p>
+<p><strong>DAR = (stored width ÷ stored height) × pixel aspect ratio.</strong></p>
+<p>A 1440 × 1080 grid has a stored ratio of 4:3. With pixels intended to appear 4:3 as wide as tall, its display ratio is (4/3) × (4/3) = 16/9. A 1920 × 1080 square-pixel grid arrives at the same display shape by a different route.</p>
+<h2 id="fit-a-picture-into-a-window">Fit a picture into a window</h2>
+<p>Consider a playback window measuring <strong>900 × 600</strong>, a 3:2 shape.</p>
+<p>A 16:9 video fitted to its width becomes 900 × 506.25. There are 93.75 unused vertical pixels in the ideal geometry, split into 46.875 above and below. Those spaces are <a href="../Letterboxing-Pillarboxing.html">letterbox bars</a>.</p>
+<p>A 4:3 video fitted to the same window becomes 800 × 600. It uses the full height and leaves 50 pixels on either side: pillarboxing.</p>
 <table>
 <thead>
 <tr>
-<th>Stored grid</th>
-<th style="text-align: right;">Pixel aspect ratio</th>
-<th style="text-align: right;">Intended display aspect ratio</th>
+<th>Source shape</th>
+<th>Ideal fitted image in a 900 × 600 window</th>
+<th>Unused space</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1920 × 1080</td>
-<td style="text-align: right;">1:1</td>
-<td style="text-align: right;">16:9</td>
+<td>16:9</td>
+<td>900 × 506.25</td>
+<td>Above and below</td>
 </tr>
 <tr>
-<td>1440 × 1080</td>
-<td style="text-align: right;">4:3</td>
-<td style="text-align: right;">16:9</td>
-</tr>
-<tr>
-<td>720 × 576</td>
-<td style="text-align: right;">16:15</td>
-<td style="text-align: right;">4:3</td>
+<td>4:3</td>
+<td>800 × 600</td>
+<td>Left and right</td>
 </tr>
 </tbody>
 </table>
-<p><em>The last row is a full-raster numerical example. Legacy capture and disc workflows can use different active-image conventions; follow the actual file's signaling.</em></p>
-<h2 id="a-screen-ratio-is-a-separate-choice">A screen ratio is a separate choice</h2>
-<p>When a picture and screen have different proportions, fitting the whole picture produces <a href="../Letterboxing-Pillarboxing.html">letterboxing or pillarboxing</a>. Filling the screen instead requires cropping or distortion. Making a 4:3 recording fit a 16:9 screen by stretching it sideways makes people wider, too.</p>
-<p>For an Emby library item that appears squeezed, compare the file's dimensions with its <a href="Video-Pixel-Aspect-Ratio.html">pixel aspect ratio</a> and display ratio. A playback fit or zoom choice changes presentation; incorrect file metadata changes what the player considers the intended shape. Correcting one is not a substitute for checking the other.</p>
-<p>DAR usually describes the video frame. When black bars are baked into that frame, the film inside the bars can have a wider or narrower aspect ratio of its own.</p>
+<p><em>These calculations use continuous geometry; an actual pixel display rounds the final placement to its grid.</em></p>
+<p>The same fitting rule explains both outcomes. Uniformly scale the picture until one dimension reaches the window boundary. The other dimension follows from the picture's ratio.</p>
+<h2 id="fill-and-stretch-change-different-things">Fill and stretch change different things</h2>
+<p>To <strong>fill</strong> the window with the 16:9 video, scale it to 600 pixels high. It becomes approximately 1066.67 pixels wide, so about 83.33 pixels must fall outside each side of the window. The people retain their proportions, but the left and right edges of the composition are lost.</p>
+<p>To <strong>stretch</strong>, change width and height independently until the image is exactly 900 × 600. Every part of the frame remains visible, but a circle becomes an oval because the horizontal and vertical scale factors differ.</p>
+<p>These are presentation choices. The file's DAR supplies the shape that fitting or filling starts from. If an anamorphic file has an incorrect <a href="Video-Pixel-Aspect-Ratio.html">pixel aspect ratio</a>, both operations can faithfully fit the <em>wrongly interpreted</em> shape.</p>
+<h2 id="the-frame-and-the-film-inside-it">The frame and the film inside it</h2>
+<p>DAR describes the frame being presented. A 1920 × 1080 frame can contain a 2.4:1 film plus black rows above and below. Its frame DAR is 16:9, while its active film ratio is 2.4:1.</p>
+<p>That distinction is useful when a playback window shows unexpected extra borders: establish whether it is fitting the film itself or a larger stored rectangle around the film. The geometry then explains which edges will remain visible under fit, fill, or a deliberate crop.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

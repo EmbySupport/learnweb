@@ -106,35 +106,38 @@
 <h1>CUDA Tone Mapping</h1>
 
 
-<p>CUDA tone mapping means that an application runs its tone-mapping calculations on an NVIDIA GPU through CUDA. The application supplies a program, called a kernel, that processes many pixels in parallel.</p>
-<p>CUDA does not prescribe the curve, source-peak estimate, or color handling. Those come from the implementation. Two CUDA tone mappers can therefore produce different pictures, just as a CPU and GPU implementation can aim to produce the same one.</p>
-<h2 id="cuda-nvdec-and-nvenc-do-different-jobs">CUDA, NVDEC, and NVENC do different jobs</h2>
+<p>NVIDIA video processing can involve three separate engines or execution roles. Follow a possible decoded-picture route:</p>
 <table>
 <thead>
 <tr>
-<th>Name</th>
-<th>Job in a possible video-processing path</th>
+<th>Stage</th>
+<th>Work</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>NVDEC</td>
-<td>Decode compressed video into frames</td>
+<td>Reconstruct compressed video into decoded surfaces</td>
 </tr>
 <tr>
-<td>CUDA kernel</td>
-<td>Perform programmable calculations on those frames, such as tone mapping</td>
+<td>CUDA program</td>
+<td>Perform programmable picture calculations, such as tone mapping</td>
 </tr>
 <tr>
 <td>NVENC</td>
-<td>Encode processed frames into a compressed video stream</td>
+<td>Encode the prepared pictures into another video stream</td>
 </tr>
 </tbody>
 </table>
-<p>NVIDIA documents the video decoder and encoder as <a href="https://developer.nvidia.com/video-codec-sdk">hardware engines separate from CUDA cores</a>. Consequently, selecting an NVIDIA decoder or encoder does not by itself prove that tone mapping also runs through CUDA.</p>
-<p>The useful opportunity is keeping decoded frames accessible to subsequent GPU processing. NVIDIA's <a href="https://docs.nvidia.com/video-technologies/video-codec-sdk/13.0/nvdec-video-decoder-api-prog-guide/index.html">NVDEC guide</a> describes decoding into video memory and then processing those frames with CUDA. Avoiding an unnecessary trip through system memory can matter as much as accelerating the curve calculation.</p>
-<p>For Emby, inspect the actual processing stages when comparing hardware activity. An encoder can be busy while the tone-mapping work runs somewhere else; a single overall GPU percentage can hide that distinction. A supported codec in NVDEC or NVENC also says nothing by itself about the pixel formats accepted by a particular tone-mapping filter.</p>
-<p>There is no generic CUDA switch that adds this path to every application. The application must include a compatible implementation, and the installed driver and device must satisfy its requirements. The <a class="xref" href="https://emby.media/support/articles/Hardware-Acceleration-Overview.html">hardware-acceleration documentation</a> describes Emby's platform options; a CUDA-capable graphics card alone is not evidence that every Emby tone-mapping route uses CUDA.</p>
+<p>The decoder and encoder are hardware video engines. CUDA supplies programmable parallel computation. A tone mapper's kernel defines the brightness and color calculations; those decisions do not come from choosing the NVIDIA brand for decoding or encoding.</p>
+<h2 id="keep-a-decoded-surface-accessible-to-the-next-stage">Keep a decoded surface accessible to the next stage</h2>
+<p>NVIDIA's NVDEC API supports decoding to video memory and making the resulting surfaces available for CUDA processing. The application can use those decoded samples as the input to its kernel, then hand the processed result onward through a supported route.</p>
+<p>This is a memory and synchronization relationship. The filter must understand the surface's format and layout, wait until decoding has produced it, and ensure its output is ready for the next consumer. Shared access avoids a needless trip through system memory when the complete path supports it.</p>
+<p>Now insert a software-only operation between the stages. The application may need to download a representation to system memory, process it there, then upload the result again. The tone kernel can still be fast while those transfers add cost. <a href="../Tone-Mapping-CPU.html">CPU mapping</a> gives raw-frame storage arithmetic that explains the scale of such traffic.</p>
+<h2 id="read-activity-by-the-job-it-represents">Read activity by the job it represents</h2>
+<p>An Emby session can use an accelerated encoder while another stage handles tone mapping. Video-encode activity then describes NVENC's job, not the location of every preceding calculation. Different monitoring views can aggregate or separate video and compute activity.</p>
+<p>To understand the session, identify its decoder, filter, frame transfers, and encoder. The <a class="xref" href="https://emby.media/support/articles/Hardware-Acceleration-Overview.html">hardware overview</a> supplies the product's platform context; the actual application implementation chooses which supported operations use CUDA.</p>
+<p>The kernel's chosen curve, input peak, color interpretation, and output target determine the prepared picture. Comparing these inputs alongside the memory route explains both the image result and the execution cost without treating one activity percentage as a description of the entire conversion.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

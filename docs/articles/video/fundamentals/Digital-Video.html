@@ -106,41 +106,57 @@
 <h1>How Digital Video Represents Moving Pictures</h1>
 
 
-<p>A video is a sequence of pictures, called <strong>frames</strong>, together with information about when to show them. Each picture describes a grid of samples; displaying successive pictures at the intended times creates the appearance of motion.</p>
+<p>Pause a video and the moving scene becomes one picture. Advance by one frame and the objects have moved a little; advance again and they move farther. Digital video represents those successive pictures and tells the player when each should appear.</p>
 <p><img src="images/digital-video-frames.svg" alt="Three successive frames show a ball moving to the right."></p>
-<p><em>An original schematic: three pictures of one moving object, shown in time order. The drawing simplifies the pixel grid and does not represent a particular video codec.</em></p>
-<p>Three independent questions describe much of what you see in an Emby media information panel:</p>
+<p><em>Original schematic of three pictures in time order. The drawing simplifies the sample grid.</em></p>
+<h2 id="a-picture-is-a-grid-of-values">A picture is a grid of values</h2>
+<p>A 1920 × 1080 frame has 1,920 positions across each of 1,080 rows. At each position the picture representation supplies information about brightness and color. The values are numbers, so the decoder and display processing can work on them: reconstructing a compressed picture, enlarging it, applying a display transformation, and eventually making the screen emit light.</p>
+<p>Different sample formats arrange that information differently. A simple RGB example stores red, green, and blue values at every position. Common video formats instead separate brightness-related information from color-difference information. These are ways of describing a picture; the recognizable scene appears when those values are interpreted together.</p>
+<p><a href="../geometry/Video-Resolution.html">Resolution</a> counts the positions in the main picture grid. It does not describe how many different moments the recording contains.</p>
+<h2 id="timing-makes-the-pictures-move">Timing makes the pictures move</h2>
+<p>Suppose a clip contains 24 frames for each second. The starts of its first three frames are:</p>
 <table>
 <thead>
 <tr>
-<th>Property</th>
-<th>The question it answers</th>
-<th>Example</th>
+<th>Frame</th>
+<th style="text-align: right;">Presentation time</th>
+<th style="text-align: right;">Time until the next frame</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="../geometry/Video-Resolution.html">Resolution</a></td>
-<td>How many picture samples are there?</td>
-<td>1920 × 1080</td>
+<td>A</td>
+<td style="text-align: right;">0 ms</td>
+<td style="text-align: right;">41.667 ms</td>
 </tr>
 <tr>
-<td><a href="../frame-timing/frame-rates/Video-Frame-Rate.html">Frame rate</a></td>
-<td>How many pictures arrive each second?</td>
-<td>24 frames/s</td>
+<td>B</td>
+<td style="text-align: right;">41.667 ms</td>
+<td style="text-align: right;">41.667 ms</td>
 </tr>
 <tr>
-<td><a href="../compression/Video-Compression.html">Compression</a></td>
-<td>How are those pictures represented efficiently?</td>
-<td>A compressed H.264 bitstream</td>
+<td>C</td>
+<td style="text-align: right;">83.333 ms</td>
+<td style="text-align: right;">41.667 ms</td>
 </tr>
 </tbody>
 </table>
-<p>Increasing resolution does not increase the number of moments recorded. Increasing frame rate does not reveal detail that the camera never captured. Both can increase the work required to decode and display the video, but neither alone measures picture quality.</p>
-<h2 id="the-file-contains-instructions-too">The file contains instructions, too</h2>
-<p>Most library videos do not store every pixel of every frame independently. A decoder reconstructs pictures from compressed data, using predictions and corrections. It also needs the stream's dimensions, color description, and timing information. The media container keeps that video track alongside other tracks, such as audio.</p>
-<p>During <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">Direct Play</a>, the Emby app receives the original media and performs the required decoding. During video transcoding, Emby Server decodes the source and encodes a new video stream for the app. Either route must eventually produce pictures at the correct times.</p>
-<p>This is why a recognizable file extension is only the beginning of a compatibility check. The contents of the video track determine what the decoder must understand.</p>
+<p><em>An exact 24 fps timeline, with times rounded for display.</em></p>
+<p>The player shows A, keeps it on screen until B is due, then replaces it with B. A screen that refreshes more often may show the same video picture several times. That is still one recorded moment, rather than several new frames from the camera.</p>
+<p>Now imagine that a ball moves 20 picture positions between A and B. Those positions describe how far it moved; the 41.667 ms interval describes how quickly it moved. Keeping the same pictures but assigning different times changes the apparent speed. Keeping the timeline but reducing picture dimensions changes the spatial representation instead. This is why <a href="../frame-timing/frame-rates/Video-Frame-Rate.html">frame rate</a> and resolution describe different parts of a recording.</p>
+<p>Audio has its own samples and timestamps. Both streams are scheduled on a shared playback timeline so a visible action and its sound occur together.</p>
+<h2 id="why-the-file-usually-contains-compressed-instructions">Why the file usually contains compressed instructions</h2>
+<p>Storing every sample independently would be expensive. For a deliberately simple <strong>8-bit RGB</strong> example:</p>
+<ul>
+<li>One frame: 1920 × 1080 × 3 bytes = <strong>6,220,800 bytes</strong>.</li>
+<li>At 24 frames/s: <strong>149,299,200 bytes/s</strong>, about 149.3 MB/s.</li>
+</ul>
+<p>This is raw picture data only, with no audio or packaging. A compressed movie is usually far smaller because it describes patterns efficiently instead of storing that complete raw array for every moment.</p>
+<p>A <a href="../compression/Video-Compression.html">video decoder</a> turns those coded instructions back into picture values. For a region that resembles an earlier picture, the instructions can describe a prediction and the changes needed to correct it. The decoder may therefore need earlier reconstructed pictures before it can build the next one.</p>
+<h2 id="from-a-file-to-the-screen">From a file to the screen</h2>
+<p>The container reader first finds the selected video track and its coded data. The decoder uses the track's codec information to reconstruct pictures. Presentation timestamps then place those pictures in time order for the player. Finally, display processing fits and converts them for the screen.</p>
+<p>These stages explain familiar observations in an Emby session. A picture can be decoded correctly but shown with the wrong shape if aspect information is mishandled. Motion can be irregular if presentation timing is wrong. During video transcoding, the server reconstructs the source and creates a new coded representation, while the receiving app still performs the final decoding and presentation.</p>
+<p>The picture grid describes <strong>where</strong> the scene is sampled, the timeline describes <strong>when</strong>, and the coded representation tells the decoder <strong>how to build the pictures</strong>.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

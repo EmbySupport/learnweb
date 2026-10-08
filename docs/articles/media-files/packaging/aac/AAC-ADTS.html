@@ -106,39 +106,45 @@
 <h1>AAC: Audio Data Transport Stream (ADTS)</h1>
 
 
-<p>A file ending in .aac often uses <strong>Audio Data Transport Stream (ADTS)</strong> framing. ADTS puts a header before encoded AAC data, letting a reader find frame boundaries and discover important audio properties as it reads.</p>
-<p>It is an audio framing format. It is not the same thing as <a href="../../containers/mpeg-systems/MPEG-Transport-Stream.html">MPEG transport stream</a>, although ADTS-framed AAC can be carried within TS.</p>
+<p>An <strong>ADTS reader</strong> can find and delimit AAC audio as it reads from a file or continuing input. Audio Data Transport Stream surrounds audio data with repeated header information rather than relying on one movie-wide sample table.</p>
+<p>The header includes a synchronization pattern, MPEG/profile information, a sampling-frequency index, channel configuration, and the length of the framed unit. That lets the reader obtain the next boundary and basic setup from the stream.</p>
+<h2 id="walk-three-framed-units">Walk three framed units</h2>
+<p>Consider a simple single-raw-data-block case with no CRC. Each header is seven bytes, and the invented audio payloads contain 100, 120, and 90 bytes.</p>
 <table>
 <thead>
 <tr>
-<th>ADTS header information</th>
-<th>What it helps the reader do</th>
+<th>ADTS unit</th>
+<th style="text-align: right;">Framed length</th>
+<th style="text-align: right;">Start byte relative to the sequence</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Synchronization pattern</td>
-<td>Locate a candidate frame boundary</td>
+<td>First</td>
+<td style="text-align: right;">107</td>
+<td style="text-align: right;">0</td>
 </tr>
 <tr>
-<td>Frame length</td>
-<td>Determine how many bytes belong to the frame</td>
+<td>Second</td>
+<td style="text-align: right;">127</td>
+<td style="text-align: right;">107</td>
 </tr>
 <tr>
-<td>Core profile and sampling-frequency fields</td>
-<td>Establish basic decoder information</td>
-</tr>
-<tr>
-<td>Channel configuration</td>
-<td>Describe the core channel arrangement or signal further configuration</td>
+<td>Third</td>
+<td style="text-align: right;">97</td>
+<td style="text-align: right;">234</td>
 </tr>
 </tbody>
 </table>
-<p>A common single-block ADTS frame has a seven-byte header without CRC protection, or nine bytes with it. The header's synchronization pattern is a clue for parsing; validating lengths and successive frames is more reliable than treating one matching byte pattern as proof of a valid file.</p>
-<h2 id="a-header-is-not-a-complete-codec-description-in-every-case">A header is not a complete codec description in every case</h2>
-<p>More advanced AAC tools can require additional signalling in the audio data. With <a href="../../../audio/formats/lossy/aac-family/HE-AAC.html">HE-AAC</a>, for example, the final decoder output properties can differ from those described for the core. Read the complete <a href="../../inspection/Media-Probing.html">probe result</a> rather than inferring every property from one header field.</p>
-<p>For an Emby import, an ADTS AAC file and an AAC track in M4A may ask the same audio decoder to handle the sound, while using different readers to supply it. Moving between those packages can be possible without recompression.</p>
-<p>Such a move must translate the configuration and remove or add the appropriate framing. Renaming .aac to .m4a does neither. A general <a href="../../containers/iso-base-media-and-quicktime/MP4-Container.html">MP4</a> also supplies track timing and metadata structures that a bare ADTS stream does not provide in the same way.</p>
+<p>The reader validates the first header, reads its declared 107-byte unit, then checks the next expected header at byte 107. After another 127 bytes, the third begins at 234. The complete three-unit sequence occupies 331 bytes.</p>
+<p>In a common CRC-protected single-block arrangement, the header includes the additional protection field and occupies nine bytes. Arrangements with several raw data blocks have further details, so the seven-byte example should not be applied indiscriminately.</p>
+<p>Validating successive structures distinguishes a real framing sequence from one matching byte pattern inside unrelated data. The reader's work is boundary discovery and setup interpretation before audio decoding.</p>
+<h2 id="how-those-bytes-acquire-audio-time">How those bytes acquire audio time</h2>
+<p>For ordinary AAC-LC units with 1,024 samples at 44.1 kHz, each represents approximately 23.220 ms. Three units represent 3,072 samples, or approximately 69.660 ms, despite their different byte lengths.</p>
+<p>Advanced AAC tools can change the relationship between the declared core and the final output. <a href="../../../audio/formats/lossy/aac-family/HE-AAC.html">HE-AAC</a>, for example, can reconstruct a higher-rate output from its core. The header fields are part of a complete interpretation, not a reason to discard signalling carried elsewhere in the audio syntax.</p>
+<h2 id="within-a-larger-transport-or-a-different-file">Within a larger transport or a different file</h2>
+<p>ADTS is not <a href="../../containers/mpeg-systems/MPEG-Transport-Stream.html">MPEG transport stream</a>. TS can carry ADTS-framed audio as one component, adding its programme identification and systems timing around it.</p>
+<p>In MP4, encoded audio can instead be stored as samples whose configuration and timing are described by the container. <a href="AAC-Stream-Packaging.html">Translating the package</a> reads ADTS framing, retains applicable encoded audio, and writes the destination setup. An Emby delivery route can therefore change how AAC arrives without necessarily recompressing the soundtrack.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

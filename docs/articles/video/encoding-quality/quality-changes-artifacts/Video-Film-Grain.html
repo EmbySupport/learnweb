@@ -106,40 +106,72 @@
 <h1>Film Grain in Compressed Video</h1>
 
 
-<p><strong>Film grain</strong> is fine texture associated with photographic film. A digital video may retain that texture from a scan or add a grain effect deliberately. It can be part of the intended appearance rather than a defect to remove.</p>
-<p>Grain is difficult to compress because it changes across pictures and is less predictable than stable scenery. An encoder may need substantial data to retain it, or may simplify it when the budget is tight.</p>
+<p>A still wall can be difficult to compress when its scanned film texture changes in every picture. The wall is stable, but the <strong>grain</strong> is additional varying information the encoder has to represent.</p>
+<p>Film grain can be part of the intended appearance of a film scan or a deliberately added effect. Its strength, scale and behavior belong to that presentation.</p>
+<h2 id="a-static-scene-can-have-a-changing-residual">A static scene can have a changing residual</h2>
+<p>Take a simplified underlying scene sample of 100:</p>
 <table>
 <thead>
 <tr>
-<th>Treatment</th>
-<th>What to look for</th>
+<th>Picture</th>
+<th style="text-align: right;">Grain contribution</th>
+<th style="text-align: right;">Observed sample</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Encode the visible grain directly</td>
-<td>The texture must fit the picture's data budget</td>
+<td>A</td>
+<td style="text-align: right;">−3</td>
+<td style="text-align: right;">97</td>
 </tr>
 <tr>
-<td>Filter it before encoding</td>
-<td>Smoother pictures, with a risk of removing real detail</td>
-</tr>
-<tr>
-<td>Use a grain-aware encoder tuning</td>
-<td>Different decisions about preserving the texture</td>
-</tr>
-<tr>
-<td>Encode a cleaner picture with grain parameters</td>
-<td>The decoder generates modeled grain for display</td>
+<td>B</td>
+<td style="text-align: right;">+4</td>
+<td style="text-align: right;">104</td>
 </tr>
 </tbody>
 </table>
-<h2 id="grain-can-change-without-the-resolution-changing">Grain can change without the resolution changing</h2>
-<p>A converted film can retain the same width and height yet lose its fine texture. Grain may become softer, form larger patches, or pulse between pictures. Inspect moving scenes: a paused frame does not show how consistently the texture behaves.</p>
-<p>Some encoders offer a grain tuning. This changes their priorities rather than restoring grain lost before the encode. The setting is implementation-specific, and its effect on bitrate should be assessed using the actual source.</p>
-<p><a href="../../codecs/vpx-av1/Video-Codec-AV1.html">AV1</a> can signal film-grain parameters so grain is synthesized as part of output processing. This aims to reproduce the appearance of grain without coding every original grain sample in the picture. It is not exact preservation of the source's grain pattern.</p>
-<p>For Emby, grain differences between direct playback and a converted stream can explain why the same film looks smoother even when the delivered resolution matches. Check the source, rate-control constraints, and any filtering in the conversion path.</p>
-<p>If the original appearance matters, retain the source while evaluating smaller derivatives. A later encoder cannot reconstruct the original pattern from a copy that has already removed it.</p>
+<p>Predict B from A without any movement and the residual is <strong>104 −97 =7</strong>. The scene's underlying value did not change; the grain contribution did.</p>
+<p>Across many samples, that varying texture weakens the usefulness of directly reusing the previous picture. Finer grain can leave many changing coefficients rather than a small predictable scene correction.</p>
+<p><em>Original scalar illustration, not a film-grain generator or measured codec result.</em></p>
+<h2 id="direct-coding-spends-data-on-the-visible-pattern">Direct coding spends data on the visible pattern</h2>
+<p>An encoder can represent the grain as part of the picture samples. Its predictions, transforms and quantization then handle both the underlying scene and the texture.</p>
+<p>At a tight budget, some grain detail can become smoother or form coarser patches. If the coding decisions change sharply between regions or pictures, the retained texture can also appear uneven: one area has stronger grain, then another frame suppresses it.</p>
+<p>This can make a film seem to pulse or “breathe,” even when its overall resolution and average bitrate remain unchanged.</p>
+<h2 id="a-grain-tuning-can-prioritize-consistency">A grain tuning can prioritize consistency</h2>
+<p>x265's documented <code>tune grain</code> emphasizes avoiding artifacts caused by uneven grain distribution. It restricts selected QP-varying behaviors and biases decisions toward more high-frequency content. Its specialized rate control also tries to limit quantizer fluctuations.</p>
+<p>That is a specific allocation priority. It is not a promise to reproduce every original grain sample or simply a universal instruction to keep all noise.</p>
+<p>A whole-scene review should therefore assess whether the texture remains coherent in motion, alongside the resulting data requirement.</p>
+<h2 id="model-the-appearance-instead">Model the appearance instead</h2>
+<p><a href="../../codecs/vpx-av1/Video-Codec-AV1.html">AV1</a> can encode a cleaner picture and signal parameters for adding modeled grain during output processing.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter role</th>
+<th>What it contributes to the generated appearance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strength versus brightness</td>
+<td>Grain can behave differently in dark and light areas</td>
+</tr>
+<tr>
+<td>Relationships between nearby samples</td>
+<td>Gives the texture structure rather than independent noise alone</td>
+</tr>
+<tr>
+<td>Generation seed</td>
+<td>Specifies the generator's repeatable pattern behavior</td>
+</tr>
+</tbody>
+</table>
+<p>The decoder applies the specified synthesis to the output. The reconstructed scene retained for future prediction is separate from that added grain realization.</p>
+<p>This can reduce the need to transmit every grain sample in the coded picture while retaining a designed grain-like appearance. It preserves an appearance model, rather than the exact source texture array.</p>
+<h2 id="evaluate-texture-rather-than-a-single-paused-speck">Evaluate texture rather than a single paused speck</h2>
+<p>Compare passages at the intended scale and in motion. Look at grain strength, clumping, continuity across regions and stability around picture changes. A paused enlargement can emphasize isolated samples without showing temporal pumping.</p>
+<p>Pixel-error metrics can also react to a different grain pattern even if its intended texture is similar. A synthesized realization and the original scan need not match sample for sample. Decide whether the comparison aims at exact sample preservation or the intended viewing appearance.</p>
+<p>For an Emby viewing version, that distinction explains whether a grain change came from simplification, filtering, inconsistent direct coding, or a different modeled texture. Those are different operations on the film's appearance.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

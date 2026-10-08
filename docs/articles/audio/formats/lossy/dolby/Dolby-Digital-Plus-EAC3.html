@@ -106,39 +106,43 @@
 <h1>Dolby Digital Plus (E-AC-3)</h1>
 
 
-<p><strong>Dolby Digital Plus is E-AC-3, or Enhanced AC-3.</strong> It builds on AC-3 with additional coding tools and more flexible presentation structures. It remains lossy, even when a track uses a high bitrate or carries <a href="../../../channels/object-based/Dolby-Atmos.html">Dolby Atmos</a>.</p>
-<p>A media report may show E-AC-3, EC-3, or Dolby Digital Plus. Those are useful clues about the encoded format; the selected track's actual channel layout still needs to be checked.</p>
+<p>A Dolby Digital Plus programme can provide a conventional channel mix and a richer presentation using related substreams. <strong>Enhanced AC-3 (E-AC-3)</strong> extends AC-3's coding and presentation structure, while remaining a lossy audio format.</p>
+<p>Names such as E-AC-3, EC-3, and Dolby Digital Plus identify that encoded family.</p>
+<h2 id="build-a-presentation-from-substreams">Build a presentation from substreams</h2>
+<p>An <strong>independent substream</strong> supplies a decodable presentation without requiring its dependent substreams. A <strong>dependent substream</strong> is used with an associated independent one and can contribute additional or replacement channel information.</p>
+<p>This allows a compatible smaller channel presentation to coexist with information for a larger one. For example, a 7.1 arrangement can use a 5.1 independent presentation whose surround signals are partial combinations, plus dependent information that reconstructs the separate side/rear arrangement.</p>
+<p>The dependent information is not necessarily just “two more tracks.” The full decoder follows the specified channel mapping and replacement relationships to produce the intended presentation.</p>
 <table>
 <thead>
 <tr>
-<th>Information</th>
-<th>What it describes</th>
+<th>Decoder uses</th>
+<th>Available result</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Independent substream</td>
-<td>A presentation that can be decoded without dependent substreams</td>
+<td>Independent E-AC-3 presentation</td>
+<td>Its compatible channel mix</td>
 </tr>
 <tr>
-<td>Dependent substream</td>
-<td>Additional audio used with an associated independent substream</td>
+<td>Independent plus required dependent information</td>
+<td>The complete associated channel presentation</td>
 </tr>
 <tr>
-<td>Channel presentation</td>
-<td>Often stereo, 5.1, or 7.1 in consumer delivery</td>
-</tr>
-<tr>
-<td>Atmos extension information</td>
-<td>Spatial information beyond an ordinary fixed channel presentation</td>
+<td>Supported object-carriage information too</td>
+<td>An immersive rendering input where supplied</td>
 </tr>
 </tbody>
 </table>
-<p>An independent E-AC-3 substream is <strong>not automatically an AC-3 core</strong>. Its independence refers to other E-AC-3 substreams, not compatibility with an old AC-3-only decoder.</p>
-<h2 id="what-backward-compatible-can-mean">What “backward compatible” can mean</h2>
-<p>A playback system may provide AC-3 output by converting a Dolby Digital Plus presentation. Particular disc delivery arrangements can also include a compatible AC-3 component. Neither fact means that every E-AC-3 file contains an AC-3 track ready to extract.</p>
-<p>For an Emby recording or movie, distinguish that kind of fallback from passing the original E-AC-3 bitstream to a capable receiver. Plain PCM output is another possibility after decoding.</p>
-<p>Atmos carriage adds another capability requirement: a player may decode the compatible channel presentation without preserving the immersive rendering information. A successful 5.1 result therefore does not confirm that every feature of an Atmos-bearing E-AC-3 track survived the playback path.</p>
+<p>The exact structure belongs to the particular track. Consumer delivery commonly uses stereo, 5.1, and 7.1 presentations.</p>
+<h2 id="independence-does-not-mean-an-ac-3-core">Independence does not mean an AC-3 core</h2>
+<p>An independent E-AC-3 substream is independent of other E-AC-3 substreams. It is not thereby a bitstream an AC-3-only decoder can reconstruct.</p>
+<p>Some disc arrangements include a compatible AC-3 component. A playback system can also produce AC-3 through a supported conversion. Those routes should be distinguished from extracting a pre-existing core from an arbitrary E-AC-3 file.</p>
+<p>This distinction explains why “backward compatible” needs its system context: compatibility can be supplied by packaging or an active conversion, rather than by the older decoder understanding the newer stream directly.</p>
+<h2 id="add-atmos-as-another-reconstruction-job">Add Atmos as another reconstruction job</h2>
+<p>Dolby Digital Plus can carry Atmos through backwards-compatible object audio carriage. The conventional channel presentation remains useful, while extra information supports recovery and rendering of the immersive representation.</p>
+<p>A decoder using only the compatible channel path produces ordinary channel audio. An object-aware route uses the spatial information too. The <a href="../../../channels/object-based/Dolby-Atmos.html">Atmos article</a> follows that difference to a listening system.</p>
+<p>For an Emby source, a meaningful trace identifies which E-AC-3 presentation was delivered, whether it remained encoded or was decoded/converted, and what reached the renderer. This locates a specific substream or spatial-information boundary rather than treating a successful 5.1 output as proof of the whole source's feature set.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

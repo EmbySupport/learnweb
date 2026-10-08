@@ -106,39 +106,44 @@
 <h1>WMA Lossless Audio</h1>
 
 
-<p><strong>WMA Lossless preserves the original encoded audio data.</strong> It is a distinct Windows Media Audio variant; the ordinary WMA name or extension does not establish that a file is lossless.</p>
-<p>Microsoft identifies the Lossless variant separately from WMA Standard and Professional. This helps explain why support for a typical WMA music file does not guarantee support for an archival WMA Lossless file.</p>
+<p><strong>WMA Lossless is Microsoft's reversibly compressed audio member</strong>, identified separately from lossy WMA Standard and Professional. Its format identifier is 0x0163.</p>
 <table>
 <thead>
 <tr>
-<th>Detail</th>
-<th>Useful interpretation</th>
+<th>Property to record</th>
+<th>What it establishes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Lossless codec identification</td>
-<td>Establishes the compression variant</td>
+<td>Lossless member/identifier</td>
+<td>Which decoder and reconstruction promise apply</td>
 </tr>
 <tr>
-<td>Sample rate and bit depth</td>
-<td>Describe the preserved source audio</td>
+<td>Sample rate and precision</td>
+<td>The represented PCM format</td>
 </tr>
 <tr>
-<td>Variable encoded bitrate</td>
-<td>Reflects source complexity and compression</td>
+<td>Channel layout</td>
+<td>Roles of the reconstructed signals</td>
 </tr>
 <tr>
-<td>WMA extension</td>
-<td>Describes a file convention, not proof of lossless coding</td>
+<td>Sample count/duration</td>
+<td>Whether the whole presentation is retained</td>
 </tr>
 </tbody>
 </table>
-<p>A complex passage can require more compressed data than a simple one without changing sample fidelity. Comparing the bitrate to a lossy WMA therefore cannot directly rank audio quality.</p>
-<h2 id="using-a-lossless-master">Using a lossless master</h2>
-<p>When the source samples fit the destination format, converting WMA Lossless to another lossless codec can preserve the audio. Container bytes and metadata handling may change, so file checksums are not an audio-equality test.</p>
-<p>An Emby client may instead need a lossy <a href="../../decoding-output/conversion-fallback/Audio-Transcoding.html">delivery conversion</a>. That session no longer preserves the source samples exactly, even though the library file remains lossless.</p>
-<p>Conversely, making a WMA Lossless file from an already lossy recording preserves only its decoded result. The codec can protect the input it receives; it cannot restore information removed before that input was created.</p>
+<h2 id="convert-a-legacy-lossless-collection">Convert a legacy lossless collection</h2>
+<p>A useful conversion follows three independently checked results:</p>
+<ol>
+<li>Decode the WMA Lossless audio to its supported PCM representation.</li>
+<li>Encode those unchanged samples with the chosen compatible lossless codec.</li>
+<li>Transfer and verify the collection's tags, artwork, and organization.</li>
+</ol>
+<p>For example, a 44.1 kHz stereo source with 44,100,000 sample frames represents 1,000 seconds. A destination that retains the same values, order, rate, and count retains that audio even though its compressed bytes and size differ.</p>
+<p>Metadata preservation needs its own check. Comparing whole-file checksums between different codecs cannot establish sample equality, because the packages are intentionally different.</p>
+<p>If the source was WMA Standard instead, the first step produces its lossy reconstruction. The new lossless file would preserve that reconstruction rather than restore an earlier master. The member identification at the start is therefore decisive.</p>
+<p>An Emby client may also receive a temporary lossy delivery version of a retained WMA Lossless master. That changes the session's encoded presentation while leaving the library source available. Record those as source and delivery results separately.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

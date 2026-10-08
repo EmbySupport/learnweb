@@ -106,35 +106,45 @@
 <h1>Low-Frequency Effects (LFE)</h1>
 
 
-<p><strong>Low-frequency effects</strong>, or LFE, is a separate signal used for additional low-frequency energy. It is the “.1” in a conventional 5.1 or 7.1 soundtrack.</p>
-<p>The main channels can already contain low frequencies. LFE therefore does not mean “all the bass,” and a subwoofer's output is not necessarily a direct copy of the LFE channel.</p>
+<p>A subwoofer plays bass from stereo music, even though the track has no LFE channel. During a 5.1 film, it may play both the main channels' bass and a separate effects signal. <strong>The subwoofer is a playback device; LFE is a source channel.</strong></p>
+<h2 id="follow-the-two-paths">Follow the two paths</h2>
+<p>The main left, right, center, and surround channels can contain low frequencies. <strong>Bass management</strong> removes some of that low-frequency material from speakers configured to need assistance and redirects it to the bass output.</p>
+<p><strong>Low-frequency effects (LFE)</strong> is a separately mixed, band-limited signal. It supplies additional low-frequency energy, such as selected film effects. ITU-R BS.775 gives its nominal upper boundary as 120 Hz.</p>
+<p>For an illustrative setup with an 80 Hz main-speaker crossover:</p>
 <table>
 <thead>
 <tr>
-<th>Signal reaching a subwoofer</th>
-<th>Where it comes from</th>
+<th>Source content</th>
+<th>Relevant route</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>LFE content</td>
-<td>The soundtrack's separate effects channel</td>
+<td>A 60 Hz component in a main channel</td>
+<td>Can be redirected toward the subwoofer</td>
 </tr>
 <tr>
-<td>Redirected bass</td>
-<td>Low-frequency content removed from main channels by bass management</td>
+<td>A 200 Hz component in that main channel</td>
+<td>Primarily remains in its main-speaker output</td>
 </tr>
 <tr>
-<td>A combination</td>
-<td>Both paths summed by the playback system</td>
+<td>A 100 Hz component in LFE</td>
+<td>Can reach the subwoofer through the separate LFE path</td>
 </tr>
 </tbody>
 </table>
-<p>ITU-R BS.775 specifies an LFE band extending up to 120 Hz. The crossover used to redirect bass from small speakers is a separate setting. A system's 80 Hz crossover, for example, does not redefine the source LFE channel as an 80 Hz channel.</p>
-<h2 id="the-1-describes-the-source-signal">The “.1” describes the source signal</h2>
-<p>One LFE signal can feed more than one physical subwoofer. Conversely, a stereo source with no LFE channel can produce substantial subwoofer output through bass management. Counting subwoofers does not establish the source layout.</p>
-<p>LFE also has reproduction-level conventions handled by the decoding and calibrated playback system. It should not be treated as another full-range channel or boosted arbitrarily to make its meter look like the others.</p>
-<p>In an Emby session, the track's LFE flag identifies a source channel. The receiver or other output system determines how LFE and redirected bass reach the room. A stereo conversion may omit LFE while retaining bass from the main channels, so a different bass impression does not prove that all low-frequency audio has been lost. Correct diagnosis needs the source layout and the final output routing.</p>
+<p>This table illustrates the routing concepts. Real filters have gradual transition regions, rather than switching each frequency abruptly between outputs.</p>
+<p>An 80 Hz crossover therefore does not redefine LFE as an 80 Hz source channel. Crossover processing and LFE low-pass processing perform different jobs.</p>
+<h2 id="why-1-is-not-a-speaker-count-or-a-volume-fraction">Why “.1” is not a speaker count or a volume fraction</h2>
+<p>In 5.1 or 7.1, “.1” denotes the limited-band effects signal. It is not one tenth of a main channel's amplitude. There are six or eight source signals respectively.</p>
+<p>One LFE signal can feed several calibrated subwoofers. A system can also route low frequencies to capable main speakers. Counting physical bass speakers therefore does not count the source's LFE channels.</p>
+<h2 id="understand-the-reproduction-level-convention">Understand the reproduction level convention</h2>
+<p>For the broadcast/film convention described by BS.775, LFE is recorded with a −10 dB level offset and reproduced with compensation. Equal-level test signals give the LFE path a +10 dB acoustic output relationship within its low-frequency passband.</p>
+<p>That does not mean an arbitrary wideband meter reading should be ten decibels higher, or that every digital LFE waveform should be boosted manually. Bandwidth, calibration, decoder processing, and the delivery format's convention determine the intended result. The recommendation also notes formats using other LFE-offset conventions.</p>
+<p>This arrangement gives extra low-frequency effects headroom. Mixing compensated LFE with redirected bass must still avoid overloading the combined output.</p>
+<h2 id="what-remains-after-a-stereo-conversion">What remains after a stereo conversion</h2>
+<p>A stereo downmix may omit the separate LFE signal while retaining bass already present in the main channels. Its result can still contain substantial bass. If a receiver subsequently redirects that stereo bass, the subwoofer can play again without LFE having been recreated.</p>
+<p>For an Emby source, keep those three observations separate: the selected track's LFE channel, any bass-management processing, and the bass signal finally reproduced. This identifies whether a missing effect, a crossover decision, or an output-level problem is actually responsible for the difference you hear.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

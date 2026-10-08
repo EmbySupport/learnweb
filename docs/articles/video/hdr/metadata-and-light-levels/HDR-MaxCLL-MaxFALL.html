@@ -106,33 +106,49 @@
 <h1>MaxCLL and MaxFALL</h1>
 
 
-<p><strong>MaxCLL</strong> and <strong>MaxFALL</strong> describe different kinds of brightness in a video. Both are expressed in nits, but one concerns the brightest content and the other the brightest frame average.</p>
+<p>One small highlight and one broadly bright frame can determine different content-light fields. <strong>MaxCLL</strong> is the reported maximum content-light bound; <strong>MaxFALL</strong> is the reported maximum frame-average bound. Both use cd/m², commonly called nits.</p>
+<h2 id="calculate-the-two-summaries-from-three-simple-frames">Calculate the two summaries from three simple frames</h2>
+<p>Use neutral-gray pictures so component-light and luminance values coincide. The constructed sequence contains:</p>
 <table>
 <thead>
 <tr>
-<th>Field</th>
-<th>Expanded name</th>
-<th>What it summarizes</th>
+<th>Frame</th>
+<th>Picture contents</th>
+<th style="text-align: right;">Highest level</th>
+<th style="text-align: right;">Frame average</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>MaxCLL</td>
-<td>Maximum Content Light Level</td>
-<td>The highest content light level across the program</td>
+<td>A</td>
+<td>1% at 1,000 nits; 99% at 10 nits</td>
+<td style="text-align: right;">1,000</td>
+<td style="text-align: right;"><strong>19.9</strong></td>
 </tr>
 <tr>
-<td>MaxFALL</td>
-<td>Maximum Frame-Average Light Level</td>
-<td>The largest of the individual frame averages</td>
+<td>B</td>
+<td>50% at 300 nits; 50% at 20 nits</td>
+<td style="text-align: right;">300</td>
+<td style="text-align: right;"><strong>160</strong></td>
+</tr>
+<tr>
+<td>C</td>
+<td>Entire frame at 50 nits</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;"><strong>50</strong></td>
 </tr>
 </tbody>
 </table>
-<p>MaxFALL is <strong>not the average brightness of the whole film</strong>. Imagine a mostly dark movie with one very bright outdoor shot. That shot can determine MaxFALL even though the rest of the movie is much darker.</p>
-<p>A simplified example shows why the two values differ. If 1% of a frame is at 1,000 nits and the remaining 99% is at 10 nits, its average is 19.9 nits. A bright point can therefore coexist with a low frame average. This arithmetic illustration is not a complete specification of how production tools calculate the metadata.</p>
-<p>These fields are separate from the <a href="HDR-Mastering-Display-Metadata.html">mastering display's maximum</a>. One describes the content; the other describes a display configuration. Neither number measures the output of the television currently playing the file.</p>
-<p>Missing or zero light-level fields should not be read as a black movie. They can indicate unavailable information. Metadata may also be inaccurate, so a converter can need its own image analysis instead of relying only on the reported maximum.</p>
-<p>When comparing Emby tone-mapping results, record these values alongside the exact source version. Different encodes of the same title can carry different metadata, and that can change an implementation's starting assumptions.</p>
+<p>Frame A's average is 0.01 × 1,000 + 0.99 × 10 = 19.9. Frame B's average is 0.5 × 300 + 0.5 × 20 = 160.</p>
+<p>Using the measured maxima as the declared bounds gives <strong>MaxCLL 1,000</strong> and <strong>MaxFALL 160</strong>. A determines the content peak; B determines the largest frame average. No averaging across the three frames is needed to obtain MaxFALL.</p>
+<p>This explains the distinction physically. A tiny reflection can be intense while most of its frame remains dark. A broadly illuminated scene can have a lower peak while placing a larger average-light demand on the display.</p>
+<h2 id="what-the-measurement-definition-adds-for-colored-pictures">What the measurement definition adds for colored pictures</h2>
+<p>The standardized content-light messages describe bounds for linear-light RGB component intensities. A strong colored component can consequently give a value different from true CIE luminance calculated with color-dependent weights. Production measurement methods must be interpreted with their component definitions and picture-area treatment.</p>
+<p>The neutral-gray table above deliberately avoids that distinction. For a real program, keep the measuring tool and its definition identified when comparing reported values. The field records a declared bound; it is not a live measurement made by the television during playback.</p>
+<h2 id="read-missing-information-and-mastering-context-separately">Read missing information and mastering context separately</h2>
+<p>In the standardized messages, zero indicates that the corresponding upper bound is not supplied. It does not describe a movie whose light levels are all zero. A media report can also omit fields or carry values that were not correctly measured.</p>
+<p><a href="HDR-Mastering-Display-Metadata.html">Mastering maximum</a> identifies the grading display's configured range. It can exceed the program's content peak, so a 1,000-nit mastering record and a lower MaxCLL can be consistent.</p>
+<p>A tone mapper may use reported content bounds, mastering context, measured picture statistics, or a combination. When an Emby conversion changes across different source editions, recording these fields beside the exact release helps identify whether the mapper began with different source assumptions.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -151,6 +167,7 @@
 			          <ul class="seealso-list reference-list">
 			            <li><a class="seealso-link" href="https://professionalsupport.dolby.com/s/article/Calculation-of-MaxFALL-and-MaxCLL-metadata?language=en_US" title="Dolby: Calculating MaxFALL and MaxCLL">Dolby: Calculating MaxFALL and MaxCLL</a></li>
 			            <li><a class="seealso-link" href="https://www.smpte.org/hubfs/er0997-2015.pdf?hsLang=en" title="SMPTE: HDR Imaging Ecosystem report">SMPTE: HDR Imaging Ecosystem report</a></li>
+			            <li><a class="seealso-link" href="https://www.itu.int/rec/T-REC-H.274" title="ITU-T H.274: Content light level information">ITU-T H.274: Content light level information</a></li>
 			          </ul>
             </article>
           </div>

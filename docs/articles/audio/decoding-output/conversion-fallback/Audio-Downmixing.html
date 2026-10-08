@@ -106,41 +106,63 @@
 <h1>Audio Downmixing</h1>
 
 
-<p><strong>Downmixing combines audio channels for a smaller output layout</strong>, such as turning a 5.1 film soundtrack into stereo for a television or headphones.</p>
-<p>It should preserve useful content from the source presentation. Simply retaining front left and front right can omit much of the dialogue carried by the center channel.</p>
-<h2 id="a-stereo-fold-down">A stereo fold-down</h2>
+<p>A 5.1 film has center dialogue and surround ambience, but the television accepts two output channels. <strong>Downmixing constructs a new two-channel presentation from those source signals.</strong> It must decide both which contributions go where and how their levels fit the output range.</p>
+<p>Selecting only the original front pair is not that operation.</p>
+<h2 id="follow-one-moment-through-a-stereo-matrix">Follow one moment through a stereo matrix</h2>
+<p>For a conventional illustrative fold-down, ignoring LFE in this example:</p>
+<p>Left output = FL + 0.707 × C + 0.707 × SL<br>
+Right output = FR + 0.707 × C + 0.707 × SR</p>
+<p>Here FL/FR are front left/right, C is center, and SL/SR are the corresponding surrounds. Real downmix conventions, metadata, and target formats can choose other coefficients and phase relationships.</p>
+<p>Take this particular sample frame:</p>
 <table>
 <thead>
 <tr>
-<th>Source role</th>
-<th>Typical treatment in a stereo downmix</th>
+<th>Source</th>
+<th style="text-align: right;">Value</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Front left and right</td>
-<td>Contribute to the corresponding output side</td>
+<td>FL</td>
+<td style="text-align: right;">+0.10</td>
 </tr>
 <tr>
-<td>Center</td>
-<td>Contributes to both output sides</td>
+<td>FR</td>
+<td style="text-align: right;">+0.10</td>
 </tr>
 <tr>
-<td>Surrounds</td>
-<td>Contribute according to the selected mixing matrix</td>
+<td>C</td>
+<td style="text-align: right;">+0.60</td>
 </tr>
 <tr>
-<td>LFE</td>
-<td>Treatment depends on the downmix design and playback system</td>
+<td>SL</td>
+<td style="text-align: right;">+0.20</td>
+</tr>
+<tr>
+<td>SR</td>
+<td style="text-align: right;">−0.10</td>
 </tr>
 </tbody>
 </table>
-<p>This is a routing overview, not a universal coefficient recipe. Ordinary stereo and matrix-compatible stereo can use different relationships and phase treatment.</p>
-<p>Combining channels also raises a numerical problem. If two channels each contain a simultaneous sample of +0.8, adding them at full gain produces +1.6, beyond the usual normalized full-scale limit. Mixing coefficients, gain adjustment, or other overload handling provide headroom. <strong>Channel reduction can change level without involving another lossy codec.</strong></p>
-<h2 id="where-the-layout-changed">Where the layout changed</h2>
-<p>An Emby session may downmix during server conversion, client decoding, or output processing. If dialogue becomes weak, compare the source's center content with the resulting stereo channels and verify that the source layout was interpreted correctly.</p>
-<p>The LFE channel is not the same as all bass in the soundtrack. Bass management can redirect low frequencies from ordinary channels to a subwoofer separately from the LFE mix.</p>
-<p>A downmix preserves a useful smaller presentation, but it cannot keep every original channel independently available. Later <a href="Audio-Upmixing.html">upmixing</a> cannot reverse that combination into the original discrete tracks.</p>
+<p>The resulting left value is 0.10 + 0.4242 + 0.1414 = <strong>0.6656</strong>. The right is 0.10 + 0.4242 − 0.0707 = <strong>0.4535</strong>.</p>
+<p>The center has contributed to both sides; the different surround values retain different contributions. Taking FL and FR alone would instead output only +0.10 and +0.10, losing those stronger parts of the moment.</p>
+<h2 id="leave-headroom-for-coincident-signals">Leave headroom for coincident signals</h2>
+<p>With FL=C=SL=+1, that illustrative left sum is 1 + 0.707 + 0.707 = <strong>2.414</strong>. The individual inputs are in range, but their sum is not.</p>
+<p>A simple worst-case normalization for this particular matrix could scale the sum by 1/2.414, approximately <strong>0.4143</strong>. Other approaches can use different target levels, metadata-driven coefficients, or suitable overload protection. A single maximum-sum bound is safe but may leave extra headroom for ordinary material whose peaks do not coincide.</p>
+<p>This explains why a downmix can be quieter without changing codec quality, and why compensating with a later indiscriminate boost can reintroduce <a href="../../fundamentals/Audio-Clipping.html">clipping</a>.</p>
+<h2 id="phase-and-channel-roles-affect-the-result">Phase and channel roles affect the result</h2>
+<p>Opposing contributions can cancel. If the left front signal and a routed surround contribution oppose each other, their combination changes even though both source channels decoded correctly.</p>
+<p>Ordinary stereo and a <a href="../../channels/Matrix-Surround.html">matrix-surround Lt/Rt</a> presentation can use different relationships, including phase treatment. The intended downstream presentation determines which matrix is appropriate.</p>
+<p>The input layout also must be correct. A center contribution cannot preserve dialogue if software mistakenly interprets that buffer as LFE or a rear channel. Apply the matrix to named roles, not guessed array positions.</p>
+<h2 id="handle-lfe-and-main-bass-separately">Handle LFE and main bass separately</h2>
+<p>The worked matrix omits LFE deliberately. A real conversion chooses its LFE treatment according to the intended presentation. The main channels already contain bass; omitting an effects channel does not erase every low frequency.</p>
+<p>Bass management happens for playback speakers and is another job. It can redirect main-channel low frequencies to a subwoofer after the mix has been constructed.</p>
+<h2 id="know-what-can-no-longer-be-separated">Know what can no longer be separated</h2>
+<p>After five source signals become two outputs, arbitrary original channels cannot be uniquely recovered. For instance, additional center contribution can be indistinguishable from matching front contributions in the final pair.</p>
+<p>An <a href="Audio-Upmixing.html">upmixer</a> can derive useful output directions from that pair, but it does not invert every original component. Retaining the multichannel master preserves those separate signals for a later different render.</p>
+<h2 id="locate-the-combination-during-playback">Locate the combination during playback</h2>
+<p>An Emby session can downmix in server conversion, the client decoder/processor, or a later output stage. Record the source layout, where the matrix was applied, and the delivered/output layouts.</p>
+<p>For weak dialogue, compare whether center contributions survived. For overload, inspect the sum and its gain. For missing rear activity, determine whether an earlier stereo downmix replaced the discrete source. Each symptom follows a specific property of the combination.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

@@ -144,7 +144,7 @@
 </tbody>
 </table>
 <p>This example assumes a player with the appropriate decoder and a supported PCM-based Atmos output route. <strong>Dolby MAT</strong>, Metadata-enhanced Audio Transmission, is the transport in the fourth row. The receiver names what arrived there; the file names what was stored in the first row.</p>
-<h3 id="read-the-chain-at-each-boundary">Read the chain at each boundary</h3>
+<h2 id="read-the-chain-at-each-boundary">Read the chain at each boundary</h2>
 <p><strong>1. Server to player.</strong> Supplying the selected compressed track unchanged leaves decoding to the player. A receiver indication farther downstream cannot establish whether the server changed the audio; check the actual server delivery path for that part of the chain.</p>
 <p><strong>2. Decoder to output.</strong> Decoding reconstructs audio, while rendering determines how a channel or object presentation becomes signals for speakers. An object-aware player can decode a compressed Atmos presentation and retain the information needed for downstream rendering. These are separate jobs, which is what makes a decoded Atmos transport useful.</p>
 <p><strong>3. HDMI to receiver.</strong> In the PCM-based MAT 2.0 use, the link carries audio together with the associated Atmos metadata. The receiver can use that presentation with its speaker arrangement. It receives more information than an ordinary set of completed 5.1 or 7.1 channel samples.</p>

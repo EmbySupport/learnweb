@@ -106,35 +106,50 @@
 <h1>Matrix Surround</h1>
 
 
-<p><strong>Matrix surround carries information for a surround presentation within fewer transmitted channels.</strong> The classic example is a two-channel signal designed to be decoded into front and surround outputs.</p>
-<p>The encoder combines channel contributions using chosen level and phase relationships. A matching decoder analyzes those relationships and steers sound toward the intended positions. Unlike discrete multichannel audio, the transmitted signal does not contain a separate, independently recoverable waveform for every output speaker.</p>
+<p>How can a two-channel recording produce center and surround outputs? <strong>Matrix surround deliberately combines spatial signals into a pair with recognizable level and phase relationships.</strong> A matching decoder uses those relationships to steer the presentation.</p>
+<p>The transmitted pair is commonly labeled <strong>Lt/Rt</strong>, left total/right total. It can be heard as stereo as well as passed to a compatible matrix decoder.</p>
+<h2 id="understand-the-cue-before-the-decoder">Understand the cue before the decoder</h2>
+<p>A deliberately simplified mathematical model can illustrate the idea:</p>
+<pre><code class="lang-text">Lt = L + C + S
+Rt = R + C − S
+</code></pre>
+<p>This is <strong>not the actual Dolby matrix</strong>. Real systems use defined coefficients and phase processing; the model only exposes the information relationships.</p>
+<p>If only C is active, Lt and Rt match. If only S is active, they oppose each other. A decoder examining sum and difference can respond to those two cases:</p>
 <table>
 <thead>
 <tr>
-<th>Label</th>
-<th>What it describes</th>
+<th>Model input</th>
+<th>Lt + Rt</th>
+<th>Lt − Rt</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Lt/Rt: left total/right total</td>
-<td>Two channels prepared for matrix-surround decoding</td>
+<td>Center only, C</td>
+<td>2C</td>
+<td>0</td>
 </tr>
 <tr>
-<td>Lo/Ro: left only/right only</td>
-<td>A conventional stereo downmix without that matrix encoding</td>
+<td>Surround only, S</td>
+<td>0</td>
+<td>2S</td>
 </tr>
 <tr>
-<td>Discrete multichannel</td>
-<td>Separate encoded signals for the defined channel roles</td>
+<td>Left only, L</td>
+<td>L</td>
+<td>L</td>
 </tr>
 </tbody>
 </table>
-<p>Lt/Rt can be listened to as ordinary stereo. A compatible matrix decoder can then use its encoded relationships to produce a surround presentation. The chosen system matters: classic Dolby Surround and later Pro Logic II do not describe identical output arrangements.</p>
-<h2 id="two-stored-channels-can-be-intentional">Two stored channels can be intentional</h2>
-<p>An Emby media report showing two channels does not rule out matrix encoding. The spatial instructions are in the relationship between those channels rather than in six discrete channel streams. Preserving both channels and their relationship matters; taking one side or altering their phase independently can impair decoding.</p>
-<p>There is also a distinction between <strong>decoding an intentionally encoded matrix</strong> and applying an upmixer to an arbitrary stereo recording. The latter derives extra outputs from the available content, but cannot establish that the producer placed a particular sound in a separate source surround channel.</p>
-<p>Matrix decoding and <a href="Virtual-Surround.html">virtual surround</a> address different stages. A matrix decoder determines signals for surround positions; a virtualizer can try to reproduce those positions over headphones or a smaller speaker arrangement. Both can be involved in one session, but neither changes the file's original channel count.</p>
+<p>Matching and opposing relationships provide cues. Dolby's encoder documentation likewise specifies out-of-phase Lt/Rt outputs for surround-channel test signals, using its actual encoding process.</p>
+<h2 id="why-two-signals-cannot-preserve-every-independent-channel">Why two signals cannot preserve every independent channel</h2>
+<p>In the model, arbitrary L, R, C, and S are four independent unknown signals described by only two transmitted signals. There is no unique algebraic solution for all possible mixtures. A center-only input and an appropriate matching front-left/right input can produce the same Lt/Rt.</p>
+<p>A practical decoder uses analysis and steering to emphasize the likely dominant directions and manage the ambiguous contributions. This can produce an effective surround impression, especially for material prepared for the matrix. It does not provide the unrestricted channel separation of a discrete multichannel recording.</p>
+<p>Later matrix systems use more sophisticated relationships and output arrangements. The specific encoding/decoder pairing determines which cues and outputs are intended.</p>
+<h2 id="carry-the-intended-stereo-pair">Carry the intended stereo pair</h2>
+<p><strong>Lo/Ro</strong>, left only/right only, describes an ordinary stereo downmix without that intentional surround-matrix treatment. Both Lo/Ro and Lt/Rt have two stored channels, but they ask different things of a surround decoder.</p>
+<p>For an Lt/Rt soundtrack in an Emby file, preserving the pair's relative phase and level preserves its decoding cues. Taking only one side, independently altering phase, or making an unsuitable mono conversion can change those relationships.</p>
+<p>Applying an <a href="../decoding-output/conversion-fallback/Audio-Upmixing.html">upmixer</a> to arbitrary stereo derives extra outputs from whatever relationships are present. Decoding an intentionally encoded matrix uses relationships the producer prepared for that purpose. A <a href="Virtual-Surround.html">virtualizer</a> can then take the resulting surround positions and reproduce their cues over headphones or fewer speakers, performing a subsequent acoustic-rendering job.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

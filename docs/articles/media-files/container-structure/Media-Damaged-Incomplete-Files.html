@@ -106,35 +106,46 @@
 <h1>Damaged and Incomplete Media Files</h1>
 
 
-<p>A file can contain gigabytes of picture data and still fail to open if essential structure is missing. An interrupted recording may never have written its final index or track tables. Corruption in the encoded media is a different kind of damage.</p>
+<p>A recorder stops unexpectedly after writing several gigabytes. The size proves that bytes were written, but leaves a more useful question open: <strong>which information had been written when it stopped?</strong></p>
+<p>A player needs descriptions of the media, a way to locate and time it, and the encoded content itself. Damage to these parts produces different failure patterns.</p>
 <table>
 <thead>
 <tr>
-<th>What is missing or damaged?</th>
-<th>Typical consequence</th>
+<th>Observation</th>
+<th>A possible missing part</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Navigation index</td>
-<td>Playback may work, while seeking becomes slow or unreliable</td>
+<td>Reader cannot initialize the file</td>
+<td>Essential track setup or sample descriptions</td>
 </tr>
 <tr>
-<td>Essential track configuration or sample tables</td>
-<td>The reader may be unable to interpret otherwise present media</td>
+<td>Opening plays, but jumps take a long time</td>
+<td>Useful navigation entries</td>
 </tr>
 <tr>
-<td>Encoded packets</td>
-<td>Visible artifacts, silence, decode errors, or gaps at particular moments</td>
+<td>Repeated failure at one scene</td>
+<td>Encoded packets or structure around that location</td>
+</tr>
+<tr>
+<td>Apparent duration exceeds actual playback</td>
+<td>Final media data is absent although earlier descriptions remain</td>
 </tr>
 </tbody>
 </table>
-<p>These are clues, not diagnoses from a single error message.</p>
-<h2 id="why-unfinished-files-behave-differently">Why unfinished files behave differently</h2>
-<p>Some recording arrangements carry enough information in successive fragments or packets to leave earlier portions readable after an interruption. Others depend heavily on structures completed at the end. Recoverability depends on both the container and how it was written.</p>
-<p>A remux can rebuild some structure when a reader can still recover the streams. It cannot recreate pictures or sound whose bytes were never recorded. A missing MP4 <code>moov</code> box may require recovery information that ordinary remuxing cannot supply.</p>
-<p>When an Emby item fails, first check that the file is complete and readable from the server's storage. Then compare <a href="../inspection/Media-Probing.html">probe results</a> and errors near the failing position. An unsupported codec can produce a playback failure even when the file is intact.</p>
-<p>Preserve the original and attempt repairs on a copy. If the source is still available, a clean replacement is often more reliable than a partial recovery whose duration, tracks, or seeking behavior remain uncertain.</p>
+<p>The observations identify which stage to investigate; they do not uniquely name a fault.</p>
+<h2 id="an-unfinished-conventional-mp4">An unfinished conventional MP4</h2>
+<p>A writer can accumulate media in mdat and finish the moov description later. If interruption leaves no usable moov, the reader may lack codec setup, sample sizes, locations, or timing needed to interpret the existing data. There can be abundant payload without an ordinary file reader being able to separate it into the right samples.</p>
+<p>A routine remux needs a reader to supply usable streams first. It cannot simply invent the missing descriptions. Specialized recovery can sometimes use information from the recording setup or another matching file, but the reliability depends on the exact source and writer.</p>
+<h2 id="complete-earlier-groups-can-survive">Complete earlier groups can survive</h2>
+<p>A <a href="../packaging/mp4/Fragmented-MP4.html">fragmented MP4</a> with usable initialization and complete earlier fragment descriptions can leave those earlier groups interpretable after an interruption. The last partial group may still be unusable. A transport recording or suitable Matroska writing arrangement likewise distributes information differently from a final-table-dependent file.</p>
+<p>This is a structural reason for differing recovery behaviour. The extension alone does not specify when the particular recorder committed its essential information.</p>
+<h2 id="navigation-damage-and-media-damage-have-different-limits">Navigation damage and media damage have different limits</h2>
+<p>If a reader can scan intact streams and timing, a new mux can write indexes that were missing or broken. That can repair navigation without changing the encoded movie.</p>
+<p>If some media bytes are absent or corrupted, a decoder may stop, conceal errors, or recover at a later usable point. Rebuilding an index does not restore the original picture or sound for that gap. A checksum can detect an inconsistency where provided; it does not supply a replacement payload.</p>
+<p>For a failing Emby item, separate storage access from media interpretation first. A server that cannot read a path has not yet tested the container. If the bytes are accessible, compare initialization results with <a href="../inspection/Media-Probing.html">probing</a> and decoding near the repeatable failure. Unsupported decoding can also fail on an intact file, so the codec and failure stage belong in the evidence.</p>
+<p>A repair should be evaluated by what it recovered: track setup, full expected duration, the affected scene, and normal seeking. This is more informative than observing that the repaired output now has a recognized extension.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

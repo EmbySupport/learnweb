@@ -106,36 +106,48 @@
 <h1>7.1 Surround Sound</h1>
 
 
-<p>In the common home-theater layout, <strong>7.1 adds a rear surround pair to the five main-channel roles familiar from 5.1</strong>. Separate side and rear channels give a mix more control over sounds around and behind the listener.</p>
-<p><img src="images/surround-7-1.svg" alt="A common seven-main-channel layout with side and rear surrounds"></p>
-<p><em>Schematic top view: three front channels, two side surrounds, and two rear surrounds. The separate LFE signal is shown without fixing a subwoofer position. This illustrates the common layout, not every possible eight-channel arrangement.</em></p>
+<p>A sound moving along the listener's side and then behind can use <strong>separate side and rear surround channels</strong> in a common 7.1 home-theater mix. The front remains left, center, and right. With LFE, the presentation contains eight signals.</p>
+<p><img src="images/surround-7-1.svg" alt="Common 7.1 home-theater layout"></p>
+<p><em>Top-view schematic of three front channels, two side surrounds, two rear surrounds, and a separately labeled LFE signal.</em></p>
 <table>
 <thead>
 <tr>
-<th>Main-channel group</th>
-<th style="text-align: right;">Number of channels</th>
+<th>Group</th>
+<th>Roles</th>
+<th style="text-align: right;">Count</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Front left, center, and front right</td>
+<td>Front</td>
+<td>Left, center, right</td>
 <td style="text-align: right;">3</td>
 </tr>
 <tr>
-<td>Left and right side surround</td>
+<td>Side surround</td>
+<td>Left and right</td>
 <td style="text-align: right;">2</td>
 </tr>
 <tr>
-<td>Left and right rear surround</td>
+<td>Rear surround</td>
+<td>Left and right</td>
 <td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td>Effects bass</td>
+<td>LFE</td>
+<td style="text-align: right;">1</td>
 </tr>
 </tbody>
 </table>
-<p>With LFE included, the track has eight channels. Those extra surrounds are still around the listener's plane; <strong>7.1 alone does not describe height channels</strong>. A speaker arrangement such as 7.1.4 explicitly adds four height positions, and belongs to a different description of the playback system.</p>
-<h2 id="extra-positions-need-the-complete-path">Extra positions need the complete path</h2>
-<p>A 7.1 source does not require every listener to own eight speakers. It can be reduced for another layout. The intended conversion combines the additional positions; dropping channels arbitrarily can lose sounds.</p>
-<p>Likewise, playing a 5.1 soundtrack through a receiver with seven main speakers does not give the file new discrete rear channels. The receiver may derive outputs through spatial processing, but that is a different source of information.</p>
-<p>For an Emby session, the channel label identifies what the selected track contains. The codec, client, and output connection determine how that presentation reaches the audio system. If eight channels appear in a report, check the <a href="../roles-and-ordering/Audio-Channel-Order.html">actual layout and order</a>, because channel count alone cannot distinguish rear surrounds from other possible positions.</p>
+<h2 id="what-the-extra-pair-changes">What the extra pair changes</h2>
+<p>A 5.1 mix has one surround signal per side. Those can already reproduce sound behind or around the listener, but they provide fewer independently controlled positions than the separate side/rear pairs of this 7.1 arrangement.</p>
+<p>In a 7.1 mix, the producer can move an effect from left side toward left rear by changing its contribution between those signals. A room-filling ambience can use several surround channels simultaneously. The benefit is additional spatial control, not simply a larger count of active speakers.</p>
+<p>These surround positions remain around the listener's horizontal plane. A system described as <strong>7.1.4</strong> adds four height positions to its speaker arrangement; the 7.1 count alone does not specify those heights.</p>
+<h2 id="reproduce-it-on-a-different-layout">Reproduce it on a different layout</h2>
+<p>A 5.1 destination must combine or otherwise appropriately render the side/rear information into its available surrounds. Dropping the rear pair can remove an event deliberately mixed there. The conversion also manages summed levels.</p>
+<p>The reverse operation is different. A receiver with seven main speakers can upmix a 5.1 source and derive rear outputs from the available material. Those derived outputs are not two additional independently stored channels in the source.</p>
+<p>When an Emby report shows eight channels, use the layout as well as the count to identify this particular presentation. Other eight-signal arrangements exist. Then compare the decoder's output roles and the receiving system's configuration: preserving eight values is useful only when they remain associated with the intended front, side, rear, and LFE paths.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

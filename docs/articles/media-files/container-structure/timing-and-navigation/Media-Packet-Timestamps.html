@@ -106,44 +106,50 @@
 <h1>Packet Timestamps</h1>
 
 
-<p>The order in which compressed video is read is not always the order in which pictures appear. A picture may depend on a later displayed picture, so the decoder needs that reference first.</p>
-<p>Two timestamps keep those jobs separate:</p>
-<ul>
-<li><strong>DTS</strong>, the decoding timestamp, places data on the decode timeline.</li>
-<li><strong>PTS</strong>, the presentation timestamp, places the decoded result on the display or sound timeline.</li>
-</ul>
+<p>A decoder and a viewer can need pictures in different orders. If picture B predicts from C, the decoder must reconstruct C before B even when the viewer should see B first. <strong>Decoding timestamps (DTS)</strong> and <strong>presentation timestamps (PTS)</strong> describe these two schedules.</p>
+<p>Follow this simplified three-picture group. Each displayed picture lasts 40 milliseconds, and C is a reference used to decode B.</p>
 <table>
 <thead>
 <tr>
-<th>Packet in decode order</th>
+<th>Packet read in decode order</th>
 <th style="text-align: right;">DTS</th>
 <th style="text-align: right;">PTS</th>
+<th>Decoder action</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Picture A</td>
-<td style="text-align: right;">0.00 s</td>
-<td style="text-align: right;">0.04 s</td>
+<td>A</td>
+<td style="text-align: right;">0 ms</td>
+<td style="text-align: right;">40 ms</td>
+<td>Reconstruct A and retain it</td>
 </tr>
 <tr>
-<td>Picture C, a reference for B</td>
-<td style="text-align: right;">0.04 s</td>
-<td style="text-align: right;">0.12 s</td>
+<td>C</td>
+<td style="text-align: right;">40 ms</td>
+<td style="text-align: right;">120 ms</td>
+<td>Reconstruct C, retain it, and defer its display</td>
 </tr>
 <tr>
-<td>Picture B</td>
-<td style="text-align: right;">0.08 s</td>
-<td style="text-align: right;">0.08 s</td>
+<td>B</td>
+<td style="text-align: right;">80 ms</td>
+<td style="text-align: right;">80 ms</td>
+<td>Reconstruct B using its references</td>
 </tr>
 </tbody>
 </table>
-<p><em>Simplified reordered-video example. The decoder receives A, C, B; the viewer sees A, B, C.</em></p>
-<p>The timestamps are often stored as integer ticks. Their <a href="Media-Time-Bases.html">time base</a> tells you how to convert those ticks to seconds. A container or inspection tool may represent one timeline through durations and offsets rather than store both values explicitly for every packet.</p>
-<h2 id="why-a-warning-needs-interpretation">Why a warning needs interpretation</h2>
-<p>A non-monotonic presentation timestamp in decode order can be normal for reordered video. A DTS that moves backward in a stream expecting ordered decode timestamps is a different problem.</p>
-<p>Gaps, incorrect offsets, or discontinuities can affect audio synchronization and seeking through Emby. A media packet is also not necessarily a single displayed frame, and it is not an IP network packet.</p>
-<p>Do not “fix” timestamps by making every number consecutive without understanding the source. That can destroy legitimate reordering or variable timing. Compare the actual times, the selected tracks, and the reported symptom first.</p>
+<p>The viewer's order is A at 40 ms, B at 80 ms, then C at 120 ms. The compressed packet order is A, C, B. The presentation offset in this invented example gives the decoder time to build the required reference state; it is not a universal delay used by a codec.</p>
+<h2 id="the-queue-is-part-of-the-mechanism">The queue is part of the mechanism</h2>
+<p>At decode time 40 ms, C is ready but does not yet belong on screen. It waits in a decoded-picture buffer. At 80 ms, B is reconstructed and can be presented before the retained C. The decoder must keep pictures for two potentially different reasons: later prediction and later presentation.</p>
+<p>Sorting the compressed packets by PTS would send A, B, C to the decoder. B would then arrive before its reference C. The output schedule is a reason to reorder reconstructed pictures, not a reason to reorder dependent compressed input blindly.</p>
+<p>For video with no such reordering, DTS and PTS may coincide. Audio also uses presentation timing, while its packet duration tells the scheduler how much decoded sound that packet contributes.</p>
+<h2 id="comparing-picture-and-sound">Comparing picture and sound</h2>
+<p>A video PTS and an audio PTS can be integers on different <a href="Media-Time-Bases.html">time bases</a>. On a 90,000-tick scale, 90,000 means one second; on a 48,000-tick scale, 48,000 means the same moment. Synchronization compares the converted time, not the raw numbers.</p>
+<p>If sound is consistently 200 ms late in an Emby session, an offset is one possibility. If the difference grows through the programme, durations, resampling, or an incorrectly interpreted clock can be involved. Those are different timing patterns, so the symptom guides which relationships to inspect.</p>
+<p>Containers need not store two literal fields on every packet. They can describe decode durations and composition offsets from which a reader derives the schedules. Inspection tools report the resulting timestamps through their own packet model.</p>
+<h2 id="reading-a-warning-in-context">Reading a warning in context</h2>
+<p>PTS can move backwards in the file's decode order, as 120 → 80 ms does here. That is normal reordering. A DTS moving backwards where the receiving muxer expects an ordered decode timeline has another meaning. Timestamp resets in a continuing recording, missing durations, and discontinuities can also need explicit handling.</p>
+<p>A useful <a href="../../inspection/Media-Inspection-ffprobe.html">packet inspection</a> keeps DTS, PTS, duration, time base, stream identity, and the playback symptom together. Replacing all times with consecutive values would erase the information that makes this example display correctly.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

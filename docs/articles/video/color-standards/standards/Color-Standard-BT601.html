@@ -106,39 +106,48 @@
 <h1>ITU-R BT.601</h1>
 
 
-<p><strong>BT.601</strong>, also called Rec. 601, is a foundation of digital standard-definition television. It defines how component video is sampled and represented, including the relationship between red, green, blue, and luma/color-difference signals.</p>
-<p>For a media library, its most useful connection is older SD material. An archived television recording can need BT.601 color interpretation even when it is being shown on a modern 4K screen.</p>
+<p>An archived SD recording is enlarged to 1080p, and its colored objects change slightly even though neutral gray still looks sensible. One possibility is a disagreement about the luma/color-difference matrix: an image represented using BT.601 values is being reconstructed as if those values used BT.709.</p>
+<p>BT.601, or Rec. 601, defines digital component-video encoding for standard-definition television. Its matrix remains relevant after a picture is resized, because enlarging the sample grid does not automatically change what the samples mean.</p>
+<h2 id="follow-the-color-through-an-upscale">Follow the color through an upscale</h2>
+<p>Start with nonlinear RGB components R′, G′, and B′. The familiar BT.601 luma weighting is:</p>
+<p><strong>Y′ = 0.299R′ + 0.587G′ + 0.114B′</strong></p>
+<p>Two color-difference components describe the color around that luma value. A playback stage uses the matching inverse relationship to recover RGB. The weights operate on nonlinear signal components; this luma is different from a direct measurement of emitted light.</p>
+<p>For a neutral signal with R′ = G′ = B′, any weighting whose coefficients sum to one gives the same luma value, and the color differences are neutral. That explains why a matrix mismatch can leave a gray patch plausible. Colored patches exercise the different weights and reveal the disagreement.</p>
+<p>Resizing the luma/chroma grids can retain the BT.601 interpretation. Alternatively, a processing path can reconstruct color and perform an appropriate conversion to a destination representation, such as BT.709. The delivered values and their signaling must then describe that destination. These are actual processing choices, rather than consequences of the output resolution alone.</p>
+<p>When comparing an Emby <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">Direct Play and transcoded session</a>, inspect the source and delivered matrix information. An SD-to-HD conversion can change more than geometry, so comparing only the resolution leaves the color conversion unexplained.</p>
+<h2 id="useful-reference-details">Useful reference details</h2>
 <table>
 <thead>
 <tr>
-<th>BT.601 detail</th>
-<th>Why it is useful</th>
+<th>Detail</th>
+<th>BT.601 role</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>4:2:2 studio representation</td>
-<td>Describes horizontal sampling of luma and color differences</td>
+<td>Standard 4:2:2 family</td>
+<td>Full horizontal luma sampling with half-rate color-difference sampling</td>
 </tr>
 <tr>
-<td>13.5 MHz luma sampling for the standard 4:2:2 family</td>
-<td>Supports both 525-line and 625-line television systems</td>
+<td>Luma sampling rate</td>
+<td>13.5 MHz for the standard 525-line and 625-line 4:2:2 systems</td>
 </tr>
 <tr>
-<td>Luma weights of 0.299 red, 0.587 green, 0.114 blue</td>
-<td>Identify the familiar BT.601 matrix</td>
+<td>Corresponding chroma sampling rate</td>
+<td>6.75 MHz for each color-difference component</td>
 </tr>
 <tr>
-<td>Nominal 8-bit luma range 16–235</td>
-<td>Black and white are not necessarily code values 0 and 255</td>
+<td>Nominal 8-bit luma black/white</td>
+<td>Code values 16 and 235</td>
+</tr>
+<tr>
+<td>Familiar nonlinear luma weights</td>
+<td>0.299 red, 0.587 green, 0.114 blue</td>
 </tr>
 </tbody>
 </table>
-<p>The luma weights apply to nonlinear R′G′B′ signals. Luma is not a direct measurement of light emitted by the screen.</p>
-<h2 id="why-upscaling-does-not-settle-the-color-question">Why upscaling does not settle the color question</h2>
-<p>Suppose an SD recording is enlarged to 1920 × 1080. Adding pixels does not by itself convert its color representation to <a href="Color-Standard-BT709.html">BT.709</a>. A converter must either retain the existing interpretation correctly or perform the appropriate color conversion and update the signal information.</p>
-<p>If one stage assumes BT.601 and another interprets the same color-difference values as BT.709, colored objects can shift while neutral grays still appear plausible. Increasing the bitrate cannot fix that disagreement.</p>
-<p>BT.601 is also not a complete shorthand for every SD source's color characteristics. Primaries, transfer characteristics, matrix coefficients, and range are separate descriptions. Old files may omit some of them. When comparing an Emby <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">Direct Play and transcoded session</a>, preserve the original file and compare the actual signal information before assuming the display needs a saturation adjustment.</p>
+<p>The numerical range must also be interpreted correctly. Nominal black at 16 and white at 235 are not the same code positions as full-range black and white. A range mismatch affects contrast, while a matrix mismatch mainly changes the reconstructed colors.</p>
+<p>BT.601-era material can have differing primary and transfer descriptions depending on its television system and history. Read those fields individually when available. The matrix answers how component signals relate; it does not replace the rest of the source's color description.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

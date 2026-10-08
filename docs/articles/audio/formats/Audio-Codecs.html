@@ -106,40 +106,53 @@
 <h1>Audio Codecs Explained</h1>
 
 
-<p>A codec answers a practical question: <strong>what must the player understand to turn this track into sound?</strong> A media file can contain perfectly usable video while its soundtrack needs a decoder the client does not have.</p>
-<p>The name can refer to an encoded format or to software that implements it. Two AAC encoders may make different quality choices while producing tracks that the same AAC decoder can play.</p>
-<h2 id="three-descriptions-to-keep-separate">Three descriptions to keep separate</h2>
+<p>A player opens a movie, displays the picture, and cannot reproduce its soundtrack. The file reader has located the audio track, but the audio still needs a decoder that understands its <strong>coded representation</strong>.</p>
+<p>An audio codec defines that representation and its reconstruction. The same word also commonly names an encoder or decoder implementation.</p>
+<h2 id="follow-the-data-into-a-decoder">Follow the data into a decoder</h2>
+<p>For compressed audio, a stream consists of coded information rather than a literal number for every sample. Depending on the codec, it can describe frequency components, predictions, remaining errors, or other signal parameters.</p>
+<p>The decoder first needs configuration: which coding tools are used, the sample-rate arrangement, channel structure, and other format-specific details. It then interprets successive coded units and produces audio on a sample timeline.</p>
 <table>
 <thead>
 <tr>
-<th>Description</th>
-<th>Example</th>
-<th>What it identifies</th>
+<th>Information or component</th>
+<th>Job</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Container</td>
-<td>M4A or Matroska</td>
-<td>How tracks, timing, and tags are stored</td>
+<td>Container reader</td>
+<td>Locates track data and timing</td>
 </tr>
 <tr>
-<td>Audio codec</td>
-<td>AAC or FLAC</td>
-<td>How the audio data is represented</td>
+<td>Codec configuration</td>
+<td>Describes how the coded audio should be interpreted</td>
 </tr>
 <tr>
-<td>Decoder implementation</td>
-<td>A player or system decoder</td>
-<td>The component that reconstructs sound</td>
+<td>Decoder</td>
+<td>Reconstructs the audio presentation</td>
+</tr>
+<tr>
+<td>Output processing</td>
+<td>Maps it to the listening system</td>
 </tr>
 </tbody>
 </table>
-<p>A container extension alone cannot settle codec compatibility. An M4A file, for example, can contain <a href="lossy/aac-family/AAC-LC.html">AAC</a> or <a href="lossless/ALAC.html">Apple Lossless</a>. The same extension can therefore describe two quite different audio streams.</p>
-<h2 id="compression-and-playback-are-different-decisions">Compression and playback are different decisions</h2>
-<p><a href="lossy/Audio-Lossy-Compression.html">Lossy codecs</a> reduce data by allowing changes to the reconstructed signal. <a href="lossless/Audio-Lossless-Compression.html">Lossless codecs</a> preserve the encoded source samples exactly. <a href="LPCM.html">Linear PCM</a> stores sample values without audio compression.</p>
-<p>That distinction says little about which component decodes the track. A player can decode locally and send PCM to an amplifier, or pass a compatible encoded bitstream onward.</p>
-<p>When checking an Emby session, look at the codec, channel layout, and <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">delivery method</a> together. A client may accept a codec in stereo but require conversion for a multichannel presentation. A successful Direct Play session also does not establish that the receiver is receiving the original compressed format.</p>
+<p>A container can provide configuration outside the individual audio packets. That is why copying one packet from a file does not necessarily make a complete independently playable recording.</p>
+<h2 id="the-encoder-has-decisions-the-decoder-does-not-repeat">The encoder has decisions the decoder does not repeat</h2>
+<p>A standard fixes what valid coded information means. Encoders can nevertheless differ in how they choose that information. They may spend more computation searching for a better prediction or allocate bits differently to minimize audible error.</p>
+<p>Two encoders can therefore produce different bitstreams from the same recording while one conforming decoder can reconstruct both. Improving an encoder does not necessarily require a new decoder if the encoded format remains within the same supported tools and constraints.</p>
+<p>With <a href="lossless/Audio-Lossless-Compression.html">lossless compression</a>, the choices affect storage efficiency and processing while preserving the represented source samples. With <a href="lossy/Audio-Lossy-Compression.html">lossy compression</a>, they also affect the approximation the decoder reconstructs.</p>
+<h2 id="identify-the-supported-presentation-precisely">Identify the supported presentation precisely</h2>
+<p>Codec families can contain variants requiring different tools. A basic AAC-LC decoder and an xHE-AAC decoder do different reconstruction jobs. Channel count, sample rate, and a supported profile can impose further implementation requirements.</p>
+<p>The surrounding package is another independent boundary. An <a href="../../media-files/packaging/mp4/M4A-M4B-Files.html">M4A file</a> can carry AAC or ALAC. Changing its extension does not change the coded audio, while changing the wrapper can sometimes solve an input-reader problem without making a new audio encoding.</p>
+<h2 id="use-the-distinction-to-choose-the-operation">Use the distinction to choose the operation</h2>
+<p>For an Emby session:</p>
+<ul>
+<li>If the audio codec is compatible but the wrapper is unsuitable, repackaging can preserve the coded sound.</li>
+<li>If the required reconstruction tools are unsupported, a decoder elsewhere in the path can reconstruct and re-encode a compatible presentation.</li>
+<li>If decoding succeeds but the listening system has fewer channels, layout conversion addresses the output arrangement.</li>
+</ul>
+<p>These solve different failures. A <a href="../decoding-output/Audio-Playback-Path.html">playback-path trace</a> identifies which boundary changed, and whether the receiver gets coded audio for its own decoder or already reconstructed PCM.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -158,6 +171,7 @@
 			          <ul class="seealso-list reference-list">
 			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/medfound/choosinganaudiocodec" title="Microsoft: Choosing an audio codec">Microsoft: Choosing an audio codec</a></li>
 			            <li><a class="seealso-link" href="https://xiph.org/vorbis/faq/" title="Xiph.Org: Vorbis FAQ">Xiph.Org: Vorbis FAQ</a></li>
+			            <li><a class="seealso-link" href="https://www.xiph.org/vorbis/doc/Vorbis_I_spec.html" title="Xiph.Org: Vorbis I decoder specification and encoder freedom">Xiph.Org: Vorbis I decoder specification and encoder freedom</a></li>
 			          </ul>
             </article>
           </div>

@@ -106,38 +106,33 @@
 <h1>HDR Mastering in the Studio</h1>
 
 
-<p>HDR mastering is where the available camera information becomes a deliberate viewing experience. The colorist decides how bright a window should feel, whether faces remain restrained, and which shadow details should be visible.</p>
-<p>A camera may capture more information than the finished release uses. Mastering is not an instruction to stretch every shot from black to maximum brightness.</p>
-<table>
-<thead>
-<tr>
-<th>Production decision</th>
-<th>What the viewer may notice</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Highlight placement</td>
-<td>A reflection can sparkle without the whole scene becoming bright</td>
-</tr>
-<tr>
-<td>Shot matching</td>
-<td>Cuts between cameras keep a coherent look</td>
-</tr>
-<tr>
-<td>Shadow treatment</td>
-<td>A night scene can remain dark while important objects remain distinguishable</td>
-</tr>
-<tr>
-<td>Mapping review</td>
-<td>The image is checked on targets with less brightness or a different gamut</td>
-</tr>
-</tbody>
-</table>
-<p>The reference monitor gives those judgments a known basis. <a href="metadata-and-light-levels/HDR-Mastering-Display-Metadata.html">Mastering display metadata</a> describes its configured color volume; it does not describe every pixel in the movie or require a home screen with identical capabilities.</p>
-<p>For Dolby Vision, image analysis can be followed by a <strong>trim pass</strong>: the colorist reviews a mapped version and, where needed, adjusts its appearance for another target. Those decisions can travel as metadata rather than as a complete second movie.</p>
-<p>This helps explain a familiar Emby comparison: an HDR release converted to SDR during playback need not look identical to a separately mastered SDR release. The two may incorporate different creative decisions, even if both are technically correct.</p>
-<p>When judging a tone-mapping result, look for lost detail or unnatural shifts within the same release first. Treat the separate SDR release as another authored version, not a pixel-for-pixel reference that every HDR conversion must reproduce.</p>
+<p>The camera records material with a range of available detail. HDR mastering turns that material into a finished image with deliberate light levels, color, contrast, and continuity from shot to shot. The reference display and viewing environment give those judgments a known basis.</p>
+<p>Consider a scene that cuts between a wide view of a room and a close view of a person's face. Both camera shots can retain bright window detail, yet present the face differently because of exposure, lenses, lighting, and processing. The master has to make those shots feel like the same scene while deciding how much attention the window should attract.</p>
+<h2 id="establish-a-trustworthy-viewing-basis">Establish a trustworthy viewing basis</h2>
+<p>A grading monitor is configured for a known color representation, white point, luminance range, and response. The signal sent to it must match that configuration. Otherwise, a colorist could compensate for a monitoring mismatch and bake an unwanted correction into the release.</p>
+<p>The viewing environment also matters: light reflected from the screen and the surround affect perceived contrast and adaptation. Reference conditions make judgments repeatable. They do not describe every home room, but provide the starting point against which the image is authored.</p>
+<p><a href="metadata-and-light-levels/HDR-Mastering-Display-Metadata.html">Mastering-display metadata</a> records the configured color volume used for that judgment. It gives later reproduction useful context. It is separate from measurements of the actual finished frames.</p>
+<h2 id="convert-the-capture-representation-into-a-grading-image">Convert the capture representation into a grading image</h2>
+<p><a href="HDR-Camera-Capture.html">Camera originals</a> can be raw, log, or another production representation. The workflow interprets that source with the appropriate camera processing and color transforms. An output transform provides the relationship to the grading display.</p>
+<p>This placement matters when changing a look. A correction made before a rendering transform acts on one representation; the same numerical correction after it can act on another. A production manages that order so color decisions remain meaningful and shots from different cameras can be compared.</p>
+<p>The work can use a scene-referred or display-referred approach, depending on the production. The purpose is to retain a coherent relationship from source through the chosen rendering to the reference image, rather than relying on the codec or filename to define the look.</p>
+<h2 id="place-the-important-objects-then-match-the-shots">Place the important objects, then match the shots</h2>
+<p>In the room example, the colorist might keep the face at a restrained light level, retain the window's structure, and let a small reflection reach higher. Increasing the available highlight range makes those choices possible without forcing every ordinary object upward.</p>
+<p>A close-up should continue the intended placement of the face, even if its captured values differ. Shot matching can adjust exposure relationships, color balance, and local contrast so the cut does not cause an accidental change in the scene's appearance.</p>
+<p>Dark details receive the same deliberate treatment. Some folds or background objects may remain visible; others may be held low to preserve mood or attention. HDR mastering does not require extracting every captured shadow or placing a bright sample at the display's maximum in every shot.</p>
+<p>Bright colored objects add a <a href="../color-standards/Color-Volume.html">color-volume</a> decision. A flame's saturation and luminance interact. The colorist checks their balance on the reference rather than treating brightness as an independent slider that leaves all colors unchanged.</p>
+<h2 id="review-how-the-master-maps-to-other-targets">Review how the master maps to other targets</h2>
+<p>A home screen can have a smaller useful range than the grading monitor. A production can inspect mapped versions before release, considering whether ordinary objects, colored highlights, and dark details retain the intended relationships.</p>
+<p>In a Dolby Vision workflow, image analysis supplies shot or frame characteristics. A <strong>trim pass</strong> lets the colorist review the mapping to another target and adjust it where needed. The instructions can travel as metadata alongside the main image. They do not need to be a full separately encoded movie for each possible screen.</p>
+<p>This is a review of a produced image under another set of limits. A trim can affect the balance within a scene, not merely the highest pixel. A window that fits numerically but loses all useful texture, or a face that shifts during the mapping, is visible during that review.</p>
+<p>Different target versions can also be separately authored. A dedicated SDR master can include grading decisions suited to SDR from the outset. An automatic playback conversion of the HDR master uses the HDR image and its conversion inputs instead. The two paths can reasonably produce different appearances.</p>
+<h2 id="prepare-the-release-with-consistent-descriptions">Prepare the release with consistent descriptions</h2>
+<p>The finished picture is encoded for its delivery representation. A production graded within P3 can deliver values in BT.2020 coordinates; that conversion retains intended colors while changing their numerical description. The chosen transfer characteristic establishes the light meaning of the output.</p>
+<p>Static metadata can describe the mastering display and content-light bounds. Dynamic metadata, where the format uses it, belongs to the actual edited and graded shots. Editing after analysis can change timing or picture content, so the metadata needs to correspond to the delivered sequence.</p>
+<p>A final quality check therefore examines both pictures and their descriptions. Can the encoded stream be decoded correctly? Are its color fields consistent with the actual values? Do metadata and shot timing match? Does the mapped target retain the intended visual relationships? These checks cover different kinds of error.</p>
+<h2 id="compare-releases-with-the-production-history-in-mind">Compare releases with the production history in mind</h2>
+<p>Emby presents the retained release through a particular app and output path. For a tone-mapping comparison, start with the same HDR source and inspect whether a change loses detail or creates a shift within that produced image.</p>
+<p>A separate SDR release is useful context, but it can contain different trims or a separate grade. Treating its pixels as the required numerical result of every HDR conversion would ignore those authored decisions. Keeping the versions and playback paths identified makes the comparison a question about an actual production and rendering choice.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

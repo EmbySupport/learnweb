@@ -106,40 +106,45 @@
 <h1>Color Gamut</h1>
 
 
-<p>A bright red flower may look vivid on one screen and less saturated on another even when both show the same number of pixels. One possible limit is <strong>color gamut</strong>: the range of colors the display can produce.</p>
-<p>A video color space also has a gamut. Its red, green, and blue primaries define which colors can be represented by mixing those primaries with nonnegative amounts. A display receiving that signal still has its own physical limits.</p>
+<p>The points at the corners of an RGB gamut identify its red, green, and blue primaries. Mixing their light produces the colors between them. A wider gamut gives a system coordinates for more saturated colors, such as greens or reds that lie beyond a smaller gamut's boundary.</p>
 <p><img src="images/color-gamut-triangles.png" alt="Chromaticity triangles for BT.709, P3, and BT.2020, with the D65 white point."></p>
-<p><em>Primary coordinates plotted in CIE 1931 xy. Line colors identify the standards; they do not reproduce the extreme colors. This two-dimensional plot omits luminance and is not perceptually uniform.</em></p>
-<p>The outer boundary is useful, but it does not tell us how many distinct shades a file stores. That also depends on bit depth. Nor does the triangle indicate how bright those colors can become; that needs <a href="Color-Volume.html">color volume</a>.</p>
-<h2 id="what-a-wider-gamut-changes">What a wider gamut changes</h2>
+<p><em>Primary coordinates in CIE 1931 xy. The colored lines identify the standards; they do not reproduce the extreme colors. Luminance is omitted, and distances on this diagram are not perceptually uniform.</em></p>
+<h2 id="read-the-triangle-as-a-set-of-possibilities">Read the triangle as a set of possibilities</h2>
+<p>A point inside a triangle can be formed from nonnegative mixtures of that triangle's primaries. On an edge, one primary contributes nothing; at a corner, only that primary contributes. The white point is the mixture that the system treats as its neutral reference.</p>
+<p>The same physical color generally has different RGB values in different spaces. The values describe amounts of particular primaries. For example, a green made from a mixture in BT.709 can be represented within BT.2020 by another mixture of its wider primaries. Keeping the numbers unchanged while changing the primaries would ask for a different color.</p>
+<p>This distinction explains a useful question about a film: does it <strong>use</strong> very saturated colors, or can its signal merely <strong>represent</strong> them? A BT.2020-encoded scene of a gray wall and a face need not use the outer part of the BT.2020 gamut. The encoding defines the available coordinates, while the picture determines which coordinates are occupied.</p>
+<h2 id="three-gamuts-can-appear-in-one-playback-session">Three gamuts can appear in one playback session</h2>
+<p>Consider a movie graded with colors that fit within P3, stored using BT.2020 signal primaries, and played on a television with its own measured gamut. The grading range, encoding space, and display capability describe different stages.</p>
+<p>The player first interprets the encoded values in their declared space. It then needs a color-management path to produce those colors on the display. Colors within the display's capabilities can be reproduced using suitable mixtures of its primaries. A color outside those capabilities needs <a href="../tone-mapping/color-and-luminance/Gamut-Mapping.html">gamut mapping</a>: a choice of an achievable replacement that maintains useful relationships with neighboring colors.</p>
+<p>An Emby Direct Play session preserves the delivered encoded video, but the player and screen still perform this interpretation. A larger native display gamut is beneficial when the output path also reproduces smaller encoded gamuts correctly. Stretching a conventional BT.709 image to the screen's outermost primaries would change the intended colors.</p>
+<h3 id="what-to-keep-separate-when-reading-specifications">What to keep separate when reading specifications</h3>
 <table>
 <thead>
 <tr>
-<th>Question</th>
-<th>What to look at</th>
+<th>Property</th>
+<th>Question it answers</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Can a signal describe a more saturated green?</td>
-<td>Its color primaries</td>
+<td>Encoding gamut</td>
+<td>Which color coordinates can the signal describe?</td>
 </tr>
 <tr>
-<td>Can the screen actually show that green?</td>
-<td>The display's measured gamut</td>
+<td>Measured display gamut</td>
+<td>Which chromaticities can this screen reproduce under the test conditions?</td>
 </tr>
 <tr>
-<td>Are gradients smooth?</td>
-<td>Bit depth, compression, and processing</td>
+<td>Bit depth</td>
+<td>How finely can values be represented?</td>
 </tr>
 <tr>
-<td>Can the green remain saturated at high brightness?</td>
 <td>Color volume</td>
+<td>Which colors are available at different light levels?</td>
 </tr>
 </tbody>
 </table>
-<p>Imagine a file containing a green outside the screen's gamut. Sending the original file with Emby Direct Play preserves its encoded values, but does not expand the screen's capabilities. The playback chain must choose a reproducible color. <a href="../tone-mapping/color-and-luminance/Gamut-Mapping.html">Gamut mapping</a> describes that adaptation.</p>
-<p>Likewise, changing a file's color-primary label does not create richer colors. The label tells the player how to interpret the existing numbers; a real color conversion changes those numbers to preserve their intended appearance.</p>
+<p>A gamut boundary describes the reach of the primaries. Smooth gradients also need adequate precision and processing; bright saturated colors need an adequate <a href="Color-Volume.html">color volume</a>. When comparing two systems, keep those questions separate so that a large triangle is interpreted as a color-range property, rather than a complete picture-quality score.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

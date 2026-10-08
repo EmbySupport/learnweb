@@ -106,37 +106,89 @@
 <h1>Audio Channel Order</h1>
 
 
-<p><strong>Channel order is the assignment of signal positions in the data to their intended roles.</strong> The decoder and output system must agree about which values belong to left, right, center, surrounds, and LFE.</p>
-<p>Count alone is insufficient. Six correctly decoded waveforms sent to the wrong positions can still put dialogue in a surround speaker or ordinary sound into an LFE path.</p>
-<p>For interleaved PCM, one frame stores a value for each channel before the next frame begins. A channel mask or layout tells the reader how to interpret that sequence.</p>
+<p>The dialogue waveform can decode perfectly and still come from the wrong speaker. <strong>Channel order associates positions in an audio buffer with channel roles.</strong> Moving the bytes successfully is only half the job; their meaning must travel with them.</p>
+<h2 id="interpret-one-six-channel-frame">Interpret one six-channel frame</h2>
+<p>Suppose an interleaved frame has the following values and uses the WAVEFORMATEXTENSIBLE mask 0x60F:</p>
 <table>
 <thead>
 <tr>
-<th>WAVEFORMATEXTENSIBLE example</th>
-<th>Interleaved order defined by its mask</th>
+<th style="text-align: right;">Array position</th>
+<th>Role defined by that mask</th>
+<th style="text-align: right;">Value</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Stereo, mask 0x3</td>
-<td>Front left, front right</td>
+<td style="text-align: right;">0</td>
+<td>Front left</td>
+<td style="text-align: right;">+0.10</td>
 </tr>
 <tr>
-<td>5.1 with side surrounds, mask 0x60F</td>
-<td>Front left, front right, front center, LFE, side left, side right</td>
+<td style="text-align: right;">1</td>
+<td>Front right</td>
+<td style="text-align: right;">+0.12</td>
 </tr>
 <tr>
-<td>Common 7.1, mask 0x63F</td>
-<td>Front left, front right, front center, LFE, back left, back right, side left, side right</td>
+<td style="text-align: right;">2</td>
+<td>Front center</td>
+<td style="text-align: right;">+0.60</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>LFE</td>
+<td style="text-align: right;">+0.05</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td>Side left</td>
+<td style="text-align: right;">−0.20</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td>Side right</td>
+<td style="text-align: right;">+0.25</td>
 </tr>
 </tbody>
 </table>
-<p><em>These examples use Microsoft's WAVEFORMATEXTENSIBLE convention. They are not a universal byte order for every codec or file format.</em></p>
-<p>A 5.1 mask using back positions instead of side positions also exists. Distinguishing those labels is useful when inspecting files, even when an installation's two surround speakers are physically similar.</p>
-<h2 id="decode-first-then-map-by-meaning">Decode first, then map by meaning</h2>
-<p>Compressed formats can have their own internal ordering. A decoder may expose its output using a different working convention. Correct software maps roles across those conventions; manually rearranging channels based on a guessed codec order can break an already correct decode.</p>
-<p><a href="../../fundamentals/sample-representation/PCM-Sample-Formats.html">Planar and interleaved</a> are separate storage arrangements. Planar audio still needs channel roles even though each channel occupies its own buffer.</p>
-<p>If an Emby session has consistently misplaced sound, compare the source layout, the decoder's output layout, and the destination's configuration. A “six channels” label proves neither their order nor their final routing. Silence in a particular scene, however, can simply be the mix: not every channel must carry sound continuously.</p>
+<p>The next six values belong to the next time position in the same order. Sending position 2 to a surround output would move the center's +0.60 sample behind the listener. Misinterpreting position 3 as a full-range speaker signal also changes the purpose of that channel.</p>
+<h2 id="a-mask-is-a-set-of-roles-with-a-defined-ordering-rule">A mask is a set of roles with a defined ordering rule</h2>
+<p>WAVEFORMATEXTENSIBLE uses flags for speaker positions. Interleaved samples follow the ascending set-bit order, not the order in which names happen to appear in a user interface.</p>
+<table>
+<thead>
+<tr>
+<th>Example mask</th>
+<th>Roles in sample order</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x3</td>
+<td>Front left, front right</td>
+</tr>
+<tr>
+<td>0x60F</td>
+<td>Front left, front right, center, LFE, side left, side right</td>
+</tr>
+<tr>
+<td>0x63F</td>
+<td>Front left, front right, center, LFE, back left, back right, side left, side right</td>
+</tr>
+</tbody>
+</table>
+<p>For 0x60F, the flags are 0x1 + 0x2 + 0x4 + 0x8 + 0x200 + 0x400. Six flags identify six channels. The 7.1 mask adds the back-left and back-right flags before the side pair in numerical bit order.</p>
+<p>A 5.1 mask using back positions exists too. Those names can describe a different source layout even if a room uses similar physical speakers for its two surrounds.</p>
+<h2 id="map-roles-across-each-boundary">Map roles across each boundary</h2>
+<p>Compressed codecs, containers, and playback APIs can describe their own conventions. A decoder often exposes an already labeled working layout that differs from the codec's internal packing. Software must translate <strong>by role</strong> across these boundaries.</p>
+<p>A reliable conversion follows this sequence:</p>
+<ol>
+<li>Read the source's layout and coding convention.</li>
+<li>Decode and identify each output channel by its role.</li>
+<li>Map those roles into the destination's required order.</li>
+<li>Supply the corresponding destination layout description.</li>
+</ol>
+<p>An arbitrary rearrangement based only on the codec name can undo a decoder's correct mapping. Changing the label without moving values, or moving values without updating the label, are reciprocal ways to create a routing error.</p>
+<p><a href="../../fundamentals/sample-representation/PCM-Sample-Formats.html">Planar storage</a> does not remove this requirement. It places each channel in a separate buffer, and those buffers still have ordered or explicitly identified roles.</p>
+<p>For an Emby session with repeatable misplaced dialogue or effects, compare the source layout, decoder output, and destination roles. A known channel-identification recording is more informative than a movie scene whose channels may deliberately be quiet or shared. The goal is to verify which named signal reaches which named output.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

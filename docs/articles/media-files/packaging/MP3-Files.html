@@ -106,40 +106,47 @@
 <h1>MP3 Files and MPEG Audio Frames</h1>
 
 
-<p>An <strong>MP3 file</strong> is usually a sequence of MPEG audio frames rather than a general container holding many tracks. Each frame has a small header that helps the reader identify its encoding and boundaries.</p>
-<p>This file framing is distinct from the <a href="../../audio/formats/lossy/MP3.html">MP3 codec's compression method</a>. The codec determines how the sound is represented; the file also needs a way to carry the resulting frames and useful descriptive information.</p>
+<p>An <strong>MP3 file</strong> commonly stores a sequence of MPEG Layer III audio frames, with optional descriptive and navigation information around or within that sequence. Reading those frames is a different job from interpreting a general movie container with several soundtracks.</p>
+<p>Each MPEG frame has a four-byte header describing such properties as MPEG version, layer, bitrate choice, sample-rate choice, and channel mode. The reader validates the fields and successive boundaries before passing frame data to the <a href="../../audio/formats/lossy/MP3.html">audio decoder</a>.</p>
+<h2 id="one-frames-duration-and-length">One frame's duration and length</h2>
+<p>For MPEG-1 Layer III, one frame represents 1,152 sample frames per channel. At 44.1 kHz, that is 1,152 / 44,100 = approximately 26.122 ms.</p>
+<p>For an ordinary 128 kb/s frame at that rate, the byte-length calculation is:</p>
+<p><code>floor(144 × 128,000 / 44,100) + padding byte = 417 or 418 bytes</code></p>
+<p>The padding-byte choices keeps the long-term stored rate aligned with the specified rate. Equal audio duration therefore need not mean exactly equal stored length, even in this constant-bitrate example.</p>
 <table>
 <thead>
 <tr>
-<th>MP3 file information</th>
-<th>What it contributes</th>
+<th>Information</th>
+<th>Question it answers</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>MPEG audio frame header</td>
-<td>Version, layer, bitrate, sample rate, and channel mode</td>
+<td>Frame header</td>
+<td>Which encoding parameters and boundary size apply?</td>
 </tr>
 <tr>
-<td>Encoded frame data</td>
-<td>Compressed audio information</td>
+<td>Frame count</td>
+<td>How much nominal decoded audio is represented?</td>
 </tr>
 <tr>
-<td>ID3 tags, when present</td>
-<td>Track descriptions and optional artwork</td>
+<td>Optional Xing/VBRI data</td>
+<td>What duration or navigation summary was written?</td>
 </tr>
 <tr>
-<td>Optional Xing or VBRI information</td>
-<td>Frame counts or navigation information useful for variable-bitrate files</td>
+<td>ID3 metadata</td>
+<td>What names, descriptions, or artwork accompany the recording?</td>
 </tr>
 </tbody>
 </table>
-<p>ID3 also calls its metadata items <strong>frames</strong>. An ID3 title frame is not an MPEG audio frame and contains no block of decoded music samples.</p>
-<h2 id="variable-bitrate-complicates-simple-estimates">Variable bitrate complicates simple estimates</h2>
-<p>Estimating duration from file size and one observed bitrate can give a misleading duration for a <a href="../fundamentals/bitrate-and-file-size/Media-Bitrate-Variation.html">variable-bitrate</a> MP3. The reader can use frame counts, optional navigation information, or a fuller examination of the stream instead.</p>
-<p>MP3 Layer III also uses a <strong>bit reservoir</strong>, allowing encoded data associated with a frame to draw on bytes carried earlier. Cutting at an apparent frame boundary does not guarantee clean independent decoding from that point.</p>
-<p>In an Emby music collection, missing or unusual tags can affect identification while the audio plays normally. Incorrect duration or seeking can point to a different problem with frame information or navigation. Keep those symptoms separate.</p>
-<p>When a file is rewritten, verify the tags and <a href="../container-structure/timing-and-navigation/Media-Container-Seeking.html">seek behaviour</a> along with the sound. Copying the compressed audio is a different preservation task from retaining album information, artwork, or accurate navigation.</p>
+<p>Encoder delay and end padding can require separate trimming information when interpreting the intended presented duration. Counting nominal frame samples and accounting for that valid interval are related but distinct steps.</p>
+<h2 id="why-a-frame-boundary-is-not-always-a-clean-cut">Why a frame boundary is not always a clean cut</h2>
+<p>Layer III's <strong>bit reservoir</strong> allows encoded main data associated with a frame to occupy available space in earlier frames. Side information tells the decoder where that data begins relative to the present frame's main data.</p>
+<p>Starting at an arbitrary visible header can therefore leave the decoder without bytes needed for the first audio it tries to reconstruct. A reader can need preceding frame data; cutting a file at that boundary does not necessarily create a clean independent excerpt.</p>
+<p>This is a packing mechanism within the encoded stream, not a second audio track. Its purpose is to share the data allowance across varying coding demands.</p>
+<h2 id="tags-and-timing-belong-to-different-interpretations">Tags and timing belong to different interpretations</h2>
+<p>ID3 also calls its individual metadata records “frames.” An ID3 title frame carries text, while an MPEG audio frame represents sound. A music library can identify a file incorrectly because of its ID3 records even though the sound decodes normally.</p>
+<p>For variable-bitrate audio, dividing the whole file by one observed frame's bitrate can misstate duration. Readers can instead examine frame information and optional summaries. In an Emby music case, keep title/tag problems separate from seek or duration problems: they lead to different structures in this same file.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -162,6 +169,7 @@
 			            <li><a class="seealso-link" href="https://www.iso.org/standard/22412.html" title="ISO/IEC 11172-3:1993: MPEG-1 Audio">ISO/IEC 11172-3:1993: MPEG-1 Audio</a></li>
 			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc5219.html" title="RFC 5219: MP3 frame structure and bit reservoir">RFC 5219: MP3 frame structure and bit reservoir</a></li>
 			            <li><a class="seealso-link" href="https://id3.org/id3v2.4.0-structure" title="ID3v2.4.0: main structure">ID3v2.4.0: main structure</a></li>
+			            <li><a class="seealso-link" href="https://raw.githubusercontent.com/FFmpeg/FFmpeg/n8.1/libavcodec/mpegaudiodecheader.c" title="FFmpeg n8.1 MPEG audio header decoding">FFmpeg n8.1 MPEG audio header decoding</a></li>
 			          </ul>
             </article>
           </div>

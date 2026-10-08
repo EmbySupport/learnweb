@@ -106,44 +106,47 @@
 <h1>ITU-R BT.2100</h1>
 
 
-<p><strong>BT.2100</strong>, or Rec. 2100, specifies the image parameters for HDR television. It brings wide color and HDR transfer functions into a defined system for producing and exchanging television pictures.</p>
-<p>Its two transfer-function systems are <strong>PQ</strong> and <strong>HLG</strong>. A playback chain must know which one it is receiving: the same numeric signal value has a different meaning in each system.</p>
+<p>BT.2100 is the HDR television system specification that joins image geometry, wide color, signal precision, and HDR transfer relationships. A file usually exposes those pieces in separate fields rather than carrying a single “BT.2100” badge.</p>
 <table>
 <thead>
 <tr>
-<th>Part of the system</th>
-<th>BT.2100 specifies</th>
+<th>System part</th>
+<th>Defined relationship</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Color primaries</td>
-<td>The same wide-gamut primaries as BT.2020</td>
+<td>Primaries</td>
+<td>The wide-gamut coordinates also used by BT.2020</td>
 </tr>
 <tr>
-<td>HDR systems</td>
-<td>Perceptual Quantizer (PQ) and Hybrid Log-Gamma (HLG)</td>
+<td>HDR transfer systems</td>
+<td><a href="../transfer-functions/Transfer-Function-PQ.html">PQ</a> and <a href="../../hdr/formats/HLG.html">HLG</a></td>
 </tr>
 <tr>
 <td>Image sizes</td>
-<td>1920 × 1080, 3840 × 2160, and 7680 × 4320</td>
+<td>1920 × 1080, 3840 × 2160, 7680 × 4320</td>
 </tr>
 <tr>
 <td>Scanning</td>
 <td>Progressive</td>
 </tr>
 <tr>
-<td>Signal precision</td>
+<td>Precision</td>
 <td>10 or 12 bits per component</td>
 </tr>
 </tbody>
 </table>
-<p>The current recommendation is BT.2100-3, approved in February 2025. It also defines reference viewing conditions and explains the relationship between the capture, display, and overall transfer functions.</p>
-<h2 id="what-it-tells-you-about-a-file">What it tells you about a file</h2>
-<p>A file does not need to show a single “BT.2100” badge. Its metadata may instead describe BT.2020 primaries together with PQ or HLG transfer characteristics and a suitable matrix. Those separate fields describe the signal more precisely than a filename containing “HDR.”</p>
-<p>Consider a 1080p HDR recording. It has fewer pixels than a 4K recording, but can still require HDR-aware playback. Shrinking it to 720p would reduce spatial detail without automatically changing the light-level interpretation.</p>
-<p>For the same reason, an Emby playback conversion must account for output capability as well as resolution. Sending an HDR signal to an SDR output with a different label is insufficient; <a href="../../tone-mapping/fundamentals/Tone-Mapping-HDR-to-SDR.html">HDR-to-SDR conversion</a> needs to adapt the picture.</p>
-<p>BT.2100 is a television-system specification, not a video codec. A device's ability to decode a compressed stream and its ability to render that stream's HDR signal are separate requirements.</p>
+<p>The current recommendation is BT.2100-3, approved in February 2025. Its transfer-system definitions connect scene light, the encoded signal, reference display light, and viewing conditions.</p>
+<h2 id="recognize-the-system-in-a-media-report">Recognize the system in a media report</h2>
+<p>An HDR recording can identify BT.2020 primaries, a PQ transfer characteristic, and a compatible component matrix. Those fields provide the instructions for interpreting the decoded pictures. A different recording can use the same primaries with HLG, changing the light relationship while retaining the color coordinates.</p>
+<p>The decoder first reconstructs samples from the compressed video. HDR-aware presentation then interprets those samples and prepares the picture for the output. Being able to decode HEVC, for example, answers a coding question; handling the resulting HDR signal answers a rendering question. Emby playback needs both parts of the selected path to work.</p>
+<h3 id="can-1080p-be-hdr">Can 1080p be HDR?</h3>
+<p>Yes. HD geometry is part of the BT.2100 system. A 1920 × 1080 HDR picture has fewer spatial samples than UHD, while its brightness and color interpretation can still require HDR-aware presentation.</p>
+<p>Reducing the grid to a smaller delivery size changes spatial detail. It does not automatically replace the transfer function. An SDR destination needs an actual <a href="../../tone-mapping/fundamentals/Tone-Mapping-HDR-to-SDR.html">HDR-to-SDR conversion</a>, including the appropriate brightness and color operations, rather than a resolution change alone.</p>
+<h3 id="where-do-hdr-formats-fit">Where do HDR formats fit?</h3>
+<p>Formats such as <a href="../../hdr/formats/HDR10.html">HDR10</a> combine defined signal characteristics with delivery conventions and metadata. BT.2100 supplies the underlying television image parameters; the format describes how a particular presentation is carried and identified.</p>
+<p>Reading an HDR label becomes more useful when those layers are kept visible: compressed coding, television signal interpretation, format metadata, and the intended display output.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

@@ -106,40 +106,66 @@
 <h1>Video Codec Levels and Tiers</h1>
 
 
-<p>A <strong>codec level</strong> describes limits on the workload and buffering required by a coded stream. A <strong>tier</strong>, in codecs that define one, distinguishes further limits within a level, particularly bitrate and coded-buffer requirements.</p>
-<p>A <a href="Video-Codec-Profiles.html">profile</a> tells the decoder which kinds of tools and sample formats it may encounter. Level and tier address how much of that work it must handle.</p>
+<p>A <strong>codec level</strong> defines a resource envelope for a bitstream: how large its coded pictures can be, how quickly they must be processed, how much picture state can be retained, and how much coded data must be buffered.</p>
+<p>A <a href="Video-Codec-Profiles.html">profile</a> selects the kinds of operations. Level limits describe the scale at which those operations are required. Some codecs also define <strong>tiers</strong>, particularly for bitrate and coded-buffer limits.</p>
+<h2 id="work-through-a-1080p-avc-stream">Work through a 1080p AVC stream</h2>
+<p>H.264 counts several level resources in <strong>16 × 16 macroblocks</strong>. For a progressive picture presented as 1920 × 1080, round each coded grid dimension up to a macroblock boundary:</p>
+<ul>
+<li>Width: 1920/16 = <strong>120 macroblocks</strong>.</li>
+<li>Height: ceil(1080/16) = <strong>68 macroblocks</strong>.</li>
+<li>Picture size: 120 × 68 = <strong>8,160 macroblocks</strong>.</li>
+</ul>
+<p>The coded macroblock grid is 1920 × <strong>1088</strong>. A signaled crop can remove the extra eight rows from presentation. The decoder's coded-picture work still follows the larger macroblock grid.</p>
+<p>For H.264 Level 4.1, selected limits are:</p>
 <table>
 <thead>
 <tr>
-<th>Constraint</th>
-<th>Why it matters</th>
+<th>Resource</th>
+<th style="text-align: right;">Level 4.1 limit</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Picture size</td>
-<td>A decoder must reconstruct and store the complete picture</td>
+<td>Macroblocks in a coded frame, MaxFS</td>
+<td style="text-align: right;">8,192</td>
 </tr>
 <tr>
-<td>Samples or coding units per second</td>
-<td>Larger pictures and higher frame rates multiply throughput</td>
+<td>Macroblocks processed per second, MaxMBPS</td>
+<td style="text-align: right;">245,760</td>
 </tr>
 <tr>
-<td>Decoded picture buffer</td>
-<td>References and reordered pictures consume memory</td>
-</tr>
-<tr>
-<td>Bitrate and coded buffering</td>
-<td>The compressed data must be accepted at the allowed rate</td>
+<td>Decoded-picture-buffer macroblocks, MaxDpbMbs</td>
+<td style="text-align: right;">32,768</td>
 </tr>
 </tbody>
 </table>
-<h2 id="a-level-is-not-one-resolution">A level is not one resolution</h2>
-<p>A stream with smaller pictures at a high frame rate can reach a throughput limit that a larger, slower stream does not. Picture dimensions alone therefore do not establish conformance. Bitrate and buffer requirements can matter even when the resolution is familiar.</p>
-<p>The numbers are also codec-specific. H.264 Level 4.1 and HEVC Level 4.1 do not describe the same limits, and the profile can affect limits within a codec. Avoid universal tables that assign one maximum resolution or bitrate to every codec's level number.</p>
-<p>HEVC defines Main and High tiers. High tier permits larger bitrate and coded-buffer limits where that tier is defined; it does not automatically improve the encoded picture. A string such as “Main 10, Level 5.1, Main tier” combines three separate properties.</p>
-<p>For an Emby app to decode a stream, its playback path must meet the actual requirements. A device advertised for a particular resolution may also limit frame rate, profile, tier, or concurrent decoder workload.</p>
-<p>Lowering a level flag cannot make an oversized or excessive-throughput stream conform. Conversely, a stream may be tagged with a higher level than its pictures actually require. Establishing that the label can safely change requires checking the full bitstream requirements, rather than guessing from resolution.</p>
+<p>These are selected standard constraints, not the whole conformance test.</p>
+<h2 id="picture-size-and-throughput-give-different-answers">Picture size and throughput give different answers</h2>
+<p>The example's <strong>8,160</strong> macroblocks fit the per-picture limit of 8,192.</p>
+<p>At <strong>30 fps</strong>, processing demand is:</p>
+<p><strong>8,160 × 30 = 244,800 macroblocks/s</strong>, below 245,760.</p>
+<p>At <strong>60 fps</strong>, demand is:</p>
+<p><strong>8,160 × 60 = 489,600 macroblocks/s</strong>, above that limit.</p>
+<p>The dimensions are identical, but the second stream requires a larger throughput envelope. A label assigning “1080p” to one universal level would hide this difference.</p>
+<p>Other level constraints still need checking, including bitrate, coded buffering, motion limits, and profile-dependent factors. Passing the two calculations above explains one part of the requirement rather than certifying an arbitrary file.</p>
+<h2 id="the-reference-buffer-calculation">The reference-buffer calculation</h2>
+<p>At this coded picture size, the selected DPB limit gives:</p>
+<p><strong>floor(32,768 ÷ 8,160) = 4 picture slots.</strong></p>
+<p>References and pictures awaiting output have to satisfy the decoded-buffer rules. A stream requesting more state cannot be made compliant by reducing only its bitrate. Conversely, a small compressed file can still require the full decoded picture surfaces.</p>
+<p>The <a href="picture-prediction-and-random-access/Reference-Frames.html">reference-buffer article</a> explains those surfaces' lifetimes and sample-memory footprints. A standard's logical DPB constraint and an implementation's total allocated memory are related but distinct measurements.</p>
+<h2 id="read-a-tier-with-its-codec">Read a tier with its codec</h2>
+<p>HEVC defines <strong>Main</strong> and <strong>High</strong> tiers. Where High tier is defined, it permits higher bitrate and coded-buffer limits within the relevant level. It does not select a different camera resolution or automatically improve the picture.</p>
+<p>In the description <strong>“HEVC Main 10, Level 5.1, Main tier”</strong>:</p>
+<ul>
+<li>Main 10 is the profile's sample/tool permission.</li>
+<li>5.1 is the level's resource envelope.</li>
+<li>Main tier selects the corresponding bitrate/buffer limits.</li>
+</ul>
+<p>The word “Main” serves two different names in this family. The entire codec-specific description supplies the meaning; H.264 Level 4.1 and HEVC Level 4.1 do not share one interchangeable resource table.</p>
+<h2 id="change-the-demand-or-correct-an-excessive-declaration">Change the demand, or correct an excessive declaration</h2>
+<p>If a source really exceeds a target's throughput, producing a suitable representation can require a lower picture rate, smaller raster, different reference structure, or other encoding changes. Editing its level flag does not reduce the coded work.</p>
+<p>A file can also be declared at a higher level than its actual demand needs. Correcting such a declaration requires checking the complete applicable constraints, including peak and buffer behavior, rather than looking only at the visible resolution.</p>
+<p>For an Emby decoder target, these calculations turn a broad resolution claim into questions about the actual stream: its coded grid, picture rate, retained state, profile, tier, and delivery demand.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

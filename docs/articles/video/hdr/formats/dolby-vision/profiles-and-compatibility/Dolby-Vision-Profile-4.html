@@ -106,37 +106,43 @@
 <h1>Dolby Vision Profile 4 (Legacy)</h1>
 
 
-<p>Dolby Vision Profile 4 is a legacy <strong>dual-layer HEVC</strong> arrangement with an SDR-compatible base. Dolby now lists it among profiles not supported for new applications.</p>
+<p>Use this record when identifying older Dolby Vision media:</p>
 <table>
 <thead>
 <tr>
-<th>Property</th>
-<th>Legacy Profile 4</th>
+<th>Legacy property</th>
+<th>Profile 4</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Codec precision</td>
+<td>Coded picture precision</td>
 <td>Ten-bit HEVC</td>
 </tr>
 <tr>
-<td>Picture layers</td>
-<td>Base and enhancement</td>
+<td>Structure</td>
+<td>Base plus enhancement</td>
 </tr>
 <tr>
-<td>Enhancement resolution</td>
+<td>Enhancement size</td>
 <td>One-quarter of the base picture's pixel count</td>
 </tr>
 <tr>
-<td>Base fallback</td>
-<td>SDR-compatible</td>
+<td>Base compatibility</td>
+<td>SDR</td>
+</tr>
+<tr>
+<td>New-application status</td>
+<td>Listed by Dolby as not supported for new applications</td>
 </tr>
 </tbody>
 </table>
-<p>Its ten-bit base is a useful counterexample to the assumption that ten-bit video must be HDR. Precision and the meaning of the signal are different properties.</p>
-<p>Profile 4 should not be confused with <a href="Dolby-Vision-Profile-7.html">Profile 7</a>. Both use two layers, but their compatible base pictures differ. A report that mentions only “dual-layer Dolby Vision” omits that important distinction.</p>
-<p>In an Emby investigation, seeing an SDR output from a compatible Profile 4 base can be a fallback outcome rather than evidence that the entire file was converted. Establish the actual playback method and delivered stream before drawing that conclusion.</p>
-<p>Legacy status also does not mean that every existing decoder has stopped supporting it. It describes Dolby's direction for new applications, not a universal capability statement about installed devices.</p>
+<h2 id="why-can-a-ten-bit-base-be-sdr">Why can a ten-bit base be SDR?</h2>
+<p>Precision identifies the available sample levels. The transfer and color interpretation identify what those levels represent. Profile 4's ten-bit base has an SDR-compatible interpretation; a supporting Dolby Vision route uses the complete prepared presentation with its enhancement and metadata.</p>
+<p>That separates it from <a href="Dolby-Vision-Profile-7.html">Profile 7</a>, whose compatible base is HDR10. Counting two layers in both files would leave their base-light relationships unresolved.</p>
+<h2 id="does-sdr-output-mean-emby-server-converted-the-file">Does SDR output mean Emby Server converted the file?</h2>
+<p>Not necessarily. An app can use the compatible SDR base after receiving supported source data. A server conversion is another route that creates a new delivered stream. The server's playback method and delivered media information locate which operation occurred.</p>
+<p>The legacy status describes Dolby's direction for new applications. For an existing archived source, identify the actual decoder and presentation path used, then preserve that source record alongside any newly prepared viewing version.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

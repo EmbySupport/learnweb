@@ -106,37 +106,30 @@
 <h1>Intra-Frame Video Compression</h1>
 
 
-<p><strong>Intra-frame compression</strong> encodes a picture without predicting its samples from other pictures. It can still exploit patterns inside the current picture, such as neighbouring samples with similar values or edges continuing through adjacent blocks.</p>
-<p>“Intra” therefore does not mean uncompressed. A picture can contain substantial compression and still be independent of earlier picture samples.</p>
-<table>
-<thead>
-<tr>
-<th>Tool within a picture</th>
-<th>Example role</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Spatial prediction</td>
-<td>Estimates a region from already reconstructed neighbours</td>
-</tr>
-<tr>
-<td>Transform coding, where used</td>
-<td>Represents patterns in a block more compactly</td>
-</tr>
-<tr>
-<td>Entropy coding</td>
-<td>Uses short representations for common values or events</td>
-</tr>
-</tbody>
-</table>
-<p>The exact tools depend on the codec. Intra-frame compression can be <a href="../Lossy-Video-Compression.html">lossy</a> or <a href="../Lossless-Video-Compression.html">lossless</a>; the absence of temporal prediction does not establish either property.</p>
-<h2 id="why-production-workflows-like-it">Why production workflows like it</h2>
-<p>An all-intra stream avoids chains of picture-to-picture dependencies. That can simplify editing, scrubbing, and distributing frames to separate processing tasks. At comparable quality within a suitable codec, the cost is often more data than an efficient inter-predicted representation of the same scene.</p>
-<p>A largely static shot makes the tradeoff easy to understand: all-intra compression finds patterns separately in each picture, while temporal prediction can reuse information about the scene across time. Difficult or rapidly changing footage can reduce that advantage.</p>
-<p>For Emby, an all-intra source still needs a supported codec, profile, resolution, and bitrate. Easy frame independence does not guarantee Direct Play or low bandwidth.</p>
-<p>An intra-coded picture is also not automatically a fully self-contained file. The decoder may still require stream configuration and other coded information. In a stream that also contains temporal prediction, the rules around a particular intra picture determine whether it is a clean <a href="Video-Keyframes.html">random-access point</a>.</p>
-<p>This distinction explains why “I-picture” and “keyframe” are useful related terms, but should not be assumed to mean exactly the same thing in every codec and container.</p>
+<p>A picture can be compressed efficiently even when no earlier picture is available. <strong>Intra-frame compression</strong> finds useful structure within that picture: similar neighboring samples, continuing edges, and patterns that can be represented compactly.</p>
+<h2 id="predict-a-block-from-its-boundary">Predict a block from its boundary</h2>
+<p>In a common block-based codec, some regions have already been reconstructed while the next block is still being decoded. Suppose the samples immediately above a four-column block are:</p>
+<p><strong>10, 20, 30, 40.</strong></p>
+<p>A simple vertical predictor extends those values downward:</p>
+<pre><code class="lang-text">10 20 30 40
+10 20 30 40
+10 20 30 40
+10 20 30 40
+</code></pre>
+<p>If the input block's first row is <strong>12, 21, 30, 38</strong>, its correction from that prediction is <strong>+2, +1, 0, −2</strong>.</p>
+<p>The encoder can describe the predictor choice and those relatively small corrections. The decoder constructs the same prediction from its available upper boundary, adds the decoded corrections, and obtains the reconstructed block.</p>
+<p><em>Original numerical illustration of a directional predictor. It does not specify every mode or coding step of a particular codec.</em></p>
+<p>A horizontal predictor could instead extend samples from the left boundary. Other modes continue diagonal structures or form a flatter estimate. The encoder chooses a suitable description; the decoder follows the transmitted choice rather than searching for the original camera image.</p>
+<h2 id="why-reconstructed-neighbors-matter">Why reconstructed neighbors matter</h2>
+<p>The encoder's original boundary samples can differ from the decoded boundary after lossy coding. To keep prediction consistent, the encoder builds its predictor from the reconstruction the decoder will have.</p>
+<p>Both sides then start from the same known samples. Any approximation occurs in the coded correction and related reconstruction operations, rather than through a hidden disagreement about the boundary.</p>
+<p>This creates dependencies <strong>within</strong> the picture. Intra coding removes sample prediction from other pictures, but it does not imply that every block is decoded in arbitrary order or that a raw block is independently meaningful.</p>
+<p>Not every intra-frame codec uses this exact predictor style. Motion JPEG, for example, emphasizes independent JPEG picture coding. The general property is that picture samples are represented without temporal prediction from another picture.</p>
+<h2 id="work-with-independent-pictures">Work with independent pictures</h2>
+<p>An all-intra video avoids chains that require reconstructing earlier picture samples before a chosen picture. An editor can seek to a picture, read its coded representation, and decode it using the stream's configuration and same-picture rules.</p>
+<p>That is useful for scrubbing, cutting, and assigning complete frames to processing jobs. The source's own picture content is available without a long temporal reconstruction chain.</p>
+<p>The cost is that a nearly unchanged wall has to be described within each new picture again. <a href="Inter-Frame-Prediction.html">Temporal prediction</a> can reuse an earlier decoded wall and transmit mainly its changes. Intra-only formats allocate the coding budget differently.</p>
+<p>An intra-coded picture inside an otherwise inter-predicted stream still needs the surrounding access rules interpreted. It can reconstruct its own samples independently, while reordered or following pictures may use references from before it. <a href="Video-Keyframes.html">Random access</a> therefore considers more than the picture's intra coding alone.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

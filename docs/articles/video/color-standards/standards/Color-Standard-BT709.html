@@ -106,35 +106,39 @@
 <h1>ITU-R BT.709</h1>
 
 
-<p><strong>BT.709</strong>, or Rec. 709, is the standard most closely associated with conventional SDR high-definition video. It specifies more than a color gamut: its parameters also cover the image format and the way picture signals are formed.</p>
-<p>When a media inspector shows “BT.709,” check which field contains it. The same short name can describe different parts of the signal.</p>
+<p>A media inspector can show “BT.709” in several fields. Each occurrence answers a different question about the same signal:</p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
-<th>What BT.709 identifies there</th>
+<th>Meaning of BT.709 there</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Color primaries</td>
-<td>Red, green, blue, and the D65 reference white</td>
+<td>The red, green, blue, and D65 reference-white coordinates</td>
 </tr>
 <tr>
 <td>Transfer characteristics</td>
-<td>The nonlinear relationship used at the source</td>
+<td>The source's nonlinear light-to-signal relationship</td>
 </tr>
 <tr>
 <td>Matrix coefficients</td>
-<td>The RGB-to-luma/color-difference relationship</td>
+<td>The conversion between nonlinear RGB and luma/color-difference signals</td>
 </tr>
 </tbody>
 </table>
-<p>For its nonlinear luma signal, the familiar weights are 0.2126 for red, 0.7152 for green, and 0.0722 for blue. These differ from <a href="Color-Standard-BT601.html">BT.601</a>. The difference matters when reconstructing color from Y′CbCr.</p>
-<h2 id="rec-709-does-not-mean-no-processing">“Rec. 709” does not mean “no processing”</h2>
-<p>A display with a wider native gamut must still reproduce the intended BT.709 colors. Simply stretching all colors to the display's most saturated primaries can make faces or foliage look unnaturally vivid. A wider-gamut panel is useful when its color management also handles smaller gamuts correctly.</p>
-<p>The source transfer characteristic is also distinct from the display response. <a href="../transfer-functions/Transfer-Function-BT1886.html">BT.1886</a> specifies a reference SDR display EOTF; it does not rename the file's transfer-characteristic tag to “BT.1886.”</p>
-<p>For an Emby library, resolution is only a clue. A 4K file can contain SDR BT.709 video, and an HD file can contain HDR. Read the signal descriptions together rather than deciding from “1080p” or “2160p.” When HDR is converted for SDR playback, producing a coherent BT.709 output requires both suitable picture values and matching signal labels.</p>
+<p><strong>BT.709</strong>, or Rec. 709, specifies HDTV image and signal parameters. It is the familiar color system for conventional SDR HD video, but those parameters continue to matter when the same signal is carried at another resolution.</p>
+<h2 id="why-one-field-cannot-stand-in-for-the-others">Why one field cannot stand in for the others</h2>
+<p>The primaries define what RGB mixtures mean. The transfer characteristic defines how the signal represents light. The matrix describes how nonlinear RGB becomes Y′CbCr. A processing stage can change one of these representations while retaining another, so a reader needs the complete description.</p>
+<p>The nonlinear luma weights are <strong>0.2126R′ + 0.7152G′ + 0.0722B′</strong>. Green contributes most strongly to luma under this relationship. These weights differ from <a href="Color-Standard-BT601.html">BT.601</a>, which explains why using the wrong matrix can shift colored objects. Neutral RGB values produce neutral color differences in both systems, so a gray-only test can miss the error.</p>
+<p>The source <a href="../transfer-functions/Transfer-Function-OETF.html">OETF</a> and the display response have different roles. <a href="../transfer-functions/Transfer-Function-BT1886.html">BT.1886</a> supplies a reference SDR display EOTF, including the effect of display black and white. A BT.709 transfer tag identifies the source characteristic; it does not instruct a reader to treat the picture as linear light.</p>
+<h2 id="put-an-sdr-signal-on-a-wide-gamut-screen">Put an SDR signal on a wide-gamut screen</h2>
+<p>Suppose a television's native primaries reach farther toward saturated red and green than BT.709. The intended BT.709 colors still need to be reproduced as BT.709 colors. The output path can mix the display's primaries to obtain those colors inside its larger gamut.</p>
+<p>Driving the screen's most saturated red for a BT.709 red value would stretch the source gamut, changing the produced image. Correct color management lets the larger panel serve both smaller and wider gamuts. This is relevant to Emby playback even when the server delivers the original file unchanged: the app and display must agree on signal interpretation.</p>
+<p>A 4K file can carry SDR BT.709 video, and an HD file can carry HDR. Resolution identifies the grid; the color fields identify its interpretation. For an <a href="../../tone-mapping/fundamentals/Tone-Mapping-HDR-to-SDR.html">HDR-to-SDR conversion</a>, the brightness and color processing must actually produce suitable SDR values, then describe those values using coherent output signaling.</p>
+<p>When recording a playback comparison, keep the source's primaries, transfer, matrix, and range alongside the delivered stream's fields. That makes an apparent “BT.709 mismatch” a specific question about the part of the representation that changed.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

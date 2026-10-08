@@ -106,15 +106,26 @@
 <h1>Opto-Optical Transfer Function (OOTF)</h1>
 
 
-<p>The <strong>opto-optical transfer function</strong>, or OOTF, describes the overall change from light in a scene to light on the screen. It connects the two ends of an imaging system, including the combined effect of capture and display transfer functions.</p>
-<p><img src="images/transfer-ootf-chain.svg" alt="Scene light passes through the capture OETF to a signal, then the display EOTF to display light; the OOTF spans the complete chain."></p>
-<p><em>Conceptual reference chain. Exposure, grading, tone mapping, and viewing adjustments can also affect a real production and playback path.</em></p>
-<p>Why should this overall relationship do anything other than reproduce the original light exactly? A film viewed on a screen is not the same visual environment as the scene in front of the camera. The reproduced image occupies a limited field of view and is watched with a particular surround and adaptation level. A useful rendering accounts for that difference.</p>
-<h2 id="a-small-mathematical-example">A small mathematical example</h2>
-<p>Suppose a simplified system encodes a relative light value using a power of 0.5 and its display applies a power of 2.4. The combined power is <code>0.5 × 2.4 = 1.2</code>. An input light value of 0.25 becomes approximately 0.189, relative to white, after both stages.</p>
-<p>That is an illustration of function composition, not the specified BT.709 chain and not an Emby preset. Real transfer functions can include offsets, linear segments, and luminance-dependent operations, so multiplying two advertised gamma numbers is not generally sufficient.</p>
-<p>The distinction helps explain why removing a camera's encoding and applying a display curve are not necessarily redundant operations. They may be implementing an intended overall rendering.</p>
-<p>An Emby playback session normally starts with an already produced picture. It should not blindly add a camera-to-display rendering transform that was already incorporated during production. The correct processing depends on whether the incoming representation describes scene light or an intended display image, and on which stages have already been applied.</p>
+<p>A camera points at a scene, and a screen later produces light for the viewer. The <strong>opto-optical transfer function</strong>, or OOTF, describes the relationship between those two kinds of light across the complete imaging system.</p>
+<p><img src="images/transfer-ootf-chain.svg" alt="Scene light is encoded by the OETF, interpreted by the EOTF, and reproduced as display light; the OOTF spans both ends."></p>
+<p><em>The OOTF spans scene light to reproduced light. A real chain can include exposure, grading, tone mapping, and viewing adjustments in addition to the illustrated transfer stages.</em></p>
+<h2 id="compose-the-functions-rather-than-cancel-their-names">Compose the functions rather than cancel their names</h2>
+<p>The <a href="Transfer-Function-OETF.html">OETF</a> describes light becoming a signal. The <a href="Transfer-Function-EOTF.html">EOTF</a> describes a signal becoming light. Combining those operations determines the overall scene-to-display relationship.</p>
+<p>Use a deliberately simple model. Suppose capture encodes relative scene light E as E^0.5, and display produces relative light V^2.4 from the encoded signal V. For E = 0.25:</p>
+<ol>
+<li>Capture gives V = 0.25^0.5 = <strong>0.5</strong>.</li>
+<li>Display gives L = 0.5^2.4, approximately <strong>0.189</strong>.</li>
+<li>The combined relationship is L = E^1.2, since 0.5 × 2.4 = 1.2.</li>
+</ol>
+<p>The result is not the original relative light 0.25. The system's overall rendering has changed the relationship. This is a constructed demonstration of function composition; specified video functions can include linear segments, offsets, and luminance-dependent operations, so their complete equations must be combined.</p>
+<h2 id="why-a-useful-reproduction-can-change-scene-contrast">Why a useful reproduction can change scene contrast</h2>
+<p>Looking at a screen in a room differs from standing in front of the photographed scene. The screen has a limited light range, the image occupies part of the field of view, and the viewer adapts to a particular surround. Reproducing the scene's light numerically, without accounting for those conditions, need not produce the intended appearance.</p>
+<p>An imaging system can therefore include an overall rendering that adjusts contrast for its reference viewing environment. Camera encoding and display behavior are parts of that design. An exponent greater than one in the simplified overall model darkens middle relative levels while leaving zero and one unchanged.</p>
+<p>This is an appearance relationship, not an instruction to use one fixed extra filter on every produced movie. A colorist may already have established the intended display image during grading.</p>
+<h2 id="locate-the-rendering-in-the-source-you-have">Locate the rendering in the source you have</h2>
+<p>A scene-referred representation retains a relationship to captured scene light. A display-referred representation describes an intended produced image. The same named operations cannot be added indiscriminately to both: applying a scene-to-display rendering twice can alter a picture that was already rendered.</p>
+<p>For <a href="../../hdr/formats/HLG.html">HLG</a>, the system relationship includes adaptation to display and viewing conditions. <a href="Transfer-Function-PQ.html">PQ</a> provides an absolute reference-display interpretation. These systems place parts of the rendering relationship differently.</p>
+<p>Emby normally begins with already authored media. The playback path needs to know which interpretation it receives and adapt that produced picture to the output. The diagram is useful for locating an operation: did it occur in capture, in production, in the app's presentation, or in the display? That location determines whether the required overall rendering is being completed or applied again.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

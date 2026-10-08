@@ -106,35 +106,63 @@
 <h1>HDR-to-HDR Tone Mapping</h1>
 
 
-<p>An HDR screen can still need tone mapping. Accepting an HDR signal tells us which signal formats the screen understands; it does not mean the screen can reproduce every brightness that signal can describe.</p>
-<p>Consider a film containing highlights at 2,000 nits played on a display that can reach 600 nits under the relevant conditions. Both ends of this example are HDR. The display still needs to fit those highlights into its available range. HDR-to-HDR tone mapping does that without first reducing the picture to SDR.</p>
+<p>A source contains 2,000-nit highlights, while the intended HDR output has a usable peak of 600 nits. The source and destination are both HDR, but their available light ranges differ. HDR-to-HDR tone mapping fits that image to the smaller range while keeping an HDR output representation.</p>
+<h2 id="establish-the-actual-source-and-destination">Establish the actual source and destination</h2>
+<p>For PQ material, the transfer function supplies absolute reference-light requests. A source's mastering maximum describes the grading display, while content bounds and <a href="../color-and-luminance/Tone-Mapping-Peak-Detection.html">picture analysis</a> describe what the produced sequence uses. These are different inputs to selecting the range that needs fitting.</p>
+<p>The destination is also a rendering target. Its useful peak depends on the relevant area and duration, and its black floor and <a href="../../color-standards/Color-Volume.html">color volume</a> constrain the reproduced picture. A supported HDR signal format does not define all those physical limits.</p>
+<p>The worked example below chooses zero black, a source peak of 2,000, and a target peak of 600. It is a constructed brightness relationship that makes the decisions visible.</p>
+<h2 id="preserve-a-lower-interval-and-fit-the-highlights">Preserve a lower interval and fit the highlights</h2>
+<p>Let L be source light in nits. Leave values through 200 unchanged. Above 200, define d = L − 200 and use:</p>
+<p><strong>T(L) = 200 + d / (1 + 7d/3,600)</strong></p>
+<p>At the transition, d is zero and the output is 200. The initial upper slope is one, matching the lower unchanged segment. As d grows, the denominator grows and the response flattens. At L = 2,000, d = 1,800, the denominator is 4.5 and output is 200 + 400 = <strong>600 nits</strong>.</p>
+<p><img src="images/hdr-to-hdr-range-fit.png" alt="A smooth knee preserves light below 200 nits and approaches 600-nit output at a 2,000-nit input; scaling dims the whole range and clipping flattens it above 600."></p>
+<p><em>Original neutral-gray example for the stated ranges. It is not a measured Emby preset or the specified BT.2390 function.</em></p>
 <table>
 <thead>
 <tr>
-<th>Part of the picture</th>
-<th>What a suitable mapping aims to do</th>
+<th style="text-align: right;">Source light</th>
+<th style="text-align: right;">Smooth-knee output</th>
+<th style="text-align: right;">Uniform scaling by 0.3</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Ordinary midtones</td>
-<td>Keep their intended appearance where the target permits</td>
+<td style="text-align: right;">100 nits</td>
+<td style="text-align: right;">100 nits</td>
+<td style="text-align: right;">30 nits</td>
 </tr>
 <tr>
-<td>Bright highlights</td>
-<td>Compress their range while retaining visible differences</td>
+<td style="text-align: right;">200 nits</td>
+<td style="text-align: right;">200 nits</td>
+<td style="text-align: right;">60 nits</td>
 </tr>
 <tr>
-<td>Dark detail</td>
-<td>Account for the target's black level rather than assuming perfect black</td>
+<td style="text-align: right;">500 nits</td>
+<td style="text-align: right;">About 389.47 nits</td>
+<td style="text-align: right;">150 nits</td>
+</tr>
+<tr>
+<td style="text-align: right;">1,000 nits</td>
+<td style="text-align: right;">About 513.04 nits</td>
+<td style="text-align: right;">300 nits</td>
+</tr>
+<tr>
+<td style="text-align: right;">2,000 nits</td>
+<td style="text-align: right;">600 nits</td>
+<td style="text-align: right;">600 nits</td>
 </tr>
 </tbody>
 </table>
-<p><em>These are goals, not a guarantee that every mapping leaves midtones unchanged.</em></p>
-<h2 id="hdr-describes-more-than-one-display-capability">HDR describes more than one display capability</h2>
-<p><a href="../../color-standards/transfer-functions/Transfer-Function-PQ.html">PQ</a> describes absolute display-light levels over a much larger range than a typical consumer screen can reproduce. The <a href="https://www.itu.int/dms_pub/itu-r/opb/rep/R-REP-BT.2390-6-2019-PDF-E.pdf">BT.2390 report</a> describes adapting those levels to a target with different black and white limits. The output can remain an HDR signal while its useful brightness range changes.</p>
-<p>The source's mastering-display maximum is not necessarily its brightest actual pixel. <a href="../color-and-luminance/Tone-Mapping-Peak-Detection.html">Content analysis and metadata</a> help establish what needs fitting. <a href="../../color-standards/Color-Volume.html">Color volume</a> also matters: retaining HDR does not remove limits on bright, saturated colors.</p>
-<p>For Emby playback, separate the delivered stream from the screen's final rendering. With Direct Play, the server has not rewritten the video, but the player or display can still adapt it. Two HDR televisions can therefore show the same Emby stream differently. The useful starting point is <a href="../execution/Tone-Mapping-Playback-Path.html">where the mapping happens</a>, before comparing curves or changing server settings.</p>
+<p>All source values in the declared range fit. Compared with uniform scaling, the constructed function devotes more light to the lower region. Compared with clipping, it retains differences above the destination ceiling instead of merging them.</p>
+<p>Those differences are compressed: a 1,000-nit separation between the last two source rows becomes about 86.96 nits. The lower interval is preserved because it was a deliberate constraint; another mapper can choose a different transition and redistribute ordinary tones too.</p>
+<h2 id="prepare-an-hdr-output-with-the-new-light-meaning">Prepare an HDR output with the new light meaning</h2>
+<p>Interpreting the input, applying the mapping, and encoding the result are separate operations. In the example, a 2,000-nit PQ neutral has a normalized input signal of about 0.827. After mapping to 600 nits, the corresponding PQ output signal is about 0.696.</p>
+<p>Both numbers use PQ, but they describe different light requests. Keeping the original sample and only changing a peak metadata field would not perform the calculated brightness adaptation. A renderer can make the change in its presentation pipeline; a newly encoded HDR rendition needs values and signaling consistent with the prepared output.</p>
+<p>Colored pictures add another operation. Scaling brightness can preserve linear component ratios within one color system, while the destination volume may require further saturation or hue handling. A small bright saturated light can exceed a colored-output limit even when neutral white fits. <a href="../color-and-luminance/Gamut-Mapping.html">Gamut mapping</a> explains that fitting problem.</p>
+<p>Black-level adaptation has its own effect near the bottom. The zero-black diagram intentionally isolates highlight fitting. A screen with a higher useful black floor needs a response that accounts for lower-level separation, as discussed in the BT.2390 report.</p>
+<h2 id="locate-the-adaptation-in-the-playback-session">Locate the adaptation in the playback session</h2>
+<p>With an Emby Direct Play session, the original coded video can reach the app, while the app or display still maps it to the selected output. A server transcode can instead prepare another rendition before delivery. The <a href="../execution/Tone-Mapping-Playback-Path.html">playback-path diagram</a> separates those locations.</p>
+<p>Two HDR screens can therefore produce different pictures from the same delivered file. To assess the actual fitting, inspect ordinary objects, dark separation, and bright texture in the same moving scene. The curve's source range, target, and temporal inputs explain the differences more precisely than the common HDR signal badge.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

@@ -106,16 +106,14 @@
 <h1>Variable Frame Rate</h1>
 
 
-<p><strong>Variable frame rate (VFR)</strong> means that the time between successive pictures can change within a video. The player follows each picture's presentation timestamp rather than assuming one fixed interval for the whole stream.</p>
-<p>Phones, screen recorders, and edited or combined sources can produce such files. A recording can use fewer pictures during a static period and more when the scene changes, although VFR does not require that particular strategy.</p>
-<p><img src="images/variable-frame-timing.svg" alt="A constant-rate timeline has even spacing, while an illustrative variable-rate timeline has unequal spacing."></p>
-<p><em>Original numerical example. Constant-rate picture starts are 0, 40, 80, and 120 ms; variable-rate starts are 0, 40, 60, and 120 ms. It is not a measurement of a particular device.</em></p>
+<p>The four pictures below begin at <strong>0, 40, 60, and 120 ms</strong>. Let the last picture remain visible until <strong>160 ms</strong>.</p>
 <table>
 <thead>
 <tr>
-<th>Variable-rate example</th>
-<th style="text-align: right;">Picture start</th>
-<th style="text-align: right;">Interval to next picture</th>
+<th>Picture</th>
+<th style="text-align: right;">Starts at</th>
+<th style="text-align: right;">Ends at</th>
+<th style="text-align: right;">Duration</th>
 </tr>
 </thead>
 <tbody>
@@ -123,25 +121,72 @@
 <td>A</td>
 <td style="text-align: right;">0 ms</td>
 <td style="text-align: right;">40 ms</td>
+<td style="text-align: right;">40 ms</td>
 </tr>
 <tr>
 <td>B</td>
 <td style="text-align: right;">40 ms</td>
+<td style="text-align: right;">60 ms</td>
 <td style="text-align: right;">20 ms</td>
 </tr>
 <tr>
 <td>C</td>
 <td style="text-align: right;">60 ms</td>
+<td style="text-align: right;">120 ms</td>
 <td style="text-align: right;">60 ms</td>
+</tr>
+<tr>
+<td>D</td>
+<td style="text-align: right;">120 ms</td>
+<td style="text-align: right;">160 ms</td>
+<td style="text-align: right;">40 ms</td>
 </tr>
 </tbody>
 </table>
-<p>An average frame rate summarizes a period; it cannot tell you every interval within it. A file described as approximately 30 fps may contain pictures with shorter and longer durations.</p>
-<h2 id="timing-keeps-the-recording-intact">Timing keeps the recording intact</h2>
-<p>VFR is not inherently damaged video. When timestamps are correct and supported throughout playback, the pictures and audio can remain synchronized. Tools that assume every picture has the average duration can introduce timing errors during editing, conversion, or subtitle preparation.</p>
-<p>For an Emby video that behaves differently after conversion, compare the source timestamps with the converted output. Converting VFR to a constant rate can repeat or drop pictures while retaining the original timeline. Merely assigning a new fixed duration to every source picture can change the duration instead.</p>
-<p>Media inspection should include picture-level timestamps when stream-level summaries disagree. FFprobe can report individual frames; a single nominal or average rate is insufficient evidence for the full cadence.</p>
-<p>A constant <a href="Fractional-Frame-Rates.html">fractional rate</a>, such as 24000/1001 fps, is a separate case: its interval is precise and remains fixed.</p>
+<p>Their intervals vary. This is <strong>variable frame rate (VFR)</strong>: the timeline carries the presentation schedule rather than describing every picture with one common duration.</p>
+<p><img src="images/variable-frame-timing.svg" alt="A constant-rate timeline has even spacing, while an illustrative variable-rate timeline has unequal spacing."></p>
+<p><em>The variable picture starts match the table. The added 160 ms endpoint defines the complete example's final hold.</em></p>
+<h2 id="what-the-player-does">What the player does</h2>
+<p>The player shows A until 40 ms, B for the next 20 ms, then C for 60 ms. Audio continues along the same timeline. A new video picture need not arrive on every screen refresh; the current picture can remain visible until the next timestamp.</p>
+<p>A screen recording can exploit this to retain a picture longer while the screen is static. A camera or edited sequence can produce VFR for other reasons. The timestamp schedule, rather than an assumed capture strategy, defines the representation.</p>
+<h2 id="the-average-hides-the-intervals">The average hides the intervals</h2>
+<p>There are four pictures across 0.160 second:</p>
+<p><strong>4 ÷ 0.160 = 25 pictures/s on average.</strong></p>
+<p>Four equal 40 ms pictures over the same interval also average 25 fps. One sequence is variable and one is constant, even though their count, duration, and average match.</p>
+<p>A stream inspector can consequently show a reasonable average while picture-level timestamps reveal uneven intervals. This is useful for an Emby home video whose timing changes during conversion: compare the actual starts and durations, rather than only the rate field in a summary.</p>
+<h2 id="convert-to-a-constant-schedule">Convert to a constant schedule</h2>
+<p>A 25 fps output needs starts at 0, 40, 80, and 120 ms. One illustrative policy chooses the source picture currently visible at each output instant:</p>
+<table>
+<thead>
+<tr>
+<th>Output instant</th>
+<th>Source picture selected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 ms</td>
+<td>A</td>
+</tr>
+<tr>
+<td>40 ms</td>
+<td>B</td>
+</tr>
+<tr>
+<td>80 ms</td>
+<td>C</td>
+</tr>
+<tr>
+<td>120 ms</td>
+<td>D</td>
+</tr>
+</tbody>
+</table>
+<p>The output still lasts 160 ms, but the transition to C now occurs at 80 ms instead of 60 ms. In a longer sequence, some source pictures may be repeated or omitted. A converter can use a different selection policy or interpolation, so its exact visible changes depend on that policy.</p>
+<p>The important point is that output pictures are chosen <strong>against the existing timeline</strong>. Duration and audio timing can remain intact even though the picture allocation changes.</p>
+<h2 id="retiming-every-picture-is-another-operation">Retiming every picture is another operation</h2>
+<p>If those same four pictures are instead each assigned 1/30 second, the sequence lasts <strong>133.33 ms</strong>. The old presentation schedule has been replaced. Audio and subtitles following the original 160 ms timeline will no longer match without related retiming.</p>
+<p>Even assigning 40 ms to every picture, which preserves this example's total duration, moves its internal transitions. VFR carries those internal intervals as information. Preserving or changing them is a deliberate part of making a new video representation.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

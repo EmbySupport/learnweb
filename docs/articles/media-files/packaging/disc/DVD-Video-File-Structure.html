@@ -106,36 +106,49 @@
 <h1>DVD-Video File Structure</h1>
 
 
-<p>A DVD-Video folder is a presentation made from several related files, rather than a directory of independent movies. Its <strong>VIDEO_TS</strong> structure keeps encoded media and the navigation needed to interpret it.</p>
-<p>The filesystem and the DVD-Video application rules are different layers. A correctly copied directory preserves file relationships; the player still needs to interpret the disc's title and navigation information.</p>
+<p>Open a <strong>VIDEO_TS</strong> folder and its files describe a DVD presentation at several levels. The filesystem locates files; DVD navigation selects a title and its sequence; the VOB media supplies encoded picture, sound, and subpictures.</p>
 <table>
 <thead>
 <tr>
-<th>File type in VIDEO_TS</th>
+<th>Example filename or type</th>
 <th>Role</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>.VOB</td>
-<td>Video objects containing multiplexed picture, sound, subtitles, and navigation data</td>
+<td>VIDEO_TS.IFO</td>
+<td>Disc-level manager information, including title relationships</td>
 </tr>
 <tr>
-<td>.IFO</td>
-<td>Descriptions of title sets, programme chains, chapters, and playback choices</td>
+<td>VTS_01_0.IFO</td>
+<td>Information for title set 1 and its programmes/navigation</td>
 </tr>
 <tr>
 <td>.BUP</td>
-<td>Backup copies of IFO information</td>
+<td>Backup of corresponding IFO information</td>
+</tr>
+<tr>
+<td>VTS_01_0.VOB, where present</td>
+<td>Menu video objects for that title set</td>
+</tr>
+<tr>
+<td>VTS_01_1.VOB and subsequent numbered parts</td>
+<td>Title-set video objects containing media</td>
 </tr>
 </tbody>
 </table>
-<p>A title's media is often split across numbered VOB files. Those boundaries are storage divisions, not necessarily chapter or scene boundaries.</p>
-<h2 id="follow-the-title-not-just-the-filenames">Follow the title, not just the filenames</h2>
-<p>DVD navigation can select and order cells within the video objects. Menus, alternative angles, or different cuts can make the intended sequence more complicated than playing every VOB in directory order.</p>
-<p>An isolated VOB uses <a href="../../containers/mpeg-systems/MPEG-Program-Stream.html">program-stream</a> packaging and may open in a general media reader. That does not establish that it represents the complete feature or follows the same path as a DVD-aware reader.</p>
-<p>For a collection used with Emby, distinguish a complete DVD folder or <a href="Disc-Images-ISO.html">image</a> from a single movie file. Disc navigation support and the available playback path depend on the app and platform; follow the <a class="xref" href="https://emby.media/support/articles/Movie-Naming.html">movie organization guidance</a> for the library layout.</p>
-<p>If creating one self-contained movie from a disc presentation, choose the intended title and verify its full sequence, selected audio, subtitles, and chapters. Repackaging its encoded streams can avoid recompression, but it still requires resolving the disc structure correctly. The largest file or the first numbered title is only a clue, not proof of the main feature.</p>
+<p>The filename sequence describes storage organization. It is not itself an instruction to play every VOB as an independent movie.</p>
+<h2 id="choose-a-title-and-resolve-its-sequence">Choose a title and resolve its sequence</h2>
+<p>A DVD-aware reader obtains disc-level information and follows the selected title into its title set. Within that structure, <strong>programme chains (PGCs)</strong> describe an ordered route through programmes and cells of video objects. Cells identify playable ranges; navigation can select angles, branches, and the route to follow.</p>
+<p>Think of a simple invented chain as ranges A, C, and E from the stored objects. The player follows those ranges in order even if range B is physically between A and C on the disc. A linear concatenation of all stored bytes would instead include B. Both readers might decode valid MPEG media while presenting different content.</p>
+<p>A chapter, or part-of-title entry, identifies a navigation starting point within the title's structure. It is not necessarily a VOB filename boundary. A film can cross numbered VOB parts in the middle of a scene while its chapter begins elsewhere.</p>
+<h2 id="decode-the-selected-media">Decode the selected media</h2>
+<p>Within the chosen video objects, <a href="../../containers/mpeg-systems/MPEG-Program-Stream.html">program-stream-based</a> packaging supplies the timed encoded components. The reader needs the intended soundtrack and subpicture descriptions as well as the video. DVD navigation and timing connect those pieces into the selected presentation.</p>
+<p>Menu execution is another part of the disc experience. A DVD player can follow navigation commands and maintained state, whereas a file converter often resolves one selected title into a conventional linear output. Those are different consumer jobs applied to the same disc.</p>
+<h2 id="folder-image-or-a-selected-movie">Folder, image, or a selected movie</h2>
+<p>A complete copied folder retains the file relationships. An <a href="Disc-Images-ISO.html">image</a> additionally retains the volume/filesystem around them. A remuxed feature instead writes the chosen title's components and timeline into one movie container, usually without reproducing the disc's menu logic.</p>
+<p>For an Emby collection, use the <a class="xref" href="https://emby.media/support/articles/Movie-Naming.html">movie organization guidance</a> and identify which of these source forms is present. A lone VOB may initialize normally while representing only part of the intended feature. Title selection and scene order need to be resolved before evaluating whether the encoded video was preserved.</p>
+<p>The public references describe filesystem and reader behaviour; the licensed DVD-Video Book is the format's detailed specification. The distinction keeps a useful structural explanation separate from claims to have reproduced the complete navigation standard.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -153,7 +166,8 @@
 			          <h4 class="references seealso-heading">References</h4>
 			          <ul class="seealso-list reference-list">
 			            <li><a class="seealso-link" href="https://ecma-international.org/publications-and-standards/technical-reports/ecma-tr-71/" title="ECMA TR/71: DVD read-only disk file system specifications">ECMA TR/71: DVD read-only disk file system specifications</a></li>
-			            <li><a class="seealso-link" href="https://www.dvdfllc.co.jp/format/f_bconst.html" title="DVD Format/Logo Licensing Corporation: DVD format book catalogue">DVD Format/Logo Licensing Corporation: DVD format book catalogue</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc9559.html#DVD-Video" title="DVD Forum: DVD-Books, Part 3 DVD-Video Book (bibliographic citation in RFC 9559)">DVD Forum: DVD-Books, Part 3 DVD-Video Book (bibliographic citation in RFC 9559)</a></li>
+			            <li><a class="seealso-link" href="https://code.videolan.org/videolan/libdvdread/-/raw/master/src/dvd_reader.c" title="VideoLAN libdvdread: IFO, menu VOB, and title VOB lookup">VideoLAN libdvdread: IFO, menu VOB, and title VOB lookup</a></li>
 			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-formats.html" title="FFmpeg: format documentation">FFmpeg: format documentation</a></li>
 			          </ul>
             </article>

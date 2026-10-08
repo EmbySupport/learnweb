@@ -106,7 +106,7 @@
 <h1>Dolby Vision Profile 9</h1>
 
 
-<p>Dolby Vision Profile 9 is an unusual reminder that <strong>Dolby Vision does not always mean ten-bit HEVC</strong>. This profile uses eight-bit AVC, also called H.264, with an SDR-compatible base.</p>
+<p>Profile 9 pairs an eight-bit AVC/H.264 picture with Dolby Vision metadata and an SDR-compatible base. It is a specific delivery arrangement, with these properties:</p>
 <table>
 <thead>
 <tr>
@@ -117,14 +117,14 @@
 <tbody>
 <tr>
 <td>Compression</td>
-<td>AVC/H.264</td>
+<td>AVC/H.264 High-profile family</td>
 </tr>
 <tr>
-<td>Coded precision</td>
+<td>Coded base precision</td>
 <td>Eight bits</td>
 </tr>
 <tr>
-<td>Dolby Vision picture enhancement layer</td>
+<td>Dolby Vision picture enhancement</td>
 <td>None</td>
 </tr>
 <tr>
@@ -133,10 +133,12 @@
 </tr>
 </tbody>
 </table>
-<p>The base and Dolby Vision presentation are different interpretations of the delivered system. A compatible ordinary AVC/SDR path can use the SDR base without providing the Dolby Vision result.</p>
-<p>The eight-bit label describes the coded base signal; it is not a complete description of the Dolby Vision processing or final display signal. Equally, Dolby Vision metadata is not a guarantee that the source contains the same precision or grade as another release.</p>
-<p>For Emby troubleshooting, a player successfully decoding H.264 establishes only codec compatibility. Using Profile 9 as Dolby Vision also needs support for that profile and its metadata path. A result that appears as SDR may be using the intended fallback.</p>
-<p>Avoid interpreting “9” as a quality tier above <a href="Dolby-Vision-Profile-8.html">Profile 8</a>. Profile numbers distinguish delivery arrangements; the film's mastering and compression remain separate questions.</p>
+<h2 id="why-can-playback-legitimately-appear-as-sdr">Why can playback legitimately appear as SDR?</h2>
+<p>A suitable ordinary AVC/SDR route can decode and interpret the compatible base. It is using an intended available picture rather than necessarily converting the entire presentation on the server.</p>
+<p>A Dolby Vision route additionally needs Profile 9's metadata and signal processing. The successful AVC decode is the starting picture-reconstruction job, not a record of whether those later operations occurred.</p>
+<h2 id="what-does-the-eight-bit-field-describe">What does the eight-bit field describe?</h2>
+<p>It identifies the coded base precision. That says how the compressed picture represents its samples, while the profile's processing establishes how those samples and metadata become the output presentation. Another source release can differ in its grade or retained precision, even if both are eventually shown with a Dolby Vision output mode.</p>
+<p>For Emby, compare the source profile, actual delivered stream, and app/output path. A source and an SDR display can be connected by compatible-base use or by a real conversion; the delivery evidence distinguishes them. The profile number identifies this arrangement rather than a quality tier above <a href="Dolby-Vision-Profile-8.html">Profile 8</a>.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

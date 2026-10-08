@@ -106,39 +106,82 @@
 <h1>Audio/Video Synchronization</h1>
 
 
-<p><strong>Audio/video synchronization means presenting related sound and picture at the right time.</strong> A clap or a clearly spoken consonant makes an offset easy to notice because the visual event and its sound belong together.</p>
-<p>The streams have different units: video is organized into frames, while audio is organized into samples and coded audio frames. Timestamps relate those units to a playback timeline. Equal packet arrival times are not the goal.</p>
-<h2 id="constant-offset-or-growing-drift">Constant offset or growing drift?</h2>
+<p>A clap is easy to use as a synchronization check: the hands meet at a visible instant, and the matching sound has an identifiable attack. If those events are separated, first observe whether the gap stays constant or grows.</p>
+<p><strong>Synchronization aligns presentations on a common timeline</strong>, then accounts for different processing and output delays.</p>
+<h2 id="convert-each-streams-time-units">Convert each stream's time units</h2>
+<p>Video frames and audio sample blocks need not arrive together or represent equal durations. Their timestamps say when the reconstructed results belong in the presentation.</p>
+<p>For an illustrative timebase conversion:</p>
 <table>
 <thead>
 <tr>
-<th>Observation</th>
-<th>What it suggests</th>
+<th style="text-align: right;">Stream timestamp</th>
+<th style="text-align: right;">Unit duration</th>
+<th style="text-align: right;">Presentation time</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>The same mismatch throughout the programme</td>
-<td>A fixed timing offset or processing delay</td>
+<td style="text-align: right;">Audio: 960,000</td>
+<td style="text-align: right;">1/48,000 second</td>
+<td style="text-align: right;">20 seconds</td>
 </tr>
 <tr>
-<td>Alignment starts well, then gradually worsens</td>
-<td>A rate, clock, or timeline mismatch</td>
-</tr>
-<tr>
-<td>A sudden change after a seek or discontinuity</td>
-<td>Re-establishment of timing may be involved</td>
-</tr>
-<tr>
-<td>Only one audio output route is affected</td>
-<td>Delay in that route is worth checking</td>
+<td style="text-align: right;">Video: 500</td>
+<td style="text-align: right;">1/25 second</td>
+<td style="text-align: right;">20 seconds</td>
 </tr>
 </tbody>
 </table>
-<p>These are diagnostic clues, not complete fault diagnoses.</p>
-<p>A fixed offset can often be addressed by delaying the earlier presentation. For example, if sound arrives 80 ms before its matching picture, adding 80 ms of audio delay aligns that particular route. Interfaces use different signs for their adjustment controls, so verify the result rather than assuming what “positive” means.</p>
-<p>A single offset cannot fix continuing drift. A hypothetical clock-rate difference of 50 parts per million accumulates 0.18 seconds in one hour: 3,600 × 50 / 1,000,000. Changing the starting delay leaves that rate difference intact.</p>
-<p>In an Emby session, compare the same passage through another client or output route and note whether the mismatch is constant or grows. Display processing, decoded-audio buffering, and wireless output can add different delays. Keeping those observations separate from <a href="../../media-files/container-structure/timing-and-navigation/Media-Packet-Timestamps.html">the file's timestamps</a> narrows where to investigate.</p>
+<p>The numbers differ by nearly three orders of magnitude but designate the same instant. Comparing raw timestamp integers without their units would be meaningless.</p>
+<p>The decoder also needs its input early enough to produce the output for that instant. Decode order, buffering, and presentation scheduling are related but distinct jobs.</p>
+<h2 id="schedule-around-different-output-delays">Schedule around different output delays</h2>
+<p>Suppose a picture path takes 100 ms from submission to display, while a sound path takes 20 ms to the audible output. To present both at a chosen wall-clock instant of 20.000 seconds:</p>
+<ul>
+<li>Submit the picture at 19.900 seconds.</li>
+<li>Submit the audio at 19.980 seconds.</li>
+</ul>
+<p>Submitting both at 19.900 would make the sound arrive at 19.920, 80 ms before the picture. Adding 80 ms of audio delay could compensate for that fixed difference.</p>
+<p>These are hypothetical processing delays, not universal television or player values. They show why equal submission/packet-arrival time is not synchronization.</p>
+<h2 id="separate-fixed-offset-from-clock-drift">Separate fixed offset from clock drift</h2>
+<p>A fixed offset can come from unequal processing paths, an initial timestamp difference, or an uncompensated encoder/filter delay. Delaying the earlier presentation can address that particular constant gap.</p>
+<p>A rate mismatch accumulates instead. A hypothetical audio device consuming 48,002.4 frames per wall-clock second instead of 48,000 runs 50 parts per million fast. Over one hour it consumes 2.4 × 3,600 = <strong>8,640 additional frames</strong>, representing <strong>0.18 seconds</strong> at the intended rate.</p>
+<p>Changing the starting delay does not remove the rate difference. A player can need clock tracking, scheduling changes, or appropriate rate conversion to keep the presentations aligned over time.</p>
+<h2 id="preserve-the-timeline-through-a-seek-or-conversion">Preserve the timeline through a seek or conversion</h2>
+<p>A seek jumps the desired media time, but decoder buffers can still contain data from the previous position. The player must flush/reinitialize appropriate state and establish the new audio/video relationship.</p>
+<p>A transcoded track also has its encoder delay and final padding. Timestamps and trimming must account for them rather than making them extra audible programme time.</p>
+<p>These mechanisms explain why a file can start aligned and change after a seek, or why one delivery/output route differs from another.</p>
+<h2 id="use-the-symptom-to-select-a-test">Use the symptom to select a test</h2>
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th>First useful comparison</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Same offset at beginning and end</td>
+<td>Compare fixed delays and starting presentation times</td>
+</tr>
+<tr>
+<td>Increasing mismatch</td>
+<td>Compare timebase interpretation, rates, and clocks</td>
+</tr>
+<tr>
+<td>Sudden change after seeking</td>
+<td>Compare seek/reset behavior</td>
+</tr>
+<tr>
+<td>Only one audio output affected</td>
+<td>Compare that output path's buffering and processing</td>
+</tr>
+<tr>
+<td>Same misplaced event on several paths</td>
+<td>Examine the source's timing/presentation</td>
+</tr>
+</tbody>
+</table>
+<p>For an Emby session, record the event, approximate gap, and whether it changes with time. A comparison through another client or output route then isolates a boundary. This is more useful than choosing an offset value before knowing whether the problem is an offset at all.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

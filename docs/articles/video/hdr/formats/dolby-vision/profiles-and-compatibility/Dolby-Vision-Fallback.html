@@ -106,47 +106,49 @@
 <h1>Dolby Vision Fallback Compatibility</h1>
 
 
-<p>A Dolby Vision file can sometimes play correctly without Dolby Vision processing by using its <strong>compatible base picture</strong>. Whether that is possible depends on the stream's profile and base arrangement.</p>
+<p>When a Dolby Vision processing route is unavailable, begin with the base signal's defined interpretation. A compatible base can supply another valid presentation; a Dolby Vision-specific base needs its appropriate interpretation or conversion.</p>
+<h2 id="make-the-playback-decision-in-order">Make the playback decision in order</h2>
+<p><strong>First, can the path read and decode the available video?</strong> Container handling and codec support still apply. A compatible light representation is of little use if the player cannot obtain or decode its coded samples.</p>
+<p><strong>Second, what does the base represent?</strong> The profile and base compatibility identify an HDR10, HLG, SDR, or Dolby Vision-specific arrangement.</p>
+<p><strong>Third, can the destination present that interpretation?</strong> A supporting HDR10 path can use an HDR10 base. An SDR-only destination needs suitable conversion of that HDR source. HLG requires its own system interpretation.</p>
+<p><strong>Finally, which extra information is being used?</strong> Dolby Vision metadata and any enhancement contribution belong to the complete presentation path. Their absence or nonuse changes which source information drives the output.</p>
+<h3 id="a-reference-for-common-base-choices">A reference for common base choices</h3>
 <table>
 <thead>
 <tr>
-<th>Example</th>
-<th>Compatible base interpretation</th>
+<th>Source example</th>
+<th>Available base interpretation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Profile 5</td>
-<td>None as ordinary HDR10 or SDR</td>
+<td><a href="Dolby-Vision-Profile-5.html">Profile 5</a></td>
+<td>Dolby Vision-specific; no ordinary HDR10/SDR base</td>
 </tr>
 <tr>
-<td>Profile 7</td>
+<td><a href="Dolby-Vision-Profile-7.html">Profile 7</a></td>
 <td>HDR10</td>
 </tr>
 <tr>
-<td>Profile 8.1</td>
+<td><a href="Dolby-Vision-Profile-8.html">Profile 8.1</a></td>
 <td>HDR10</td>
 </tr>
 <tr>
-<td>Profile 8.4</td>
+<td><a href="Dolby-Vision-Profile-8.html">Profile 8.4</a></td>
 <td>HLG</td>
 </tr>
 <tr>
-<td>Profile 9</td>
+<td><a href="Dolby-Vision-Profile-9.html">Profile 9</a></td>
 <td>SDR</td>
 </tr>
 </tbody>
 </table>
-<p>The table describes signal compatibility, not a device-support list. A player still needs to open the container, decode the codec, and deliver a suitable signal. Newer AV1 and multiview profiles introduce their own requirements; see <a href="Dolby-Vision-Profile-10.html">Profile 10</a> and <a href="Dolby-Vision-Profile-20.html">Profile 20</a>.</p>
-<p>There are three distinct outcomes worth separating during Emby playback:</p>
-<ol>
-<li>The Dolby Vision picture is processed through a supported path.</li>
-<li>A compatible base is used without the Dolby Vision presentation.</li>
-<li>The picture is converted into a new output format, for example SDR.</li>
-</ol>
-<p>The second outcome can avoid video re-encoding, but it does not imply an identical appearance to the first. The third involves a transformation; removing metadata alone does not accomplish it.</p>
-<p>An SDR television also does not become HDR-capable merely because the source has an HDR10 fallback. It still needs a suitable <a href="../../../../tone-mapping/fundamentals/Tone-Mapping-HDR-to-SDR.html">HDR-to-SDR conversion</a> somewhere in the playback path.</p>
-<p>For a useful comparison, note both Emby's <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">delivery method</a> and the display's active mode. Direct Play says that the server is delivering the file unchanged. It does not prove which metadata, layers, or fallback the player ultimately uses.</p>
+<p><a href="Dolby-Vision-Profile-10.html">Profile 10</a> uses AV1 with its defined base variants; <a href="Dolby-Vision-Profile-20.html">Profile 20</a> can add multiview and other processing requirements. Their codec and structure remain inputs to the first decision.</p>
+<h2 id="resolve-three-plausible-sessions">Resolve three plausible sessions</h2>
+<p>An Emby app receives supported Profile 7 data and uses the HDR10 base. The server may have copied the selected coded video, and the app/display presents HDR10. This is compatible-base use, not automatically an SDR conversion or complete Dolby Vision reconstruction.</p>
+<p>Another app receives an HLG-based Profile 8.4 source and uses its HLG presentation. Assigning a PQ interpretation instead would not be that source's defined fallback. The base field decides which relationship is appropriate.</p>
+<p>For a Profile 5 source on an incompatible output, simply stripping RPU data leaves the Dolby Vision-specific picture values. A supported converter must interpret those values and prepare another coherent output. If that destination is SDR, <a href="../../../../tone-mapping/fundamentals/Tone-Mapping-HDR-to-SDR.html">HDR-to-SDR processing</a> supplies the brightness, color, and encoding changes.</p>
+<p>The source record, actual <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">server delivery</a>, and output mode place each of these sessions on the decision path. They distinguish full processing, compatible-base use, and a newly transformed rendition.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

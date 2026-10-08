@@ -106,41 +106,58 @@
 <h1>Groups of Pictures (GOPs)</h1>
 
 
-<p>A <strong>group of pictures (GOP)</strong> describes a run of coded pictures and the relationships between them. A common structure combines intra-coded pictures with pictures predicted from one or more references.</p>
-<p>The familiar letters are <strong>I</strong> for intra-coded, <strong>P</strong> for predictive, and <strong>B</strong> for bi-predictive picture types. Their precise rules vary by codec. In particular, modern B-pictures can themselves be used as references; “B” does not always mean disposable.</p>
+<p>A <strong>group of pictures (GOP)</strong> is easiest to understand by following which decoded pictures other pictures use. The visible sequence below contains seven pictures:</p>
+<p><strong>I0, B1, B2, P3, B4, B5, P6.</strong></p>
+<p>In this example, I0 is intra-coded; P3 uses I0; P6 uses P3. B1 and B2 use I0 and P3, while B4 and B5 use P3 and P6.</p>
 <p><img src="images/gop-orders.svg" alt="An illustrative closed GOP is displayed as I0 B1 B2 P3 B4 B5 P6, but decoded with the reference pictures first."></p>
-<p><em>Original dependency example. B-pictures here are not references: B1/B2 use I0 and P3, and B4/B5 use P3 and P6. The shown decode order is one valid choice for this schematic, not a universal codec sequence.</em></p>
-<h2 id="length-is-a-tradeoff">Length is a tradeoff</h2>
-<p>At a constant 24 fps, 48 pictures span two seconds. If clean <a href="Video-Keyframes.html">access points</a> are placed every 48 pictures, that creates two-second spacing. Scene changes and encoder decisions can introduce shorter intervals.</p>
+<p><em>Declared dependency example. Its B-pictures are not references. Other legal structures use different dependencies and orders.</em></p>
+<h2 id="decode-the-anchors-before-the-pictures-that-need-them">Decode the anchors before the pictures that need them</h2>
+<p>The decoder can begin with <strong>I0</strong>. It creates that picture's samples and retains them as a reference.</p>
+<p>Next it decodes <strong>P3</strong>, using I0 and P3's coded corrections. P3 appears later on screen, but it must exist before B1 or B2 can use its samples.</p>
+<p>The decoder now has both anchors and can reconstruct <strong>B1</strong> and <strong>B2</strong>. It can then present the initial sequence in viewing order: I0, B1, B2, P3.</p>
+<p>The next anchor is <strong>P6</strong>. Decode it from P3, then use P3 and P6 to reconstruct B4 and B5. The remaining viewing order is B4, B5, P6.</p>
+<p>One valid coded order is therefore:</p>
+<p><strong>I0, P3, B1, B2, P6, B4, B5.</strong></p>
+<p>Decoding follows dependencies. Display follows the picture timeline. The decoder needs picture storage to bridge those two orders.</p>
+<h2 id="what-the-letters-tell-you">What the letters tell you</h2>
 <table>
 <thead>
 <tr>
-<th>Structure choice</th>
-<th>Practical effect</th>
+<th>Letter in this example</th>
+<th>How its samples are predicted</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>More frequent access points</td>
-<td>Less decoding from an earlier point may be needed after seeking</td>
+<td>I</td>
+<td>Within the picture, without another picture as a sample reference</td>
 </tr>
 <tr>
-<td>Longer prediction runs</td>
-<td>Can improve compression, depending on content and encoder choices</td>
+<td>P</td>
+<td>From an available reference picture, with coded corrections</td>
 </tr>
 <tr>
-<td>Closed GOP</td>
-<td>The group can be decoded without picture references from an earlier group</td>
-</tr>
-<tr>
-<td>Open GOP</td>
-<td>Prediction relationships can cross the nominal group boundary</td>
+<td>B</td>
+<td>From the permitted reference choices, including the two anchors used here</td>
 </tr>
 </tbody>
 </table>
-<p>An open GOP is not inherently damaged. It needs correct access-point handling so the decoder knows which pictures are valid when starting partway through the stream.</p>
-<p>In an Emby session, GOP structure can influence seeking, the beginning of a transcode, and how quickly decoding recovers after damaged source data. It does not set the programme's frame rate, and a longer GOP does not necessarily require a longer startup delay in every playback route.</p>
-<p>File size and visible quality alone do not reveal this structure. Picture-level inspection is useful when diagnosing irregular access points or a file that seeks poorly despite playing normally from the beginning.</p>
+<p>The letters describe coding possibilities and picture/slice types, not a universal lifecycle. A modern B-picture can itself become a reference. A picture can also mix prediction choices across its regions.</p>
+<p>For example, a hierarchical structure might decode a B-picture between two distant anchors, then use that intermediate picture to predict other B-pictures. The dependency graph becomes deeper even if the visible I/P/B sequence looks similar. “B” therefore does not mean that the decoder can always discard it immediately.</p>
+<h2 id="follow-the-references-lifetimes">Follow the references' lifetimes</h2>
+<p>I0 can already have been shown when P3 and the early B-pictures use it. It remains in memory because prediction still needs it.</p>
+<p>P3 may first be held because it was decoded ahead of display. After it has been displayed, it still remains a reference for P6, B4, and B5. Being displayed and being safe to release are separate events.</p>
+<p>In this declared graph, I0 can cease being a reference after its last dependent picture is reconstructed. P3 lasts longer. These decisions affect the <a href="Reference-Frames.html">decoded picture buffer</a>, while output reordering decides when each finished picture is shown.</p>
+<h2 id="gop-length-in-pictures-and-seconds">GOP length in pictures and seconds</h2>
+<p>An encoder's maximum keyframe interval is often expressed as a picture count. At 24 fps, <strong>48 pictures span two seconds</strong>. At 24000/1001 fps they span <strong>2.002 seconds</strong>; at 60 fps they span <strong>0.8 seconds</strong>.</p>
+<p>The same picture count therefore gives different time spacing in different sources. Scene-change decisions can also create an entry earlier than the configured maximum.</p>
+<p>More frequent independently usable pictures provide closer starting places for seeking or joining playback. Longer prediction runs can reuse more scene information before a reset. Their benefit depends on how well the scene remains predictable; a cut replaces much of that useful relationship.</p>
+<h2 id="closed-and-open-boundaries">Closed and open boundaries</h2>
+<p>A <strong>closed GOP</strong> can reconstruct its pictures without sample references from an earlier group. The illustrated seven-picture graph is closed because all its references are inside the group beginning at I0.</p>
+<p>An <strong>open GOP</strong> allows dependencies across a nominal boundary. As a conceptual example, leading pictures displayed before a new intra anchor can use both that anchor and an older one from the preceding group. The new anchor is independent, but those leading pictures are not.</p>
+<p>A random start needs the codec's rules for those relationships: which pictures can be reconstructed, which must be skipped, and where valid presentation begins. Starting continuously with the previous group already decoded is a different situation from starting with an empty reference buffer.</p>
+<p>This is why <a href="Video-Keyframes.html">access-point type</a> matters alongside a GOP length. A run of “48 frames” does not by itself describe the boundary dependencies.</p>
+<p>In an Emby seek or transcode start, the decoder reconstructs the required graph before it can deliver the requested pictures. Understanding that graph explains why picture order, access spacing, and reference storage work together.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

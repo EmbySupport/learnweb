@@ -106,15 +106,48 @@
 <h1>Tone Mapping Curve: BT.2390</h1>
 
 
-<p>BT.2390 is an ITU-R report about HDR television. The tone-mapping option named after it usually refers to its <strong>electrical–electrical transfer function</strong>, or EETF: a way of adapting a signal between different display ranges.</p>
-<p>Its recognizable feature is a smooth roll-off. Lower values can follow an unchanged section before highlights bend toward the destination's limit.</p>
-<p><img src="images/tone-mapping-curve-bt2390.png" alt="BT.2390 mappings with two knee offsets, converting a 1,000-nit input peak to a 100-nit output peak."></p>
-<p><em>libplacebo 7.360.1 brightness mapping, 1,000 → 100 nits, zero black levels. Offset 0.5 follows the report's knee convention; offset 1.0 is libplacebo's default. Calculation happens in PQ; axes show light levels.</em></p>
-<h2 id="why-two-bt2390-results-can-differ">Why two BT.2390 results can differ</h2>
-<p>The graph's two lines have the same endpoints but do not start reducing brightness at the same place. The earlier bend changes more of the picture to make room for highlights.</p>
-<p>That is an implementation setting, not a change of video codec. Black-level assumptions also matter: the report's adaptation can account for a destination that cannot reproduce the source black level. This example isolates the highlight behavior by setting both black levels to zero.</p>
-<p>The EETF should not be confused with an <a href="../../../color-standards/transfer-functions/Transfer-Function-EOTF.html">EOTF</a>. An EOTF relates a signal to display light. Here, PQ helps perform a transformation between the source and destination signal ranges.</p>
-<p>For an Emby playback comparison, record the target brightness and the actual mapper, not just “BT.2390.” The same label can hide a different knee offset. The approach is also relevant to <a href="../../fundamentals/Tone-Mapping-HDR-to-HDR.html">HDR-to-HDR mapping</a>, where both ends are HDR but the display still has a smaller range than the source.</p>
+<p>The BT.2390 electrical–electrical transfer function, or EETF, adapts a signal to another display range. Its highlight section joins a lower segment to a smooth roll-off in PQ coordinates.</p>
+<p><img src="images/tone-mapping-curve-bt2390.png" alt="BT.2390 mappings with two knee offsets for 1,000-nit input and 100-nit output."></p>
+<p><em>libplacebo 7.360.1, zero source and target black. Offset 0.5 follows the report's knee convention; offset 1.0 is this library's default. The calculation uses PQ, while the axes show light levels.</em></p>
+<h2 id="compare-points-rather-than-only-endpoints">Compare points rather than only endpoints</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Input light</th>
+<th style="text-align: right;">Knee offset 0.5</th>
+<th style="text-align: right;">Knee offset 1.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">10 nits</td>
+<td style="text-align: right;">About 10.00 nits</td>
+<td style="text-align: right;">About 9.84 nits</td>
+</tr>
+<tr>
+<td style="text-align: right;">100 nits</td>
+<td style="text-align: right;">About 69.45 nits</td>
+<td style="text-align: right;">About 53.73 nits</td>
+</tr>
+<tr>
+<td style="text-align: right;">500 nits</td>
+<td style="text-align: right;">About 98.95 nits</td>
+<td style="text-align: right;">About 94.37 nits</td>
+</tr>
+<tr>
+<td style="text-align: right;">1,000 nits</td>
+<td style="text-align: right;">100 nits</td>
+<td style="text-align: right;">100 nits</td>
+</tr>
+</tbody>
+</table>
+<p>Both peaks fit. The earlier transition for offset 1.0 changes more of the range, including the 100-nit point. A comparison of peak white would miss that difference.</p>
+<h2 id="how-the-roll-off-is-joined">How the roll-off is joined</h2>
+<p>The mapper expresses the destination ceiling relative to the source range in PQ. The knee convention chooses where a lower unchanged segment ends. A Hermite-polynomial segment connects that point to the destination ceiling with controlled endpoint behavior.</p>
+<p>That gives the upper region a gradual reduction in slope. Neighboring bright inputs remain distinct, but their output spacing becomes smaller. The curve's joining constraints avoid an abrupt break in its value relationship.</p>
+<p>The full adaptation also accounts for black-level differences. Setting black to zero on both sides in this figure isolates the highlight behavior. A destination with a higher black floor requires another lower-range adjustment.</p>
+<p>An EETF changes signal values between representations or ranges. An <a href="../../../color-standards/transfer-functions/Transfer-Function-EOTF.html">EOTF</a> instead defines the signal-to-light response. PQ provides the working coordinates here; the adapted signal still needs its appropriate output interpretation.</p>
+<p>For Emby playback, identify the mapper, knee convention, and source/target bounds when comparing this curve. It is useful for <a href="../../fundamentals/Tone-Mapping-HDR-to-HDR.html">HDR-to-HDR fitting</a> as well as illustrating reduction to a smaller range. The table shows the ordinary light levels affected by that fit.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

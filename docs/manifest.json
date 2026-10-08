@@ -106,7 +106,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/Understanding-Audio-in-Media.html",
-          "hash": "UrqfHlldkQpvnMGPvSl/NQRITDc0fh7NjL0zezX5BXA="
+          "hash": "InPyDbzhIn30L9F0gchZA4QGXiGbvqpwy1CQJDOY2KY="
         }
       },
       "is_incremental": false,
@@ -118,7 +118,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/channels/Binaural-Audio.html",
-          "hash": "2x+iS+rm81EQdWJY9ID5W1RIxVL9lUzR9wDTb29npxc="
+          "hash": "KYfFVGen8TtEu7ivrOLTujQPsPCZ7nXiKxmkux03mus="
         }
       },
       "is_incremental": false,
@@ -130,7 +130,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/channels/Matrix-Surround.html",
-          "hash": "YbsFvP2e18LZlFSckNRLzWeZ9nXD/f0c0CO9SrrrwO4="
+          "hash": "7i2LeTxuJFeZXzjICmy3sVu1nleSKfAJaXr0bxh1jLs="
         }
       },
       "is_incremental": false,
@@ -142,7 +142,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/channels/Multichannel-Audio.html",
-          "hash": "nB35Vpq6QdyswwqipvJrml4QkE5SbgwE4cOXpY3vTs4="
+          "hash": "rOa6gnAo7TUUUhklLU5OpLjbJ3M+oW1L7preC/Tk8e0="
         }
       },
       "is_incremental": false,
@@ -154,7 +154,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/channels/Virtual-Surround.html",
-          "hash": "pYdTBFnrbcR86Ci6zqyx8Mds+DlxuWudq6+AVOOASTs="
+          "hash": "TJ0as5ofqmO/nBO+SsK0xsy2ws339Of3QM4du46Q3yM="
         }
       },
       "is_incremental": false,
@@ -177,7 +177,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/channels/layouts/Mono-Audio.html",
-          "hash": "lP/Fo/JrHLGeQwS/0C+pP+PvVPUGQekBT9xygrR0O4k="
+          "hash": "qJcbfuy419FLH4Q6ADBGzH1H+rmP9nW+RrPy64i4ofA="
         }
       },
       "is_incremental": false,
@@ -189,7 +189,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/channels/layouts/Stereo-Audio.html",
-          "hash": "qsik8zEwU21zS+4N8lfb6Nl/ouXnt70LEiAHY0b1UYQ="
+          "hash": "tKC3BXx1zVdH0N7NjkyOjhNtQ1niF4Vfgyg61ej2/QE="
         }
       },
       "is_incremental": false,
@@ -201,7 +201,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/channels/layouts/Surround-Sound-5-1.html",
-          "hash": "FcB0OnMFWdURRH3v78NVeqpzVb0XInQFoL8zGABWydE="
+          "hash": "hXSvGfEj6Xae9OKTx1q8/624nqpgR7wXyHSRqjtWFsM="
         }
       },
       "is_incremental": false,
@@ -213,7 +213,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/channels/layouts/Surround-Sound-7-1.html",
-          "hash": "enlqgVoCst7zAddSTipbtK9ZiDb84JqUl18B49NW4Ag="
+          "hash": "cAqgwYaw8Np2kvlSuwkDQxOEWj6jC5pKlZnFpfl/ZJ4="
         }
       },
       "is_incremental": false,
@@ -247,7 +247,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/channels/object-based/DTS-X.html",
-          "hash": "F4qHKxWoOOzQJshbetUuIaPkUxJk7PVD2bEjfyAqpUI="
+          "hash": "IXxq23OgZGITSuV8UCOyx4c4Xce3uoVOTR9q2KU4f18="
         }
       },
       "is_incremental": false,
@@ -259,7 +259,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/channels/object-based/Dolby-Atmos.html",
-          "hash": "gEEXUtbwdDq/hwQH5yMp3CAie3cOy8nC7bemeDtjTDQ="
+          "hash": "VJQG7Csz2z+PjgQX+zIM6Y6izY33eTaf+A6zMILL7JA="
         }
       },
       "is_incremental": false,
@@ -271,7 +271,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/channels/object-based/Object-Based-Audio.html",
-          "hash": "VlxvadLPRkdwEOzUR9qif/LlkU2VDWgLt52sCoGoDDQ="
+          "hash": "2UQ2XpV8iwnQTq1QVG8hFtK4+8mdA2s4rSp1n87GEJQ="
         }
       },
       "is_incremental": false,
@@ -294,7 +294,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/channels/roles-and-ordering/Audio-Center-Channel.html",
-          "hash": "Lp6xahWN+3nqqwXEnuw539jwnhybWORhWsZBaN8XmfU="
+          "hash": "pgAOyeGlrPkGWxO9QazsW2NnLAHltvZ8uUs7PFETAAY="
         }
       },
       "is_incremental": false,
@@ -306,7 +306,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/channels/roles-and-ordering/Audio-Channel-Order.html",
-          "hash": "6UNPh+kxjQIDmSR70bo2KYj6pPkpunJqCI5+3KC6i2g="
+          "hash": "+9dINkZjqpsAKJz2sXpAiZ1rky+wscJemoH7/jFfxjc="
         }
       },
       "is_incremental": false,
@@ -318,7 +318,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/channels/roles-and-ordering/Audio-LFE.html",
-          "hash": "lfgfvR9i0qpsjfbYS+Aka1DUmZlmQm48QeYl9QfpKns="
+          "hash": "ZiVWAhKG5DsXV9jPJPphvwPeo+SUUOuMjnvLx+I9SNc="
         }
       },
       "is_incremental": false,
@@ -330,7 +330,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/decoding-output/Audio-Description-Tracks.html",
-          "hash": "O1Dp0WH/xeu7tfekxQIWX3h8dNu8GlW3gMa7GO0L4Cs="
+          "hash": "DjxpFP68VgJWlIBSkPiDdvlXN+ZkpiwGN8ERYuTWSO0="
         }
       },
       "is_incremental": false,
@@ -342,7 +342,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/decoding-output/Audio-Playback-Path.html",
-          "hash": "/KzEyLLExH+UJp5LpKsdkawDSIKexmNnDg+Dh3hDncc="
+          "hash": "aa6kQ41IptviYBnU+aEPjGd1kkBjP/4G3xBb+PFa9ZU="
         }
       },
       "is_incremental": false,
@@ -354,7 +354,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/decoding-output/Audio-Video-Synchronization.html",
-          "hash": "poSgoYKOcnW0QEp6P7zTA13zSYd7eUODMt4c2JPZ3dE="
+          "hash": "Kzqr1MPMCRv6XAyCoBvfYx9AB5bSVFHPyAlpjZGtzbA="
         }
       },
       "is_incremental": false,
@@ -366,7 +366,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/decoding-output/Immersive-Audio-Metadata.html",
-          "hash": "5jzlPJn1nlZmpV+4Hsw/ghHimuYJ+iODOzYmc2U7a+U="
+          "hash": "osGUuEQreXwU83cJCLw1lbULX+r28BxbSDVOWmIrgDQ="
         }
       },
       "is_incremental": false,
@@ -378,7 +378,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/decoding-output/conversion-fallback/Audio-Downmixing.html",
-          "hash": "JKSm15YMwnT4/7RVZ29ug3+GjR+u9BfLxCPN/LsOFOw="
+          "hash": "Tn7XrIKdqNSWDOmXBeJWH8R+n/racPq3B3T1Q7kibpM="
         }
       },
       "is_incremental": false,
@@ -390,7 +390,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/decoding-output/conversion-fallback/Audio-Transcoding.html",
-          "hash": "HKumIM7HAWF/W38Idi1e0ymBZ3eJWQ+5HDlkTfvY8UM="
+          "hash": "GRK/Vo5n90WJ4lbPPCXnRy3fiiCEqv+X+2iz8l7u1Ok="
         }
       },
       "is_incremental": false,
@@ -402,7 +402,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/decoding-output/conversion-fallback/Audio-Upmixing.html",
-          "hash": "oxVC0LxoRNf+pBSV19P1m364jcMCJDb39I4jmL27sMM="
+          "hash": "3h6V2nYMSKaizlGSGrXq9DhZRIyzpbAb0gjB9FSMgL0="
         }
       },
       "is_incremental": false,
@@ -414,7 +414,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/decoding-output/conversion-fallback/Embedded-Audio-Core-Fallback.html",
-          "hash": "AHMs6pArm26jReVEzxhcbJK4TnBwVH6HMc9Ky6KQd5A="
+          "hash": "fcwvVQu4GtaWheIVb10Srl3DDUxqrZzqT4M+PGSbX4w="
         }
       },
       "is_incremental": false,
@@ -437,7 +437,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/decoding-output/output-transport/Audio-Bitstream-Passthrough.html",
-          "hash": "0KhFt2/VTltAad+OkEDYGX6dYvi0O7KNPmNg4qvca9c="
+          "hash": "7buJSuTbehlmHQwze7imx30hkqaO01CbU5JX2Mjzzh8="
         }
       },
       "is_incremental": false,
@@ -449,7 +449,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/decoding-output/output-transport/Decoded-PCM-Output.html",
-          "hash": "F1mmMGB0F4nMQyCnJajPYQpMg5FG9jhW8QLnA3wpdk0="
+          "hash": "BdQDIdqUFuP63mrl28G6CSYN+RjTFhuYjLTdeMeyUA8="
         }
       },
       "is_incremental": false,
@@ -461,7 +461,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/decoding-output/output-transport/Dolby-MAT.html",
-          "hash": "7W4uT6h2UvvV37mqp70+1ubdAMY5mkm0a+JO4DOB9ac="
+          "hash": "ufYBKr9KB0Ir1sl/3pD/YUZHi/wYyFsPcw0ic4VL5EA="
         }
       },
       "is_incremental": false,
@@ -473,7 +473,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/Audio-Codecs.html",
-          "hash": "h2FDlTK/HQ8i3d2QN63N1TEXD0UzMS0InKylmNQE6vM="
+          "hash": "4DEBqEr9AYIYM7OnmgClq3LkRH2vAbh7O0Lo3GBVE/k="
         }
       },
       "is_incremental": false,
@@ -485,7 +485,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/DSD.html",
-          "hash": "uHy6U6Xt74Oeeq0FeF24ZKOqp68w7uyM6H9kgO8yqLs="
+          "hash": "3GrYbbSrc9/O8UM3F8uXcdbUVNmsl70+655/Oevqzrw="
         }
       },
       "is_incremental": false,
@@ -497,7 +497,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/LPCM.html",
-          "hash": "0guluoFbV9RFyD89mU7P5ciBf2NTcPgjcJmpdKdRDmk="
+          "hash": "1WyUoy/n2tmDp7NH5CZ4cMv6eUBM0iTF8O/9x/krAio="
         }
       },
       "is_incremental": false,
@@ -509,7 +509,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/lossless/ALAC.html",
-          "hash": "/BnmsjoY9w6W0rS9gHaJD6fgkELfx0KmJRurgIFoKp4="
+          "hash": "hCUekF8L42vf5f7h72sOWurzDUJqyovnJNWTvnEIDwQ="
         }
       },
       "is_incremental": false,
@@ -521,7 +521,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/lossless/Audio-Lossless-Compression.html",
-          "hash": "ogm5WqYZQ8HTaqMBXHVFOomskgk+UK9ktjG7S8m6odo="
+          "hash": "mhMtebEqkjAhoOASK+J+fxcbrN+qaT2+UHlM5Mol45A="
         }
       },
       "is_incremental": false,
@@ -533,7 +533,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/lossless/DTS-HD-Master-Audio.html",
-          "hash": "++wn2efj5to6jEmsIaZygFuvzcWafCHO34s9foI6dXo="
+          "hash": "+tmMBh6zEY2P8kK8JkNYf2WuKiP69ydjogj9hkT8mo0="
         }
       },
       "is_incremental": false,
@@ -545,7 +545,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/lossless/Dolby-TrueHD.html",
-          "hash": "iyMfwoFF+zF7h+sqlpP949qsfm3TH9alqr4LmCWotoY="
+          "hash": "CF8lsFkkY9gMCwgY396B+3MrzdyORiEGmkr+Gd8S5ps="
         }
       },
       "is_incremental": false,
@@ -557,7 +557,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/lossless/FLAC.html",
-          "hash": "38jLR76UtcHQ3zDBRYeCch6pKd7bE4sMJCfzwlSO844="
+          "hash": "jEXu7MB6xgFj4KQeShIW/HWw/87Hbpi6vwrm6ohhjQk="
         }
       },
       "is_incremental": false,
@@ -569,7 +569,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/lossless/Monkeys-Audio-APE.html",
-          "hash": "2qUYrBMo6xep8PQZQiHjV6POlMh2m1V+78D0aRzS7Kw="
+          "hash": "Hxe4pMFGQ5NeJhZ/68HEpD8INL+OBSWKerSYl9YbNIg="
         }
       },
       "is_incremental": false,
@@ -581,7 +581,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/lossless/WMA-Lossless.html",
-          "hash": "dHkGCUp4FBCo8RK2HyWPb24KN3adOWabnHYOmPwdTbg="
+          "hash": "VolAYOjMgqvXLvqO/SMaQi59vmq/dhW1Y8g1clHKCR8="
         }
       },
       "is_incremental": false,
@@ -593,7 +593,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/lossless/WavPack.html",
-          "hash": "VkXqEy2OFQyQw/g5sJdk9/l3B1WSBECA1ozbv9D8L0I="
+          "hash": "8/00e8gU1BpDX1pWAZaLGv/GHLTpPG3rOUomtwYDweM="
         }
       },
       "is_incremental": false,
@@ -605,7 +605,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/lossy/Audio-Lossy-Compression.html",
-          "hash": "6S6W5c5tA60+rtWsEqv6tb95M0+m9uEL5IeEsBq8oqg="
+          "hash": "ubv9SexTk1q2QH2vPiwg9BcPaqwhwlWlkaEk2J+sZM4="
         }
       },
       "is_incremental": false,
@@ -617,7 +617,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/lossy/DTS-Core.html",
-          "hash": "VC9KbODrurkkNtptC1OmmNUd2ocTSL/byF4gdiTSAwA="
+          "hash": "Z76+INEPobFtwevYPZmQPWr3lnxoOQwP3cIfAht1gVs="
         }
       },
       "is_incremental": false,
@@ -629,7 +629,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/lossy/DTS-HD-High-Resolution.html",
-          "hash": "sYm6X8HGD1cmgnygT0ooZWrfYNZUjW3DvsnWkTvb6FA="
+          "hash": "kGI+8CfLVgiNHUdMv1wddO/1UgOnQlj0RrqXwYNauWY="
         }
       },
       "is_incremental": false,
@@ -641,7 +641,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/lossy/MP2.html",
-          "hash": "dJwC0rUrjkZYs+mGHbO3clkal6xMne3PYKOZdOcqeCI="
+          "hash": "kNH+hAGDV99uRqL11+1Bg1oVoJaDvTNi49A64tzEqPk="
         }
       },
       "is_incremental": false,
@@ -653,7 +653,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/lossy/MP3.html",
-          "hash": "UGR2uZmw74Hrrz8USsE3dIv7W1+FzmWUoSSO8QTEUiY="
+          "hash": "zd7JtrLPgu1Eh6RQ3cobDu8OzZVrUlAflwfowRmEpQ8="
         }
       },
       "is_incremental": false,
@@ -665,7 +665,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/lossy/Opus.html",
-          "hash": "HOgPUh8+G9v9L9T2zvv9kwPc3cUk3jfup5L69WhGENo="
+          "hash": "5uOv3PLJmEH+1HT1LB6el+ZPFc1z4xbuyAJKJA/L9PA="
         }
       },
       "is_incremental": false,
@@ -677,7 +677,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/lossy/Vorbis.html",
-          "hash": "8N8ILnMVvz6KAiF3MbxWOt6qcrlX/CoqeXV85Ph1qsY="
+          "hash": "teb32vF7hPqtYo+DW1r2pDa5kAdejTzItShGBgsZUMo="
         }
       },
       "is_incremental": false,
@@ -689,7 +689,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/lossy/WMA.html",
-          "hash": "xjNOJ/F4aVYqEXdS1JfUHWhzLEaHd4Leg1aBfM4QGMY="
+          "hash": "tdiWfyCgpo8hoAFIIl+nxEgRAFPyW+gASxXXwWbA/r0="
         }
       },
       "is_incremental": false,
@@ -701,7 +701,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/lossy/aac-family/AAC-LC.html",
-          "hash": "Ja7l2oD/CvW6w/i0rY0FITQxmAYwXCKmDggt1OdfICQ="
+          "hash": "vj5e2RiE5yf1Yu43EWMNi/dmMXvOL35qFCzcs5Ine7g="
         }
       },
       "is_incremental": false,
@@ -713,7 +713,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/lossy/aac-family/HE-AAC-v2.html",
-          "hash": "RBOJ/DnBXkg9OS0SCLq1cNFVJCUKaDq5nmfHXECtq5s="
+          "hash": "vaDtT9FxVm2ynTSYPejReoyJ6Yj7LU0S4lZ1+Ms8mZ0="
         }
       },
       "is_incremental": false,
@@ -725,7 +725,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/lossy/aac-family/HE-AAC.html",
-          "hash": "/dfIp2sN0fReYd2uDAZkr3X5QYc9NqE36kgbw5IJ9Hk="
+          "hash": "skTvgCiLLlowZxyqPwpIJ9T+utxxhdb6C/zoiiCxp48="
         }
       },
       "is_incremental": false,
@@ -737,7 +737,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/lossy/aac-family/xHE-AAC.html",
-          "hash": "nz/+YmdM0UbwqEslZzEsK4yUz+YeJnmx+R77MfnoA5E="
+          "hash": "/zvRqnS+SRk7PCmJmwhSuRQsQPdfMh1tD4in8csFoag="
         }
       },
       "is_incremental": false,
@@ -749,7 +749,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/lossy/dolby/Dolby-AC4.html",
-          "hash": "UqYtVDfE7RAwbQkphsiNF/G0bbad+fQ432lEQy7IVyQ="
+          "hash": "l4qv380vFU8UWhGlzsGt/1JouCgeEBs2SyyOZjtd2Kw="
         }
       },
       "is_incremental": false,
@@ -761,7 +761,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/lossy/dolby/Dolby-Digital-AC3.html",
-          "hash": "kl+3wd9F5plFlvRO/Tto+bCK/q5ohWtFO+51+9Tpep0="
+          "hash": "TB3XVwF7pfYQfe0e0MH4JRtHrDpU5Swla3Ifdob9ce4="
         }
       },
       "is_incremental": false,
@@ -773,7 +773,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/lossy/dolby/Dolby-Digital-Plus-EAC3.html",
-          "hash": "MdGL3M9HSVTgBiKnPTfMPDfP1yiVI+5DojAnV+FzBlc="
+          "hash": "y/nKXiQT/er2iMxrAc8tZKG4C41rQeIjuTOzetC8bB0="
         }
       },
       "is_incremental": false,
@@ -785,7 +785,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/speech/AMR-NB.html",
-          "hash": "VZ6s3gCfqHLh1u43bqUDiBDe9WsJpxQPvXbpmluU4zc="
+          "hash": "vcMNCRZAArLHOWEsf5qHZ7QjxAqvQmeB79LdDx8ROnY="
         }
       },
       "is_incremental": false,
@@ -797,7 +797,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/speech/AMR-WB.html",
-          "hash": "pitbdomT3N6WWAs25QNW0oz98BJ1JrJ7IZcL0PFVYMc="
+          "hash": "cr1Gx51qDPrRqy1ezI3JZjb3hY0VMLAnPdfSsckPusA="
         }
       },
       "is_incremental": false,
@@ -809,7 +809,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/speech/Speech-Coding.html",
-          "hash": "IkK6GHg5U+VnhcEe7/MuXFPO5GQIq52JKwSuE0l3/jA="
+          "hash": "Bfj15UcURsAktvw7zeD1xoQSgamusjNECRlxBfqvPUk="
         }
       },
       "is_incremental": false,
@@ -821,7 +821,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/speech/Speex.html",
-          "hash": "kLA/lXW7eTjS5Cqf8yJniU8CchhEb3CsLHgF4xb/itQ="
+          "hash": "qUvVYek3w3i3OKiU0j4BH86FuK/SoVQsD+51Cuhf0Zo="
         }
       },
       "is_incremental": false,
@@ -833,7 +833,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/fundamentals/Audio-Bitrate.html",
-          "hash": "NH3tWa2sQfxq1QTkMJNuZQ1LtoJqIhJYi9oTy1htaNw="
+          "hash": "5bh8JExtKz5VKQdz3eVOqrXXWRkKboEGbUcT3fH/MYc="
         }
       },
       "is_incremental": false,
@@ -845,7 +845,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/fundamentals/Audio-Clipping.html",
-          "hash": "j4nrKheliNAuBz30/exMQs5VXouQgJSzc6z90JxkpOk="
+          "hash": "k2127q/ihX2zxpNs1DysqImVvDI9c+wNJ3WIqbYpaRY="
         }
       },
       "is_incremental": false,
@@ -857,7 +857,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/fundamentals/Audio-Dithering.html",
-          "hash": "Oa3wvNOLaOU9KSUNPhwe5IQHppuWZWM5cIwFHzbkAcA="
+          "hash": "OgicCp559o3H3IM/Bvx5GzLDyIha9PBCn9/NgwUQ7rg="
         }
       },
       "is_incremental": false,
@@ -869,7 +869,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/fundamentals/Audio-Dynamic-Range.html",
-          "hash": "0r/AkIJuVLrFKv3I7ETcAldVQ1lOcyl5sxmMY+DDTNc="
+          "hash": "9f0+CuMyojDT2v+JvtpF/KJsC2xOjboHNkAQBr9/6l8="
         }
       },
       "is_incremental": false,
@@ -893,7 +893,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/fundamentals/Audio-Resampling.html",
-          "hash": "szpiFldAFJAY3fOxGQpKINHB41gO1mvu5eL4X3eueHw="
+          "hash": "NbT2jXPLuzPlMjANRYTCQvclkko2skBy9k445PfC9fI="
         }
       },
       "is_incremental": false,
@@ -927,7 +927,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/fundamentals/sample-representation/Audio-Bit-Depth.html",
-          "hash": "4WuddAB/ZVanXlx6+Iot/p+iz/hTl3AloL+L6X2kPp4="
+          "hash": "yROITq5F4NNf6vi27RJiV6iHk84GlOC5G6GJUIq+oqQ="
         }
       },
       "is_incremental": false,
@@ -939,7 +939,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/fundamentals/sample-representation/Audio-Sample-Rate.html",
-          "hash": "muWiYJUy9AXE/HMD38JLl+ojcBDY+WN14xwsIdlxDgw="
+          "hash": "YPV5pUEYCJFsvtv1/4LypV21mGLlladYdnpxHmsLsIg="
         }
       },
       "is_incremental": false,
@@ -951,7 +951,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/fundamentals/sample-representation/Digital-Audio-Sampling.html",
-          "hash": "86HtWj9aMxKx+fgjCBD0d0XCb4vc3n/Y1N0LpVVpvmw="
+          "hash": "4QDIMc6rvK+Di86EePlzdNC15156V8jLesLvuPfrM4c="
         }
       },
       "is_incremental": false,
@@ -963,7 +963,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/fundamentals/sample-representation/PCM-Sample-Formats.html",
-          "hash": "Po4qcrzcYeAFcP6EcQHQHBunT223rQURB2SwzIKAig0="
+          "hash": "4YUrY3gjgLlBGgQQWB4Vyr620Z2cBJ/yOQegBrxvt3A="
         }
       },
       "is_incremental": false,
@@ -1008,7 +1008,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/container-structure/Media-Codec-Identifiers.html",
-          "hash": "AR2CpRB7yrcuVN7deAB4ZMg9sF7KCu7UxngA9B2jG0A="
+          "hash": "SRg5j0C7q8Z/ZOlzclsy6m1P4txIUYZgpXDMNNL7oRI="
         }
       },
       "is_incremental": false,
@@ -1020,7 +1020,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/container-structure/Media-Container-Codec-Support.html",
-          "hash": "WryKhCnjBK1teyuQujbeJqI3PEOurPDuAGwWe8QlYEE="
+          "hash": "YnwT/GJgjo+nZrGP9O22BGApjSS090TOBYJUzQKMD3Y="
         }
       },
       "is_incremental": false,
@@ -1032,7 +1032,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/container-structure/Media-Container-Overhead.html",
-          "hash": "HWCtObv6HOIg0TnNXZLHPdItqKG/G4Y8vifp/rSZFh8="
+          "hash": "QgtO7CYIpXvun/a3TXF9OtzPrum9KCFg39D3fQU71rg="
         }
       },
       "is_incremental": false,
@@ -1044,7 +1044,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/container-structure/Media-Container-Types.html",
-          "hash": "O6WC9AEGQAw3V3v+l/zHPTh1yGNfe8G2sXCIYpQyxNk="
+          "hash": "jKlZKcB+Ot70ynVtL4X0kn5dr5rbbWxF+KX8ycpAsRg="
         }
       },
       "is_incremental": false,
@@ -1056,7 +1056,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/container-structure/Media-Container.html",
-          "hash": "XcZD4k4qvQlTbHylKrehV4PSj2TMe96lbU3w27RCrMI="
+          "hash": "FViJXsphGVgWFTclb0ZBGxhBZMpmBW73xW8dicxM2Ko="
         }
       },
       "is_incremental": false,
@@ -1068,7 +1068,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/container-structure/Media-Damaged-Incomplete-Files.html",
-          "hash": "BkaF5MlDjE8bEmW5VVI9UJzbM+icBOwpKporSGZtkRw="
+          "hash": "u8O4/i6fhLYltxdMv6CyjWjMux7fi8Y9a4rwmZhxZXY="
         }
       },
       "is_incremental": false,
@@ -1080,7 +1080,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/container-structure/Media-Elementary-Streams.html",
-          "hash": "QS7Ry1BZxMU0Izef1CYfaox3JabIJmm8tNj4lfR+994="
+          "hash": "Q2gWNZ5bWQSA0LFYteLin1ulJxSiokY7PAma2e91tsw="
         }
       },
       "is_incremental": false,
@@ -1092,7 +1092,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/container-structure/Media-Multiplexing.html",
-          "hash": "H76UuPL7vIg0XVMyXHhwwf9sjzmGBnXv/Nu36nFmHIs="
+          "hash": "TldL8WuDLVLbCX/ipOpGImItegMbx1rKG6D+bxzhLTQ="
         }
       },
       "is_incremental": false,
@@ -1126,7 +1126,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/container-structure/timing-and-navigation/Media-Chapter-Markers.html",
-          "hash": "Ykv/B7z0+VAf+2yGaS8v5LUcwvprkjQ0nwjptcVQs3E="
+          "hash": "INJQyD0z+M015edZKMrhSPdMDCaWKMLDAqFqE+qDepU="
         }
       },
       "is_incremental": false,
@@ -1138,7 +1138,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/container-structure/timing-and-navigation/Media-Container-Seeking.html",
-          "hash": "+BJt9tvL68cJnbaVJyq8A9Q/u3vNR/cXX8Kwv1HjUN0="
+          "hash": "mybfm2ySVQkM6MAC1F7Ovag7yTxw8KBMra5y8wIWgWs="
         }
       },
       "is_incremental": false,
@@ -1150,7 +1150,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/container-structure/timing-and-navigation/Media-Packet-Timestamps.html",
-          "hash": "7INByPKlcxfvBEDRNg1ZNBBj6X3XMfT803dOGYAPHhY="
+          "hash": "xTYppyrbJTYkpN/B/9HlYP2U8mHtY76Uodxd1Ol2w/I="
         }
       },
       "is_incremental": false,
@@ -1162,7 +1162,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/container-structure/timing-and-navigation/Media-Time-Bases.html",
-          "hash": "iHWxCjcbucSN5QWBcSwF8VX4RkJHdKTehniJcIi+7jI="
+          "hash": "SIkIi18EZvi8MyJxbVqTe+JiIP2tQSvi+/1HzGEvuPU="
         }
       },
       "is_incremental": false,
@@ -1185,7 +1185,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/container-structure/track-and-programme-descriptions/Media-Default-Track-Flags.html",
-          "hash": "vLREdoUvonRiiwlQ5OFdacBcbwCoyNuvpxao1XsKnTY="
+          "hash": "MBnTK5WU2lRnVt59JAUxl2/12V6CYuOoSFNhxUrZldk="
         }
       },
       "is_incremental": false,
@@ -1197,7 +1197,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/container-structure/track-and-programme-descriptions/Media-MPEG-TS-Program-Tables.html",
-          "hash": "08mfvgZdhZY+0PxaNkq2G7gnQpTakfDDR3tIlOXOECQ="
+          "hash": "h7pGV3Yvc5six6Ceixj4K1SLOv+d2ktxdch2+jgOq1M="
         }
       },
       "is_incremental": false,
@@ -1209,7 +1209,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/container-structure/track-and-programme-descriptions/Media-Track-Language.html",
-          "hash": "unQQ/BJvoDPySaOq/H5Gh3pxGRcDzLLwC0fzFakZDKk="
+          "hash": "XnBkujA7blglhxTcOE+V1OtXXcVlqa5bfYuJ/lupSs8="
         }
       },
       "is_incremental": false,
@@ -1232,7 +1232,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/containers/ASF-Container.html",
-          "hash": "s+hlm/1l/yLAe/878h+Nq9lZYQvfSqNj54aP+We8UKQ="
+          "hash": "AUSyzMZCOUXNapzJelyCKCsPiYZFw6XGUXLrCob9mc0="
         }
       },
       "is_incremental": false,
@@ -1244,7 +1244,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/containers/AVI-Container.html",
-          "hash": "GWkR9pEOYAuaca8lB2IGD13vkV+Pp3xjyaQWcxauj80="
+          "hash": "7APpHRO12X89A3QfBI4IUDgBAVifPRsavXDldk/aSio="
         }
       },
       "is_incremental": false,
@@ -1256,7 +1256,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/containers/Ogg-Container.html",
-          "hash": "w/rlzwkfUoTSbl4N7PmtOHHyYr1K4wU2yxiZ2t4k9Bc="
+          "hash": "cRZi2MrSXR7KVsQuxnwwC3JNJ+isEuHq0NkV5Lui+2s="
         }
       },
       "is_incremental": false,
@@ -1268,7 +1268,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/containers/audio-oriented/AIFF-Container.html",
-          "hash": "xpXghZB4p6rfP+rkviPra6xMt3n9RP5xM4rORcHcmIc="
+          "hash": "GM0+94AvVEWxnQ/djlX1DfIpBG3Re5yZCOiXfr2xrSU="
         }
       },
       "is_incremental": false,
@@ -1280,7 +1280,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/containers/audio-oriented/CAF-Container.html",
-          "hash": "JsfvRQd9dvXg33qG+cwXWB5jUbXLBtSpBuTR6wNC9Jw="
+          "hash": "yIUENArb3qHQ3Dfh+SKKBVimHCOpcWwoeLiY7DWM54w="
         }
       },
       "is_incremental": false,
@@ -1292,7 +1292,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/containers/audio-oriented/DSDIFF-Container.html",
-          "hash": "z7Q4DjOQOq0TgP/GFYbcgg8+lYFgx4FFmkqa0EWld8E="
+          "hash": "kgjEWWR+9W3Cco1zwNN8lA48ur7CGAVK9LfCpPl0RXs="
         }
       },
       "is_incremental": false,
@@ -1304,7 +1304,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/containers/audio-oriented/DSF-Container.html",
-          "hash": "T0nhK2ZWQczEK/TXKMYSbbKPxYMHqKxGFfEMIvCDOmQ="
+          "hash": "N4509R0dIBBSVhxN1SqnNuwSjf0lT3A+WzABWR0yAX0="
         }
       },
       "is_incremental": false,
@@ -1316,7 +1316,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/containers/audio-oriented/WAV-RIFF-Container.html",
-          "hash": "u5VIvmdxnZjT2Ig+tC0bPUs0qByb42dL4y5/xYdLjIU="
+          "hash": "v4yIx7KYGBe1awgnHJ6F+tZWSAccIfbgomyKuWbWFx4="
         }
       },
       "is_incremental": false,
@@ -1340,7 +1340,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/containers/iso-base-media-and-quicktime/QuickTime-Container.html",
-          "hash": "yjsf+qkj4WWtno7ZTrnUvzeS4NNBd+QsNAqCcbBSXso="
+          "hash": "2qR/6FXoZ/J/JunHY0+xhcmufxO/1kVdvelROzqO7Kw="
         }
       },
       "is_incremental": false,
@@ -1363,7 +1363,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/containers/matroska-family/Matroska-Container.html",
-          "hash": "EOHs9O3+cy7wPa8ij6Z/RxLdDAgyTrQUzv9xYZfuFzM="
+          "hash": "2x9sMhGXPaPgfwAmPMwEGECdpTWNqdQnvMYkz/xLwm0="
         }
       },
       "is_incremental": false,
@@ -1375,7 +1375,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/containers/matroska-family/WebM-Container.html",
-          "hash": "st1BxzKT9Pz+uzE9rLrayzgCBq+6qrE8hkj5FSJhFCY="
+          "hash": "fwTyaDAoxAjcWWW0H3j56xhHbNt9BehTkYJEKVXzPwk="
         }
       },
       "is_incremental": false,
@@ -1387,7 +1387,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/containers/mpeg-systems/MPEG-Program-Stream.html",
-          "hash": "1S33/TAxu3jF117v5O7YdZ9KxPzZCsS2j46jFm3OicQ="
+          "hash": "+WLe5zAlK9QaQ1TH/1IGorCTuzrmHOYBC24OrUMkoxY="
         }
       },
       "is_incremental": false,
@@ -1399,7 +1399,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/containers/mpeg-systems/MPEG-Transport-Stream.html",
-          "hash": "iqd9tQCd3b9cP1Yy4z9bZEACojZhrB9GEMdOv5b3zDQ="
+          "hash": "8NwdH3Ek6GkSIMsnt32ZJulh1rb8urQLH75h2y7JX30="
         }
       },
       "is_incremental": false,
@@ -1422,7 +1422,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/fundamentals/Containers-and-Codecs.html",
-          "hash": "ta1za3AY4MLVkaD/yw7Oo1F92Q6UhdCAxtA5BcHBFUU="
+          "hash": "cfwf/JjwEURAbj2YX8/MG6qonTV3teB7kbjaI7BD/T4="
         }
       },
       "is_incremental": false,
@@ -1434,7 +1434,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/fundamentals/Media-File-Extensions.html",
-          "hash": "Fy+8xGtx/RSWG3oWKb73yiJUTIUsquX/2pmcKbgXPsw="
+          "hash": "XGlBiHFfGtt7w8iB5OcYOhk4/Opydpv5wDmJ0vEKdrg="
         }
       },
       "is_incremental": false,
@@ -1446,7 +1446,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/fundamentals/Media-File.html",
-          "hash": "Vv91hS0msVwc6Mm6fhhNh6mMXTwpJhnRPuIv4vFHW2Y="
+          "hash": "JtJzaXxvGqgyiscqgJR4WudfWpQxvCU3jWgTIBDeReo="
         }
       },
       "is_incremental": false,
@@ -1458,7 +1458,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/fundamentals/Media-Lossy-Lossless.html",
-          "hash": "t8uOygLrpe5MT76IKu65r7kin/xCzmB2qncgrPuw8S0="
+          "hash": "85vzX9YLU6iesAM+aVjYvJIfJVET458OXwUYZajBneA="
         }
       },
       "is_incremental": false,
@@ -1470,7 +1470,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/fundamentals/Media-MIME-Types.html",
-          "hash": "fqTo7vRHLLfqOtyOKdC12av0TGvL2kW1sE+osOo6a9Q="
+          "hash": "XWx7F/D50Zfa95y2VjrHjZ76zje3ZsDQbRjIZwNyiYE="
         }
       },
       "is_incremental": false,
@@ -1482,7 +1482,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/fundamentals/Media-Streams-Tracks.html",
-          "hash": "Cg0iNjAt237EWO34gDIJ5k/5IlXCPRvOQ/OcRAEjo0I="
+          "hash": "MK2Alv1uu3KXJpjPNNItuwFoTPgNyTb1i4P5ipC6tx4="
         }
       },
       "is_incremental": false,
@@ -1494,7 +1494,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/fundamentals/bitrate-and-file-size/Media-Bitrate-Variation.html",
-          "hash": "uFo69ab19Ia/VnHalICi1nazSOIa80RpScrL6bxfx0M="
+          "hash": "qvhfDxMqjG3l/hshqJFJgeVJPqdwl/8tOtmDv99T4ko="
         }
       },
       "is_incremental": false,
@@ -1506,7 +1506,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/fundamentals/bitrate-and-file-size/Media-Bitrate.html",
-          "hash": "mJjzIm7AN7c9dU+YRJ1YHc+gIVSiN1wzIFRqCSj4Xmk="
+          "hash": "+rEJ5zm19a3F25Os8DaWqqug/AFje9LRhuN5LOryweg="
         }
       },
       "is_incremental": false,
@@ -1518,7 +1518,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/fundamentals/bitrate-and-file-size/Media-Data-Units.html",
-          "hash": "xf7PRCKoncrYhRCs5iYy3dnK3WYpkIgCudkjCVGmQ10="
+          "hash": "Sm9+6hAR+py55isFxY3NuO4JwhFOT0daiaOTTS5t8NU="
         }
       },
       "is_incremental": false,
@@ -1530,7 +1530,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/fundamentals/bitrate-and-file-size/Media-File-Size-Duration.html",
-          "hash": "DeMl6Kda2zEP6pUFzz4UjBRxWh69UYunX7fBMpcZH3s="
+          "hash": "6dD5GGR0a6GHYDz7Hlsi5+NCfHfXKjKoI2ZBSJRpBqE="
         }
       },
       "is_incremental": false,
@@ -1564,7 +1564,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/inspection/Media-Inspection-MediaInfo.html",
-          "hash": "8+u37NsuFxmiCjZ8vu+z5rWJOQvWY+QrFljHaMZvG44="
+          "hash": "lHx9xe8+WfSbH4/vsI15EUP4cMgRHFArsKrDXNsTsu4="
         }
       },
       "is_incremental": false,
@@ -1576,7 +1576,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/inspection/Media-Inspection-ffprobe.html",
-          "hash": "ddisrHhF4iMqTXXVdZbF/RC9z9n+R7dkWwkp7QJWpaY="
+          "hash": "FT74FYlIyW0McXVs8iI2sRMkupgjht/lEwz/4gZWEMA="
         }
       },
       "is_incremental": false,
@@ -1588,7 +1588,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/inspection/Media-Probing.html",
-          "hash": "OXiBfKQHr7qnldKo5b/pn2DXFnq6YqfRxAFAECMXBJc="
+          "hash": "ddtyeTt2UbBBBcQyDFCpKkEZ+KbDmOPn9zxz14vdpfc="
         }
       },
       "is_incremental": false,
@@ -1611,7 +1611,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/packaging/MP3-Files.html",
-          "hash": "PXhH2NNwvJZF0zG42nOyOXqIVRUvP0nu3Hsp9RVUKwc="
+          "hash": "zxOmZF6ut9kNvXrIWt6+71ESSi5iHwHymOX/VemlpG0="
         }
       },
       "is_incremental": false,
@@ -1623,7 +1623,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/packaging/aac/AAC-ADTS.html",
-          "hash": "/qdgepQWoGgvrpGxv7KDM+xOlFB8LckNAOV7elBtntU="
+          "hash": "JUjOVfMHCgfM/VRFd0A3oxKROAs6tzQV5piWkCBtL8I="
         }
       },
       "is_incremental": false,
@@ -1635,7 +1635,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/packaging/aac/AAC-LATM.html",
-          "hash": "ihB+kbNOvrnwIW8RVeAlV7c9FOyow0GJtr2hsIHucmo="
+          "hash": "Zx/Uw5gxUnPvXS6kCMpxT7YvWHI7E4ydrioPhrGl5Ek="
         }
       },
       "is_incremental": false,
@@ -1647,7 +1647,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/packaging/aac/AAC-Stream-Packaging.html",
-          "hash": "THCMzpfyhm8VVV+CuNK+IOk+b1DKwyaz49pG/myQZ84="
+          "hash": "s9l/Z9erv675HbFr/HuWwoBSkiLg304OqTO4tW1rRO4="
         }
       },
       "is_incremental": false,
@@ -1659,7 +1659,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/packaging/disc/Blu-ray-File-Structure.html",
-          "hash": "iZcZNZRYpZicEW0BIGXphF8xdgdF0NFURFaSxyU4p6E="
+          "hash": "Kmxk6dVcEEp+CdbjHHFtITjNax548zWIEt8HXtJ37+A="
         }
       },
       "is_incremental": false,
@@ -1671,7 +1671,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/packaging/disc/DVD-Video-File-Structure.html",
-          "hash": "PMDUK9HAd4fHeOctWyUsbv/K3GhaA2JUDB7egqbPBIg="
+          "hash": "fMRHwBrI+hcJxkoivyVjNun1BkbxvUe8QvMlaJvA2+Q="
         }
       },
       "is_incremental": false,
@@ -1683,7 +1683,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/packaging/disc/Disc-Images-ISO.html",
-          "hash": "qzozfl03F9ZEnEPUPCs04tnt0JhU8uZlUTk/gog2rvc="
+          "hash": "6moUQrCaWy9nyHbEpEK89LakmR8GL0/RF1+nYgFqsKk="
         }
       },
       "is_incremental": false,
@@ -1706,7 +1706,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/packaging/matroska/Matroska-Attachments.html",
-          "hash": "dSh4bY0Fg+dVAUcRtJgrvor3mV9U/mqVedQcbmuqz8Y="
+          "hash": "Ne/SxSXjx3CKetc0KO8mE56FCzj561OLJwk6Bkk84t8="
         }
       },
       "is_incremental": false,
@@ -1718,7 +1718,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/packaging/matroska/Matroska-Ordered-Chapters.html",
-          "hash": "QSduRXFVwAiS5Y8ue+t8WSc4jgWZ5J1Es3rWreOntb8="
+          "hash": "2RIAod8Oq9dJJQtNgn2EHM9E13bowAzGVXkvQwlPvgk="
         }
       },
       "is_incremental": false,
@@ -1741,7 +1741,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/packaging/mp4/Fragmented-MP4.html",
-          "hash": "QVv+ftwyh/gh0uL0e6fSihk3V7eA31HDWiIHD7BEbTA="
+          "hash": "hgT9UCZUMA0iaBVyzfbmpaOEbAW0arCaFdG1UL7Mrh8="
         }
       },
       "is_incremental": false,
@@ -1753,7 +1753,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/packaging/mp4/M4A-M4B-Files.html",
-          "hash": "9bb4wrRr1y7K8ocK4GzEYcMk6WjtDoKhOcIuHuJPR4M="
+          "hash": "04mfbGcGNU83eE440a9hmxQth30UtLJ+twlQyGLuFYk="
         }
       },
       "is_incremental": false,
@@ -1765,7 +1765,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/packaging/mp4/MP4-Fast-Start.html",
-          "hash": "MSd6kYWsadOq3biuPVVXmJXu/NljmTpn3n/Aigc/w4Y="
+          "hash": "L+zY8DFT9eXxc0Zn7ZYfx3fyzYzwDfOvhFx0Q2BXybI="
         }
       },
       "is_incremental": false,
@@ -1799,7 +1799,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/playlists-and-references/Media-CUE-Sheets.html",
-          "hash": "lWMFJmze7fu6BBGa8okyGvK083I9HzAsFK2ps+P0Rcc="
+          "hash": "otrFoN0DxNQEIWmg6n0UgS1WSLQuP+6xfZaH815F/T4="
         }
       },
       "is_incremental": false,
@@ -1811,7 +1811,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/playlists-and-references/Media-M3U-Playlists.html",
-          "hash": "E9xUqaLtFfnjMssmPTTPn7iEbZ7ASz2J77ltby+IcCY="
+          "hash": "BRjxbVDIOSCH+ACbeoMamSg3RJuhofZdXfMR7C2rm7E="
         }
       },
       "is_incremental": false,
@@ -1823,7 +1823,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/playlists-and-references/Media-PLS-Playlists.html",
-          "hash": "sO9wyRZw+C1zUrj+gbcDryg0gFpiFGGhvEiR0pwzQJ8="
+          "hash": "5t+9Y6AWB0HsCK028eNBHbTV0Ay1a33jPxURkcwNfHM="
         }
       },
       "is_incremental": false,
@@ -1835,7 +1835,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/playlists-and-references/Media-STRM-Files.html",
-          "hash": "TlU1cgKy42h78q5XACViWPg8R3ieMvwdInACH4OzF58="
+          "hash": "hDcS4LopoAoahNPzetY1GyDa9eT5+ghGuaGTgm3ZZ/M="
         }
       },
       "is_incremental": false,
@@ -1870,7 +1870,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/codecs/Video-Codec-Compatibility.html",
-          "hash": "jP+3bBs6gj9WiZp/5khE+iop/nOHG4MIQpcsTYWxX/c="
+          "hash": "WC8B35Cu/JNudeIubmia+zdvhDhI7GisXK+Bl3CPtk4="
         }
       },
       "is_incremental": false,
@@ -1882,7 +1882,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/codecs/Video-Codec-VC1.html",
-          "hash": "7MbM2b4uH8/5eSccOrrXldkzlAKDLyy1StZu2BlY37g="
+          "hash": "FX1L3lHxiuRTQOztVYQm+O2MMKuGOg5kk34kocb2/rI="
         }
       },
       "is_incremental": false,
@@ -1894,7 +1894,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/codecs/mpeg-itu/Video-Codec-H264.html",
-          "hash": "PS9QJ9ovGzVG9e0fZNiBsd8Vd/NLEQS/I6zTC43TjFw="
+          "hash": "Xrm7Y5pJVuuySQTuYRMLnOgfL8LXls4KiKQrycQDODA="
         }
       },
       "is_incremental": false,
@@ -1906,7 +1906,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/codecs/mpeg-itu/Video-Codec-HEVC.html",
-          "hash": "mJx8jnuH0oZQiyAC61wBxjB1+2lVpMBausM2/qcX8tY="
+          "hash": "/Aw3mgxex/hFiWNcvPyrFxgWyyXN7t2WVGQ1KSu4/UA="
         }
       },
       "is_incremental": false,
@@ -1918,7 +1918,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/codecs/mpeg-itu/Video-Codec-MPEG2.html",
-          "hash": "d0Qd6TTbTkHeFgneZOOhf4KmWKZVSGITuOdtMRHFFew="
+          "hash": "rw5tZtHk2ApsU+7dUDK9DTtMhn7Ls84v3ZLnAS/jlN4="
         }
       },
       "is_incremental": false,
@@ -1930,7 +1930,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/codecs/mpeg-itu/Video-Codec-MPEG4-Part2.html",
-          "hash": "Bj26kyi2+GIOAD7C0jN9o8eD200yheC2tyTPYi0pfUQ="
+          "hash": "C3g1dmWS6zcmbKELXACkwfAbxkzeDna9O+I3qAKKcTc="
         }
       },
       "is_incremental": false,
@@ -1942,7 +1942,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/codecs/mpeg-itu/Video-Codec-VVC.html",
-          "hash": "IOB5le2yF8iVnGFCFNlOIsK1BlPFKMBDOBwkohNbPc0="
+          "hash": "NaBlTnp/ReN0ynXENuLCF6tb8pU+nB741Sns9xUu/U4="
         }
       },
       "is_incremental": false,
@@ -1954,7 +1954,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/codecs/production-preservation/Video-Codec-DNxHD.html",
-          "hash": "vvGlXMxS12ka19HZndhlC4OoGZg9wUR6+0k8kftpyvg="
+          "hash": "q5QTJEyj/cKbfUPVb/hUXFzt0HjRD47UUxdXAU1urug="
         }
       },
       "is_incremental": false,
@@ -1966,7 +1966,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/codecs/production-preservation/Video-Codec-DNxHR.html",
-          "hash": "m63ARJQF+v34qFw9eUyjb4zE4dYzNpiD5toh2GEw3iY="
+          "hash": "JY41tLdwT7OmMZ2XSdsA3lDI8o8utXD/pNdwyYDt9Kc="
         }
       },
       "is_incremental": false,
@@ -1978,7 +1978,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/codecs/production-preservation/Video-Codec-DV.html",
-          "hash": "5t2AIb6HIEn/gY3+jSxv//xA42diO0IMi8qPiVGSveE="
+          "hash": "EU8akydo7umxY4m1DJ0DCfXJmC/4LmJKaIH2rTlKH8M="
         }
       },
       "is_incremental": false,
@@ -1990,7 +1990,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/codecs/production-preservation/Video-Codec-FFV1.html",
-          "hash": "syumQKejCG2mUIBZLl77L712249GK+9RgDMgeTFTYo8="
+          "hash": "GRg7Tn98vBQBqx76YAHEe8iOD/Nkf+peqAyxrVZP7Io="
         }
       },
       "is_incremental": false,
@@ -2002,7 +2002,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/codecs/production-preservation/Video-Codec-Motion-JPEG.html",
-          "hash": "I69Toy09OeGyuAFEuamqES9HVhgr/IlacpDL9tXAaDQ="
+          "hash": "WKRxPMKUWLYjMWcxI7VL258g3+ukUiF5e14PlUap2v8="
         }
       },
       "is_incremental": false,
@@ -2014,7 +2014,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/codecs/production-preservation/Video-Codec-ProRes.html",
-          "hash": "qZz561XoMnkUrXmysQ2sHDBdpWW1sJ56DIbH09xFo18="
+          "hash": "2T6UdYb/RubekDRog/koXGz3m/0gYa/ctjR38Po8yrw="
         }
       },
       "is_incremental": false,
@@ -2048,7 +2048,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/codecs/vpx-av1/Video-Codec-AV1.html",
-          "hash": "SO2NDC2Fm+yT6VU4MjpRsjvGfcNpFctu8FCM5ZZtigU="
+          "hash": "vU/XYD/U6K5uhBFJGWiLpyEDZdBX2mxtYztLqxLYKe0="
         }
       },
       "is_incremental": false,
@@ -2060,7 +2060,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/codecs/vpx-av1/Video-Codec-VP8.html",
-          "hash": "3kzjSfnAoUxLhN18Wd2oynBMnXewkJPBbXFMMdL/N6Y="
+          "hash": "ZsnrSb4noudPhZveMnU1lY2tawgF6/BUjC+vXdht6Bs="
         }
       },
       "is_incremental": false,
@@ -2072,7 +2072,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/codecs/vpx-av1/Video-Codec-VP9.html",
-          "hash": "K/6a7K/DYI+FDcwbZjwmnE/brwNFPBip+f/c6pXs0rE="
+          "hash": "cj4imei+xWjJ67bXLSpIolaY88lV3QbLRZmZMsk677Q="
         }
       },
       "is_incremental": false,
@@ -2084,7 +2084,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/color-standards/Color-Gamut.html",
-          "hash": "+GLomDAnQ+8SYobvvYMMxr0QDLOVS9Y4lbzenTjDle0="
+          "hash": "AuiatHzrXYw9Qe7105ToNg6B26IKi9Sp9NG3BSmwvlc="
         }
       },
       "is_incremental": false,
@@ -2096,7 +2096,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/color-standards/Color-Volume.html",
-          "hash": "4EhmJhmoXqIvy+yJBcRL6/d3Q2LtFAgBgLmmgQrxkCw="
+          "hash": "pqncnWne2d5+Ep+mINzYt4bSPYFl2Cv+Dru6grDC090="
         }
       },
       "is_incremental": false,
@@ -2119,7 +2119,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/color-standards/standards/Color-Standard-BT2020.html",
-          "hash": "vUinDLndFbui1cL+5LjdPidI8kJ5h7HEZ5koy//YwEA="
+          "hash": "eDElPeIv3KsLh1Zfn3u5a2z6oHlbGpeHQt/bmdwEnEU="
         }
       },
       "is_incremental": false,
@@ -2131,7 +2131,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/color-standards/standards/Color-Standard-BT2100.html",
-          "hash": "1vMVXMSGvv7cLAUT50bpyEIjg870Z51+u1VGNet+bcc="
+          "hash": "KGX4JrYnIEP+4YOh/VjqeVpfNOsrGAU2Akzk+pRSRsg="
         }
       },
       "is_incremental": false,
@@ -2143,7 +2143,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/color-standards/standards/Color-Standard-BT601.html",
-          "hash": "mmCKYtbDyfAJJ0TgUE6AL4gXsli05/sCoev012G6R/k="
+          "hash": "vliZqJ2rjow53wgpOw3ysX2+kaXlznxj0mhNaB5kqns="
         }
       },
       "is_incremental": false,
@@ -2155,7 +2155,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/color-standards/standards/Color-Standard-BT709.html",
-          "hash": "qzxDmn8Oo6oQkHKvHc0XxermZvSagkzPiuZaGccBsOY="
+          "hash": "2bei5UYITcJXEMrCw8XVTNflmFys+llQbxKRNJZE39o="
         }
       },
       "is_incremental": false,
@@ -2167,7 +2167,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/color-standards/standards/P3-Color-Gamuts.html",
-          "hash": "W/jboaEg6G4vAey/XN4pL5eTfbsemtaAqFOzSLMk3Gs="
+          "hash": "P8CUMIDav9dspccuk4L+KR/vvxVOh2V4LEPq6EMvg0k="
         }
       },
       "is_incremental": false,
@@ -2179,7 +2179,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/color-standards/transfer-functions/Transfer-Function-BT1886.html",
-          "hash": "OPFdulsvHfYV384jlwo8Gpa7tam53F0jL5LV7FqaZSc="
+          "hash": "5v0t3MNeIAQZ4tUqn19XwYcABEM6xREUBdy3CEZPFZ0="
         }
       },
       "is_incremental": false,
@@ -2191,7 +2191,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/color-standards/transfer-functions/Transfer-Function-EOTF.html",
-          "hash": "/YXq08fbIcosN6gLce38iWa6XTpk5Qe78jldlMTYQZE="
+          "hash": "CQzTZF9DifaA+KOoXgjmR4Hsq83nRZCtSwELjad2VG8="
         }
       },
       "is_incremental": false,
@@ -2203,7 +2203,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/color-standards/transfer-functions/Transfer-Function-OETF.html",
-          "hash": "PSPSWWGhq2m0byDVb1nJztOkyMI7cibAd18SnTJMm0E="
+          "hash": "D72oirENLSr0hpmixqdcRv5lH+iI1z/cAUqbNDF8jXc="
         }
       },
       "is_incremental": false,
@@ -2215,7 +2215,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/color-standards/transfer-functions/Transfer-Function-OOTF.html",
-          "hash": "HXfixPEblOEog9uvw9W04ptgW0wcedD07Q3/K4Pg/iE="
+          "hash": "v5xDSll+V5JAoRM7kPZy544w1O0h0CrxSMGYwKZiMVA="
         }
       },
       "is_incremental": false,
@@ -2227,7 +2227,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/color-standards/transfer-functions/Transfer-Function-PQ.html",
-          "hash": "T6zr1EmVuNkTUqGRq1tZeNGuzbccqtoK1f0mH/OMFUo="
+          "hash": "yH/qQzzjP+yaxSZKMLqzrJk7a5AGH8SDN9n5xdvrEqc="
         }
       },
       "is_incremental": false,
@@ -2239,7 +2239,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/color-standards/transfer-functions/Video-Gamma.html",
-          "hash": "ZIURqJ4wYqORAOKuMnJoSZcA9f0CVRbenSSnuxpSvzU="
+          "hash": "WPUO41vJztxdx1fOb0FMrFYXcBrwaPlo0RsjwZdBFtA="
         }
       },
       "is_incremental": false,
@@ -2306,7 +2306,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/compression/Lossless-Video-Compression.html",
-          "hash": "/Oq64VcHbpW/tvdJ/sJxMfdFMR/3/pVlS0a5hBcW53s="
+          "hash": "dfjj38NA+m6EYDE+jqEpYvdieryLWNWFS40cAQgm/W8="
         }
       },
       "is_incremental": false,
@@ -2318,7 +2318,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/compression/Lossy-Video-Compression.html",
-          "hash": "+93T0/uZ7U9fberab42RcNbhbDSFa4a4NaJrXKB4FoQ="
+          "hash": "Q7yDQxX3qDl+GoV1RrkdSkSicb9Dn/d7hd3fe8sRQB4="
         }
       },
       "is_incremental": false,
@@ -2330,7 +2330,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/compression/Video-Codec-Levels-Tiers.html",
-          "hash": "pecehny2KTKXSLJHqvQYETF52dcTALdJ7tO2B/Znw30="
+          "hash": "Bxs4KLBscOOtgTMQ2wpCgRKp4/pXleB96Ai42qHM+Gw="
         }
       },
       "is_incremental": false,
@@ -2342,7 +2342,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/compression/Video-Codec-Profiles.html",
-          "hash": "oQoZAMiPSuDpaL6jqqr8Qs8dcOyvLw8Gw7cGgccG0sE="
+          "hash": "IaPKYngTAEJR93zBj/ERiAqe+MJ2AuSvRgr9nfoESTI="
         }
       },
       "is_incremental": false,
@@ -2377,7 +2377,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/compression/picture-prediction-and-random-access/Inter-Frame-Prediction.html",
-          "hash": "jfsMVCiGcD22kWWgHxyU665m2MzIwA4VX3A7oWUkDXk="
+          "hash": "HSkx1YWhTcDI/8GaKzJDrCJgZfjXr8+SngSGwZWPR+I="
         }
       },
       "is_incremental": false,
@@ -2389,7 +2389,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/compression/picture-prediction-and-random-access/Intra-Frame-Compression.html",
-          "hash": "ZCemRQDtgyTVXcKSmUjVZATbu69p2DeviHzJoq184V8="
+          "hash": "LtUg9U8QHLn6Y2gtLJ0fR+RjkGVvIZoqzohInEd1ubU="
         }
       },
       "is_incremental": false,
@@ -2401,7 +2401,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/compression/picture-prediction-and-random-access/Reference-Frames.html",
-          "hash": "g3cuY+Y7wwgBsIYlxKWVMzgTCB0sEmCneN+e6FIEfw0="
+          "hash": "+IEk2VNWX00QEx8C3p50JfigwIcutqBG8bgbuuMFenA="
         }
       },
       "is_incremental": false,
@@ -2413,7 +2413,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/compression/picture-prediction-and-random-access/Video-GOP.html",
-          "hash": "uZqM8r0jZ079l2NTk5bzdxUpeD1jvSK7FewX2zkD85o="
+          "hash": "iK5XVdyZBsSXPylVvCaTzoxRKrnINaH3+L1rfgamkRM="
         }
       },
       "is_incremental": false,
@@ -2425,7 +2425,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/compression/picture-prediction-and-random-access/Video-Keyframes.html",
-          "hash": "Ct9gsYC5vyC6Hmvhdl52LQFUVblUrb0WURo2eBdCtzQ="
+          "hash": "g0edeTPurIhqQFAUDXPltdljLJXPJIXy2G4qgIRYqBM="
         }
       },
       "is_incremental": false,
@@ -2459,7 +2459,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/encoding-quality/Video-Encoder-Presets.html",
-          "hash": "CJFMx9L6c2knFd3vGfYiFNYtllKIAlPq68EjYKH97Mk="
+          "hash": "+oNG3VjPE8ZGlxzzfx1WM970WqcnmVJdXgUOSSq/0f0="
         }
       },
       "is_incremental": false,
@@ -2471,7 +2471,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/encoding-quality/quality-changes-artifacts/Video-Compression-Artifacts.html",
-          "hash": "iaGUPrkY0Bx7mnhdR+bLZLiiKOpPNSMkwspKMErEU7g="
+          "hash": "cjZB+71DAA2P+lCP+fhwEU3jYuDIILnD/aiTC9iUyFc="
         }
       },
       "is_incremental": false,
@@ -2483,7 +2483,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/encoding-quality/quality-changes-artifacts/Video-Film-Grain.html",
-          "hash": "pGKbLNOrXnkuKZfIoAkz/NDGbmtBUoy1MIxrnSP6NXk="
+          "hash": "epxoJy4emWYTGUTziCEuzVWJDskEM7tfE7hqnKDWOT8="
         }
       },
       "is_incremental": false,
@@ -2495,7 +2495,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/encoding-quality/quality-changes-artifacts/Video-Generation-Loss.html",
-          "hash": "kLRkmHSKTq+pcZndI1aAOdqAVzrqHGm4pjFF+RjQQqI="
+          "hash": "V36FMdAM+BOpf2nUK0f7eRY+SGs4KmJBXHv9NG8Vqv4="
         }
       },
       "is_incremental": false,
@@ -2518,7 +2518,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/encoding-quality/quality-metrics/Video-Quality-PSNR.html",
-          "hash": "6Y5xBGW68nr/YeXEskO7xwWGnrf0lYnxpOtxQjhfQ24="
+          "hash": "ijH9i4bM3rsgSzjbVeKhWOBzADIsGHtpBnBXQZzgzEs="
         }
       },
       "is_incremental": false,
@@ -2530,7 +2530,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/encoding-quality/quality-metrics/Video-Quality-SSIM.html",
-          "hash": "ZbY7mhokGSqm9VlNOmLV8zNDwkpzSjd/dxDKEC7NsUY="
+          "hash": "bFcFFURO5fMw0CxQSk5tsdyf6qUNaV/WFyA99iYI9hU="
         }
       },
       "is_incremental": false,
@@ -2565,7 +2565,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/encoding-quality/rate-control/Video-Encoding-Bitrate.html",
-          "hash": "+lTa5YJSJZ8KQKNaKo86DoqOdAVEeU87O0eZY1y8rEQ="
+          "hash": "LYh2icQlsjMPHp4EB/f4p1pV66A6beRd/KcoWW4dG+I="
         }
       },
       "is_incremental": false,
@@ -2577,7 +2577,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/encoding-quality/rate-control/Video-Encoding-CBR.html",
-          "hash": "97xsglmssOUUS7ShNc3bMsepaE7UJp6PwXcDjI++QCI="
+          "hash": "QGVmu9iSnlrBjJ7pgfaP6y/2EUB9U0BKJNmPVcJUolQ="
         }
       },
       "is_incremental": false,
@@ -2589,7 +2589,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/encoding-quality/rate-control/Video-Encoding-CRF.html",
-          "hash": "O5g0hOIV4y2bzYrVhZ4Q5UjG1US02jun5sznkXfMZEk="
+          "hash": "Rel1EZk5yuw3GXpWIBZZUiRnVnncrVVohLdYumbMhwQ="
         }
       },
       "is_incremental": false,
@@ -2601,7 +2601,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/encoding-quality/rate-control/Video-Encoding-Constant-Quality.html",
-          "hash": "c6HcvXF18Fkn1VCf8QsW+uNiH0WRjV8oxhtRuIwI4lg="
+          "hash": "Ry9j7x+nPxJATna+IZKVIbY9ILqlfWfTqU+7THxl19w="
         }
       },
       "is_incremental": false,
@@ -2613,7 +2613,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/encoding-quality/rate-control/Video-Encoding-QP.html",
-          "hash": "0mFPnO5qw0aQE4VzEPZ7XQXr/hm3hi6r4rg2e2sSBR4="
+          "hash": "DR9AdzsaZmFINUUo6SakMmBT/UHt087Fu+c/y4mVZ30="
         }
       },
       "is_incremental": false,
@@ -2625,7 +2625,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/encoding-quality/rate-control/Video-Encoding-Two-Pass.html",
-          "hash": "qZT5aDN6x8byeRcJ4zPyVw4K0F4nzTJkhlaS3S1jGD8="
+          "hash": "UzqMjOjT3/Opcp15xo/SvcsKfRVvaZX9bOS5u2c9rlY="
         }
       },
       "is_incremental": false,
@@ -2637,7 +2637,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/encoding-quality/rate-control/Video-Encoding-VBR.html",
-          "hash": "zEK2LABDdxhmCU6iG2avx/cXjyRjU4EZfdOxrso+LwA="
+          "hash": "Nnz04evXJn8AiFY5/kMOmL+H9HF0Ohn01vFF1UhMSxE="
         }
       },
       "is_incremental": false,
@@ -2705,7 +2705,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/frame-timing/Frame-Rate-Conversion.html",
-          "hash": "g+aLWtG4ZdOpOg5XI3/xpCmrHBY1mEQvGWQebNbiIuM="
+          "hash": "2bIJ9Jy1QJFjEheLF8vwsUwlo7Fjhyns5yYOpk9ZVV4="
         }
       },
       "is_incremental": false,
@@ -2717,7 +2717,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/frame-timing/Motion-Interpolation.html",
-          "hash": "J//4gdUB/UMlkUR4foObG24Z+e5BJKTgyeCGV9y2OLw="
+          "hash": "vJqKoytZO1nPsb/Buc45ij/0zsQ53To68+Gi5XJ0NtU="
         }
       },
       "is_incremental": false,
@@ -2729,7 +2729,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/frame-timing/frame-rates/Fractional-Frame-Rates.html",
-          "hash": "TNuyX3sf5NlWSY5s6/451neNAtsef6UOnWbxFHtBhW8="
+          "hash": "5qHfRUXUTYzWbbVPmQTty2h0NXoAhZdhFm1/wFUV4TY="
         }
       },
       "is_incremental": false,
@@ -2741,7 +2741,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/frame-timing/frame-rates/Variable-Frame-Rate.html",
-          "hash": "GrAavGNh4nRDu52+rA3offZ8iQhyeRzw0/5iPHjNyPc="
+          "hash": "PxnYXWaz0GqOjqs6E4tBuaJpeYxJFsTI10R0ISR/IKY="
         }
       },
       "is_incremental": false,
@@ -2753,7 +2753,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/frame-timing/frame-rates/Video-Frame-Rate.html",
-          "hash": "NMTChQc2wVqnhJersyl73O2U+1YbjHFIjFCw8AeDDXw="
+          "hash": "04AjJ1zrQ6EcdezeWxD6eGJ6hcQ47jqkSAgUvFX4AGU="
         }
       },
       "is_incremental": false,
@@ -2798,7 +2798,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/frame-timing/interlacing-and-cadence/Deinterlacing.html",
-          "hash": "74ccb1lWfEeYaDUuQlYtetTQbrqxOJUNUgllJmwmH5k="
+          "hash": "gcc1K0x9/dm8kpedPWolg/dZYPyZRT7BlbepbUoWhD0="
         }
       },
       "is_incremental": false,
@@ -2810,7 +2810,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/frame-timing/interlacing-and-cadence/Interlaced-Video.html",
-          "hash": "LbdixYyOox67d34sc85khsGTQVOZTJBL5ItSklcslD8="
+          "hash": "lScmf4Ht9PGTNX7OScDRKLw7wZyJWjZ0LXuWUAAnzDs="
         }
       },
       "is_incremental": false,
@@ -2822,7 +2822,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/frame-timing/interlacing-and-cadence/Inverse-Telecine.html",
-          "hash": "M0a0UwRv5lgMLzdGRDmy76LzR7QlUjSBxzIA+YVBDsI="
+          "hash": "n51PGBrnzcZypBomPX749Cs1YN/aKe1EExzPLLcW57Q="
         }
       },
       "is_incremental": false,
@@ -2834,7 +2834,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/frame-timing/interlacing-and-cadence/Progressive-Video.html",
-          "hash": "dDkQZDIj9YyEukQj8S+BcAwycgq3WIoHFG6upgYhWOE="
+          "hash": "H3tE1UehnnWSQyvaR8Py5wL66yAyOIZXKi8IeinQOfA="
         }
       },
       "is_incremental": false,
@@ -2846,7 +2846,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/frame-timing/interlacing-and-cadence/Telecine-Pulldown.html",
-          "hash": "rO0inKLXdOhSp7M0Tz9JD2YoVuZiSc12EuOvuYjM9H4="
+          "hash": "ZgRTHejxQ44uQTSaduaxSLKFZzsKZf2am2lCJQwpyEU="
         }
       },
       "is_incremental": false,
@@ -2858,7 +2858,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/frame-timing/interlacing-and-cadence/Video-Field-Order.html",
-          "hash": "5lcSiBjqE6DBSpC0A/tYHGcaBB+VNycQS+qNp2yX2fc="
+          "hash": "k6QwkST7jwPkS3EuaBS4Wgy9f2hUDdygIKu3QPA9RlA="
         }
       },
       "is_incremental": false,
@@ -2914,7 +2914,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/fundamentals/Digital-Video.html",
-          "hash": "cRQ/INAFFJg+J0T0EHvdUxEw6xAH4fs25cLAJQpyBnU="
+          "hash": "brB2e5Jh3xl0s5dIXMRpCAh3S7YPXbT90hWOz/p2A0k="
         }
       },
       "is_incremental": false,
@@ -2937,7 +2937,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/geometry/Letterboxing-Pillarboxing.html",
-          "hash": "vXwvZO7COceFzIoZUj0LCxzX0pYjZZu3EE057db1CJ8="
+          "hash": "x0uRjsjSz7RoZ3XFrti6lxRuS8h6cAaKkclK/1c9NJc="
         }
       },
       "is_incremental": false,
@@ -2949,7 +2949,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/geometry/Video-Cropping.html",
-          "hash": "lfMaGCDuPC41/Q8TGUvndj3uYuFyQgSnDasECBsbjo8="
+          "hash": "PgyV61UASKJsSsPhnDiv6vdtuVF9ZbYV0/Q4Vio/Dg4="
         }
       },
       "is_incremental": false,
@@ -2961,7 +2961,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/geometry/Video-Resolution.html",
-          "hash": "jDSU1cp0fiAac4aL1OoZSJ9xYCHLphP5ThUe5PBq0eI="
+          "hash": "g8CkIrJRvVmta30nU6j8L+1nhq4pbjgssz24nfMlaFM="
         }
       },
       "is_incremental": false,
@@ -2973,7 +2973,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/geometry/Video-Rotation-Metadata.html",
-          "hash": "aSQ0dMfyJMGIewB4sUhD9mkofLfjtt746ygqSHvUX4Q="
+          "hash": "LmspThYG+XyiAe1UqmRcAQ2bfXiBfhQDoFAy0Eztlbs="
         }
       },
       "is_incremental": false,
@@ -2985,7 +2985,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/geometry/aspect-ratios/Anamorphic-Video.html",
-          "hash": "63wBtFu8WxEQ92ma1n4o1jWGfLu/iU83EljKcBZDkOw="
+          "hash": "6NviIdoQ4m4cHRP/RH57wT+Nfm7PRc6sZdoWzyauols="
         }
       },
       "is_incremental": false,
@@ -2997,7 +2997,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/geometry/aspect-ratios/Video-Display-Aspect-Ratio.html",
-          "hash": "6BvsdWa9aO/cRQSxbvgx5i4upv97YKvgYPGcxkxuyK4="
+          "hash": "vD4EoWWfWz+ZNpuBbS/1f/KTWYVe7TfP+VQ81LDALJI="
         }
       },
       "is_incremental": false,
@@ -3009,7 +3009,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/geometry/aspect-ratios/Video-Pixel-Aspect-Ratio.html",
-          "hash": "ZoPnKtYCkxc8HjB1DDq/lHL0gwBIXb32f1FeRulBVHc="
+          "hash": "ZKHR8S8SXUU0DwT4YpEVMtfw9zFIP+HAdGfaD9m2OHA="
         }
       },
       "is_incremental": false,
@@ -3065,7 +3065,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/hdr/HDR-Camera-Capture.html",
-          "hash": "LIIvokcaZtOoKNPvrYwsmzzpW3MCfRI7leqhhWQPfG8="
+          "hash": "HN26eYXbxjpiGSAvnoDLqSLUEnTMdp5p+ZN6Uwl9Dag="
         }
       },
       "is_incremental": false,
@@ -3077,7 +3077,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/hdr/HDR-Luminance-Nits.html",
-          "hash": "UliNYI8YiIIPIEJdYrCRdvNopoZZEYmN+nqjWSwDyzE="
+          "hash": "buetOTJVDFXpEXHOwnq2KCEpT9UfCka11R9vV/O74P8="
         }
       },
       "is_incremental": false,
@@ -3089,7 +3089,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/hdr/HDR-Mastering.html",
-          "hash": "4ZqZHDO0SKkklM+1uXIUM7MqniVN1garnaXt9tIsbwI="
+          "hash": "oXSzzsYyBCya+vnJaKANLxb7JT5/ClFSU6h5iJ6sJBc="
         }
       },
       "is_incremental": false,
@@ -3101,7 +3101,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/hdr/HDR-Video.html",
-          "hash": "DGkGO850p4KwyS3c9isnpFxyla1V29UGF+JBdUti3pM="
+          "hash": "6ZIL1EnznHxt8UEirE9bchmNHKOAyV1mayWIFpTUV3M="
         }
       },
       "is_incremental": false,
@@ -3113,7 +3113,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/hdr/formats/HDR10-Plus.html",
-          "hash": "ReJNwLJMcrQdrnU9eTEDKWgsLmRn3LUXxdwoJszQgeE="
+          "hash": "VMrpDAy7BRuEOzeWUdRGeN4YzjUnPrumG0qVjZMTfPE="
         }
       },
       "is_incremental": false,
@@ -3125,7 +3125,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/hdr/formats/HDR10.html",
-          "hash": "EECJj76E86bynxVQVNp/USifs2iZBxtqpfnicANIFFU="
+          "hash": "njvucShwM57mGMKM1BsQp79uMWY+EWUNA23g60HMX9Y="
         }
       },
       "is_incremental": false,
@@ -3137,7 +3137,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/hdr/formats/HLG.html",
-          "hash": "LjJF+bS6NLelJwSFZBVLsEuRoPY56gUZvpTCa+JNyRU="
+          "hash": "bF5NdWwulBqwfo00hKnd1xlwJubBAhOimX4w6jeVEI4="
         }
       },
       "is_incremental": false,
@@ -3149,7 +3149,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/hdr/formats/dolby-vision/Dolby-Vision.html",
-          "hash": "3M/a3w9v/0dRbhNJjMMyMBa13ksbXvESftFFEdki5uc="
+          "hash": "8CG78ePJ8vmTvBKLSxwd2k8AxeCUWiKD48RH0NfAa4k="
         }
       },
       "is_incremental": false,
@@ -3161,7 +3161,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/hdr/formats/dolby-vision/metadata-and-layers/Dolby-Vision-Layers.html",
-          "hash": "wFypRI/QCd1RWRD04sxJmOfs9C5Nwm/S3vEfjvRHqHw="
+          "hash": "cvaG1nFu5OHDoIXkc11/CVZ6iFX2bwq99H/iux89spI="
         }
       },
       "is_incremental": false,
@@ -3173,7 +3173,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/hdr/formats/dolby-vision/metadata-and-layers/Dolby-Vision-MEL-FEL.html",
-          "hash": "waZZqx3n4NaYtl+KO2QlshaQxUx1bpMr64ToHX0ZJfE="
+          "hash": "GHja3/7NWUkBuk7VxJYpvfd5U7qw225F5LpOVB5bufw="
         }
       },
       "is_incremental": false,
@@ -3185,7 +3185,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/hdr/formats/dolby-vision/metadata-and-layers/Dolby-Vision-RPU.html",
-          "hash": "Fl7HCyRI/P/b7OV/hN1XWvK6NbETttawNP13B4rGRdc="
+          "hash": "daG3rzQyf1+keRgNFP8n7XQAbT46ALKIc/EV26BuZbc="
         }
       },
       "is_incremental": false,
@@ -3208,7 +3208,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Fallback.html",
-          "hash": "Yly1t5xUykbS8SfyQqh6cevsGMG2UsiDm51XzOj9eIY="
+          "hash": "TlKtIay7ZTn7H/w3fUmMBxD6fl4cTEPOFl5/Fwd615c="
         }
       },
       "is_incremental": false,
@@ -3220,7 +3220,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-10.html",
-          "hash": "zzxuJzfSS7E7DGWE4s1yzNDhCrnhDPxwVwlkOotXJoM="
+          "hash": "95L/5oaiHTONkqXfgrE/zYxYmTjxDkZBkteNoX9KO/c="
         }
       },
       "is_incremental": false,
@@ -3232,7 +3232,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-20.html",
-          "hash": "t2QP9J/ifOdntlwV/LXzZOELEKqBg53gwXBeav4k0JE="
+          "hash": "x0KTV5iGYdfLXc9pvtyzZUomXjMAAOF5qeGzwm/9jZQ="
         }
       },
       "is_incremental": false,
@@ -3244,7 +3244,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-3.html",
-          "hash": "NEncn4zAkmkudqKGcE/p4SgDqX99Vg5+0MhBIKHM2O8="
+          "hash": "qVLjJOVpc5k7YwVtRJVlU4Vy9fFxqOTGLrksYw158iE="
         }
       },
       "is_incremental": false,
@@ -3256,7 +3256,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-4.html",
-          "hash": "jV16qTU5D5QvLXXJmwgMRX1GnBfLbepOHlsbb5nk9FM="
+          "hash": "ZmHXLoB24cSqwJOSHJTJAL2xTTWbMFjANmLbyJLG2qY="
         }
       },
       "is_incremental": false,
@@ -3268,7 +3268,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-5.html",
-          "hash": "sKAZB+0etSZF4e/g6GXsnEhqy0ooMpO1t9ugvvOX8Oo="
+          "hash": "BtYka6Lw4pD4xnHmkRZs3cn86gg2w73OKiLkB9TNKEw="
         }
       },
       "is_incremental": false,
@@ -3280,7 +3280,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-7.html",
-          "hash": "bRzJ7izPEkIzODpmdAi7N/KWFGRdcrn5GDBHyTKKnx4="
+          "hash": "h8F8Ap0Qm9c5h8UFcX9rljWl8cm74NA75Ugj3asUtno="
         }
       },
       "is_incremental": false,
@@ -3292,7 +3292,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-8.html",
-          "hash": "x8iJvZD5NsL4W7RVNLyGznJFwWUgovqFWW+Zo5JzvTI="
+          "hash": "wrKd+oQ006cqgpg7NZtA/4p/KFLWjgxY+PWijiWcI1g="
         }
       },
       "is_incremental": false,
@@ -3304,7 +3304,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-9.html",
-          "hash": "UQS82bg7BONfMqrBnlWYcyek3nJgxzTChlZ1cbRTl80="
+          "hash": "lqWLttRawlVKEGHUnb3OwTYhZUa4HKJ2M8zJPYlQ3d4="
         }
       },
       "is_incremental": false,
@@ -3316,7 +3316,18 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profiles-Levels.html",
-          "hash": "Z0QznwwOQkuJQEY+bM35Ii97xV7xqWyuozgfdogtzOQ="
+          "hash": "xIgWJC+Cke7SBlgEJEe9tPUr9q7Ngd7+OTp5qkc1KX8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/hdr/formats/images/hlg-capture-display.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/hdr/formats/images/hlg-capture-display.png"
         }
       },
       "is_incremental": false,
@@ -3328,7 +3339,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/hdr/metadata-and-light-levels/HDR-Mastering-Display-Metadata.html",
-          "hash": "Mf8nxlSnnSpHpDOTTKa2Kx2ikCCk2DT85NwmbnObxjE="
+          "hash": "JHobOzd7j/l87qSIE7MVS91huMnyQZKJJELNPZCJX8U="
         }
       },
       "is_incremental": false,
@@ -3340,7 +3351,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/hdr/metadata-and-light-levels/HDR-MaxCLL-MaxFALL.html",
-          "hash": "46ZmArBCN+I6AjsM4gpG735WPsa3MRg5WGfgZOCmAgA="
+          "hash": "TEWXNMLc7hUSkI0bnpatc3nuYewQDoDSduDjX8fk3zI="
         }
       },
       "is_incremental": false,
@@ -3352,7 +3363,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/hdr/metadata-and-light-levels/HDR-Metadata.html",
-          "hash": "861e8MCks1ig0AcmogfylJTDf7ubcjc5/fBNKTV5iWg="
+          "hash": "YdwaUMgea8d6vbs9xF2MIi4mFMlMWKFIl+WA5yYOJ/8="
         }
       },
       "is_incremental": false,
@@ -3364,7 +3375,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/tone-mapping/color-and-luminance/Gamut-Mapping.html",
-          "hash": "EDcOpc7JFoPpcGMA1qfQCdTLnjURXK5EhC3BSKNsz7Q="
+          "hash": "IW+SwENf6nnxB+c0rTR6eXiXiQf7AuCXOFJIFNFQdfc="
         }
       },
       "is_incremental": false,
@@ -3376,7 +3387,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/tone-mapping/color-and-luminance/Tone-Mapping-Highlight-Roll-Off.html",
-          "hash": "ldVKHjNoBPLXdW6qtl2GxcR3AncG0vHD1aNGa0Pnqdg="
+          "hash": "UBBNBb3h826rHm1xZMkHgeulAkfttkDcGZrpmM7TkXk="
         }
       },
       "is_incremental": false,
@@ -3388,7 +3399,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/tone-mapping/color-and-luminance/Tone-Mapping-Peak-Detection.html",
-          "hash": "E8RB1XWZZUvbXeLC4dFAYtQVBtPxww1L/DXO3kpa76I="
+          "hash": "nhQzKYW/nFqXCtJHLDVk+ZgWdTeNMERyid/4AW1FU/o="
         }
       },
       "is_incremental": false,
@@ -3400,7 +3411,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/tone-mapping/color-and-luminance/Tone-Mapping-Scene-Adaptive.html",
-          "hash": "OGsC3ixbv3JJcqOTnq4sdARc8MXQ90cjBeMLDUuInJM="
+          "hash": "iUttKRmMQrl4ihcUjI6VuLr1BywJ9FT0pzTiXWpflK8="
         }
       },
       "is_incremental": false,
@@ -3434,7 +3445,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/tone-mapping/curves/Tone-Mapping-Curves.html",
-          "hash": "BX8GNX5p0Q3OvaAqx8bDDzXjvJExyE+T/hVpKqA7uUg="
+          "hash": "VsnGqIXuFvGz/zLtDjKFCMsysVgcC9CKnVvVVckInYI="
         }
       },
       "is_incremental": false,
@@ -3446,7 +3457,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Algorithm-Hable.html",
-          "hash": "3bKcmXAPgiXQmq5t8NQajRdVIbRCcmnjRXFreHn1jTs="
+          "hash": "nrrhjMJFHrUBHOhEhRhBCEgvXUuB86ikV1H7syB4UYE="
         }
       },
       "is_incremental": false,
@@ -3458,7 +3469,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Algorithm-Mobius.html",
-          "hash": "CbeWKo7h/DUVQFbWIU/Ke5+rUzMNwcVXadgIivWQzAI="
+          "hash": "xvUlNJi1whNbWnuaSjGxuCkhU2UvFm5isq0GzYu5TmE="
         }
       },
       "is_incremental": false,
@@ -3470,7 +3481,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Algorithm-Reinhard.html",
-          "hash": "JLx5BnA+OgQZaq1MJq+UWVGNAh4FuZjB8jiCqpJAd48="
+          "hash": "XBUMM4B7jNRivxTEoTwj1E/HafI/QjiVxjJWxQ6a+hQ="
         }
       },
       "is_incremental": false,
@@ -3494,7 +3505,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Curve-Gamma.html",
-          "hash": "WNI7sdZQGCOnDDKGg6CyCRNMEwjHXKggEPz7iP9K7Hc="
+          "hash": "m31YcKx1wqtVlsuV1sNUFRoHh/TD5xkAoBqJiWlAVbU="
         }
       },
       "is_incremental": false,
@@ -3506,7 +3517,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Curve-Linear.html",
-          "hash": "D+TjpZeWH41vC7e5aWWqUxbNAyTja+o0+lUuzI0MTKw="
+          "hash": "+Ivoy8vRXpOfe1qibX+9FhA578GloO0ttzsoChQh8iU="
         }
       },
       "is_incremental": false,
@@ -3518,7 +3529,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Curve-Spline.html",
-          "hash": "ecve7I+adH7iB3Hd7DWepL8WdIQbLF+aJS11cfs/vkM="
+          "hash": "+E6eM8kMj2+v5UsYDXsw1ZFUN6khgWFUsAHs+u3q+Ss="
         }
       },
       "is_incremental": false,
@@ -3618,7 +3629,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-BT2390.html",
-          "hash": "nALRryl2iMjf2QkkaZqqxZMVO1IU3S4HwCsYBrcRpCE="
+          "hash": "NhFxqr+4FDT8hBGemHZf5+kL8B8HY3eDqyE2Nwd8X2c="
         }
       },
       "is_incremental": false,
@@ -3630,7 +3641,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-BT2446A.html",
-          "hash": "qN4C6bNqwGHmeQ1eXrBSmlZ1zWFIcgcWXfGsa5iTOJI="
+          "hash": "MXZOYKH5TDDyzLr367jpwJ3MTNugnD/Uhiu/hmxQUMQ="
         }
       },
       "is_incremental": false,
@@ -3642,7 +3653,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-ST2094-10.html",
-          "hash": "8glx6C9Sp0n8F5H5fimxsxUsxWPanVNnqKgV3Hfwyug="
+          "hash": "4AZxdJEnD/05wSK1lqY/pDPf0zaaTwgM2kOKq/Jy5vQ="
         }
       },
       "is_incremental": false,
@@ -3654,7 +3665,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-ST2094-40.html",
-          "hash": "UCQ569BHLkjetd5bldKWjGvVd2de8ojvu7tkbSb9/uo="
+          "hash": "VAsrFrKf8Xv+He1jtV5OfJC77zpg9AWECWBJMr4Agv8="
         }
       },
       "is_incremental": false,
@@ -3710,7 +3721,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/tone-mapping/execution/Tone-Mapping-CPU.html",
-          "hash": "zQdDWRS7Xg9fpjhuQUNxVhNP+too8G9qlz2QGO7Bzwk="
+          "hash": "AWJOWvD3ZjbiMpVm2MN+fk+LiRDd24Oj36wAugrBGdM="
         }
       },
       "is_incremental": false,
@@ -3722,7 +3733,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/tone-mapping/execution/Tone-Mapping-Playback-Path.html",
-          "hash": "ZgQba5uC8OsmZM0hltEW+dp8L4IjYBlvTSXM9puz+QU="
+          "hash": "09eDVFvF6T2yoS1ZBoHr71pp4ZfRXSWXhq/iFoIKBoM="
         }
       },
       "is_incremental": false,
@@ -3734,7 +3745,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/tone-mapping/execution/gpu/Tone-Mapping-CUDA.html",
-          "hash": "R9Oo3vn8GBowNHDySN8hkYWEKTWNlxWxjxfpPt1iIbw="
+          "hash": "C0YQOKN7LD7Mds/blQNnN8Q6PDk3G0TJTa/fLvQxVRQ="
         }
       },
       "is_incremental": false,
@@ -3746,7 +3757,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/tone-mapping/execution/gpu/Tone-Mapping-OpenCL.html",
-          "hash": "bcbhm15aQSRIu+ol8/i8QDmM7Wnykv4u7Ygwe6Iy8oc="
+          "hash": "V7uqvmzJ+CtHiJlqpWCmmzOCpu+gqovTlCuxeBDDwuw="
         }
       },
       "is_incremental": false,
@@ -3758,7 +3769,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/tone-mapping/execution/gpu/Tone-Mapping-Vulkan.html",
-          "hash": "O2Fh33gWVX4U23HnQ8Ay9veZ7n0eDL8jOh8AxkZCnWE="
+          "hash": "H4orMLVClOHPesZ/YCbHftYmhd8xZmbPgfQg5FjHXNA="
         }
       },
       "is_incremental": false,
@@ -3781,7 +3792,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/tone-mapping/fundamentals/Tone-Mapping-HDR-to-HDR.html",
-          "hash": "5PBnWtDUCm3k0q6aBH/2VLyYRU3Dreeo3R5GAit5F4k="
+          "hash": "xwKANIHwXvp+Z57FuEOzeYNkGw67OlT3qC0nYjFMOSU="
         }
       },
       "is_incremental": false,
@@ -3805,7 +3816,18 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/tone-mapping/fundamentals/Tone-Mapping-Why.html",
-          "hash": "oChC4XdwNoC9c+ypNYzgttrcLfTjSMxerpk/9RYMZp0="
+          "hash": "Nc8MA+YKV6Ly8fvPSDzFEsBrpVbFzLkdNhUKEb9WQpY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/tone-mapping/fundamentals/images/hdr-to-hdr-range-fit.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/tone-mapping/fundamentals/images/hdr-to-hdr-range-fit.png"
         }
       },
       "is_incremental": false,

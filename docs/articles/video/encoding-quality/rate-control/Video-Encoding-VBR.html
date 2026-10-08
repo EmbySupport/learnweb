@@ -106,40 +106,83 @@
 <h1>Variable Bitrate Video Encoding</h1>
 
 
-<p><strong>Variable bitrate (VBR)</strong> encoding lets the amount of coded data change through a video. Simple pictures can use fewer bits, leaving more room for complicated motion, texture, or grain.</p>
-<p>The term covers more than one approach. An average-bitrate encode tries to meet an overall data budget while varying the rate locally. A quality-controlled encode can also produce VBR, with the final average determined mainly by the source and quality target.</p>
-<p><img src="images/encoding-rate-example.png" alt="The constructed variable-rate example uses between 2 and 7 Mb/s across eight intervals while averaging 4 Mb/s."></p>
-<p><em>Each column represents one second. The VBR values are 2, 3, 6, 7, 2, 3, 5, and 4 Mb/s; their average is 4 Mb/s. This is a constructed allocation example, not a codec benchmark.</em></p>
-<h2 id="average-and-peak-answer-different-questions">Average and peak answer different questions</h2>
+<p>The variable-rate allocation in this figure uses <strong>2, 3, 6, 7, 2, 3, 5 and 4 Mb/s</strong> across eight one-second intervals.</p>
+<p><img src="images/encoding-rate-example.png" alt="The constructed variable-rate example uses between 2 and 7 Mb/s while averaging 4 Mb/s."></p>
+<p><em>Original allocation example, not encoder measurements. Each column represents one media second.</em></p>
+<p>The total is <strong>32 megabits</strong>, giving an average of <strong>32/8 =4 Mb/s</strong>. An equal 4 Mb/s allocation also contains 32 megabits. The two have the same total data, distributed differently through time.</p>
+<p><strong>Variable bitrate (VBR)</strong> permits that changing allocation. Simple content can use less data and difficult content more, under the encoder's selected overall or local constraints.</p>
+<h2 id="supply-the-plotted-sequence">Supply the plotted sequence</h2>
+<p>Use a simplified delivery model: the connection supplies 4 megabits per second continuously, and the video consumes each plotted interval's amount evenly within that second. Begin with 2 megabits already buffered.</p>
 <table>
 <thead>
 <tr>
-<th>Reported property</th>
-<th>What it helps establish</th>
+<th>Interval</th>
+<th style="text-align: right;">Video demand</th>
+<th style="text-align: right;">Supplied</th>
+<th style="text-align: right;">Buffer at interval end</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Average bitrate</td>
-<td>Total data and approximate storage size</td>
+<td>1</td>
+<td style="text-align: right;">2 Mb</td>
+<td style="text-align: right;">4 Mb</td>
+<td style="text-align: right;">4 Mb</td>
 </tr>
 <tr>
-<td>Short-interval demand</td>
-<td>How much data a difficult section consumes</td>
+<td>2</td>
+<td style="text-align: right;">3 Mb</td>
+<td style="text-align: right;">4 Mb</td>
+<td style="text-align: right;">5 Mb</td>
 </tr>
 <tr>
-<td>Encoder rate and buffer limits</td>
-<td>How local variation is constrained</td>
+<td>3</td>
+<td style="text-align: right;">6 Mb</td>
+<td style="text-align: right;">4 Mb</td>
+<td style="text-align: right;">3 Mb</td>
 </tr>
 <tr>
-<td>Actual available delivery rate</td>
-<td>Whether playback can keep its buffer supplied</td>
+<td>4</td>
+<td style="text-align: right;">7 Mb</td>
+<td style="text-align: right;">4 Mb</td>
+<td style="text-align: right;">0 Mb</td>
+</tr>
+<tr>
+<td>5</td>
+<td style="text-align: right;">2 Mb</td>
+<td style="text-align: right;">4 Mb</td>
+<td style="text-align: right;">2 Mb</td>
+</tr>
+<tr>
+<td>6</td>
+<td style="text-align: right;">3 Mb</td>
+<td style="text-align: right;">4 Mb</td>
+<td style="text-align: right;">3 Mb</td>
+</tr>
+<tr>
+<td>7</td>
+<td style="text-align: right;">5 Mb</td>
+<td style="text-align: right;">4 Mb</td>
+<td style="text-align: right;">2 Mb</td>
+</tr>
+<tr>
+<td>8</td>
+<td style="text-align: right;">4 Mb</td>
+<td style="text-align: right;">4 Mb</td>
+<td style="text-align: right;">2 Mb</td>
 </tr>
 </tbody>
 </table>
-<p>An average of 4 Mb/s in the example does not mean a connection delivering exactly 4 Mb/s will handle every period without preparation. A buffer can accumulate data during easier periods and cover later demand, but starting or seeking near the demanding section changes that situation.</p>
-<p>In Emby, the source's rate variation remains relevant during direct delivery. Transcoding can create a new stream with different constraints; its rate-control settings and the selected quality limit determine that output.</p>
-<p>VBR does not automatically mean smaller files or better quality. Those depend on the target, encoder, and source. Use the actual pictures and delivery requirements when comparing results, and distinguish a maximum-rate constraint from a whole-file average.</p>
+<p>The quiet first two intervals build supply for the demanding third and fourth. With an empty initial buffer, the same accounting would fall 2 megabits below zero by the end of interval 4. Matching the average rate would not be enough to start this simplified sequence without advance data.</p>
+<p>The assumptions deliberately isolate the arithmetic. Real frame removals, request timing, overhead and network interruptions require their own scheduling; this is not a decoder-buffer conformance test.</p>
+<p>A seek beginning near interval 4 also starts with a different buffer state. Earlier quiet content cannot supply a surplus unless it was actually fetched for that playback start.</p>
+<h2 id="two-objectives-can-produce-variable-output">Two objectives can produce variable output</h2>
+<p>An <strong>average-budget encode</strong> tries to fit the complete video into an overall amount of data. It can transfer allocation from easier sections to harder ones. <a href="Video-Encoding-Two-Pass.html">Two-pass analysis</a> provides additional knowledge of where those sections occur.</p>
+<p>A <strong>quality-led encode</strong> allows the size to follow the source at a chosen quality policy. The final average can be different for two films, or for a clean and grainy version of the same scene. <a href="Video-Encoding-CRF.html">CRF</a> is one implementation of that kind of control.</p>
+<p>Both produce variable rates, but they are solving different optimization problems. “VBR” by itself does not identify which objective was used.</p>
+<h2 id="add-a-local-limit-deliberately">Add a local limit deliberately</h2>
+<p>A whole-film data budget says little about a short burst's deadline. A maximum-rate/buffer constraint adds local delivery requirements. The encoder may need to accept a less detailed picture when a difficult section reaches those limits.</p>
+<p>In an Emby session, original delivery retains the source's local variation; a video transcode creates another allocation with its own constraints. The plotted calculation shows which parts of that rate description explain total size, and which explain the supply needed during playback.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

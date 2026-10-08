@@ -106,30 +106,37 @@
 <h1>Dolby Vision Profile 8</h1>
 
 
-<p>Dolby Vision Profile 8 uses a single ten-bit HEVC picture layer plus Dolby Vision metadata. The base-layer compatibility identifier matters: the current Dolby specification lists HDR10-compatible and HLG-compatible forms.</p>
+<p>A report says <strong>Profile 8.1</strong> and <strong>dvhe.08.06</strong>. Those fields can agree: one describes base compatibility, while the full string identifies Profile 8 and Level 6.</p>
+<p>Profile 8 uses one ten-bit HEVC picture layer plus Dolby Vision metadata. It has no Dolby Vision picture enhancement layer. The current public profile definition lists these compatible base forms:</p>
 <table>
 <thead>
 <tr>
 <th>Common shorthand</th>
-<th>Base picture</th>
+<th>Base interpretation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Profile 8.1</td>
+<td>8.1</td>
 <td>HDR10-compatible</td>
 </tr>
 <tr>
-<td>Profile 8.4</td>
+<td>8.4</td>
 <td>HLG-compatible</td>
 </tr>
 </tbody>
 </table>
-<p>The number after the point in this shorthand identifies base compatibility. It is <strong>not the level field of a full codec string</strong>. A report containing “Profile 8.1” and “dvhe.08.06” can be perfectly consistent: the latter identifies Profile 8, Level 6.</p>
-<p>Profile 8.4 is particularly relevant to personal-video libraries. Apple's HDR video documentation describes camera-captured Dolby Vision content using an HLG base and metadata about the intended viewing environment. The base is therefore not ordinary PQ HDR10, even though both can appear under a general HDR label.</p>
-<p>For an Emby session, fallback must match that base. An HDR10-capable path may be appropriate for 8.1; HLG handling is relevant to 8.4. Neither compatibility identifier promises that every container and player combination will work.</p>
-<p>There is no Dolby Vision picture enhancement layer in Profile 8. That makes it distinct from <a href="Dolby-Vision-Profile-7.html">Profile 7</a>, where the enhancement layer may contain reconstruction information. Converting one into the other deserves examination of what was preserved, not just a comparison of the final profile numbers.</p>
-<p>When troubleshooting, keep the complete profile, compatibility, and level information. Reducing it to “Profile 8” removes one of the most useful clues about how the base picture should look.</p>
+<h2 id="what-changes-between-the-two-base-forms">What changes between the two base forms?</h2>
+<p>The HDR10-compatible form has a PQ-based light interpretation. A supported ordinary HDR10 route can use that base without completing the Dolby Vision presentation.</p>
+<p>The HLG-compatible form has a relative scene-light system relationship. Its appropriate fallback is HLG processing, not reinterpretation as PQ. <a href="../../HLG.html">HLG</a> explains how display adaptation participates in that system.</p>
+<p>The compatibility number after the point identifies this base arrangement. It does not replace the level, which supplies processing bounds. Keeping both fields matters when selecting a playback path.</p>
+<h2 id="follow-an-hlg-based-camera-recording">Follow an HLG-based camera recording</h2>
+<p>A personal-video source can carry an HLG-compatible base with Dolby Vision information. A suitable Dolby Vision route processes the prepared presentation using the applicable metadata. A suitable HLG route can use the defined base interpretation instead.</p>
+<p>The same decoded signal values do not imply the same absolute light in the two named systems without their respective rendering operations. That is why a broad HDR badge gives less useful diagnostic information than the transfer and compatibility fields.</p>
+<p>Apple's HDR video metadata guidance describes these relationships in camera-originated content. For an Emby library, inspect the actual recorded stream rather than assuming every Dolby Vision file uses the same base as a UHD Blu-ray title.</p>
+<h2 id="keep-single-layer-delivery-separate-from-conversion-history">Keep single-layer delivery separate from conversion history</h2>
+<p>Profile 8's one picture layer differs from <a href="Dolby-Vision-Profile-7.html">Profile 7</a>'s base-plus-enhancement arrangement. A file prepared from Profile 7 can change what reconstruction information remains available, even when its copied base is still a valid picture.</p>
+<p>During playback, follow the source, server-delivered stream, and app/output interpretation. That record shows whether the session uses Dolby Vision, an HDR10 or HLG base, or a separately converted output.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

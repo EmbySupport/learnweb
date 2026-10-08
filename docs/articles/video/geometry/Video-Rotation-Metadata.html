@@ -106,35 +106,48 @@
 <h1>Video Rotation Metadata</h1>
 
 
-<p>A phone can record a portrait clip while storing each frame in a landscape grid. <strong>Rotation metadata</strong> tells the player how to orient that grid for display, so the stored width and height need not match the picture you see.</p>
-<p>QuickTime and related media workflows use display transformation matrices, which can describe rotation as well as other transformations. Media inspectors may present the rotation as a simple angle even when it is represented by a matrix in the file.</p>
+<p>A phone can store each video frame in a 1920 × 1080 landscape grid while recording a portrait scene. The file's <strong>display transformation</strong> tells the player to turn that grid upright. After a pure quarter-turn, its presented dimensions become <strong>1080 × 1920</strong>.</p>
+<p>Rotation metadata stores the instruction, rather than a second rotated copy of all the pictures.</p>
+<h2 id="turn-a-small-sample-grid">Turn a small sample grid</h2>
+<p>Here is a 4-column, 3-row grid. The letters stand for sample positions:</p>
+<pre><code class="lang-text">A B C D
+E F G H
+I J K L
+</code></pre>
+<p>After a clockwise quarter-turn, the picture has 3 columns and 4 rows:</p>
+<pre><code class="lang-text">I E A
+J F B
+K G C
+L H D
+</code></pre>
+<p>Every position survives. Rows and columns change roles. In zero-based coordinates the mapping is <strong>(x, y) → (H − 1 − y, x)</strong>, where H is the original height. For a 1920 × 1080 source, its top-left sample moves to output position (1079, 0), and its bottom-left sample moves to (0, 0).</p>
+<p>A quarter-turn can be described as a position permutation. Arbitrary angles also require constructing output samples between the original grid positions, so their processing is a different resampling problem.</p>
+<h2 id="the-matrix-is-a-presentation-instruction">The matrix is a presentation instruction</h2>
+<p>QuickTime and related MP4 workflows represent display transformations with a matrix. It can combine a turn with translation, scaling, or mirroring. A media inspector often reduces a simple matrix to an angle for convenience.</p>
+<p>An angle's sign depends on the tool's convention: clockwise and counterclockwise descriptions use opposite signs for the same physical turn. The useful question is where the picture's positions are presented, rather than whether two tools print the same signed number.</p>
+<h2 id="follow-one-upright-playback-route">Follow one upright playback route</h2>
+<p>When the Emby app receives the original clip, it can decode the stored landscape grid and apply the display transformation as it presents the frame. The coded video remains in its original orientation.</p>
+<p>A conversion can instead rotate the decoded samples before encoding them. It then produces a 1080 × 1920 picture that is already upright, and the output's display information should describe that upright grid.</p>
 <table>
 <thead>
 <tr>
-<th>Square-pixel example</th>
-<th>Stored dimensions</th>
-<th>Presented dimensions</th>
+<th>Output representation</th>
+<th>What the player needs</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>No quarter-turn</td>
-<td>1920 × 1080</td>
-<td>1920 × 1080</td>
+<td>Original sideways sample grid</td>
+<td>The original turn instruction</td>
 </tr>
 <tr>
-<td>One quarter-turn</td>
-<td>1920 × 1080</td>
-<td>1080 × 1920</td>
+<td>Physically rotated upright grid</td>
+<td>A normalized orientation that does not apply the old turn again</td>
 </tr>
 </tbody>
 </table>
-<p><em>The table assumes a pure 90° rotation and no additional scaling or crop.</em></p>
-<h2 id="rotating-the-description-or-the-pictures">Rotating the description or the pictures</h2>
-<p>There are two ways to make an upright result. A player can rotate the decoded picture while presenting it, leaving the stored samples unchanged. Alternatively, a conversion can rotate the samples and encode a new stream whose dimensions already match the upright picture.</p>
-<p>When the samples are physically rotated, the old rotation instruction must also be handled correctly. Applying the same instruction again can rotate the result twice. Simply deleting metadata from an untouched sideways recording causes the opposite problem: the player loses the information it needed.</p>
-<p>This matters when the same home video looks upright in one Emby playback route and sideways in another. Check the original file's display transformation and the dimensions of any transcoded output. <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">Direct Play and transcoding</a> put the interpretation and processing at different points in the playback path.</p>
-<p>A correct thumbnail is useful evidence, but it does not prove that every playback component has handled the metadata the same way. Compare the actual video as well as the poster or preview image.</p>
+<p>Deleting the instruction from the first representation leaves the clip sideways. Keeping the old instruction on the second applies the turn twice. The two outputs need different metadata because their stored pictures differ.</p>
+<p>A thumbnail and a playback stream can pass through different transformation stages. When they disagree, compare the source matrix, the decoded or converted picture dimensions, and the output orientation information. These observations locate the boundary where the turn was applied.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

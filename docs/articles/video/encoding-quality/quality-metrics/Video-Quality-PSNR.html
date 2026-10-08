@@ -106,43 +106,103 @@
 <h1>Peak Signal-to-Noise Ratio (PSNR) for Video</h1>
 
 
-<p><strong>Peak signal-to-noise ratio (PSNR)</strong> compares decoded samples against a reference. It measures numerical error on a logarithmic scale, usually in decibels. With the same sample format and peak convention, a higher value means smaller mean squared error.</p>
-<p>For one 8-bit plane using a peak sample value of 255:</p>
-<p><code>PSNR = 10 × log10(255² / MSE)</code></p>
-<p><strong>MSE</strong> is the mean of the squared sample differences. Its square root is the root mean square, or RMS, error.</p>
-<p><img src="images/psnr-sample-error.png" alt="Calculated PSNR falls as RMS sample error increases, for an 8-bit peak value of 255."></p>
-<p><em>Calculated curve for one 8-bit plane, peak 255, and positive RMS error. It is not an encoder test or a scale of guaranteed visible quality.</em></p>
+<p>Start with four <strong>8-bit grayscale sample values</strong> in a reference picture and the corresponding four values in a test picture:</p>
 <table>
 <thead>
 <tr>
-<th>RMS sample error</th>
-<th>PSNR in this example</th>
+<th>Position</th>
+<th style="text-align: right;">Reference</th>
+<th style="text-align: right;">Test</th>
+<th style="text-align: right;">Difference</th>
+<th style="text-align: right;">Squared difference</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1</td>
-<td>48.13 dB</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">+2</td>
+<td style="text-align: right;">4</td>
 </tr>
 <tr>
 <td>2</td>
-<td>42.11 dB</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">98</td>
+<td style="text-align: right;">−2</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">153</td>
+<td style="text-align: right;">+3</td>
+<td style="text-align: right;">9</td>
 </tr>
 <tr>
 <td>4</td>
-<td>36.09 dB</td>
-</tr>
-<tr>
-<td>8</td>
-<td>30.07 dB</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">196</td>
+<td style="text-align: right;">−4</td>
+<td style="text-align: right;">16</td>
 </tr>
 </tbody>
 </table>
-<p>Doubling RMS error reduces PSNR by approximately 6.02 dB. With zero error, the mathematical result is infinite. That means the compared samples match exactly, not that the file's bytes, metadata, or source history are identical.</p>
-<h2 id="error-is-not-the-same-as-visibility">Error is not the same as visibility</h2>
-<p>Two pictures can have equal MSE and visibly different defects. PSNR gives a useful reconstruction measurement, but does not model all the ways people notice blur, grain changes, edges, or local artifacts.</p>
-<p>Keep geometry, corresponding frames, sample format, and the peak definition consistent. An offset of one picture or a different range conversion can dominate the result. Values reported for different planes or bit depths need their measurement conventions stated.</p>
-<p>For an Emby conversion, compare the delivered pictures with the retained source under the same preparation. PSNR can show how much additional numerical change occurred; it cannot tell whether the source already lost camera detail. Inspect the pictures too, and distinguish a PSNR calculated from pooled MSE from an arithmetic average of per-frame decibel values.</p>
+<p>The squared differences total <strong>33</strong>. Dividing by four gives the <strong>mean squared error, MSE =8.25</strong>. Its square root is the <strong>RMS error</strong>, approximately <strong>2.8723 sample units</strong>.</p>
+<p><strong>Peak signal-to-noise ratio (PSNR)</strong> expresses this error relative to a declared peak using a logarithmic scale.</p>
+<h2 id="convert-the-sample-error-to-decibels">Convert the sample error to decibels</h2>
+<p>For this example, choose <strong>peak =255</strong>, the maximum code value of an 8-bit sample:</p>
+<p><code>PSNR = 10 × log10(peak² /MSE)</code></p>
+<p>So:</p>
+<p><strong>10 × log10(255² /8.25) = 38.9663 dB</strong>, approximately 38.97 dB.</p>
+<p>The peak is the declared sample-format convention, not the brightest observed reference value, which happened to be 200. Selecting a different peak changes the score even if every error remains the same.</p>
+<p><em>Original paired-sample calculation for one plane. It is not a measured video encode.</em></p>
+<h2 id="read-the-logarithmic-scale">Read the logarithmic scale</h2>
+<p><img src="images/psnr-sample-error.png" alt="Calculated PSNR falls as RMS sample error increases, for an 8-bit peak value of 255."></p>
+<p><em>Calculated curve for one plane, peak 255, and positive RMS error; no encoder benchmark or perceptual threshold is implied.</em></p>
+<table>
+<thead>
+<tr>
+<th>RMS error in this convention</th>
+<th style="text-align: right;">PSNR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align: right;">48.13 dB</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align: right;">42.11 dB</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align: right;">36.09 dB</td>
+</tr>
+<tr>
+<td>8</td>
+<td style="text-align: right;">30.07 dB</td>
+</tr>
+</tbody>
+</table>
+<p>Doubling RMS error multiplies MSE by four. Its PSNR change is <strong>10 × log10(4) ≈6.02 dB downward</strong>.</p>
+<p>With zero sample error, the mathematical value is infinite. That establishes exact equality of the compared sample arrays. Their file bytes, metadata and earlier source history are separate observations.</p>
+<h2 id="the-statistic-records-energy-not-location">The statistic records energy, not location</h2>
+<p>One four-sample error pattern could be <strong>+2,+2,+2,+2</strong>: a uniform offset. Another could be <strong>+4,0,0,0</strong>: a localized error. Both have MSE 4 and the same PSNR.</p>
+<p>Their distribution differs. In an image, a change on a sharp outline can be noticed differently from error spread across a smooth region. PSNR averages squared magnitudes and does not describe that placement or local structural relationship.</p>
+<p><a href="Video-Quality-SSIM.html">SSIM</a> develops a different comparison using local picture statistics.</p>
+<h2 id="aggregate-the-quantity-you-intend">Aggregate the quantity you intend</h2>
+<p>Suppose two equally sized frames have MSE values <strong>1</strong> and <strong>100</strong>, using peak 255.</p>
+<p>Pool their squared errors first:</p>
+<p><strong>mean MSE =(1 +100)/2 =50.5.</strong></p>
+<p>The resulting PSNR is <strong>31.10 dB</strong>.</p>
+<p>Average their separately calculated frame PSNR values instead:</p>
+<p><strong>(48.13 +28.13)/2 =38.13 dB</strong>.</p>
+<p>These are different calculations because the logarithm is nonlinear. The score's aggregation rule therefore belongs with its reported number. FFmpeg's PSNR filter documents accumulation/averaging of MSE before calculating its aggregate.</p>
+<h2 id="prepare-corresponding-pictures">Prepare corresponding pictures</h2>
+<p>A valid conversion comparison needs corresponding content at corresponding times, with a declared geometry, sample format and peak convention. A shifted crop, a one-picture offset or an unintended range conversion can measure those changes rather than the encoder's reconstruction error.</p>
+<p>For an Emby derivative, compare the actual delivered reconstruction with the selected retained source after the intended common preparation. Record the compared span and plane handling as well as the aggregate. The calculation then tells you which sample error the reported decibels represent.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

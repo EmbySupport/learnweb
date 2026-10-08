@@ -106,39 +106,60 @@
 <h1>Matroska: MKV and MKA</h1>
 
 
-<p>An MKV can hold a film, its original soundtrack, a commentary track, and several subtitle languages in one file. <strong>Matroska</strong> organizes those components; the <a href="../../../video/codecs/Video-Codec-Compatibility.html">codecs inside</a> still determine how much decoding work playback requires.</p>
-<p>The usual extension is .mkv for video and .mka for audio-only files. Both use the same container family. A different extension does not turn one codec into another.</p>
+<p>A film's main picture, original soundtrack, translation, commentary, and subtitles can all share one <strong>Matroska</strong> file. The container keeps their descriptions and timing separate so the viewer can choose a combination without duplicating the picture.</p>
+<p>.mkv usually denotes video; .mka usually denotes audio without video. Both use the Matroska family. To understand what a reader does with either one, follow its structure from descriptions to media.</p>
+<h2 id="elements-describe-other-elements">Elements describe other elements</h2>
+<p>Matroska uses <strong>EBML</strong>, a binary system of identified elements. An element has an ID, an encoded size, and data. Some elements contain a number or text; others contain child elements. The reader uses the known size and type to move through this hierarchy.</p>
+<p>An EBML header identifies the document convention. The Matroska <strong>Segment</strong> contains the presentation's major structures. This is a hierarchy inside the format, not a claim that the whole movie is one network segment.</p>
 <table>
 <thead>
 <tr>
-<th>Part of a Matroska file</th>
-<th>What it contributes</th>
+<th>Segment component</th>
+<th>Reader's use</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td>Info</td>
+<td>Overall timing scale and segment information</td>
+</tr>
+<tr>
 <td>Tracks</td>
-<td>Codec descriptions and properties of each stream</td>
+<td>Codec, configuration, and properties of each media component</td>
 </tr>
 <tr>
 <td>Clusters</td>
-<td>Timed blocks of encoded media</td>
+<td>Groups of timed media blocks</td>
+</tr>
+<tr>
+<td>SeekHead</td>
+<td>Locations of major elements</td>
 </tr>
 <tr>
 <td>Cues</td>
-<td>Locations useful for seeking</td>
+<td>Timeline entries used to find media efficiently</td>
 </tr>
 <tr>
-<td>Chapters and attachments</td>
-<td>Navigation points and embedded supporting files</td>
+<td>Chapters, Tags, Attachments</td>
+<td>Navigation, description, and supporting resources</td>
 </tr>
 </tbody>
 </table>
-<p>Matroska is built on <strong>EBML</strong>, a binary structure of identified elements. That allows readers to skip optional elements they do not understand. It does not make missing support for a required codec harmless.</p>
-<h2 id="one-file-several-playback-choices">One file, several playback choices</h2>
-<p>For an Emby library, the useful question is often which tracks the viewer selects. The same MKV can behave differently with a stereo soundtrack, a surround soundtrack, or a subtitle track that needs rendering. Inspect the <a href="../../fundamentals/Media-Streams-Tracks.html">track list</a> rather than treating the extension as a support verdict.</p>
-<p>Matroska has <a href="../../container-structure/Media-Container-Codec-Support.html">mappings for many codecs</a>, which makes it a flexible home for media collections. A <a href="../../container-structure/Media-Multiplexing.html">remux</a> can preserve encoded picture and sound while changing their packaging. Check that alternate tracks, chapter information, and <a href="../../packaging/matroska/Matroska-Attachments.html">attachments</a> survive the operation: these are separate parts of the container, not baked into the video.</p>
-<p>Ordinary chapter markers identify positions. <a href="../../packaging/matroska/Matroska-Ordered-Chapters.html">Ordered chapters</a> are a more demanding feature that can alter the playback sequence, so their presence deserves a separate compatibility check.</p>
+<p>The design permits optional elements a reader does not implement to be skipped by their declared size. Required interpretation still depends on the document version and the relevant component. Extensibility means the structure can evolve; it does not make every possible new feature behave identically in old software.</p>
+<h2 id="reading-one-video-block-and-the-accompanying-sound">Reading one video block and the accompanying sound</h2>
+<p>The Tracks element identifies a video track and its CodecID. The <a href="../../container-structure/Media-Container-Codec-Support.html">codec mapping</a> explains where decoder setup is stored and how the block's payload represents encoded units. A codec-private field may contain initialization information the decoder needs before processing media.</p>
+<p>The reader then encounters Clusters containing blocks assigned to track numbers. Blocks from video and audio can be interleaved in file storage. Their track identities let the demuxer build separate sequences for decoding.</p>
+<p>A cluster has a timestamp and a block has a relative timestamp. With an illustrative TimestampScale of 1,000,000 nanoseconds per tick, a cluster at 12,000 ticks and a block offset of 40 ticks represent:</p>
+<p><code>(12,000 + 40) × 1,000,000 ns = 12.040 seconds</code></p>
+<p>This example assumes the ordinary unit track scale. The block's place among file bytes is not itself its presentation time: a nearby audio block can use a different offset and contain a different amount of sound.</p>
+<p>Selecting an English soundtrack tells the reader which audio track's blocks to deliver. It does not delete the German or commentary blocks stored in the file. That distinction is useful in Emby when a change in selected sound or subtitles changes processing even though the same MKV video remains selected.</p>
+<h2 id="looking-up-a-scene">Looking up a scene</h2>
+<p>To seek, a reader can use Cues to find a suitable cluster or block location near the requested time, then decode from a usable video random-access point. SeekHead serves another lookup role by locating top-level structures such as Tracks or Cues. A pointer to a structure and a pointer from media time to data are different kinds of index.</p>
+<p>The <a href="../../container-structure/timing-and-navigation/Media-Container-Seeking.html">seeking walkthrough</a> explains why the decoder may reconstruct preceding pictures before showing the desired one. A Cue supplies a useful address; it does not remove dependencies in the compressed video.</p>
+<h2 id="information-outside-the-timed-blocks">Information outside the timed blocks</h2>
+<p>A <a href="../../packaging/matroska/Matroska-Attachments.html">font attachment</a> supplies a file that a subtitle renderer may use. A cover image can be another attachment. These resources are not timed sound or picture streams, so preserving the main tracks during a remux does not automatically preserve them.</p>
+<p>Ordinary chapters label points in a fixed timeline. <a href="../../packaging/matroska/Matroska-Ordered-Chapters.html">Ordered editions</a> can instead define ranges and references that compose a different sequence. Tags describe the file or particular objects. Together these features explain why a file's meaning is richer than a list of copied video and audio packets.</p>
+<p>For a repackaged copy, compare the intended presentation components: selected tracks and language descriptions, timing, usable seeking, chapters, and supporting resources. Matroska's structure makes those individually describable, and an inspection can establish which of them the output actually retained.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

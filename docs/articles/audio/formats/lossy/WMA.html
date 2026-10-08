@@ -106,40 +106,46 @@
 <h1>Windows Media Audio (WMA)</h1>
 
 
-<p><strong>WMA is a family name, not one audio format with one capability set.</strong> A legacy music collection, a multichannel video, and a speech recording may use different Windows Media Audio variants.</p>
-<p>That distinction matters when one WMA file plays and another does not. A decoder for the familiar Standard format is not automatically a decoder for every other member.</p>
 <table>
 <thead>
 <tr>
-<th>Variant</th>
-<th>Purpose</th>
+<th>Windows Media Audio member</th>
+<th>Intended coding role</th>
+<th>Microsoft format identifier</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>WMA Standard</td>
-<td>General-purpose lossy audio compression</td>
+<td>Standard</td>
+<td>General-purpose lossy audio</td>
+<td>0x0161</td>
 </tr>
 <tr>
-<td>WMA Professional</td>
-<td>Lossy audio including multichannel and higher-resolution configurations</td>
+<td>Professional</td>
+<td>Lossy audio including multichannel/high-resolution configurations</td>
+<td>0x0162</td>
 </tr>
 <tr>
-<td><a href="../lossless/WMA-Lossless.html">WMA Lossless</a></td>
-<td>Preserving original audio data without compression loss</td>
+<td><a href="../lossless/WMA-Lossless.html">Lossless</a></td>
+<td>Preserve supported source audio data</td>
+<td>0x0163</td>
 </tr>
 <tr>
-<td>WMA Voice</td>
-<td>A separately implemented speech-focused format</td>
+<td>Voice</td>
+<td>Separately implemented speech-focused coding</td>
+<td>A distinct codec family member</td>
 </tr>
 </tbody>
 </table>
-<p>Microsoft's format identifiers distinguish Standard (0x0161), Professional (0x0162), and Lossless (0x0163). Inspection tools can show codec labels derived from these identifiers. The reported variant is more useful than the filename when investigating compatibility.</p>
-<h2 id="files-and-the-encoded-sound">Files and the encoded sound</h2>
-<p>A file ending in WMA is commonly an audio-only ASF file. ASF can also store audio alongside video. The outer wrapper and the soundtrack's particular codec are separate requirements.</p>
-<p>The same WMA extension therefore does not guarantee the same compression type. Neither a high sample rate nor a large file is reliable evidence that a WMA track is lossless; the codec variant needs to identify that explicitly.</p>
-<p>For an Emby library containing older Windows Media files, inspect the source track before planning a conversion. Re-encoding a lossy WMA as FLAC preserves the decoded approximation, not the samples discarded when that WMA was made.</p>
-<p>If the client needs <a href="../../decoding-output/conversion-fallback/Audio-Transcoding.html">a different delivery codec</a>, keep the original file available. This preserves the ability to use a different compatible playback path later without repeatedly encoding an already converted copy.</p>
+<p>Use this table when one old WMA file plays and another does not. <strong>WMA names a family</strong>; the reader's format identifier selects a particular decoder job.</p>
+<h2 id="read-the-package-then-the-member">Read the package, then the member</h2>
+<p>A WMA extension commonly names an audio-only ASF file. The ASF stream description identifies the encoded audio. A reader can recognize the outer container while lacking the decoder for its specific WMA member.</p>
+<p>For example, a stereo music file using Standard and a multichannel recording using Professional can share the extension but need different codec capabilities. The latter also needs the appropriate channel-layout handling after decoding.</p>
+<p>A high bitrate or sample rate is not a substitute for that identification. Lossless is distinguished by its format, not by a file happening to be large.</p>
+<h2 id="match-the-conversion-to-the-identified-source">Match the conversion to the identified source</h2>
+<p>If a WMA Lossless collection is moved to a suitable lossless PCM codec, preserving its decoded samples can preserve the audio exactly. A Standard or Professional source instead supplies its lossy reconstruction, even when the destination is FLAC.</p>
+<p>For Emby, this identification informs whether the source can be delivered to the client as it stands, whether its wrapper needs changing, or whether another decoder/encoder must create a compatible version.</p>
+<p>A useful inventory records the family member, sample rate, channels/layout, and any protection requirements. It explains a collection's different handling more directly than grouping every file under one WMA filename category.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

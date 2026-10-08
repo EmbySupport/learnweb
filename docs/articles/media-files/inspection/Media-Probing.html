@@ -106,16 +106,44 @@
 <h1>Media Probing</h1>
 
 
-<p>Before a player can choose a decoder, it needs to know what it has received. <strong>Probing</strong> reads a source's structure and, where necessary, samples some encoded data to identify its streams and properties.</p>
-<p>For Emby, that technical information contributes to the media details and playback decisions. It is different from finding posters, episode names, or descriptions for the library.</p>
+<p>Before a player can construct a playback path, it must discover the source's contents. <strong>Probing</strong> turns bytes and structures into a description: container, components, codec setup, timing, and useful technical properties.</p>
 <p><img src="images/media-probing.svg" alt="Probing reads container descriptions and samples media as needed to produce technical information used by the playback pipeline."></p>
-<p><em>Conceptual workflow. A particular property can come from a header, direct examination, or an estimate.</em></p>
-<h2 id="a-successful-probe-is-not-a-full-integrity-check">A successful probe is not a full integrity check</h2>
-<p>A report showing codec, resolution, and duration establishes that the tool identified useful information. It does not prove that every frame in a two-hour film can be decoded.</p>
-<p>Some properties are explicitly stored. Others are inferred from limited data, or calculated from size and duration. A missing bitrate field does not mean that the stream contains no data; the tool may lack a reliable value to report.</p>
-<p>Live or irregular sources can also need more data before all streams appear. Inspection tools expose analysis limits because there is a tradeoff between fast discovery and a fuller examination.</p>
-<p>When a report looks suspicious, compare <a href="Media-Inspection-MediaInfo.html">MediaInfo</a> with <a href="Media-Inspection-ffprobe.html">ffprobe</a>, including the file path, selected tracks, and tool versions. Different field names or estimates do not necessarily indicate file damage.</p>
-<p>For a repeatable Emby failure, note whether it happens at startup, on seeking, or at the same scene. That symptom helps decide whether a short probe is enough or whether the relevant part of the media needs a deeper decode check.</p>
+<p><em>Information can come from a declared field, an observation, or a calculation. These have different evidential strength.</em></p>
+<h2 id="follow-the-first-examination">Follow the first examination</h2>
+<p>The reader starts by recognizing the input format from signatures and structure. It parses descriptions of tracks and codec identifiers where the container supplies them. It may then inspect encoded data, or decode a limited portion, to obtain properties that are absent from the initial descriptions.</p>
+<p>A file-oriented container might already state its tracks in an early header. A transport stream may require observing repeated <a href="../container-structure/track-and-programme-descriptions/Media-MPEG-TS-Program-Tables.html">programme tables</a> and enough packets to discover every component. An audio stream that begins after the first video packet can therefore appear only after more analysis.</p>
+<table>
+<thead>
+<tr>
+<th>Result in a report</th>
+<th>Possible source of the value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Track language</td>
+<td>A container tag</td>
+</tr>
+<tr>
+<td>Picture dimensions</td>
+<td>Codec configuration or examined pictures</td>
+</tr>
+<tr>
+<td>Duration</td>
+<td>Stored timing, observed timestamps, or an estimate</td>
+</tr>
+<tr>
+<td>Overall bitrate</td>
+<td>Reported information or file size divided by duration</td>
+</tr>
+</tbody>
+</table>
+<p>A calculated bitrate is not independent confirmation of the duration used in the division. A missing field can mean that the analyzer lacked evidence to report it, rather than that the property is zero.</p>
+<h2 id="why-analysis-limits-exist">Why analysis limits exist</h2>
+<p>Inspecting more data takes time and input reads. FFmpeg exposes controls such as probesize for the amount of probing data and analyzeduration for stream analysis. On a continuing or unusual source, enough analysis can reveal components or configuration missed by a smaller examination. The tradeoff is startup work and latency.</p>
+<p>More analysis is useful when discovery is incomplete. It is not a substitute for every kind of validation. A two-hour file can initialize successfully while containing a corrupt packet much later; inspecting its beginning does not exercise that packet.</p>
+<p>This distinction matters in Emby: source probing informs technical media details and playback decisions, while library providers identify the film or episode. An accurate poster and synopsis can coexist with incomplete stream discovery.</p>
+<p>For an unexplained report, compare <a href="Media-Inspection-MediaInfo.html">MediaInfo</a> and <a href="Media-Inspection-ffprobe.html">ffprobe</a> on the same actual source. Keep whether a value is declared, observed, or estimated in the interpretation. If failure repeats at a known scene, examine that part and its decoding separately from the successful initialization report.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

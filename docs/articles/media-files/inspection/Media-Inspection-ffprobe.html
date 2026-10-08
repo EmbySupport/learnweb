@@ -106,48 +106,52 @@
 <h1>Media Stream Inspection with ffprobe</h1>
 
 
-<p>ffprobe is FFmpeg's inspection tool. It reads media information and reports it as text or structured data; it does not re-encode the input.</p>
-<p>With ffprobe installed and available on the command path, this produces a JSON report:</p>
+<p><strong>ffprobe</strong> is FFmpeg's inspection tool. Its value is that the question controls what is reported: whole-source information, individual streams, programmes, chapters, encoded packets, or decoded frames.</p>
+<p>With ffprobe installed, start with a structured description:</p>
 <pre><code class="lang-powershell">ffprobe -v error -show_format -show_streams -show_chapters -of json &quot;Movie.mkv&quot;
 </code></pre>
-<p>The three requested sections separate whole-file information, individual tracks, and chapters. Missing fields mean the tool did not report a value, not necessarily that the underlying property is zero.</p>
+<p>The format section concerns the source as a whole. Each stream section concerns one component. Chapters describe named positions. The report is written as JSON without creating a converted movie.</p>
 <table>
 <thead>
 <tr>
-<th>Output field</th>
-<th>How to read it</th>
+<th>Field</th>
+<th>Interpretation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>format_name</code></td>
-<td>The detected demuxer or format family; it can list related formats</td>
+<td>format_name</td>
+<td>Detected reader/format family; related formats may share a name</td>
 </tr>
 <tr>
-<td><code>codec_name</code> / <code>codec_type</code></td>
-<td>A track's codec and whether it is video, audio, or another type</td>
+<td>index, codec_type, codec_name</td>
+<td>Which component the following properties describe</td>
 </tr>
 <tr>
-<td><code>time_base</code></td>
-<td>The scale used for that track's integer timestamps</td>
+<td>time_base</td>
+<td>Seconds represented by one integer timestamp tick</td>
 </tr>
 <tr>
-<td><code>tags</code> / <code>disposition</code></td>
-<td>Reported metadata and selection flags</td>
+<td>tags and disposition</td>
+<td>Descriptive fields and selection roles</td>
 </tr>
 <tr>
-<td><code>duration</code> / <code>bit_rate</code></td>
-<td>Reported or estimated values at the relevant scope</td>
+<td>duration and bit_rate</td>
+<td>Values for the section's scope, potentially calculated or estimated</td>
 </tr>
 </tbody>
 </table>
-<h2 id="examine-the-part-that-matches-the-problem">Examine the part that matches the problem</h2>
-<p>For a transport-stream recording, add <code>-show_programs</code> to see programme groupings. For timing, request packets from a short interval:</p>
-<pre><code class="lang-powershell">ffprobe -v error -select_streams v:0 -read_intervals &quot;%+5&quot; -show_packets -show_entries packet=pts_time,dts_time,duration_time,flags -of json &quot;Movie.mkv&quot;
+<h2 id="move-from-a-summary-to-a-timing-question">Move from a summary to a timing question</h2>
+<p>Suppose video stutters around ten minutes. This command requests a short packet examination near that source position:</p>
+<pre><code class="lang-powershell">ffprobe -v error -select_streams v:0 -read_intervals &quot;600%+5&quot; -show_packets -show_entries packet=pts_time,dts_time,duration_time,flags,pos,size -of json &quot;Movie.mkv&quot;
 </code></pre>
-<p>This selects the first video stream and examines an interval of approximately five seconds from the initial read position. Packet durations and reordering mean the result need not correspond to exactly five seconds of displayed pictures.</p>
-<p>For Emby troubleshooting, use the same source file and record the selected tracks. Compare timestamp values in seconds and avoid mistaking a demuxer family name for a precise file subtype.</p>
-<p>A summary probe does not decode every frame. Packet inspection can reveal timing clues, but a full integrity investigation may need decoding as a separate step.</p>
+<p>v:0 selects the first video component, not every stream. The interval requests a seek near 600 seconds followed by about five seconds of reading. Seeking may begin at a nearby usable point, and the relative interval is measured from the actual found position. Treat the returned timestamps as the evidence of the range actually read.</p>
+<p>The packet fields connect <a href="../container-structure/timing-and-navigation/Media-Packet-Timestamps.html">decode and presentation time</a> with byte position, size, and flags. In reordered video, PTS can move backwards in decode order while DTS advances. That is a meaningful pattern rather than an automatic corruption diagnosis.</p>
+<h2 id="a-programme-question-uses-another-view">A programme question uses another view</h2>
+<p>For a television transport recording, add -show_programs to the summary request. Programme entries show how streams are grouped. A global stream index and a programme number answer different identity questions; they should not be confused when several services occupy one file.</p>
+<h2 id="packets-and-frames-ask-different-things-of-the-tool">Packets and frames ask different things of the tool</h2>
+<p>-show_packets reports encoded packet information obtained by the reader. -show_frames asks for information about decoded frames and can involve decoder work. A successful packet report does not establish that all picture data decodes, while decoding a selected interval still does not test the rest of a long recording.</p>
+<p>For Emby investigation, use the exact source and record which tracks the session selected. The useful progression is a summary to identify the source, then a narrower packet or frame question that corresponds to the observed failure. Missing optional JSON fields mean no value was emitted; they should not silently become zero in a comparison or script.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

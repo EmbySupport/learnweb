@@ -106,15 +106,51 @@
 <h1>Scene-Adaptive Tone Mapping</h1>
 
 
-<p>A dark conversation and a sunlit landscape do not need the same compromise between midtones and highlights. Scene-adaptive tone mapping can adjust to their different brightness distributions instead of using one fixed mapping throughout the film.</p>
-<p>The information may come from dynamic metadata or from <a href="Tone-Mapping-Peak-Detection.html">analysis of the picture</a>. Measuring content during playback can make a mapping adaptive even when the file has no scene-by-scene metadata. This does not add an authored creative decision that was absent from the source; it lets the renderer make a more informed estimate.</p>
-<p><img src="images/scene-adaptation.svg" alt="Three-stage conceptual flow: analyze brightness, stabilize the estimate through time while recognizing scene changes, then adapt the mapping."></p>
-<p><em>Conceptual processing flow. It does not describe a specific Emby implementation.</em></p>
-<h2 id="react-quickly-but-not-to-everything">React quickly, but not to everything</h2>
-<p>Changing the mapping independently for every frame can make an otherwise steady object seem to pulse when a bright object enters the shot. Temporal smoothing reduces that instability. Too much smoothing, however, can make the mapper slow to respond when the film cuts from a dark room to daylight.</p>
-<p>Scene-change handling helps resolve that tension. For example, <a href="https://github.com/haasn/libplacebo/blob/v7.349.0/src/include/libplacebo/shaders/colorspace.h">libplacebo's peak detector</a> can reduce smoothing when the change in brightness is large enough. This is an implementation example, not a universal rule for detecting an edit or a promise about an Emby setting.</p>
-<p>Adaptive also does not necessarily mean local: a mapper can change over time while still applying the same curve across the whole frame. Processing different parts of one frame differently is a separate choice.</p>
-<p>When assessing an Emby playback result, let the scene run. Watch a face as a bright window enters the frame, and watch the first moments after a hard cut. Stable midtones and a clean transition tell you more than a particularly attractive screenshot. A visible brightness change can also come from the source or the display's own processing, so it is useful to establish <a href="../execution/Tone-Mapping-Playback-Path.html">where tone mapping occurs</a> before attributing it to the server.</p>
+<p>A tiny flash enters the window beside an otherwise stationary face. The source face stays at the same values, but the picture's detected peak rises. If a global mapper immediately changes its curve for that peak, the face can change brightness too. Scene adaptation needs to react to content without making that reaction distractingly visible.</p>
+<p><img src="images/scene-adaptation.svg" alt="Picture analysis feeds temporal stabilization and scene-change handling, then the adapted mapping."></p>
+<p><em>Conceptual responsibilities, not a description of one Emby implementation.</em></p>
+<h2 id="watch-a-simple-smoothing-model-respond">Watch a simple smoothing model respond</h2>
+<p>Let the estimated peak begin at 200 nits. In an illustrative model, update it as <strong>new estimate = 0.75 × previous estimate + 0.25 × new measurement</strong>. A single measured jump to 1,000 followed by a return to 200 produces:</p>
+<table>
+<thead>
+<tr>
+<th>Frame event</th>
+<th style="text-align: right;">Measured value</th>
+<th style="text-align: right;">Smoothed estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Initial stable scene</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">200</td>
+</tr>
+<tr>
+<td>Flash</td>
+<td style="text-align: right;">1,000</td>
+<td style="text-align: right;">400</td>
+</tr>
+<tr>
+<td>Next ordinary frame</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">350</td>
+</tr>
+<tr>
+<td>Following ordinary frame</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">312.5</td>
+</tr>
+</tbody>
+</table>
+<p>The model reduces the abrupt peak change, but its memory also leaves a smaller change after the flash. If those estimates control a global curve, they can still move the face's output over several frames.</p>
+<p>This arithmetic isolates temporal lag. Actual detectors can smooth other representations, use different time constants, and discount exceptional samples through <a href="Tone-Mapping-Peak-Detection.html">percentiles</a>. The model is not a product setting or a claim that a library uses these coefficients.</p>
+<h2 id="a-cut-and-a-flash-need-different-responses">A cut and a flash need different responses</h2>
+<p>Now replace the flash with a real cut to a bright scene. A slowly smoothed estimate can keep applying the previous scene's assumptions for too long. Scene-change handling can reset or accelerate adaptation when the measured change warrants it.</p>
+<p>The tension is between stability inside a continuing scene and responsiveness to another scene. Brightness statistics are useful evidence but cannot always identify an edit unambiguously: camera motion, exposure changes, and flashes can also move them. Implementations choose detection and response policies for that ambiguity.</p>
+<p>Prepared dynamic metadata supplies another source of changing information. It can describe a shot from production; runtime analysis instead estimates from the pictures received. Both still need coherent timing and appropriate transitions.</p>
+<h2 id="keep-temporal-adaptation-separate-from-spatial-adaptation">Keep temporal adaptation separate from spatial adaptation</h2>
+<p>A curve can change over time while remaining the same across one entire frame. Local processing varies by region within a frame and is another choice. Calling a mapper adaptive does not specify which dimension varies.</p>
+<p>During an Emby test, let the picture move. Examine a stationary face when a bright object enters, then the first frames after a cut. Identify the <a href="../execution/Tone-Mapping-Playback-Path.html">processing location</a> so the observed change can be attributed to the source, app, converter, or display. The temporal example explains why one attractive paused frame cannot establish stable adaptation.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

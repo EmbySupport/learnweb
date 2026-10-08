@@ -106,14 +106,41 @@
 <h1>What Is a Media File?</h1>
 
 
-<p>A movie file is more than a row of pictures. It usually contains compressed <a href="../../video/fundamentals/Digital-Video.html">video</a>, one or more soundtracks, timing information, and descriptions that tell a player how those pieces fit together. Subtitles and chapter markers may be included too.</p>
-<p>Most of that is organized by a <a href="../container-structure/Media-Container.html">container</a>. The <a href="Containers-and-Codecs.html">codecs</a> describe how the picture and sound data are represented. A file can use a familiar container while carrying a codec that a particular player cannot decode.</p>
+<p>Press Play on a film and several things begin together: the first picture appears, sound starts, and subtitles arrive at their appointed moments. A <strong>media file</strong> stores the material for those events and enough information to organize them.</p>
 <p><img src="images/media-file-parts.svg" alt="A media file contains separately described video, audio, and subtitle tracks, with timing and navigation alongside them."></p>
-<p><em>An illustrative file layout, not a byte-level map of a particular format.</em></p>
-<h2 id="what-emby-needs-to-find-out">What Emby needs to find out</h2>
-<p>When Emby examines a file, the useful questions include which streams exist, their formats, and how long they run. Those details help describe the item and determine how to deliver it to an app. The filename alone cannot answer them.</p>
-<p>The information also has two different purposes. Technical metadata such as resolution and audio language helps playback. A library title, synopsis, or poster describes the work. A movie can have correct library information while its underlying file has an incorrect language tag or damaged timestamps.</p>
-<p>For a playback question, begin with the file's <a href="../inspection/Media-Probing.html">media information</a> and the selected audio and subtitle tracks. “It is an MKV” describes its packaging; it does not yet describe what the app must play.</p>
+<p><em>An illustrative collection of components, rather than a byte map of a particular format.</em></p>
+<p>Follow one moment in that film. The file reader locates some encoded video data, identifies its codec, and passes it to a decoder. The decoder reconstructs a picture. Separately, an audio decoder produces samples for the same part of the soundtrack. Timestamps tell the playback system when to present each result. Reading bytes, reconstructing media, and scheduling playback are different jobs.</p>
+<p>The <a href="../container-structure/Media-Container.html">container</a> supplies the organization around the encoded content. It can describe several <a href="Media-Streams-Tracks.html">tracks</a>, so choosing a commentary soundtrack changes the audio sequence without duplicating the picture. A subtitle track supplies timed text or images; chapter information supplies named positions within the presentation.</p>
+<h2 id="information-for-playing-and-information-about-the-film">Information for playing and information about the film</h2>
+<p>Consider an item in an Emby library titled <em>Example Film</em>. A poster and a plot summary help you choose it. A video resolution of 1920 × 1080, an English audio tag, and a duration of 01:42:00 help software handle the source. These descriptions answer different questions.</p>
+<table>
+<thead>
+<tr>
+<th>Information</th>
+<th>Describes</th>
+<th>Where it can come from</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Encoded picture and sound</td>
+<td>The recorded media</td>
+<td>The file's payload</td>
+</tr>
+<tr>
+<td>Codec, timing, and track properties</td>
+<td>How to reproduce it</td>
+<td>Headers, container structures, or examination of the data</td>
+</tr>
+<tr>
+<td>Film title, cast, and synopsis</td>
+<td>The work represented by the file</td>
+<td>Embedded tags, local metadata, or a library provider</td>
+</tr>
+</tbody>
+</table>
+<p>A library can identify the work correctly while the file's audio language is missing. Conversely, a technically readable file can have no useful film title at all. This is why <a href="../inspection/Media-Probing.html">media probing</a> and library identification are separate operations.</p>
+<p>A file also separates stored order from viewing order. It may alternate chunks of audio and video rather than keep one uninterrupted run of each. The reader extracts those pieces and their timing; the player assembles the experience. When you inspect a file, its track list and timestamps reveal more of that organization than its filename does.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

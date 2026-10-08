@@ -106,36 +106,50 @@
 <h1>Audio-Description Tracks</h1>
 
 
-<p><strong>Audio description adds narration of important visual information</strong>, such as actions, scene changes, expressions, or text that the main soundtrack does not explain. It helps people who are blind or have low vision follow the programme.</p>
-<p>The narration is usually fitted around dialogue and other important sound. It is a different presentation of the programme, not simply a clearer recording of its existing speech.</p>
+<p>A character silently hides a key under a flowerpot. The main soundtrack offers a rustle but no words explaining the action. <strong>Audio description adds the missing visual information</strong>, helping a listener who is blind or has low vision follow why that action matters later.</p>
+<p>The description is authored as part of the listening presentation. Making dialogue louder or transcribing its words does not supply an unspoken visual event.</p>
+<h2 id="fit-useful-description-into-the-programme">Fit useful description into the programme</h2>
+<p>Descriptions can identify actions, expressions, scene changes, on-screen text, and other important visual details. They are generally placed around dialogue and significant sound where possible.</p>
+<p>The aim is enough information to understand the programme, not narration of every visible object. A complete described mix balances that narration with dialogue, music, and effects so they remain usable together.</p>
+<h2 id="identify-the-role-not-just-the-language">Identify the role, not just the language</h2>
 <table>
 <thead>
 <tr>
-<th>Track description</th>
-<th>Intended role</th>
+<th>Illustrative track title</th>
+<th>Intended content</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>English — Main</td>
-<td>The ordinary English soundtrack</td>
+<td>Ordinary English soundtrack</td>
 </tr>
 <tr>
 <td>English — Audio Description</td>
-<td>English soundtrack with visual description</td>
+<td>Programme with important visual details described</td>
 </tr>
 <tr>
 <td>English — Commentary</td>
-<td>A discussion of the programme, often by its creators</td>
+<td>Discussion by creators or other commentators</td>
 </tr>
 </tbody>
 </table>
-<p>These are illustrative titles. Real files use varied labels, and a language code alone cannot distinguish the roles.</p>
-<h2 id="complete-mix-or-supplementary-audio">Complete mix or supplementary audio</h2>
-<p>A stored movie can provide a complete alternative mix with the narration already combined with the programme. Selecting that audio track is enough to hear the described presentation.</p>
-<p>Broadcast systems can instead carry supplementary description that a capable receiver combines with the main audio. The supplementary component is not necessarily a complete soundtrack by itself. Its signaling and intended mixing arrangement matter when preserving or converting a recording.</p>
-<p>In an Emby library, keep track titles and <a href="../../media-files/container-structure/track-and-programme-descriptions/Media-Track-Language.html">language metadata</a> informative so that a described track can be recognized among several audio choices. If the track contains a complete described mix, selecting it should be understood as choosing that presentation, regardless of its stereo or surround layout.</p>
-<p>Audio description must be supplied or created as content. A codec conversion, a louder center channel, or automatic dialogue transcription does not add explanations of visual events. Losing an alternate track during file conversion can therefore remove an accessibility option even when the main soundtrack still plays normally.</p>
+<p>All three can have the same language code. Descriptive track names or role signaling tell the listener which presentation to select. A commentary is not a substitute for audio description merely because it adds speech.</p>
+<p>In an Emby library, preserving useful language and track-role information makes these choices distinguishable without listening to each track to discover its purpose.</p>
+<h2 id="complete-described-mix-versus-narration-component">Complete described mix versus narration component</h2>
+<p>A movie file can contain a fully mixed alternative soundtrack. Selecting it supplies the description and programme together, regardless of whether that mix is stereo or surround.</p>
+<p>Broadcast systems can instead carry associated narration that a capable receiver combines with the main audio. This supports the defined balance or control behavior, but the narration component alone may lack the movie's dialogue, music, and effects.</p>
+<p>That structural difference matters during conversion:</p>
+<ol>
+<li>Identify whether the source provides a complete described track or a supplementary component.</li>
+<li>If supplementary, assemble the intended presentation using its mixing/signaling rules.</li>
+<li>Preserve the resulting accessible mix, or preserve the component structure for a reader that supports it.</li>
+<li>Retain labels that make the accessible choice discoverable.</li>
+</ol>
+<p>Simply extracting an associated narration component can create a recording of descriptions without a complete programme soundtrack. Copying only the main track can remove the accessibility option entirely.</p>
+<h2 id="check-the-option-as-content">Check the option as content</h2>
+<p>Verify a few places where description is expected, its balance with dialogue, and the full intended duration. Then verify track selection and names in the listening app.</p>
+<p>These checks answer different questions from successful codec decoding. A perfectly playable main mix may still be the wrong presentation for the listener, while a complete described mix preserves information that neither louder dialogue nor another codec can generate.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

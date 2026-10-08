@@ -106,17 +106,46 @@
 <h1>Where Tone Mapping Happens in an Emby Playback Session</h1>
 
 
-<p>The playback method shown by Emby describes how the server delivers the video. It does not describe every step between the original file and the light coming from the screen.</p>
-<p>Tone mapping can happen when the server converts HDR video for an SDR playback target. It can also happen after delivery, in a player or in an HDR display adapting the picture to its own brightness limits.</p>
-<p><img src="images/tone-mapping-playback-path.svg" alt="Two conceptual paths: server tone mapping produces an SDR stream before delivery; HDR delivery leaves adaptation to the player or display path."></p>
-<p><em>Examples of where adaptation can occur. The diagram is not an inventory of supported combinations for every Emby app.</em></p>
-<h2 id="start-with-the-video-being-delivered">Start with the video being delivered</h2>
-<p>With <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">Direct Play</a>, the server does not convert the video. Direct Stream can change the packaging or other tracks while leaving the video intact. In either case, any necessary adaptation of those video pixels takes place downstream.</p>
-<p>With video transcoding, the server decodes and re-encodes the video and can change its pixels in between. When that includes <a href="../fundamentals/Tone-Mapping-HDR-to-SDR.html">HDR-to-SDR conversion</a>, the player receives the resulting SDR picture. Transcoding alone does not establish that tone mapping occurred: a conversion may be needed for another reason.</p>
-<h2 id="then-follow-the-player-and-display">Then follow the player and display</h2>
-<p>The <a class="xref" href="https://emby.media/support/articles/apps/windows/Emby-Windows-FAQ.html">Emby Windows FAQ</a> describes tone mapping performed by GPU shaders during presentation. This also shows why software decoding does not necessarily mean software tone mapping: the two stages can use different processors.</p>
-<p>If HDR reaches the screen, the screen may still need <a href="../fundamentals/Tone-Mapping-HDR-to-HDR.html">HDR-to-HDR adaptation</a>. An HDR indicator confirms the signal mode, not that every original highlight is reproduced without adjustment.</p>
-<p>When investigating a difference, record the app, playback method, delivered HDR or SDR format, and display mode. Server tone-mapping settings cannot explain a change in a session whose video the server passed through unchanged. Following the actual path narrows the comparison to the stage that could have changed the picture.</p>
+<p>Two sessions can show the same HDR library file yet perform brightness adaptation in different places. Follow the delivered video before attributing the displayed result to a server setting.</p>
+<p><img src="images/tone-mapping-playback-path.svg" alt="Server conversion can deliver SDR, while unchanged HDR delivery leaves adaptation to the supported player/display route."></p>
+<p><em>Conceptual routes. A particular app's supported signal and processing path determines which route it can use.</em></p>
+<h2 id="session-a-the-server-prepares-sdr">Session A: the server prepares SDR</h2>
+<p>The server decodes the HDR picture, interprets its light and color representation, and performs <a href="../fundamentals/Tone-Mapping-HDR-to-SDR.html">HDR-to-SDR conversion</a>. It encodes the resulting picture with matching SDR descriptions. The app receives that SDR rendition and presents it through an SDR output path.</p>
+<p>The mapping has occurred before delivery. The library source remains HDR, while the delivered video describes the processed SDR image. Source metadata and final stream metadata consequently answer different questions.</p>
+<h2 id="session-b-unchanged-hdr-reaches-a-local-renderer">Session B: unchanged HDR reaches a local renderer</h2>
+<p>With <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">Direct Play</a>, the server supplies the original file. Direct Stream can change packaging or other tracks while retaining the coded video. A supported app then decodes and interprets the delivered picture.</p>
+<p>If its presentation adapts HDR to the selected output, the pixel change occurs after delivery. The <a class="xref" href="https://emby.media/support/articles/apps/windows/Emby-Windows-FAQ.html">Windows app FAQ</a> describes GPU-shader tone mapping during presentation, including a path with software decoding. Decoding location and mapping location can therefore differ.</p>
+<h2 id="session-c-the-display-fits-an-hdr-signal">Session C: the display fits an HDR signal</h2>
+<p>An HDR signal reaches an HDR display whose useful range is smaller than the source request. The display can perform <a href="../fundamentals/Tone-Mapping-HDR-to-HDR.html">HDR-to-HDR adaptation</a>. Its HDR indicator identifies the signal mode, while its internal mapping determines the reproduced light.</p>
+<p>Other device or operating-system stages can participate in the output chain. The relevant evidence is the actual signal and processing at each boundary rather than the library's HDR badge alone.</p>
+<h3 id="record-a-comparison-by-boundary">Record a comparison by boundary</h3>
+<table>
+<thead>
+<tr>
+<th>Boundary</th>
+<th>Useful observation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>File to server</td>
+<td>Exact source release, HDR format and color fields</td>
+</tr>
+<tr>
+<td>Server to app</td>
+<td>Video copied or re-encoded; delivered HDR/SDR representation</td>
+</tr>
+<tr>
+<td>App to output</td>
+<td>Decoder, renderer, selected presentation mode</td>
+</tr>
+<tr>
+<td>Output to screen</td>
+<td>Received signal mode and display processing</td>
+</tr>
+</tbody>
+</table>
+<p>Video transcoding can be required for reasons other than tone mapping, so it should be inspected for the actual picture processing. Likewise, copied video locates any later pixel adaptation downstream. This boundary record makes two Emby sessions comparable: it identifies which stage could have changed the image and which conversion inputs belonged to that stage.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

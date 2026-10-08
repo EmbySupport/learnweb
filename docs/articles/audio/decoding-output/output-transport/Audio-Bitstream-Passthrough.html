@@ -106,41 +106,52 @@
 <h1>Audio Bitstream Passthrough</h1>
 
 
-<p><strong>Bitstream passthrough leaves audio decoding to a downstream device</strong>, such as an AV receiver. The player sends an encoded presentation through a compatible output path instead of turning it into ordinary PCM channels first.</p>
-<p>That is separate from Emby's server-side Direct Play decision. A client can receive an unchanged file and still decode its soundtrack locally.</p>
-<h2 id="several-capabilities-have-to-agree">Several capabilities have to agree</h2>
+<p>A receiver can decode a movie soundtrack only if it receives a compatible <strong>encoded presentation</strong>. Bitstream passthrough arranges that delivery, leaving audio reconstruction to the downstream decoder rather than producing ordinary PCM in the player.</p>
+<p>The server's Direct Play decision happens earlier. It can retain a file that the player either decodes locally or passes onward.</p>
+<h2 id="follow-the-coded-payload-to-the-receiver">Follow the coded payload to the receiver</h2>
+<p>The player reads the selected track and its codec configuration. It then supplies the encoded audio using the output API and transport convention required for that format.</p>
+<p>IEC 61937 defines transport of encoded audio in a digital-audio framework. Transport data includes framing and format identification so the receiver knows that it contains a coded payload to unpack, not ordinary amplitude samples to play directly.</p>
+<p>A declared carrier rate or channel arrangement can consequently describe <strong>the transport</strong>, while the encoded content has its own audio rate and presentation. Microsoft's transport documentation explicitly distinguishes those fields.</p>
 <table>
 <thead>
 <tr>
-<th>Part of the route</th>
-<th>Required capability</th>
+<th>Boundary</th>
+<th>What must happen</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Player</td>
-<td>Recognize and output the specific encoded format</td>
+<td>File to player</td>
+<td>Find the correct coded track and configuration</td>
 </tr>
 <tr>
-<td>Operating system and driver</td>
-<td>Expose a suitable encoded-audio output path</td>
+<td>Player to output API</td>
+<td>Request the proper encoded format</td>
 </tr>
 <tr>
-<td>Connection and intervening devices</td>
-<td>Carry that format through the selected route</td>
+<td>Driver/link</td>
+<td>Carry the required framing without treating it as normal mixed PCM</td>
 </tr>
 <tr>
-<td>Receiver or soundbar</td>
-<td>Decode the delivered presentation</td>
+<td>Intermediate device</td>
+<td>Forward a compatible presentation where present</td>
+</tr>
+<tr>
+<td>Receiver</td>
+<td>Recognize, unpack, and decode that presentation</td>
 </tr>
 </tbody>
 </table>
-<p>Support at the final receiver does not remove a limitation earlier in the chain. A television forwarding audio can be a separate compatibility step even when it does not decode the soundtrack itself.</p>
-<p>IEC 61937 defines carriage of encoded audio over interfaces based on the digital audio framework. Different codec types have different transport requirements; the presence of an HDMI connector alone does not prove that a particular app can pass every format.</p>
-<h2 id="processing-changes-the-question">Processing changes the question</h2>
-<p>Mixing system sounds into a soundtrack or applying ordinary sample-based volume control generally requires decoded audio or a specially supported processing path. A passthrough option may therefore change which local controls are available.</p>
-<p>The receiver's detected input helps confirm what was delivered. Its chosen listening mode can add processing after decoding, so a surround-mode label is not proof of the original bitstream.</p>
-<p>For an Emby movie with immersive audio, passthrough can preserve suitable encoded spatial information when every stage supports it. An object-aware <a href="Dolby-MAT.html">MAT output</a> is another possible route; plain channel PCM and metadata-bearing transport should be distinguished.</p>
+<p>This is why receiver capability alone cannot fix a player/output route that never supplied the encoded format.</p>
+<h2 id="why-normal-sample-processing-changes-the-route">Why normal sample processing changes the route</h2>
+<p>A volume multiplier acts on decoded sample amplitudes. Multiplying bytes in a compressed packet would instead alter coding symbols or headers, corrupting their meaning.</p>
+<p>Likewise, mixing a notification into a soundtrack requires sample-domain combination or a specially supported codec-aware path. An ordinary PCM mixer cannot simply combine arbitrary encoded packets and expect a valid soundtrack.</p>
+<p>A player may therefore disable some local effects during passthrough, choose PCM when processing is needed, or control downstream volume separately. Those are consequences of where the reconstruction happens, not inherently defects in the source.</p>
+<h2 id="confirm-the-input-before-interpreting-a-listening-mode">Confirm the input before interpreting a listening mode</h2>
+<p>If a compatible receiver detects the intended encoded format, its decoder can reconstruct that presentation. It may afterward apply an upmixer, bass management, or other listening mode.</p>
+<p>The processing-mode name and detected input answer different questions. A height-speaker mode on a conventional input is not the same observation as receiving the original immersive bitstream.</p>
+<p>For an Emby immersive track, retaining the suitable encoded payload is one way to keep its spatial information available downstream. An object-aware decoded <a href="Dolby-MAT.html">MAT path</a> can perform a different supported route; ordinary channel PCM does not carry original objects just because it has many channels.</p>
+<p>Use these distinctions to locate a failed boundary: did the player request the format, did the link forward it, and did the decoder accept it? That trace is more informative than changing unrelated codec or speaker settings together.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

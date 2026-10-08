@@ -106,40 +106,45 @@
 <h1>WAV and RIFF</h1>
 
 
-<p>A .wav is often uncompressed PCM, but <strong>WAV is a file format</strong>, not a promise about the encoding. The format description inside the file tells a reader how to interpret the audio data.</p>
-<p>The familiar structure uses <strong>RIFF</strong>, a system of identified chunks, with WAVE as its file type. RIFF also underlies other formats such as AVI; that does not make an AVI an audio file.</p>
+<p>A WAV reader needs to find both <strong>how the audio is represented</strong> and <strong>where its data starts</strong>. The familiar RIFF/WAVE structure gives it separately identified chunks for those jobs.</p>
+<p>RIFF begins with an overall chunk size and a file type, here WAVE. Child chunks have their own four-character identifiers, sizes, and contents. The reader advances using those sizes and required alignment rather than assuming every WAV has a fixed-length header.</p>
 <table>
 <thead>
 <tr>
-<th>WAV component</th>
-<th>What it contains</th>
+<th>Chunk or description</th>
+<th>What it supplies</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>RIFF/WAVE header</td>
-<td>Identifies the overall file structure</td>
+<td>fmt</td>
+<td>Encoding, channel count, sample rate, and sample/block properties</td>
 </tr>
 <tr>
-<td>fmt chunk</td>
-<td>Audio format, channels, sample rate, and related parameters</td>
-</tr>
-<tr>
-<td>data chunk</td>
-<td>Encoded or uncompressed audio data</td>
+<td>data</td>
+<td>Encoded or uncompressed audio bytes</td>
 </tr>
 <tr>
 <td>Additional chunks</td>
-<td>Optional metadata or other supporting information</td>
+<td>Metadata, markers, or other information</td>
+</tr>
+<tr>
+<td>WAVEFORMATEXTENSIBLE, where used</td>
+<td>A richer format description, including speaker roles and valid sample precision</td>
 </tr>
 </tbody>
 </table>
-<p>A reader should follow the chunk structure instead of assuming all WAV headers have one fixed length. Metadata or an extended format description can move the start of the audio.</p>
-<h2 id="pcm-needs-more-than-a-sample-rate">PCM needs more than a sample rate</h2>
-<p>For <a href="../../../audio/formats/LPCM.html">linear PCM</a>, sample precision, integer versus floating-point representation, and byte layout matter. Multichannel WAV commonly uses WAVEFORMATEXTENSIBLE, which can describe speaker positions and distinguish valid bits from the space occupied by each sample.</p>
-<p>That makes a channel count insufficient to establish <a href="../../../audio/channels/roles-and-ordering/Audio-Channel-Order.html">channel order</a>. Six channels need the correct roles as well as six sets of numbers.</p>
-<p>When checking a WAV for an Emby music library, inspect those properties and the actual encoding. Two files at the same sample rate can differ in precision, channel layout, and decoder requirements.</p>
-<p>Classic RIFF uses 32-bit chunk sizes, creating a practical size limit near 4 GiB. Large-file variants such as RF64 use additional conventions; renaming a large file .wav does not teach an older reader to understand them. <a href="CAF-Container.html">CAF</a> is another format designed to avoid that classic size constraint.</p>
+<h2 id="read-one-second-of-stereo-pcm">Read one second of stereo PCM</h2>
+<p>Suppose fmt describes two-channel, 48 kHz, signed 16-bit <a href="../../../audio/formats/LPCM.html">linear PCM</a>. Each channel sample occupies two bytes, so one sample frame—one value for each channel—occupies four bytes. The stored sequence is commonly interleaved: left, right, then left, right for the next sample instant.</p>
+<p><code>48,000 sample frames/s × 2 channels × 2 bytes = 192,000 bytes/s</code></p>
+<p>Once the reader locates data, advancing 192,000 bytes covers one second of this particular PCM arrangement. The format fields make that inference possible. A compressed WAV uses its own block and decoding rules instead; .wav is not synonymous with these PCM parameters.</p>
+<h2 id="the-bytes-occupied-by-a-sample-and-its-useful-precision">The bytes occupied by a sample and its useful precision</h2>
+<p>WAVEFORMATEXTENSIBLE can distinguish the <strong>container size for one sample value</strong> from the number of valid bits. For example, 20 meaningful bits can occupy a 24-bit, three-byte storage unit. Here “sample container” means the space occupied by one value, not a media-file container such as WAV.</p>
+<p>For multichannel sound, a speaker-position mask describes which roles the channels occupy. Six values per sample frame alone do not establish whether they represent the expected <a href="../../../audio/channels/roles-and-ordering/Audio-Channel-Order.html">speaker order</a>. The encoding, precision, and channel roles together tell the audio pipeline how to interpret them.</p>
+<h2 id="why-data-does-not-always-start-at-byte-44">Why data does not always start at byte 44</h2>
+<p>A minimal PCM WAV layout is often associated with a 44-byte header. Extra metadata, an extended format description, or other chunks can move the beginning of data. A tool extracting samples by a hard-coded offset can consequently treat header bytes as sound or omit the first samples.</p>
+<p>The same principle applies to size limits. Classic RIFF chunk lengths are 32-bit, giving a practical limit around 4 GiB. <strong>RF64</strong> adds conventions for larger files; a reader needs those conventions rather than just a familiar extension. <a href="CAF-Container.html">CAF</a> uses another large-file-oriented design.</p>
+<p>For a WAV imported into Emby, the useful source description includes the encoding, actual sample format, channel roles, rate, and complete duration. These fields explain the sound's stored organization and the amount of data the chosen playback route will need.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

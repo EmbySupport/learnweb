@@ -106,10 +106,39 @@
 <h1>Perceptual Quantizer (PQ): SMPTE ST 2084</h1>
 
 
-<p><strong>Perceptual Quantizer (PQ)</strong> is the HDR transfer function standardized in SMPTE ST 2084. It gives encoded values an absolute display-light meaning, with a reference range extending to 10,000 nits. Its nonlinear shape distributes signal precision with human visual sensitivity in mind.</p>
-<p>That upper limit describes what the encoding can represent. It does not mean a film uses 10,000-nit highlights or that an HDR television must reach that brightness.</p>
-<p><img src="images/transfer-pq.png" alt="PQ EOTF with a linear luminance panel and a logarithmic luminance panel."></p>
-<p><em>ST 2084 reference EOTF for neutral gray. The left axis shows actual luminance; the right uses a logarithmic scale to reveal shadows. Zero luminance cannot appear on the logarithmic axis.</em></p>
+<p>A PQ signal assigns picture samples an absolute reference-display light meaning. A normalized signal of 0.5 requests approximately <strong>92.2 nits</strong> for neutral gray; it does not request half of an arbitrary television's brightest output.</p>
+<p><strong>Perceptual Quantizer (PQ)</strong> is standardized in SMPTE ST 2084. Its nonlinear function distributes precision across a reference-light range extending to 10,000 nits, taking human visual sensitivity into account.</p>
+<p><img src="images/transfer-pq.png" alt="PQ shown with a linear luminance panel and a logarithmic luminance panel."></p>
+<p><em>ST 2084 neutral-gray reference EOTF. The logarithmic panel reveals shadows; zero cannot be plotted on its logarithmic luminance axis.</em></p>
+<h2 id="follow-a-light-request-into-a-stored-sample">Follow a light request into a stored sample</h2>
+<p>A 100-nit neutral gray has a normalized PQ signal of approximately <strong>0.508078</strong>. That value is a signal coordinate, not a luminance percentage. Encoding into a numerical format comes next.</p>
+<p>For an illustrative 10-bit narrow-range neutral-gray component, nominal black is code 64 and the top nominal signal is code 940. There are 876 intervals between those endpoints. Rounding 64 + 876 × 0.508078 gives <strong>code 509</strong>.</p>
+<p>On interpretation, (509 − 64) / 876 gives approximately 0.507991. Applying PQ recovers about <strong>99.913 nits</strong>. The slight difference from 100 is the finite-precision rounding in this example.</p>
+<p>That chain connects three representations:</p>
+<table>
+<thead>
+<tr>
+<th>Representation</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Intended neutral-gray light</td>
+<td>100 nits</td>
+</tr>
+<tr>
+<td>Normalized nonlinear PQ signal</td>
+<td>About 0.508078</td>
+</tr>
+<tr>
+<td>Stored 10-bit narrow-range component</td>
+<td>509</td>
+</tr>
+</tbody>
+</table>
+<p>A player needs the correct range before applying PQ. Treating the integer 509 as a full-range value would produce a different normalized signal and therefore another light request. For colored video, component and primary interpretation also participate in recovering the intended picture.</p>
+<h2 id="read-the-curves-unequal-spacing">Read the curve's unequal spacing</h2>
 <table>
 <thead>
 <tr>
@@ -136,11 +165,16 @@
 </tr>
 </tbody>
 </table>
-<p>The table is calculated from the inverse of the standard's EOTF. These normalized values are not raw 10-bit code values; numerical range must also be accounted for when storing them.</p>
-<h2 id="why-pq-needs-appropriate-playback">Why PQ needs appropriate playback</h2>
-<p>Imagine a highlight encoded for 1,000 nits and an output that can reproduce only 400. Correctly understanding PQ identifies the requested light level, but cannot make the display produce it. A subsequent <a href="../../tone-mapping/fundamentals/Tone-Mapping-Why.html">tone-mapping decision</a> determines how to fit that highlight alongside the rest of the image.</p>
-<p>Treating PQ values as an ordinary SDR gamma signal changes their meaning. Relabeling the stream or turning up saturation cannot perform the required conversion.</p>
-<p>For Emby playback, distinguish the source signal from the output signal. The server may convert HDR during transcoding, or a capable playback renderer may adapt it locally. The <a class="xref" href="https://emby.media/support/articles/apps/windows/Emby-Windows-FAQ.html">Emby Windows documentation</a> describes rendering-stage tone mapping. PQ specifies the signal's light-level interpretation; it does not prescribe a single tone-mapping curve for every output screen.</p>
+<p>The large light changes in the table occupy uneven signal intervals. This lets a finite set of signal values serve a much wider luminance range than a simple linear allocation would. Bit depth then determines how finely those signal intervals are divided.</p>
+<p>The 10,000-nit endpoint defines the reference range of the function. An actual movie uses its own distribution of light levels; its brightest encoded content can be far below that endpoint. <a href="../../hdr/metadata-and-light-levels/HDR-MaxCLL-MaxFALL.html">Content-light metadata</a> and measured picture statistics describe aspects of that content.</p>
+<h2 id="the-equation-for-reproducing-the-values">The equation, for reproducing the values</h2>
+<p>For normalized signal V, use p = V^(1/m2), then:</p>
+<p><strong>L = 10,000 × [max(p − c1, 0) / (c2 − c3p)]^(1/m1)</strong></p>
+<p>The exact constants are m1 = 2610/16384, m2 = 2523/32, c1 = 3424/4096, c2 = 2413/128, and c3 = 2392/128. L is luminance in nits for neutral gray at the reference white chromaticity. The inverse function finds the PQ signal for a desired light level.</p>
+<h2 id="adapt-the-interpreted-picture-to-the-destination">Adapt the interpreted picture to the destination</h2>
+<p>Suppose a highlight requests 1,000 nits and the output's usable peak is 400. PQ identifies the request; it cannot expand the screen's light capability. A subsequent <a href="../../tone-mapping/fundamentals/Tone-Mapping-Why.html">tone-mapping decision</a> fits that highlight alongside the rest of the picture.</p>
+<p>A capable renderer can retain PQ's intended light relationship over a supported range and adapt the regions beyond the display's useful output. An SDR conversion instead prepares values with an SDR transfer meaning after brightness and color processing.</p>
+<p>For Emby playback, these operations can happen in a server conversion or in local presentation. The <a class="xref" href="https://emby.media/support/articles/apps/windows/Emby-Windows-FAQ.html">Windows app documentation</a> describes presentation-stage tone mapping. The source transfer, actual content range, and destination are each inputs to understanding the delivered appearance.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

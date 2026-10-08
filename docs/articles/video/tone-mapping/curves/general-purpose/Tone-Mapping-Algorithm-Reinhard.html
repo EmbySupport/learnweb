@@ -106,41 +106,48 @@
 <h1>Tone Mapping Curve: Reinhard</h1>
 
 
-<p>Reinhard gives a simple answer to a difficult problem: progressively compress brighter values so that even an extremely bright input can fit below the output's maximum white. It takes its name from Erik Reinhard, coauthor of the 2002 paper <a href="https://doi.org/10.1145/566654.566575">Photographic Tone Reproduction for Digital Images</a>.</p>
-<p>The simplest version is <code>output = input / (1 + input)</code>. Here, input is an already scaled, linear-light value; output white is 1. These are not video code values or measurements in nits.</p>
+<p>Start with the simple relationship <strong>T(x) = x/(1+x)</strong> for an already scaled linear-light input. At small x, the denominator is near one. As x grows, the denominator grows too, making further input increases contribute less output.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: right;">Input</th>
-<th style="text-align: right;">Output, rounded</th>
+<th style="text-align: right;">Input x</th>
+<th style="text-align: right;">Basic output</th>
+<th style="text-align: right;">Output after normalization to peak 8</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align: right;">0.1</td>
-<td style="text-align: right;">0.091</td>
+<td style="text-align: right;">0.0909</td>
+<td style="text-align: right;">0.1023</td>
 </tr>
 <tr>
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.5000</td>
+<td style="text-align: right;">0.5625</td>
 </tr>
 <tr>
 <td style="text-align: right;">4</td>
-<td style="text-align: right;">0.800</td>
+<td style="text-align: right;">0.8000</td>
+<td style="text-align: right;">0.9000</td>
 </tr>
 <tr>
-<td style="text-align: right;">10</td>
-<td style="text-align: right;">0.909</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">0.8889</td>
+<td style="text-align: right;">1.0000</td>
 </tr>
 </tbody>
 </table>
-<p>Notice how much less room remains between the last two outputs. Bright details still have different values, but their contrast is reduced. The same compression also reaches into ordinary tones: an input of 1 becomes 0.5. This explains why preserving highlights can come with a flatter or dimmer-looking picture.</p>
-<p>Those numbers illustrate the basic equation from the <a href="https://web.tecgraf.puc-rio.br/%7Escuri/inf1378/pub/reinhard.pdf">paper</a>, not the exact output of an Emby playback session. Video implementations can adjust the curve and normalize it to a finite source peak; <a href="https://github.com/FFmpeg/FFmpeg/blob/n8.1/libavfilter/vf_tonemap.c">FFmpeg's software <code>tonemap</code> filter</a> does both.</p>
-<p><img src="images/tone-mapping-curve-reinhard.png" alt="FFmpeg Reinhard curve normalized to a source peak of eight, with a close-up of lower values."></p>
-<p><em>FFmpeg 8.1 Reinhard curve: parameter 0.5, source peak 8, output white 1, relative linear-light values for neutral gray. Dashed gray shows clipping.</em></p>
-<p>At input 1, this peak normalization raises the basic equation's result from 0.5 to 0.5625. The graph represents the stated implementation, not an Emby preset.</p>
-<p>There is another useful distinction when reading comparisons: the original research also includes exposure scaling and a spatially varying method. FFmpeg's <strong>Reinhard</strong> option implements a global curve, so a result produced by the full photographic method is not automatically representative of that setting.</p>
-<p>For the alternative idea of leaving lower values unchanged and compressing only above a chosen transition, see <a href="Tone-Mapping-Algorithm-Mobius.html">Mobius</a>.</p>
+<p>The basic function approaches one gradually. At a finite source peak of eight, its endpoint is eight-ninths. Multiplying by nine-eighths makes that known peak reach one and also raises the other mapped values.</p>
+<p><img src="images/tone-mapping-curve-reinhard.png" alt="FFmpeg Reinhard mapping normalized to source peak eight, with a lower-input close-up."></p>
+<p><em>FFmpeg 8.1, public parameter 0.5, source peak 8, output white 1, relative linear light for neutral gray. Dashed gray shows clipping.</em></p>
+<h2 id="read-the-compressed-separation">Read the compressed separation</h2>
+<p>Inputs 4 and 8 are four units apart, but the normalized outputs differ by only 0.1. The values remain ordered and distinct; much less output contrast separates them. An input of one moves to 0.5625, showing that this mapping also changes ordinary levels.</p>
+<p>Uniform division by eight would put the same input of one at 0.125. The nonlinear relationship spends more of the output on the lower region and compresses the top more strongly. That is the actual compromise visible in the plot.</p>
+<h2 id="distinguish-the-curve-from-the-complete-photographic-operator">Distinguish the curve from the complete photographic operator</h2>
+<p>Reinhard and coauthors' original photographic tone-reproduction work also includes exposure scaling and a spatially varying method. A global function called Reinhard in a video filter represents one part of that family, with its own parameter and peak convention.</p>
+<p>FFmpeg's stated parameter corresponds to the normalized function in the table. In general its scalar form is x/(x+k) × (P+k)/P, with k derived from the public parameter. Changing k or P changes the mapping even before surrounding color operations.</p>
+<p>When comparing an Emby conversion, identify the actual curve implementation and normalization, then inspect both ordinary objects and highlight texture. The arithmetic here explains their relative placement rather than assuming the historical photographic method and a video option produce identical pictures.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

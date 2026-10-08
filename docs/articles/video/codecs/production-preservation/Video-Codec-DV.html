@@ -106,35 +106,80 @@
 <h1>DV Video</h1>
 
 
-<p><strong>DV video</strong> is the compressed video found in many digital tape recordings and their file transfers. Common consumer standard-definition DV uses roughly 25 Mb/s for the coded video. The complete DV data stream also carries audio and other information, so that figure is not its total file rate.</p>
-<p>DV compresses pictures independently. A transfer that copies the digital DV data from a tape preserves that existing compressed video; creating H.264 instead introduces a separate decoding and encoding step.</p>
+<p>When a digital tape transfer copies <strong>DV data</strong>, it can preserve the tape's existing compressed representation. The computer is receiving the encoded video, audio, and associated recording data rather than necessarily making a new picture encode.</p>
+<p>That distinction explains both the value of a copied transfer and its familiar large file rate.</p>
+<h2 id="what-dv25-counts">What DV25 counts</h2>
+<p>Common consumer SD DV has roughly <strong>25 Mb/s of coded video</strong>. A complete DV data stream includes more than the video payload.</p>
 <table>
 <thead>
 <tr>
-<th>Common SD recording system</th>
-<th>Stored picture size</th>
+<th>Common consumer system</th>
+<th>Stored picture grid</th>
 <th>Frame rate</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>525/60 consumer DV</td>
+<td>525/60</td>
 <td>720 × 480</td>
 <td>30000/1001, approximately 29.97 fps</td>
 </tr>
 <tr>
-<td>625/50 consumer DV</td>
+<td>625/50</td>
 <td>720 × 576</td>
 <td>25 fps</td>
 </tr>
 </tbody>
 </table>
-<p><em>Common consumer recording formats, not the complete DV family. A system's line count includes lines outside the active stored picture.</em></p>
-<h2 id="what-matters-in-a-tape-transfer">What matters in a tape transfer?</h2>
-<p>DV's stored pixels are commonly non-square. The same stored dimensions can represent different display aspect ratios, so resizing according to width and height alone can stretch a transfer. Follow its <a href="../../geometry/aspect-ratios/Video-Pixel-Aspect-Ratio.html">aspect information</a> when creating a playback version.</p>
-<p>Interlaced recordings also preserve motion across two field instants. Check the actual <a href="../../frame-timing/interlacing-and-cadence/Video-Field-Order.html">field order</a> and decide how the progressive output should retain that motion. Deinterlacing and changing the codec answer different questions.</p>
-<p>For Emby, keep a copied DV transfer as a source and assess a separate delivery version on the intended apps. DV decoding, container handling, and interlacing support determine whether a particular source can play directly or needs conversion.</p>
-<p>DV is already compressed and normally lossy. Copying its bytes preserves the tape's digital representation, but does not make the original camera recording lossless. Re-encoding at a higher bitrate cannot recover detail discarded during capture.</p>
+<p><em>Selected SD forms, not every professional or HD member of the DV family.</em></p>
+<p>The system's 525/625 line designation includes lines beyond the active stored picture. Its complete DV frame is organized in <strong>Digital Interface (DIF) blocks</strong>, which provide the transferable structure.</p>
+<h2 id="count-a-complete-frame">Count a complete frame</h2>
+<p>A DIF block has <strong>80 bytes</strong>. A sequence contains <strong>150 blocks</strong>, allocated as:</p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th style="text-align: right;">Blocks in one sequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Header</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>Subcode</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td>Video auxiliary</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td>Audio</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr>
+<td>Video</td>
+<td style="text-align: right;">135</td>
+</tr>
+</tbody>
+</table>
+<p>The total is <strong>150</strong>. The 25-Mb/s structure has ten such sequences per 525/60 frame or twelve per 625/50 frame:</p>
+<ul>
+<li>525/60: 80 × 150 × 10 = <strong>120,000 bytes/frame</strong>.</li>
+<li>625/50: 80 × 150 × 12 = <strong>144,000 bytes/frame</strong>.</li>
+</ul>
+<p>For the 25 fps form, that is <strong>144,000 × 25 = 3,600,000 bytes/s</strong>, or <strong>28.8 Mb/s</strong>, for the complete stream. One hour is <strong>12.96 decimal GB</strong> before an additional file wrapper's overhead.</p>
+<p>The apparent disagreement with “DV25” is thus a difference in what is being counted. The complete representation carries audio and structural/auxiliary data alongside its coded picture information.</p>
+<h2 id="reconstruct-the-independently-coded-picture">Reconstruct the independently coded picture</h2>
+<p>DV picture compression works within a frame rather than relying on a long picture-to-picture prediction chain. This gives editing software direct access to individual recorded pictures once their data is located.</p>
+<p>The ordinary picture coding is lossy. Copying the DV bytes avoids another video-encoding generation; it preserves the camera's encoded result rather than changing that result into an uncompressed original.</p>
+<p>An export that decodes DV and then makes H.264 is a new representation. The two jobs can be useful for different purposes: retaining the transferred source and creating a delivery copy.</p>
+<h2 id="present-the-source-picture-correctly">Present the source picture correctly</h2>
+<p>The reconstructed raster also needs its display interpretation. Standard-definition DV often uses nonsquare pixel presentation, and the same stored dimensions can describe different intended aspect ratios. <a href="../../geometry/aspect-ratios/Video-Pixel-Aspect-Ratio.html">Aspect information</a> supplies that geometry.</p>
+<p>Native interlaced recordings contain two field capture times in each frame. For progressive presentation, <a href="../../frame-timing/interlacing-and-cadence/Video-Field-Order.html">field order</a> and the chosen <a href="../../frame-timing/interlacing-and-cadence/Deinterlacing.html">reconstruction cadence</a> determine how their motion is retained.</p>
+<p>This is the information a playback or conversion stage needs from the transferred recording. A correctly copied DV source preserves that data for an Emby playback version whose picture shape and field motion can then be interpreted deliberately.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

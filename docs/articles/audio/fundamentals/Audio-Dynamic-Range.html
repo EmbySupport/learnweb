@@ -106,35 +106,46 @@
 <h1>Audio Dynamic Range</h1>
 
 
-<p>A whisper followed by an explosion can be difficult to hear comfortably at one volume setting. That is an example of a recording using a wide <strong>dynamic range</strong>: quiet and loud passages are far apart.</p>
-<p>The same term also describes a system's usable range, from its noise floor to the largest signal it can handle cleanly. A recording's level variation and a device's capacity are related, but they are different quantities.</p>
+<p>You turn up a film to hear a whispered sentence, then turn it down when the next scene explodes. The soundtrack spans a wide range of programme levels. A device specification describing “dynamic range” asks a related but different question: <strong>how much usable level fits between its noise floor and its largest clean signal?</strong></p>
+<h2 id="follow-a-listening-example">Follow a listening example</h2>
+<p>Suppose a loud event peaks at −2 dBFS and a quiet passage has a representative level of −42 dBFS. Those two selected levels are 40 dB apart. The quiet passage's amplitude is one hundredth of the peak amplitude, because 20 × log10(100) = 40 dB.</p>
+<p>If both are lowered by 10 dB, they move to −12 and −52 dBFS. Their difference remains 40 dB. A volume control shifts the range; it does not narrow it.</p>
+<p>A listener in a noisy room can therefore lose the quiet passage under the ambient sound while the peaks still sound loud. Playback gain, loudspeaker capacity, room noise, and the recording's dynamics all participate.</p>
 <table>
 <thead>
 <tr>
-<th>Use of “dynamic range”</th>
-<th>What is being compared</th>
+<th>Change</th>
+<th>Effect on the selected levels</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>A soundtrack's dynamics</td>
-<td>Quiet and loud parts of the programme</td>
+<td>Lower overall gain by 10 dB</td>
+<td>Both move down by 10 dB</td>
 </tr>
 <tr>
-<td>A converter's usable range</td>
-<td>Noise floor and maximum clean signal</td>
+<td>Reduce loud sections more than quiet sections</td>
+<td>The range narrows</td>
 </tr>
 <tr>
-<td>Crest factor</td>
-<td>Peak amplitude and RMS amplitude over the same interval</td>
+<td>Lower the system's noise floor</td>
+<td>Quieter details can remain distinguishable</td>
+</tr>
+<tr>
+<td>Add clean output headroom</td>
+<td>Larger peaks can fit without overload</td>
 </tr>
 </tbody>
 </table>
-<p>Crest factor is useful for describing peaks, but does not by itself measure the difference between a quiet scene and a loud one. Measurements also depend on the chosen interval and method; a single unlabeled “DR” number can be ambiguous.</p>
-<h2 id="decibels-describe-a-ratio">Decibels describe a ratio</h2>
-<p>For comparable signal amplitudes, the level difference is <code>20 × log10(larger / smaller)</code>. An amplitude ratio of 1,000 to 1 gives 60 dB. This is a calculated ratio, not an absolute listening volume. The sound pressure in the room also depends on the playback gain and the speakers.</p>
-<p>More integer <a href="sample-representation/Audio-Bit-Depth.html">bit depth</a> can lower the quantization limit, but it does not force a soundtrack to use wider dynamics. A highly compressed mix can occupy 24-bit storage just as easily as an uncompressed musical performance.</p>
-<p>When watching through Emby at night, lowering the volume reduces loud and quiet parts together. Processing that narrows the level difference can make quiet passages easier to hear without increasing peaks as much. Its availability and behavior depend on the actual player, decoder, and output system. The source track's bitrate or channel count does not tell you whether that processing is active.</p>
+<p>A dialogue boost or dynamic-range processor can change the relationship between the chosen programme levels. That is the relevant mechanism for a night-listening option, rather than merely selecting another file bitrate.</p>
+<h2 id="capacity-and-actual-use">Capacity and actual use</h2>
+<p>An integer PCM representation supplies a finite amplitude grid. Its quantization error sets one theoretical limit on usable low-level detail. More <a href="sample-representation/Audio-Bit-Depth.html">bit depth</a> makes that grid finer; a real recording can encounter microphone or room noise before reaching that limit.</p>
+<p>A soundtrack need not use all the available range. A heavily compressed mix can be stored at 24-bit precision, while another 24-bit mix may retain large contrasts. Bit depth describes capacity; the mix's level behavior describes its use.</p>
+<p>A device's dynamic range is measured with a specified bandwidth, weighting, and test method. Those conditions belong with the quoted number. They differ from selecting two scenes and comparing their programme levels.</p>
+<h2 id="peak-to-average-behavior-is-another-measurement">Peak-to-average behavior is another measurement</h2>
+<p><strong>Crest factor</strong> compares peak amplitude with RMS amplitude over the same interval. A pure sine with peak 1 has RMS 1/√2, giving a crest factor of about 3.01 dB. A brief transient over a quiet background can have a much larger crest factor.</p>
+<p>That does not by itself measure the contrast between an entire whisper scene and an explosion scene. Results change with the interval used, and a silence-heavy passage can produce a very different ratio from a dense one.</p>
+<p>When interpreting a “DR” figure for music, identify its measurement method and selected time windows. For playback, decide whether the problem is background noise masking quiet material, overload at peaks, or an inconvenient contrast in the mix. Those lead respectively toward a quieter listening environment or noise floor, more clean headroom, or level-dependent processing.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

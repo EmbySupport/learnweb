@@ -106,37 +106,46 @@
 <h1>Video Pixel Aspect Ratio</h1>
 
 
-<p>A video sample does not always represent a square on the screen. <strong>Pixel aspect ratio (PAR)</strong> describes its intended width relative to its height. PAR 1:1 means square pixels; PAR 4:3 means that each sample is presented one-third wider than it is tall.</p>
-<p>FFmpeg calls this <strong>sample aspect ratio</strong>, often abbreviated SAR. Other contexts use SAR for the stored frame's width-to-height ratio, so check the tool's definition before comparing numbers.</p>
+<p>A 1440 × 1080 picture shown with square pixels is 4:3. To present the same grid as 16:9, each horizontal sample interval must appear wider. The required multiplier is:</p>
+<p><strong>(16/9) ÷ (1440/1080) = 4/3.</strong></p>
+<p>That multiplier is the <strong>pixel aspect ratio (PAR)</strong>: the intended width of a picture sample relative to its height. It describes presentation spacing, rather than a little physical rectangle stored in the file.</p>
 <p><img src="images/pixel-aspect-ratio.svg" alt="The same sample grid is shown with square pixels and with wider pixels."></p>
-<p><em>Original schematic. Both grids contain the same number of samples; their presentation widths differ.</em></p>
+<p><em>The two grids contain the same number of samples. Only their presentation spacing differs.</em></p>
+<p>At PAR 4:3, the equivalent square-pixel display width is 1440 × 4/3 = <strong>1920</strong>, with the height still 1080. A face that looked too thin when the samples were treated as square takes its intended shape when the spacing is applied.</p>
+<h2 id="two-equivalent-representations">Two equivalent representations</h2>
+<p>The intended picture can be carried in either of these forms:</p>
 <table>
 <thead>
 <tr>
-<th>Pixel aspect ratio</th>
-<th>What it does to an unchanged grid</th>
+<th>Representation</th>
+<th>Stored grid</th>
+<th>PAR</th>
+<th>Display shape</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1:1</td>
-<td>Preserves the grid's numerical width-to-height ratio</td>
-</tr>
-<tr>
+<td>Anamorphic grid</td>
+<td>1440 × 1080</td>
 <td>4:3</td>
-<td>Makes the displayed picture one-third wider</td>
+<td>16:9</td>
 </tr>
 <tr>
-<td>16:15</td>
-<td>Makes the displayed picture about 6.7% wider</td>
+<td>Resampled square-pixel grid</td>
+<td>1920 × 1080</td>
+<td>1:1</td>
+<td>16:9</td>
 </tr>
 </tbody>
 </table>
-<h2 id="why-the-metadata-matters">Why the metadata matters</h2>
-<p>A 1440 × 1080 frame has a stored ratio of 4:3. With PAR 4:3, its display ratio becomes 16:9. Treating the samples as square squeezes the picture horizontally, even though every sample is still present.</p>
-<p>That makes PAR particularly useful when investigating older television recordings and <a href="Anamorphic-Video.html">anamorphic sources</a> in an Emby library. Different files with identical stored dimensions can legitimately have different display shapes.</p>
-<p>Changing a PAR flag tells the player to interpret the existing samples differently. It does not resample the image or create additional detail. Converting the picture to an equivalent square-pixel grid is a separate processing operation.</p>
-<p>Be cautious with standard-definition rules copied from a format name. Whether a workflow describes the whole coded raster or a smaller active region can affect the expected ratio. The encoded signaling, container display information, and a recognizable object in the picture provide better evidence than dimensions alone.</p>
+<p>The first form keeps 1,440 horizontal sample positions and relies on presentation information. The second calculates 1,920 output samples from those positions. Resampling makes the dimensions convenient for square-pixel display, but the source still supplied only 1,440 independent horizontal observations.</p>
+<p>A metadata correction changes the interpretation of the existing samples. A resampling operation changes the array of sample values. These operations need to be distinguished during conversion so the intended display shape survives.</p>
+<p>For example, after resampling this source to 1920 × 1080 square pixels, carrying its old PAR 4:3 into the output would make the picture wider again. The output geometry and output PAR must describe the same representation.</p>
+<h2 id="work-backward-from-a-known-frame-shape">Work backward from a known frame shape</h2>
+<p>For a rectangular, unrotated frame without an additional display crop:</p>
+<p><strong>PAR = intended DAR ÷ (stored width ÷ stored height).</strong></p>
+<p>If a full 720 × 576 raster is intended as 4:3, the calculation gives (4/3) ÷ (720/576) = <strong>16:15</strong>. This is a full-raster numerical example. Some standard-definition workflows describe a smaller active region instead, so that region must be used in the calculation when it is the signaled display rectangle.</p>
+<p>PAR often appears as <strong>SAR, sample aspect ratio</strong>, in FFmpeg and media inspection. Both refer to the sample's presentation proportions in that terminology. The file's dimensions, its aspect signaling, and any crop together define the rectangle whose shape the player presents.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

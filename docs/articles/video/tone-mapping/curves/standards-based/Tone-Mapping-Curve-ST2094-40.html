@@ -106,37 +106,41 @@
 <h1>Tone Mapping Curve: ST 2094-40 in libplacebo</h1>
 
 
-<p>The ST 2094-40 mapping used by libplacebo can take its shape from dynamic metadata. A knee marks a transition, and Bézier control points describe the curved section above it. The mapper can then adapt that shape for a display whose peak differs from the metadata's target.</p>
-<p>This is more flexible than assigning one permanent curve to an entire film.</p>
-<p><img src="images/tone-mapping-curve-st2094-40.png" alt="Fallback ST 2094-40 brightness curve calculated without HDR10+ Bézier metadata."></p>
-<p><em>libplacebo 7.360.1 fallback, 1,000 → 100 nits, zero black levels, default constants, no scene average and no metadata curve anchors. Real metadata can produce a different curve.</em></p>
-<h2 id="what-happens-without-the-metadata">What happens without the metadata?</h2>
-<p>The graph deliberately shows that case. libplacebo constructs a fallback curve from its brightness-matching rules instead of requiring a complete metadata-defined Bézier curve.</p>
-<p>The presence of a setting called ST 2094-40 therefore does not prove that a particular film's <a href="../../../hdr/formats/HDR10-Plus.html">HDR10+ metadata</a> reached the mapper or was used. It could be operating through this fallback.</p>
+<p>The ST 2094-40 mapper in libplacebo can use a content-supplied knee and Bézier curve anchors. It then adapts that prepared relationship to the actual output range. When those anchors are absent, the implementation constructs a fallback curve.</p>
+<h2 id="how-an-anchor-changes-the-curved-section">How an anchor changes the curved section</h2>
+<p>A knee specifies the transition into the upper mapping, with input and output coordinates. The section above it is normalized between that transition and its endpoint. Bézier controls shape how the output travels between those ends.</p>
+<p>For a simple mathematical illustration, a quadratic section with endpoint controls zero and one and middle control a is:</p>
+<p><strong>B(t) = 2a × t(1−t) + t²</strong></p>
+<p>At t = 0.5, a = 0.25 gives output 0.375, while a = 0.75 gives 0.625. Both sections still start at zero and end at one. Moving a control changes the middle shape rather than changing those endpoints. The controls shape the curve; they are not ordinary measured image samples that the curve must pass through.</p>
+<p>Actual metadata defines its knee, anchor set, and target under the standard's conventions. The mapper accounts for a destination whose peak differs from that prepared target. It can also use source brightness information when a content-provided curve is unavailable.</p>
+<h2 id="read-the-missing-anchor-case-explicitly">Read the missing-anchor case explicitly</h2>
+<p><img src="images/tone-mapping-curve-st2094-40.png" alt="ST 2094-40 fallback without content-provided HDR10+ curve anchors."></p>
+<p><em>libplacebo 7.360.1 fallback, defaults, 1,000-nit source, 100-nit target, zero black, no scene average or curve-anchor metadata.</em></p>
+<p>The displayed fallback maps 100 nits to approximately <strong>48.42 nits</strong> and 500 to approximately <strong>98.68</strong>. This shows one generated relationship under those inputs. A real metadata-defined relationship can select another shape.</p>
+<h3 id="follow-the-available-information">Follow the available information</h3>
 <table>
 <thead>
 <tr>
-<th>Available information</th>
-<th>Consequence</th>
+<th>Information reaching the mapper</th>
+<th>Operation available</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Curve anchors and target information</td>
-<td>A content-provided curve can be adapted</td>
+<td>Knee, anchors, and their target</td>
+<td>Adapt the prepared content curve</td>
 </tr>
 <tr>
-<td>Different destination peak</td>
-<td>The original curve may need adjustment</td>
+<td>Source statistics</td>
+<td>Use them in brightness matching or curve construction</td>
 </tr>
 <tr>
-<td>Missing curve metadata</td>
-<td>The implementation uses a generated fallback</td>
+<td>No complete anchor set</td>
+<td>Use the implementation's fallback construction</td>
 </tr>
 </tbody>
 </table>
-<p>For an Emby playback investigation, the important distinction is between <strong>the selected mapping method</strong> and <strong>the information supplied to it</strong>. A remux, transcode, decoder, or renderer boundary can be relevant to the second question; the option name answers only the first.</p>
-<p>Like the other curve plots, this one isolates brightness. It does not demonstrate complete color rendering or certify a playback device's HDR10+ support. Looking at the actual metadata path is more informative than expecting every ST 2094-40 result to resemble one sample graph.</p>
+<p><a href="../../../hdr/formats/HDR10-Plus.html">HDR10+</a> supplies its prepared dynamic information through the delivery path. An Emby comparison needs to distinguish selecting this mapping function from actually delivering its source metadata to the function. Decoder and renderer boundaries determine that second part. The plotted caption identifies the specific fallback case so its shape can be interpreted correctly.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

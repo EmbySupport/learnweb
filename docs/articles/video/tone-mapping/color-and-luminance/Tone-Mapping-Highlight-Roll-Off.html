@@ -106,15 +106,14 @@
 <h1>Highlight Roll-Off in Tone Mapping</h1>
 
 
-<p>Highlight roll-off is the gently flattening part of a tone-mapping curve near its bright end. It lets successively brighter source values remain distinguishable while using progressively less of the remaining output range.</p>
-<p>Think of sunlight on a white shirt. Hard clipping can turn several bright folds into the same flat white. A roll-off can retain those folds, although the differences between them become smaller.</p>
-<p><img src="images/highlight-roll-off.svg" alt="Qualitative comparison of hard clipping and a smooth highlight shoulder. The shoulder begins below the output limit and gradually approaches it."></p>
-<p><em>Qualitative sketch, not a measured display response or a particular curve implementation. Axis spacing is illustrative.</em></p>
-<h2 id="the-knee-is-where-the-compromise-begins">The knee is where the compromise begins</h2>
-<p>The point where the response starts bending is often called the <strong>knee</strong>. Above it, the slope decreases: a large increase in source brightness produces a smaller increase in output brightness. BT.2390 describes an example that uses a smooth knee to adapt to a display's available luminance range.</p>
-<p>Starting the bend earlier gives the highlights more room to approach white. It also changes a wider part of the picture. Starting later can leave more ordinary tones alone, but squeezes the brightest details into a narrower output interval. A shoulder that is too compressed can preserve numerical differences that are barely visible to the viewer.</p>
-<p>The actual shape depends on the <a href="../curves/Tone-Mapping-Curves.html">curve</a> and its parameters. <a href="../curves/general-purpose/Tone-Mapping-Algorithm-Mobius.html">Mobius</a>, for example, has a lower section that remains unchanged before its transition, while Hable also shapes darker values. Roll-off is a feature of the response, not the name of a single algorithm.</p>
-<p>For an Emby playback comparison, inspect bright textures alongside faces and ordinary surfaces. Retaining a lamp's filament is less useful if the rest of the scene becomes undesirably dim. Also check saturated lights: preserving highlight brightness detail does not automatically preserve their color, which is part of <a href="Gamut-Mapping.html">gamut mapping</a>.</p>
+<p>Follow two bright folds in a white shirt. Clipping can give both the same maximum output. A highlight roll-off instead lets the brighter fold receive a little more output, while progressively reducing the room given to further source increases.</p>
+<p><img src="images/highlight-roll-off.svg" alt="A qualitative shoulder starts below the output ceiling and approaches it gradually, while clipping becomes flat."></p>
+<p><em>Qualitative sketch with illustrative axis spacing. It is not a measured display response or the plot of a specified implementation.</em></p>
+<p>The relevant property is <strong>slope</strong>. A smaller slope maps neighboring source levels closer together. A completely flat segment maps them to the same value. A shoulder can therefore retain ordering and some texture while compressing the light differences that made the texture strong in the source.</p>
+<h2 id="place-the-transition-while-there-is-room-above-it">Place the transition while there is room above it</h2>
+<p>The transition is often called a knee. Starting earlier changes more ordinary levels but leaves a larger output interval for the highest values. Starting later preserves more of the lower range while squeezing highlights into less remaining room.</p>
+<p>For one numerical example, the smooth mapping in the <a href="../curves/Tone-Mapping-Curves.html">curve overview</a> takes inputs 4 and 8 to 0.9 and one. It retains a distinction, but only 0.1 of the output separates a four-unit source difference. Keeping different numbers is one part of retaining visibly useful texture.</p>
+<p>The whole response matters in an Emby comparison: inspect the folds alongside faces and nearby ordinary surfaces, so an improved highlight is judged together with any changed lower tones. Saturated colored highlights also need <a href="Gamut-Mapping.html">color fitting</a>. Roll-off describes the brightness response's shoulder; it does not specify the complete color conversion.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

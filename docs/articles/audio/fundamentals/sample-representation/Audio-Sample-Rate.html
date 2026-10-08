@@ -106,40 +106,87 @@
 <h1>Audio Sample Rate</h1>
 
 
-<p><strong>Sample rate describes the spacing of audio samples in time.</strong> A 48 kHz track has 48,000 sample positions per second in every channel. It does not mean that the track contains a 48 kHz sound.</p>
-<p>For ordinary audio sampled around zero frequency, the highest representable frequency lies below half the sample rate. This boundary is the <strong>Nyquist frequency</strong>. Practical filters need some room before it, so the boundary is not a promise that every frequency up to that point is preserved equally well.</p>
 <table>
 <thead>
 <tr>
 <th style="text-align: right;">Sample rate</th>
-<th style="text-align: right;">Nyquist frequency</th>
+<th style="text-align: right;">Samples per channel in one second</th>
 <th style="text-align: right;">Time between samples</th>
+<th style="text-align: right;">Nyquist frequency</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td style="text-align: right;">8 kHz</td>
+<td style="text-align: right;">8,000</td>
+<td style="text-align: right;">125 microseconds</td>
+<td style="text-align: right;">4 kHz</td>
+</tr>
+<tr>
 <td style="text-align: right;">44.1 kHz</td>
-<td style="text-align: right;">22.05 kHz</td>
+<td style="text-align: right;">44,100</td>
 <td style="text-align: right;">22.68 microseconds</td>
+<td style="text-align: right;">22.05 kHz</td>
 </tr>
 <tr>
 <td style="text-align: right;">48 kHz</td>
-<td style="text-align: right;">24 kHz</td>
+<td style="text-align: right;">48,000</td>
 <td style="text-align: right;">20.83 microseconds</td>
+<td style="text-align: right;">24 kHz</td>
 </tr>
 <tr>
 <td style="text-align: right;">96 kHz</td>
-<td style="text-align: right;">48 kHz</td>
+<td style="text-align: right;">96,000</td>
 <td style="text-align: right;">10.42 microseconds</td>
+<td style="text-align: right;">48 kHz</td>
 </tr>
 </tbody>
 </table>
-<h2 id="what-goes-wrong-above-the-limit">What goes wrong above the limit</h2>
-<p><img src="images/audio-aliasing.png" alt="A high-frequency sine and its lower-frequency alias pass through the same sample positions"></p>
-<p><em>Calculated demonstration: at a deliberately low 1 kHz sample rate, a 700 Hz sine and an inverted 300 Hz sine have identical sample values. This illustrates ambiguity after aliasing; it is not a recommended recording setup.</em></p>
-<p>Once an out-of-band signal has aliased into the recording, increasing the rate afterward cannot identify and restore the original frequency. <a href="../Audio-Resampling.html">Resampling</a> changes the time grid of the available signal.</p>
-<p>The file's rate and the output device's rate can differ. A player or the operating system may convert 44.1 kHz material to a 48 kHz output while keeping the same pitch and duration. Merely relabeling the samples would change both.</p>
-<p>In Emby media information, sample rate is useful for understanding compatibility and the source format. A higher number alone does not prove a better recording, and it does not describe compression quality or the number of channels.</p>
+<p><strong>Sample rate sets the audio time grid.</strong> The interval is 1 divided by the rate. Every channel has the full grid: a 48 kHz six-channel track has 48,000 sample positions per second in each of its six channels.</p>
+<p>For a sine wave, the number of sample intervals per cycle is sample rate divided by frequency. At 48 kHz, a 1 kHz tone has 48 intervals per cycle; a 10 kHz tone has 4.8. That fractional result is normal: the tone need not complete an integer number of cycles between sample positions.</p>
+<h2 id="why-half-the-rate-matters">Why half the rate matters</h2>
+<p>The Nyquist frequency is half the sampling rate. For ordinary audio around zero frequency, ideal reconstruction needs the signal's frequency content restricted below that boundary. The significance is <strong>ambiguity</strong>, not a rule that high-frequency sound needs a prettier staircase.</p>
+<p><img src="images/audio-aliasing.png" alt="Two different sine waves agree at the sample positions"></p>
+<p><em>Calculated example at a deliberately low 1 kHz rate: a 700 Hz sine and an inverted 300 Hz sine give identical samples. The continuous curves differ; the measured dots do not.</em></p>
+<p>At sample index n, the first signal is sin(2π × 700 × n/1,000). The second is −sin(2π × 300 × n/1,000). Their phases differ by whole cycles at these instants, giving the same values:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Sample index</th>
+<th style="text-align: right;">Time</th>
+<th style="text-align: right;">Either sampled amplitude</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0 ms</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1 ms</td>
+<td style="text-align: right;">About −0.951</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2 ms</td>
+<td style="text-align: right;">About +0.588</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3 ms</td>
+<td style="text-align: right;">About +0.588</td>
+</tr>
+</tbody>
+</table>
+<p>A receiver given only that sequence cannot decide which original sine existed. Recording systems filter before sampling to prevent such ambiguity. Practical filters also require a transition band, so the Nyquist number is an ideal boundary rather than a guaranteed flat recording bandwidth.</p>
+<h2 id="the-rate-also-gives-the-samples-their-duration">The rate also gives the samples their duration</h2>
+<p>44,100 sample frames played at 44,100 per second last one second. Played at 48,000 per second, those same frames last 0.91875 seconds, with every frequency multiplied by 48,000/44,100.</p>
+<p>That is what <strong>changing the declared rate without resampling</strong> does: it changes speed and pitch. Proper <a href="../Audio-Resampling.html">resampling</a> instead calculates 48,000 values for the same one-second signal, preserving its intended timeline.</p>
+<h2 id="read-an-output-rate-in-the-right-place">Read an output rate in the right place</h2>
+<p>A 48 kHz output can carry music originally stored at 44.1 kHz after conversion, or an encoded low-bandwidth voice recording decoded onto that grid. The output rate identifies how fast values are presented, not the frequencies the source actually contains.</p>
+<p>For an Emby audio report, use the rate to interpret duration, decoder configuration, and conversion. Use <a href="../Audio-Bitrate.html">bitrate</a> for compressed data demand and <a href="Audio-Bit-Depth.html">bit depth</a> for PCM amplitude precision. Together they describe different parts of the representation.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

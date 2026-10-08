@@ -106,39 +106,47 @@
 <h1>Avid DNxHD Video</h1>
 
 
-<p><strong>Avid DNxHD</strong> is the familiar name for HD production workflows in the VC-3 video coding family. It encodes pictures independently, making it useful for editing, exchange, and retained production copies.</p>
-<p>Traditional DNxHD modes use defined HD raster and coding combinations. A label such as “DNxHD 145” belongs to a particular picture format and rate; the number should not be treated as a quality score that transfers unchanged to every frame rate.</p>
+<p>A legacy <strong>DNxHD</strong> name often includes a number such as 115, 120, or 145. Read it with the recording's picture format and frame rate. Those are nominal rate-oriented mode names, rather than a quality score that can be transferred unchanged to any raster.</p>
+<p>DNxHD is the established HD production use of the <strong>VC-3</strong> coding family. Its independently coded pictures support editing and exchange without a long temporal prediction chain.</p>
+<h2 id="a-picture-rate-changes-the-data-rate">A picture rate changes the data rate</h2>
+<p>Avid's published HD bandwidth table gives a <strong>1920 ×1080 SQ example with 602,112 coded bytes per frame</strong>. Using that fixed frame size:</p>
 <table>
 <thead>
 <tr>
-<th>Detail to record</th>
-<th>Why it matters</th>
+<th>Picture rate</th>
+<th>Calculation</th>
+<th style="text-align: right;">Video rate</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Raster and frame rate</td>
-<td>Select the applicable legacy coding mode</td>
+<td>24000/1001 fps</td>
+<td>602,112 ×24000/1001 ×8</td>
+<td style="text-align: right;">Approximately 115.490 Mb/s</td>
 </tr>
 <tr>
-<td>Quality or bitrate label</td>
-<td>Distinguishes representations within that mode</td>
+<td>25 fps</td>
+<td>602,112 ×25 ×8</td>
+<td style="text-align: right;">120.4224 Mb/s</td>
 </tr>
 <tr>
-<td>Bit depth and sample format</td>
-<td>Establish decoder and processing requirements</td>
-</tr>
-<tr>
-<td>Container</td>
-<td>Describes how the coded pictures and audio are packaged</td>
+<td>30000/1001 fps</td>
+<td>602,112 ×30000/1001 ×8</td>
+<td style="text-align: right;">Approximately 144.363 Mb/s</td>
 </tr>
 </tbody>
 </table>
-<p>DNxHD is compressed and lossy. Its suitability for production does not mean the reconstructed pictures are mathematically identical to the input. Retaining a good master can limit further <a href="../../encoding-quality/quality-changes-artifacts/Video-Generation-Loss.html">generation loss</a> during later delivery conversions.</p>
-<h2 id="the-naming-has-changed">The naming has changed</h2>
-<p>Avid now uses <strong>Avid DNx</strong> as the unified name, dropping the HD, HR, and GX suffixes from its newer naming scheme. That does not change what an older file contains. Read historical DNxHD modes in their original context rather than applying every capability of the newer unified codec to them.</p>
-<p><a href="Video-Codec-DNxHR.html">DNxHR</a> is the related name associated with resolution-independent production workflows. Neither suffix, nor the newer unified name, is enough to establish direct playback compatibility.</p>
-<p>For Emby, a DNxHD production file may need conversion into a format suitable for the app and available bandwidth. Preserve it as the source when creating that derivative. Encoding an already reduced consumer copy as DNxHD can make it easier to edit, but cannot restore lost texture or detail.</p>
+<p><em>Calculated from this published frame-size example, not a rule that every historical file carrying a115/120/145 label has exactly that payload.</em></p>
+<p>The per-picture representation is unchanged in the calculation. More pictures per second require more data each second. This explains why legacy nominal rates need the frame-rate context.</p>
+<p>For 25 fps, the byte rate is <strong>15,052,800 bytes/s</strong>, or 15.0528 decimal MB/s, approximately 14.36 MiB/s. Avid's current naming table explicitly uses the binary MiB/s convention. <a href="../../../media-files/fundamentals/bitrate-and-file-size/Media-Data-Units.html">Data units</a> matter when comparing that number with a network or storage description.</p>
+<h2 id="the-coded-mode-is-more-than-its-rate-name">The coded mode is more than its rate name</h2>
+<p>A decoder needs the applicable picture dimensions, sampling/precision and coding-mode information. VC-3 picture coding transforms and quantizes within-picture regions, then codes their coefficient information. Its mode identifiers and frame structure select the reconstruction behavior.</p>
+<p>The result is a lossy production picture with convenient independent access. Its quality depends on the source and chosen coding representation, while its nominal rate helps plan storage and transfer.</p>
+<p>A metadata inspector's broad codec name is only one field in that description. For example, FFmpeg groups DNxHD and DNxHR profiles within its <code>dnxhd</code> implementation. Inspecting the profile and raster distinguishes the actual representation even if that implementation family name is shared.</p>
+<h2 id="read-legacy-and-current-names-in-context">Read legacy and current names in context</h2>
+<p>Avid's newer naming scheme uses <strong>Avid DNx</strong>, removing the HD, HR and GX suffixes. It retains familiar quality-level names and adds broader capabilities and customizable rates.</p>
+<p>An older DNxHD file still contains its original mode. The current name does not rewrite its bits. The related <a href="Video-Codec-DNxHR.html">DNxHR</a> label identifies resolution-independent production workflows, while the newer unified codec should be read with its applicable specification and implementation.</p>
+<p>When using a legacy production copy as a source for an Emby viewing encode, keep its complete raster/rate/profile description attached to the file. That records the actual reconstruction input, while the delivery copy can have its own codec and data allocation.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -161,6 +169,7 @@
 			            <li><a class="seealso-link" href="https://pub.smpte.org/latest/st2019-1/st2019-1-2016.pdf" title="SMPTE ST 2019-1: VC-3 picture compression and data stream format (2016)">SMPTE ST 2019-1: VC-3 picture compression and data stream format (2016)</a></li>
 			            <li><a class="seealso-link" href="https://kb.avid.com/pkb/articles/en_US/Knowledge/Avid-DNx-naming-scheme-and-data-rates" title="Avid: DNx naming scheme and data rates">Avid: DNx naming scheme and data rates</a></li>
 			            <li><a class="seealso-link" href="https://developer.avid.com/" title="Avid: DNx SDK and specification overview">Avid: DNx SDK and specification overview</a></li>
+			            <li><a class="seealso-link" href="https://kb.avid.com/pkb/articles/en_US/Knowledge/DNxHR-Codec-Bandwidth-Specifications" title="Avid: DNxHR and HD coded-frame bandwidth table">Avid: DNxHR and HD coded-frame bandwidth table</a></li>
 			          </ul>
             </article>
           </div>

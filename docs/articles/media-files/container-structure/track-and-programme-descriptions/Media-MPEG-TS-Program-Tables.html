@@ -106,15 +106,27 @@
 <h1>MPEG-TS Program Tables: PAT and PMT</h1>
 
 
-<p>An MPEG transport stream can carry several television services in the same packet sequence. Each packet has a <strong>PID</strong>, a packet identifier, so a receiver can distinguish the pieces. It also needs a map showing which pieces belong together.</p>
-<p>The <strong>Program Association Table (PAT)</strong> identifies programmes and the PIDs of their <strong>Program Map Tables (PMTs)</strong>. A PMT then describes the elementary streams in one programme and identifies the PID used for its programme clock reference.</p>
+<p>Join a television transport stream halfway through a programme. Packets are arriving with many different <strong>PIDs</strong>, or packet identifiers. The receiver needs to learn which identifiers belong to the selected service before it can choose video and sound.</p>
+<p>The discovery route begins with the <strong>Program Association Table (PAT)</strong> on PID 0. It maps programme numbers to the PIDs carrying their <strong>Program Map Tables (PMTs)</strong>. Each PMT then describes that programme's components.</p>
 <p><img src="images/pat-pmt.svg" alt="A PAT maps programme 7 to a PMT, whose entries identify separate video and audio packet identifiers."></p>
-<p><em>Illustrative programme and stream PIDs. The PAT uses PID 0; the other values are examples.</em></p>
-<h2 id="a-programme-is-a-grouping">A programme is a grouping</h2>
-<p>One programme can contain video, several audio tracks, subtitles, and other data. “Programme” in this systems-layer sense is not the film or episode title shown in a library. A recorded broadcast can preserve more than one programme if the recording process does not select a single service.</p>
-<p>The tables repeat during transmission so a receiver joining later can learn the structure. They can also change when a service's stream arrangement changes.</p>
-<p>This explains why inspecting a television recording needs more than the first visible video track. <a href="../../inspection/Media-Inspection-ffprobe.html">ffprobe's programme output</a> can show which streams are grouped together, while language and descriptors help distinguish audio choices.</p>
-<p>For Emby, missing or inconsistent tables in a source can complicate stream discovery or playback. They are separate from the encoded picture quality. A receiver must first find the intended programme before it can decode the right media.</p>
+<p><em>Programme 7 and the nonzero PIDs are an example. The PAT's PID 0 is defined by MPEG systems.</em></p>
+<h2 id="follow-programme-7-through-the-map">Follow programme 7 through the map</h2>
+<ol>
+<li>Filter packets on PID 0 and assemble the PAT section.</li>
+<li>Find programme 7's entry: its PMT is carried on PID 0x0100.</li>
+<li>Filter that PID and assemble the PMT.</li>
+<li>Read its components: video at PID 0x0101 and audio at PID 0x0102 in this example.</li>
+<li>Use the stream descriptions and descriptors to route those components to the appropriate decoders.</li>
+</ol>
+<p>The transport headers identify packets, while tables describe what their identifiers mean. A PID is an address within this multiplex, not a globally meaningful name for an audio codec. Another recording can use different PIDs for the same kinds of component.</p>
+<p>A table section can occupy more than one transport packet. The receiver assembles it using section framing and can check its CRC before accepting the description. Repetition lets receivers discover the structure after joining, and table versions distinguish updated descriptions from repeats of the same information.</p>
+<h2 id="a-clock-and-several-component-timelines">A clock and several component timelines</h2>
+<p>The PMT also names the PID carrying the <strong>programme clock reference (PCR)</strong>. Here it is the video PID. PCR observations help a receiver relate packet delivery to the programme's clock; PTS and DTS then schedule presentation and decoding of the media against timing derived from that system.</p>
+<p>PCR need not be on a separate stream with its own pictures or sound. It can be carried in an adaptation field of packets that also belong to a media PID. That separates the clock's role from the audio/video payload's role.</p>
+<h2 id="when-the-programme-changes">When the programme changes</h2>
+<p>A service can add an audio component or change its assigned PID. A receiver observing the updated PMT can adjust the set of streams it follows. A short examination containing an old table, or not enough repeated signalling, can give an incomplete view.</p>
+<p>This is useful when inspecting a television recording for Emby. A transport file can preserve multiple programme groupings, and the first video found is not automatically the wanted service. <a href="../../inspection/Media-Inspection-ffprobe.html">Programme-aware inspection</a> follows the same hierarchy: programme identity, its component PIDs and descriptions, then the properties of the selected media.</p>
+<p>The programme number is a systems grouping. The film or episode name displayed in a library is descriptive information at another layer.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -132,6 +144,7 @@
 			          <h4 class="references seealso-heading">References</h4>
 			          <ul class="seealso-list reference-list">
 			            <li><a class="seealso-link" href="https://www.itu.int/rec/T-REC-H.222.0/en" title="ITU-T H.222.0 / ISO/IEC 13818-1: MPEG systems">ITU-T H.222.0 / ISO/IEC 13818-1: MPEG systems</a></li>
+			            <li><a class="seealso-link" href="https://raw.githubusercontent.com/FFmpeg/FFmpeg/n8.1/libavformat/mpegts.c" title="FFmpeg n8.1 MPEG-TS demuxer: PAT and PMT parsing">FFmpeg n8.1 MPEG-TS demuxer: PAT and PMT parsing</a></li>
 			          </ul>
             </article>
           </div>

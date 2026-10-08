@@ -106,35 +106,52 @@
 <h1>Virtual Surround</h1>
 
 
-<p><strong>Virtual surround uses signal processing to suggest sound positions beyond the available physical outputs.</strong> A headset marked “7.1,” for example, usually still has one main driver for each ear. The additional positions are represented by processed signals, not seven separate speakers around the listener.</p>
-<p>A headphone renderer can take a multichannel mix and filter each position into a <a href="Binaural-Audio.html">binaural presentation</a>. A speaker-based virtualizer works through a different acoustic arrangement, and can depend strongly on seating and the room.</p>
+<p>A headset marked “7.1” can reproduce virtual surround using one main driver per ear. The source positions are translated into <strong>directional cues</strong>, then combined into the two signals the headphones actually play.</p>
+<p>Virtual surround is this rendering job. It can operate after a conventional multichannel decoder or after a supported spatial decoder.</p>
+<h2 id="turn-several-speaker-positions-into-two-ear-signals">Turn several speaker positions into two ear signals</h2>
+<p>Consider front-left, center, and rear-right signals from a soundtrack. A headphone virtualizer treats each as a source at its assigned position:</p>
+<ol>
+<li>Choose the left-ear and right-ear filters associated with front left; filter that channel.</li>
+<li>Repeat for the center and rear right.</li>
+<li>Add all left-ear contributions together and all right-ear contributions together.</li>
+<li>Deliver the two resulting ear signals.</li>
+</ol>
+<p>The filters provide timing, level, and spectral relationships rather than merely making one channel louder. <a href="Binaural-Audio.html">Binaural audio</a> explains the directional cues and listener model.</p>
 <table>
 <thead>
 <tr>
-<th>Input presentation</th>
-<th>What a virtualizer can use</th>
+<th>What reaches the virtualizer</th>
+<th>Available starting information</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Discrete multichannel audio</td>
-<td>The existing channel positions</td>
+<td>Separate signals with channel positions</td>
 </tr>
 <tr>
-<td>Object-based audio with supported metadata</td>
-<td>The spatial descriptions provided by the source</td>
+<td>Supported objects and metadata</td>
+<td>Components with spatial instructions</td>
 </tr>
 <tr>
 <td>Ordinary stereo</td>
-<td>The information in two channels, possibly with derived spatial processing</td>
+<td>Two source signals, possibly used for derived spatial processing</td>
+</tr>
+<tr>
+<td>An existing binaural render</td>
+<td>Ear signals that have already been spatialized</td>
 </tr>
 </tbody>
 </table>
-<p>Virtualizing known surround positions and deriving new positions from stereo are different operations. A processor can make stereo feel wider or more enveloping without recovering separate surround recordings that never existed in the source.</p>
-<h2 id="convincing-space-depends-on-the-listener">Convincing space depends on the listener</h2>
-<p>Headphone spatialization uses timing and spectral cues associated with a head and ears. The model's fit, the headphones, and any head-tracking behavior affect the impression. “Virtual” describes the method, not a guarantee that every listener hears the same convincing external soundstage.</p>
-<p>For Emby playback, the processing may live in the operating system, headset software, television, soundbar, or receiver. The source track and the server's delivery method do not identify which of those effects is active.</p>
-<p>A stored binaural track already has ear-specific cues. Passing it through another spatializer may alter them. Likewise, a stereo-only path can leave a virtualizer with fewer source positions than a preserved multichannel path. To compare listening modes meaningfully, use the same track and level, and distinguish the detected input format from the system's selected effect.</p>
+<p>Virtualizing an existing rear channel and deriving a new rear impression from stereo are different tasks. An upmixer can perform the second before virtualization, but does not give the processor access to original channels that were previously combined.</p>
+<h2 id="speakers-require-another-acoustic-strategy">Speakers require another acoustic strategy</h2>
+<p>A speaker-based virtualizer has to account for each loudspeaker being heard by both ears. Some approaches shape or partly cancel the cross-ear paths to suggest positions beyond the physical speakers. Reflections, seating position, and listener movement affect that acoustic relationship.</p>
+<p>A method that works through headphones therefore cannot simply be assumed to give the same result through a soundbar. The input-to-ear path is different.</p>
+<h2 id="put-the-rendering-at-the-intended-stage">Put the rendering at the intended stage</h2>
+<p>During Emby playback, the system might deliver multichannel audio to a headphone renderer in the player or operating system. A different path might downmix to stereo earlier, leaving headset software only that smaller presentation.</p>
+<p>If a rear-channel identification sound disappears as a distinct position, inspect what the spatializer received. Keeping the source multichannel until a suitable renderer uses it preserves more positional information than first collapsing it into ordinary stereo.</p>
+<p>Also identify whether the track itself already contains a binaural render. Filtering those ear signals again changes their prepared timing and spectral cues; adding another effect is not simply adding more original spatial detail.</p>
+<p>A useful comparison uses the same source, roughly matched listening level, and one identified spatial-processing stage at a time. Listen for specific front/rear transitions and stable dialogue placement. That reveals what the renderer does to the input positions rather than just whether its mode sounds wider.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -154,6 +171,7 @@
 			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows-hardware/drivers/audio/virtualized-surround-sound-over-headphones" title="Microsoft: Virtualized surround sound over headphones">Microsoft: Virtualized surround sound over headphones</a></li>
 			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/coreaudio/spatial-sound" title="Microsoft: Spatial sound and object rendering">Microsoft: Spatial sound and object rendering</a></li>
 			            <li><a class="seealso-link" href="https://dts.com/dts-headphonex/" title="DTS Headphone:X">DTS Headphone:X</a></li>
+			            <li><a class="seealso-link" href="https://professional.dolby.com/siteassets/tv/home/dolby-atmos/dolby-atmos-for-sound-bar-applications.pdf" title="Dolby: Sound bar surround virtualization and crosstalk cancellation">Dolby: Sound bar surround virtualization and crosstalk cancellation</a></li>
 			          </ul>
             </article>
           </div>

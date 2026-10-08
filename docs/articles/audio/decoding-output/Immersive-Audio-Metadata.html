@@ -106,37 +106,56 @@
 <h1>Preserving Immersive Audio Metadata</h1>
 
 
-<p>An immersive soundtrack includes <strong>information about how sound should be rendered</strong>, as well as audio. Object positions and related metadata let a renderer adapt the presentation to a supported speaker or headphone arrangement.</p>
-<p>Keeping the audio audible is therefore a smaller requirement than keeping all the spatial information available for later rendering.</p>
-<h2 id="three-different-results">Three different results</h2>
+<p>A moving sound needs both its audio and instructions about its position through time. If the goal is <strong>letting the receiver render the original immersive scene</strong>, the required spatial information must remain available until that receiver's renderer uses it.</p>
+<p>Preservation depends on where the scene is decoded, transformed, and finally rendered.</p>
+<h2 id="make-a-boundary-ledger">Make a boundary ledger</h2>
+<p>For an illustrative Atmos source:</p>
 <table>
 <thead>
 <tr>
-<th>Playback path</th>
-<th>Spatial information at the next stage</th>
+<th>Boundary or operation</th>
+<th>Information carried onward</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Supported encoded passthrough</td>
-<td>Relevant information remains in the delivered bitstream</td>
+<td>Copy compatible encoded source data</td>
+<td>Audio and relevant spatial information in that bitstream</td>
 </tr>
 <tr>
-<td>Object-aware decoding and suitable metadata-bearing output</td>
-<td>Audio and required spatial information continue together</td>
+<td>Object-aware decode to a suitable metadata-bearing output</td>
+<td>Reconstructed audio plus required spatial information</td>
 </tr>
 <tr>
-<td>Ordinary channel PCM output</td>
-<td>A channel presentation remains; original object metadata is not carried as such</td>
+<td>Render to a chosen speaker layout</td>
+<td>The generated speaker-channel presentation</td>
+</tr>
+<tr>
+<td>Render to binaural headphones</td>
+<td>The generated ear signals</td>
+</tr>
+<tr>
+<td>Ordinary channel transcode</td>
+<td>A new channel presentation, without automatically retaining source objects</td>
 </tr>
 </tbody>
 </table>
-<p>The middle route is why decoding does not automatically destroy Atmos. A suitable <a href="output-transport/Dolby-MAT.html">MAT path</a> can carry decoded audio and metadata onward. This requires an object-aware implementation, not merely an ordinary multichannel PCM decoder.</p>
-<p>A player can also render an immersive source into its final output channels or a binaural signal. The listener can benefit from that render even though the receiver no longer gets the original objects to render again.</p>
-<h2 id="find-the-stage-that-changed-the-presentation">Find the stage that changed the presentation</h2>
-<p>Check the source's actual delivery form, the <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">server's audio delivery</a>, and the player's output. A metadata-bearing Dolby Digital Plus presentation and a TrueHD presentation ask different decoding and transport capabilities of the system.</p>
-<p>Transcoding with an ordinary channel encoder does not preserve object information merely by choosing the same codec family. Likewise, extracting a compatible audio core can leave the immersive extension behind.</p>
-<p>A basic “5.1” or “7.1” source report cannot confirm or rule out additional object information. A receiver's height-speaker activity also cannot settle the question, because an upmixer can derive height output from conventional channels. The useful evidence is which presentation and metadata actually reached the active renderer.</p>
+<p>The first two routes can leave a downstream renderer the scene description. The next two have already completed a render. The final route creates another coded channel result from the signal it was supplied.</p>
+<h2 id="rendering-can-be-the-intended-end-of-preservation">Rendering can be the intended end of preservation</h2>
+<p>A headphone player can use the original object directions to generate convincing ear cues. Once those cues are delivered to the headphones, there is no need for the headphones to receive and render the original objects again.</p>
+<p>Likewise, a renderer can generate the supported speaker layout's PCM channels. That presentation can be correct for its target even though the metadata is no longer traveling onward.</p>
+<p>The distinction is therefore the <strong>intended renderer boundary</strong>, not whether the word PCM appeared anywhere in the chain.</p>
+<h2 id="use-an-object-aware-decoded-route-when-required">Use an object-aware decoded route when required</h2>
+<p>A conventional PCM decoder/output can supply the compatible channel presentation of an immersive track. Its array of 5.1 or 7.1 values does not by itself encode the original object's position updates.</p>
+<p>An object-aware decoder can retain the appropriate reconstructed components and metadata. Supported <a href="output-transport/Dolby-MAT.html">Dolby MAT</a> output can carry such information onward. The downstream system then applies the scene information to its own supported arrangement.</p>
+<p>The compressed source form still matters: Dolby Digital Plus object carriage and TrueHD delivery require different parsing/reconstruction before reaching that boundary.</p>
+<h2 id="identify-irreversible-combinations">Identify irreversible combinations</h2>
+<p>A downmix or ordinary channel render combines source components for a chosen output. A later processor cannot uniquely infer the original objects and paths from those sums.</p>
+<p>A generic E-AC-3 encoder also does not recreate an Atmos scene merely because the input came from Atmos. It needs the relevant scene representation and a supported encoding workflow; ordinary channel PCM is a different input.</p>
+<p>An existing compatible core can keep a soundtrack audible while leaving the immersive extension unused. That is a particular component-selection result, not proof that the file's spatial information vanished from storage.</p>
+<h2 id="verify-the-route-using-the-active-renderer">Verify the route using the active renderer</h2>
+<p>For an Emby session, record the source form, delivered presentation, decoder's output type, and where rendering occurs. If the receiver is intended to render, confirm its detected immersive input instead of only its upmix/listening mode. If the player renders headphones, evaluate that output as the finished ear presentation.</p>
+<p>A basic channel-count report and height-speaker activity are insufficient evidence because a compatible channel mix and an upmixer can produce those observations. The boundary ledger establishes which spatial instructions actually remained available to the renderer making the final listening presentation.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

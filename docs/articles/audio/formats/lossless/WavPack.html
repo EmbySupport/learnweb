@@ -106,37 +106,69 @@
 <h1>WavPack Audio</h1>
 
 
-<p>WavPack is often found among lossless formats, but <strong>a WavPack file is not necessarily lossless</strong>. It supports lossless compression, lossy compression, and a hybrid arrangement that can provide both uses from related files.</p>
-<p>The filename ending in WV does not settle which mode was used.</p>
-<h2 id="three-arrangements">Three arrangements</h2>
+<p>You have a small WV music file and a larger matching WVC file. Playing the WV works by itself. <strong>WavPack hybrid mode deliberately provides a lossy stand-alone file plus correction information for lossless restoration.</strong></p>
+<p>WavPack also has ordinary lossless and lossy modes, so identifying the actual arrangement is the first step.</p>
 <table>
 <thead>
 <tr>
-<th>Files used for playback or decoding</th>
+<th>Arrangement used by the decoder</th>
 <th>Result</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>A WV made in lossless mode</td>
-<td>Original supported audio data can be restored</td>
+<td>Lossless-mode WV</td>
+<td>Restored supported source data</td>
 </tr>
 <tr>
-<td>A WV made in lossy or hybrid mode, alone</td>
-<td>A lossy reconstruction</td>
+<td>Lossy/hybrid WV alone</td>
+<td>Its lossy reconstruction</td>
 </tr>
 <tr>
-<td>Hybrid WV plus its matching WVC correction file</td>
-<td>Original audio can be restored when both are used</td>
+<td>Hybrid WV plus matching WVC, used by a capable decoder</td>
+<td>Lossless restoration of that source</td>
 </tr>
 </tbody>
 </table>
-<p>In hybrid mode, the WV file is independently playable. The correction file contains the additional information needed for lossless restoration. A decoder must support and actually use that matching correction file; merely placing it somewhere in a library does not establish that it participated in playback.</p>
-<h2 id="more-than-ordinary-integer-pcm">More than ordinary integer PCM</h2>
-<p>WavPack supports integer PCM, floating-point PCM, and lossless compression of DSD. Its DSD mode uses lossless storage rather than the PCM hybrid arrangement.</p>
-<p>That distinction is useful during conversion. A WavPack containing supported integer PCM can be converted to another suitable lossless PCM codec without changing the samples. A floating-point or DSD source cannot automatically be represented unchanged by a target designed for integer PCM. “Lossless” needs to apply to the particular data, not just appear in both codec names.</p>
-<p>For WavPack music in Emby, inspect the stream's mode and sample representation as well as the delivery method. If a hybrid file plays without its correction information, the fact that a lossless pair exists elsewhere does not make that session lossless.</p>
-<p>Retaining both parts together matters for a hybrid archive. The WV alone can remain useful, but losing the correction file removes the ability to reconstruct the original from that pair.</p>
+<h2 id="why-the-correction-file-changes-the-result">Why the correction file changes the result</h2>
+<p>An illustrative source sequence is 1,000, 1,001, 1,004. Suppose the stand-alone representation reconstructs 1,000, 1,000, 1,008. Correction values of 0, +1, and −4 supply the missing differences.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Stand-alone reconstruction</th>
+<th style="text-align: right;">Exact correction</th>
+<th style="text-align: right;">Combined result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1,000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,000</td>
+</tr>
+<tr>
+<td style="text-align: right;">1,000</td>
+<td style="text-align: right;">+1</td>
+<td style="text-align: right;">1,001</td>
+</tr>
+<tr>
+<td style="text-align: right;">1,008</td>
+<td style="text-align: right;">−4</td>
+<td style="text-align: right;">1,004</td>
+</tr>
+</tbody>
+</table>
+<p>This is a model of exact correction, not WavPack's literal packet coding. It explains why the pair can restore data that the WV alone cannot identify.</p>
+<p>A player must actually locate, validate, and use the matching correction information. A WVC kept in an unrelated folder or ignored by the decoder contributes nothing to that listening result.</p>
+<h2 id="prediction-and-noise-management-perform-different-jobs">Prediction and noise management perform different jobs</h2>
+<p>WavPack uses reversible prediction/decorrelation and compact coding for lossless operation. The exact residual information is sufficient to undo those transformations.</p>
+<p>Hybrid/lossy operation makes a controlled approximation in the independently playable part. Noise-shaping choices can affect that part's error spectrum. The correction information restores what is needed for the lossless result rather than asking the listener to infer it from the approximation.</p>
+<p>The two modes therefore answer different storage/delivery needs without requiring the source to be separately encoded into two unrelated music files.</p>
+<h2 id="preserve-the-actual-sample-representation">Preserve the actual sample representation</h2>
+<p>WavPack can store integer PCM, floating-point PCM, and losslessly compressed DSD. DSD support uses lossless storage rather than the PCM hybrid arrangement.</p>
+<p>Those distinctions matter when converting. A target supporting the same integer data can preserve it. A target designed for integer PCM cannot automatically preserve every float value or a DSD bit sequence unchanged. Converting DSD to PCM filters and changes representation; unpacking lossless DSD restores its original one-bit data.</p>
+<p>WavPack can also retain wrapper information for restoration, depending on the operation and settings. Audio equality, original-file reconstruction, and tag preservation are separate verification goals.</p>
+<p>For a WavPack item delivered through Emby, identify whether the decoder used a lossless WV or a hybrid pair, and what sample representation it reconstructed. That establishes the source result before any subsequent delivery or output conversion.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

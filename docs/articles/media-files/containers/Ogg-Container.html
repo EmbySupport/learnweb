@@ -106,40 +106,50 @@
 <h1>Ogg Container</h1>
 
 
-<p><strong>Ogg</strong> is a container, while <a href="../../audio/formats/lossy/Vorbis.html">Vorbis</a> and <a href="../../audio/formats/lossy/Opus.html">Opus</a> are audio codecs that can use it. When someone says an .ogg file is Vorbis, they are describing a common combination rather than defining every Ogg file.</p>
-<p>Ogg groups codec packets into <strong>pages</strong>. A packet may fit inside one page or continue across pages. Each logical stream has its own serial number, allowing the reader to keep its packets together.</p>
+<p>An <strong>Ogg file</strong> is made of pages, but a decoder consumes codec packets. Understanding that distinction explains how a small audio packet, a large setup packet, and timing information can all share one file.</p>
+<p><a href="../../audio/formats/lossy/Vorbis.html">Vorbis</a> and <a href="../../audio/formats/lossy/Opus.html">Opus</a> are coding formats carried through their own Ogg mappings. Ogg supplies the page structure around them; it does not make their decoding rules interchangeable.</p>
+<h2 id="assemble-a-packet-from-page-segments">Assemble a packet from page segments</h2>
+<p>A page contains a header, a segment table, and payload. The segment table uses lengths up to 255 bytes to describe how portions of packets occupy the payload. A length below 255 terminates a packet; longer packets use continued segments and can cross a page boundary.</p>
+<p>For an invented 600-byte packet fitting on one otherwise empty page, segment lengths 255, 255, and 90 describe its data. The fixed 27-byte header and three-byte segment table add 30 bytes, producing a 630-byte page in this simplified example.</p>
 <table>
 <thead>
 <tr>
-<th>Ogg field or structure</th>
-<th>Why it matters</th>
+<th>Page information</th>
+<th>Reader use</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Page capture pattern</td>
-<td>Helps identify page boundaries</td>
+<td>Capture pattern and flags</td>
+<td>Recognize boundaries and continuation/start/end conditions</td>
 </tr>
 <tr>
 <td>Stream serial number</td>
-<td>Identifies the logical stream</td>
+<td>Associate pages with one logical stream</td>
 </tr>
 <tr>
-<td>Page checksum</td>
-<td>Detects changes in that page's data</td>
+<td>Page sequence number</td>
+<td>Follow its ordering</td>
+</tr>
+<tr>
+<td>Checksum</td>
+<td>Detect inconsistent page bytes</td>
 </tr>
 <tr>
 <td>Granule position</td>
-<td>Supplies position information interpreted by the codec mapping</td>
+<td>Interpret completed media position through the codec mapping</td>
 </tr>
 </tbody>
 </table>
-<p>The granule position is not a universal millisecond timestamp. Its meaning comes from the mapping for the codec carried by the stream. For example, Opus has specific rules for start trimming, seeking, and the final sample position.</p>
-<h2 id="the-same-container-can-carry-different-audio">The same container can carry different audio</h2>
-<p>A music file using Vorbis and an .opus file using Ogg Opus require different decoders even though both use Ogg pages. Inspect the codec when comparing their behaviour in an Emby app. Packaging recognition is only part of the playback decision.</p>
-<p>Ogg also permits <strong>chaining</strong>: one logical stream can finish and another begin within the same physical file. That is useful for concatenated or continuous material, but software may differ in how it presents the resulting duration, track changes, or seeking.</p>
-<p>A page checksum can reveal a damaged page; it does not correct the damage or establish that all audio decodes successfully. If a file reports an odd duration or fails after a particular point, compare its <a href="../inspection/Media-Probing.html">probe information</a> with actual playback through that transition.</p>
-<p>Keep the container, codec, and stream layout together in a report. The .ogg extension by itself leaves all three questions partly unanswered.</p>
+<p>The decoder sees the reassembled packet, not the Ogg header and segment lengths. Where a packet spans pages, the reader retains its partial bytes until it is complete.</p>
+<h2 id="a-granule-position-becomes-audio-time">A granule position becomes audio time</h2>
+<p>The granule field's meaning comes from the codec mapping. Ogg Opus uses a 48 kHz sample-count coordinate even when an implementation outputs audio at another supported rate. The Opus header's <strong>pre-skip</strong> tells the reader how many initial decoded samples should be discarded.</p>
+<p>Take a simple stream with ordinary initial positioning, 48,000 decoded samples represented at the final granule position, and an illustrative pre-skip of 312. The presented length is:</p>
+<p><code>(48,000 − 312) ÷ 48,000 = 0.9935 seconds</code></p>
+<p>The subtraction is not missing audio caused by the container. It is the mapping's way to exclude initial codec delay from the intended output. End-position rules can similarly trim extra decoded samples at the end. The encoded packet duration and presented duration can therefore differ for a legitimate reason.</p>
+<h2 id="logical-streams-can-end-before-the-physical-file">Logical streams can end before the physical file</h2>
+<p><strong>Chaining</strong> ends one logical stream and begins another, with new headers and identity. A continuous radio archive can consequently contain several linked portions within one physical file. A reader following only the first logical stream can report or play a shorter result than one following the complete chain.</p>
+<p>For an Emby source with an unexpected duration or failure at a transition, record the codec, its header timing, and whether the file contains a chain. It targets the actual page/packet/timeline relationship rather than treating .ogg as a complete description of the sound.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

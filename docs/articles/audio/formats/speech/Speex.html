@@ -106,12 +106,13 @@
 <h1>Speex Speech Audio</h1>
 
 
-<p><strong>Speex is an open codec designed for speech.</strong> It uses code-excited linear prediction, or CELP, to represent voices efficiently and includes tools useful for packet-based voice communication.</p>
+<p>Speex wideband audio contains a low-band speech representation with additional upper-band information. This <strong>embedded-band structure</strong> makes its three sampling modes more meaningful than a list of rate numbers.</p>
+<p>Speex is an open lossy speech codec based on CELP.</p>
 <table>
 <thead>
 <tr>
-<th>Speex mode</th>
-<th style="text-align: right;">Nominal sample rate</th>
+<th>Mode</th>
+<th style="text-align: right;">Nominal input/output sample rate</th>
 </tr>
 </thead>
 <tbody>
@@ -129,12 +130,17 @@
 </tr>
 </tbody>
 </table>
-<p>The sample rate helps identify the mode; it is not the encoded bitrate. Each mode can use different quality and bitrate settings. Speex is lossy in all of them.</p>
-<h2 id="codec-versus-voice-processing">Codec versus voice processing</h2>
-<p>A Speex-based application may also apply noise suppression, automatic gain control, or echo cancellation. Those processing functions are separate from the coded audio format. A quiet background or a changing recording level does not establish which codec was used.</p>
-<p>Stored Speex can use Ogg packaging, while RFC 5574 defines its RTP payload for communication. The audio format and transport are different pieces of the playback problem.</p>
-<p>The project's current guidance directs new codec uses toward <a href="../lossy/Opus.html">Opus</a>. Existing Speex recordings still require a Speex decoder; they do not become Opus merely because a newer application uses that codec elsewhere.</p>
-<p>In an Emby collection, Speex is more likely to matter as an existing speech source than as a music master. Converting it can help compatibility, but cannot undo its original compression or recover frequencies absent from the selected mode. Check the stored format and any delivery conversion independently.</p>
+<h2 id="build-the-wideband-representation">Build the wideband representation</h2>
+<p>For 16 kHz wideband input, a quadrature-mirror filter bank separates lower and upper frequency regions. The lower band is encoded using the narrowband structure. Additional information describes the higher band.</p>
+<p>The full decoder reconstructs both and recombines them. A supported embedded narrowband decode can use the low-band representation without recreating the high-band result.</p>
+<p>This is a coding-layer relationship, not a command to relabel an 8 kHz source as 16 kHz. A true wideband encoding contains the additional band information.</p>
+<h2 id="control-bitrate-and-coding-effort-separately">Control bitrate and coding effort separately</h2>
+<p>Speex offers bitrate/quality decisions and a complexity control. Bitrate changes the coded data budget, while complexity changes how much work the encoder spends selecting its representation.</p>
+<p>Voice-activity detection and discontinuous-transmission options can reduce data use during inactivity. Their state and framing affect how the timeline and background are reproduced. In packet communication, buffering and packet-loss handling add another layer around the codec.</p>
+<h2 id="keep-preprocessing-outside-the-format-definition">Keep preprocessing outside the format definition</h2>
+<p>A Speex application may use the library's noise suppression, gain control, or echo cancellation before encoding. Those operations change the signal handed to the codec; a quiet background is not proof of a particular encoded mode.</p>
+<p>Stored Speex commonly uses Ogg, while RFC 5574 defines its RTP carriage. Headers, framing, and timing tell the decoder how to obtain the coded representation.</p>
+<p>The project's current guidance prefers Opus for new codec uses. Existing Speex recordings still need their own compatible decoding. In a legacy Emby voice collection, preserve the coded mode and full timing when making a listening copy; the embedded structure explains which frequency information that copy started with.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -157,6 +163,7 @@
 			            <li><a class="seealso-link" href="https://www.speex.org/docs/manual/speex-manual.pdf" title="Speex: Codec manual">Speex: Codec manual</a></li>
 			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc5574.html" title="RFC 5574: RTP payload format for the Speex codec">RFC 5574: RTP payload format for the Speex codec</a></li>
 			            <li><a class="seealso-link" href="https://speex.org/" title="Speex: Project status and technology">Speex: Project status and technology</a></li>
+			            <li><a class="seealso-link" href="https://www.speex.org/docs/manual/speex-manual/node11.html" title="Speex author manual: Wideband sub-band CELP">Speex author manual: Wideband sub-band CELP</a></li>
 			          </ul>
             </article>
           </div>

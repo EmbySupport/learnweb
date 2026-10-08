@@ -106,40 +106,67 @@
 <h1>Progressive Video</h1>
 
 
-<p><strong>Progressive video</strong> represents each picture as a complete frame. A 1080p frame contains the full 1080-line picture, rather than combining alternating lines captured at two successive field times.</p>
-<p>The letter <strong>p</strong> identifies progressive scanning. In “1080p24,” 1080 describes the picture height and 24 describes the frame rate. Neither value tells you the bitrate, color format, or quality of the compression.</p>
+<p>Read <strong>1080p50</strong> as a 1080-line <strong>progressive</strong> picture sequence with 50 complete pictures per second. Every output frame contains all its picture rows. The next complete frame begins 20 ms later.</p>
 <table>
 <thead>
 <tr>
-<th>Progressive example</th>
+<th>Example</th>
 <th style="text-align: right;">Complete pictures per second</th>
-<th style="text-align: right;">Picture height</th>
+<th style="text-align: right;">Interval between pictures</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1080p24</td>
 <td style="text-align: right;">24</td>
-<td style="text-align: right;">1080 lines</td>
+<td style="text-align: right;">41.667 ms</td>
 </tr>
 <tr>
 <td>1080p50</td>
 <td style="text-align: right;">50</td>
-<td style="text-align: right;">1080 lines</td>
+<td style="text-align: right;">20 ms</td>
 </tr>
 <tr>
 <td>2160p60</td>
 <td style="text-align: right;">60</td>
-<td style="text-align: right;">2160 lines</td>
+<td style="text-align: right;">16.667 ms</td>
 </tr>
 </tbody>
 </table>
-<p>These examples use integer rates; corresponding fractional-rate formats also exist.</p>
-<h2 id="complete-frames-still-sample-time">Complete frames still sample time</h2>
-<p>Progressive does not mean motion is continuous. Each captured picture comes from an exposure, and the next picture follows later. A low frame rate can produce visible steps during a pan; a long exposure can blur movement within one frame. Both effects can occur in entirely valid progressive video.</p>
-<p>For Emby playback, a progressive source can be decoded and scaled without reconstructing missing lines from alternate capture times. That simplifies the presentation path, but does not remove the need for compatible codecs, correct timing, or suitable display processing.</p>
-<p>There is one useful wrinkle in older studio material: <strong>progressive segmented frame (PsF)</strong> transport splits a progressive picture into two field-shaped segments. Both segments belong to the same captured picture. That differs from native <a href="Interlaced-Video.html">interlaced video</a>, whose alternating fields describe successive times.</p>
-<p>Consequently, the presence of field-like transport or an interlace flag does not by itself prove that the original scene was captured with interlaced motion. Inspect moving content and the source's signaling together. Unnecessary <a href="Deinterlacing.html">deinterlacing</a> can alter an otherwise complete progressive image.</p>
+<p><em>Integer-rate examples. Their 1000/1001 alternatives are separate exact timing values.</em></p>
+<p>The temporal unit is a complete captured frame. A moving edge can appear at one position in frame A and another in frame B, rather than occupying alternating rows from two successive field captures inside one displayed picture.</p>
+<p>This makes each progressive frame a direct input to scaling and display processing. Its rows do not first need to be reconstructed from two native interlaced motion times.</p>
+<h2 id="progressive-pictures-in-segmented-transport">Progressive pictures in segmented transport</h2>
+<p>Some studio systems carry a progressive picture as <strong>progressive segmented frame (PsF)</strong>. They divide frame A's alternating rows into a top-shaped segment and a bottom-shaped segment:</p>
+<table>
+<thead>
+<tr>
+<th>Transport segment</th>
+<th>Where its rows came from</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A-top</td>
+<td>Alternating rows of captured frame A</td>
+</tr>
+<tr>
+<td>A-bottom</td>
+<td>Remaining rows of captured frame A</td>
+</tr>
+<tr>
+<td>B-top</td>
+<td>Alternating rows of captured frame B</td>
+</tr>
+<tr>
+<td>B-bottom</td>
+<td>Remaining rows of captured frame B</td>
+</tr>
+</tbody>
+</table>
+<p>Joining A-top and A-bottom reconstructs A. Both segments belong to the same progressive frame, so weaving them does not combine two different field motion times.</p>
+<p>Native <a href="Interlaced-Video.html">interlaced capture</a> differs: successive fields describe successive moments. Joining them without motion handling can put an object's old position on one set of rows and its new position on the other.</p>
+<p>That distinction determines the appropriate reconstruction. PsF segments are paired to recover a complete frame; native interlaced fields need temporal handling for progressive output. The transport's field-shaped appearance alone does not tell those two jobs apart.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

@@ -106,39 +106,48 @@
 <h1>Apple Lossless (ALAC)</h1>
 
 
-<p><strong>Apple Lossless, or ALAC, compresses PCM audio reversibly.</strong> It is a distinct codec from AAC, even though both commonly appear in files ending in M4A.</p>
-<p>That shared extension is a frequent source of confusion: one M4A can be a lossy AAC music file, while another preserves its encoded PCM samples losslessly.</p>
+<p>An M4A file can contain <strong>Apple Lossless (ALAC)</strong> instead of AAC. Its audio remains reversibly compressed PCM; the shared extension supplies an audio-file convention, while the track's “alac” identifier selects the actual codec.</p>
+<p>Apple publishes its reference implementation and configuration description.</p>
+<h2 id="read-the-decoders-configuration">Read the decoder's configuration</h2>
 <table>
 <thead>
 <tr>
-<th>Description</th>
-<th>ALAC meaning</th>
+<th>Configuration item</th>
+<th>Purpose</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Codec identifier “alac”</td>
-<td>Identifies Apple Lossless content</td>
+<td>Sample rate</td>
+<td>Places decoded sample frames on the timeline</td>
 </tr>
 <tr>
-<td>16, 20, 24, or 32-bit</td>
-<td>Supported integer PCM sample precision</td>
+<td>Bit depth</td>
+<td>Defines the preserved integer sample precision</td>
 </tr>
 <tr>
-<td>One to eight channels</td>
-<td>Codec capability, subject to supported channel configurations</td>
+<td>Channel count and layout</td>
+<td>Identify the presentation's signals and roles</td>
 </tr>
 <tr>
-<td>M4A or CAF</td>
-<td>Possible file packaging, not the compression method</td>
+<td>Frame length</td>
+<td>Describes the coding packet's sample-frame arrangement</td>
+</tr>
+<tr>
+<td>Other codec parameters</td>
+<td>Supply the decoder's defined reconstruction setup</td>
 </tr>
 </tbody>
 </table>
-<p>Apple's published reference code and configuration description explain the format and channel mapping. Their included example conversion utility has narrower input support than the codec itself; limits of that tool should not be mistaken for limits of every ALAC implementation.</p>
-<h2 id="moving-between-lossless-formats">Moving between lossless formats</h2>
-<p>Converting supported PCM samples from FLAC to ALAC can preserve the audio exactly. The outer file, tags, artwork handling, and compressed bitrate can change. A larger ALAC copy is not automatically better or worse than the FLAC it came from.</p>
-<p>Similarly, converting an AAC file to ALAC preserves the decoded AAC result; it cannot undo the earlier lossy encoding.</p>
-<p>For an Emby music collection, identify the actual codec before diagnosing two M4A files that behave differently. The player's <a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">delivery compatibility</a> and its supported sample format remain separate from ALAC's general format capabilities.</p>
+<p>The reference codec supports 16-, 20-, 24-, and 32-bit integer precision and supported layouts from one to eight channels. Apple's example conversion utility accepts a narrower selection of inputs than the full codec.</p>
+<h2 id="connect-packet-size-to-audio-time">Connect packet size to audio time</h2>
+<p>For illustration, an ALAC configuration can use a 4,096-sample-frame packet length. At 44.1 kHz, a full packet spans 4,096/44,100 ≈ <strong>92.88 ms</strong>.</p>
+<p>The uncompressed payload for 24-bit stereo over that span would be 4,096 × 2 × 3 = <strong>24,576 bytes</strong>. ALAC's actual encoded packet size depends on the audio and compression; its duration comes from sample frames, not from dividing by an assumed compressed bitrate. A final packet can contain fewer frames.</p>
+<p>The decoder uses the configuration and coded packet information to restore the intended values and count. That makes both codec setup and packet timing relevant when moving ALAC between <a href="../../../media-files/packaging/mp4/M4A-M4B-Files.html">M4A</a> and <a href="../../../media-files/containers/audio-oriented/CAF-Container.html">CAF</a> arrangements.</p>
+<h2 id="convert-the-represented-audio">Convert the represented audio</h2>
+<p>A supported FLAC-to-ALAC conversion can reconstruct the same integer PCM and encode it reversibly again. Compare decoded sample values, count, rate, and channel order when verifying preservation; the compressed bytes and outer tags will differ.</p>
+<p>An AAC-to-ALAC conversion instead preserves AAC's decoded approximation. The source entering the lossless encoder determines what can be restored.</p>
+<p>For an Emby M4A collection, the alac versus AAC identification consequently answers a real decoder and preservation question. It is more useful than interpreting the filename suffix as one fixed compression type.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

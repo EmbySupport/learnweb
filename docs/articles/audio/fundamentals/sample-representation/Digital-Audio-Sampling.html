@@ -106,15 +106,69 @@
 <h1>Digital Audio Sampling</h1>
 
 
-<p>A microphone produces a changing electrical signal. <strong>Sampling measures that signal at regular instants</strong>, turning its movement through time into a sequence of numbers. Sound created digitally can produce the same sort of sequence without a microphone.</p>
-<p>The time spacing is set by the <a href="Audio-Sample-Rate.html">sample rate</a>. At 48,000 samples per second, neighboring samples in one channel are about 20.8 microseconds apart. The sample's numerical precision is a separate choice: <a href="Audio-Bit-Depth.html">bit depth</a>.</p>
+<p>The dots in this figure are enough to describe the smooth sine wave <strong>because we know what kind of waveform is allowed between them</strong>. Sampling becomes easier to understand when that condition is made explicit.</p>
 <p><img src="images/audio-sampling.png" alt="Calculated sine wave with equally spaced sample positions"></p>
-<p><em>Calculated example: a 1 kHz sine wave sampled at 8 kHz, shown over two milliseconds. The continuous line is the original mathematical signal; the dots are its sample values. The reduced rate keeps the sample positions visible.</em></p>
-<h2 id="the-gaps-are-not-missing-pieces-of-sound">The gaps are not missing pieces of sound</h2>
-<p>Those dots do not instruct a loudspeaker to jump from one flat step to the next. Reconstruction uses the sequence to form a continuous waveform. For a signal limited to frequencies below half the sample rate, ideal reconstruction can recover the waveform from its samples.</p>
-<p>Real recording systems filter out frequencies that cannot be represented before sampling. Without that filtering, a high-frequency component can masquerade as a lower one: <strong>aliasing</strong>. Filters also matter when changing an existing digital signal's sample rate.</p>
-<p>A stereo sample frame contains one sample for the left channel and one for the right at the same time position. “48 kHz stereo” therefore means 48,000 such frames per second, not 24,000 for each side.</p>
-<p>When an Emby audio track shows a sample rate, it describes this time grid. Compressed audio may store blocks of coded information rather than a visible list of sample values, but decoding still produces audio on a sample timeline.</p>
+<p><em>Calculated example: a 1 kHz sine wave sampled at 8 kHz over two milliseconds. The line is the mathematical signal; the dots are its sampled values. This deliberately low rate makes the positions visible.</em></p>
+<p>A microphone first produces a continuously changing electrical signal. Sampling measures its amplitude at regular instants. A digitally generated sound can supply the same sort of sequence directly, without a microphone.</p>
+<h2 id="build-one-cycle">Build one cycle</h2>
+<p>For the illustrated signal, one cycle takes 1/1,000 second: one millisecond. An 8 kHz sampler measures every 1/8,000 second: 0.125 ms. There are therefore eight sample intervals in a cycle.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Time</th>
+<th style="text-align: right;">Fraction of a cycle</th>
+<th style="text-align: right;">Sine amplitude</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0 ms</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.125 ms</td>
+<td style="text-align: right;">1/8</td>
+<td style="text-align: right;">About +0.707</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.250 ms</td>
+<td style="text-align: right;">1/4</td>
+<td style="text-align: right;">+1</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.375 ms</td>
+<td style="text-align: right;">3/8</td>
+<td style="text-align: right;">About +0.707</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.500 ms</td>
+<td style="text-align: right;">1/2</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.750 ms</td>
+<td style="text-align: right;">3/4</td>
+<td style="text-align: right;">−1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1.000 ms</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0; the next cycle begins</td>
+</tr>
+</tbody>
+</table>
+<p>These numbers describe the waveform at particular times. <a href="Audio-Bit-Depth.html">Bit depth</a> determines how accurately each value can be stored; <a href="Audio-Sample-Rate.html">sample rate</a> determines the times. Measuring twice as often and storing each measurement more precisely are independent changes.</p>
+<h2 id="why-the-spaces-between-dots-are-not-holes-in-the-sound">Why the spaces between dots are not holes in the sound</h2>
+<p>Infinitely many arbitrary curves could pass through a set of dots. To reconstruct a particular continuous signal, we limit its frequency content. For ordinary baseband audio, a signal restricted below half the sample rate can, ideally, be reconstructed from the complete sample sequence.</p>
+<p>Reconstruction is a filtering operation using the sequence together, not a command to join neighboring dots with straight lines. Each sample contributes to the resulting continuous waveform. In a DAC, practical interpolation and reconstruction filtering perform the corresponding job before the analog signal drives the next stage.</p>
+<p>The familiar staircase drawing of a held sample voltage is a useful illustration of one intermediate circuit signal. It is not the intended final sound waveform.</p>
+<h2 id="protect-the-condition-before-measuring">Protect the condition before measuring</h2>
+<p>If a recording contains frequencies beyond the sampling limit, different signals can produce the same samples. A high-frequency component can then appear as a lower-frequency <strong>alias</strong>. Once only those ambiguous samples remain, a decoder has no label telling it which of the possible original frequencies was present.</p>
+<p>An anti-alias filter therefore attenuates unsuitable frequencies <strong>before</strong> sampling. Real filters need a transition region, so engineering a usable recording bandwidth involves more than choosing a sample-rate number. The alias demonstration on the <a href="Audio-Sample-Rate.html">sample-rate page</a> shows two different sine waves passing through exactly the same sample positions.</p>
+<h2 id="apply-the-time-grid-to-several-channels">Apply the time grid to several channels</h2>
+<p>At each stereo time position, a sample frame contains one left value and one right value. A 48 kHz stereo signal has 48,000 sample frames per second: 48,000 values per channel, or 96,000 individual channel values altogether.</p>
+<p>A compressed soundtrack in an Emby file need not store those values literally. It stores coded information from which a decoder produces them. The resulting sample timeline is what lets sound duration, channel alignment, and picture synchronization remain well defined.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

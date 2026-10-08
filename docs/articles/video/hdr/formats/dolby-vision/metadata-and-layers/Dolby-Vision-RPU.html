@@ -106,34 +106,45 @@
 <h1>Dolby Vision RPU Metadata</h1>
 
 
-<p><strong>RPU</strong> is the name you often see beside Dolby Vision video in media reports. It carries Dolby Vision metadata; it is not an additional movie image or an audio track.</p>
-<p>The metadata can describe picture characteristics and processing instructions. Depending on the content and metadata version, it can include analysis, target-display trims, and the active picture area.</p>
+<p>Cut the first second from a 24-frame-per-second movie while leaving its metadata associations unchanged. The new first picture is the old picture 24, but it could receive information for old picture 0. Dolby Vision RPU data needs to remain associated with the pictures it describes.</p>
 <table>
 <thead>
 <tr>
-<th>Information in the Dolby Vision workflow</th>
-<th>Why it matters</th>
+<th style="text-align: right;">New frame</th>
+<th>Correct source association</th>
+<th>Wrong association if old metadata starts unchanged</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Scene analysis</td>
-<td>Describes the picture being adapted</td>
+<td style="text-align: right;">0</td>
+<td>Old picture 24 and its metadata</td>
+<td>Old metadata 0</td>
 </tr>
 <tr>
-<td>Creative trims</td>
-<td>Adjusts the mapped appearance for a target</td>
+<td style="text-align: right;">1</td>
+<td>Old picture 25 and its metadata</td>
+<td>Old metadata 1</td>
 </tr>
 <tr>
-<td>Active-area information</td>
-<td>Distinguishes the picture from surrounding letterbox regions</td>
+<td style="text-align: right;">2</td>
+<td>Old picture 26 and its metadata</td>
+<td>Old metadata 2</td>
 </tr>
 </tbody>
 </table>
-<p>The RPU must remain associated with the correct frames. A useful thought experiment is an edit that removes the first second of video but keeps the old metadata timing: the instructions no longer describe the pictures receiving them. Dolby's authoring guide identifies out-of-sync metadata as a possible cause of unexpected brightness changes.</p>
-<p>In HEVC delivery, the metadata is carried in special units alongside the encoded picture. A media report showing <strong>BL+RPU</strong> therefore means a base layer plus metadata, not two image layers. <strong>BL+EL+RPU</strong> adds an <a href="Dolby-Vision-Layers.html">enhancement layer</a>.</p>
-<p>When examining an Emby playback issue, an RPU-present flag establishes that metadata was detected in the source. It does not prove that the player used it, that it is synchronized, or that the full output path supports that Dolby Vision profile.</p>
-<p>The metadata also cannot simply be borrowed from another release because its title matches. Different edits, frame timing, framing, or grades can break the relationship between the information and the picture.</p>
+<p><em>An illustrative frame-alignment problem. Actual metadata can describe a shot or frame, and the packaging determines its association.</em></p>
+<h2 id="what-the-rpu-carries">What the RPU carries</h2>
+<p>RPU is the conventional name used for Dolby Vision metadata in bitstream and media reports. Its information supports the relevant picture interpretation, reconstruction, and display management. It is different from a coded movie image or an audio track.</p>
+<p>Depending on the profile and metadata version, the workflow can include picture analysis, target-display trims, and active-picture-area information. Analysis describes characteristics of the produced image; trims adjust its mapped appearance; active-area information distinguishes the image from surrounding letterbox regions.</p>
+<p>For HEVC-based delivery, the data is carried in special units associated with the encoded pictures. Other codecs define another carriage. A report of <strong>BL+RPU</strong> names a base picture plus metadata; <strong>BL+EL+RPU</strong> also includes an <a href="Dolby-Vision-Layers.html">enhancement layer</a>.</p>
+<h2 id="why-an-edit-can-affect-the-result">Why an edit can affect the result</h2>
+<p>Metadata prepared for a bright exterior should not be used as if it described an adjacent dim shot. An association error can change mapping inputs or creative adjustments at the wrong moment, potentially causing unwanted shifts. A simple offset, reordered frames, a dissolve, or another version of the film can all change that relationship.</p>
+<p>Picture modifications can matter even with unchanged timing. Cropping can change active-area coordinates. A new grade can change the characteristics that analysis described. A correct operation preserves or deliberately recreates the appropriate relationship rather than merely copying a block with the same title.</p>
+<h2 id="inspect-presence-association-and-use-separately">Inspect presence, association, and use separately</h2>
+<p>For an Emby source, an RPU-present report establishes that metadata was detected. Next inspect whether server delivery retained it or produced a new rendition. Then determine which profile operations the app and output path use.</p>
+<p>A supported compatible base can sometimes provide another valid presentation if Dolby Vision metadata is unused. A Dolby Vision-specific signal needs the relevant interpretation or conversion. The <a href="../profiles-and-compatibility/Dolby-Vision-Fallback.html">fallback article</a> explains that difference.</p>
+<p>To investigate a brightness change across a cut, compare the exact video version, frame timing, metadata associations, and delivery path. That locates the operation that may have detached the instructions from the image.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

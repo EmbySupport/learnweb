@@ -106,16 +106,25 @@
 <h1>MPEG Transport Stream: TS and M2TS</h1>
 
 
-<p>A television multiplex needs to keep delivering media even when receivers join halfway through. <strong>MPEG transport stream (TS)</strong> packages content in repeated, identifiable packets so a receiver can discover programmes and recover packet boundaries.</p>
-<p>A basic TS packet is <strong>188 bytes</strong>, including its header. Its packet identifier, or <strong>PID</strong>, tells the reader which stream or signalling data the packet belongs to. One transport stream can carry several programmes, each with its own video, audio, and other components.</p>
+<p>A receiver can join a television transmission after it has already started. <strong>MPEG transport stream (TS)</strong> gives it repeated descriptions and small identifiable packets so it can find the wanted components in that ongoing sequence.</p>
+<p>Every basic TS packet occupies <strong>188 bytes</strong>. A minimum four-byte header includes synchronization, a <strong>PID</strong> identifying the packet's role, and control fields describing its payload and continuity. An optional adaptation field can carry additional timing or signalling; the remaining space carries payload.</p>
 <p><img src="images/ts-m2ts-packets.svg" alt="Transport-stream packets are 188 bytes, while Blu-ray M2TS adds a four-byte prefix before each packet."></p>
-<p><em>Original schematic of stored packet framing. Header and payload are simplified; widths are not byte-accurate.</em></p>
-<p><a href="../../container-structure/track-and-programme-descriptions/Media-MPEG-TS-Program-Tables.html">PAT and PMT tables</a> describe that programme structure. They are distinct from the codecs used to compress picture and sound. TS therefore does not mean that the video must be MPEG-2 Video.</p>
-<h2 id="why-m2ts-is-slightly-different">Why M2TS is slightly different</h2>
-<p>Blu-ray stream files commonly use .m2ts. They wrap each 188-byte TS packet with an additional four-byte prefix, producing <strong>192-byte stored units</strong>. The underlying transport packets retain their normal structure.</p>
-<p>A .ts recording and a Blu-ray .m2ts can consequently require different input handling even when they contain similar encoded video. Renaming one to the other does not add or remove the prefix.</p>
-<p>For an Emby recording or imported stream file, inspect the programme and track selection as well as the codecs. A large broadcast transport stream may contain components unrelated to the programme you want. Timing discontinuities or missing packets can also affect playback without changing the codec name.</p>
-<p>A remux into a file-oriented container can build more convenient <a href="../../container-structure/timing-and-navigation/Media-Container-Seeking.html">navigation information</a>, while copying suitable streams. It cannot recreate broadcast packets that were never received. Preserve the recording and check where a repeatable glitch occurs before treating it as a decoding issue.</p>
+<p><em>Stored framing schematic. Widths do not represent byte proportions.</em></p>
+<h2 id="find-the-boundaries-then-find-the-programme">Find the boundaries, then find the programme</h2>
+<p>A reader looks for the synchronization pattern at the expected packet spacing and validates the packet structure. One apparent matching byte in arbitrary data is less useful than a sequence consistent with the format.</p>
+<p>The PID identifies a component locally within the multiplex. <a href="../../container-structure/track-and-programme-descriptions/Media-MPEG-TS-Program-Tables.html">PAT and PMT</a> give those identifiers meaning: the PAT points to a programme's PMT, and the PMT identifies its video, audio, subtitles, and programme clock reference. Several programmes can share one transport sequence.</p>
+<p>Selecting one service follows the PIDs described for that programme. It does not mean that every packet in the file is part of the selected presentation. A complete multiplex recording can include other services or signalling as well.</p>
+<h2 id="a-picture-can-span-many-packets">A picture can span many packets</h2>
+<p>Media is commonly wrapped in <a href="../../container-structure/Media-Elementary-Streams.html">PES</a>, a packetized elementary-stream layer. A PES packet carrying video can be spread across many 188-byte transport packets. The reader reassembles those bytes and their timing before supplying encoded video to a decoder.</p>
+<p>A transport-packet boundary is therefore different from a picture boundary. Losing one packet can remove part of an encoded picture or its setup, with consequences for that picture and any following dependent pictures.</p>
+<p>The continuity counter helps observe delivery at the PID level. For packets carrying payload it advances modulo 16, so 15 followed by 0 is an ordinary wrap. An unexpected jump can signal missing data, while duplicates, adaptation-only packets, and declared discontinuities require their specific rules. The counter is a local consistency aid, not a complete decode test.</p>
+<h2 id="keep-the-programme-clock-and-picture-schedule-separate">Keep the programme clock and picture schedule separate</h2>
+<p>PCR observations help the receiver follow the programme clock. PTS and DTS in the media timing describe when results are presented and encoded data is decoded. Arrival order, clock recovery, and picture presentation are related jobs with different information.</p>
+<p>If a broadcast changes components or resets timing, the descriptions and discontinuity handling determine how the receiver continues. A stored recording preserves those events; putting the packets onto disk does not silently turn them into a conventional movie timeline.</p>
+<h2 id="why-m2ts-occupies-192-bytes-per-stored-unit">Why M2TS occupies 192 bytes per stored unit</h2>
+<p>Blu-ray M2TS prefixes each TS packet with four more bytes, including arrival-time information. It therefore stores 192-byte units while retaining the 188-byte transport packet inside. A reader must account for the prefix before interpreting TS headers.</p>
+<p>Changing .ts to .m2ts does not add that framing. Conversely, a properly repackaged copy can remove or add the outer framing while retaining suitable encoded media.</p>
+<p>For an Emby recording, a useful comparison starts with the selected programme and its components, then examines timing or packet loss at the affected moment. <a href="../../container-structure/Media-Multiplexing.html">Remuxing</a> can build more convenient file navigation and a coherent selected presentation. It cannot supply media bytes that reception never recorded.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -137,6 +146,7 @@
 			          <ul class="seealso-list reference-list">
 			            <li><a class="seealso-link" href="https://www.itu.int/rec/T-REC-H.222.0-202504-I" title="ITU-T H.222.0 (04/2025): MPEG systems">ITU-T H.222.0 (04/2025): MPEG systems</a></li>
 			            <li><a class="seealso-link" href="https://digilabcfu.weebly.com/uploads/1/0/2/3/10237615/2b_bdrom_audiovisualapplication_0305-12955-15269.pdf" title="Blu-ray Disc Association: BD-ROM audiovisual application white paper, March 2005 (original PDF mirror)">Blu-ray Disc Association: BD-ROM audiovisual application white paper, March 2005 (original PDF mirror)</a></li>
+			            <li><a class="seealso-link" href="https://raw.githubusercontent.com/FFmpeg/FFmpeg/n8.1/libavformat/mpegts.c" title="FFmpeg n8.1 MPEG-TS reader and packet handling">FFmpeg n8.1 MPEG-TS reader and packet handling</a></li>
 			          </ul>
             </article>
           </div>

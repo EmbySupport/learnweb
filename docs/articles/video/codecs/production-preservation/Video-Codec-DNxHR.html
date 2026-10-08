@@ -106,19 +106,49 @@
 <h1>Avid DNxHR Video</h1>
 
 
-<p><strong>Avid DNxHR</strong> is the established name for resolution-independent production workflows in the VC-3 coding family. It extends the practical use of <a href="Video-Codec-DNxHD.html">DNxHD</a>-style picture coding to a wider range of picture sizes, including UHD and larger production rasters.</p>
-<p>The codec encodes pictures independently. Its quality levels serve different production purposes, from lightweight editing proxies to copies intended to retain more picture information.</p>
+<p>A production needs to edit pictures larger or differently shaped than traditional fixed HD modes. <strong>DNxHR</strong> supplies resolution-independent production workflows in the VC-3 family, retaining independently coded pictures while extending the useful raster choices.</p>
+<p>That does not give one fixed data rate to the letters “HR.” The chosen picture size, quality representation and picture rate determine how much data the source supplies.</p>
+<h2 id="follow-a-uhd-frame-size-example">Follow a UHD frame-size example</h2>
+<p>Avid's published legacy UHD table gives <strong>3,641,344 coded bytes per frame</strong> for its 3840 ×2160 HQ/HQX example.</p>
+<p>At 25 fps:</p>
+<p><strong>3,641,344 ×25 =91,033,600 bytes/s.</strong></p>
+<p>At 50 fps:</p>
+<p><strong>3,641,344 ×50 =182,067,200 bytes/s.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Declared example</th>
+<th style="text-align: right;">Decimal byte rate</th>
+<th style="text-align: right;">Binary byte rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UHD example at 25 fps</td>
+<td style="text-align: right;">91.0336 MB/s</td>
+<td style="text-align: right;">Approximately 86.8164 MiB/s</td>
+</tr>
+<tr>
+<td>Same coded frame size at 50 fps</td>
+<td style="text-align: right;">182.0672 MB/s</td>
+<td style="text-align: right;">Approximately 173.6328 MiB/s</td>
+</tr>
+</tbody>
+</table>
+<p>The 25 fps case is <strong>728.2688 Mb/s</strong> when expressed in decimal bits per second. This is a calculated production-data example from the published frame size, excluding additional wrapper/audio traffic. It is not the rate of every DNxHR file.</p>
+<p>Avid's current data-rate table uses MiB/s explicitly. Multiplying the published byte count first makes the unit conversion transparent and helps compare it with other storage or delivery numbers.</p>
+<h2 id="select-a-production-representation">Select a production representation</h2>
 <table>
 <thead>
 <tr>
 <th>Familiar level</th>
-<th>Intended distinction</th>
+<th>Role suggested by its name</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>LB</td>
-<td>Low-bandwidth production or proxy representation</td>
+<td>Low-bandwidth production/proxy representation</td>
 </tr>
 <tr>
 <td>SQ</td>
@@ -138,12 +168,12 @@
 </tr>
 </tbody>
 </table>
-<p><em>Level names identify codec choices, not universal quality scores or direct-play guarantees. Their permitted sample formats depend on the codec generation and implementation.</em></p>
-<p>A level does not specify one fixed bitrate for every file. Picture size and frame rate matter, and Avid's newer unified DNx implementation also offers customizable rates. Consult the applicable mode's specification when estimating storage.</p>
-<h2 id="legacy-labels-remain-useful">Legacy labels remain useful</h2>
-<p>Avid now calls the family <strong>Avid DNx</strong>, with the HD, HR, and GX suffixes removed from the newer naming scheme. The old DNxHR label remains relevant when inspecting existing files and older software exports. Historical mode restrictions should not be assumed to describe every capability of the newer codec.</p>
-<p>DNxHR is a lossy production codec. High quality and independence between pictures make it suitable for editing; neither property proves exact reconstruction of the original samples.</p>
-<p>For Emby, keep the production copy when creating a smaller playback version. A server input decoder and a receiving app's direct-play decoder are separate requirements. If video conversion is needed, start from the retained master and verify the actual delivered stream. A smaller derivative is a convenience copy, not a substitute for the source's preserved information.</p>
+<p>A smaller proxy can make an editing session easier to handle, while finishing can return to the retained higher-quality source. Independent pictures provide direct frame access in both roles; quantization and coding choices determine the picture information retained.</p>
+<p>The sample-format permissions belong to the actual codec generation and mode. The names alone should not be used to impose historical 8-/10-bit restrictions on newer Avid DNx output.</p>
+<h2 id="the-newer-name-is-avid-dnx">The newer name is Avid DNx</h2>
+<p>Avid now uses <strong>Avid DNx</strong> without the HD, HR orGX suffixes, with its updated quality-level and capability scheme. Its newer implementation offers broader precision/alpha options and adjustable rates within the defined levels.</p>
+<p>The old DNxHR label remains useful for existing files, older exports and the historical specification. Record the actual raster, rate, profile and sample format when distinguishing those sources.</p>
+<p>A conversion for Emby viewing begins by reconstructing that production source. A delivery codec can exploit temporal relationships between its pictures and choose a much smaller viewing-data budget. The independently coded source remains the finishing input, while that output is a separate presentation designed for delivery.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -166,6 +196,7 @@
 			            <li><a class="seealso-link" href="https://pub.smpte.org/latest/st2019-1/st2019-1-2016.pdf" title="SMPTE ST 2019-1: VC-3 picture compression and data stream format (2016)">SMPTE ST 2019-1: VC-3 picture compression and data stream format (2016)</a></li>
 			            <li><a class="seealso-link" href="https://kb.avid.com/pkb/articles/en_US/Knowledge/Avid-DNx-naming-scheme-and-data-rates" title="Avid: DNx naming scheme and data rates">Avid: DNx naming scheme and data rates</a></li>
 			            <li><a class="seealso-link" href="https://developer.avid.com/" title="Avid: DNx SDK and specification overview">Avid: DNx SDK and specification overview</a></li>
+			            <li><a class="seealso-link" href="https://kb.avid.com/pkb/articles/en_US/Knowledge/DNxHR-Codec-Bandwidth-Specifications" title="Avid: DNxHR and HD coded-frame bandwidth table">Avid: DNxHR and HD coded-frame bandwidth table</a></li>
 			          </ul>
             </article>
           </div>

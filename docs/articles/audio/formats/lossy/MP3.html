@@ -106,44 +106,51 @@
 <h1>MP3 Audio</h1>
 
 
-<p>MP3 means <strong>MPEG Audio Layer III</strong>. It is a lossy audio format used for music, podcasts, and many older digital collections. The “3” is an audio layer number, not a reference to MPEG-3 video.</p>
-<p>An MP3 encoder reduces the data needed to describe sound, including by allocating precision according to what is likely to be audible. Decoding produces PCM, but not an exact restoration of the original recording's sample values.</p>
-<h2 id="reading-an-mp3-description">Reading an MP3 description</h2>
+<p>MP3's compact music files made a large collection practical on limited storage. Its name means <strong>MPEG Audio Layer III</strong>: “III” is an audio layer, not MPEG-3 video.</p>
+<p>The format combines time/frequency analysis, perceptual precision allocation, and efficient symbol coding. Understanding a few of its tools makes the labels in a media report useful.</p>
+<h2 id="follow-what-the-encoder-spends-bits-on">Follow what the encoder spends bits on</h2>
+<p>The encoder analyzes sections of the waveform, estimates where coding error is likely to be audible, and quantizes the signal representation. The decoder reconstructs sound from those coded values. The reconstructed PCM is an approximation of the input.</p>
+<p>More data can permit finer precision or retain difficult details, but the choice of encoder tools and material also matters. <a href="Audio-Lossy-Compression.html">Lossy compression</a> follows the general process through a numerical example.</p>
+<h2 id="joint-stereo-shares-information-rather-than-removing-a-side">Joint stereo shares information rather than removing a side</h2>
+<p>Left and right can contain substantial common content. A mid/side model illustrates a reversible way to describe that relationship:</p>
+<pre><code class="lang-text">M = (L + R)/2; S = (L − R)/2.
+L = M + S; R = M − S.
+</code></pre>
 <table>
 <thead>
 <tr>
-<th>Field</th>
-<th>Useful interpretation</th>
+<th>Example input</th>
+<th style="text-align: right;">Mid</th>
+<th style="text-align: right;">Side</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>128 or 320 kbit/s</td>
-<td>Encoded data rate, not sample precision</td>
+<td>L=+0.8, R=+0.6</td>
+<td style="text-align: right;">+0.7</td>
+<td style="text-align: right;">+0.1</td>
 </tr>
 <tr>
-<td>CBR</td>
-<td>A selected bitrate used throughout the stream</td>
+<td>L=+0.4, R=+0.4</td>
+<td style="text-align: right;">+0.4</td>
+<td style="text-align: right;">0</td>
 </tr>
 <tr>
-<td>VBR</td>
-<td>Bitrate changes with the encoder's allocation decisions</td>
-</tr>
-<tr>
-<td>Joint stereo</td>
-<td>Stereo coding can share information between channels</td>
-</tr>
-<tr>
-<td>44.1 kHz</td>
-<td>Audio sample rate, independent of encoded bitrate</td>
+<td>L=+0.4, R=−0.4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">+0.4</td>
 </tr>
 </tbody>
 </table>
-<p>Joint stereo does not mean mono. For example, a mid/side representation describes what the channels share and how they differ, allowing the decoder to reconstruct left and right.</p>
-<p>At an average 192 kbit/s, four minutes of audio occupy about 5.76 MB before tags and other overhead. This is a storage example, not a universal quality recommendation.</p>
-<h2 id="audio-and-the-file-around-it">Audio and the file around it</h2>
-<p><a href="../../../media-files/packaging/MP3-Files.html">MP3 files</a> usually store MPEG audio frames together with tags and, sometimes, information that helps seeking or accurate trimming. Album artwork and track titles do not belong to the compression mechanism itself.</p>
-<p>When playing an MP3 collection in Emby, separate the stored codec from any <a href="../../decoding-output/conversion-fallback/Audio-Transcoding.html">delivery conversion</a>. Re-encoding an MP3 at a higher bitrate cannot recover details removed earlier. If another format is needed, retaining the original files avoids making the converted copy the only surviving version.</p>
+<p>MP3's tools have their specified normalization and coding behavior; this algebra shows why shared stereo information can be described efficiently without turning everything into mono.</p>
+<p>Joint-stereo modes can choose suitable shared representations, and MP3 also has intensity-stereo tools that make a different perceptual tradeoff. The label is consequently a family of coding choices, not proof that a channel disappeared.</p>
+<h2 id="read-cbr-and-vbr-as-budgets">Read CBR and VBR as budgets</h2>
+<p><strong>CBR</strong> selects a nominal frame bitrate. <strong>VBR</strong> allows the encoder's frame-bitrate choices to vary with the material. MP3 also has a bit reservoir: data associated with one frame can use space carried earlier. Even a CBR stream therefore has more flexibility than “every passage receives exactly the same coding treatment.”</p>
+<p>At an average 192 kbit/s, four minutes contain about 5.76 MB of encoded data before tags and overhead. At an average 320 kbit/s, the same duration uses 9.6 MB. These are size calculations, not thresholds of guaranteed transparency.</p>
+<h2 id="audio-frames-and-file-metadata-answer-different-questions">Audio frames and file metadata answer different questions</h2>
+<p>The MPEG audio frames carry sound. ID3 metadata can carry titles, artists, and artwork. Optional navigation or trimming information assists duration, seeking, and presentation boundaries. The <a href="../../../media-files/packaging/MP3-Files.html">MP3 packaging article</a> develops those structures.</p>
+<p>A file can therefore have correct audio but incorrect artwork, or valid tags while suffering an audio/frame problem. A frame boundary is also not automatically an independent clean decoding start when reservoir dependencies exist.</p>
+<p>When an Emby music path converts MP3 to another lossy codec, the new encoder starts from the MP3 reconstruction. Keeping the master or the original delivered MP3 avoids making future versions from a chain of converted copies.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

@@ -106,30 +106,52 @@
 <h1>Dolby Vision Profile 20</h1>
 
 
-<p>Dolby Vision Profile 20 extends the delivery system to stereoscopic video: separate views for the left and right eyes. Its 3D form uses <strong>Multiview HEVC (MV-HEVC) Main10</strong>, rather than placing two reduced-size views beside each other in one ordinary frame.</p>
+<p>A stereoscopic presentation needs the correct picture for each eye as well as the intended brightness and color rendering. <strong>Dolby Vision Profile 20</strong> combines these requirements using ten-bit Multiview HEVC for its 3D form and additional Dolby Vision metadata processing.</p>
+<h2 id="follow-the-two-views-to-the-viewer">Follow the two views to the viewer</h2>
+<p>The 3D stream uses codec layers for distinct views of the scene. The base view and the additional view are decoded with their multiview relationship. The layer-to-eye association identifies which view belongs to the left or right eye; correct assignment is part of producing the intended depth.</p>
+<p>This arrangement differs from side-by-side packing of two reduced-width views in one ordinary frame. It also differs from <a href="Dolby-Vision-Profile-7.html">Profile 7</a>'s base and enhancement residual. A second eye view represents another viewpoint, while an enhancement residual supplies reconstruction information for a picture.</p>
+<p>A supporting route therefore has to perform several connected jobs:</p>
+<ol>
+<li>Read the multiview packaging and configuration.</li>
+<li>Decode the required HEVC views and their dependencies.</li>
+<li>Use the signaled eye assignment.</li>
+<li>Process the required Dolby Vision information.</li>
+<li>Deliver the views and presentation to the selected output.</li>
+</ol>
+<p>Each stage can affect the result independently. Successfully showing one ordinary HEVC view is useful codec evidence, but does not establish the complete stereoscopic path.</p>
+<h2 id="check-the-additional-presentation-information">Check the additional presentation information</h2>
+<p>The public profile notes require Profile 20 playback devices to consume display-management version 4 metadata, including L8 target trims. Those requirements extend beyond the mandatory metadata support of some other Dolby Vision profiles.</p>
+<p>For stereoscopic content, the notes also specify a reference-display information message that associates layers with eyes. The Dolby Vision level applies to each view layer. A source record needs these structural facts alongside its codec and profile to describe the required path.</p>
+<h2 id="distinguish-the-defined-forms">Distinguish the defined forms</h2>
 <table>
 <thead>
 <tr>
-<th>Structure</th>
-<th>What the layers represent</th>
+<th>Form or property</th>
+<th>Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Profile 20 stereoscopic MV-HEVC</td>
-<td>Different views of the scene</td>
+<td>3D</td>
+<td>Ten-bit MV-HEVC views for stereoscopic presentation</td>
 </tr>
 <tr>
-<td>Profile 7 base and enhancement layers</td>
-<td>Components used to reconstruct a Dolby Vision picture</td>
+<td>2D</td>
+<td>A defined ten-bit HEVC form</td>
+</tr>
+<tr>
+<td>Base compatibility ID 0</td>
+<td>Dolby Vision-specific base interpretation</td>
+</tr>
+<tr>
+<td>Base compatibility ID 4</td>
+<td>HLG-compatible base interpretation</td>
 </tr>
 </tbody>
 </table>
-<p>Those are different uses of the word “layer.” A second eye view is not a Profile 7-style enhancement residual.</p>
-<p>The specification also defines a 2D form using HEVC. Profile 20 therefore does not always mean that a file contains stereo views. The stream and playback capabilities still need inspection; the cited public specification does not make 2D playback a requirement of every approved Profile 20 device.</p>
-<p>Profile 20 has additional metadata-processing requirements. Existing Dolby Vision support for other profiles is not enough to claim support for it. This is particularly relevant when considering an Emby session on a headset or another multiview display: container handling, view assignment, decoding, and Dolby Vision processing must work together.</p>
-<p>Current profile definitions list both a Dolby Vision-specific base form and an HLG-compatible form. That signal-level compatibility should not be read as a promise that an ordinary HLG television can play every packaged stereo stream or reproduce both eye views.</p>
-<p>For a playback report, include whether the content is 2D or stereoscopic, the codec, the base compatibility, and the exact app/device. “Dolby Vision works on this device” leaves the decisive questions unanswered.</p>
+<p>The specification describes 2D Profile 20, while its public notes do not require every approved Profile 20 playback device to play that 2D form. Inspect support for the actual content form rather than inferring it from the general profile badge.</p>
+<p>An HLG-compatible base identifies its light interpretation. It does not resolve multiview packaging, codec dependencies, or eye assignment for an ordinary HLG television. Those are separate jobs in the route above.</p>
+<p>For an Emby investigation, record whether the selected content is 2D or 3D, its base compatibility, codec, views, and delivered stream. Then identify the exact app, decoder, and output. That turns “Profile 20 fails” into a specific question about reading, view reconstruction, metadata, or presentation.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

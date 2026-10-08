@@ -106,36 +106,74 @@
 <h1>Video Reference Frames</h1>
 
 
-<p>A <strong>reference frame</strong> is a decoded picture kept available for predicting another picture. The decoder stores these pictures in a decoded picture buffer rather than immediately discarding every frame after display.</p>
-<p>Multiple references let an encoder choose useful earlier pictures or combine prediction information. For example, a region briefly hidden behind a moving person may be easier to predict from an older view in which it was visible. Whether extra choices improve compression depends on the content and encoder.</p>
-<h2 id="the-buffer-contains-pictures-not-compressed-packets">The buffer contains pictures, not compressed packets</h2>
-<p>The memory needed for references grows with resolution and sample precision. For a tightly packed 8-bit 4:2:0 picture with even dimensions, the sample payload is width × height × 1.5 bytes:</p>
+<p>A decoder reconstructs pictures into memory. Some are kept because another picture will use their samples for prediction; these are <strong>reference pictures</strong>. Others are kept because their display time has not yet arrived.</p>
+<p>One picture can have both roles. The <strong>decoded picture buffer</strong> tracks these uses so a surface is not released while either job still needs it.</p>
+<h2 id="a-displayed-picture-can-remain-a-reference">A displayed picture can remain a reference</h2>
+<p>Consider a GOP where I0 is displayed first and P3 later predicts from it. Displaying I0 does not make its samples dispensable: P3's reconstruction still needs them.</p>
+<p>After decoding P3, the decoder can retain both I0 and P3 for B1 and B2, which use the anchors around them. Once every required dependent has been decoded and the stream no longer retains I0 as a reference, that reference role can end.</p>
+<p>A picture's lifetime is therefore set by the actual dependency instructions, not simply by whether the user has already seen it.</p>
+<h2 id="a-reference-can-also-wait-for-display">A reference can also wait for display</h2>
+<p>P3 may be decoded before B1 and B2 because they need it. Its samples already exist, but showing it immediately would put the film out of order.</p>
 <table>
 <thead>
 <tr>
-<th>Picture grid</th>
-<th style="text-align: right;">Payload for one decoded picture</th>
-<th style="text-align: right;">Payload for four</th>
+<th>Picture state</th>
+<th>Why memory remains occupied</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Already displayed, still a reference</td>
+<td>Future decoding needs its samples</td>
+</tr>
+<tr>
+<td>Decoded ahead of display</td>
+<td>Its presentation time has not arrived</td>
+</tr>
+<tr>
+<td>Both reference and pending output</td>
+<td>Both requirements apply to one picture</td>
+</tr>
+<tr>
+<td>Neither role remains</td>
+<td>The surface can become available for reuse</td>
+</tr>
+</tbody>
+</table>
+<p>These roles can overlap, so adding a reported reference count to a reported reorder count does not automatically give the number of distinct stored pictures.</p>
+<p>Some reference pictures remain useful for longer stretches, such as an older view of a background temporarily covered by a foreground object. Codecs provide explicit rules for retaining and releasing the available references.</p>
+<h2 id="count-the-samples-in-a-surface">Count the samples in a surface</h2>
+<p>For an <strong>even-sized, tightly packed 8-bit 4:2:0</strong> example, the main plane has width × height samples. Each of the two color-difference planes has half the width and half the height:</p>
+<p><strong>W × H + 2 × (W/2 × H/2) = 1.5 × W × H samples.</strong></p>
+<p>With one byte per sample:</p>
+<table>
+<thead>
+<tr>
+<th>Grid</th>
+<th style="text-align: right;">One picture's sample payload</th>
+<th style="text-align: right;">Four pictures' payload</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1920 × 1080</td>
-<td style="text-align: right;">3.11 MB</td>
-<td style="text-align: right;">12.44 MB</td>
+<td style="text-align: right;">3,110,400 bytes, 3.1104 MB</td>
+<td style="text-align: right;">12.4416 MB</td>
 </tr>
 <tr>
 <td>3840 × 2160</td>
-<td style="text-align: right;">12.44 MB</td>
-<td style="text-align: right;">49.77 MB</td>
+<td style="text-align: right;">12,441,600 bytes, 12.4416 MB</td>
+<td style="text-align: right;">49.7664 MB</td>
 </tr>
 </tbody>
 </table>
-<p><em>Calculated examples using decimal MB. Actual decoder memory can be larger because of alignment, additional working surfaces, display reordering, and different pixel layouts. These are not compressed file sizes.</em></p>
-<p>A higher bit depth can increase storage further, especially when samples occupy wider memory containers. The number of pictures needed for reordering can also differ from the number actively used as prediction references.</p>
-<p>For Emby playback, a decoder must meet the stream's buffer and prediction requirements as well as recognize the codec. <a href="../Video-Codec-Levels-Tiers.html">Codec levels</a> place limits on relevant resources, and device support can have additional constraints.</p>
-<p>Reference count is not a quality score. A media inspector may report a maximum or an encoder setting rather than the references used for every picture. A stream with fewer references can still look better if other encoding decisions suit the content.</p>
-<p>Nor are all B-pictures excluded from the buffer. Modern codecs allow structures where B-pictures become references for other pictures. To interpret a dependency chain, examine the actual <a href="Video-GOP.html">picture structure</a> rather than treating each letter as a fixed lifetime rule.</p>
+<p>The bytes are <strong>decoded sample payloads</strong>, not compressed packet sizes. A low-bitrate UHD stream still reconstructs a UHD surface.</p>
+<p>If the same sampling grid uses 16-bit containers for its samples, one FHD picture requires <strong>6,220,800 payload bytes</strong> and four require <strong>24,883,200 bytes</strong>. A 10-bit sample can occupy such a 16-bit container, so valid precision and allocated storage width are different quantities.</p>
+<p>Actual decoder allocations can add row alignment, a larger coded raster, additional working surfaces, and an output queue. The calculation isolates the visible-grid payload rather than estimating every implementation's total memory.</p>
+<h2 id="connect-lifetime-to-decoder-capacity">Connect lifetime to decoder capacity</h2>
+<p>More retained pictures need more surface storage. Larger pictures increase each surface's footprint. <a href="../Video-Codec-Levels-Tiers.html">Codec level constraints</a> describe relevant buffer resources along with picture size and throughput.</p>
+<p>In Emby playback, this helps explain why recognizing the codec is only one part of source decoding. The active decoder must hold the pictures required by that bitstream's dependencies and presentation order.</p>
+<p>When inspecting a reference count, establish whether it is a declared maximum, an encoder setting, or observed use. Individual blocks can choose among a smaller set at a particular moment. The dependency graph determines which decoded surfaces must actually stay alive.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

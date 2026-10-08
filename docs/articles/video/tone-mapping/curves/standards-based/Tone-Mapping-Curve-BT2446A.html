@@ -106,37 +106,53 @@
 <h1>Tone Mapping Curve: BT.2446 Method A</h1>
 
 
-<p>Method A is one of the HDR/SDR conversion methods described in ITU-R Report BT.2446. It is a conversion recipe, rather than a codec or a piece of HDR metadata carried by the film.</p>
-<p>The report's complete method includes color processing as well as brightness adaptation. A renderer option named <strong>BT.2446A</strong> may expose its brightness function inside the renderer's own wider pipeline.</p>
-<p><img src="images/tone-mapping-curve-bt2446a.png" alt="Brightness portion of BT.2446 Method A converting a 1,000-nit input peak to 100 nits."></p>
-<p><em>libplacebo 7.360.1's Method A brightness function, 1,000 → 100 nits, zero black levels. The plot does not represent the method's complete color processing.</em></p>
-<h2 id="what-the-curve-shows">What the curve shows</h2>
-<p>The calculation passes through a logarithmic representation and a piecewise mapping before producing output light levels. The slope changes across the range rather than applying one constant scale factor.</p>
-<p>For the plotted example, an input of 100 nits becomes about 23 nits, while 500 nits becomes about 73 nits. Those values describe this configured function. They are not promises about the brightness of an Emby screen: later signal encoding, display behavior, and the chosen target still matter.</p>
+<p>BT.2446 Method A is an HDR/SDR conversion method. A renderer option called BT.2446A can use its brightness function within a larger conversion pipeline; the complete report also defines associated color processing.</p>
+<h2 id="follow-the-brightness-calculations-stages">Follow the brightness calculation's stages</h2>
+<p>The plotted library function normalizes source light to the source range and applies a power representation. It then compresses that coordinate through a logarithmic relationship whose scale depends on the peak.</p>
+<p>A piecewise function treats three coordinate regions differently: a scaled lower segment, a quadratic middle segment, and a linear upper segment. Finally, the calculation converts back through the destination relationship to obtain output light. The changing slope is what distributes contrast across the range.</p>
+<p><img src="images/tone-mapping-curve-bt2446a.png" alt="Brightness portion of Method A for a 1,000-nit source and 100-nit target."></p>
+<p><em>libplacebo 7.360.1 brightness function, zero black at both ends. The plot isolates this scalar stage of Method A.</em></p>
 <table>
 <thead>
 <tr>
-<th>Name encountered</th>
-<th>What it tells you</th>
+<th style="text-align: right;">Source light</th>
+<th style="text-align: right;">Output light in this example</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>BT.2446</td>
-<td>The report containing several conversion methods</td>
+<td style="text-align: right;">10 nits</td>
+<td style="text-align: right;">About 3.13 nits</td>
 </tr>
 <tr>
-<td>Method A</td>
-<td>One particular method in that report</td>
+<td style="text-align: right;">100 nits</td>
+<td style="text-align: right;">About 22.66 nits</td>
 </tr>
 <tr>
-<td>A renderer's BT.2446A option</td>
-<td>An implementation that must be understood in its pipeline context</td>
+<td style="text-align: right;">500 nits</td>
+<td style="text-align: right;">About 73.15 nits</td>
+</tr>
+<tr>
+<td style="text-align: right;">1,000 nits</td>
+<td style="text-align: right;">100 nits</td>
 </tr>
 </tbody>
 </table>
-<p>This distinction helps when reading tone-mapping comparisons. A screenshot made using a full conversion recipe and one made using only its brightness stage need not match, even when both descriptions say Method A.</p>
-<p>When interpreting an Emby result, consider <a href="../../color-and-luminance/Gamut-Mapping.html">gamut mapping</a> alongside the curve. Color handling can change the appearance of bright saturated objects without changing this one-dimensional graph.</p>
+<p>The peak fits, while the hundred-nit region uses less than a quarter of the target peak. The function has chosen a particular contrast distribution; it is not simply source light divided by ten. For example, 500 nits would become 50 under that proportional scaling, rather than 73.15 here.</p>
+<h3 id="work-one-100-nit-point-through-those-coordinates">Work one 100-nit point through those coordinates</h3>
+<p>For the stated 1,000-nit source and 100-nit target, define h = 1 + 32 × (1,000/10,000)^(1/2.4), about 13.260, and s = 1 + 32 × (100/10,000)^(1/2.4), about 5.697. These peak-dependent factors set the two logarithmic ranges.</p>
+<ol>
+<li>Normalize the source point and take the power: (100/1,000)^(1/2.4) ≈ 0.3831.</li>
+<li>Form q = ln[1 + (h−1) × 0.3831] / ln(h), about 0.6732.</li>
+<li>This q is in the lower piecewise region, q ≤ 0.7399. Apply 1.077q, giving about 0.7250.</li>
+<li>Return through the target logarithmic relationship: V = (s^(1.077q) − 1)/(s − 1), about 0.5387.</li>
+<li>The zero-black target response gives 100 × V^2.4 ≈ <strong>22.66 nits</strong>.</li>
+</ol>
+<p>The upper regions use a quadratic and then another linear expression instead of the lower 1.077q rule. The branch is selected in the intermediate coordinate, so its breakpoints are not direct input-nit thresholds.</p>
+<h2 id="put-the-function-back-into-the-complete-conversion">Put the function back into the complete conversion</h2>
+<p>For a neutral gray, brightness can be followed with a scalar. For colored objects, changing light also changes color appearance, and the target can have another gamut or volume. Method A's color operations address that relationship; a renderer using only the named brightness stage combines it with its own surrounding color path.</p>
+<p>Output transfer encoding is another required job. The mapped light value is a processing result, not automatically a final YCbCr code. The <a href="../../fundamentals/Tone-Mapping-HDR-to-SDR.html">HDR-to-SDR walkthrough</a> explains that handoff.</p>
+<p>In an Emby comparison, locate whether the complete method or a scalar stage is being used, then retain the same source and target assumptions. That identifies why two results with the same Method A name can use different color processing around the brightness curve.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

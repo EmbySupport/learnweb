@@ -106,36 +106,54 @@
 <h1>Audio Clipping</h1>
 
 
-<p><strong>Clipping occurs when a signal asks for more amplitude than a stage can represent or reproduce.</strong> Peaks are cut off instead of following their intended shape. This changes the waveform and can introduce audible distortion.</p>
-<p><img src="images/audio-clipping.png" alt="Calculated sine wave exceeding full scale, with flat peaks after hard clipping"></p>
-<p><em>Calculated example: a sine with peak amplitude 1.3 is hard-clipped to a normalized range of −1 to +1. The dashed line shows the requested signal; the solid line shows the clipped result. This is a mathematical example, not a measurement of Emby output.</em></p>
-<p>A signal already close to full scale can exceed the limit when gain is added or several channels are summed. Individual input channels can be valid while their combined output is too large.</p>
-<h2 id="where-the-limit-applies">Where the limit applies</h2>
+<p>The dotted waveform asks for a peak of 1.3. The solid waveform reaches the available limit, +1, and stays there until the requested signal returns within range. That flat top is <strong>hard clipping</strong>.</p>
+<p><img src="images/audio-clipping.png" alt="A 1.3-peak sine is limited to minus one through plus one"></p>
+<p><em>Calculated illustration: a 1.3-peak sine limited to [−1,+1]. It shows a mathematical limiter, not measured Emby output.</em></p>
+<p>A level change should multiply every sample by the same factor. Clipping stops doing that for the samples beyond the limit, so it changes the shape and creates distortion. Repeatedly reshaping a sine also introduces frequency components absent from the original sine.</p>
+<h2 id="put-the-volume-adjustment-before-the-failure">Put the volume adjustment before the failure</h2>
+<p>Take an overloaded sample of +1.3 and a second sample of +0.6. Compare reducing gain by half before and after the clipping stage:</p>
 <table>
 <thead>
 <tr>
-<th>Stage</th>
-<th>What its range means</th>
+<th style="text-align: right;">Original value</th>
+<th style="text-align: right;">Half gain, then clipping</th>
+<th style="text-align: right;">Clipping, then half gain</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Integer PCM</td>
-<td>Values must fit the selected integer representation</td>
+<td style="text-align: right;">+1.3</td>
+<td style="text-align: right;">+0.65</td>
+<td style="text-align: right;">+0.50</td>
 </tr>
 <tr>
-<td>Floating-point processing</td>
-<td>Intermediate values may exceed nominal full scale</td>
+<td style="text-align: right;">+0.6</td>
+<td style="text-align: right;">+0.30</td>
+<td style="text-align: right;">+0.30</td>
 </tr>
 <tr>
-<td>Final output</td>
-<td>Values must fit the converter and playback chain's available range</td>
+<td style="text-align: right;">−1.3</td>
+<td style="text-align: right;">−0.65</td>
+<td style="text-align: right;">−0.50</td>
 </tr>
 </tbody>
 </table>
-<p>Floating point can preserve an over-range intermediate result so that gain can be reduced before output. It does not give a loudspeaker unlimited headroom. For FFmpeg floating-point audio, −1 to +1 is the nominal full-volume range.</p>
-<p>Turning the volume down <strong>after</strong> clipping makes the distorted waveform quieter. It cannot recover the cut-off shape. Reducing gain before the overloaded stage can prevent clipping, which is why the position of a volume or boost control matters.</p>
-<p>If an Emby soundtrack distorts only after a downmix, boost, or other level change, the original encoded bitrate is not the first explanation to reach for. Follow the level through the processing path. Also distinguish sample peaks from peaks of the reconstructed waveform: values between sample instants can matter at conversion and output.</p>
+<p>The first route keeps the waveform's proportions. The second makes an already altered waveform quieter. Once +1.3 has become +1, the output no longer distinguishes it from +1.1 or +1.8.</p>
+<p>This explains why lowering a receiver's volume can leave distortion audible: the overloaded stage may have been the recording, a decoder-side boost, or an earlier mixer.</p>
+<h2 id="how-a-valid-input-becomes-too-large">How a valid input becomes too large</h2>
+<p>Each channel in a soundtrack can fit its own range. Summing two simultaneous +0.8 values at full gain nevertheless requests +1.6. A downmix needs coefficients, output attenuation, or appropriate overload management to handle such combinations.</p>
+<p>An equalizer boost can similarly raise part of a waveform. A float processor may retain +1.6 successfully as an intermediate value; a later integer output converter must either bring it within range or lose the excess. The allowed working number range and the final output's usable range are different boundaries.</p>
+<p>Clipping can also occur in analog equipment when a circuit runs out of voltage or current capacity. Its overload shape need not match the flat limiter pictured here.</p>
+<h2 id="samples-below-full-scale-can-have-larger-reconstructed-peaks">Samples below full scale can have larger reconstructed peaks</h2>
+<p>Sample peak measurement examines the stored or decoded values. A reconstructed waveform also exists <strong>between</strong> those sample positions.</p>
+<p>An idealized example has two adjacent values of +0.8, with all other values zero. At their halfway point, ideal sinc interpolation gives:</p>
+<p>0.8 × sinc(0.5) + 0.8 × sinc(−0.5)
+= 0.8 × 2/π + 0.8 × 2/π
+≈ <strong>1.0186</strong>.</p>
+<p>The samples are below +1, but this mathematical reconstructed waveform exceeds it. Real reconstruction and true-peak measurement use practical filters; the example explains why checking only the largest sample can miss an output peak.</p>
+<h2 id="locate-the-overloaded-stage">Locate the overloaded stage</h2>
+<p>If an Emby soundtrack distorts after a boost or downmix, compare the same passage with that operation removed. If the source itself contains clipped peaks, changing the delivery bitrate will not recover them.</p>
+<p>A useful level trace records the input peak, processing gains, summed output, and final converter range. Reducing gain before the first overloaded boundary preserves the shape; reducing it later preserves the distortion at a lower listening level.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -154,6 +172,7 @@
 			          <ul class="seealso-list reference-list">
 			            <li><a class="seealso-link" href="https://ffmpeg.org/doxygen/trunk/group__lavu__sampfmts.html" title="FFmpeg: Audio sample formats">FFmpeg: Audio sample formats</a></li>
 			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-resampler.html" title="FFmpeg: Audio resampler documentation">FFmpeg: Audio resampler documentation</a></li>
+			            <li><a class="seealso-link" href="https://www.dsprelated.com/freebooks/pasp/Windowed_Sinc_Interpolation.html" title="Julius O. Smith: Bandlimited interpolation and between-sample overshoot">Julius O. Smith: Bandlimited interpolation and between-sample overshoot</a></li>
 			          </ul>
             </article>
           </div>

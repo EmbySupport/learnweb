@@ -106,35 +106,48 @@
 <h1>Audio Bit Depth</h1>
 
 
-<p><strong>Bit depth is the precision available for a PCM sample's amplitude.</strong> With integer samples, more bits allow more numerical levels across the same full-scale range. They do not add sample positions in time or make the loudest permitted value louder.</p>
-<p>For an integer representation with N bits, there are 2^N possible bit patterns. Each extra bit doubles the number of levels and halves the size of a uniform quantization step.</p>
+<p>Imagine measuring the height of a waveform with a ruler. A finer ruler gives more possible amplitude values over the same range. <strong>Integer PCM bit depth is that amplitude precision</strong>; it changes the numerical grid, while sample rate changes the time grid.</p>
+<p>With N bits there are 2^N bit patterns. For signed integer PCM, these normally represent values from −2^(N−1) through 2^(N−1)−1. Sixteen bits therefore provide −32,768 through +32,767: 65,536 levels.</p>
+<h2 id="compare-the-steps-not-just-the-labels">Compare the steps, not just the labels</h2>
+<p>Using a nominal normalized range of −1 to +1, the integer step is 2/2^N. The positive endpoint falls one step below +1 in this convention.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: right;">Integer bit depth</th>
-<th style="text-align: right;">Available levels</th>
+<th style="text-align: right;">Integer precision</th>
+<th style="text-align: right;">Levels</th>
+<th style="text-align: right;">Normalized step</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align: right;">8-bit</td>
 <td style="text-align: right;">256</td>
+<td style="text-align: right;">0.0078125</td>
 </tr>
 <tr>
 <td style="text-align: right;">16-bit</td>
 <td style="text-align: right;">65,536</td>
+<td style="text-align: right;">About 0.00003052</td>
 </tr>
 <tr>
 <td style="text-align: right;">24-bit</td>
 <td style="text-align: right;">16,777,216</td>
+<td style="text-align: right;">About 0.0000001192</td>
 </tr>
 </tbody>
 </table>
-<h2 id="why-the-extra-precision-matters">Why the extra precision matters</h2>
-<p>Rounding a signal onto those levels produces <a href="../Audio-Quantization-Noise.html">quantization error</a>. Smaller steps allow quieter signal detail to sit farther above that error. Extra precision is also useful while mixing or adjusting levels, because processing introduces values between the original levels.</p>
-<p>A 24-bit recording can still contain microphone noise, a noisy room, or audio originally captured at lower precision. The file's capacity and the useful detail in its contents are different things. Converting a 16-bit recording to 24-bit storage does not recover information that was never captured.</p>
-<p>Bit depth also needs a qualifier. <strong>32-bit floating-point audio</strong> uses a different numerical representation; it is not equivalent to 32-bit integer precision. And a 24-bit sample can occupy a 32-bit storage slot, with only 24 valid bits. <a href="PCM-Sample-Formats.html">PCM sample formats</a> explains those labels.</p>
-<p>If Emby reports a bit depth, use it to describe the audio's representation, not as a quality score. Lossy compressed codecs do not generally have a PCM-style bit depth that explains their compression quality. Their decoded samples still need a working format, which may differ from how the source was recorded.</p>
+<p>Adding one bit doubles the levels and halves the step. Moving from 16 to 24 bits supplies 256 times as many levels, not merely eight more measurements.</p>
+<p>Suppose a signal sample should have amplitude 0.001. On the signed 16-bit grid, 0.001 × 32,768 = 32.768, so rounding selects code 33. Reconstructing that code gives 33/32,768 ≈ 0.00100708, an error of about +0.00000708.</p>
+<p>On the 24-bit grid, the calculation is 0.001 × 8,388,608 = 8,388.608. Rounding selects 8,389 and gives approximately 0.0010000467. The much smaller step allows a closer result. See <a href="../Audio-Quantization-Noise.html">quantization error</a> for how such errors behave over a waveform.</p>
+<h2 id="why-processing-uses-extra-precision">Why processing uses extra precision</h2>
+<p>Even simple volume adjustment can produce values between integer levels. Halving code 33 gives 16.5. If a processor immediately rounds this back to the same integer grid, it loses the fractional part; if it keeps a wider or floating-point working representation, later operations can use it.</p>
+<p>Mixing, equalization, and repeated level changes create many such intermediate values. Keeping more precision during processing and rounding at the appropriate final conversion limits avoidable cumulative error. <a href="../Audio-Dithering.html">Dither</a> controls the behavior of that last rounding rather than making every sample exact.</p>
+<h2 id="bit-depth-and-the-noise-floor">Bit depth and the noise floor</h2>
+<p>Smaller steps can make quantization error smaller relative to the permitted signal range. The often quoted ideal SNR formula, 6.02N + 1.76 dB, describes a full-scale sine and an ideal quantizer with a particular noise model over the full Nyquist bandwidth. It is not a measured dynamic-range guarantee for a microphone, music release, or sound card.</p>
+<p>A noisy room, microphone electronics, or earlier processing can dominate long before the numerical limit. A 24-bit recording is useful because it can accommodate precision and recording headroom; it need not contain 24 bits of clean musical detail.</p>
+<h2 id="recognize-precision-in-a-media-report">Recognize precision in a media report</h2>
+<p>A 24-bit sample may occupy a 32-bit storage word. Those spare positions are a storage arrangement, not extra recorded detail. Likewise, <strong>32-bit float</strong> uses a significand and exponent, allowing a wide numerical range with different precision behavior from 32-bit integer PCM.</p>
+<p>A lossless codec can preserve the encoded integer precision. A lossy codec instead reconstructs an approximation, and its decoder must still choose a working sample format. Consequently, a decoder's float or 32-bit output label and the source's original bit depth describe different stages. <a href="PCM-Sample-Formats.html">PCM sample formats</a> shows how to read those working-format names.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

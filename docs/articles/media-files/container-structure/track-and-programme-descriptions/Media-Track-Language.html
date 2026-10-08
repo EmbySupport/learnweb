@@ -106,39 +106,42 @@
 <h1>Track Language Metadata</h1>
 
 
-<p>An audio track can contain English dialogue but appear as “Unknown” because its language field is missing or unhelpful. Software generally reads the tag; it does not establish the language by listening to the dialogue.</p>
-<p>Language metadata helps Emby identify choices and apply playback preferences. The same mechanism is useful for subtitles, but the language describes the subtitle text, which may differ from the soundtrack.</p>
+<p>An Emby audio selector can offer two tracks called English even though one is the main film and the other is commentary. <strong>Language metadata</strong> answers which language a track represents; it does not describe the track's role.</p>
 <table>
 <thead>
 <tr>
-<th>Language value</th>
-<th>What it indicates</th>
+<th>Value encountered in a report</th>
+<th>Interpretation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>eng</code></td>
-<td>English, using an ISO 639-2 code</td>
+<td>eng</td>
+<td>English in ISO 639-2</td>
 </tr>
 <tr>
-<td><code>deu</code> / <code>ger</code></td>
-<td>German; terminology and bibliographic ISO codes</td>
+<td>deu or ger</td>
+<td>German terminology/bibliographic ISO 639-2 codes</td>
 </tr>
 <tr>
-<td><code>pt-BR</code></td>
-<td>Portuguese with a Brazil region subtag in BCP 47</td>
+<td>pt-BR</td>
+<td>Portuguese with the Brazil region subtag in BCP 47</td>
 </tr>
 <tr>
-<td><code>und</code></td>
+<td>und</td>
 <td>Undetermined language</td>
 </tr>
 </tbody>
 </table>
-<p>Containers differ in the code systems they use. Matroska includes a legacy language field and a BCP 47 field; when both are present, the BCP 47 field takes precedence under its specification.</p>
-<h2 id="a-track-title-is-another-field">A track title is another field</h2>
-<p>“English 5.1” in a title is useful for a person, but it is not the same as a machine-readable English language tag. Likewise, setting the language to English does not identify a track as commentary or mark its subtitles as forced.</p>
-<p>If the wrong language is chosen, check the file's actual fields alongside the user's preferences. Correcting a container language tag can often be done without re-encoding the audio or video.</p>
-<p>The movie's original language in library metadata is a separate property. It describes the work, while track language describes one particular audio or subtitle component. A multilingual film can legitimately contain several differently tagged tracks.</p>
+<p>A machine-readable tag helps selection software compare a component with the viewer's preferences. A human-readable title supplies extra description such as “Commentary” or “Stereo.” Both can appear together, and neither needs to be copied into the other.</p>
+<h2 id="where-regional-detail-fits">Where regional detail fits</h2>
+<p>A BCP 47 tag can identify language and optional attributes such as script or region. The hyphen separates subtags; pt-BR is not a new unrelated language code. This richer form is useful where a distinction between regional variants matters to the viewer.</p>
+<p>Containers use different language fields. Matroska has a legacy field and a LanguageIETF field for BCP 47. When LanguageIETF is present, it takes precedence under the specification. Updating only the legacy code can thus leave the effective language unchanged for a reader using the newer field.</p>
+<p>That gives a concrete explanation for a misleading edit: the track title now says “English,” its old field says eng, but its LanguageIETF field still identifies German. The visible title and the machine-readable effective tag describe different things.</p>
+<h2 id="comparing-two-selection-results">Comparing two selection results</h2>
+<p>For each relevant audio or subtitle track, collect its effective language, title, and <a href="Media-Default-Track-Flags.html">role/selection flags</a>. Then compare them with the user's audio and subtitle preferences. This isolates a language mismatch from a commentary-role mismatch.</p>
+<p>Subtitles describe the language of their displayed text, which can differ from the soundtrack. The library's original-language metadata describes the work as a whole; it need not match every available translation.</p>
+<p>A metadata edit can correct the description without decoding the sound. It does not translate the recorded dialogue. Reading the fields after the edit establishes that the intended description, including any higher-precedence field, is now the one the software receives.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

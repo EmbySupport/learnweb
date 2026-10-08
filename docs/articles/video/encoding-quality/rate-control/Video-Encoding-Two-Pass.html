@@ -106,41 +106,70 @@
 <h1>Two-Pass Video Encoding</h1>
 
 
-<p><strong>Two-pass encoding</strong> usually means analyzing the complete source in a first pass, then using those statistics to allocate data during the final encode. It is especially useful when an offline conversion must meet a target average bitrate or approximate size.</p>
-<p>The first pass can identify where the difficult scenes occur. The second pass can reserve more of the available budget for those sections instead of making every decision with only limited knowledge of what comes next.</p>
+<p>Suppose an offline conversion must fit <strong>40 seconds of video into an average 4 Mb/s</strong>. Its video budget is:</p>
+<p><strong>40 ×4 =160 megabits</strong>, or 20 decimal MB.</p>
+<p>The encoder can spend that budget differently in different scenes. <strong>Two-pass encoding</strong> first analyzes the source so its final allocation can use knowledge of the complete sequence.</p>
 <p><img src="images/two-pass-encoding.svg" alt="Source analysis writes statistics that guide a second encode of the same source."></p>
-<p><em>Conceptual whole-source workflow. The second pass reads the original source again; it does not encode the first pass's compressed pictures.</em></p>
-<h2 id="analysis-is-not-an-extra-generation-of-picture-loss">Analysis is not an extra generation of picture loss</h2>
-<p>The final encoder uses statistics from the first pass, rather than treating a lossy first-pass video as its new source. Two passes therefore do not automatically mean two successive lossy generations.</p>
+<p><em>The final pass reads the original source again; statistics guide its choices.</em></p>
+<h2 id="analyze-before-making-the-final-allocation">Analyze before making the final allocation</h2>
+<p>A first pass evaluates picture difficulty and coding relationships. Its statistics can describe prediction costs, picture types, bits produced or estimated, and information useful for allocating precision later.</p>
+<p>Suppose four ten-second scenes receive illustrative difficulty weights <strong>1,1,4,2</strong>. A deliberately simple planner assigns budget proportional to these weights:</p>
 <table>
 <thead>
 <tr>
-<th>Whole-source two-pass encoding</th>
-<th>What follows</th>
+<th>Scene</th>
+<th style="text-align: right;">Declared weight</th>
+<th style="text-align: right;">Allocated data</th>
+<th style="text-align: right;">Rate across ten seconds</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>First pass observes the source</td>
-<td>Statistics describe its coding difficulty</td>
+<td>A</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">20 Mb</td>
+<td style="text-align: right;">2 Mb/s</td>
 </tr>
 <tr>
-<td>Second pass uses that information</td>
-<td>The overall budget can be allocated with hindsight</td>
+<td>B</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">20 Mb</td>
+<td style="text-align: right;">2 Mb/s</td>
 </tr>
 <tr>
-<td>Source is available twice</td>
-<td>Suits offline work more naturally than immediate playback</td>
+<td>C</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">80 Mb</td>
+<td style="text-align: right;">8 Mb/s</td>
 </tr>
 <tr>
-<td>A fixed target is still required</td>
-<td>The method cannot eliminate a too-small data budget</td>
+<td>D</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">40 Mb</td>
+<td style="text-align: right;">4 Mb/s</td>
+</tr>
+<tr>
+<td>Total</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">160 Mb</td>
+<td style="text-align: right;">4 Mb/s overall</td>
 </tr>
 </tbody>
 </table>
-<p>This differs from <strong>hardware multipass frame encoding</strong>. For example, NVENC can analyze and encode a frame in multiple internal passes. That is not the same as scanning an entire film before encoding it again. An encoder's “two-pass” label needs its documented context.</p>
-<p>For Emby, whole-source two-pass processing is a useful concept when preparing a library derivative in advance. A playback transcode must normally begin delivering before the whole source could be analyzed, so its decisions operate under different timing constraints.</p>
-<p>If exact size is unnecessary, <a href="Video-Encoding-CRF.html">quality-based encoding</a> can be a more direct way to choose acceptable pictures and let size vary. Neither method restores detail already missing from the source.</p>
+<p><em>This is an original proportional-planning example, not x265's rate-control formula or a measured encode. Real allocation models and local buffer constraints are more involved.</em></p>
+<p>Knowing that C is difficult lets the planner reserve more data for it while keeping the whole budget. A controller making decisions with only a short lookahead has less information about the complete video's later demands.</p>
+<h2 id="encode-the-source-with-the-plan">Encode the source with the plan</h2>
+<p>The second pass decodes or reads the <strong>same source pictures</strong>, uses the statistics to guide its quantizers and other choices, then produces the final bitstream.</p>
+<p>Actual coded sizes can differ from an estimate, so rate control updates its decisions as the encode proceeds. A local rate/buffer limit can also prevent spending the planned 80 megabits evenly or freely in C. The complete-file objective and the local deadline constraints both need to be satisfied.</p>
+<p>The first pass's compressed pictures are not ordinarily the second pass's source. Its useful output is the statistics. That is why analyzing and then encoding do not automatically create two successive lossy generations.</p>
+<h2 id="keep-the-statistics-attached-to-their-source">Keep the statistics attached to their source</h2>
+<p>The analysis describes a particular picture sequence. Changing its trims, picture order, scale, filtering or other relevant processing before the final pass can make those statistics describe the wrong input.</p>
+<p>The two passes therefore need consistent source and processing context. If a first pass uses faster analysis settings, those are deliberately chosen as part of the encoder's documented process, while the source relationship remains intact.</p>
+<p>Audio and packaging also occupy space if the objective is a complete-file size. The 160-megabit example is a video-only budget; reserve those other contributions separately when planning a full output.</p>
+<h2 id="hardware-multipass-has-a-smaller-scope">Hardware multipass has a smaller scope</h2>
+<p>An encoder such as NVENC can analyze a frame in an internal pass, then use the result when encoding that frame. Its analysis can improve the distribution within the picture.</p>
+<p>That is not a first scan of the entire 40-second clip followed by a second reading. Both are called “passes,” but the amount of future source information available differs.</p>
+<p>Whole-source two-pass preparation suits an offline library derivative whose final budget matters. An immediate Emby playback transcode needs to begin output without waiting for a whole-film analysis. Its controller instead works with the information available at that stage of delivery.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

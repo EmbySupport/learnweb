@@ -106,37 +106,44 @@
 <h1>Audio Bitrate</h1>
 
 
-<p><strong>Audio bitrate measures how much audio data is needed per second.</strong> It is usually written in kbit/s or Mbit/s. These are bits, not bytes: divide by eight to estimate bytes per second.</p>
-<p>For tightly packed, uncompressed integer PCM, the calculation is straightforward:</p>
-<p><code>bitrate = sample rate × bits per sample × channel count</code></p>
+<p><strong>Bitrate is a data-flow measurement:</strong> how many bits of audio are carried in one second. Use it to estimate storage or delivery demand. For a compressed track, the encoder and signal determine that flow; for tightly packed integer PCM, it follows directly from the sample format.</p>
+<h2 id="calculate-pcm-from-one-sample-frame">Calculate PCM from one sample frame</h2>
+<p>A 48 kHz stereo track has 48,000 time positions each second. With 24 bits for each of its two channel samples, one sample frame contains 48 bits.</p>
+<p>48,000 × 24 × 2 = <strong>2,304,000 bit/s</strong>, or <strong>2.304 Mbit/s</strong>.</p>
 <table>
 <thead>
 <tr>
-<th>PCM example</th>
-<th style="text-align: right;">Calculated audio payload bitrate</th>
+<th>PCM representation</th>
+<th style="text-align: right;">Audio payload rate</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>44.1 kHz, 16-bit, stereo</td>
+<td>44.1 kHz, 16-bit, 2 channels</td>
 <td style="text-align: right;">1.4112 Mbit/s</td>
 </tr>
 <tr>
-<td>48 kHz, 24-bit, stereo</td>
+<td>48 kHz, 24-bit, 2 channels</td>
 <td style="text-align: right;">2.304 Mbit/s</td>
 </tr>
 <tr>
-<td>48 kHz, 24-bit, six channels</td>
+<td>48 kHz, 24-bit, 6 channels</td>
 <td style="text-align: right;">6.912 Mbit/s</td>
 </tr>
 </tbody>
 </table>
-<p><em>Decimal units are used here: one Mbit/s is 1,000,000 bits per second. These values exclude file and transport overhead, and assume samples have no storage padding.</em></p>
-<p>A ten-minute stereo track at the second rate contains about 172.8 MB of sample data. If those 24-bit values occupy 32-bit slots instead, storage grows even though the useful sample precision can stay the same.</p>
-<h2 id="compressed-audio-follows-different-rules">Compressed audio follows different rules</h2>
-<p>Compressed formats represent the signal more efficiently. Their encoded bitrate cannot be calculated from sample rate and bit depth alone. A variable-bitrate track can also spend more data on some passages than others, so a reported figure may be an average.</p>
-<p>For lossy coding, bitrate is one part of a trade-off involving the codec, channel count, signal complexity, and encoder. For lossless coding, changing the compression ratio changes the size, while successful decoding still restores the same samples. A larger lossless file is not inherently a better copy.</p>
-<p>An Emby session's total delivery rate includes video and other overhead as well as the selected audio. Use the audio figure when comparing soundtracks or estimating their contribution to network demand; use the overall media rate when estimating the complete stream.</p>
+<p>Decimal units are used here. File headers and transport overhead are excluded, and the samples are assumed to occupy exactly their stated integer precision.</p>
+<p>To find storage, divide by eight and multiply by duration. Ten minutes of the 48 kHz, 24-bit stereo example contain:</p>
+<p>2,304,000 / 8 × 600 = <strong>172,800,000 bytes</strong>, or <strong>172.8 MB</strong>.</p>
+<p>If those 24-bit values occupy 32-bit storage words, the calculation uses 32 instead of 24. The stored sample data then occupy 230.4 MB for ten minutes. Precision and storage rate can change independently.</p>
+<h2 id="count-compressed-data-over-time">Count compressed data over time</h2>
+<p>A compressed codec represents the signal using coded blocks rather than storing every PCM value. Its encoded rate must be measured or supplied by the encoder configuration.</p>
+<p>Suppose three consecutive one-second intervals contain 16,000, 24,000, and 20,000 bytes of encoded audio. Their instantaneous interval rates are 128, 192, and 160 kbit/s. The three-second average is:</p>
+<p>(16,000 + 24,000 + 20,000) × 8 / 3 = <strong>160 kbit/s</strong>.</p>
+<p>A header's nominal rate, an average for the whole track, and a rate measured over a short interval can therefore describe different observations. Variable-rate delivery needs enough buffering to handle the intervals, even when the long-term average is comfortably below the connection's throughput.</p>
+<h2 id="use-the-rate-for-the-question-you-are-answering">Use the rate for the question you are answering</h2>
+<p>For a lossless track, successful decoding restores the encoded samples regardless of how efficiently the encoder compressed them. For lossy encoding, a data budget constrains how accurately the signal can be represented; comparison also depends on codec, channel count, and material.</p>
+<p>An Emby movie's total delivery demand includes video, selected audio, and packaging overhead. Use the audio rate to compare soundtrack contributions, and the total media rate when sizing the complete stream's delivery.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

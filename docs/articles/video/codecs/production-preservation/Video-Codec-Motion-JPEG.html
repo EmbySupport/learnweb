@@ -106,40 +106,50 @@
 <h1>Motion JPEG Video</h1>
 
 
-<p><strong>Motion JPEG</strong>, often shortened to <strong>MJPEG</strong>, represents moving video using JPEG-compressed images. Pictures are compressed independently rather than predicted from earlier or later pictures. Some implementations encode interlaced fields separately.</p>
-<p>This makes an individual picture straightforward to access once its container location and required JPEG tables are known. It also means that unchanged scenery is encoded again for successive pictures, rather than being reused through inter-frame prediction.</p>
+<p><strong>Motion JPEG (MJPEG)</strong> builds moving video from independently JPEG-compressed pictures. The usual frame-based form does not use another picture's samples to predict the next one.</p>
 <p><img src="images/motion-jpeg-pictures.svg" alt="Three successive pictures are independently JPEG-compressed, with no prediction arrows between them."></p>
-<p><em>Conceptual diagram of frame-based MJPEG. Field-based variants can store two separately compressed fields for one video frame.</em></p>
-<h2 id="one-label-several-implementations">One label, several implementations</h2>
-<p>JPEG's underlying image coding is standardized, but “Motion JPEG” is not a single universal video packaging specification. Container conventions, field handling, and storage of compression tables can differ. Apple's QuickTime documentation, for example, distinguishes Motion-JPEG A and B representations.</p>
+<p><em>The diagram shows a frame-based form. Some implementations code the two interlaced fields separately.</em></p>
+<h2 id="an-independent-picture-can-still-be-highly-compressed">An independent picture can still be highly compressed</h2>
+<p>Common MJPEG uses JPEG's lossy DCT-based picture coding. Within a picture, blocks are transformed into coefficients representing spatial patterns. Quantization approximates those coefficients, and entropy coding describes their values compactly.</p>
+<p>The decoder reconstructs each picture from its JPEG coding information. The neighboring video pictures do not supply its temporal predictor. Its JPEG tables and the applicable sample/container description still have to be available.</p>
+<p>This combines compressed picture storage with straightforward frame access. Once the reader locates picture C and supplies its coding information, it does not first need to reconstruct A and B as scene references.</p>
+<p>The independence also determines what gets repeated. A wall unchanged between A, B, and C is described within each new JPEG picture again. An inter-predicted codec can instead reuse an earlier reconstructed wall and describe mainly its changes.</p>
+<h2 id="assign-pictures-to-the-timeline">Assign pictures to the timeline</h2>
+<p>The surrounding video format supplies the sequence and timing. At 25 fps, each picture spans 40 ms. Let three independently encoded pictures have these illustrative sizes:</p>
 <table>
 <thead>
 <tr>
-<th>Characteristic</th>
-<th>Consequence</th>
+<th>Picture</th>
+<th style="text-align: right;">Duration</th>
+<th style="text-align: right;">JPEG payload</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Independent picture compression</td>
-<td>No temporal prediction chain to reconstruct</td>
+<td>A</td>
+<td style="text-align: right;">40 ms</td>
+<td style="text-align: right;">40,000 bytes</td>
 </tr>
 <tr>
-<td>Usual lossy JPEG coding</td>
-<td>Picture independence does not mean lossless storage</td>
+<td>B</td>
+<td style="text-align: right;">40 ms</td>
+<td style="text-align: right;">30,000 bytes</td>
 </tr>
 <tr>
-<td>Repeated backgrounds</td>
-<td>Compression may be less economical than inter-frame coding</td>
-</tr>
-<tr>
-<td>Different packaging conventions</td>
-<td>The decoder and container reader must agree</td>
+<td>C</td>
+<td style="text-align: right;">40 ms</td>
+<td style="text-align: right;">50,000 bytes</td>
 </tr>
 </tbody>
 </table>
-<p>For Emby, MJPEG can appear in older camera clips or captured video. An app needs to understand the specific stream and its packaging; the general codec name alone cannot guarantee direct playback.</p>
-<p>If a conversion is necessary, preserve the source's dimensions, timing, and field interpretation while checking the result. A modern delivery codec can reduce the data needed for an acceptable picture, but it cannot undo JPEG artifacts already present in the original. Keep the source for future conversions instead of repeatedly converting the latest derivative.</p>
+<p>Their total is 120,000 bytes across 0.120 second:</p>
+<p><strong>120,000 × 8 ÷ 0.120 = 8,000,000 bit/s</strong>, or <strong>8 Mb/s</strong>.</p>
+<p><em>Constructed sizes, excluding container and audio overhead; no encoder benchmark or recommended setting is implied.</em></p>
+<p>C can contain more difficult texture than B and need a larger JPEG even though both have the same dimensions and duration. Independence does not require identical frame sizes.</p>
+<h2 id="a-frame-can-contain-two-coded-fields">A frame can contain two coded fields</h2>
+<p>Some MJPEG representations encode interlaced fields separately and carry their JPEG bitstreams together in one video frame. The decoder must recover both field images and interpret their order and times correctly.</p>
+<p>QuickTime's documented <strong>Motion-JPEG A</strong> and <strong>B</strong> forms differ in marker and header conventions, including where required compression tables and field information are supplied. Other containers can use other conventions.</p>
+<p>The JPEG image standard therefore supplies the underlying picture coding, while the particular MJPEG representation supplies its video organization. Those two pieces determine how to locate, decode, and schedule the images in an older camera clip or capture.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

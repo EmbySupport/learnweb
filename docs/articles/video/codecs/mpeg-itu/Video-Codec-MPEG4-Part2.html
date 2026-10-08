@@ -106,39 +106,49 @@
 <h1>MPEG-4 Part 2: DivX and Xvid</h1>
 
 
-<p><strong>MPEG-4 Part 2</strong>, also called <em>MPEG-4 Visual</em>, is an older video coding standard commonly associated with Xvid and classic MPEG-4-based DivX encoders. It often appears in AVI files from earlier video collections.</p>
-<p>Part 2 is important: <a href="Video-Codec-H264.html">H.264 / AVC</a> belongs to MPEG-4 Part 10 and uses a different bitstream. The word “MPEG-4” alone does not distinguish them.</p>
 <table>
 <thead>
 <tr>
-<th>Term</th>
-<th>What it means here</th>
+<th>Label on an older video</th>
+<th>What it identifies</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>MPEG-4 Part 2</td>
-<td>The visual coding standard</td>
+<td>MPEG-4 Part 2 / MPEG-4 Visual</td>
+<td>The video coding standard</td>
 </tr>
 <tr>
 <td>Xvid</td>
-<td>An implementation that encodes MPEG-4 Part 2 video</td>
+<td>An implementation of MPEG-4 Visual, commonly Advanced Simple Profile</td>
 </tr>
 <tr>
 <td>Classic MPEG-4-based DivX</td>
-<td>A branded implementation of this format</td>
+<td>A branded implementation of this coding family</td>
 </tr>
 <tr>
 <td>AVI</td>
-<td>A possible container, not the video codec</td>
+<td>A possible container carrying the coded track</td>
+</tr>
+<tr>
+<td>H.264 / AVC / MPEG-4 Part 10</td>
+<td>A different video standard</td>
 </tr>
 </tbody>
 </table>
-<p>The DivX brand also covers products and formats beyond Part 2. DivX Plus, for example, uses H.264. Use the probed stream's codec information rather than treating every “DivX” label as interchangeable.</p>
-<h2 id="why-an-old-file-can-behave-differently">Why an old file can behave differently</h2>
-<p>Part 2 profiles and optional coding tools affect decoder requirements. Support for a straightforward stream does not prove support for every tool combination encountered in a historical collection.</p>
-<p><a href="../../../media-files/container-structure/Media-Codec-Identifiers.html">FourCC identifiers</a> such as XVID and DX50 can help identify a stream's origin or intended decoder. They are labels within a container; changing one does not convert the underlying video.</p>
-<p>For Emby, repackaging can address a container problem when the encoded streams already suit the app. A codec or coding-tool mismatch instead requires video conversion, provided the server can decode the source. Keep those two cases separate when a file plays on one device but needs transcoding on another. Renaming an AVI file to MP4 addresses neither case.</p>
+<p>These distinctions make a legacy AVI collection easier to interpret. “MPEG-4” names a standards family; <strong>Part 2</strong> identifies this visual format. The DivX brand also covers other formats, including AVC in DivX Plus.</p>
+<h2 id="picture-coding-in-the-common-rectangular-form">Picture coding in the common rectangular form</h2>
+<p>Common Simple/Advanced Simple video represents rectangular pictures with block-based prediction and corrections. Independently coded pictures establish scene content, while inter-predicted pictures reuse reconstructed references.</p>
+<p>The residual correction is transformed into block coefficients and quantized before coding. The decoder reverses the coded operations and adds the correction to the selected predictor. A newer encoder library does not change the decoder's job into a different standard: it chooses another permitted representation of the same format.</p>
+<p>The profile determines which tool set is available. <strong>Advanced Simple Profile (ASP)</strong> adds useful choices beyond the simpler form, including B-picture coding and enhanced motion tools.</p>
+<h2 id="two-motion-options-with-concrete-meanings">Two motion options with concrete meanings</h2>
+<p><strong>Quarter-pixel motion compensation</strong> allows finer reference positioning. An integer displacement selects an existing sample location; a quarter-position displacement requires the codec's interpolation to form a predictor between grid points. This can better follow movement that falls between whole positions.</p>
+<p><strong>Global motion compensation (GMC)</strong> can describe a shared transformation across a larger portion of a scene. A camera pan or related movement can make many block displacements follow one common relationship, instead of describing every region solely as an unrelated local shift.</p>
+<p>Those modes change the encoded instructions. The Xvid project documents ASP support for them, but a particular file can use a narrower selection. A decoder must implement the modes actually present.</p>
+<h2 id="read-the-track-rather-than-its-filename">Read the track rather than its filename</h2>
+<p><a href="../../../media-files/container-structure/Media-Codec-Identifiers.html">FourCC labels</a> such as XVID and DX50 help identify a container's track and its intended format association. They do not contain the prediction and transform operations themselves.</p>
+<p>A classic MPEG-4 Visual track moved into another supported wrapper still contains MPEG-4 Visual instructions. Turning it into AVC requires source decoding and a new encoding process; changing “Part 2” to “Part 10” in a label does not perform those operations.</p>
+<p>For an Emby library migration, inspect the actual codec, profile and coding features before deciding whether the work is repackaging or video conversion. The name table establishes the family, and the tool descriptions establish what its decoder needs to do.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

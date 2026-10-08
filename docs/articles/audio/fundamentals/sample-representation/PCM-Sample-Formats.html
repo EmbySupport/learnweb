@@ -106,40 +106,86 @@
 <h1>PCM Sample Formats</h1>
 
 
-<p>“PCM” tells you that audio is represented by sample values. A <strong>PCM sample format</strong> tells you how to interpret those values: integer or floating point, their storage size, and sometimes their byte order.</p>
-<p>This becomes useful when a log shows a name such as <code>s16</code> or <code>fltp</code>. These are FFmpeg's names for working sample formats, not additional audio codecs.</p>
+<p>A transcoding log changes from an AAC track to <strong>fltp</strong>. The sound has not acquired a new compression codec: the decoder has produced floating-point samples for processing, arranged in separate channel planes.</p>
+<p>A sample format specifies <strong>how numbers are represented and laid out</strong>. A codec specifies how encoded information reconstructs sound. Keeping those two jobs separate makes a processing log readable.</p>
 <table>
 <thead>
 <tr>
-<th>FFmpeg format</th>
-<th>Meaning</th>
+<th>FFmpeg working format</th>
+<th>Number representation</th>
+<th>Channel storage</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>s16</code></td>
-<td>Signed 16-bit integer samples, interleaved</td>
+<td>s16</td>
+<td>Signed 16-bit integers</td>
+<td>Interleaved</td>
 </tr>
 <tr>
-<td><code>s32</code></td>
-<td>Signed 32-bit integer storage, interleaved</td>
+<td>s32</td>
+<td>Signed 32-bit integer words</td>
+<td>Interleaved</td>
 </tr>
 <tr>
-<td><code>flt</code></td>
-<td>32-bit floating-point samples, interleaved</td>
+<td>flt</td>
+<td>32-bit floating point</td>
+<td>Interleaved</td>
 </tr>
 <tr>
-<td><code>fltp</code></td>
-<td>32-bit floating-point samples, separate plane per channel</td>
+<td>fltp</td>
+<td>32-bit floating point</td>
+<td>Planar</td>
+</tr>
+<tr>
+<td>dblp</td>
+<td>64-bit floating point</td>
+<td>Planar</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Interleaved</strong> stereo stores successive frames as left, right, left, right. <strong>Planar</strong> stereo keeps the left samples in one plane and the right samples in another. Correct conversion between those arrangements changes where the values live, not what the listener hears.</p>
-<h2 id="storage-size-is-not-always-signal-precision">Storage size is not always signal precision</h2>
-<p>A decoder can place 24-bit audio in 32-bit integer slots. The extra storage bits do not establish that the source contains 32 bits of useful precision. Similarly, an <code>s32</code> line in a processing log does not by itself tell you the original <a href="Audio-Bit-Depth.html">bit depth</a>.</p>
-<p>Floating-point processing commonly treats −1 to +1 as the nominal full-scale range. It can represent intermediate values beyond that range, but the eventual output still has limits. A later conversion or output stage can clip if those values are not brought back into range.</p>
-<p>For stored PCM, <strong>endianness</strong> describes the order of bytes within each multibyte sample; it is separate from <a href="../../channels/roles-and-ordering/Audio-Channel-Order.html">channel order</a>. Misreading either arrangement can produce severely wrong sound even though every byte arrived intact.</p>
-<p>Emby playback and transcoding logs may show a decoder's working format. A change from an encoded soundtrack to floating-point samples is a normal processing step, not evidence that the file itself was stored as floating-point PCM.</p>
+<p>FFmpeg's native working sample formats use the host machine's byte order. Stored PCM codec names and container properties can additionally specify a particular byte order.</p>
+<h2 id="repack-the-same-stereo-samples">Repack the same stereo samples</h2>
+<p>Consider three stereo time positions:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Time position</th>
+<th style="text-align: right;">Left</th>
+<th style="text-align: right;">Right</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">−0.10</td>
+</tr>
+<tr>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">−0.20</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">−0.30</td>
+</tr>
+</tbody>
+</table>
+<p>An interleaved array stores <strong>0.10, −0.10, 0.20, −0.20, 0.30, −0.30</strong>. A planar arrangement stores a left plane <strong>0.10, 0.20, 0.30</strong> and a right plane <strong>−0.10, −0.20, −0.30</strong>.</p>
+<p>Every value and its time/channel association remain the same. Correctly repacking these arrays changes memory organization without changing audio. Misreading the planar arrays as interleaved would instead assign values to the wrong channel and time.</p>
+<p>Planar processing is convenient for algorithms that operate on one channel at a time. Interleaving is convenient for interfaces that consume complete multichannel sample frames. A pipeline can legitimately convert between them several times.</p>
+<h2 id="convert-integer-values-to-float">Convert integer values to float</h2>
+<p>For signed 16-bit PCM, dividing a code by 32,768 maps it to the customary nominal floating-point range. Code +16,384 becomes +0.5; −32,768 becomes −1; +32,767 becomes approximately +0.9999695.</p>
+<p>The integer format has an asymmetric positive endpoint. It is normal for its largest positive code to map slightly below +1. A reverse conversion must handle the endpoints, rounding, and any values beyond the permitted integer range.</p>
+<p>Floating-point numbers combine a significand with an exponent. This allows processing results such as +1.2 to remain representable even though they exceed nominal audio full scale. A later stage can reduce gain before converting them to a bounded output format. If instead +1.2 reaches a stage that clips at +1, the numerical convenience of float has not prevented output distortion.</p>
+<p>Float processing also supplies fractional precision for mixing or gain operations. It is not a claim that the original recording contained 32 useful integer bits.</p>
+<h2 id="read-valid-bits-and-byte-order-separately">Read valid bits and byte order separately</h2>
+<p>A system can store 24 valid bits inside a 32-bit word. For example, WAVEFORMATEXTENSIBLE describes valid precision independently from its storage container. The unused positions are not new recorded detail. A working-format label such as s32 can therefore describe the storage of decoded 24-bit audio.</p>
+<p>Byte order is another axis. The 16-bit value 0x1234 has bytes 34 12 in little-endian order and 12 34 in big-endian order. Reading the wrong order turns 0x1234, decimal 4,660, into 0x3412, decimal 13,330. Every byte can arrive intact while the sample value is wrong.</p>
+<p>Channel roles are independently described by the <a href="../../channels/roles-and-ordering/Audio-Channel-Order.html">channel layout and order</a>. Correct byte order and storage format do not identify which samples belong to the center or surrounds.</p>
+<p>When following an Emby processing log, read a chain such as <strong>encoded AAC → planar float → downmix → integer PCM output</strong> as successive representations and operations. The working format explains the arithmetic at that stage; the input codec and output presentation tell you where those values came from and how they will be played.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

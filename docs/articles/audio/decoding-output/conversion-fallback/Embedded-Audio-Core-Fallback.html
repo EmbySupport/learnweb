@@ -106,36 +106,41 @@
 <h1>Fallback to an Embedded Audio Core</h1>
 
 
-<p>An <strong>embedded core</strong> is an existing compatible part of an audio stream that a less capable decoder can use. Falling back to it can keep sound playing without re-encoding the full presentation.</p>
-<p>The common example is a DTS-HD disc soundtrack containing a <a href="../../formats/lossy/DTS-Core.html">DTS core</a>. A core-only decoder uses the lossy compatible presentation; a full decoder can also use extension information.</p>
+<p>The selected soundtrack says DTS-HD Master Audio, but an older receiver detects DTS. <strong>An existing compatible core can explain this result:</strong> the player delivered the part that the receiver understands while omitting the enhancement information.</p>
+<p>Core fallback uses already encoded data. It differs from making a new codec version during playback.</p>
+<h2 id="follow-the-components">Follow the components</h2>
+<p>A common DTS-HD disc stream has a core and extensions. The core is independently decodable; the appropriate full decoder uses the additional information for its enhanced or lossless presentation.</p>
+<p>If the output needs conventional DTS, a supported extraction route can retain the core's coded data. That result has the losses already present in the core, but avoids another lossy encoding generation.</p>
 <table>
 <thead>
 <tr>
-<th>Operation</th>
-<th>Where the fallback audio comes from</th>
+<th>Route</th>
+<th>Origin of the delivered audio</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Embedded core fallback</td>
-<td>An already encoded component inside the stream</td>
+<td>Extract existing core</td>
+<td>Coded component from the selected stream</td>
 </tr>
 <tr>
-<td>Selecting another audio track</td>
-<td>A separately stored presentation</td>
+<td>Choose another soundtrack</td>
+<td>Separately stored track/presentation</td>
 </tr>
 <tr>
-<td>Audio transcoding</td>
-<td>A new encoding made from decoded audio</td>
+<td>Decode and transcode</td>
+<td>New encoded data from reconstructed audio</td>
 </tr>
 </tbody>
 </table>
-<p>These operations can produce similar receiver labels while having different origins.</p>
-<h2 id="a-core-does-not-preserve-every-enhancement">A core does not preserve every enhancement</h2>
-<p>A DTS core from a Master Audio track is not the lossless Master Audio result. It can also lack additional channels or immersive information available through the full presentation. The benefit is compatibility without another encoding generation, not preservation of all source features.</p>
-<p>Do not assume that every DTS-HD stream has a core: the format also allows extension-only arrangements.</p>
-<p>The Dolby case is different. <a href="../../formats/lossless/Dolby-TrueHD.html">TrueHD</a> may be accompanied by an AC-3 fallback in disc packaging, but TrueHD itself does not contain a DTS-style lossy AC-3 core. E-AC-3 independent substreams are also not automatically AC-3 components.</p>
-<p>In an Emby session, confirm what the file actually contains and what was delivered. If a core is selected or extracted, compare that result with the full source presentation. If the server creates another codec, that is <a href="Audio-Transcoding.html">transcoding</a>, even if the new track happens to use the same familiar codec name as a typical fallback.</p>
+<p>A source can remain fully intact in the library while only one compatible component is used in the session.</p>
+<h2 id="describe-what-the-fallback-omitted">Describe what the fallback omitted</h2>
+<p>A core may have fewer channels or lack lossless correction and spatial information used by the full presentation. The receiver's successful DTS decode therefore establishes that a compatible soundtrack arrived, not that the original Master Audio or DTS:X result was reconstructed.</p>
+<p>The lossless-correction example in <a href="../../formats/lossless/DTS-HD-Master-Audio.html">Master Audio</a> shows why the core alone differs from the corrected result.</p>
+<h2 id="establish-that-a-core-actually-exists">Establish that a core actually exists</h2>
+<p>DTS defines extension-only arrangements too. An extraction operation cannot manufacture a missing core from such a stream; it would need another source presentation or a conversion.</p>
+<p>The Dolby cases also have different structure. TrueHD can be accompanied by separate/packaged AC-3 compatibility audio, but it does not contain the common DTS-HD-style lossy core. An E-AC-3 independent substream is independent within E-AC-3, not automatically an AC-3 component.</p>
+<p>For an Emby playback report, identify the selected source's actual components and the delivered codec. If a decoder/encoder created new AC-3 from the full source, call that <a href="Audio-Transcoding.html">transcoding</a>, even if its final label resembles a familiar fallback. Naming the operation accurately explains both the preserved source and the presentation heard.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

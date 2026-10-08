@@ -106,7 +106,7 @@
 <h1>CUE Sheets</h1>
 
 
-<p>A CUE sheet can describe several songs inside one long audio file. It records where tracks begin and can provide titles, performers, and disc-oriented information. The sound stays in the referenced file.</p>
+<p>One long audio recording can represent an album with several songs. A <strong>CUE sheet</strong> describes their positions and names while the sound remains in the referenced file.</p>
 <pre><code class="lang-text">FILE &quot;Concert.wav&quot; WAVE
   TRACK 01 AUDIO
     TITLE &quot;Opening&quot;
@@ -115,35 +115,42 @@
     TITLE &quot;Second song&quot;
     INDEX 01 04:30:00
 </code></pre>
-<p><em>Illustrative two-track description of one recording.</em></p>
-<p>The final number in a CUE timestamp is not milliseconds. Its format is <strong>minutes:seconds:frames</strong>, using 75 CD frames per second.</p>
+<p>FILE identifies the recording. TRACK starts a disc-track description, TITLE names it, and INDEX 01 identifies its main start. The example does not create a second audio stream or a separate sound file.</p>
+<h2 id="convert-the-position-before-using-it">Convert the position before using it</h2>
+<p>CUE time is minutes:seconds:frames at <strong>75 CD frames per second</strong>. Those frames are units of disc time, not video pictures or milliseconds.</p>
+<p><code>seconds = minutes × 60 + seconds field + frames ÷ 75</code></p>
 <table>
 <thead>
 <tr>
-<th>CUE timestamp</th>
-<th style="text-align: right;">Position</th>
+<th>CUE value</th>
+<th>Calculation</th>
+<th style="text-align: right;">Time</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>00:00:00</code></td>
-<td style="text-align: right;">Start of the referenced file</td>
+<td>04:30:00</td>
+<td>4 × 60 + 30</td>
+<td style="text-align: right;">270 s</td>
 </tr>
 <tr>
-<td><code>04:30:00</code></td>
-<td style="text-align: right;">4 minutes, 30 seconds</td>
+<td>04:30:30</td>
+<td>270 + 30/75</td>
+<td style="text-align: right;">270.4 s</td>
 </tr>
 <tr>
-<td><code>04:30:30</code></td>
-<td style="text-align: right;">4 minutes, 30.4 seconds</td>
+<td>04:30:74</td>
+<td>270 + 74/75</td>
+<td style="text-align: right;">270.9866… s</td>
 </tr>
 </tbody>
 </table>
-<h2 id="boundaries-are-not-separate-soundtracks">Boundaries are not separate soundtracks</h2>
-<p><code>INDEX 01</code> marks a track's main start. A CUE sheet can also describe pregaps and other indexes, so a more elaborate file may express disc layout beyond a simple song list.</p>
-<p>This “track” is a region of an audio recording, unlike a separately selectable audio <a href="../fundamentals/Media-Streams-Tracks.html">track in a movie container</a>. The distinction helps when organizing a concert or album for an Emby music library.</p>
-<p>A CUE sheet does not physically split or convert the referenced sound. For software that does not interpret the sheet, the audio remains one long file. An export into separate songs needs to use the boundaries and preserve the appropriate metadata.</p>
-<p>Changing the audio filename without updating the <code>FILE</code> reference can break that connection. Changing the recording's timing can make the boundaries inaccurate even though the text file still parses.</p>
+<p>For 44.1 kHz PCM, one 1/75-second disc frame corresponds to 588 sample frames per channel. The 04:30:30 position therefore corresponds to 270.4 × 44,100 = 11,924,640 sample frames. This relationship explains how a disc-oriented boundary can become a precise location in the decoded recording.</p>
+<h2 id="turning-a-boundary-into-individual-songs">Turning a boundary into individual songs</h2>
+<p>A splitter uses a track's start and the next applicable boundary to select a region of the referenced audio. It writes separate outputs and associates each with the track's descriptions. In contrast, a player interpreting the CUE can offer those regions without physically splitting the long file.</p>
+<p>INDEX 00 can describe a pregap position before INDEX 01. Handling that interval is a disc-layout decision: assigning it to the preceding output, the following output, or a separate region produces different file boundaries. Read the actual indexes when the exported songs have unexpected starts or gaps.</p>
+<p>This CUE “track” is a region of a recording, unlike a <a href="../fundamentals/Media-Streams-Tracks.html">separately selectable movie audio track</a>. For an Emby music collection, establish whether the chosen reader uses those regions or sees the source as one long recording.</p>
+<p>If the audio is edited, the positions need to be mapped onto the new timeline. If its filename changes, the FILE reference needs to identify the new location. These operations preserve different relationships: one concerns time and the other concerns access to the recording.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
