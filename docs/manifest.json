@@ -461,7 +461,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/decoding-output/output-transport/Dolby-MAT.html",
-          "hash": "ulT9f+Hl33LbXegSSO5C1cTDvVqmmQ6xI4DE80GR9iE="
+          "hash": "7W4uT6h2UvvV37mqp70+1ubdAMY5mkm0a+JO4DOB9ac="
         }
       },
       "is_incremental": false,
@@ -725,7 +725,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/formats/lossy/aac-family/HE-AAC.html",
-          "hash": "wURO1O1aJrBOqPFdeVo9QL0CSLFZdVHIHD309Z993xc="
+          "hash": "/dfIp2sN0fReYd2uDAZkr3X5QYc9NqE36kgbw5IJ9Hk="
         }
       },
       "is_incremental": false,
@@ -881,7 +881,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/audio/fundamentals/Audio-Quantization-Noise.html",
-          "hash": "+8FZ9YwMVK3ktfB58rwHPp1Tx4dVr47CGM2r+NgGatI="
+          "hash": "jYVyqo9hdzpQQeHV+XR91a0RFMOmVbXoGZOrKjVtj88="
         }
       },
       "is_incremental": false,
@@ -1328,7 +1328,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/containers/iso-base-media-and-quicktime/MP4-Container.html",
-          "hash": "JD47HCXDec149uOVuFVF83QLnIdWborRem2ptsizPAE="
+          "hash": "qSeS4TczFX4szudsSS8gYKEa/9ElSiDUCi0WsDBFPY8="
         }
       },
       "is_incremental": false,
@@ -1518,7 +1518,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/media-files/fundamentals/bitrate-and-file-size/Media-Data-Units.html",
-          "hash": "ZmgiUZIrBfdbCGrMCzIcuc1K67wSBRxabYvT0F0XQLY="
+          "hash": "xf7PRCKoncrYhRCs5iYy3dnK3WYpkIgCudkjCVGmQ10="
         }
       },
       "is_incremental": false,
@@ -2354,7 +2354,18 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/compression/Video-Compression.html",
-          "hash": "TX3aNZ2kwTFzheu0Au/G39t1Ha5D4OZGHOm0z3SeJPQ="
+          "hash": "3cKFiW83QNbjJMAhdfjZuCJlEUiaB9VCj45uzcjmcqE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../../content/learn/articles/video/compression/images/video-compression-reconstruction.svg",
+      "output": {
+        "resource": {
+          "relative_path": "articles/video/compression/images/video-compression-reconstruction.svg"
         }
       },
       "is_incremental": false,
@@ -2531,7 +2542,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/encoding-quality/quality-metrics/Video-Quality-VMAF.html",
-          "hash": "fTBN+p6qwDTxk6ucqoCuMkFO1QrHXUiZMkiQeO60/6Y="
+          "hash": "qHb3wVxIcahc64bg7B7ZSg/K6N+MFnhJj/HFxNIc2sU="
         }
       },
       "is_incremental": false,
@@ -2638,7 +2649,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/encoding-quality/rate-control/Video-Encoding-VBV.html",
-          "hash": "YGqOc8d052Gjil/0egAbz27XIgy//VyW1QaLB5VX3Ho="
+          "hash": "P48QXZlN18G5Ts+oRE3sg0rXpbk0ED5r7Yb99PSzNFI="
         }
       },
       "is_incremental": false,
@@ -3471,7 +3482,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Curve-Clip.html",
-          "hash": "ZoCTl606lADEWgEMKyE6HSghXPHhUYcK9JQ/J0efu1M="
+          "hash": "WJwLO1qWrt2iIFQebQXbw9QgzvvHEa7gummOSeZJSZg="
         }
       },
       "is_incremental": false,
@@ -3782,7 +3793,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/video/tone-mapping/fundamentals/Tone-Mapping-HDR-to-SDR.html",
-          "hash": "nDnVTnHYh7Q6DZQ4c7OKTSgztLiYdOFNT6RRCXg8W3s="
+          "hash": "1G3qHBkO669J31+rHCGhPcEfohQ0G0NFluoU0b8Blc0="
         }
       },
       "is_incremental": false,

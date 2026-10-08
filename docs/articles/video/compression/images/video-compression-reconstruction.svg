@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="570" viewBox="0 0 720 570" role="img" aria-labelledby="title desc">
+<title id="title">Prediction, residual coding, and local reconstruction</title>
+<desc id="desc">The source region minus a reproducible prediction gives a residual. Transformation, quantization, and entropy coding produce coded data. The quantized correction is reconstructed and added to the prediction; reconstructed pictures supply later predictions.</desc>
+<rect width="720" height="570" rx="12" fill="#f7f9fa"/>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#607483"/></marker></defs>
+<g stroke="#607483" stroke-width="2.5" fill="none" marker-end="url(#arrow)">
+<path d="M160 120V138H310V150"/><path d="M540 120V138H390V150"/>
+<path d="M350 210V245"/><path d="M430 280H510"/><path d="M588 310V357"/>
+<path d="M540 310V338H190V355"/><path d="M190 440V475"/>
+<path d="M190 530V550H20V18H540V40"/>
+</g>
+<g font-family="Segoe UI, Arial, sans-serif" text-anchor="middle" fill="#25333f">
+<rect x="35" y="40" width="250" height="80" rx="8" fill="#e4edf5"/>
+<text x="160" y="73" font-size="22" font-weight="600">Source region</text><text x="160" y="101" font-size="18">Samples to represent</text>
+<rect x="415" y="40" width="250" height="80" rx="8" fill="#e4edf5"/>
+<text x="540" y="73" font-size="22" font-weight="600">Prediction</text><text x="540" y="101" font-size="18">Reproducible at the decoder</text>
+<rect x="270" y="150" width="160" height="60" rx="8" fill="#e4edf5"/>
+<text x="350" y="188" font-size="22">Residual</text>
+<text x="350" y="131" font-size="18">Source minus prediction</text>
+<rect x="270" y="245" width="160" height="65" rx="8" fill="#e4edf5"/>
+<text x="350" y="285" font-size="22">Transform</text>
+<rect x="510" y="245" width="155" height="65" rx="8" fill="#e3f0df"/>
+<text x="588" y="285" font-size="22">Quantize</text>
+<rect x="510" y="357" width="155" height="90" rx="8" fill="#e4edf5"/>
+<text x="588" y="391" font-size="21">Entropy code</text><text x="588" y="423" font-size="18">Coded data</text>
+<rect x="35" y="355" width="310" height="85" rx="8" fill="#e3f0df"/>
+<text x="190" y="387" font-size="20">Reconstruct the correction</text>
+<text x="190" y="419" font-size="19">Add it to the prediction</text>
+<rect x="35" y="475" width="310" height="55" rx="8" fill="#e4edf5"/>
+<text x="190" y="509" font-size="20">Reconstructed references</text>
+<text x="433" y="330" font-size="17">Local decode path</text>
+</g>
+</svg>

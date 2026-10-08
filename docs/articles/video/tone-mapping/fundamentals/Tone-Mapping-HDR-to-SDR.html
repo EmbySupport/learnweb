@@ -106,20 +106,164 @@
 <h1>How HDR-to-SDR Tone Mapping Works</h1>
 
 
-<p>Converting HDR video to SDR means changing what the pixel values represent. It is more than removing an HDR label or choosing a different video codec.</p>
-<p><img src="images/hdr-to-sdr-stages.svg" alt="Conceptual HDR-to-SDR conversion: interpret the source signal, adapt brightness and color, then encode and label the SDR output."></p>
-<p><em>Conceptual stages. A particular implementation may combine the brightness and color operations.</em></p>
-<h2 id="read-the-signal-correctly">Read the signal correctly</h2>
-<p>The converter needs to know how the source encodes brightness and color. HDR video may use PQ or HLG transfer characteristics; those values cannot simply be treated as ordinary SDR values. The picture is converted into a representation suitable for processing.</p>
-<p>Ten-bit video does not necessarily mean HDR: SDR can also use ten bits. Bit depth describes how many distinct values are available, while the transfer characteristics describe what those values mean in terms of light. A converter needs both pieces of information.</p>
-<p>Source metadata can help describe the content, but a mastering display's peak brightness is not a measurement of every frame. Some implementations also analyze the picture to estimate its brightness range.</p>
-<h2 id="fit-the-picture-to-the-target">Fit the picture to the target</h2>
-<p>The <a href="../curves/Tone-Mapping-Curves.html">tone-mapping curve</a> determines how input brightness becomes output brightness. Its brighter end can flatten gradually, preserving differences in highlights within the smaller output range.</p>
-<p>Colors need attention too. HDR material often uses a wider color gamut than an SDR target. Gamut mapping handles colors outside that target's range; it is related to tone mapping, but answers a different question. An implementation may solve both together.</p>
-<p>Finally, the converter prepares pixel values and signaling appropriate for the SDR output. If the values are converted but still labeled as HDR, the player may interpret an otherwise valid picture incorrectly.</p>
-<h2 id="the-curve-is-one-part-of-the-result">The curve is one part of the result</h2>
-<p>Changing the curve cannot correct mistaken source color information or an incorrectly configured output. Two conversions using the same curve name can also differ because their source-peak estimates, target brightness, or color handling differ.</p>
-<p>When Emby performs this work during <a class="xref" href="https://emby.media/support/articles/Transcoding.html">video transcoding</a>, the converted frames are encoded into the stream sent to the player. The original media file remains the source; the conversion does not rewrite its pixels on disk.</p>
+<p>Imagine a scene with a person beside a window: the face has ordinary indoor brightness, the outdoor sky is much brighter, and a reflection on glass is brighter still. An HDR picture can keep those regions distinct across a large range of light. An SDR conversion has less brightness range available, yet still needs to show a convincing face, a bright window, and some structure in the reflection.</p>
+<p>Tone mapping decides how to redistribute that brightness. The complete HDR-to-SDR conversion also has to interpret the original signal, fit its colors into the output color system, and produce correctly encoded SDR samples. Each part affects the result. A well-chosen highlight curve cannot repair incorrectly interpreted input values.</p>
+<p>For Emby playback, this conversion can happen in a server transcode or during presentation by a playback renderer. Both paths need to solve the same underlying problem, even though their implementations and output targets can differ.</p>
+<p><img src="images/hdr-to-sdr-stages.svg" alt="Interpret the HDR signal, adapt its brightness and color, then prepare an SDR signal with matching labels."></p>
+<p><em>These are the jobs in the conversion. An implementation can combine operations or perform parts in different working spaces.</em></p>
+<h2 id="decoding-gives-samples-their-meaning-still-matters">Decoding gives samples; their meaning still matters</h2>
+<p>A video decoder reconstructs numerical picture samples from the compressed stream. The converter then needs to know what those numbers represent.</p>
+<p>Many video sources store luma and color-difference components rather than directly storing red, green, and blue. Their <strong>matrix coefficients</strong> describe the relationship to color components. <strong>Signal range</strong> describes how stored code values represent nominal black, white, and color differences. <strong>Color primaries</strong> establish the meaning of the RGB color coordinates. <strong>Transfer characteristics</strong> relate nonlinear signal values to light.</p>
+<p>Those properties work together. If limited-range values are interpreted as full-range values, nominal black and white are assigned the wrong positions. The picture can have raised blacks or altered contrast before tone mapping starts. If the wrong matrix is used, reconstructing the color components can introduce a different error. Changing the tone curve would then adjust an already misinterpreted picture.</p>
+<p>Bit depth has a separate role. Ten bits provide more possible sample values than eight bits. They do not identify which color system or transfer function those values use. A ten-bit source can be SDR.</p>
+<p>For a <a href="../../color-standards/transfer-functions/Transfer-Function-PQ.html">PQ</a> source, the signal has an absolute reference-display light meaning. A normalized PQ value of 0.5 corresponds to approximately <strong>92.2 nits</strong> for neutral gray. It does not mean half of a television's peak brightness or half of PQ's 10,000-nit reference range. The nonlinear transfer function is what establishes that relationship.</p>
+<p>Before applying a curve defined in linear light, the converter must obtain linear-light values. For a neutral PQ gray, applying the PQ electro-optical transfer function gives its reference luminance. In a common linear-RGB processing path, the converter first restores nonlinear RGB from the luma/chroma samples using the appropriate range and matrix. It then applies the PQ transfer interpretation to those components to obtain linear RGB. Encoded luma and linear-light luminance are different quantities, so applying the PQ equation to luma alone would not perform this full color reconstruction. A method designed for a perceptual working space performs a different set of transformations.</p>
+<p>The conversion of <a href="../../hdr/formats/HLG.html">HLG</a> also needs to account for its system relationship to the intended display. Assigning PQ's absolute-light interpretation to HLG samples would skip that relationship. The important question at this stage is which representation the particular mapping expects. For example, FFmpeg's CPU tone-mapping filter expects linear-light input.</p>
+<h2 id="decide-which-brightness-range-to-fit">Decide which brightness range to fit</h2>
+<p>There are two ends to the decision: the useful brightness range in the source and the intended brightness behavior of the destination.</p>
+<p>A source can provide several kinds of information:</p>
+<ul>
+<li><strong>Mastering-display metadata</strong> describes the display used during mastering, including its luminance capabilities. That is information about the mastering environment.</li>
+<li><strong>Content-light metadata</strong> can summarize properties such as the maximum content light level. That is a description of the content under the metadata's measurement definition.</li>
+<li><strong>Measured picture statistics</strong> come from inspecting the actual decoded pictures. A renderer can use them to adapt its mapping to the material being shown.</li>
+</ul>
+<p>A mastering display capable of 1,000 nits does not require every picture to contain a 1,000-nit highlight. Similarly, a whole-program maximum describes the brightest relevant content, not the brightness of each scene. These distinctions matter because reserving output range for a peak that is absent from the current scene can change how much brightness is available to its ordinary objects.</p>
+<p>The mapper may use a fixed source assumption, trustworthy metadata, <a href="../color-and-luminance/Tone-Mapping-Peak-Detection.html">peak detection</a>, or a combination. If its assumed peak is too low, brighter source values can reach a part of the mapping that was never intended to preserve their distinctions. If the assumed peak is unnecessarily high, more compression may be applied than the scene needs.</p>
+<p>The destination also needs a defined target. A conventional SDR reference-display example can use 100 nits for white and a specified display transfer function. An actual television may show SDR white more brightly, particularly in a bright room. The largest brightness number on its product sheet does not, by itself, establish the intended SDR rendering.</p>
+<p>Reference white, black level, and viewing conditions influence the relationship between the converted picture and its appearance. The converter can prepare a conventional SDR signal for later display adjustment, or a renderer can adapt directly to a particular output. Those are different targets for the mapping.</p>
+<p>For the worked example below, choose an <strong>800-nit source peak</strong> and a <strong>100-nit SDR output peak</strong>. Use 100 nits as one unit on both sides solely to make the arithmetic easy: input values run from zero to eight, and output values from zero to one. This normalization does not assign a 100-nit reference white to all HDR material.</p>
+<h2 id="work-through-what-the-brightness-curve-does">Work through what the brightness curve does</h2>
+<p>Three simple mappings show the tradeoff clearly. Let x be the input light level in the relative units just defined.</p>
+<p><strong>Straight scaling</strong> uses x / 8. It fits the entire range, with the same scaling factor everywhere. An 800-nit highlight becomes 100 nits, but a 100-nit object becomes only 12.5 nits. If most of the scene sits well below its brightest highlight, the picture can become unnecessarily dark.</p>
+<p><strong>Clipping</strong> uses the smaller of x and one. Inputs up to 100 nits retain their light levels in this example; every higher input becomes 100 nits. A 200-nit cloud and an 800-nit reflection then have the same output value. Their original brightness separation has disappeared.</p>
+<p>A <strong>smooth nonlinear mapping</strong> can devote more output range to ordinary brightness levels and compress the highlights more strongly. For an easily calculated example, use:</p>
+<p><strong>T(x) = (9/8) × x / (1 + x)</strong></p>
+<p>This function maps zero to zero and eight to one. For an input of one, its result is (9/8) × 1/2 = 0.5625. With the chosen output reference, that means 56.25 nits.</p>
+<p><img src="../curves/images/tone-mapping-curve-shapes.png" alt="Clipping becomes flat above an input of one, straight scaling divides every input by eight, and smooth compression gradually flattens toward the output peak."></p>
+<p><em>Illustrative neutral-gray mappings. For this example, multiply either axis by 100 to express its light level in nits. The green curve is T(x) above; these are calculated relationships, not measured Emby presets.</em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Source light level</th>
+<th style="text-align: right;">Straight scaling</th>
+<th style="text-align: right;">Clipping</th>
+<th style="text-align: right;">Smooth mapping T(x)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">20 nits</td>
+<td style="text-align: right;">2.5 nits</td>
+<td style="text-align: right;">20 nits</td>
+<td style="text-align: right;">18.75 nits</td>
+</tr>
+<tr>
+<td style="text-align: right;">80 nits</td>
+<td style="text-align: right;">10 nits</td>
+<td style="text-align: right;">80 nits</td>
+<td style="text-align: right;">50 nits</td>
+</tr>
+<tr>
+<td style="text-align: right;">100 nits</td>
+<td style="text-align: right;">12.5 nits</td>
+<td style="text-align: right;">100 nits</td>
+<td style="text-align: right;">56.25 nits</td>
+</tr>
+<tr>
+<td style="text-align: right;">200 nits</td>
+<td style="text-align: right;">25 nits</td>
+<td style="text-align: right;">100 nits</td>
+<td style="text-align: right;">75 nits</td>
+</tr>
+<tr>
+<td style="text-align: right;">400 nits</td>
+<td style="text-align: right;">50 nits</td>
+<td style="text-align: right;">100 nits</td>
+<td style="text-align: right;">90 nits</td>
+</tr>
+<tr>
+<td style="text-align: right;">800 nits</td>
+<td style="text-align: right;">100 nits</td>
+<td style="text-align: right;">100 nits</td>
+<td style="text-align: right;">100 nits</td>
+</tr>
+</tbody>
+</table>
+<p>All three make the 800-nit peak fit. They produce very different pictures everywhere else. The smooth example keeps substantially more brightness in the 80-nit region than straight scaling does, while retaining some separation among the highlights that clipping merges.</p>
+<p>That separation is still compressed. Under the smooth curve, a 600-nit region becomes about 96.43 nits, while an 800-nit region becomes 100. A source difference of 200 nits has become about 3.57 nits. The converter has preserved an ordering and a distinction, but has greatly reduced their spacing.</p>
+<h3 id="curve-slope-explains-the-contrast-redistribution">Curve slope explains the contrast redistribution</h3>
+<p>The slope of the curve describes how a small change in input light affects the output. A flat segment gives no separation to neighboring inputs. A shallow segment gives little separation; a steeper segment gives more.</p>
+<p>The green curve gradually becomes shallower toward its top. This is a <a href="../color-and-luminance/Tone-Mapping-Highlight-Roll-Off.html">highlight roll-off</a>: extra source brightness has progressively less effect on output brightness. Fine texture in a very bright region can consequently become difficult to see even while its values remain mathematically distinct.</p>
+<p>A practical mapper has to choose how much separation to retain in shadows, middle brightness levels, and highlights. Preserving more of one region's brightness differences spends part of the finite output range. A curve's midpoint and any transition into highlight compression matter as much as its endpoint.</p>
+<p>The example's 100-nit object becomes 56.25 nits. That makes the effect on ordinary objects explicit: mapping is not confined to the few pixels above the SDR ceiling. Other curves can preserve a selected lower interval more closely or place the transition differently. The <a href="../curves/Tone-Mapping-Curves.html">curve overview</a> links to individual shapes and their behavior.</p>
+<h2 id="keep-brightness-changes-from-distorting-the-colors">Keep brightness changes from distorting the colors</h2>
+<p>A neutral-gray example has equal RGB components, so a scalar curve is easy to interpret. Color introduces another choice: which quantity drives that curve, and how is the resulting brightness change applied to the components?</p>
+<p>Consider a linear RGB color with components <strong>2, 1, 0.5</strong> in one fixed set of primaries. Applying the example curve independently to each component gives <strong>0.75, 0.5625, 0.375</strong>. The original red-to-green ratio was 2; it is now about 1.33. The component proportions have changed, so the operation changes the color's chromaticity as well as its brightness.</p>
+<p>An alternative is to derive a single brightness-related quantity, calculate a scale factor, and apply that same factor to all three components. If the maximum component 2 drives the example curve, it maps to 0.75. The factor is 0.75 / 2 = <strong>0.375</strong>, producing <strong>0.75, 0.375, 0.1875</strong>. The original component ratio of 4:2:1 is retained.</p>
+<p>This calculation illustrates why a tone mapper needs a color strategy. A luminance-driven method can use a different driving quantity from a maximum-component method. Preserving linear RGB proportions retains chromaticity in that fixed color system, while perceived saturation can still change with brightness and viewing conditions.</p>
+<p>There is also the question of which colors the destination can represent. HDR material commonly uses a wider <a href="../../color-standards/Color-Gamut.html">color gamut</a> than a BT.709 SDR destination. Conversion between their primaries changes the RGB coordinates needed to describe a color. For a color outside the destination gamut, those coordinates can include a negative component or a component beyond the output range.</p>
+<p>Scaling the brightness alone does not necessarily bring that color into gamut. Independently clipping offending components changes their proportions and can cause hue shifts or merge distinct colors. <a href="../color-and-luminance/Gamut-Mapping.html">Gamut mapping</a> instead provides a strategy for fitting the color—for example, reducing its distance from a neutral color while trying to preserve hue.</p>
+<p>Brightness and saturation limits interact through the destination's <a href="../../color-standards/Color-Volume.html">color volume</a>. A strongly saturated color cannot necessarily reach the same luminance as neutral white. A conversion may therefore adjust both brightness and chroma to obtain a useful result. The different methods in <a href="https://www.itu.int/pub/R-REP-BT.2446-1-2021">ITU-R BT.2446</a> show why HDR-to-SDR conversion includes color processing alongside tone mapping.</p>
+<h2 id="a-movie-also-needs-stable-decisions-over-time">A movie also needs stable decisions over time</h2>
+<p>A fixed mapping produces the same output for the same input throughout the program. That consistency can be useful, but a single curve chosen for the brightest scene may use the available range less effectively in a much dimmer scene.</p>
+<p><a href="../color-and-luminance/Tone-Mapping-Scene-Adaptive.html">Scene-adaptive tone mapping</a> changes parameters based on the content. It can make better use of the output range, but the parameter changes themselves become visible if they are too abrupt.</p>
+<p>Imagine a stationary face beside a window. A tiny flash in the window raises the measured peak for one picture. If that peak immediately changes the mapping for the whole picture, the face can darken for that instant, although its source values did not change. When the flash ends, it brightens again. The viewer sees pumping caused by the adaptation.</p>
+<p>A method can moderate that response by considering the distribution of bright samples, smoothing parameter changes over time, or distinguishing a scene cut from a brief highlight. Those choices balance responsiveness against stability. Looking at one still frame will not reveal whether the conversion maintains a consistent appearance through movement, flashes, and cuts.</p>
+<h2 id="turn-the-mapped-light-back-into-an-sdr-signal">Turn the mapped light back into an SDR signal</h2>
+<p>After brightness and color processing, the converter has to produce samples whose encoding matches the intended SDR interpretation. Linear-light values cannot simply be written into a nonlinear video signal without the appropriate transfer operation.</p>
+<p>Continue the neutral-gray example. An original <strong>100-nit PQ gray</strong> has a normalized PQ signal of about <strong>0.508</strong>. Interpreting PQ recovers 100 nits, which is x = 1 in the chosen working units. Applying T(x) produces y = 0.5625, meaning <strong>56.25 nits</strong> in the chosen SDR display model.</p>
+<p>For an ideal SDR reference display with zero black, 100-nit white, and the BT.1886 exponent of 2.4, the nonlinear signal needed to obtain that light is:</p>
+<p><strong>signal = 0.5625^(1/2.4) ≈ 0.787</strong></p>
+<p>The sequence is therefore:</p>
+<table>
+<thead>
+<tr>
+<th>Representation</th>
+<th>Value for this neutral gray</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Normalized input PQ signal</td>
+<td>About 0.508</td>
+</tr>
+<tr>
+<td>Interpreted HDR light</td>
+<td>100 nits</td>
+</tr>
+<tr>
+<td>Linear mapping input x</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Linear mapping output T(x)</td>
+<td>0.5625</td>
+</tr>
+<tr>
+<td>Intended output light</td>
+<td>56.25 nits</td>
+</tr>
+<tr>
+<td>Normalized SDR signal for the stated ideal display</td>
+<td>About 0.787</td>
+</tr>
+</tbody>
+</table>
+<p>The input and output signal numbers differ because they have different transfer meanings. Writing 0.5625 directly as that nonlinear SDR signal would produce only about <strong>25.14 nits</strong> under the same display model. The tone-mapping calculation could be correct while the displayed brightness was wrong because the output encoding step was skipped.</p>
+<p>The real output process also accounts for black level and the selected conversion method. BT.2446 describes several methods; their processing spaces and transfer operations differ. The calculation above isolates one display-referred example so that the distinction between light values and signal values is visible.</p>
+<p>For a conventional video output, the converter prepares the required luma/chroma representation, numerical range, bit depth, and matching color signaling. Retagging original HDR samples as SDR performs none of the brightness or color calculations. Correct labels describe the converted values; they do not create those values.</p>
+<p>Precision matters during this work. Intermediate calculations can retain more precision than the final video format. When values are reduced to the output bit depth, rounding can make smooth gradients form visible steps. Dithering can make those steps less conspicuous by distributing rounding error. It helps represent the converted gradient; it cannot restore highlight differences that the mapping has already merged.</p>
+<h2 id="relate-the-conversion-to-the-playback-path">Relate the conversion to the playback path</h2>
+<p>During an Emby <a class="xref" href="https://emby.media/support/articles/Transcoding.html">video transcode</a>, the server decodes the HDR source, processes the pictures for the selected output, and encodes the resulting stream. Tone mapping is a picture-processing operation within that path. It changes the delivered rendition while the library file remains available as the source.</p>
+<p>During local presentation, a playback renderer can perform adaptation as it prepares pictures for the screen. The <a class="xref" href="https://emby.media/support/articles/apps/windows/Emby-Windows-FAQ.html">Windows app documentation</a> describes tone mapping at this stage. Direct Play therefore identifies the server's delivery behavior; it does not, on its own, describe every color or brightness operation performed by the app, operating system, and display.</p>
+<p>To investigate an unexpected result, first establish where conversion happens and what output is intended. Then use the appearance to narrow the stage worth examining:</p>
+<ul>
+<li><strong>Raised black or incorrect contrast throughout the picture:</strong> check input and output range interpretation, transfer characteristics, and display mode before adjusting highlight compression.</li>
+<li><strong>Ordinary objects look sensible but bright texture disappears:</strong> examine the assumed source peak and highlight mapping. Check several frames to distinguish strong compression from time-dependent adaptation.</li>
+<li><strong>Brightness looks plausible but vivid colors shift:</strong> examine primary conversion, gamut handling, and chroma processing.</li>
+<li><strong>A stationary object brightens and darkens when another area flashes:</strong> examine how the mapping adapts over time.</li>
+</ul>
+<p>These observations connect a visible change to the operations that can cause it. Comparing the same scene along known playback paths—using both moving pictures and representative stills—makes that investigation much more informative than judging the brightest highlight alone.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -139,6 +283,9 @@
 			            <li><a class="seealso-link" href="https://www.itu.int/pub/R-REP-BT.2446-1-2021" title="ITU-R BT.2446-1: Conversion between HDR and SDR">ITU-R BT.2446-1: Conversion between HDR and SDR</a></li>
 			            <li><a class="seealso-link" href="https://www.itu.int/rec/R-REC-BT.2100/en" title="ITU-R BT.2100: HDR television image parameters">ITU-R BT.2100: HDR television image parameters</a></li>
 			            <li><a class="seealso-link" href="https://www.itu.int/rec/R-REC-BT.709/en" title="ITU-R BT.709: HDTV image parameters">ITU-R BT.709: HDTV image parameters</a></li>
+			            <li><a class="seealso-link" href="https://pub.smpte.org/pub/st2084/st2084-2014.pdf" title="SMPTE ST 2084: PQ reference display transfer function">SMPTE ST 2084: PQ reference display transfer function</a></li>
+			            <li><a class="seealso-link" href="https://www.itu.int/rec/R-REC-BT.1886/en" title="ITU-R BT.1886: SDR reference display transfer function">ITU-R BT.1886: SDR reference display transfer function</a></li>
+			            <li><a class="seealso-link" href="https://www.ffmpeg.org/ffmpeg-filters.html#tonemap" title="FFmpeg: Tone-mapping filter and working-space requirements">FFmpeg: Tone-mapping filter and working-space requirements</a></li>
 			          </ul>
             </article>
           </div>

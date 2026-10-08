@@ -106,40 +106,34 @@
 <h1>VMAF Video Quality Metric</h1>
 
 
-<p><strong>VMAF</strong>, or <em>Video Multi-Method Assessment Fusion</em>, is a video-quality metric developed by Netflix. It compares decoded test pictures with a reference and combines measured features using a model trained against viewer judgments.</p>
-<p>Its score is a prediction within that model's context. A result of 95 does not mean “95% of the original information,” and a high score does not prove mathematical losslessness.</p>
-<table>
-<thead>
-<tr>
-<th>Part of a VMAF result</th>
-<th>Why it belongs with the number</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Model and version</td>
-<td>Determine the features, calibration, and score convention</td>
-</tr>
-<tr>
-<td>Viewing assumptions</td>
-<td>Display size and distance affect artifact visibility</td>
-</tr>
-<tr>
-<td>Input preparation</td>
-<td>Scaling, sample format, and alignment affect the comparison</td>
-</tr>
-<tr>
-<td>Temporal aggregation</td>
-<td>A film average can hide poor individual scenes</td>
-</tr>
-</tbody>
-</table>
-<h2 id="there-is-more-than-one-score-scale">There is more than one score scale</h2>
-<p>Many familiar VMAF models use a 0–100 operating range. That is not a universal definition of VMAF: among the v1 models released in June 2026, Netflix documents a 4K model for viewing at three screen heights with a 0–110 range. Other v1 viewing models use 0–100. Clipping settings can also affect how a score is reported.</p>
-<p>Use the selected model's documentation before comparing scores, especially across resolutions or model generations. A number from one viewing context cannot establish equal perceived quality in another.</p>
-<p>VMAF also needs corresponding pictures. A timing offset, different crop, or unintended color conversion can measure a preparation error rather than compression quality. The comparison should reflect the intended display processing consistently.</p>
-<p>For Emby library conversions, VMAF can help compare candidate encodes made from the same retained source. Inspect difficult scenes and per-scene results alongside the aggregate score. Grain, enhancement filters, and unusual content can expose limitations in a metric's prediction.</p>
-<p>This is an evaluation of decoded pictures. It does not establish app compatibility, real-time transcoding speed, smooth network delivery, or the quality of a source that was already damaged.</p>
+<p>Suppose you are making smaller playback versions of the same retained movie source. Looking at every frame of every candidate is impractical, but file size alone says little about which version preserved the picture better. <strong>VMAF</strong> supplies one way to measure that comparison.</p>
+<p>VMAF, Video Multi-Method Assessment Fusion, is a full-reference video-quality metric. It receives decoded pictures from a reference and a test sequence, extracts comparison features, and uses a trained model to predict quality in a defined viewing context.</p>
+<h2 id="what-goes-into-the-score">What goes into the score</h2>
+<p>The comparison begins with corresponding pictures, not with file extensions or compressed byte sizes. Features capture aspects of the relationship between the reference and test content, such as retained detail and motion-related behavior. A model combines the features using relationships learned from subjective-quality data.</p>
+<p>The published v0.6.1 model, for example, lists an ADM detail feature, a motion feature, and VIF features at four spatial scales. These give the model several measurements of the picture relationship rather than one overall sample-error value. The selected model defines which measurements it consumes.</p>
+<p>Training supplies examples for which comparison features and viewer assessments are both available. The fitting process learns a mapping from the feature combinations to those assessments. Evaluation then measures a new reference/test pair and applies the fitted mapping. The training happened before this evaluation; choosing a VMAF model does not train a new model on the movie being tested.</p>
+<p>That last stage is why the result differs from a direct error formula such as <a href="Video-Quality-PSNR.html">PSNR</a>. VMAF's number is the output of a particular learned model. It is intended to be useful for perceptual comparison; it is not a count of retained bits, pixels, or original information.</p>
+<p>A score of 95 therefore needs context. Which model produced it? How were the inputs prepared? Is it a mean for a whole film, or the score of one scene?</p>
+<h2 id="prepare-the-comparison-before-interpreting-it">Prepare the comparison before interpreting it</h2>
+<p>Corresponding input pictures must represent the same content at the intended comparison geometry. A frame offset can compare two different moments. A crop difference can compare different regions. A range or color conversion applied on only one side can become part of the measured difference.</p>
+<p>When comparing a lower-resolution playback version with a larger reference, scaling is an explicit part of the evaluation. Use a consistent preparation that represents the intended viewing situation. A different scaler can change what the metric sees.</p>
+<p>This is especially relevant to HDR-to-SDR material. A straightforward comparison of incompatible signal representations does not isolate compression quality. Establish which picture representation is being compared and whether the selected model is suitable for it.</p>
+<p>For repeatable results, keep a small record with each test:</p>
+<ul>
+<li>The reference source and the tested encode.</li>
+<li>Model/version and tool settings.</li>
+<li>Sample format, geometry, scaling, and timing preparation.</li>
+<li>How per-frame results were aggregated.</li>
+</ul>
+<h2 id="read-the-models-viewing-assumptions">Read the model's viewing assumptions</h2>
+<p>Artifacts that are visible close to a large screen may be much less visible from farther away. Models calibrated for different viewing conditions can therefore assign different values to the same reconstruction.</p>
+<p>Netflix's familiar v0 models and the v1 models released in June 2026 have documented viewing assumptions. Common models use a 0–100 scale; the v1 4K model for viewing at three screen heights uses 0–110. These are model conventions, not a universal percentage scale.</p>
+<p>A score from one model should not be treated as the same quantity as an equal-looking score from another. Even within one model, changing clipping settings or input preparation can change the interpretation of the result.</p>
+<h2 id="look-past-the-whole-film-average">Look past the whole-film average</h2>
+<p>Consider a hypothetical constant-frame-rate, one-minute test: fifty seconds score 95, and ten seconds score 50. The arithmetic mean is 87.5. That single number cannot tell you whether the lower-scoring section is an inconsequential transition or the scene the viewer most cares about.</p>
+<p>Per-frame and per-scene results help locate the weakness. A low-tail summary can be useful alongside the mean, and a targeted viewing check can show what happened: smeared grain, unstable texture, blurred fine detail, or another visible change.</p>
+<p>Enhancement processing can complicate the measurement. Sharpening may change measured features while introducing a look that a viewer dislikes. Grain handling can also affect a reference comparison even where a synthetic-grain presentation is intentional. The metric and a viewing check answer related questions, rather than replacing one another.</p>
+<p>For an Emby library conversion, use VMAF to narrow the candidate encodes and identify passages worth inspecting. After choosing a satisfactory picture reconstruction, test the intended playback path separately for decoding and delivery performance. That preserves a clear meaning for the score: how the tested pictures compare under the stated model and preparation.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -159,6 +153,8 @@
 
 			          <h4 class="references seealso-heading">References</h4>
 			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://github.com/Netflix/vmaf/blob/master/model/vmaf_v0.6.1.json" title="Netflix: published v0.6.1 model inputs">Netflix: published v0.6.1 model inputs</a></li>
+			            <li><a class="seealso-link" href="https://github.com/Netflix/vmaf/blob/master/resource/doc/features.md" title="Netflix: available comparison features">Netflix: available comparison features</a></li>
 			            <li><a class="seealso-link" href="https://github.com/Netflix/vmaf" title="Netflix: VMAF project">Netflix: VMAF project</a></li>
 			            <li><a class="seealso-link" href="https://github.com/Netflix/vmaf/blob/master/resource/doc/index.md" title="Netflix: VMAF documentation">Netflix: VMAF documentation</a></li>
 			            <li><a class="seealso-link" href="https://github.com/Netflix/vmaf/blob/master/resource/doc/models_v0.md" title="Netflix: VMAF v0 models and viewing conditions">Netflix: VMAF v0 models and viewing conditions</a></li>

@@ -106,40 +106,177 @@
 <h1>How Video Compression Works</h1>
 
 
-<p><strong>Video compression</strong> describes pictures using fewer bits than a straightforward list of their sample values. It finds patterns within a picture and, in many codecs, similarities between successive pictures.</p>
-<p>Imagine a camera following a person across a plain wall. Much of the wall stays similar from one picture to the next. An encoder can describe a prediction of that region and a correction, rather than repeatedly describing it from scratch.</p>
+<p>A camera following a person across a plain wall records much of the same scene again and again. Storing every picture as a fresh list of sample values would spend a large amount of data describing that repetition. Video compression finds a cheaper description from which a decoder can reconstruct the pictures: where to get a useful prediction, how to correct it, and which small differences to retain.</p>
+<p>That description is what Emby stores and delivers as a compressed video stream. The player reconstructs full pictures for display. To understand the savings—and why quality, encoding speed, and seeking behave as they do—it helps to follow one region through this process.</p>
+<h2 id="how-much-data-is-being-replaced">How much data is being replaced?</h2>
+<p>For a 1920 × 1080 picture stored as 8-bit 4:2:0 video, four picture locations use four luma samples and two chroma samples. Luma carries the brightness-related signal; the two chroma components carry color differences. The lower chroma sampling density gives an average of 1.5 bytes per picture location.</p>
+<p>Ignoring padding and headers:</p>
+<ul>
+<li>One picture occupies 1920 × 1080 × 1.5 = <strong>3,110,400 bytes</strong>.</li>
+<li>At 24 pictures per second, that is <strong>74,649,600 bytes per second</strong>, about <strong>74.65 MB/s</strong> or <strong>597 Mb/s</strong>.</li>
+<li>One minute would occupy about <strong>4.48 GB</strong> in decimal units.</li>
+</ul>
+<p>A hypothetical compressed video stream averaging 6 Mb/s would use about 45 MB for that minute, before audio and container overhead. The raw-to-compressed ratio in this example is roughly 100:1. That calculation describes the data reduction, not a guarantee of what any particular source will look like at 6 Mb/s.</p>
+<p>The raw baseline already has a defined sample format. Comparing it with full-resolution RGB or with samples of a different bit depth would give a different ratio. Compression operates on the picture representation supplied to the encoder; scaling, reducing bit depth, and changing chroma sampling are additional ways a workflow can change that input.</p>
+<h2 id="find-a-prediction-worth-describing">Find a prediction worth describing</h2>
+<p>The encoder divides a picture into regions and looks for useful ways to predict their samples. Region sizes and available prediction tools depend on the codec. A large region can describe a smooth wall efficiently. Around a moving hand or a detailed edge, smaller regions may provide better matches.</p>
+<p>There is a cost to that flexibility. Dividing a region means describing the divisions and their individual choices. The smallest possible regions do not automatically make the smallest file. The encoder has to weigh improved predictions against the extra instructions.</p>
+<h3 id="predict-from-the-same-picture">Predict from the same picture</h3>
+<p>With <a href="picture-prediction-and-random-access/Intra-Frame-Compression.html">intra-frame prediction</a>, a region can be predicted from neighboring samples that have already been reconstructed. If nearby samples have similar values, extending those values into the new region can be a good starting point. A directional prediction can continue an edge across the region.</p>
+<p>Both encoder and decoder know those reconstructed neighbors and the selected prediction rule. The encoder sends the choice of rule and a correction, rather than a completely independent value for every sample.</p>
+<p>“Intra” therefore does not mean “uncompressed.” Even a picture that has no dependencies on other pictures can exploit a great deal of repetition within itself. A broad, evenly lit wall is much easier to describe this way than a field of unrelated random values.</p>
+<h3 id="predict-from-other-pictures">Predict from other pictures</h3>
+<p>With <a href="picture-prediction-and-random-access/Inter-Frame-Prediction.html">inter-frame prediction</a>, the encoder can obtain samples from reconstructed reference pictures. When the person moves to the right, a region at the person's new position may resemble a region farther left in a reference picture. A <strong>motion vector</strong> tells the decoder where to obtain the selected prediction.</p>
+<p>The decoder does not need to recognize a person or understand the motion of an arm. It follows sample-location instructions. The encoder does the search; the decoder uses the result. Depending on the codec, predictions can use several reference pictures, interpolated sample positions, or combinations of predictions.</p>
+<p>Motion prediction is especially useful when a camera pans across a scene. Many sample positions change, but large areas still resemble shifted versions of an earlier picture. Conversely, a small newly revealed strip behind a moving object may have no useful match. The encoder can choose another prediction or code that region using intra prediction.</p>
+<p>The prediction is often imperfect: illumination changes, an edge moves by a fraction of a sample, or a surface deforms. The remaining difference is the <strong>residual</strong>. A useful prediction makes that correction easier to describe.</p>
+<h2 id="follow-the-correction-through-an-encode">Follow the correction through an encode</h2>
+<p>Take four illustrative luma samples. The prediction is close to the source:</p>
 <table>
 <thead>
 <tr>
-<th>Idea</th>
-<th>What it contributes</th>
+<th>Stage</th>
+<th>Four sample values</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Prediction</td>
-<td>Estimates samples from information the decoder already has</td>
+<td>100, 102, 104, 106</td>
 </tr>
 <tr>
-<td>Correction, or residual</td>
-<td>Describes the difference between the estimate and the picture</td>
+<td>Source</td>
+<td>102, 101, 108, 107</td>
 </tr>
 <tr>
-<td>Entropy coding</td>
-<td>Represents common values and patterns with compact codes</td>
-</tr>
-<tr>
-<td>Quantization in lossy modes</td>
-<td>Approximates values to reduce the amount of information retained</td>
+<td>Residual: source minus prediction</td>
+<td>2, −1, 4, 1</td>
 </tr>
 </tbody>
 </table>
-<p>This is a conceptual breakdown. Different codecs combine their tools differently; not every format uses every row.</p>
-<h2 id="the-decoder-reconstructs-complete-pictures">The decoder reconstructs complete pictures</h2>
-<p>Prediction does not leave the viewer with only “changed pixels.” The decoder follows the coded instructions and reconstructs the complete pictures needed for display. The codec specification defines the rules; the encoder decides which allowed tools to use.</p>
-<p>A good encoder can spend more time evaluating possibilities to obtain a smaller stream at a similar visible quality. That is why two files with the same codec, dimensions, and frame rate can have different bitrates and quality.</p>
-<p>For Emby, compression connects storage, network capacity, and playback capabilities. A smaller video stream is easier to deliver over a constrained connection, but the app must support its <a href="Video-Codec-Profiles.html">codec and stream requirements</a>. During video transcoding, the server decodes the original and compresses a new stream, adding work and potentially another lossy step.</p>
-<p><a href="Lossless-Video-Compression.html">Lossless compression</a> reproduces the input samples exactly. <a href="Lossy-Video-Compression.html">Lossy compression</a> permits differences in exchange for greater savings. Neither term says whether the file's audio or other tracks use the same approach.</p>
+<p>If the decoder receives that exact residual, adding it to the prediction recovers the source exactly. This subtraction is reversible. Lossy compression enters when the encoder chooses to describe an approximation of the correction.</p>
+<h3 id="change-the-representation-before-rounding">Change the representation before rounding</h3>
+<p>A transform expresses a region as a mixture of patterns. One pattern might represent a constant offset; others describe variations across the region. The resulting numbers are <strong>coefficients</strong>: how much of each pattern is present.</p>
+<p>A constant residual of 2, 2, 2, 2 illustrates the attraction. Instead of treating the four equal corrections as unrelated numbers, a suitable transform represents their common component and leaves the variation components at zero. Real picture regions often contain smooth areas and gradual changes that concentrate much of their information in relatively few coefficients.</p>
+<p>For a transparent numerical example, use a small reversible add-and-subtract transform. This is a teaching example, not the transform prescribed by H.264 or H.265. Given residual samples a, b, c, and d, calculate:</p>
+<pre><code class="lang-text">c0 = (a + b + c + d) / 2
+c1 = (a + b − c − d) / 2
+c2 = (a − b + c − d) / 2
+c3 = (a − b − c + d) / 2
+</code></pre>
+<p>For 2, −1, 4, 1, the coefficients are <strong>3, −2, 3, 0</strong>. For the constant residual 2, 2, 2, 2, they would be <strong>4, 0, 0, 0</strong>: all the correction is in the common component.</p>
+<p>The transform has not thrown away information. Applying the corresponding inverse to the unrounded coefficients recovers the original residual. It has put the information into a form that is often cheaper to approximate and code.</p>
+<h3 id="quantize-the-coefficients">Quantize the coefficients</h3>
+<p>Quantization reduces the number of coefficient values that need distinct representations. For this example, round to the nearest multiple of two, with halfway cases rounded away from zero:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Coefficient values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Before rounding</td>
+<td>3, −2, 3, 0</td>
+</tr>
+<tr>
+<td>After rounding</td>
+<td>4, −2, 4, 0</td>
+</tr>
+<tr>
+<td>Levels, expressed in units of the step size</td>
+<td>2, −1, 2, 0</td>
+</tr>
+</tbody>
+</table>
+<p>A decoder given the levels and step size reconstructs 4, −2, 4, 0. It cannot determine whether an original coefficient of 3 or 4 led to the reconstructed value 4. Those distinctions have been merged.</p>
+<p>Larger quantization steps merge more distinctions and often make more coefficients zero. That can reduce the number of bits substantially, while changing the reconstructed picture more. Actual codecs define their own scaling and quantization rules, and encoders can adjust choices across a picture. The simple step of two here is not a codec QP setting.</p>
+<h3 id="code-the-remaining-symbols-compactly">Code the remaining symbols compactly</h3>
+<p>The bitstream must describe more than coefficients. It also contains prediction choices, region divisions, reference information, motion data, and other syntax. Entropy coding represents those symbols using their statistical patterns.</p>
+<p>For example, a long region of zero coefficients does not need a separate full-sized integer for every zero. Contexts in which one outcome is very likely can also be represented more economically than contexts with many equally likely outcomes. The exact method depends on the codec.</p>
+<p>This stage preserves the symbols it is given. It does not decide that a coefficient should become zero; quantization and the encoder's coding decisions have already established what will be represented. A decoded coefficient sequence can be an exact copy of the coded sequence even while the resulting picture differs from the original.</p>
+<h3 id="reconstruct-the-picture-the-player-will-get">Reconstruct the picture the player will get</h3>
+<p>Applying the inverse toy transform to the rounded coefficients produces a residual of <strong>3, −1, 5, 1</strong>. Adding that correction to the same prediction gives:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Four sample values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Original source</td>
+<td>102, 101, 108, 107</td>
+</tr>
+<tr>
+<td>Decoded reconstruction</td>
+<td>103, 101, 109, 107</td>
+</tr>
+<tr>
+<td>Reconstruction minus source</td>
+<td>1, 0, 1, 0</td>
+</tr>
+</tbody>
+</table>
+<p>Two sample values changed by one. The decoder has done its job correctly: this is the picture specified by the compressed description. It has no access to the discarded distinctions needed to restore the two original values.</p>
+<p>The example also shows why a compression error need not look like a single missing pixel. Changing a transform coefficient changes a pattern spread over several samples. In real pictures, stronger approximation can soften texture, alter an edge, or produce visible patterns around it. <a href="../encoding-quality/quality-changes-artifacts/Video-Compression-Artifacts.html">Compression artifacts</a> are the visible consequences of those decisions.</p>
+<p><img src="images/video-compression-reconstruction.svg" alt="A conceptual lossy video encoder predicts a region, transforms and quantizes its residual, and codes the result; reconstruction supplies the reference pictures for later predictions."></p>
+<p><em>The encoder keeps a local reconstruction so later predictions use pictures that the decoder can also obtain. The codec defines the actual transforms, syntax, and reconstruction rules.</em></p>
+<h2 id="why-the-encoder-needs-its-own-reconstruction">Why the encoder needs its own reconstruction</h2>
+<p>For later pictures, the encoder must predict using the samples the decoder will have. After the example above, a reference region contains 103, 101, 109, 107, even though the original source contained 102, 101, 108, 107.</p>
+<p>Suppose the next source picture has a sample value of 104 at the corresponding position. Predicting from the reconstructed value 103 leaves a correction of 1. The decoder can make that same prediction and obtain 104. Predicting instead from the pristine source value 102 would leave a correction of 2; adding it to the decoder's reference value 103 would produce 105.</p>
+<p>That disagreement is why the encoder reconstructs its chosen approximation and uses the result for future references. Both sides must operate from matching information. A lossy reference does not inevitably make all following pictures worse: later corrections can account for differences, provided the encoder uses the correct reconstructed reference.</p>
+<p>Reconstruction can also include codec-defined processing such as in-loop filtering. In block-based coding, this processing can reduce some discontinuities or adjust reconstructed samples. When those filtered pictures serve as references, the encoder must account for the same processing. A filter used only for display has a different role because it does not redefine the samples used for subsequent predictions.</p>
+<p><a href="Lossless-Video-Compression.html">Lossless video compression</a> retains the information needed to recover the input samples exactly. It can still exploit prediction and statistical coding. It does not have to use this lossy transform-and-rounding path; FFV1, for example, codes sample differences without discarding them. Lossless applies to the samples supplied to that encoder. Any earlier scaling or color conversion remains part of how those samples were produced.</p>
+<h2 id="picture-dependencies-explain-decoding-order-and-seeking">Picture dependencies explain decoding order and seeking</h2>
+<p>A reference picture must be reconstructed before a picture that uses it. The order in which pictures are decoded can therefore differ from the order in which they appear on screen.</p>
+<p>Consider a simplified sequence displayed as A, B, C. Suppose C is predicted from A, and B is predicted using both A and C. The decoder needs this order:</p>
+<ol>
+<li>Decode A.</li>
+<li>Decode C using A.</li>
+<li>Decode B using the two available references.</li>
+<li>Present A, B, C at their intended times.</li>
+</ol>
+<p>The player holds the necessary pictures and uses their timing information to restore presentation order. “A later picture” in a prediction description can mean later in display order; it is already available when the dependent picture is decoded.</p>
+<p>The same dependencies matter when seeking. Jumping directly into a dependent picture may omit references needed to reconstruct it. A player typically starts at a suitable <a href="picture-prediction-and-random-access/Video-Keyframes.html">random-access point</a>, then decodes the necessary path to the requested time. Merely having a picture coded without inter prediction does not, for every codec structure, guarantee that all subsequent dependencies have been reset.</p>
+<p>More frequent independent access points can make entry into the stream easier, but give the encoder fewer opportunities to reuse earlier pictures. This is one reason a seek-friendly or low-latency stream can have different compression characteristics from a stream designed mainly for efficient sequential playback.</p>
+<h2 id="the-encoder-chooses-between-competing-descriptions">The encoder chooses between competing descriptions</h2>
+<p>For one region, an encoder may have several plausible descriptions: one large prediction, several smaller predictions, a different reference picture, or an intra prediction. Each produces a different residual and requires a different amount of syntax.</p>
+<p>A prediction with the smallest raw residual is not necessarily the best final choice. It might require many extra motion instructions. Conversely, accepting a slightly less accurate prediction can be worthwhile if its coded description is much smaller.</p>
+<p><strong>Rate-distortion optimization</strong> expresses this tradeoff. “Rate” is the number of bits needed; “distortion” is a measure of the reconstructed picture's difference from the source. As a constructed example, consider two complete coding choices:</p>
+<table>
+<thead>
+<tr>
+<th>Choice</th>
+<th style="text-align: right;">Bits for this region</th>
+<th style="text-align: right;">Distortion in illustrative units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr>
+<td>B</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">14</td>
+</tr>
+</tbody>
+</table>
+<p>If the cost is distortion + 0.05 × bits, A costs 16 and B costs 17.5, so A wins. If bits are more expensive and the multiplier is 0.2, A costs 34 and B costs 28, so B wins. Nothing about the source changed; the available tradeoff changed.</p>
+<p>Real encoders use more involved calculations, and a simple sample-error score does not capture every aspect of perceived quality. The example explains why a coding decision can change when a bitrate budget changes. The <a href="https://x265.readthedocs.io/en/master/cli.html">x265 analysis options</a> expose controls for how thoroughly such alternatives are evaluated.</p>
+<p>Scene complexity affects those alternatives. A static wall offers predictable samples and often small corrections. Film grain and sensor noise contain variations that are harder to predict. Leaves moving independently, splashing water, or newly revealed detail can require many corrections. Preserving that information costs bits; smoothing it makes the picture cheaper to describe.</p>
+<p><a href="../encoding-quality/rate-control/Video-Encoding-Bitrate.html">Rate control</a> manages these choices over time. A quality-oriented encode can allow difficult sections to use more data. A constrained stream has to fit its delivery budget, potentially using stronger approximation in a difficult scene. A full movie's average bitrate hides those local differences. Resolution and frame rate describe the output grid and timing, while the coding decisions determine how faithfully that grid represents the source.</p>
+<h2 id="encoding-effort-and-playback-effort-are-different">Encoding effort and playback effort are different</h2>
+<p>The decoder follows a selected description. The encoder may have tried many descriptions before choosing it. That search is why increasing encoder effort can improve compression without requiring the player to repeat the search.</p>
+<p>The <a href="https://x265.readthedocs.io/en/master/presets.html">x265 presets</a> provide a concrete example: slower presets evaluate more possibilities, while faster presets take more shortcuts. Comparing encoders fairly means considering the resulting quality, bitrate, and time together. Identical codec names or nominal quality settings do not establish identical decisions.</p>
+<p>Playback still has work to do: entropy decoding, reference management, prediction, reconstruction, and any required filters. A device must support the particular codec features and sample format, and perform those operations fast enough for the picture rate. A compact stream can consequently be harder for a device to decode than a larger stream in a simpler supported format.</p>
+<p>For Emby, these distinctions separate three common paths. During Direct Play, the app decodes the stored compressed video. When the server copies that video into a different container, the compressed picture description remains intact. During a <a class="xref" href="https://emby.media/support/articles/Transcoding.html">video transcode</a>, the server decodes the source, performs any required processing, and creates a new compressed description for the destination.</p>
+<p>The new encoder sees the reconstructed source, including any texture or edge changes already present in it. More output bits can preserve that input better; they cannot identify discarded original detail. That is why keeping the original library file gives future playback and conversion paths the best available starting point.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -162,6 +299,8 @@
 			            <li><a class="seealso-link" href="https://www.itu.int/rec/T-REC-H.264" title="ITU-T H.264: Advanced video coding">ITU-T H.264: Advanced video coding</a></li>
 			            <li><a class="seealso-link" href="https://www.itu.int/rec/T-REC-H.265" title="ITU-T H.265: High efficiency video coding">ITU-T H.265: High efficiency video coding</a></li>
 			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc9043.html" title="RFC 9043: FFV1 lossless video format">RFC 9043: FFV1 lossless video format</a></li>
+			            <li><a class="seealso-link" href="https://x265.readthedocs.io/en/master/presets.html" title="x265: Encoder presets and compression efficiency">x265: Encoder presets and compression efficiency</a></li>
+			            <li><a class="seealso-link" href="https://x265.readthedocs.io/en/master/cli.html" title="x265: Coding decisions, quantization, and rate control">x265: Coding decisions, quantization, and rate control</a></li>
 			          </ul>
             </article>
           </div>

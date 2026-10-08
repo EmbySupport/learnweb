@@ -106,33 +106,62 @@
 <h1>Dolby MAT Audio Transport</h1>
 
 
-<p><strong>Dolby MAT means Metadata-enhanced Audio Transmission.</strong> It packages audio for a supported HDMI output path and is especially useful when interpreting the relationship between a player's decoding and a receiver's Atmos input.</p>
-<p>MAT is a transport mechanism. It is not evidence that the movie file itself stores a “MAT soundtrack.”</p>
-<h2 id="two-important-uses">Two important uses</h2>
+<p>The library file says <strong>Dolby Digital Plus with Atmos</strong>. The receiver says <strong>Dolby MAT</strong>. Follow one playback session, and those two labels can fit together:</p>
 <table>
 <thead>
 <tr>
-<th>MAT use</th>
-<th>What is carried</th>
+<th>Point in the session</th>
+<th>What is present</th>
+<th>Job performed here</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Original TrueHD transport, commonly associated with MAT 1.0</td>
-<td>Variable-rate TrueHD data packed for a fixed-rate HDMI audio link</td>
+<td>Library file</td>
+<td>Dolby Digital Plus with an Atmos presentation</td>
+<td>Stores the compressed soundtrack</td>
 </tr>
 <tr>
-<td>MAT 2.0 Atmos delivery</td>
-<td>Supported PCM-based object audio with metadata for further rendering</td>
+<td>Emby Server delivery</td>
+<td>The selected audio track, supplied without conversion</td>
+<td>Delivers the source presentation to the app</td>
+</tr>
+<tr>
+<td>Player processing</td>
+<td>Decoded audio with the required spatial information retained</td>
+<td>Decodes the compressed presentation</td>
+</tr>
+<tr>
+<td>Supported HDMI output</td>
+<td>A PCM-based Dolby MAT presentation</td>
+<td>Transports audio and associated Atmos information</td>
+</tr>
+<tr>
+<td>Receiver</td>
+<td>The received presentation and the configured speaker layout</td>
+<td>Renders the audio for those speakers</td>
 </tr>
 </tbody>
 </table>
-<p>Dolby's home theater description explains the extension to PCM-based Atmos delivery. Microsoft's transport documentation distinguishes MAT versions and their output declarations. These version-specific capabilities should not be collapsed into one generic PCM claim.</p>
-<h2 id="decoding-can-preserve-spatial-information">Decoding can preserve spatial information</h2>
-<p>An object-aware playback path can decode compressed Atmos content and then deliver audio plus its associated metadata through MAT. The receiver can use that information for its renderer.</p>
-<p>By contrast, sending only an ordinary 5.1 or 7.1 PCM channel presentation leaves the receiver without the original object metadata. More output channels alone do not restore it.</p>
-<p>MAT carriage also does not make a lossy source lossless. It can transport the decoded audio without adding a new lossy encoding, while the source's earlier compression remains part of that signal.</p>
-<p>For an Emby session, a MAT input indication can therefore describe what the player is sending after delivery and processing. Confirm the source format and actual output capability together: a receiver supporting one MAT use does not establish that every player can decode or deliver every Atmos source form.</p>
+<p>This example assumes a player with the appropriate decoder and a supported PCM-based Atmos output route. <strong>Dolby MAT</strong>, Metadata-enhanced Audio Transmission, is the transport in the fourth row. The receiver names what arrived there; the file names what was stored in the first row.</p>
+<h3 id="read-the-chain-at-each-boundary">Read the chain at each boundary</h3>
+<p><strong>1. Server to player.</strong> Supplying the selected compressed track unchanged leaves decoding to the player. A receiver indication farther downstream cannot establish whether the server changed the audio; check the actual server delivery path for that part of the chain.</p>
+<p><strong>2. Decoder to output.</strong> Decoding reconstructs audio, while rendering determines how a channel or object presentation becomes signals for speakers. An object-aware player can decode a compressed Atmos presentation and retain the information needed for downstream rendering. These are separate jobs, which is what makes a decoded Atmos transport useful.</p>
+<p><strong>3. HDMI to receiver.</strong> In the PCM-based MAT 2.0 use, the link carries audio together with the associated Atmos metadata. The receiver can use that presentation with its speaker arrangement. It receives more information than an ordinary set of completed 5.1 or 7.1 channel samples.</p>
+<p><strong>4. Receiver to speakers.</strong> Detected input information and the selected listening mode answer different questions. The former describes what arrived; an upmixer or other listening mode describes processing after receipt. Read the input-format report when tracing the source-to-receiver path.</p>
+<h2 id="change-one-part-of-the-session">Change one part of the session</h2>
+<p>Keep the same source track and server delivery, but select ordinary channel PCM output in the player. The receiver might now receive a completed 7.1 presentation: eight channels that it can play or further process. Those channels describe that particular rendering. They do not carry the original object presentation simply because the connection has room for multichannel PCM.</p>
+<p>Select encoded passthrough instead, where the whole path supports it. The downstream device then performs decoding as well as rendering. The placement of the decoder has changed, while the selected source may stay the same.</p>
+<p>Now change server delivery to an ordinary audio transcode. The app may receive a new channel-based presentation before it makes any output decision. A later MAT-capable output cannot reconstruct spatial information that the earlier conversion omitted.</p>
+<p>These changes explain why “where was it decoded?” is only part of the investigation. Follow <strong>what information survived each boundary</strong>, and the audible result becomes easier to account for. The <a href="../Audio-Playback-Path.html">audio playback path</a> describes the surrounding stages.</p>
+<h2 id="why-truehd-playback-also-uses-the-mat-name">Why TrueHD playback also uses the MAT name</h2>
+<p>MAT originally provided carriage for a variable-rate <a href="../../formats/lossless/Dolby-TrueHD.html">TrueHD</a> bitstream over the HDMI audio transport arrangement. In that use, the source packs encoded TrueHD data into the transport and the receiving device unpacks and decodes it.</p>
+<p>PCM-based MAT 2.0 extends the possible route by carrying a decoded Atmos presentation with its metadata. The shared MAT name consequently does not locate the decoder by itself: identify the actual use and the source and output information.</p>
+<p>A media inspector examines the stored track. It can correctly identify TrueHD in an MKV even though the receiver describes its transport using MAT. There need not be a stored MAT track in the library file.</p>
+<h2 id="record-the-session-in-terms-that-can-be-compared">Record the session in terms that can be compared</h2>
+<p>For an Emby playback investigation, collect the selected source track, server delivery mode, player output choice, receiver input report, and speaker/rendering configuration. Together they describe a path. Reading just the file label or just the receiver's listening mode leaves several operations unexplained.</p>
+<p>Transport also preserves the compression history of the audio it carries. A decoded lossy source already contains the reconstruction from that lossy encode. Sending it onward without another lossy encoding step preserves that result; it does not turn the source into a lossless recording. A lossless TrueHD source can retain its recovered samples through a supported output path that preserves them.</p>
+<p>The file and receiver labels then have precise roles in the record: one identifies the retained source, and the other identifies the presentation delivered across the audio connection.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

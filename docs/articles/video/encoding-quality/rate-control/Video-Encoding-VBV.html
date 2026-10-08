@@ -106,42 +106,62 @@
 <h1>Video Buffering Verifier (VBV)</h1>
 
 
-<p><strong>VBV</strong>, or <em>Video Buffering Verifier</em>, describes a modeled buffer used to constrain coded video. The encoder must produce pictures that can be supplied and removed under the model's rate, capacity, and timing rules.</p>
-<p>It addresses a problem that average bitrate cannot: a video may fit its whole-film data budget but contain an individual picture or short section too demanding for the intended decoder buffer.</p>
-<p><img src="images/vbv-buffer-model.svg" alt="Data enters a modeled buffer at a constrained rate, and pictures remove different amounts when decoded."></p>
-<p><em>Conceptual decoder-buffer view. Actual conformance depends on codec-specific timing and picture removals; this drawing is not a bitstream verification result.</em></p>
-<h2 id="rate-and-capacity-have-different-units">Rate and capacity have different units</h2>
+<p>A film can average 4 Mb/s and still contain a short section that needs data faster than a decoder can accept it. <strong>Video Buffering Verifier (VBV)</strong> constraints address that problem by asking whether the encoded pictures can pass through a defined rate-and-buffer model.</p>
+<p>The model has three essential ingredients: how data arrives, how much coded data can be stored, and when each picture removes its required data. An average for the whole film leaves the last two questions unanswered.</p>
+<p><img src="images/vbv-buffer-model.svg" alt="Coded data arrives at a constrained rate, waits in a modeled buffer, and is removed when a picture is decoded."></p>
+<h2 id="rate-capacity-and-occupancy">Rate, capacity, and occupancy</h2>
+<p>Suppose a simplified model accepts data at <strong>4 Mb/s</strong>, has a capacity of <strong>8 megabits</strong>, and starts with <strong>4 megabits already available</strong>.</p>
+<p>The input rate describes how quickly the buffer can refill. Capacity is its maximum stored amount. Occupancy is how much it contains at a particular moment.</p>
+<p>A large picture can use data accumulated during easier pictures. It can require more than one frame interval's worth of arriving data without exceeding the model, provided that enough has arrived before its removal time.</p>
+<p>A picture fails the model if it needs bits that are not available when it must be decoded. The opposite limit matters too: arrivals and removals must follow rules that keep stored data within the permitted capacity. Codec models specify these details more precisely than this simplified illustration.</p>
+<h2 id="follow-a-burst-through-the-buffer">Follow a burst through the buffer</h2>
+<p>The following calculation groups picture removals into one-second intervals to make the arithmetic visible. Real bitstream conformance checks operate at the codec's specified removal times.</p>
 <table>
 <thead>
 <tr>
-<th>Illustrative parameter</th>
-<th>Value</th>
-<th>Meaning</th>
+<th>Interval</th>
+<th style="text-align: right;">Starting occupancy</th>
+<th style="text-align: right;">Data arrives</th>
+<th style="text-align: right;">Pictures use</th>
+<th style="text-align: right;">Ending occupancy</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Input-rate limit</td>
-<td>4 Mb/s</td>
-<td>A data rate</td>
+<td>1</td>
+<td style="text-align: right;">4 Mb</td>
+<td style="text-align: right;">4 Mb</td>
+<td style="text-align: right;">6 Mb</td>
+<td style="text-align: right;">2 Mb</td>
 </tr>
 <tr>
-<td>Buffer capacity</td>
-<td>16 megabits, or 2 MB</td>
-<td>An amount of data</td>
+<td>2</td>
+<td style="text-align: right;">2 Mb</td>
+<td style="text-align: right;">4 Mb</td>
+<td style="text-align: right;">6 Mb</td>
+<td style="text-align: right;">0 Mb</td>
 </tr>
 <tr>
-<td>Capacity divided by rate</td>
-<td>4 seconds</td>
-<td>A useful time-equivalent scale</td>
+<td>3, same demand continues</td>
+<td style="text-align: right;">0 Mb</td>
+<td style="text-align: right;">4 Mb</td>
+<td style="text-align: right;">6 Mb</td>
+<td style="text-align: right;"><strong>2 Mb short</strong></td>
 </tr>
 </tbody>
 </table>
-<p><em>Decimal units. The ratio is not a guaranteed playback startup delay or a measurement of an app's buffer.</em></p>
-<p>For a particular input rate, a larger modeled capacity gives more room for uneven picture sizes. A small capacity forces the encoder to control those demands more tightly. Initial occupancy and removal timing also matter.</p>
-<p>Codec standards use related models with their own terminology, such as the hypothetical reference decoder and coded picture buffer in H.264. Encoder options named “VBV” should be read with their implementation's documentation.</p>
-<p>In Emby, a converted stream's rate-control constraints help explain why quality changes during difficult scenes. A quality-based encode combined with a restrictive rate and buffer limit may need stronger compression locally.</p>
-<p>The modeled coding buffer is separate from the player's downloaded-data buffer and the network's actual behavior. Increasing a playback buffer cannot make an encoded stream satisfy a decoder limit it already exceeds.</p>
+<p>The first two demanding intervals succeed because the buffer had a reserve. Continuing the burst exhausts it. An easier interval using 2 Mb could rebuild the reserve by 2 Mb under the same arrival rate.</p>
+<p>The film might still average 4 Mb/s overall. That would not repair the shortage in interval 3: data from a later easy scene cannot travel backward in time.</p>
+<p>Buffer capacity divided by arrival rate gives a useful scale. Here, 8 Mb / 4 Mb/s is two seconds. It is a description of the model's capacity relative to the rate, not an automatic two-second player startup setting.</p>
+<h2 id="what-the-encoder-changes">What the encoder changes</h2>
+<p>An encoder enforcing VBV has to fit its choices to the available budget at each point. During a difficult scene it may increase quantization, simplifying the residual information and reducing the number of coded bits. The result can be a local loss of texture or visible artifacts even when a quality setting stays unchanged.</p>
+<p>In x265, <code>vbv-maxrate</code> supplies the rate constraint and <code>vbv-bufsize</code> supplies the capacity. Their documented units differ: kilobits per second for the former, kilobits for the latter. Initial fullness is another setting because starting with a larger reserve changes what an early burst can use.</p>
+<p>Combining <a href="Video-Encoding-CRF.html">CRF</a> with these constraints lets the encoder pursue its quality target while the model permits it. When the two conflict, the delivery constraint can take priority. A smaller buffer or lower rate leaves less room to accommodate a difficult sequence at that quality.</p>
+<p>VBV is also not a synonym for <a href="Video-Encoding-CBR.html">CBR</a>. A variable-rate encode can obey a bounded-buffer model. The buffer is exactly what allows some variation in picture sizes and short-term demand.</p>
+<h2 id="coding-buffer-versus-playback-buffer">Coding buffer versus playback buffer</h2>
+<p>The coding model describes a constrained decoder's coded-data supply. An app's downloaded-data buffer deals with the actual network: requests, bandwidth variation, latency, and stalls. They are related in use but are different quantities.</p>
+<p>A player can accumulate data before starting, yet still have a decoder with limits on coded-picture size, timing, or buffering. Conversely, a conforming bitstream can stall over a connection that delivers less data than it needs.</p>
+<p>For an Emby transcode whose picture becomes softer during a busy scene, bitrate and buffering constraints provide a possible causal explanation: the encoder had to reduce that scene's data demand. For a stream whose picture is fine but playback pauses, examine delivery as well. The two observations lead to different parts of the playback path.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

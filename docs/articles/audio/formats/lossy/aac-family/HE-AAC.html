@@ -106,35 +106,51 @@
 <h1>HE-AAC Audio</h1>
 
 
-<p>HE-AAC stands for <strong>High Efficiency AAC</strong>. Its defining addition is Spectral Band Replication, or <strong>SBR</strong>, which helps retain a wide audio bandwidth while spending relatively few bits.</p>
-<p>The AAC-LC core encodes the lower part of the spectrum. SBR carries information that guides reconstruction of the upper part, using the decoded lower-frequency content as a starting point. It does not simply encode every high-frequency component in the same way as the core.</p>
+<p>A recorded broadcast can produce a puzzling pair of reports: one inspector says AAC at 24 kHz, while another identifies HE-AAC and a 48 kHz output. Those fields can describe two stages of the same encoded track.</p>
+<p><strong>HE-AAC</strong>, High Efficiency AAC, combines an <strong>AAC-LC core</strong> with <strong>Spectral Band Replication (SBR)</strong>. The core supplies directly coded audio; SBR reconstructs an upper-frequency region using additional information. In a common dual-rate configuration, the core runs at 24 kHz and the completed output runs at 48 kHz.</p>
 <table>
 <thead>
 <tr>
-<th>Part</th>
-<th>What the decoder uses it for</th>
+<th>Field in this example</th>
+<th>What it describes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>AAC-LC core</td>
-<td>Reconstructing the directly coded lower-frequency audio</td>
+<td>Core rate: 24 kHz</td>
+<td>The directly coded AAC-LC signal</td>
 </tr>
 <tr>
-<td>SBR information</td>
-<td>Reconstructing and shaping the upper-frequency audio</td>
+<td>Output rate: 48 kHz</td>
+<td>The signal after SBR reconstruction</td>
 </tr>
 <tr>
-<td>Full HE-AAC decoder</td>
-<td>Combining both into the intended output</td>
+<td>HE-AAC profile</td>
+<td>The combination of core coding and SBR</td>
 </tr>
 </tbody>
 </table>
-<p>This is a lossy process. The reconstructed upper band can sound useful and natural without being an exact copy of the original samples.</p>
-<h2 id="why-two-sample-rate-numbers-can-appear">Why two sample-rate numbers can appear</h2>
-<p>An HE-AAC report may distinguish the core sample rate from the output rate after SBR processing. In a common dual-rate arrangement, a 24 kHz core produces 48 kHz output. That is a description of the coding structure, not proof that the source was captured at either rate.</p>
-<p>HE-AAC is used in broadcast and streaming systems where bandwidth matters. An Emby library can therefore encounter it in recorded programmes as well as in standalone audio.</p>
-<p>A decoder that handles only the AAC-LC core may reproduce a reduced-bandwidth version where the stream's signaling and packaging permit that fallback. It cannot reproduce the intended HE-AAC result without SBR support. <a href="HE-AAC-v2.html">HE-AAC v2</a> adds a further stereo coding tool, so identifying the full profile is more useful than treating all AAC labels as interchangeable.</p>
+<p>To interpret a report, identify which field the tool is showing. Neither rate field establishes the sample rate of the original studio recording; each describes a stage in this coded presentation.</p>
+<h2 id="what-was-stored-instead-of-the-missing-upper-frequency-detail">What was stored instead of the missing upper-frequency detail?</h2>
+<p>An encoder with a small data budget has to decide where those bits do the most useful work. Independently coding a wide frequency range at very low bitrate can leave too little precision for important parts of the sound. HE-AAC devotes much of its data to the AAC-LC core and represents the upper region more compactly.</p>
+<p>At the decoder, SBR takes patterns from the decoded lower-frequency content and uses them to generate candidate higher-frequency content. Transmitted information then shapes that result across time and frequency: how much energy belongs in different regions, how noise-like the content should be, and other reconstruction parameters.</p>
+<p>The generated upper region therefore has both a source of structure and a description of how it should sound. It is not another independently coded copy of every original upper-band detail. This is where the data saving comes from.</p>
+<p>A 24 kHz core can represent frequencies below 12 kHz, but that theoretical limit does not specify the encoder's chosen crossover between directly coded and reconstructed regions. The configuration and encoder decisions determine the actual division.</p>
+<p><strong>Why an equalizer cannot do the same job.</strong> An equalizer raises or lowers frequency content already present. SBR generates upper-band content and controls its behavior. Turning up treble on a core-only decode cannot provide the reconstruction information that an SBR-capable decoder uses.</p>
+<p><strong>Why ordinary upsampling is also different.</strong> Upsampling creates more sample positions. It does not, by itself, recreate the intended missing upper-band sound. SBR combines the higher-rate output with additional content-generation and shaping operations.</p>
+<p>The result can retain a convincing sense of bandwidth with relatively few bits. Rapid changes and difficult sound textures can reveal the approximation more readily, because their upper-frequency behavior is harder to represent using the compact reconstruction description.</p>
+<h2 id="do-twice-as-many-output-samples-make-the-track-play-more-slowly">Do twice as many output samples make the track play more slowly?</h2>
+<p>The rates and sample counts change together. For the usual 1,024-sample AAC-LC core block in this dual-rate example:</p>
+<ul>
+<li>Core duration: <strong>1,024 / 24,000 = about 42.67 ms</strong>.</li>
+<li>Completed output duration: <strong>2,048 / 48,000 = about 42.67 ms</strong>.</li>
+</ul>
+<p>The output has twice as many samples for the same interval. It supplies a higher-rate representation of that interval rather than doubling its duration. This calculation uses one common configuration; MPEG-4 audio also defines other block lengths and SBR modes.</p>
+<h2 id="what-happens-if-the-player-understands-aac-lc-but-not-sbr">What happens if the player understands AAC-LC but not SBR?</h2>
+<p>Where the stream's signaling permits backward-compatible core decoding, an AAC-LC-only decoder can reconstruct the core. It lacks the intended upper-band reconstruction, so the sound can have a narrower bandwidth than a complete HE-AAC decode. An SBR-capable decoder can produce the completed presentation.</p>
+<p>The player must also identify the configuration and pass the right information to the decoder. <a href="../../../../media-files/packaging/aac/AAC-ADTS.html">ADTS</a>, <a href="../../../../media-files/packaging/aac/AAC-LATM.html">LATM</a>, and an MP4 track carry or signal that information differently. A decoder capability and a usable packaged stream are both needed for the expected result.</p>
+<p>For an Emby broadcast recording that sounds unexpectedly dull, follow the selected track through playback. Check the identified profile and core/output fields, whether the server delivers the audio unchanged or converts it, and which decoder handles the delivered stream. Server conversion and local decoding place the reconstruction in different parts of that path.</p>
+<p><a href="HE-AAC-v2.html">HE-AAC v2</a> adds Parametric Stereo for low-bitrate stereo delivery. If that is the detected profile, SBR explains its bandwidth reconstruction while Parametric Stereo accounts for an additional part of its spatial presentation.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -154,6 +170,7 @@
 
 			          <h4 class="references seealso-heading">References</h4>
 			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://github.com/FFmpeg/FFmpeg/blob/n8.1/libavcodec/aacsbr.c" title="FFmpeg 8.1: SBR generation and envelope processing">FFmpeg 8.1: SBR generation and envelope processing</a></li>
 			            <li><a class="seealso-link" href="https://www.iso.org/standard/76383.html" title="ISO/IEC 14496-3: MPEG-4 Audio">ISO/IEC 14496-3: MPEG-4 Audio</a></li>
 			            <li><a class="seealso-link" href="https://www.iis.fraunhofer.de/en/ff/amm/broadcast-streaming/heaac.html" title="Fraunhofer: HE-AAC and HE-AAC v2">Fraunhofer: HE-AAC and HE-AAC v2</a></li>
 			            <li><a class="seealso-link" href="https://www.iis.fraunhofer.de/content/dam/iis/de/doc/ame/wp/FraunhoferIIS_White-Paper_AAC-Broadcast-CableTV.pdf" title="Fraunhofer: The AAC audio coding family for broadcast and cable TV">Fraunhofer: The AAC audio coding family for broadcast and cable TV</a></li>

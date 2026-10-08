@@ -106,37 +106,37 @@
 <h1>Tone Mapping Curve: Clip</h1>
 
 
-<p>Clipping is a hard limit. Values that fit are retained; values above the output ceiling all become the same maximum value.</p>
-<p><img src="images/tone-mapping-curve-clip.png" alt="Clipping curve rising unchanged to one, then remaining flat for every higher input."></p>
-<p><em>FFmpeg 8.1 <code>clip</code>, scale parameter 1. Input and output are relative linear light for neutral gray; output white is 1.</em></p>
-<p>The flat line explains the visible failure. A bright cloud might contain values of 2, 4, and 8. All three become 1, so their brightness differences disappear. The pixels are still present, but the texture represented by those differences is gone.</p>
+<p>Clipping puts a hard ceiling on a value. Below the ceiling it keeps the value unchanged; above it, every input becomes the same maximum.</p>
+<p><img src="images/tone-mapping-curve-clip.png" alt="The clipping curve rises unchanged to one and is flat above one."></p>
+<p><em>FFmpeg 8.1 clip mapping with scale parameter 1. Both axes use relative linear light for neutral gray; output white is 1.</em></p>
+<p>The flat section is the important part. Three parts of a bright cloud with inputs of 2, 4, and 8 all become 1. The cloud's positions remain, but the brightness differences that made its texture visible disappear.</p>
 <table>
 <thead>
 <tr>
-<th>Input</th>
-<th>Output</th>
+<th style="text-align: right;">Input</th>
+<th style="text-align: right;">Output</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>0.2</td>
-<td>0.2</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">0.2</td>
 </tr>
 <tr>
-<td>1</td>
-<td>1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 </tr>
 <tr>
-<td>2 or 8</td>
-<td>1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">1</td>
 </tr>
 </tbody>
 </table>
-<h2 id="when-the-limit-is-useful">When the limit is useful</h2>
-<p>A hard limit is easy to understand and provides a reference when examining another curve. Below the ceiling, there is no brightness redistribution from this operation. Above it, there is no attempt to preserve separation.</p>
-<p>A gradual <a href="../../color-and-luminance/Tone-Mapping-Highlight-Roll-Off.html">highlight roll-off</a> spends some of the available output range on those differences instead. That necessarily changes values before they reach the ceiling.</p>
-<p>Clipping the brightness function also does not replace color conversion or correct HDR signal interpretation. An HDR picture cannot be made properly SDR just by deleting its HDR label and clipping encoded samples.</p>
-<p>If highlights become flat during Emby playback, clipping somewhere in the chain is one possible explanation, not proof that a setting named Clip is selected. The limit could occur in conversion, signal handling, or display processing. Once distinct values have actually been discarded, changing a later curve cannot recover them.</p>
+<p>A <a href="../../color-and-luminance/Tone-Mapping-Highlight-Roll-Off.html">highlight roll-off</a> bends toward the limit gradually, leaving output space for some of those differences. It starts changing the values before they reach the ceiling. Clipping preserves the in-range part exactly and spends none of that range on brighter values.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">

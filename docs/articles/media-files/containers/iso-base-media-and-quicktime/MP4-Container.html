@@ -106,15 +106,110 @@
 <h1>MP4 and the ISO Base Media File Format</h1>
 
 
-<p>An MP4 file usually looks like a single movie, but internally it is a collection of <strong>boxes</strong>. Some describe the tracks and their timing; others hold the encoded samples that become picture and sound.</p>
-<p>The ISO base media file format, specified in ISO/IEC 14496-12, supplies this general structure. MP4, specified in Part 14, is one format built on it. Other formats can share the base structure without being identical to MP4.</p>
-<p><img src="images/mp4-boxes.svg" alt="A file-type box identifies the format, a movie box describes the tracks, and a media-data box stores encoded samples."></p>
-<p><em>Original schematic of a simple MP4. Box order and size vary; optional boxes are omitted.</em></p>
-<p>The file-type box, ftyp, declares <strong>brands</strong> describing the format's conventions. The moov box describes the presentation, and mdat holds media data. For a conventional nonfragmented file, sample tables connect track timing to data locations.</p>
-<h2 id="the-extension-leaves-important-questions-open">The extension leaves important questions open</h2>
-<p>MP4 does not mean <a href="../../../video/codecs/mpeg-itu/Video-Codec-H264.html">H.264</a> video or <a href="../../../audio/formats/lossy/aac-family/AAC-LC.html">AAC</a> audio in every case. Registered <a href="../../container-structure/Media-Codec-Identifiers.html">sample-entry identifiers</a> tell the reader which codec and configuration a track uses. The app still needs a matching decoder and support for that track's properties.</p>
-<p>In Emby, two MP4 movies can therefore take different playback paths. Examine the selected video, audio, and subtitle streams when investigating a compatibility problem. The container name alone is too little information.</p>
-<p>MP4 layout also matters for delivery. <a href="../../packaging/mp4/MP4-Fast-Start.html">Fast start</a> moves the movie description ahead of the bulk media so a sequential reader can reach it early. <a href="../../packaging/mp4/Fragmented-MP4.html">Fragmentation</a> distributes sample descriptions across successive media fragments. Both concern packaging; neither improves the quality of the encoded picture or removes a codec limit.</p>
+<p>You drag the playback position forward in an Emby movie. The player now needs pictures and sound for a new time, but an MP4 file is a sequence of bytes. How does it get from that time request to the right encoded data?</p>
+<p>An MP4 carries the media together with descriptions of its tracks, timing, and data locations. Following a seek makes the purpose of those descriptions visible. The example below uses a conventional nonfragmented layout.</p>
+<p><img src="images/mp4-boxes.svg" alt="A file-type box identifies format conventions, a movie box describes tracks, and a media-data box holds encoded samples."></p>
+<p><em>Logical layout of a simple conventional file. The boxes contain descriptions and data; their drawn widths do not represent actual byte sizes.</em></p>
+<h2 id="1-identify-the-selected-track-and-its-decoder-configuration">1. Identify the selected track and its decoder configuration</h2>
+<p>The reader first needs to know which video and audio tracks are selected, how they are encoded, and how to configure their decoders. The movie description in the <strong>moov</strong> box contains the track information. Within each track, a sample-description table such as <strong>stsd</strong> identifies the coding arrangement and its configuration.</p>
+<p>H.264 video and AAC audio are common in MP4, but the filename extension does not select a codec for every track. The actual <a href="../../container-structure/Media-Codec-Identifiers.html">sample entry</a> supplies that identification.</p>
+<p>A <strong>sample</strong> here is a coded media unit in the file-format sense. A coded audio sample can represent many decoded PCM amplitude samples. The reader needs the encoded unit's size and timing, then the audio decoder expands it into the corresponding sound.</p>
+<h2 id="2-relate-the-requested-time-to-a-usable-starting-sample">2. Relate the requested time to a usable starting sample</h2>
+<p>The track has timing information for its samples. A conventional <strong>stts</strong> table describes their durations on the decoding timeline; <strong>ctts</strong>, when required, supplies offsets for the presentation timeline. These can differ because predicted pictures may need to be decoded in a different order from the order in which they appear on screen.</p>
+<p>The reader uses that information to relate the requested time to the track's samples. For video with reference dependencies, it also needs a suitable starting point. A sync-sample table such as <strong>stss</strong>, where present, provides information about access points, while the codec's rules determine the required reconstruction path.</p>
+<p>If that starting point is earlier than the requested picture, the decoder reconstructs the necessary intervening pictures. The player can then begin presentation at the intended position. Audio is located on its corresponding timeline so that both tracks reach the same presentation time.</p>
+<p>This is why a seek does more than multiply the movie's average bitrate by the number of elapsed seconds. Encoded sample sizes vary, several tracks can be interleaved, and a requested picture may depend on data from an earlier point.</p>
+<h2 id="3-turn-the-selected-sample-into-a-byte-location">3. Turn the selected sample into a byte location</h2>
+<p>Sample-to-chunk information such as <strong>stsc</strong> describes how the track's samples are grouped into chunks. A chunk-offset table, <strong>stco</strong> or <strong>co64</strong>, gives the chunks' locations in the file. Sample-size information such as <strong>stsz</strong> supplies the size of each coded unit.</p>
+<p>Consider a small constructed example. The reader has chosen sample 15 as its starting sample. The tables establish that chunk 5 begins at byte offset 40,000 and contains samples 13 through 16:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Sample in chunk 5</th>
+<th style="text-align: right;">Encoded size</th>
+<th style="text-align: right;">Calculated start offset</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">1,000 bytes</td>
+<td style="text-align: right;">40,000</td>
+</tr>
+<tr>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">1,500 bytes</td>
+<td style="text-align: right;">41,000</td>
+</tr>
+<tr>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">900 bytes</td>
+<td style="text-align: right;"><strong>42,500</strong></td>
+</tr>
+<tr>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">1,100 bytes</td>
+<td style="text-align: right;">43,400</td>
+</tr>
+</tbody>
+</table>
+<p>To locate sample 15, add the lengths of the preceding samples in that chunk:</p>
+<p><strong>40,000 + 1,000 + 1,500 = 42,500</strong></p>
+<p>The reader can now obtain 900 bytes beginning at that offset. It did not need to decode samples 13 and 14 merely to discover where sample 15 was stored. Their lengths and the chunk location supplied the navigation information.</p>
+<p>That byte lookup is separate from the decoder's reference requirements established in step 2. Locating a coded picture does not make it independently decodable. The tables get the right data to the right decoder; the codec determines how that data reconstructs a picture.</p>
+<h2 id="4-decode-the-data-and-restore-the-presentation-order">4. Decode the data and restore the presentation order</h2>
+<p>The selected samples are passed to the configured decoder in the necessary order. Decoded pictures are presented using their presentation times, and decoded audio is placed on the same presentation timeline.</p>
+<p>For the user, the result is a new playback position. Underneath, the reader has connected four pieces of information: <strong>track configuration → timing and access point → byte locations → decoded presentation</strong>.</p>
+<p>A damaged table can break that chain even when much of the encoded media remains intact. A wrong offset directs the reader to the wrong bytes; missing configuration can prevent decoding; incorrect timing can affect duration, ordering, or synchronization. Each failure concerns a different relationship in the file.</p>
+<h2 id="a-small-dictionary-for-the-file-structure">A small dictionary for the file structure</h2>
+<p>MP4 organizes information into <strong>boxes</strong>, each with a size and type. Some boxes contain others, producing a hierarchy. The ISO base media file format defines the shared structure on which MP4 is built.</p>
+<table>
+<thead>
+<tr>
+<th>Box or table</th>
+<th>What to look for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ftyp</td>
+<td>Brands declaring file-format conventions</td>
+</tr>
+<tr>
+<td>moov</td>
+<td>Movie and track descriptions</td>
+</tr>
+<tr>
+<td>mdat</td>
+<td>Stored media data</td>
+</tr>
+<tr>
+<td>stsd</td>
+<td>Sample coding descriptions and configuration</td>
+</tr>
+<tr>
+<td>stts / ctts</td>
+<td>Decode durations and presentation offsets</td>
+</tr>
+<tr>
+<td>stsc / stsz</td>
+<td>Sample grouping and sizes</td>
+</tr>
+<tr>
+<td>stco / co64</td>
+<td>Chunk locations</td>
+</tr>
+<tr>
+<td>stss, where present</td>
+<td>Sync-sample information</td>
+</tr>
+</tbody>
+</table>
+<p>The shared ancestry with <a href="QuickTime-Container.html">QuickTime</a> explains many familiar structures in MOV and MP4. The specific file conventions and supported coding arrangements still determine how a reader uses them.</p>
+<h2 id="what-changes-when-the-layout-changes">What changes when the layout changes?</h2>
+<p>In a conventional file, the main description can be placed after the bulk media data. A sequential reader then needs access to that later description before it can interpret the presentation. <a href="../../packaging/mp4/MP4-Fast-Start.html">Fast start</a> moves the description earlier and updates affected offsets. It makes navigation information available sooner.</p>
+<p><a href="../../packaging/mp4/Fragmented-MP4.html">Fragmented MP4</a> supplies initialization data followed by descriptions and media for successive fragments. The lookup information for later samples arrives with those fragments, which suits segmented delivery and media still being produced. The conventional table walkthrough above therefore does not describe every fragmented-file lookup.</p>
+<p>For an Emby item, inspect the packaging actually delivered to the app as well as the stored file. A server-prepared stream may organize the same encoded media differently. If the playback problem concerns duration or seeking, follow the timing and location descriptions. If the descriptions lead to the correct data but decoding fails, inspect the selected codec and its configuration. That follows the same chain the reader uses to reach the requested playback position.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
@@ -140,6 +235,10 @@
 
 			          <h4 class="references seealso-heading">References</h4>
 			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://developer.apple.com/documentation/quicktime-file-format/chunk_offset_atom" title="Apple: chunk offsets">Apple: chunk offsets</a></li>
+			            <li><a class="seealso-link" href="https://developer.apple.com/documentation/quicktime-file-format/composition_offset_atom" title="Apple: decode and presentation timing">Apple: decode and presentation timing</a></li>
+			            <li><a class="seealso-link" href="https://developer.apple.com/documentation/quicktime-file-format/using_sample_atoms" title="Apple: sample-table relationships">Apple: sample-table relationships</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/2024/NOTE-mse-byte-stream-format-isobmff-20240723/" title="W3C: ISO BMFF initialization and media-segment structure">W3C: ISO BMFF initialization and media-segment structure</a></li>
 			            <li><a class="seealso-link" href="https://www.iso.org/standard/85596.html" title="ISO/IEC 14496-12:2026: ISO base media file format">ISO/IEC 14496-12:2026: ISO base media file format</a></li>
 			            <li><a class="seealso-link" href="https://www.iso.org/standard/79110.html" title="ISO/IEC 14496-14:2020: MP4 file format">ISO/IEC 14496-14:2020: MP4 file format</a></li>
 			            <li><a class="seealso-link" href="https://mp4ra.org/registered-types/codecs" title="MP4 Registration Authority: codec sample entries">MP4 Registration Authority: codec sample entries</a></li>

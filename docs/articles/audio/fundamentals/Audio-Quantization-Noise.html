@@ -106,15 +106,58 @@
 <h1>Audio Quantization Noise</h1>
 
 
-<p>Digital audio with finite precision cannot represent every possible amplitude exactly. <strong>Quantization error is the difference between the desired value and the available value chosen for it.</strong> It is created by numerical rounding, even in an otherwise ideal system.</p>
-<p><img src="images/audio-quantization.png" alt="A sine wave rounded to coarse levels, with the resulting error below"></p>
-<p><em>Calculated illustration: a sine with peak amplitude 0.6 is rounded to a uniform step of 0.125, equivalent to a very coarse 4-bit quantizer over a nominal −1 to +1 range. No clipping is applied. The lower panel shows rounded value minus input; the error stays within half a step.</em></p>
-<p>The exaggerated precision makes the effect visible. Ordinary 16-bit and 24-bit PCM use much smaller steps.</p>
-<h2 id="why-it-can-sound-like-more-than-hiss">Why it can sound like more than hiss</h2>
-<p>Rounding a small periodic signal can produce an error that repeats with the signal. The result can include distortion components rather than a smooth noise floor. “Quantization noise” is therefore a convenient name, but the error is not automatically random.</p>
-<p><a href="Audio-Dithering.html">Dither</a> adds carefully chosen noise before quantization to remove unwanted signal-dependent behavior. This trades the pattern in the error for a controlled noise floor.</p>
-<p>Under an idealized model with a full-scale sine and uncorrelated quantization error, signal-to-noise ratio is approximately <code>6.02 × N + 1.76 dB</code>, where N is the integer bit depth. That gives about 98 dB for 16-bit PCM. It is a model of quantization performance, not a measurement of a complete recording or a dithered playback chain.</p>
-<p>In an Emby listening session, hiss might instead come from the original recording, an analog output, or amplification. The reported <a href="sample-representation/Audio-Bit-Depth.html">bit depth</a> describes available numerical precision; it cannot identify the source of audible noise by itself.</p>
+<p>Quantization rounds a value onto a set of available levels. The difference between the value you wanted and the level you stored is <strong>quantization error</strong>.</p>
+<p>That error exists even in an ideal numerical conversion with no microphone noise or analog electronics. It becomes especially interesting near the bottom of the available precision, where a small signal may cross very few levels.</p>
+<h2 id="follow-a-few-values-through-rounding">Follow a few values through rounding</h2>
+<p>Use a deliberately coarse uniform step of 0.125, with no clipping. Rounding to the nearest level produces:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Input amplitude</th>
+<th style="text-align: right;">Stored amplitude</th>
+<th style="text-align: right;">Error: stored minus input</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.125</td>
+<td style="text-align: right;">+0.025</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.19</td>
+<td style="text-align: right;">0.250</td>
+<td style="text-align: right;">+0.060</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.31</td>
+<td style="text-align: right;">0.250</td>
+<td style="text-align: right;">−0.060</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.49</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">+0.010</td>
+</tr>
+</tbody>
+</table>
+<p>An input can move while the stored level stays fixed. At the next boundary, the stored value jumps. Within the unclipped range, nearest-level rounding keeps the error within half a step: 0.0625 here.</p>
+<p><img src="images/audio-quantization.png" alt="A sine is rounded to coarse levels; the lower plot shows the difference between the rounded and original values."></p>
+<p><em>Calculated example: a sine with peak amplitude 0.6 and a quantizer step of 0.125. The exaggerated step makes rounding visible. The lower panel is the actual error, not an unrelated noise recording.</em></p>
+<p>More integer bits provide smaller steps across the same full-scale range. Each additional bit doubles the number of levels, which is why precision can improve without raising the maximum allowed signal.</p>
+<h2 id="why-the-error-may-repeat-with-the-sound">Why the error may repeat with the sound</h2>
+<p>The rounding operation is deterministic. A periodic input that visits the same positions relative to the levels can produce a repeating error.</p>
+<p>For a sufficiently small signal, the quantized output may spend much of its time on only a few values. Its shape can then differ from the smooth waveform in a systematic way. Heard as audio, that error can contain distortion components related to the original signal, rather than behaving like a steady unrelated hiss.</p>
+<p>Calling all of it “quantization noise” can obscure this distinction. The waveform itself tells you why: when the input determines the rounding error, the error is correlated with the input.</p>
+<h2 id="what-dither-changes">What dither changes</h2>
+<p><a href="Audio-Dithering.html">Dither</a> introduces a controlled random signal before the final rounding. Appropriate dither changes how the input crosses level boundaries, allowing the quantizer to behave more consistently for very small signals.</p>
+<p>It does not make the output numerically identical to the original. It exchanges unwanted signal-dependent behavior for a controlled noise contribution. For a low-level tone or a fade, that can be preferable to periodic distortion or an abrupt disappearance.</p>
+<p>This is why the order matters. Dither applied after the value has already been rounded cannot change which level that earlier rounding selected.</p>
+<h2 id="interpreting-the-familiar-snr-estimate">Interpreting the familiar SNR estimate</h2>
+<p>The ideal estimate <code>6.02 × N + 1.76 dB</code> compares a full-scale sine with a particular model of uncorrelated uniform quantization error. For 16 bits, the result is about 98.08 dB.</p>
+<p>Reducing the sine's level reduces its signal-to-error ratio under that fixed noise model. Changing dither, noise shaping, or the assumptions about error changes the analysis too. The formula describes a model, not the whole noise performance of a recording.</p>
+<p>In playback and conversion, the useful place to apply this understanding is a precision-reduction step. If decoded audio is adjusted and then stored at a lower integer precision, values need rounding again. The source recording's noise and earlier compression remain separate parts of that signal.</p>
+<p>A higher-precision working format provides room for processing between conversions. The final rounding and its treatment determine what happens when the result must fit a lower-precision output.</p>
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
