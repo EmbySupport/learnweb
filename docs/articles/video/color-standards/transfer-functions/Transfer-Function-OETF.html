@@ -109,7 +109,7 @@
 <p>A camera measures light, but the video signal usually represents it nonlinearly. An <strong>opto-electronic transfer function</strong>, or OETF, supplies that light-to-signal relationship. The BT.709 reference below assigns more signal space to low scene-light levels than a straight linear encoding would.</p>
 <p><img src="images/transfer-oetf-bt709.png" alt="BT.709 OETF compared with a straight linear encoding."></p>
 <p><em>Normalized scene light becomes a normalized video signal. Neither axis is a raw sensor code or an absolute number of nits.</em></p>
-<h2 id="follow-one-scene-light-value">Follow one scene-light value</h2>
+<h2 id="encoding-and-recovering-a-scene-light-value">Encoding and recovering a scene-light value</h2>
 <p>For normalized scene-light E, the BT.709 curve uses <strong>4.5E</strong> below 0.018 and <strong>1.099E^0.45 − 0.099</strong> at or above that point. The lower straight segment avoids the behavior of a bare power near zero. The full function is more precise than calling it simply “gamma 0.45.”</p>
 <p>At E = 0.18, the signal is approximately <strong>0.409</strong>. The encoded value has increased numerically, but that does not mean the camera recorded more light. It is another representation of the same input.</p>
 <p>To return from the upper segment's signal value V to scene light, use <strong>E = ((V + 0.099) / 1.099)^(1/0.45)</strong>. That inverse is what a light-domain processing stage needs when its input uses this encoding.</p>

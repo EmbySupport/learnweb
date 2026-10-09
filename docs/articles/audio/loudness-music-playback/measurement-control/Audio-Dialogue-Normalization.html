@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Dialogue normalization (dialnorm) | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Dialogue normalization (dialnorm) | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Audio-Dialogue-Normalization">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Audio-Dialogue-Normalization">
+<h1>Dialogue normalization (dialnorm)</h1>
+
+
+<p><strong>Dialnorm</strong> is dialogue-level metadata in Dolby Digital and related Dolby audio systems. It tells the reproduction system how the programme's dialogue reference relates to digital full scale, allowing programmes to be reproduced at a more consistent dialogue level.</p>
+<p>It is not a speech detector, an instruction to raise only the centre channel, or a compressor that turns down explosions. The resulting gain applies to the programme.</p>
+<h2 id="from-the-stored-number-to-the-gain">From the stored number to the gain</h2>
+<p>In the AC-3 syntax, the valid unsigned values 1 through 31 indicate how many decibels the dialogue reference lies below full scale. A stored value of <strong>27</strong> corresponds to a dialogue reference of <strong>−27 dB</strong>. Media tools often display the signed reference rather than the unsigned field.</p>
+<p>Using the reproduction reference of −31 dB, the gain is:</p>
+<pre><code class="lang-text">gain = stored value − 31 dB
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Stored value</th>
+<th style="text-align: right;">Dialogue reference</th>
+<th style="text-align: right;">Programme gain</th>
+<th style="text-align: right;">Amplitude multiplier</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>31</td>
+<td style="text-align: right;">−31 dB</td>
+<td style="text-align: right;">0 dB</td>
+<td style="text-align: right;">1.000</td>
+</tr>
+<tr>
+<td>27</td>
+<td style="text-align: right;">−27 dB</td>
+<td style="text-align: right;">−4 dB</td>
+<td style="text-align: right;">0.631</td>
+</tr>
+<tr>
+<td>21</td>
+<td style="text-align: right;">−21 dB</td>
+<td style="text-align: right;">−10 dB</td>
+<td style="text-align: right;">0.316</td>
+</tr>
+</tbody>
+</table>
+<p>For value 27, dialogue represented at −27 dB becomes −31 dB after the −4 dB adjustment. A musical or effects component in that programme also receives −4 dB. The contrast between that component and the dialogue remains intact.</p>
+<p>Dialnorm's historical reference convention should not automatically be relabeled as a whole-programme integrated LUFS reading. What was measured, how dialogue was identified, and the mastering method determine what the metadata describes.</p>
+<h2 id="metadata-and-the-actual-mix-need-to-agree">Metadata and the actual mix need to agree</h2>
+<p>The field declares a level; it does not inspect the signal during playback to discover whether that declaration is correct. If two otherwise identical encodings carry values 31 and 27, a reproduction path applying dialnorm gives them different gains even though the encoded sound content may be the same.</p>
+<p>Conversely, deliberately loud and quiet passages within one programme remain loud and quiet relative to each other. <a href="Audio-Dynamic-Range-Compression.html">Dynamic range compression</a> supplies time-varying treatment when that contrast needs changing. AC-3 has separate metadata for such dynamic treatment.</p>
+<h2 id="the-gain-belongs-to-a-reproduction-stage">The gain belongs to a reproduction stage</h2>
+<p>With <a href="../../decoding-output/output-transport/Audio-Bitstream-Passthrough.html">bitstream passthrough</a>, the receiver can decode the Dolby stream and use its dialnorm information. When a player delivers <a href="../../decoding-output/output-transport/Decoded-PCM-Output.html">decoded PCM</a>, an earlier decoding or reproduction stage can have incorporated that gain. The volume selected by the listener is another factor in the final reproduction level.</p>
+<p>This is useful when comparing Emby routes that sound different at the same displayed volume. Establish where the Dolby stream was decoded and where metadata gain was applied. Applying the same −4 dB adjustment twice would produce −8 dB; ignoring it would leave the programme at its unadjusted reference. A receiver's codec label or an app's volume number alone does not identify either situation.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../formats/lossy/dolby/Dolby-Digital-AC3.html" title="Dolby Digital (AC-3)">Dolby Digital (AC-3)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../formats/lossy/dolby/Dolby-Digital-Plus-EAC3.html" title="Dolby Digital Plus (E-AC-3)">Dolby Digital Plus (E-AC-3)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Audio-Loudness-Normalization.html" title="Loudness normalization">Loudness normalization</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Audio-Dynamic-Range-Compression.html" title="Dynamic range compression">Dynamic range compression</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.etsi.org/deliver/etsi_ts/102300_102399/102366/01.04.01_60/ts_102366v010401p.pdf" title="ETSI TS 102 366 V1.4.1: AC-3 and Enhanced AC-3">ETSI TS 102 366 V1.4.1: AC-3 and Enhanced AC-3</a></li>
+			            <li><a class="seealso-link" href="https://www.itu.int/dms_pubrec/itu-r/rec/bs/R-REC-BS.1770-5-202311-I!!PDF-E.pdf" title="ITU-R BS.1770-5: Programme loudness and true-peak measurement">ITU-R BS.1770-5: Programme loudness and true-peak measurement</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Audio-Dialogue-Normalization%0A*%20Title%3A%20Dialogue%20normalization%20(dialnorm)%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

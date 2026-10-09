@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Video Denoising | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Video Denoising | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Video-Denoising">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Video-Denoising">
+<h1>Video Denoising</h1>
+
+
+<p>A dim recording can show moving speckles across an otherwise plain wall. Each frame contains an observation of the wall mixed with variation from the capture and processing path. <strong>Denoising</strong> estimates the underlying picture from those observations and decides which variation to suppress.</p>
+<p>The distinction between variation and error is essential. Fine surface texture, motion, and deliberately retained film grain are also variation. An effective estimate needs evidence that distinguishes the content being preserved from the noise being reduced.</p>
+<p><img src="images/denoising.png" alt="One noisy stationary image, a five-frame stationary average, and a moving edge averaged without alignment."></p>
+<p><em>Original synthetic examples. The stationary frames have independent zero-mean noise with standard deviation 0.06. The moving clean edge shifts eight source samples per frame. The figure illustrates two different averaging circumstances, not an Emby filter preset.</em></p>
+<h2 id="what-does-averaging-actually-improve">What does averaging actually improve?</h2>
+<p>Model an observed sample as <strong>value = signal + noise</strong>. If several observations contain the same signal and independent zero-mean noise, their average has the same expected signal. Their positive and negative errors partly cancel.</p>
+<p>For N equally weighted observations, noise variance becomes <strong>σ²/N</strong>, and standard deviation becomes <strong>σ/√N</strong>. With σ = 0.06 and N = 5, the expected standard deviation of the mean is approximately <strong>0.02683</strong>.</p>
+<p>The numerical data behind the stationary figure has observed RMS errors of approximately <strong>0.05963</strong> for the first noisy frame and <strong>0.02675</strong> for the five-frame mean, before display rounding. Those values are close to the model's expectations. The diagonal edge remains in the same place in every frame, so averaging can reduce the noise without changing the noiseless edge's position.</p>
+<p>A smaller example uses four observations of an unchanged signal near 100: <strong>98, 103, 99, 104</strong>. Their mean is <strong>101</strong>. Cancellation has reduced this example's variation, but a finite set of observations need not land exactly on the unknown signal value. More evidence improves the estimate under the model's assumptions; it does not make the particular mean automatically exact.</p>
+<h2 id="spatial-evidence-which-neighbors-describe-the-same-surface">Spatial evidence: which neighbors describe the same surface?</h2>
+<p>A spatial estimate uses information within a frame. On a flat wall, nearby positions may have similar underlying values, making a local average useful. At a boundary, nearby samples may instead describe different surfaces.</p>
+<p>Take a dark region near value 40 and a bright region near 180. Averaging an equal number from each gives 110, which belongs to neither side. Applying that mixture across an edge spreads its transition. Broad averaging can also remove texture whose variation is real content.</p>
+<p>An edge-sensitive estimate can reduce contributions from positions that differ substantially from the target, or compare more of their surrounding structure before treating them as related. The similarity decision becomes as important as the average itself. A faint texture can still resemble small noise variations, which is why the chosen strength changes the character of the result.</p>
+<p>Spatial filtering supplies nearby evidence without needing other frames. Its neighborhood and similarity policy determine both the amount of noise reduction and which fine features survive.</p>
+<h2 id="temporal-evidence-what-happened-to-this-point-between-frames">Temporal evidence: what happened to this point between frames?</h2>
+<p>Temporal filtering draws evidence from different instants. The stationary example works well because the same coordinate depicts the same edge position in all five frames. During motion, that assumption changes.</p>
+<p>Imagine a fixed coordinate that receives values <strong>40, 40, 180, 180</strong> as an edge passes it. Their mean is 110. This is a mixture of different scene states, not merely a cleaner observation of one state.</p>
+<p>The third panel averages a moving edge without alignment. Several shifted transitions form a spread-out staircase. In real video, similar mixing can create trails behind motion, smear moving texture, or cause detail to appear and disappear as temporal history is admitted or rejected.</p>
+<p>Motion-aware processing can find source positions in other frames corresponding to the same scene feature. If a feature moved two positions right, the current coordinate and the earlier coordinate displaced two positions left can refer to that same feature. Comparing and aligning those observations gives a more appropriate basis for combination.</p>
+<p>Newly revealed regions, occlusion, scene cuts, and uncertain motion leave less reliable history. A temporal filter needs to limit, reject, or reset that history where its assumptions no longer hold. Otherwise evidence from the old picture can influence a new one.</p>
+<h2 id="which-parts-of-the-noise-persist">Which parts of the noise persist?</h2>
+<p>The σ/√N result depends on independence and zero mean. A fixed pattern repeated in every frame does not cancel like independent fluctuations. If every observation of signal 100 carries the same +5 offset, their mean remains 105.</p>
+<p>Compression errors can also have structure and correlations. <a href="../../encoding-quality/quality-changes-artifacts/Video-Compression-Artifacts.html">Blocking or ringing</a> follows the coding and reconstruction process rather than the stationary independent-noise model. A filter designed for speckled variation and an operation designed for a particular structured artifact can make different decisions.</p>
+<p>Luma and chroma may have different noise characteristics. Processing them separately can reduce color speckling while preserving more luma detail, or make another chosen balance. The plane precisions, ranges, and sampling grids establish the numerical scale in which any threshold acts.</p>
+<h2 id="grain-and-fine-detail-need-an-editorial-decision">Grain and fine detail need an editorial decision</h2>
+<p>Film grain can be part of a work's intended presentation. Surface detail such as hair, fabric, or foliage also has fine irregular structure. Aggressive filtering may produce a smoother, less costly picture to encode while changing its intended texture.</p>
+<p>That makes preservation a content decision, not simply a maximum-noise-reduction target. A useful comparison examines a flat area, fine texture, a moving object, and a transition between scenes. Each supplies evidence about a different filtering assumption.</p>
+<p>For an Emby collection, this distinction is relevant when preparing a cleaned-up conversion of an old recording. The output should be evaluated as a version of that recording, including the texture and motion the viewer wants to retain.</p>
+<h2 id="why-the-encoded-result-can-change-again">Why the encoded result can change again</h2>
+<p>Frame-to-frame variation is less predictable than an unchanged flat surface. Reducing that variation can change the work needed by a <a href="../../compression/Video-Compression.html">video encoder</a> and how it spends its data budget. At a selected bitrate, this can give other structure more room; at another rate-control mode, the encoder's resulting size can change.</p>
+<p>The result depends on the encoder, its settings, and the material. Encoding a denoised intermediate can further alter the remaining texture. Inspecting only the intermediate misses that final reconstruction.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-Debanding.html" title="Video Debanding">Video Debanding</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-Sharpening.html" title="Video Sharpening">Video Sharpening</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../compression/Video-Compression.html" title="How Video Compression Works">How Video Compression Works</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../encoding-quality/quality-changes-artifacts/Video-Compression-Artifacts.html" title="Video Compression Artifacts">Video Compression Artifacts</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-filters.html#hqdn3d" title="FFmpeg: Spatial and temporal denoising with hqdn3d">FFmpeg: Spatial and temporal denoising with hqdn3d</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-filters.html#nlmeans" title="FFmpeg: Similarity-based denoising with nlmeans">FFmpeg: Similarity-based denoising with nlmeans</a></li>
+			            <li><a class="seealso-link" href="https://webpages.tuni.fi/foi/GCF-BM3D/" title="Dabov and colleagues: BM3D publications and author-provided examples">Dabov and colleagues: BM3D publications and author-provided examples</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Video-Denoising%0A*%20Title%3A%20Video%20Denoising%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

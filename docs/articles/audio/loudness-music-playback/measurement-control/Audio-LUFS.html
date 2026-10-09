@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>LUFS loudness measurement | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="LUFS loudness measurement | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Audio-LUFS">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Audio-LUFS">
+<h1>LUFS loudness measurement</h1>
+
+
+<p><strong>LUFS</strong> means <em>Loudness Units relative to Full Scale</em>. It expresses a digital audio programme's loudness using a specified measurement method. <strong>LKFS</strong>, the term used in ITU-R BS.1770, describes the equivalent scale. A change of 1 LU corresponds to a change of 1 dB in the measured loudness level.</p>
+<p>For example, −18 LUFS is 5 LU above −23 LUFS. Under ordinary conditions, applying −5 dB of constant gain brings that programme close to −23 LUFS. The number is a programme-level reference, not the sound pressure at the listener's seat.</p>
+<p>A LUFS meter is doing more than averaging waveform height. Its operations explain why two tools need to agree on measurement mode, channel interpretation and programme boundaries before their results can be compared.</p>
+<h2 id="filtering-and-combining-channel-energy">Filtering and combining channel energy</h2>
+<p>ITU-R BS.1770 applies <strong>K weighting</strong> before measuring mean squared signal energy. Its two filter stages alter the contribution of different frequencies: a shelving stage models part of the head's acoustic effect, followed by a high-pass weighting stage. These are measurement filters; measuring a file does not apply their sound to the file being played.</p>
+<p>For the conventional layout with front left, front right, centre and two surround channels, the channel energies are then summed with defined weights. The three front channels have weight 1; the surrounds have weight 1.41, about +1.5 dB in power. The LFE channel is excluded from this loudness calculation. That exclusion does not remove bass from playback. Larger layouts and object-based material require the corresponding extensions of the recommendation rather than applying this five-channel table indiscriminately.</p>
+<p>For one block, the basic level calculation is:</p>
+<pre><code class="lang-text">L = −0.691 + 10 log10(E)
+E = sum of the weighted mean-square channel energies
+</code></pre>
+<p>The calibration constant is part of the specified method. A generic RMS reading without K weighting and channel weighting cannot simply be relabeled LUFS.</p>
+<h3 id="channel-count-changes-the-summed-energy">Channel count changes the summed energy</h3>
+<p>Take a block whose post-filter energy is 0.01 in just the centre channel. With weight 1, E is 0.01 and its level is <strong>−20.691 LUFS</strong>.</p>
+<p>Now suppose the same energy is present in both front left and front right. The sum is 0.02, giving <strong>−17.681 LUFS</strong>, approximately 3.01 LU higher. This follows from doubling power, not from adding two amplitude waveforms into one channel.</p>
+<p>For one conventional surround channel with energy 0.01, the weight 1.41 gives E = 0.0141 and a level of approximately <strong>−19.199 LUFS</strong>. These examples concern one measurement block before integrated gating. They show why channel roles and layout must be known rather than inferred from channel count alone.</p>
+<p>A meter combines measured channel energies; a stereo downmix combines the <strong>signals themselves</strong> before measuring them. In-phase components can reinforce in a mix and opposite-phase components can cancel. That is another reason a multichannel LUFS reading cannot simply be assigned to its stereo conversion.</p>
+<h2 id="integrated-loudness-uses-two-gates">Integrated loudness uses two gates</h2>
+<p>A whole movie can contain very quiet passages, music, dialogue and long intervals near silence. If every second contributed equally to an ungated average, extending a silent ending could substantially lower the result without making the audible scenes quieter.</p>
+<p>The integrated measurement evaluates <strong>400 ms blocks</strong>, with <strong>75% overlap</strong>, so a new block begins every 100 ms. It excludes blocks below an absolute threshold of <strong>−70 LKFS</strong>. It then calculates an energy mean from the surviving blocks and sets a relative threshold <strong>10 LU below that intermediate level</strong>. The final result averages the blocks above both thresholds.</p>
+<p>The arithmetic averages <strong>energies</strong>, then converts the mean to a logarithmic level. Averaging decibel numbers would produce a different answer.</p>
+<h3 id="four-block-energies-step-by-step">Four block energies, step by step</h3>
+<p>To make the gates visible, take four illustrative block energies <em>after</em> frequency and channel weighting. This example starts at the energy stage; it is not a simulated PCM recording or a meter compliance test.</p>
+<table>
+<thead>
+<tr>
+<th>Block</th>
+<th style="text-align: right;">Weighted energy</th>
+<th style="text-align: right;">Block loudness</th>
+<th>Absolute gate</th>
+<th>Final relative gate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">−10.691 LUFS</td>
+<td>Included</td>
+<td>Included</td>
+</tr>
+<tr>
+<td>B</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">−20.691 LUFS</td>
+<td>Included</td>
+<td>Included</td>
+</tr>
+<tr>
+<td>C</td>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">−30.691 LUFS</td>
+<td>Included</td>
+<td>Excluded</td>
+</tr>
+<tr>
+<td>D</td>
+<td style="text-align: right;">0.00000001</td>
+<td style="text-align: right;">−80.691 LUFS</td>
+<td>Excluded</td>
+<td>Excluded</td>
+</tr>
+</tbody>
+</table>
+<p>The absolute gate leaves A, B and C. Their mean energy is:</p>
+<pre><code class="lang-text">(0.1 + 0.01 + 0.001) / 3 = 0.037
+intermediate level = −0.691 + 10 log10(0.037) ≈ −15.009 LUFS
+relative threshold = −15.009 − 10 ≈ −25.009 LUFS
+</code></pre>
+<p>C is below that relative threshold. A and B remain, with mean energy (0.1 + 0.01)/2 = <strong>0.055</strong>. The final integrated value is therefore approximately <strong>−13.287 LUFS</strong>.</p>
+<p><img src="images/lufs-gating.png" alt="Illustrative weighted block levels and their absolute and relative gating decisions."></p>
+<p>An arithmetic average of A and B's decibel readings would be −15.691 LUFS, which is not the correct energy average. The louder block contributes considerably more energy.</p>
+<p>The relative gate is based on the absolute-gated intermediate result. It is not an endlessly repeated procedure that keeps recalculating the threshold until no more blocks disappear.</p>
+<h2 id="three-time-views-of-the-programme">Three time views of the programme</h2>
+<p>An EBU Mode meter provides several readings using the same underlying loudness framework:</p>
+<table>
+<thead>
+<tr>
+<th>Reading</th>
+<th>Time basis</th>
+<th>Useful question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Momentary, M</td>
+<td>400 ms</td>
+<td>How strong is this brief phrase or event?</td>
+</tr>
+<tr>
+<td>Short-term, S</td>
+<td>3 s</td>
+<td>How is a scene or musical passage developing?</td>
+</tr>
+<tr>
+<td>Integrated, I</td>
+<td>The selected measurement interval, with level gating</td>
+<td>What is the overall programme loudness?</td>
+</tr>
+</tbody>
+</table>
+<p>A whole-file integrated value and an integrated value reset halfway through the file are measurements of different intervals. Momentary and short-term readings do not apply the integrated measurement's two-gate procedure.</p>
+<p>For an Emby playback investigation, measure the actual stream being compared. A <a href="../../decoding-output/conversion-fallback/Audio-Downmixing.html">downmix</a>, alternate audio track, or processed transcode may differ from the source's original multichannel programme. A file's recorded analysis value also cannot reveal a later device volume adjustment.</p>
+<h2 id="true-peak-measures-another-property">True peak measures another property</h2>
+<p>Samples describe a band-limited waveform at discrete instants. The reconstructed waveform can reach a larger value between those instants. A true-peak meter estimates that behavior by interpolation.</p>
+<p><img src="images/true-peak.png" alt="A reconstructed sine reaches beyond full scale between stored samples whose magnitudes remain below full scale."></p>
+<p>The figure uses an ideal 12 kHz sine sampled at 48 kHz, with continuous peak amplitude 1.08 and a 45-degree sampling phase. Its stored magnitudes are about <strong>0.764</strong>, or <strong>−2.34 dBFS</strong> sample peak. Its continuous peak is <strong>+0.67 dBTP</strong>. This is a mathematical illustration; practical meters have defined interpolation accuracy and practical converters have their own reconstruction behavior.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Audio-Loudness.html" title="Audio loudness">Audio loudness</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Audio-Loudness-Normalization.html" title="Loudness normalization">Loudness normalization</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../fundamentals/Audio-Dynamic-Range.html" title="Audio Dynamic Range">Audio Dynamic Range</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.itu.int/dms_pubrec/itu-r/rec/bs/R-REC-BS.1770-5-202311-I!!PDF-E.pdf" title="ITU-R BS.1770-5: Programme loudness and true-peak measurement">ITU-R BS.1770-5: Programme loudness and true-peak measurement</a></li>
+			            <li><a class="seealso-link" href="https://tech.ebu.ch/docs/tech/tech3341.pdf" title="EBU Tech 3341-2023: EBU Mode metering">EBU Tech 3341-2023: EBU Mode metering</a></li>
+			            <li><a class="seealso-link" href="https://tech.ebu.ch/docs/r/r128.pdf" title="EBU R 128-2023: Loudness normalization">EBU R 128-2023: Loudness normalization</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Audio-LUFS%0A*%20Title%3A%20LUFS%20loudness%20measurement%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

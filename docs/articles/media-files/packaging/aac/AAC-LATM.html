@@ -134,7 +134,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="follow-configuration-across-several-elements">Follow configuration across several elements</h2>
+<h2 id="configuration-reuse-and-receiver-state">Configuration reuse and receiver state</h2>
 <p>RFC 6416 describes a LATM audioMuxElement carrying payload and, in its in-band configuration mode, a useSameStreamMux indication. A <strong>StreamMuxConfig</strong> describes how the audio and its configuration are arranged.</p>
 <p>An initial element can supply configuration A and its audio. A following element can indicate that the previous setup is reused and carry the next payload without a complete repeat of A. The receiver retains A and applies it while parsing and decoding that next payload.</p>
 <p>This saves repeated descriptions, but makes retained setup part of the receiving state. If the reader joins after A and receives only reuse indications, it needs the applicable configuration before it can interpret those payloads. Repeating configuration periodically helps a receiver joining or recovering from loss.</p>

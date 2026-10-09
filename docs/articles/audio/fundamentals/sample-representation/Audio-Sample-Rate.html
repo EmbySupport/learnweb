@@ -184,7 +184,7 @@
 <h2 id="the-rate-also-gives-the-samples-their-duration">The rate also gives the samples their duration</h2>
 <p>44,100 sample frames played at 44,100 per second last one second. Played at 48,000 per second, those same frames last 0.91875 seconds, with every frequency multiplied by 48,000/44,100.</p>
 <p>That is what <strong>changing the declared rate without resampling</strong> does: it changes speed and pitch. Proper <a href="../Audio-Resampling.html">resampling</a> instead calculates 48,000 values for the same one-second signal, preserving its intended timeline.</p>
-<h2 id="read-an-output-rate-in-the-right-place">Read an output rate in the right place</h2>
+<h2 id="the-output-grid-and-the-source-bandwidth">The output grid and the source bandwidth</h2>
 <p>A 48 kHz output can carry music originally stored at 44.1 kHz after conversion, or an encoded low-bandwidth voice recording decoded onto that grid. The output rate identifies how fast values are presented, not the frequencies the source actually contains.</p>
 <p>For an Emby audio report, use the rate to interpret duration, decoder configuration, and conversion. Use <a href="../Audio-Bitrate.html">bitrate</a> for compressed data demand and <a href="Audio-Bit-Depth.html">bit depth</a> for PCM amplitude precision. Together they describe different parts of the representation.</p>
 

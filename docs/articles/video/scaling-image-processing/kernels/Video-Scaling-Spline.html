@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Spline Video Scaling | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Spline Video Scaling | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Video-Scaling-Spline">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Video-Scaling-Spline">
+<h1>Spline Video Scaling</h1>
+
+
+<table>
+<thead>
+<tr>
+<th>Illustrated function</th>
+<th style="text-align: right;">Support radius in source spacings</th>
+<th style="text-align: right;">Typical fractional-position samples per axis</th>
+<th style="text-align: right;">Direct two-dimensional neighborhood</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Spline16</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4 × 4</td>
+</tr>
+<tr>
+<td>Spline36</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">6 × 6</td>
+</tr>
+<tr>
+<td>Spline64</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">8 × 8</td>
+</tr>
+</tbody>
+</table>
+<p>These named reconstruction functions use piecewise polynomials. Their suffixes identify the conventional two-dimensional neighborhood sizes; they are not video bit depths. The figure uses their definitions from libplacebo v7.360.1.</p>
+<p><img src="images/spline-weights.png" alt="Spline16, spline36, and spline64 weight functions, including their different outer lobes."></p>
+<p>All three have central weight one and zeros at the other integer positions inside their support. Their curves differ between those positions. Increasing support adds further positive and negative contributions, so a wider spline changes the reconstruction rather than simply adding more copies of the same average.</p>
+<p>The generic label spline can also refer to other polynomial reconstruction choices. For example, a cubic B-spline shape is one member of the <a href="Video-Scaling-Bicubic.html">bicubic family</a>, and FFmpeg documents its own natural bicubic spline scaler. A specific function name and implementation identify the coefficients needed for reproduction.</p>
+<h2 id="half-sample-coefficients">Half-sample coefficients</h2>
+<p>Spline16 makes a compact worked example. At output coordinate x = 0.5, indices −1, 0, 1, and 2 receive weights <strong>−0.075, 0.575, 0.575, −0.075</strong>. For source values <strong>0.1, 0.3, 0.8, 0.9</strong>, the result is:</p>
+<p><strong>−0.075 × 0.1 + 0.575 × 0.3 + 0.575 × 0.8 − 0.075 × 0.9 = 0.5575.</strong></p>
+<p>The weights sum to one. The neighboring context shifts the result slightly from the central-pair linear average of 0.55. Around an abrupt step, the negative terms can instead create <a href="../Video-Scaling-Ringing.html">ringing</a>.</p>
+<p>At the same phase, the wider functions have more terms:</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Normalized coefficients, from the lowest contributing index upward</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Spline16</td>
+<td>−0.075000, 0.575000, 0.575000, −0.075000</td>
+</tr>
+<tr>
+<td>Spline36</td>
+<td>0.019737, −0.118421, 0.598684, 0.598684, −0.118421, 0.019737</td>
+</tr>
+<tr>
+<td>Spline64</td>
+<td>−0.005282, 0.031690, −0.126761, 0.600352, 0.600352, −0.126761, 0.031690, −0.005282</td>
+</tr>
+</tbody>
+</table>
+<p>Rounded entries are shown for reading; the calculations use the full coefficients. For a flat source, each set preserves its value. For textured material, the sequence of signs and distances determines which variations are reinforced or suppressed.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-Scaling-Bicubic.html" title="Bicubic Video Scaling">Bicubic Video Scaling</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Video-Scaling.html" title="How Video Scaling Works">How Video Scaling Works</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Video-Scaling-Ringing.html" title="Scaling Ringing">Scaling Ringing</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://github.com/haasn/libplacebo/blob/v7.360.1/src/filters.c" title="libplacebo v7.360.1: Spline16, spline36, and spline64 polynomials">libplacebo v7.360.1: Spline16, spline36, and spline64 polynomials</a></li>
+			            <li><a class="seealso-link" href="https://github.com/haasn/libplacebo/blob/v7.360.1/src/include/libplacebo/filters.h" title="libplacebo v7.360.1: Filter families and support">libplacebo v7.360.1: Filter families and support</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-scaler.html" title="FFmpeg: Natural bicubic spline scaler">FFmpeg: Natural bicubic spline scaler</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Video-Scaling-Spline%0A*%20Title%3A%20Spline%20Video%20Scaling%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

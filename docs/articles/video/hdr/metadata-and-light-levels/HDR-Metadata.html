@@ -139,7 +139,7 @@
 </tbody>
 </table>
 <p>Signal interpretation is often called <strong>color signaling</strong> rather than HDR metadata in the narrower sense. It is essential because a valid compressed stream can reconstruct samples whose meaning still depends on those descriptions.</p>
-<h2 id="follow-a-simple-metadata-record-through-playback">Follow a simple metadata record through playback</h2>
+<h2 id="color-interpretation-mastering-context-and-content-bounds">Color interpretation, mastering context, and content bounds</h2>
 <p>Suppose a source has BT.2020 primaries and PQ, a mastering maximum of 1,000 nits, and a reported MaxCLL of 600 nits. The first pair specifies color and light coordinates. The mastering number describes a display configuration. The content number supplies a bound for the picture under its measurement definition.</p>
 <p>A compatible app can interpret the source, read whichever metadata its rendering path supports, and adapt the produced picture to its output. A display with a different range does not have to imitate the mastering monitor's hardware; it needs an appropriate reproduction of the authored image.</p>
 <p>Some metadata is carried in codec supplemental messages; other signal descriptions can also appear in container structures. The container reader and video decoder make the needed information available to later processing. Correct packaging and interpretation are both parts of preserving it.</p>

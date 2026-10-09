@@ -125,7 +125,7 @@
 <li>Sample format, geometry, scaling, and timing preparation.</li>
 <li>How per-frame results were aggregated.</li>
 </ul>
-<h2 id="read-the-models-viewing-assumptions">Read the model's viewing assumptions</h2>
+<h2 id="viewing-distance-and-model-specific-score-scales">Viewing distance and model-specific score scales</h2>
 <p>Artifacts that are visible close to a large screen may be much less visible from farther away. Models calibrated for different viewing conditions can therefore assign different values to the same reconstruction.</p>
 <p>Netflix's familiar v0 models and the v1 models released in June 2026 have documented viewing assumptions. Common models use a 0–100 scale; the v1 4K model for viewing at three screen heights uses 0–110. These are model conventions, not a universal percentage scale.</p>
 <p>A score from one model should not be treated as the same quantity as an equal-looking score from another. Even within one model, changing clipping settings or input preparation can change the interpretation of the result.</p>

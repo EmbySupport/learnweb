@@ -108,7 +108,7 @@
 
 <p><strong>AV1</strong> is the video coding format defined by the Alliance for Open Media. Its bitstream contains instructions for reconstructing picture samples, maintaining reference state, and preparing visible output.</p>
 <p>One useful AV1 distinction is that the picture retained for later prediction and the picture prepared for display can pass through different operations.</p>
-<h2 id="read-the-sequence-and-frame-instructions">Read the sequence and frame instructions</h2>
+<h2 id="obus-frame-headers-and-superblock-partitions">OBUs, frame headers, and superblock partitions</h2>
 <p>AV1 organizes coded data into <strong>Open Bitstream Units (OBUs)</strong>. Sequence information establishes the applicable profile, sample format, and other stream parameters. Frame information describes the picture's reconstruction choices, reference updates, and output behavior. Tile data supplies the coded regional information.</p>
 <p>A decoder needs the relevant headers as well as the block payloads. The picture isn't described by an isolated list of pixel values.</p>
 <p>Its block organization can start with <strong>64 × 64 or 128 × 128 superblocks</strong>. Regions are partitioned further to fit the picture structure. The chosen partitions define where prediction and correction decisions apply.</p>

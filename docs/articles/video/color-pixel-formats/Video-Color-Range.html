@@ -1,0 +1,253 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Limited and Full Video Range | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Limited and Full Video Range | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <link rel="stylesheet" href="../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    <meta property="docfx:uid" content="Video-Color-Range">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+    <script type="text/javascript" src="../../../nav.js"></script>
+    <script type="text/javascript" src="../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Video-Color-Range">
+<h1>Limited and Full Video Range</h1>
+
+
+<p>If a movie's blacks become gray and its whites look subdued, a <strong>range mismatch</strong> is one possible cause. The sample codes may have arrived intact, but the renderer has used the wrong black point and scale when interpreting them.</p>
+<p>In a common 8-bit limited-range luma representation, code <strong>16</strong> represents black and <strong>235</strong> nominal white. Full-range 8-bit luma instead uses <strong>0</strong> and <strong>255</strong>. Both conventions can describe the intended black-to-white interval. The mapping between that interval and its stored numbers is different.</p>
+<p>Inspection tools may abbreviate these conventions as <strong>tv</strong> and <strong>pc</strong> respectively. Those labels describe component coding; the intended interpretation still applies on either kind of display.</p>
+<p>Range interpretation can appear at the source decoder, a server conversion stage, an Emby app's renderer, and the final output path. For a result that changes between original playback and converted playback, compare the source and delivered stream's range fields and the actual sample transformation.</p>
+<h2 id="two-mappings-calculated-from-the-same-signal">Two mappings, calculated from the same signal</h2>
+<p>Let E be a normalized luma signal from 0 to 1. In these 8-bit examples, form a stored code by nearest rounding:</p>
+<p><strong>Limited: code = round(16 + 219 E)</strong></p>
+<p><strong>Full: code = round(255 E)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Intended signal E</th>
+<th style="text-align: right;">Limited-range luma code</th>
+<th style="text-align: right;">Full-range luma code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0: reference black</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td>0.25</td>
+<td style="text-align: right;">71</td>
+<td style="text-align: right;">64</td>
+</tr>
+<tr>
+<td>0.5</td>
+<td style="text-align: right;">126</td>
+<td style="text-align: right;">128</td>
+</tr>
+<tr>
+<td>0.75</td>
+<td style="text-align: right;">180</td>
+<td style="text-align: right;">191</td>
+</tr>
+<tr>
+<td>1: nominal white</td>
+<td style="text-align: right;">235</td>
+<td style="text-align: right;">255</td>
+</tr>
+</tbody>
+</table>
+<p>The two columns depict approximately the same signal levels through different numerical scales. Their integer rounding errors differ because their available code grids differ.</p>
+<p>The reverse calculation removes the corresponding offset and scale. Limited-range code 71 represents <strong>(71 − 16)/219 ≈ 0.25114</strong>. Full-range code 64 represents <strong>64/255 ≈ 0.25098</strong>. Both are close to the intended quarter-scale signal.</p>
+<h2 id="why-the-wrong-interpretation-changes-contrast">Why the wrong interpretation changes contrast</h2>
+<p>Take limited-range black 16 and interpret it as full range. The signal becomes <strong>16/255 ≈ 0.06275</strong>, above black. Nominal white 235 becomes <strong>235/255 ≈ 0.92157</strong>, below white. The original black-to-white span is squeezed into the middle of the expected full-range interval.</p>
+<p>These percentages describe the <strong>encoded signal coordinate</strong>, not emitted light. The display's transfer relationship determines what light follows from each coordinate. The numerical mismatch nevertheless explains the raised black and compressed contrast.</p>
+<p>In the opposite direction, interpret full-range code 12 as limited range:</p>
+<p><strong>(12 − 16)/219 ≈ −0.01826.</strong></p>
+<p>The result lies below reference black. Full-range code 245 similarly becomes <strong>(245 − 16)/219 ≈ 1.04566</strong>, above nominal white. If the subsequent presentation clips to the nominal interval, multiple dark or bright input codes collapse to the same endpoint. Detail is lost at those ends rather than merely shifted.</p>
+<h2 id="chroma-has-a-neutral-offset-of-its-own">Chroma has a neutral offset of its own</h2>
+<p>Luma and RGB components describe nominal values from 0 to 1. <a href="Video-YCbCr.html">YCbCr chroma</a> describes signed color differences around zero, so its digital mapping also needs a neutral point.</p>
+<table>
+<thead>
+<tr>
+<th>Common limited-range coding</th>
+<th>Luma black–white</th>
+<th>Chroma nominal interval</th>
+<th style="text-align: right;">Neutral chroma</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8-bit</td>
+<td>16–235</td>
+<td>16–240</td>
+<td style="text-align: right;">128</td>
+</tr>
+<tr>
+<td>10-bit</td>
+<td>64–940</td>
+<td>64–960</td>
+<td style="text-align: right;">512</td>
+</tr>
+</tbody>
+</table>
+<p>For 8-bit limited chroma, the scale is 224 and the offset 128. Reusing the luma scale 219 or treating the chroma byte as an unsigned RGB intensity changes color reconstruction. Full-range chroma has its own defined mapping too; a generic 0–255 luma formula is not the complete three-component conversion.</p>
+<p>The codes beyond nominal luma black and white provide working margins in the relevant video systems. Filtering can produce excursions into those margins. A nominal range description and a specific clipping policy are separate decisions.</p>
+<h2 id="a-tag-correction-or-an-image-conversion">A tag correction or an image conversion?</h2>
+<p>A range tag describes how to interpret existing codes. Changing a tag does not rescale them. If our correctly coded limited-range black is 16, changing only its label to full range makes it the raised signal value calculated above.</p>
+<p>A real limited-to-full conversion instead maps each luma code through its source interpretation and into the destination scale:</p>
+<p><strong>destination = round(255 × (source − 16)/219)</strong></p>
+<p>Within the nominal interval, source 16 becomes 0, 235 becomes 255, and 71 becomes approximately 64. Chroma is converted using the appropriate chroma mapping. The output description must then agree with the converted samples.</p>
+<p>If a file contains full-range samples mislabeled as limited, correcting that incorrect label can restore the intended interpretation without changing its samples. Establishing what the samples actually represent is the step that distinguishes these two cases.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-YCbCr.html" title="YCbCr Video">YCbCr Video</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="precision-banding/Video-Bit-Depth.html" title="Video Bit Depth">Video Bit Depth</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-Color-Signaling.html" title="Video Color Tags and Signaling">Video Color Tags and Signaling</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../color-standards/transfer-functions/Transfer-Function-EOTF.html" title="Electro-Optical Transfer Function (EOTF)">Electro-Optical Transfer Function (EOTF)</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.itu.int/rec/R-REC-BT.601/en" title="ITU-R BT.601: Digital component coding and working margins">ITU-R BT.601: Digital component coding and working margins</a></li>
+			            <li><a class="seealso-link" href="https://www.itu.int/rec/R-REC-BT.2100/en" title="ITU-R BT.2100: Narrow and full-range integer representations">ITU-R BT.2100: Narrow and full-range integer representations</a></li>
+			            <li><a class="seealso-link" href="https://www.ffmpeg.org/doxygen/8.1/pixfmt_8h.html" title="FFmpeg 8.1: Color-range equations">FFmpeg 8.1: Color-range equations</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Video-Color-Range%0A*%20Title%3A%20Limited%20and%20Full%20Video%20Range%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

@@ -108,7 +108,7 @@
 
 <p>A signed integer LPCM sample is a direct amplitude value. If the stored code is twice as large, its represented amplitude is twice as large. <strong>Linear pulse-code modulation</strong> uses this linear relationship, unlike companded formats that assign finer and coarser amplitude spacing in different parts of their range.</p>
 <p>There is no compressed-audio prediction or transform to undo before interpreting the sample values.</p>
-<h2 id="read-a-tiny-stereo-sequence">Read a tiny stereo sequence</h2>
+<h2 id="two-stereo-sample-frames-as-stored-bytes">Two stereo sample frames as stored bytes</h2>
 <p>Assume signed 16-bit samples, little-endian storage, and interleaved left/right channels. Two sample frames contain:</p>
 <table>
 <thead>

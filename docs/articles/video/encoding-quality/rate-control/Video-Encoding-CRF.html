@@ -139,7 +139,7 @@
 </tbody>
 </table>
 <p>The CRF number therefore does not mean “all frames used QP 23” or “every second received the same rate.” Those would be different control policies.</p>
-<h2 id="follow-the-source-into-the-model">Follow the source into the model</h2>
+<h2 id="picture-complexity-and-reference-roles-in-quantizer-selection">Picture complexity and reference roles in quantizer selection</h2>
 <p>An encoder's analysis estimates how well the pictures can be predicted and how much correction their structure leaves. More complicated content can have more significant information to represent.</p>
 <p>In x265's implementation, a fixed rate factor participates in the conversion from modeled terms into quantizer scale. Additional picture and regional analysis changes the resulting allocation. The full code has separate branches for its enabled analysis tools, rather than one equation directly mapping CRF to visible error.</p>
 <p>Picture role is important. An independently coded anchor establishes information needed by later pictures. A region reused by many future predictions can be worth reconstructing more carefully than a region that disappears immediately. Adaptive decisions can distribute precision accordingly.</p>

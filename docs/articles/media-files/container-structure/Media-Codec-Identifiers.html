@@ -140,7 +140,7 @@
 </tbody>
 </table>
 <p><strong>FourCC</strong> means four-character code. Spaces and case can form part of the literal value. MP4 uses four-character sample-entry types, while the Matroska example is a longer string. An inspection tool's friendly display name can conceal that distinction, so retain the literal identifier when reporting a parsing problem.</p>
-<h2 id="follow-the-hevc-setup-information">Follow the HEVC setup information</h2>
+<h2 id="where-hvc1-and-hev1-carry-hevc-parameter-sets">Where hvc1 and hev1 carry HEVC parameter sets</h2>
 <p>An HEVC decoder needs parameter sets describing the sequence and pictures: <strong>VPS</strong>, <strong>SPS</strong>, and <strong>PPS</strong>. Encoded slices refer to that setup information. The container mapping establishes where the reader obtains it.</p>
 <p>For hvc1, the parameter sets must be supplied through the sample entry's HEVC configuration; they are not carried as in-band parameter-set units in samples. The hev1 representation permits parameter sets in samples as well as the configuration record. A reader expecting one arrangement can consequently behave differently with the other, although both tracks report HEVC.</p>
 <p>Retagging hev1 as hvc1 is therefore an assertion about the stream's organization. A correct conversion checks the configuration and sample contents and satisfies the new convention. Editing four characters alone does not move setup information out of samples or ensure that all required parameter sets are available in the configuration record.</p>

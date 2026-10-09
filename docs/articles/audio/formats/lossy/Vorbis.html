@@ -140,7 +140,7 @@
 <h2 id="share-channel-relationships-efficiently">Share channel relationships efficiently</h2>
 <p>Stereo channels often have related content. Vorbis coupling can describe those relationships more compactly, then decouple them during reconstruction. The format supports different coding choices, including tradeoffs in the stereo image.</p>
 <p>A lossless channel-coupling step inside the decoder does not make the whole codec lossless: earlier quantization of the audio representation still determines its approximation.</p>
-<h2 id="let-the-encoders-budget-follow-the-material">Let the encoder's budget follow the material</h2>
+<h2 id="variable-bitrate-for-attacks-and-dense-textures">Variable bitrate for attacks and dense textures</h2>
 <p>Vorbis encoders commonly offer a quality-oriented variable-rate mode. A difficult attack or dense texture can use more data than a simpler passage at that selected quality policy. The header's nominal bitrate can be a hint, while a measured track average comes from actual bytes and duration.</p>
 <p>For an Emby music file, this distinguishes an expected bitrate change from an audio fault. Its metadata, initialization, packet timing, and coded sound remain separate preservation tasks when it is repackaged. A compatible remux can retain those coded packets; a conversion to another codec reconstructs them and creates a new audio representation.</p>
 

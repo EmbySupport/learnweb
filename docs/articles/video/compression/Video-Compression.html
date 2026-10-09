@@ -130,7 +130,7 @@
 <p>The decoder does not need to recognize a person or understand the motion of an arm. It follows sample-location instructions. The encoder does the search; the decoder uses the result. Depending on the codec, predictions can use several reference pictures, interpolated sample positions, or combinations of predictions.</p>
 <p>Motion prediction is especially useful when a camera pans across a scene. Many sample positions change, but large areas still resemble shifted versions of an earlier picture. Conversely, a small newly revealed strip behind a moving object may have no useful match. The encoder can choose another prediction or code that region using intra prediction.</p>
 <p>The prediction is often imperfect: illumination changes, an edge moves by a fraction of a sample, or a surface deforms. The remaining difference is the <strong>residual</strong>. A useful prediction makes that correction easier to describe.</p>
-<h2 id="follow-the-correction-through-an-encode">Follow the correction through an encode</h2>
+<h2 id="encoding-the-prediction-error">Encoding the prediction error</h2>
 <p>Take four illustrative luma samples. The prediction is close to the source:</p>
 <table>
 <thead>

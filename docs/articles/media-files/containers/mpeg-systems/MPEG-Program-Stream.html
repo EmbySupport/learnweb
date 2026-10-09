@@ -108,7 +108,7 @@
 
 <p>An older MPG movie and the video objects on a DVD can organize media through <strong>MPEG program stream (PS)</strong>. This systems layer arranges encoded components for synchronized playback; it does not define their picture compression.</p>
 <p>PS uses <strong>packs</strong>, which contain a pack header and packetized elementary-stream data. Unlike the fixed small packets of <a href="MPEG-Transport-Stream.html">transport stream</a>, pack and PES organization is suited to a comparatively reliable source such as stored media.</p>
-<h2 id="read-one-pack">Read one pack</h2>
+<h2 id="pack-clocks-pes-timestamps-and-stream-identifiers">Pack clocks, PES timestamps, and stream identifiers</h2>
 <p>The reader identifies the pack structure and its systems clock information. It then examines PES packet headers to identify components and obtain timestamps where supplied. Payload belonging to video is routed to video decoding, while audio payload is routed to an audio decoder.</p>
 <table>
 <thead>

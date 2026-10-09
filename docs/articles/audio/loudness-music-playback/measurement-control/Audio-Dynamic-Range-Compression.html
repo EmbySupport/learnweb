@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Dynamic range compression | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Dynamic range compression | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Audio-Dynamic-Range-Compression">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Audio-Dynamic-Range-Compression">
+<h1>Dynamic range compression</h1>
+
+
+<p>Dynamic range compression changes the gain <strong>during</strong> a programme. Louder portions receive more gain reduction than quieter portions, according to the processor's settings. It can make a movie's dialogue and effects fit more comfortably into a limited listening level, or shape the impact of music.</p>
+<p>This is level processing. The “compression” in a codec such as AAC concerns representing audio with fewer data bits and is a different operation. <a href="../../fundamentals/Audio-Dynamic-Range.html">Dynamic range</a> describes the variation being controlled; <a href="Audio-Loudness-Normalization.html">loudness normalization</a> often applies one constant gain to an entire programme.</p>
+<h2 id="threshold-and-ratio-define-the-steady-state-curve">Threshold and ratio define the steady-state curve</h2>
+<p>A downward compressor begins reducing gain above a <strong>threshold</strong>. Its <strong>ratio</strong> specifies how much a level rise above the threshold is reduced. At 4:1, a 4 dB input rise produces a 1 dB output rise once the signal is in the compressed region.</p>
+<p>For a hard-knee curve with threshold T and ratio R:</p>
+<pre><code class="lang-text">below threshold: output level = input level
+above threshold: output level = T + (input level − T) / R
+</code></pre>
+<p>Take T = <strong>−24 dBFS</strong> and R = <strong>4</strong>. An input level of −12 dBFS is 12 dB above threshold. Its output is −24 + 12/4 = <strong>−21 dBFS</strong>, a gain reduction of <strong>9 dB</strong>. An input level of −30 dBFS remains −30 dBFS.</p>
+<p><img src="images/compressor-curve.png" alt="Unity, hard-knee, and soft-knee compressor curves for a minus 24 dBFS threshold and 4:1 ratio."></p>
+<p>A <strong>soft knee</strong> rounds the transition between the uncompressed and compressed slopes. The plotted example begins that transition 6 dB below the threshold and completes it 6 dB above. Knee definitions and parameter units vary between processors; the figure uses an explicitly defined 12 dB transition width.</p>
+<p>The curve shows steady-state detected levels, not an instantaneous rule applied independently to every positive and negative audio sample.</p>
+<h2 id="makeup-gain-moves-the-processed-programme">Makeup gain moves the processed programme</h2>
+<p>Compression on its own turns the louder portions down. <strong>Makeup gain</strong> raises the result afterward.</p>
+<p>In the example above, adding +6 dB gives:</p>
+<table>
+<thead>
+<tr>
+<th>Detected input level</th>
+<th style="text-align: right;">Compressed level</th>
+<th style="text-align: right;">After +6 dB makeup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quiet portion: −30 dBFS</td>
+<td style="text-align: right;">−30 dBFS</td>
+<td style="text-align: right;">−24 dBFS</td>
+</tr>
+<tr>
+<td>Loud portion: −12 dBFS</td>
+<td style="text-align: right;">−21 dBFS</td>
+<td style="text-align: right;">−15 dBFS</td>
+</tr>
+</tbody>
+</table>
+<p>The original contrast was <strong>18 dB</strong>. The new contrast is <strong>9 dB</strong>. The quiet portion is now louder than before, while the loud portion is still lower. That combination is the mechanism behind many “night listening” styles of processing.</p>
+<p>Makeup gain is not automatically safe peak headroom. The static detector calculation does not include every transient, and attack behavior may let an initial peak pass. A limiter or a true-peak check serves another purpose.</p>
+<h2 id="attack-and-release-decide-how-the-gain-moves">Attack and release decide how the gain moves</h2>
+<p>The detector estimates a changing signal level. <strong>Attack</strong> governs the move toward greater reduction when that level rises. <strong>Release</strong> governs recovery when it falls. These parameters influence the sound as much as the static ratio.</p>
+<p><img src="images/compressor-timing.png" alt="A sudden request for nine decibels of gain reduction is approached over time and then released gradually."></p>
+<p>This teaching model smooths gain reduction with a 20 ms attack time constant and a 120 ms release time constant. A time constant is not a waiting period followed by an abrupt switch: after one time constant, a first-order response has traveled about 63% of the way toward its new value. Real processors can define their timing differently and can use adaptive behavior.</p>
+<p>A slower attack can retain the onset of a drum or effect. A very fast attack controls that onset more firmly. A release that is too slow for the material can keep the next quiet phrase suppressed; one that recovers very quickly can make the background audibly swell between louder events. Lookahead can provide advance knowledge of an upcoming peak by adding a delay to the signal being processed.</p>
+<h2 id="what-the-detector-listens-to">What the detector listens to</h2>
+<p>A peak detector responds to short excursions; an RMS-style detector responds to energy over a window. A sidechain can feed the detector from another signal or from a filtered version of the same signal. These choices determine <em>when</em> the compressor reacts, while the gain stage changes the programme being heard.</p>
+<p>For stereo or surround content, channels can share a gain decision. Linking helps a sound stay in the same apparent location when it becomes loud in one channel. Independent reduction can change the left/right balance or the relationship between dialogue and other channels. The linked detector's method also matters; a maximum-channel detector and an averaged detector will not react identically.</p>
+<h3 id="an-effect-can-turn-down-the-dialogue-around-it">An effect can turn down the dialogue around it</h3>
+<p>Consider a linked soundtrack whose detector reacts strongly to an effect. Its gain reduction can also attenuate dialogue that overlaps that effect. Release may keep the following dialogue reduced for a while after the effect has ended.</p>
+<p>This is a concrete reason to inspect the detector and timing rather than assuming “more compression” always improves speech. A broadband compressor has no understanding of a speaker's words. Different sidechain weighting, separate processing before a mix, or a designed dialogue-enhancement process can produce different results.</p>
+<p>The order of fixed gain and compression also matters. Raising the input by 6 dB before a fixed threshold pushes more material into reduction. Raising the output by 6 dB afterward leaves the detector's decision unchanged. Two controls both labeled “gain” can therefore produce different dynamics depending on their position.</p>
+<h2 id="where-compression-enters-a-playback-route">Where compression enters a playback route</h2>
+<p>A movie can carry recommended dynamic treatment in codec metadata, or a player or receiver can run its own signal processor. The applied result depends on the decoded or passed-through route, selected mode, and device.</p>
+<p>For Emby, identify the active audio track and where decoding occurs before interpreting a receiver's dynamic setting. A <a href="../../decoding-output/output-transport/Audio-Bitstream-Passthrough.html">bitstream route</a> can leave decoding and associated metadata treatment to the receiving device. A PCM route may have already applied processing upstream.</p>
+<p>If the goal is hearing dialogue more easily, compression works on the level contrast. <a href="Audio-Dialogue-Normalization.html">Dialogue normalization</a> instead supplies a programme gain reference. A missing or misrouted centre channel calls for checking channel layout and <a href="../../decoding-output/conversion-fallback/Audio-Downmixing.html">downmixing</a>, because reducing dynamics does not restore dialogue that never reached the intended output.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../fundamentals/Audio-Dynamic-Range.html" title="Audio Dynamic Range">Audio Dynamic Range</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Audio-Loudness-Normalization.html" title="Loudness normalization">Loudness normalization</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Audio-Dialogue-Normalization.html" title="Dialogue normalization (dialnorm)">Dialogue normalization (dialnorm)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../fundamentals/Audio-Clipping.html" title="Audio Clipping">Audio Clipping</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://ffmpeg.org/doxygen/7.1/af__sidechaincompress_8c_source.html" title="FFmpeg compressor source and controls">FFmpeg compressor source and controls</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-filters.html" title="FFmpeg audio filter documentation">FFmpeg audio filter documentation</a></li>
+			            <li><a class="seealso-link" href="https://www.etsi.org/deliver/etsi_ts/102300_102399/102366/01.04.01_60/ts_102366v010401p.pdf" title="ETSI TS 102 366 V1.4.1: AC-3 and Enhanced AC-3">ETSI TS 102 366 V1.4.1: AC-3 and Enhanced AC-3</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Audio-Dynamic-Range-Compression%0A*%20Title%3A%20Dynamic%20range%20compression%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

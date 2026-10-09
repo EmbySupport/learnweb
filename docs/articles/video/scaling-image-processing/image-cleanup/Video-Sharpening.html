@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Video Sharpening | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Video Sharpening | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Video-Sharpening">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Video-Sharpening">
+<h1>Video Sharpening</h1>
+
+
+<p>A narrow edge can appear more distinct when a processor increases the contrast immediately around it. <strong>Sharpening</strong> makes that local change. One common construction, <strong>unsharp masking</strong>, derives a correction from the difference between the original picture and a blurred copy.</p>
+<p>If I is the original value, B its blurred version, and a the amount:</p>
+<p><strong>sharpened = I + a(I − B).</strong></p>
+<p>The name comes from using the unsharp, or blurred, copy as a mask. Subtracting it isolates variations that the blur suppressed; adding a scaled version of that difference reinforces them.</p>
+<p><img src="images/sharpening.png" alt="A discrete source step, its blurred copy, and the result of adding half the difference back to the original."></p>
+<p><em>Original one-dimensional example. The blur weights are (1/4, 1/2, 1/4), amount is 0.5, and values are shown before clipping. Lines connect the discrete sample positions for readability.</em></p>
+<h2 id="the-correction-at-a-black-to-white-edge">The correction at a black-to-white edge</h2>
+<p>Take a source whose integer positions below zero are 0 and whose positions zero and above are 1. Blur each position using one quarter of the previous sample, one half of itself, and one quarter of the next.</p>
+<p>The last black position has blurred value <strong>0.25</strong>. Its difference I − B is −0.25. With amount 0.5, its sharpened value is:</p>
+<p><strong>0 + 0.5 × (0 − 0.25) = −0.125.</strong></p>
+<p>The first white position has blurred value <strong>0.75</strong> and difference +0.25. Its sharpened value becomes:</p>
+<p><strong>1 + 0.5 × (1 − 0.75) = 1.125.</strong></p>
+<p>Flat regions remain unchanged because their blurred values equal their originals. The operation has increased contrast near the transition, producing dark and bright overshoot around it. An appropriate output constraint can clip or limit those values, changing the final edge shape.</p>
+<p>This construction explains the appearance of a halo. It is a spatially organized correction beside an edge, rather than a uniform contrast change applied to the entire picture.</p>
+<h2 id="amount-and-neighborhood-affect-different-features">Amount and neighborhood affect different features</h2>
+<p>Amount scales the correction. Doubling it doubles the difference being added in this linear model. A blur neighborhood's width selects the spatial variations used to form that difference.</p>
+<p>A small neighborhood tends to emphasize narrower features. A broad blurred copy differs from the original over a wider region, so its correction can create broader outlines around objects. The mathematical blur and its radius matter as much as the amount label.</p>
+<p>Some implementations use thresholds or other constraints to avoid amplifying very small differences. Others process luma, chroma, or alpha separately. FFmpeg's unsharp documentation describes component-specific amounts and neighborhood sizes. The diagram's three-sample blur is a deliberately small worked example.</p>
+<h2 id="existing-fine-variation-is-reinforced-too">Existing fine variation is reinforced too</h2>
+<p>The difference I − B contains high-frequency texture and noise as well as useful edge structure. Increasing that difference can make grain more prominent, outline compression defects, or exaggerate a previously created ringing pattern.</p>
+<p>If a weak fluctuation survives in the original but is largely removed from B, its correction is close to a times that fluctuation. Adding it back increases the original variation. This is why <a href="Video-Denoising.html">denoising</a> and sharpening are distinct decisions about the picture's texture, and why their order can affect a combined operation.</p>
+<p>Sharpening also depends on the grid where it runs. A neighborhood measured in source samples covers a different displayed extent after a resize. Applying the same nominal radius before and after <a href="../Video-Scaling.html">scaling</a> can therefore emphasize different visible feature sizes.</p>
+<p>In an Emby comparison, a server conversion and the app's presentation may each change local contrast. Inspecting the delivered frame before its display enlargement helps determine which stage supplied the visible outline.</p>
+<h2 id="measuring-the-intended-change">Measuring the intended change</h2>
+<p>Evaluate a narrow genuine edge, fine texture, a gradient, and motion in the decoded final output. A stronger outline can increase the apparent separation of a feature while also changing neighboring values; a still frame alone can understate amplified temporal grain.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Video-Scaling.html" title="How Video Scaling Works">How Video Scaling Works</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Video-Scaling-Ringing.html" title="Scaling Ringing">Scaling Ringing</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-Denoising.html" title="Video Denoising">Video Denoising</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-filters.html#unsharp" title="FFmpeg: Unsharp masking and its parameters">FFmpeg: Unsharp masking and its parameters</a></li>
+			            <li><a class="seealso-link" href="https://github.com/FFmpeg/FFmpeg/blob/n8.1/libavfilter/vf_unsharp.c" title="FFmpeg n8.1: Unsharp implementation">FFmpeg n8.1: Unsharp implementation</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Video-Sharpening%0A*%20Title%3A%20Video%20Sharpening%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

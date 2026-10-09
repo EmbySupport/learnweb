@@ -113,11 +113,11 @@
 <p><strong>B(t) = 2a × t(1−t) + t²</strong></p>
 <p>At t = 0.5, a = 0.25 gives output 0.375, while a = 0.75 gives 0.625. Both sections still start at zero and end at one. Moving a control changes the middle shape rather than changing those endpoints. The controls shape the curve; they are not ordinary measured image samples that the curve must pass through.</p>
 <p>Actual metadata defines its knee, anchor set, and target under the standard's conventions. The mapper accounts for a destination whose peak differs from that prepared target. It can also use source brightness information when a content-provided curve is unavailable.</p>
-<h2 id="read-the-missing-anchor-case-explicitly">Read the missing-anchor case explicitly</h2>
+<h2 id="the-fallback-curve-without-hdr10-anchors">The fallback curve without HDR10+ anchors</h2>
 <p><img src="images/tone-mapping-curve-st2094-40.png" alt="ST 2094-40 fallback without content-provided HDR10+ curve anchors."></p>
 <p><em>libplacebo 7.360.1 fallback, defaults, 1,000-nit source, 100-nit target, zero black, no scene average or curve-anchor metadata.</em></p>
 <p>The displayed fallback maps 100 nits to approximately <strong>48.42 nits</strong> and 500 to approximately <strong>98.68</strong>. This shows one generated relationship under those inputs. A real metadata-defined relationship can select another shape.</p>
-<h3 id="follow-the-available-information">Follow the available information</h3>
+<h3 id="which-inputs-reach-the-mapper">Which inputs reach the mapper?</h3>
 <table>
 <thead>
 <tr>

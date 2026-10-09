@@ -136,7 +136,7 @@
 </tbody>
 </table>
 <p>The endpoint fits in both cases. The power function assigns more output to the lower and middle inputs, changing the contrast distribution.</p>
-<h2 id="follow-the-darkest-part-separately">Follow the darkest part separately</h2>
+<h2 id="the-straight-segment-near-black">The straight segment near black</h2>
 <p>A bare power with exponent below one becomes very steep near zero. FFmpeg replaces the part below input 0.05 with a straight extension that meets the power value there:</p>
 <p><strong>T(x) = x × (0.05/8)^(1/1.8) / 0.05</strong> for x up to 0.05.</p>
 <p>Input 0.01 therefore produces about 0.01193, and 0.05 produces about 0.05963. The plotted function includes that treatment; using the power expression down to zero would describe a different shadow response.</p>

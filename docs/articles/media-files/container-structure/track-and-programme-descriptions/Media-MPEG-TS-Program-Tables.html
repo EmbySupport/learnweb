@@ -110,7 +110,7 @@
 <p>The discovery route begins with the <strong>Program Association Table (PAT)</strong> on PID 0. It maps programme numbers to the PIDs carrying their <strong>Program Map Tables (PMTs)</strong>. Each PMT then describes that programme's components.</p>
 <p><img src="images/pat-pmt.svg" alt="A PAT maps programme 7 to a PMT, whose entries identify separate video and audio packet identifiers."></p>
 <p><em>Programme 7 and the nonzero PIDs are an example. The PAT's PID 0 is defined by MPEG systems.</em></p>
-<h2 id="follow-programme-7-through-the-map">Follow programme 7 through the map</h2>
+<h2 id="programme-discovery-pat-pmt-and-component-pids">Programme discovery: PAT, PMT, and component PIDs</h2>
 <ol>
 <li>Filter packets on PID 0 and assemble the PAT section.</li>
 <li>Find programme 7's entry: its PMT is carried on PID 0x0100.</li>

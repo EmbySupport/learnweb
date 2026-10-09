@@ -108,7 +108,7 @@
 
 <p>When preparing a library viewing copy, one possible objective is to preserve an acceptable appearance and let the resulting size follow the source. <strong>Constant quality encoding</strong> starts with that kind of quality policy instead of requiring the video to spend exactly a chosen amount of data.</p>
 <p>The policy belongs to the encoder. It guides reconstruction choices; it is not a measurement stamped onto every finished scene.</p>
-<h2 id="follow-the-controllers-decisions">Follow the controller's decisions</h2>
+<h2 id="a-quality-target-makes-bitrate-the-result">A quality target makes bitrate the result</h2>
 <p>The encoder analyzes picture structure and predicts how difficult regions will be to represent. It chooses prediction, partition and quantization decisions that serve its quality objective.</p>
 <p>A largely static region may need only a short correction. Changing fine texture can need many significant coefficients. The same quality policy can therefore produce a small description of one region and a larger description of another.</p>
 <p>After coding those choices, the number of produced bits is the result. Across a film, varying source difficulty makes bitrate fluctuate and determines the final size.</p>

@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>ReplayGain | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="ReplayGain | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Audio-ReplayGain">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Audio-ReplayGain">
+<h1>ReplayGain</h1>
+
+
+<p>ReplayGain separates a loudness decision from the stored audio. Analysis supplies recommended gains; metadata stores them; a supporting player decides which gain to apply. The file can retain its original samples while playback becomes more consistent across a collection.</p>
+<p>The familiar tags come in two pairs:</p>
+<table>
+<thead>
+<tr>
+<th>Tag</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>REPLAYGAIN_TRACK_GAIN</code></td>
+<td>Recommended gain for this track considered individually</td>
+</tr>
+<tr>
+<td><code>REPLAYGAIN_ALBUM_GAIN</code></td>
+<td>Recommended common gain for the album</td>
+</tr>
+<tr>
+<td><code>REPLAYGAIN_TRACK_PEAK</code></td>
+<td>Track sample-peak amplitude, conventionally relative to full scale</td>
+</tr>
+<tr>
+<td><code>REPLAYGAIN_ALBUM_PEAK</code></td>
+<td>Highest such peak in the album</td>
+</tr>
+</tbody>
+</table>
+<p>Gain is usually represented in decibels, such as <code>-4.20 dB</code>. A peak value such as <code>0.98</code> is an amplitude ratio, not −0.98 dB and not a LUFS measurement. Encoded formats can produce decoded peaks beyond 1.0, so “peak” must be interpreted in the signal domain used by the scanner.</p>
+<h2 id="track-mode-for-a-mix-album-mode-for-an-album">Track mode for a mix; album mode for an album</h2>
+<p>Track mode tries to match each song independently. That suits a shuffled collection where the previous song may come from a completely different recording.</p>
+<p>Album mode applies the <strong>same gain to every track</strong> in the album. This preserves intentional contrasts between movements, interludes and songs. The album measurement is derived from the combined programme; it is not simply the arithmetic average of the individual gain tags.</p>
+<p>Imagine an album whose quiet interlude measures −25 LUFS and whose main song measures −17 LUFS. Using an illustrative −18 LUFS reference:</p>
+<table>
+<thead>
+<tr>
+<th>Playback policy</th>
+<th style="text-align: right;">Interlude gain</th>
+<th style="text-align: right;">Main song gain</th>
+<th>Resulting contrast</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Individual track matching</td>
+<td style="text-align: right;">+7 dB</td>
+<td style="text-align: right;">−1 dB</td>
+<td>Both approach −18 LUFS</td>
+</tr>
+<tr>
+<td>Common album gain of −2 dB</td>
+<td style="text-align: right;">−2 dB</td>
+<td style="text-align: right;">−2 dB</td>
+<td>The original 8 LU difference remains</td>
+</tr>
+</tbody>
+</table>
+<p>The album gain of −2 dB here is supplied for illustration, not derived by averaging those two readings. Their durations and weighted signal energies affect the album analysis. A player may also limit positive gain to accommodate peaks.</p>
+<h2 id="the-reference-convention-matters">The reference convention matters</h2>
+<p>The original ReplayGain proposal uses a perceptual analysis and a calibrated reference based on its original pink-noise model. The revised specification uses a BS.1770-based loudness measurement with a <strong>−18 LUFS</strong> reference. Existing collections and scanners do not all use the same generation of analysis.</p>
+<p>A stored gain is already the scanner's recommendation. A player must not treat the decibel tag as the track's measured LUFS value and subtract it from a target again. Scanner version and analysis settings explain why rescanning the same collection can change the tags.</p>
+<p>The original acoustic calibration is also not a command to set a home system to a particular sound pressure. The listener retains control of the reproduction volume.</p>
+<h2 id="what-happens-at-playback">What happens at playback</h2>
+<p>For a gain of −4 dB, the sample multiplier is 10^(−4/20), approximately <strong>0.631</strong>. A sample amplitude of 0.5 becomes about <strong>0.315</strong>. This is ordinary signal gain, so it changes the PCM values heard by the device even though the file on disk remains unchanged.</p>
+<p>A player's preamp setting can add to the tag gain. Peak protection can reduce the total gain further. Consequently, inspecting the tag alone does not establish the final level.</p>
+<p>In an Emby comparison, check the behavior of the specific app and route: whether it reads the tags, selects track or album mode, applies a preamp, and changes policy during shuffle. The tags describe an available playback instruction; the selected implementation determines whether that instruction becomes signal processing.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Audio-Loudness-Normalization.html" title="Loudness normalization">Loudness normalization</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Audio-LUFS.html" title="LUFS loudness measurement">LUFS loudness measurement</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../music-playback/Audio-Bit-Perfect-Playback.html" title="Bit-perfect playback">Bit-perfect playback</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://wiki.hydrogenaudio.org/index.php?title=Revised_ReplayGain_specification" title="Revised ReplayGain specification">Revised ReplayGain specification</a></li>
+			            <li><a class="seealso-link" href="https://replaygain.hydrogenaudio.org/calculating_rg.html" title="Original ReplayGain proposal: Calculation">Original ReplayGain proposal: Calculation</a></li>
+			            <li><a class="seealso-link" href="https://replaygain.hydrogenaudio.org/player_scale.html" title="Original ReplayGain proposal: Player scaling">Original ReplayGain proposal: Player scaling</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Audio-ReplayGain%0A*%20Title%3A%20ReplayGain%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

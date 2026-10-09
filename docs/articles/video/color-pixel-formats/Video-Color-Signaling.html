@@ -1,0 +1,238 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Video Color Tags and Signaling | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Video Color Tags and Signaling | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <link rel="stylesheet" href="../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    <meta property="docfx:uid" content="Video-Color-Signaling">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+    <script type="text/javascript" src="../../../nav.js"></script>
+    <script type="text/javascript" src="../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Video-Color-Signaling">
+<h1>Video Color Tags and Signaling</h1>
+
+
+<p>What should a renderer do with <strong>102, 93, 186</strong>? Those three stored sample codes do not provide a complete color instruction. Their range and matrix establish how to reconstruct the encoded components, while primaries and transfer characteristics establish their color and light meaning.</p>
+<p><strong>Color signaling</strong> carries those instructions alongside coded or decoded pictures. An inspector's “color space” line is often only one field of that description.</p>
+<h2 id="a-report-with-several-independent-fields">A report with several independent fields</h2>
+<p>Here is an illustrative ffprobe-style description of an 8-bit SDR video stream:</p>
+<pre><code class="lang-text">pix_fmt=yuv420p
+color_range=tv
+color_space=bt709
+color_transfer=bt709
+color_primaries=bt709
+chroma_location=left
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>What this example describes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pix_fmt</td>
+<td>The sample format reported for the stream: planar 8-bit 4:2:0</td>
+</tr>
+<tr>
+<td>color_range</td>
+<td>Limited-range component coding; tv is this tool's label</td>
+</tr>
+<tr>
+<td>color_space</td>
+<td>The BT.709 matrix interpretation for YCbCr</td>
+</tr>
+<tr>
+<td>color_transfer</td>
+<td>BT.709 transfer characteristics</td>
+</tr>
+<tr>
+<td>color_primaries</td>
+<td>BT.709 RGB primaries</td>
+</tr>
+<tr>
+<td>chroma_location</td>
+<td>The left chroma-location convention</td>
+</tr>
+</tbody>
+</table>
+<p>The three bt709 entries answer different questions. One matrix label cannot stand in for all three properties. Likewise, a 10-bit pixel format does not itself select PQ or make a picture HDR.</p>
+<p><a href="../../media-files/inspection/Media-Inspection-ffprobe.html">ffprobe</a> can request just these stream fields:</p>
+<pre><code class="lang-text">ffprobe -v error -select_streams v:0 -show_entries stream=pix_fmt,color_range,color_space,color_transfer,color_primaries,chroma_location -of default=noprint_wrappers=1 &quot;movie.mkv&quot;
+</code></pre>
+<p>This inspects the source description. It is not a measurement of every intermediate hardware surface or the app's final display output. Those stages can use other formats and carry their own interpreted frame properties.</p>
+<h2 id="metadata-must-describe-the-samples-it-accompanies">Metadata must describe the samples it accompanies</h2>
+<p>In the <a href="Video-YCbCr.html">YCbCr worked example</a>, limited-range BT.709 codes (102, 93, 186) reconstruct approximately to encoded RGB (0.80045, 0.30075, 0.10276). If a stage applies another matrix, its recovered color changes even though the coded bytes are intact.</p>
+<p>That gives two different correction cases:</p>
+<ol>
+<li><strong>Correct samples, wrong description.</strong> Repairing the description allows the intended calculation to be applied to existing samples.</li>
+<li><strong>Samples genuinely converted to another representation.</strong> The output needs that new representation's description. Restoring old labels would tell the next stage to interpret the converted numbers incorrectly.</li>
+</ol>
+<p>For example, a proper limited-to-full conversion changes nominal luma black from code 16 to 0 at 8 bits. Only relabeling the original 16 as full range instead raises its interpreted black. A parameter-marking operation and a numerical conversion serve different purposes. FFmpeg's setparams is an example of frame-property marking; its documentation distinguishes this from changing the samples.</p>
+<h2 id="where-the-instructions-can-appear">Where the instructions can appear</h2>
+<p>Codec bitstreams can carry color description in video usability information. Containers can also carry color information through their own mappings. A decoder resolves the available description into properties attached to the decoded frame; filters can preserve or change those properties along with their output.</p>
+<p>If a field is unspecified, a processing stage may use a standard-defined inference or a context-based assumption. A report of unknown therefore means that the inspected description has not supplied a definite value there. It should prompt examination of the stream's format and provenance, rather than an automatic choice based only on its pixel dimensions.</p>
+<p>If descriptions disagree, the useful evidence includes where each value was found: container metadata, coded-stream signaling, or a decoder's interpreted output. Different playback stacks may handle an incomplete or conflicting description differently. Inspecting only the merged summary can hide that disagreement.</p>
+<h2 id="comparing-original-and-converted-playback">Comparing original and converted playback</h2>
+<p>For an Emby picture that changes color during conversion, start with the source and delivered video's complete field sets. Record the actual conversion that occurred too: a change in pixel layout is not necessarily a change in primaries, and a tone-mapped HDR picture needs an output description consistent with its SDR result.</p>
+<p>Several symptoms suggest focused comparisons. Raised black points make <a href="Video-Color-Range.html">range</a> especially relevant. Changed colored objects with stable neutrals suggest checking the <a href="Video-YCbCr.html">matrix</a>. Misaligned color edges suggest <a href="Video-Chroma-Sample-Location.html">chroma location</a>. Unexpected brightness behavior calls for checking transfer interpretation and any HDR conversion.</p>
+<p>These comparisons turn “the colors look wrong” into a question about the samples, the operation that changed them, and the description used to display the result.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-Color-Representation.html" title="How Video Color Is Represented">How Video Color Is Represented</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-Color-Range.html" title="Limited and Full Video Range">Limited and Full Video Range</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-Chroma-Sample-Location.html" title="Chroma Sample Location">Chroma Sample Location</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../hdr/metadata-and-light-levels/HDR-Metadata.html" title="HDR Metadata">HDR Metadata</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../media-files/inspection/Media-Inspection-ffprobe.html" title="Media Stream Inspection with ffprobe">Media Stream Inspection with ffprobe</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.itu.int/rec/T-REC-H.264" title="ITU-T H.264: Video usability information and color description">ITU-T H.264: Video usability information and color description</a></li>
+			            <li><a class="seealso-link" href="https://www.itu.int/rec/T-REC-H.265" title="ITU-T H.265: Video usability information">ITU-T H.265: Video usability information</a></li>
+			            <li><a class="seealso-link" href="https://www.ffmpeg.org/doxygen/8.1/structAVFrame.html" title="FFmpeg 8.1: Decoded-frame color properties">FFmpeg 8.1: Decoded-frame color properties</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-filters.html#setparams" title="FFmpeg: Frame parameter marking with setparams">FFmpeg: Frame parameter marking with setparams</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffprobe.html" title="FFmpeg: ffprobe stream inspection">FFmpeg: ffprobe stream inspection</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Video-Color-Signaling%0A*%20Title%3A%20Video%20Color%20Tags%20and%20Signaling%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

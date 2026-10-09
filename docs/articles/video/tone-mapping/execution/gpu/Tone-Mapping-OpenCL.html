@@ -130,7 +130,7 @@
 </tbody>
 </table>
 <p>OpenCL can target supported CPUs or GPUs. The interface name alone does not identify which device was selected or which curve the application implements.</p>
-<h2 id="follow-initialization-into-picture-processing">Follow initialization into picture processing</h2>
+<h2 id="device-contexts-kernels-and-frame-access">Device contexts, kernels, and frame access</h2>
 <p>The application chooses a platform and device, creates the relevant context, and obtains a command queue for submitted work. It supplies a kernel program: a function executed across many work items so regions of a picture can be processed in parallel.</p>
 <p>Decoded pictures must be made accessible in the filter's expected hardware-frame arrangement. The filter then supplies its color descriptions, range and mapping parameters, launches the program, and makes the result available to the next stage after the required synchronization.</p>
 <p>FFmpeg 8.1's OpenCL tone mapper provides a concrete implementation. It checks supported source transfer and component information, prepares the corresponding color/transfer operations, and uses the selected mapping function in its OpenCL program. Its accepted hardware formats constrain that filter's path rather than defining all OpenCL devices' possible formats.</p>

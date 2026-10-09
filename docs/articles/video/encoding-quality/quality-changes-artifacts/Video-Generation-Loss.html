@@ -116,7 +116,7 @@
 <p>B does not inherit A's encoding errors because A was not its input. Ordinary Emby playback conversions that each read the retained library source have this branching relationship. Repeated viewing does not itself turn the previous delivery stream into the next source.</p>
 <p>A chain instead looks like <strong>M →A →C</strong>. A user might create it by converting a small copy and later using that copy for another export.</p>
 <p>Each stage's encoder receives the samples reconstructed at the preceding stage.</p>
-<h2 id="follow-the-errors-at-one-aligned-position">Follow the errors at one aligned position</h2>
+<h2 id="how-successive-sample-errors-combine">How successive sample errors combine</h2>
 <p>For pictures in the same sample representation, let A's error relative to M be <code>A −M</code>, and C's new error relative to A be <code>C −A</code>.</p>
 <p>Then:</p>
 <p><strong>C −M =(A −M) +(C −A).</strong></p>

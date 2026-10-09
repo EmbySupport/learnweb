@@ -141,7 +141,7 @@
 </tbody>
 </table>
 <p>The first source can be delivered without video conversion. The second may only need the video packets placed into compatible packaging. The third needs a new video representation even though “H.264,” “1080p,” and “MP4” all appear in both descriptions.</p>
-<h2 id="locate-the-boundary-that-failed">Locate the boundary that failed</h2>
+<h2 id="container-decoder-resource-and-presentation-failures">Container, decoder, resource, and presentation failures</h2>
 <p>The <a href="../../media-files/fundamentals/Containers-and-Codecs.html">container reader</a> first needs to identify and extract the track correctly. It supplies the codec configuration and coded data to a decoder. Repackaging changes this outer representation while preserving video coding when the new mapping supports it.</p>
 <p>The decoder then needs the stream's <strong>actual tools and sample format</strong>. A 10-bit High 10 stream asks for different processing from an 8-bit High stream. A profile conversion requires reconstructing the source and encoding pictures using the target's permitted format and tools.</p>
 <p>Next come <strong>resource requirements</strong>. The same codec and profile at a higher rate or larger raster can exceed the target's throughput or decoded-buffer limits. The <a href="../compression/Video-Codec-Levels-Tiers.html">level calculations</a> show how those demands are assessed.</p>

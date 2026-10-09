@@ -138,7 +138,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="read-two-fields-together">Read two fields together</h2>
+<h2 id="format-versus-codec-id-hevc-and-hvc1">Format versus Codec ID: HEVC and hvc1</h2>
 <p>Imagine the video section says Format: HEVC and Codec ID: hvc1. HEVC names the compression system, while hvc1 identifies the <a href="../container-structure/Media-Codec-Identifiers.html">container representation</a>. They describe different layers of one track.</p>
 <p>Now add Main 10 and 3840 × 2160. That suggests a 10-bit-capable HEVC profile and a particular raster, but leaves frame rate, level, precise sample format, and the receiving decoder path to examine. Rather than collecting one label, build the complete description that explains a difference between files.</p>
 <p>A second file with the same General format can have a different video profile, a different soundtrack, or different subtitles. The section boundaries keep those differences visible.</p>

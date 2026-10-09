@@ -134,7 +134,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="read-one-second-of-stereo-pcm">Read one second of stereo PCM</h2>
+<h2 id="byte-layout-of-48-khz-stereo-pcm">Byte layout of 48 kHz stereo PCM</h2>
 <p>Suppose fmt describes two-channel, 48 kHz, signed 16-bit <a href="../../../audio/formats/LPCM.html">linear PCM</a>. Each channel sample occupies two bytes, so one sample frame—one value for each channel—occupies four bytes. The stored sequence is commonly interleaved: left, right, then left, right for the next sample instant.</p>
 <p><code>48,000 sample frames/s × 2 channels × 2 bytes = 192,000 bytes/s</code></p>
 <p>Once the reader locates data, advancing 192,000 bytes covers one second of this particular PCM arrangement. The format fields make that inference possible. A compressed WAV uses its own block and decoding rules instead; .wav is not synonymous with these PCM parameters.</p>

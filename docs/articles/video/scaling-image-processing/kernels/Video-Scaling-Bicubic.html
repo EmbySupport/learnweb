@@ -1,0 +1,264 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Bicubic Video Scaling | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Bicubic Video Scaling | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Video-Scaling-Bicubic">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Video-Scaling-Bicubic">
+<h1>Bicubic Video Scaling</h1>
+
+
+<p>“Bicubic” describes a family of reconstruction methods. Its cubic weights can be chosen to interpolate through original samples, smooth them, or trade sharpness against overshoot. The parameters make those choices concrete.</p>
+<p>In a common separable implementation, four nearby samples contribute along each axis. A direct two-dimensional evaluation therefore combines a four-by-four neighborhood. Reusable horizontal and vertical passes can perform that calculation without evaluating sixteen independent weights from scratch for every output.</p>
+<p><img src="images/cubic-weights.png" alt="Classical cubic weight curves for Catmull-Rom, Mitchell-Netravali, and cubic B-spline parameters."></p>
+<p><em>The curves use the classical B,C polynomial form below. They describe weight functions, not output brightness. Output contributions are normalized for each sampling position.</em></p>
+<h2 id="two-parameters-change-the-shape">Two parameters change the shape</h2>
+<p>One widely used cubic family has parameters <strong>B</strong> and <strong>C</strong>. B changes smoothing through the sample positions, while C shapes the outer contributions and edge behavior. Three illustrative choices are:</p>
+<table>
+<thead>
+<tr>
+<th>Choice</th>
+<th style="text-align: right;">B</th>
+<th style="text-align: right;">C</th>
+<th style="text-align: right;">Raw central value K(0) in the classical form</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Catmull-Rom</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>Mitchell-Netravali</td>
+<td style="text-align: right;">1/3</td>
+<td style="text-align: right;">1/3</td>
+<td style="text-align: right;">8/9</td>
+</tr>
+<tr>
+<td>Cubic B-spline</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2/3</td>
+</tr>
+</tbody>
+</table>
+<p>Catmull-Rom's weights at the other integer source positions are zero, so it passes through an isolated original sample at its own coordinate. The other two choices distribute some contribution among neighboring samples even there. For an isolated unit sample surrounded by zeros, their reconstructed value at that source coordinate is respectively <strong>1, 8/9, or 2/3</strong> under the normalized classical weighting.</p>
+<p>This explains a visible difference between interpolation and smoothing. The B-spline-shaped curve is broad and positive. The Catmull-Rom and Mitchell curves include negative outer portions that can reinforce a transition while permitting <a href="../Video-Scaling-Ringing.html">overshoot</a>.</p>
+<p>An Emby conversion or app renderer encountering the label bicubic needs the actual stage's implementation and parameters to reproduce its appearance. A family name alone does not select one of these three curves.</p>
+<h2 id="four-contributions-at-a-half-sample-position">Four contributions at a half-sample position</h2>
+<p>Place the output at x = 0.5, between source indices 0 and 1. For Catmull-Rom, the participating indices −1, 0, 1, and 2 receive weights:</p>
+<table>
+<thead>
+<tr>
+<th>Source index</th>
+<th style="text-align: right;">Example value</th>
+<th style="text-align: right;">Weight</th>
+<th style="text-align: right;">Contribution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>−1</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">−0.0625</td>
+<td style="text-align: right;">−0.00625</td>
+</tr>
+<tr>
+<td>0</td>
+<td style="text-align: right;">0.3</td>
+<td style="text-align: right;">0.5625</td>
+<td style="text-align: right;">0.16875</td>
+</tr>
+<tr>
+<td>1</td>
+<td style="text-align: right;">0.8</td>
+<td style="text-align: right;">0.5625</td>
+<td style="text-align: right;">0.45</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align: right;">0.9</td>
+<td style="text-align: right;">−0.0625</td>
+<td style="text-align: right;">−0.05625</td>
+</tr>
+</tbody>
+</table>
+<p>The weights total <strong>1</strong> and the contributions total <strong>0.55625</strong>. Linear interpolation of only the central pair would give 0.55. Bicubic reconstruction responds to the neighboring context as well as the pair surrounding the requested coordinate.</p>
+<p>With the Mitchell parameters, the same four weights are approximately <strong>−0.034722, 0.534722, 0.534722, −0.034722</strong>, giving <strong>0.553472</strong> for these values. The difference is small for this particular smooth sequence. At an isolated feature or abrupt edge, the shapes' different central and outer contributions become more apparent.</p>
+<p>Apply a corresponding four-weight calculation on the vertical axis to obtain the two-dimensional bicubic result. The normalized product weights retain a constant field because their total is one.</p>
+<h2 id="the-mathematical-reference">The mathematical reference</h2>
+<p>For r equal to the absolute distance in source-sample spacings, the classical B,C function is:</p>
+<pre><code class="lang-text">0 &lt;= r &lt; 1:
+K(r) = [(12-9B-6C)r^3 + (-18+12B+6C)r^2 + (6-2B)] / 6
+
+1 &lt;= r &lt; 2:
+K(r) = [(-B-6C)r^3 + (6B+30C)r^2 + (-12B-48C)r + (8B+24C)] / 6
+
+r &gt;= 2:
+K(r) = 0
+</code></pre>
+<p>The pieces meet continuously, with an outer support radius of two. At a fractional position, distance to each neighboring source index selects its raw weight. Dividing by the total raw weight handles the applicable finite sample set and normalization convention.</p>
+<p>The pinned libplacebo implementation scales its raw cubic function to a central value of one. That differs from the raw vertical scale plotted for B greater than zero, but multiplying all weights by the same factor cancels when their sum is used for normalization. The resulting normalized contributions in the worked examples agree.</p>
+<h2 id="radius-reduction-and-boundaries">Radius, reduction, and boundaries</h2>
+<p>The four-position example concerns reconstruction without a downscaling enlargement of the footprint. A reduction can require a wider source-space footprint to suppress detail beyond the output grid's sampling capacity. <a href="../Video-Scaling.html">The scaling process</a> explains that scale adaptation.</p>
+<p>At a picture border, some nominal neighbors lie outside the available array. Edge extension establishes their values before or during filtering. Around a high-contrast interior edge, negative weights can instead produce values beyond the local minimum or maximum. Those are different circumstances: one concerns access to the finite picture, the other the cubic function's response to the picture values.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-Scaling-Bilinear.html" title="Bilinear Video Scaling">Bilinear Video Scaling</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-Scaling-Spline.html" title="Spline Video Scaling">Spline Video Scaling</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Video-Scaling-Ringing.html" title="Scaling Ringing">Scaling Ringing</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Video-Scaling.html" title="How Video Scaling Works">How Video Scaling Works</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://doi.org/10.1145/378456.378514" title="Mitchell and Netravali: Reconstruction filters in computer graphics">Mitchell and Netravali: Reconstruction filters in computer graphics</a></li>
+			            <li><a class="seealso-link" href="https://doi.org/10.1109/TASSP.1981.1163711" title="Keys: Cubic convolution interpolation for digital image processing">Keys: Cubic convolution interpolation for digital image processing</a></li>
+			            <li><a class="seealso-link" href="https://github.com/haasn/libplacebo/blob/v7.360.1/src/filters.c" title="libplacebo v7.360.1: Cubic functions and B,C parameters">libplacebo v7.360.1: Cubic functions and B,C parameters</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-scaler.html" title="FFmpeg: Bicubic parameters">FFmpeg: Bicubic parameters</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Video-Scaling-Bicubic%0A*%20Title%3A%20Bicubic%20Video%20Scaling%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

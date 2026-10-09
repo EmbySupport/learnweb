@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>PulseAudio | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="PulseAudio | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Audio-PulseAudio">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Audio-PulseAudio">
+<h1>PulseAudio</h1>
+
+
+<p>PulseAudio provides a sound-server model in which applications create audio streams and the server routes them to <strong>sinks</strong>. A sink is a playback destination; an application's playback stream is represented on the server as a <strong>sink input</strong>.</p>
+<p>The server can combine streams, adjust levels and convert formats for the output. The physical device may be reached through ALSA, Bluetooth or another supported backend.</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Playback meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Client</td>
+<td>Application connected to the server</td>
+</tr>
+<tr>
+<td>Stream / sink input</td>
+<td>One application's submitted audio</td>
+</tr>
+<tr>
+<td>Sink</td>
+<td>Destination that consumes playback audio</td>
+</tr>
+<tr>
+<td>Source</td>
+<td>Capture or monitor destination that supplies audio</td>
+</tr>
+<tr>
+<td>Sample specification</td>
+<td>The stream's rate, channels and sample representation</td>
+</tr>
+</tbody>
+</table>
+<p>A monitor source can expose a sink's mixed audio for capture. That is a server-side signal observation, not necessarily a capture of the final analog output.</p>
+<h2 id="buffer-requests-are-expressed-in-bytes">Buffer requests are expressed in bytes</h2>
+<p>PulseAudio's asynchronous stream interface uses playback buffer attributes. The requested <strong>target length</strong>, <code>tlength</code>, establishes a buffering goal; <code>maxlength</code>, <code>prebuf</code> and <code>minreq</code> serve other purposes.</p>
+<p>For <strong>48 kHz stereo float32</strong>, one sample frame contains eight bytes. A target length of <strong>19,200 bytes</strong> represents:</p>
+<pre><code class="lang-text">19,200 / 8 = 2,400 sample frames
+2,400 / 48,000 = 0.050 s = 50 ms
+</code></pre>
+<p>That calculation needs the actual sample specification. The same byte count in stereo 16-bit PCM would describe twice as many frames and twice the duration.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tlength</code></td>
+<td>Target playback buffering amount</td>
+</tr>
+<tr>
+<td><code>maxlength</code></td>
+<td>Maximum buffer length</td>
+</tr>
+<tr>
+<td><code>prebuf</code></td>
+<td>Amount required before automatic playback starts or resumes</td>
+</tr>
+<tr>
+<td><code>minreq</code></td>
+<td>Minimum amount requested from the client at once</td>
+</tr>
+</tbody>
+</table>
+<p>Without <code>PA_STREAM_ADJUST_LATENCY</code>, the target length concerns the stream's server-side playback buffer. With that flag, the request instead asks the server to configure the combined sink and stream buffering toward that latency. The accepted configuration and measured delay need to be checked; a requested 50 ms is not proof of exactly 50 ms at the speaker.</p>
+<p>The server can satisfy several clients with different buffering needs. A request also cannot eliminate delay inherent in a separate wireless receiver.</p>
+<h2 id="routing-and-conversion-happen-after-the-apps-format">Routing and conversion happen after the app's format</h2>
+<p>An application can submit 44.1 kHz audio while the destination uses 48 kHz. The server's output route can perform the necessary conversion. Per-stream gain, sink gain and supported processing can affect what reaches the device.</p>
+<p>Moving a stream to another sink changes its destination and may change its format or timing requirements. A stored preference, the current default sink and an already-running stream's actual destination are different observations.</p>
+<p>For an Emby Linux client, inspect the app's stream and the sink it is using. Changing a server setting on the machine hosting the media library does not select the speakers on a separate client.</p>
+<h2 id="the-protocol-does-not-identify-the-implementation">The protocol does not identify the implementation</h2>
+<p>A program using <code>libpulse</code> speaks the PulseAudio client protocol. It can connect to the PulseAudio daemon or to <strong>PipeWire's <code>pipewire-pulse</code> compatibility server</strong>.</p>
+<p>The names shown to a PulseAudio client may therefore describe a compatible view of a PipeWire graph. That helps existing applications continue to work; it also means “PulseAudio output” in a player log is not enough to identify the running daemon.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Audio-ALSA.html" title="ALSA">ALSA</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Audio-PipeWire.html" title="PipeWire">PipeWire</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../decoding-output/Audio-Playback-Path.html" title="The Audio Playback Path">The Audio Playback Path</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../decoding-output/Audio-Video-Synchronization.html" title="Audio/Video Synchronization">Audio/Video Synchronization</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.freedesktop.org/software/pulseaudio/doxygen/structpa__buffer__attr.html" title="PulseAudio: Playback buffer attributes">PulseAudio: Playback buffer attributes</a></li>
+			            <li><a class="seealso-link" href="https://wiki.freedesktop.org/www/Software/PulseAudio/Documentation/Developer/Clients/LatencyControl/" title="PulseAudio: Client latency control">PulseAudio: Client latency control</a></li>
+			            <li><a class="seealso-link" href="https://docs.pipewire.org/page_man_pipewire-pulse_1.html" title="PipeWire: PulseAudio-compatible server">PipeWire: PulseAudio-compatible server</a></li>
+			            <li><a class="seealso-link" href="https://docs.pipewire.org/page_config.html" title="PipeWire: Configuration and session management">PipeWire: Configuration and session management</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Audio-PulseAudio%0A*%20Title%3A%20PulseAudio%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

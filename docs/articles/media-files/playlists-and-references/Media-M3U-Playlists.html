@@ -114,7 +114,7 @@ Music/Opening.flac
 Music/Second.flac
 </code></pre>
 <p>#EXTM3U identifies the extended convention. Each #EXTINF line supplies a duration in seconds and a display title for the following location. The title is descriptive; the path is what the reader must open to obtain the sound.</p>
-<h2 id="follow-one-relative-path">Follow one relative path</h2>
+<h2 id="relative-paths-resolve-from-the-playlist-folder">Relative paths resolve from the playlist folder</h2>
 <p>If the playlist is stored in a folder called Concert, Music/Opening.flac conventionally refers to Concert/Music/Opening.flac. Moving only the playlist into another folder changes that relationship. An absolute location instead identifies its destination independently of the playlist's folder.</p>
 <p>Opening the text succeeds before opening the media. A list can therefore display both song titles even if one referenced file is missing. That gives two distinct stages to test: parsing entries and obtaining each entry's content.</p>
 <p>M3U8 commonly denotes UTF-8 text. That convention determines how text characters are represented; it does not turn every M3U8 into one particular kind of streaming presentation.</p>

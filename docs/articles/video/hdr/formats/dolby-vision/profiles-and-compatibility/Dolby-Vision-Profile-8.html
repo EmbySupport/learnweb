@@ -130,7 +130,7 @@
 <p>The HDR10-compatible form has a PQ-based light interpretation. A supported ordinary HDR10 route can use that base without completing the Dolby Vision presentation.</p>
 <p>The HLG-compatible form has a relative scene-light system relationship. Its appropriate fallback is HLG processing, not reinterpretation as PQ. <a href="../../HLG.html">HLG</a> explains how display adaptation participates in that system.</p>
 <p>The compatibility number after the point identifies this base arrangement. It does not replace the level, which supplies processing bounds. Keeping both fields matters when selecting a playback path.</p>
-<h2 id="follow-an-hlg-based-camera-recording">Follow an HLG-based camera recording</h2>
+<h2 id="hlg-fallback-for-camera-recordings">HLG fallback for camera recordings</h2>
 <p>A personal-video source can carry an HLG-compatible base with Dolby Vision information. A suitable Dolby Vision route processes the prepared presentation using the applicable metadata. A suitable HLG route can use the defined base interpretation instead.</p>
 <p>The same decoded signal values do not imply the same absolute light in the two named systems without their respective rendering operations. That is why a broad HDR badge gives less useful diagnostic information than the transfer and compatibility fields.</p>
 <p>Apple's HDR video metadata guidance describes these relationships in camera-originated content. For an Emby library, inspect the actual recorded stream rather than assuming every Dolby Vision file uses the same base as a UHD Blu-ray title.</p>

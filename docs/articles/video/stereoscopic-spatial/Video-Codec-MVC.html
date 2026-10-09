@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Multiview Video Coding (MVC) | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Multiview Video Coding (MVC) | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <link rel="stylesheet" href="../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    <meta property="docfx:uid" content="Video-Codec-MVC">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+    <script type="text/javascript" src="../../../nav.js"></script>
+    <script type="text/javascript" src="../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Video-Codec-MVC">
+<h1>Multiview Video Coding (MVC)</h1>
+
+
+<p>The left and right pictures of a stereo pair often contain much of the same scene. Encoding them entirely independently repeats some of that information. <strong>Multiview Video Coding</strong>, or <strong>MVC</strong>, extends H.264/AVC so a view can use reconstructed information from another view as a prediction reference.</p>
+<p>The representation retains an AVC-compatible <strong>base view</strong>. An additional view can use both its own temporal references and permitted references from other views. For a stereo movie, those two reconstructed viewpoints supply the eye pair; MVC's general multiview tools also cover representations with more than two views.</p>
+<p>MVC is used by Blu-ray 3D. Its role is to reconstruct the views from compressed data. <a href="frame-packing-layouts/Video-3D-Frame-Packing.html">HDMI frame packing</a> describes a possible subsequent display output, after the views have been recovered.</p>
+<h2 id="prediction-across-time-and-across-viewpoints">Prediction across time and across viewpoints</h2>
+<p>Ordinary <a href="../codecs/mpeg-itu/Video-Codec-H264.html">H.264 prediction</a> can use previously reconstructed reference pictures to predict a new block. A temporal prediction describes how scene content changes across instants.</p>
+<p>Inter-view prediction instead uses another camera's reconstructed picture. Corresponding scene regions appear at different image positions because of camera geometry, so locating the prediction can include a displacement between the viewpoints. The encoder still needs to describe changes that the reference cannot predict.</p>
+<p><img src="images/mvc-dependencies.png" alt="An illustrative MVC reference structure with temporal dependencies in each view and inter-view references between them."></p>
+<p><em>A and B identify views in this chosen reference structure. The blue arrows use a reconstructed base-view picture for the additional view at the corresponding instant. Actual references and picture types are described by the bitstream.</em></p>
+<p>Using a reference does not replace the additional view with a duplicate of the base. It provides a starting estimate, which the decoder corrects to produce the additional viewpoint.</p>
+<h2 id="reconstructing-one-small-predicted-block">Reconstructing one small predicted block</h2>
+<p>Take a toy decoded base-view sample row:</p>
+<p><strong>10, 20, 50, 80, 90, 100.</strong></p>
+<p>Suppose the signaled correspondence selects the four-position prediction <strong>20, 50, 80, 90</strong> for a block in the additional view. After the codec's residual reconstruction, let its decoded corrections be <strong>0, −5, +2, +5</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Position</th>
+<th style="text-align: right;">Prediction</th>
+<th style="text-align: right;">Decoded correction</th>
+<th style="text-align: right;">Reconstructed additional-view value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td>1</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">−5</td>
+<td style="text-align: right;">45</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">+2</td>
+<td style="text-align: right;">82</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">+5</td>
+<td style="text-align: right;">95</td>
+</tr>
+</tbody>
+</table>
+<p>The new block becomes <strong>20, 45, 82, 95</strong>. Both the selected reference and the correction matter. The correction alone is not a complete eye picture, and the base block alone is not the intended other viewpoint.</p>
+<p>This arithmetic isolates decoded sample reconstruction. The compressed syntax can describe prediction modes, reference choices, displacement, transforms, and quantized corrections; it does not simply store the four raw numbers in the table.</p>
+<p>At occlusions, one camera sees regions hidden from another. Those regions need information beyond the corresponding base samples. The encoder can select other permitted predictions or supply the necessary coded correction. This is why similar views create a compression opportunity without making one viewpoint fully determined by the other.</p>
+<h2 id="why-an-ordinary-avc-path-can-show-a-2d-movie">Why an ordinary AVC path can show a 2D movie</h2>
+<p>The base-view portion is designed for compatible single-view AVC decoding. A suitable non-MVC decoder can reconstruct that view without performing the additional multiview reconstruction. Its output can therefore look like a normal 2D movie rather than a side-by-side frame.</p>
+<p>An MVC-aware decoder recovers the requested view set while honoring its dependencies. If the additional view references the base, extracting its coded data does not make it independently decodable. The relevant base reference content and configuration remain part of the required reconstruction.</p>
+<p>Base-view compatibility is also distinct from which eye is intended for that view. The stream's view description and stereo association establish eye identity. A default 2D presentation of the base and a correctly assigned stereo pair are different outputs from related source data.</p>
+<p>For an Emby session, <a class="xref" href="https://emby.media/support/articles/3D-Videos.html">3D identification</a> describes the source category in the library. The practical playback trace then asks which view data reached the decoder, which views were reconstructed, and how the app presented them. A clear single image, a decoded two-view pair, and a correctly signaled 3D output each establish a different stage of that trace.</p>
+<h2 id="seeking-needs-the-relevant-reference-history">Seeking needs the relevant reference history</h2>
+<p>A seek to a presentation time may require earlier reference pictures in one or both view timelines. The decoder has to establish the state needed by the requested pictures, including applicable references between views.</p>
+<p>The <a href="../compression/picture-prediction-and-random-access/Video-GOP.html">GOP and reference discussion</a> explains why presentation order alone does not describe that state. MVC adds view relationships to the temporal dependency problem. A random-access point and the source's signaled dependencies determine where a complete requested pair can be reconstructed reliably.</p>
+<h2 id="a-conversion-makes-an-explicit-view-choice">A conversion makes an explicit view choice</h2>
+<p>Once both views are reconstructed, a converter can encode <a href="frame-packing-layouts/Video-3D-Side-By-Side.html">side-by-side</a> or <a href="frame-packing-layouts/Video-3D-Top-And-Bottom.html">top-and-bottom</a> output. It chooses the per-view resolution, frame arrangement, eye order, and output coding. A half-width packed output has a different sample allocation from the full-resolution views used as its input.</p>
+<p>A 2D conversion instead selects a single reconstructed view and encodes or otherwise delivers that version. Repackaging the MVC-coded material can preserve its coding dependencies, but it does not turn it into an ordinary independent two-track movie without changing the representation.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../codecs/mpeg-itu/Video-Codec-H264.html" title="H.264 / AVC Video">H.264 / AVC Video</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-Stereoscopic.html" title="How Stereoscopic Video Works">How Stereoscopic Video Works</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-MV-HEVC-Spatial.html" title="MV-HEVC and Spatial Video">MV-HEVC and Spatial Video</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="frame-packing-layouts/Video-3D-Frame-Packing.html" title="Frame-Packed 3D Video">Frame-Packed 3D Video</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../media-files/packaging/disc/Blu-ray-File-Structure.html" title="Blu-ray File Structure">Blu-ray File Structure</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.itu.int/rec/T-REC-H.264" title="ITU-T H.264: Advanced video coding, including multiview extensions">ITU-T H.264: Advanced video coding, including multiview extensions</a></li>
+			            <li><a class="seealso-link" href="https://www.etsi.org/deliver/etsi_tr/126900_126999/126905/19.00.00_60/tr_126905v190000p.pdf" title="ETSI TR 126 905 V19.0.0: MVC and stereo representations">ETSI TR 126 905 V19.0.0: MVC and stereo representations</a></li>
+			            <li><a class="seealso-link" href="https://www.cyberlink.com/stat/3d-support/enu/3d-whitepaper.pdf" title="CyberLink: Principles of 3D video and Blu-ray 3D">CyberLink: Principles of 3D video and Blu-ray 3D</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Video-Codec-MVC%0A*%20Title%3A%20Multiview%20Video%20Coding%20(MVC)%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

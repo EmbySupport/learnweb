@@ -108,7 +108,7 @@
 
 <p>You seek to 11.3 seconds in a film, but the picture you want is predicted from earlier decoded pictures. Jumping directly to its compressed bytes would leave the decoder without those references.</p>
 <p>A <strong>random-access point</strong>, commonly marked as a <strong>keyframe</strong>, provides a place from which the required state can be rebuilt.</p>
-<h2 id="follow-one-seek-request">Follow one seek request</h2>
+<h2 id="seeking-to-113-seconds-from-a-10-second-entry-point">Seeking to 11.3 seconds from a 10-second entry point</h2>
 <p>Assume a constant 24 fps stream with clean entry points every two seconds. For this example, the player selects the first picture at or after the requested time.</p>
 <p><strong>11.3 × 24 = 271.2</strong>, so that picture is frame <strong>272</strong>, at <strong>11.3333 seconds</strong>. The preceding entry point is frame <strong>240</strong>, at <strong>10 seconds</strong>.</p>
 <table>

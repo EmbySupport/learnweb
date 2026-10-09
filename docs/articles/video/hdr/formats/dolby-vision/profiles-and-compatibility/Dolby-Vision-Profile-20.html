@@ -107,7 +107,7 @@
 
 
 <p>A stereoscopic presentation needs the correct picture for each eye as well as the intended brightness and color rendering. <strong>Dolby Vision Profile 20</strong> combines these requirements using ten-bit Multiview HEVC for its 3D form and additional Dolby Vision metadata processing.</p>
-<h2 id="follow-the-two-views-to-the-viewer">Follow the two views to the viewer</h2>
+<h2 id="decoded-views-and-leftright-eye-assignment">Decoded views and left/right eye assignment</h2>
 <p>The 3D stream uses codec layers for distinct views of the scene. The base view and the additional view are decoded with their multiview relationship. The layer-to-eye association identifies which view belongs to the left or right eye; correct assignment is part of producing the intended depth.</p>
 <p>This arrangement differs from side-by-side packing of two reduced-width views in one ordinary frame. It also differs from <a href="Dolby-Vision-Profile-7.html">Profile 7</a>'s base and enhancement residual. A second eye view represents another viewpoint, while an enhancement residual supplies reconstruction information for a picture.</p>
 <p>A supporting route therefore has to perform several connected jobs:</p>

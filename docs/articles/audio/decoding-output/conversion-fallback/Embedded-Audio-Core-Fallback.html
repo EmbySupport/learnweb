@@ -108,7 +108,7 @@
 
 <p>The selected soundtrack says DTS-HD Master Audio, but an older receiver detects DTS. <strong>An existing compatible core can explain this result:</strong> the player delivered the part that the receiver understands while omitting the enhancement information.</p>
 <p>Core fallback uses already encoded data. It differs from making a new codec version during playback.</p>
-<h2 id="follow-the-components">Follow the components</h2>
+<h2 id="extracting-the-existing-dts-core">Extracting the existing DTS core</h2>
 <p>A common DTS-HD disc stream has a core and extensions. The core is independently decodable; the appropriate full decoder uses the additional information for its enhanced or lossless presentation.</p>
 <p>If the output needs conventional DTS, a supported extraction route can retain the core's coded data. That result has the losses already present in the core, but avoids another lossy encoding generation.</p>
 <table>

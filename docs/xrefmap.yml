@@ -31,15 +31,30 @@ references:
 - uid: ASF-Container
   name: ASF Container
   href: articles/media-files/containers/ASF-Container.html
+- uid: Audio-ALSA
+  name: ALSA
+  href: articles/audio/devices-output/os-apis/Audio-ALSA.html
 - uid: Audio-Bit-Depth
   name: Audio Bit Depth
   href: articles/audio/fundamentals/sample-representation/Audio-Bit-Depth.html
+- uid: Audio-Bit-Perfect-Playback
+  name: Bit-perfect playback
+  href: articles/audio/loudness-music-playback/music-playback/Audio-Bit-Perfect-Playback.html
 - uid: Audio-Bitrate
   name: Audio Bitrate
   href: articles/audio/fundamentals/Audio-Bitrate.html
 - uid: Audio-Bitstream-Passthrough
   name: Audio Bitstream Passthrough
   href: articles/audio/decoding-output/output-transport/Audio-Bitstream-Passthrough.html
+- uid: Audio-Bluetooth
+  name: Bluetooth audio
+  href: articles/audio/devices-output/bluetooth/Audio-Bluetooth.html
+- uid: Audio-Bluetooth-A2DP
+  name: Bluetooth A2DP
+  href: articles/audio/devices-output/bluetooth/Audio-Bluetooth-A2DP.html
+- uid: Audio-Bluetooth-LE
+  name: Bluetooth LE Audio
+  href: articles/audio/devices-output/bluetooth/Audio-Bluetooth-LE.html
 - uid: Audio-Center-Channel
   name: The Audio Center Channel
   href: articles/audio/channels/roles-and-ordering/Audio-Center-Channel.html
@@ -52,9 +67,18 @@ references:
 - uid: Audio-Codecs
   name: Audio Codecs Explained
   href: articles/audio/formats/Audio-Codecs.html
+- uid: Audio-Core-Audio
+  name: Apple Core Audio
+  href: articles/audio/devices-output/os-apis/Audio-Core-Audio.html
+- uid: Audio-DAC
+  name: Digital-to-analog conversion (DAC)
+  href: articles/audio/devices-output/Audio-DAC.html
 - uid: Audio-Description-Tracks
   name: Audio-Description Tracks
   href: articles/audio/decoding-output/Audio-Description-Tracks.html
+- uid: Audio-Dialogue-Normalization
+  name: Dialogue normalization (dialnorm)
+  href: articles/audio/loudness-music-playback/measurement-control/Audio-Dialogue-Normalization.html
 - uid: Audio-Dithering
   name: Audio Dithering
   href: articles/audio/fundamentals/Audio-Dithering.html
@@ -64,6 +88,18 @@ references:
 - uid: Audio-Dynamic-Range
   name: Audio Dynamic Range
   href: articles/audio/fundamentals/Audio-Dynamic-Range.html
+- uid: Audio-Dynamic-Range-Compression
+  name: Dynamic range compression
+  href: articles/audio/loudness-music-playback/measurement-control/Audio-Dynamic-Range-Compression.html
+- uid: Audio-Encoder-Delay
+  name: Audio encoder delay
+  href: articles/audio/loudness-music-playback/music-playback/Audio-Encoder-Delay.html
+- uid: Audio-Exclusive-Output
+  name: Exclusive-mode audio output
+  href: articles/audio/devices-output/Audio-Exclusive-Output.html
+- uid: Audio-Gapless-Playback
+  name: Gapless playback
+  href: articles/audio/loudness-music-playback/music-playback/Audio-Gapless-Playback.html
 - uid: Audio-LFE
   name: Low-Frequency Effects (LFE)
   href: articles/audio/channels/roles-and-ordering/Audio-LFE.html
@@ -73,27 +109,57 @@ references:
 - uid: Audio-Lossy-Compression
   name: Lossy Audio Compression
   href: articles/audio/formats/lossy/Audio-Lossy-Compression.html
+- uid: Audio-Loudness
+  name: Audio loudness
+  href: articles/audio/loudness-music-playback/Audio-Loudness.html
+- uid: Audio-Loudness-Normalization
+  name: Loudness normalization
+  href: articles/audio/loudness-music-playback/measurement-control/Audio-Loudness-Normalization.html
+- uid: Audio-LUFS
+  name: LUFS loudness measurement
+  href: articles/audio/loudness-music-playback/measurement-control/Audio-LUFS.html
+- uid: Audio-PipeWire
+  name: PipeWire
+  href: articles/audio/devices-output/os-apis/Audio-PipeWire.html
 - uid: Audio-Playback-Path
   name: The Audio Playback Path
   href: articles/audio/decoding-output/Audio-Playback-Path.html
+- uid: Audio-PulseAudio
+  name: PulseAudio
+  href: articles/audio/devices-output/os-apis/Audio-PulseAudio.html
 - uid: Audio-Quantization-Noise
   name: Audio Quantization Noise
   href: articles/audio/fundamentals/Audio-Quantization-Noise.html
+- uid: Audio-ReplayGain
+  name: ReplayGain
+  href: articles/audio/loudness-music-playback/measurement-control/Audio-ReplayGain.html
 - uid: Audio-Resampling
   name: Audio Resampling
   href: articles/audio/fundamentals/Audio-Resampling.html
 - uid: Audio-Sample-Rate
   name: Audio Sample Rate
   href: articles/audio/fundamentals/sample-representation/Audio-Sample-Rate.html
+- uid: Audio-SPDIF
+  name: S/PDIF digital audio
+  href: articles/audio/devices-output/Audio-SPDIF.html
+- uid: Audio-Speed-Pitch
+  name: Playback speed and audio pitch
+  href: articles/audio/loudness-music-playback/music-playback/Audio-Speed-Pitch.html
 - uid: Audio-Transcoding
   name: Audio Transcoding
   href: articles/audio/decoding-output/conversion-fallback/Audio-Transcoding.html
 - uid: Audio-Upmixing
   name: Audio Upmixing
   href: articles/audio/decoding-output/conversion-fallback/Audio-Upmixing.html
+- uid: Audio-USB
+  name: USB Audio
+  href: articles/audio/devices-output/Audio-USB.html
 - uid: Audio-Video-Synchronization
   name: Audio/Video Synchronization
   href: articles/audio/decoding-output/Audio-Video-Synchronization.html
+- uid: Audio-WASAPI
+  name: Windows Audio Session API (WASAPI)
+  href: articles/audio/devices-output/os-apis/Audio-WASAPI.html
 - uid: AVI-Container
   name: AVI Container
   href: articles/media-files/containers/AVI-Container.html
@@ -583,6 +649,27 @@ references:
 - uid: Variable-Frame-Rate
   name: Variable Frame Rate
   href: articles/video/frame-timing/frame-rates/Variable-Frame-Rate.html
+- uid: Video-3D-Frame-Packing
+  name: Frame-Packed 3D Video
+  href: articles/video/stereoscopic-spatial/frame-packing-layouts/Video-3D-Frame-Packing.html
+- uid: Video-3D-Side-By-Side
+  name: Side-by-Side 3D Video
+  href: articles/video/stereoscopic-spatial/frame-packing-layouts/Video-3D-Side-By-Side.html
+- uid: Video-3D-Top-And-Bottom
+  name: Top-and-Bottom 3D Video
+  href: articles/video/stereoscopic-spatial/frame-packing-layouts/Video-3D-Top-And-Bottom.html
+- uid: Video-Bit-Depth
+  name: Video Bit Depth
+  href: articles/video/color-pixel-formats/precision-banding/Video-Bit-Depth.html
+- uid: Video-Chroma-Sample-Location
+  name: Chroma Sample Location
+  href: articles/video/color-pixel-formats/Video-Chroma-Sample-Location.html
+- uid: Video-Chroma-Subsampling
+  name: Chroma Subsampling
+  href: articles/video/color-pixel-formats/Video-Chroma-Subsampling.html
+- uid: Video-Chroma-Upsampling
+  name: Chroma Upsampling
+  href: articles/video/scaling-image-processing/Video-Chroma-Upsampling.html
 - uid: Video-Codec-AV1
   name: AV1 Video
   href: articles/video/codecs/vpx-av1/Video-Codec-AV1.html
@@ -619,6 +706,9 @@ references:
 - uid: Video-Codec-MPEG4-Part2
   name: 'MPEG-4 Part 2: DivX and Xvid'
   href: articles/video/codecs/mpeg-itu/Video-Codec-MPEG4-Part2.html
+- uid: Video-Codec-MVC
+  name: Multiview Video Coding (MVC)
+  href: articles/video/stereoscopic-spatial/Video-Codec-MVC.html
 - uid: Video-Codec-Profiles
   name: Video Codec Profiles
   href: articles/video/compression/Video-Codec-Profiles.html
@@ -637,6 +727,18 @@ references:
 - uid: Video-Codec-VVC
   name: H.266 / VVC Video
   href: articles/video/codecs/mpeg-itu/Video-Codec-VVC.html
+- uid: Video-Color-Banding
+  name: Color Banding
+  href: articles/video/color-pixel-formats/precision-banding/Video-Color-Banding.html
+- uid: Video-Color-Range
+  name: Limited and Full Video Range
+  href: articles/video/color-pixel-formats/Video-Color-Range.html
+- uid: Video-Color-Representation
+  name: How Video Color Is Represented
+  href: articles/video/color-pixel-formats/Video-Color-Representation.html
+- uid: Video-Color-Signaling
+  name: Video Color Tags and Signaling
+  href: articles/video/color-pixel-formats/Video-Color-Signaling.html
 - uid: Video-Compression
   name: How Video Compression Works
   href: articles/video/compression/Video-Compression.html
@@ -646,9 +748,18 @@ references:
 - uid: Video-Cropping
   name: Cropping Video
   href: articles/video/geometry/Video-Cropping.html
+- uid: Video-Debanding
+  name: Video Debanding
+  href: articles/video/scaling-image-processing/image-cleanup/Video-Debanding.html
+- uid: Video-Denoising
+  name: Video Denoising
+  href: articles/video/scaling-image-processing/image-cleanup/Video-Denoising.html
 - uid: Video-Display-Aspect-Ratio
   name: Video Display Aspect Ratio
   href: articles/video/geometry/aspect-ratios/Video-Display-Aspect-Ratio.html
+- uid: Video-Dithering
+  name: Video Dithering
+  href: articles/video/color-pixel-formats/precision-banding/Video-Dithering.html
 - uid: Video-Encoder-Presets
   name: Video Encoder Presets
   href: articles/video/encoding-quality/Video-Encoder-Presets.html
@@ -697,9 +808,21 @@ references:
 - uid: Video-Keyframes
   name: Video Keyframes and Random Access
   href: articles/video/compression/picture-prediction-and-random-access/Video-Keyframes.html
+- uid: Video-MV-HEVC-Spatial
+  name: MV-HEVC and Spatial Video
+  href: articles/video/stereoscopic-spatial/Video-MV-HEVC-Spatial.html
+- uid: Video-NV12
+  name: NV12 Pixel Format
+  href: articles/video/color-pixel-formats/pixel-layouts/Video-NV12.html
+- uid: Video-P010
+  name: P010 Pixel Format
+  href: articles/video/color-pixel-formats/pixel-layouts/Video-P010.html
 - uid: Video-Pixel-Aspect-Ratio
   name: Video Pixel Aspect Ratio
   href: articles/video/geometry/aspect-ratios/Video-Pixel-Aspect-Ratio.html
+- uid: Video-Pixel-Formats
+  name: Pixel Formats and Memory Layout
+  href: articles/video/color-pixel-formats/pixel-layouts/Video-Pixel-Formats.html
 - uid: Video-Quality-PSNR
   name: Peak Signal-to-Noise Ratio (PSNR) for Video
   href: articles/video/encoding-quality/quality-metrics/Video-Quality-PSNR.html
@@ -712,9 +835,48 @@ references:
 - uid: Video-Resolution
   name: Video Resolution
   href: articles/video/geometry/Video-Resolution.html
+- uid: Video-RGB
+  name: RGB Video
+  href: articles/video/color-pixel-formats/Video-RGB.html
 - uid: Video-Rotation-Metadata
   name: Video Rotation Metadata
   href: articles/video/geometry/Video-Rotation-Metadata.html
+- uid: Video-Scaling
+  name: How Video Scaling Works
+  href: articles/video/scaling-image-processing/Video-Scaling.html
+- uid: Video-Scaling-Bicubic
+  name: Bicubic Video Scaling
+  href: articles/video/scaling-image-processing/kernels/Video-Scaling-Bicubic.html
+- uid: Video-Scaling-Bilinear
+  name: Bilinear Video Scaling
+  href: articles/video/scaling-image-processing/kernels/Video-Scaling-Bilinear.html
+- uid: Video-Scaling-EWA-Lanczos
+  name: EWA Lanczos (Jinc) Video Scaling
+  href: articles/video/scaling-image-processing/kernels/Video-Scaling-EWA-Lanczos.html
+- uid: Video-Scaling-Lanczos
+  name: Lanczos Video Scaling
+  href: articles/video/scaling-image-processing/kernels/Video-Scaling-Lanczos.html
+- uid: Video-Scaling-Nearest-Neighbor
+  name: Nearest-Neighbor Video Scaling
+  href: articles/video/scaling-image-processing/kernels/Video-Scaling-Nearest-Neighbor.html
+- uid: Video-Scaling-Ringing
+  name: Scaling Ringing
+  href: articles/video/scaling-image-processing/Video-Scaling-Ringing.html
+- uid: Video-Scaling-Spline
+  name: Spline Video Scaling
+  href: articles/video/scaling-image-processing/kernels/Video-Scaling-Spline.html
+- uid: Video-Sharpening
+  name: Video Sharpening
+  href: articles/video/scaling-image-processing/image-cleanup/Video-Sharpening.html
+- uid: Video-Spatial-Aliasing
+  name: Spatial Aliasing in Video
+  href: articles/video/scaling-image-processing/Video-Spatial-Aliasing.html
+- uid: Video-Stereoscopic
+  name: How Stereoscopic Video Works
+  href: articles/video/stereoscopic-spatial/Video-Stereoscopic.html
+- uid: Video-YCbCr
+  name: YCbCr Video
+  href: articles/video/color-pixel-formats/Video-YCbCr.html
 - uid: Virtual-Surround
   name: Virtual Surround
   href: articles/audio/channels/Virtual-Surround.html

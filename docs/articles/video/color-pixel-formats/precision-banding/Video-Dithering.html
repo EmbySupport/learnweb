@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Video Dithering | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Video Dithering | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Video-Dithering">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Video-Dithering">
+<h1>Video Dithering</h1>
+
+
+<p>Suppose an output representation has only integer codes, but a calculated picture region needs <strong>2.25</strong>. Rounding every position to 2 creates a uniform region whose stored average is 2. A pattern containing twelve positions at 2 and four at 3 has an average of:</p>
+<p><strong>(12 × 2 + 4 × 3) / 16 = 2.25.</strong></p>
+<p>Each position still uses a valid output code. The area contains a finer distribution of rounding choices instead of all positions making the same choice. <strong>Dithering</strong> uses that idea to reduce the coherent error that can turn gentle gradients into visible bands.</p>
+<p><img src="images/quantization-and-dither.png" alt="The same gradient shown without coarse quantization, with nearest rounding, and with ordered dithering at the same coarse precision."></p>
+<p><em>The two lower strips both have only 16 permitted gray levels. Dithering changes where those levels occur. View the original image at full size to see the fine pattern.</em></p>
+<h2 id="a-threshold-example-you-can-calculate">A threshold example you can calculate</h2>
+<p>An ordered dither assigns different thresholds to positions in a small repeating grid. For the 16-position example, choose thresholds <strong>(k + 0.5)/16</strong> for k = 0 through 15, arranged across the grid.</p>
+<p>Compare the fractional part 0.25 with each threshold. Exactly four thresholds are below 0.25. At those positions, choose the upper code 3; at the other twelve, choose the lower code 2. The desired sample average follows directly from the number of upper choices.</p>
+<p>The figure uses a four-by-four threshold arrangement and a deliberately coarse output grid. A slowly increasing input changes the proportion of upper choices within a neighborhood, giving it more gradual average changes than the uniform rounded plateaus.</p>
+<p>These are averages of encoded component values. The corresponding average display light also depends on the transfer relationship and reconstruction. The illustration demonstrates the quantizer's decision, rather than promising an exact light average for every video transfer function.</p>
+<h2 id="different-ways-to-distribute-error">Different ways to distribute error</h2>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>How it makes the decisions</th>
+<th>Character of the result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ordered thresholds</td>
+<td>Uses a spatial threshold arrangement</td>
+<td>Repeatable fine pattern; the arrangement determines its texture</td>
+</tr>
+<tr>
+<td>Randomized dither</td>
+<td>Perturbs thresholds or values using a noise process</td>
+<td>Noise-like variation whose spatial and temporal design matters</td>
+</tr>
+<tr>
+<td>Error diffusion</td>
+<td>Carries a quantization error into later decisions</td>
+<td>Local choices compensate for earlier errors</td>
+</tr>
+</tbody>
+</table>
+<p>Each approach replaces a large correlated error pattern with another distribution of error. That distribution matters: a visible repeating texture or distracting temporal shimmer can be less desirable than the bands being reduced. Dither design concerns where the error's energy appears as well as how much error is present.</p>
+<p>FFmpeg's scaler and zscale offer documented dither choices, with different available methods. Their names describe implementation options; the arithmetic grid above is an independent illustration, not a reproduction of an Emby preset or a claim about a particular filter's default.</p>
+<h2 id="the-rounding-boundary-is-the-useful-place">The rounding boundary is the useful place</h2>
+<p>Dithering is most useful when a stage still has intermediate values to decide between output codes. For example, a tone-mapping operation can calculate a high-precision gradient and then dither its conversion to an 8-bit output.</p>
+<p>If the input is already a flat plateau, simply adding variation does not reveal its lost original gradient. <a href="Video-Color-Banding.html">Debanding and precision preservation</a> address different parts of that problem. Likewise, promoting a dithered 8-bit output to 10 bits preserves its existing pattern rather than recovering earlier sample values.</p>
+<p>In an Emby conversion, the relevant question is where precision is reduced relative to filtering and encoding. A lossy encoder can suppress the fine variations, or spend some of its budget preserving them. An effective result depends on the combined processing and encoding path. Inspect a decoded output gradient at its intended viewing size: the purpose is a smoother-looking transition with an acceptable texture, not a larger count of distinct codes for its own sake.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-Bit-Depth.html" title="Video Bit Depth">Video Bit Depth</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-Color-Banding.html" title="Color Banding">Color Banding</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../audio/fundamentals/Audio-Quantization-Noise.html" title="Audio Quantization Noise">Audio Quantization Noise</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-scaler.html" title="FFmpeg: Scaler dithering algorithms">FFmpeg: Scaler dithering algorithms</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-filters.html#zscale" title="FFmpeg: zscale precision conversion and dither choices">FFmpeg: zscale precision conversion and dither choices</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Video-Dithering%0A*%20Title%3A%20Video%20Dithering%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

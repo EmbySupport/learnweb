@@ -107,7 +107,7 @@
 
 
 <p>Lossy video coding saves data by allowing a reconstructed picture to differ from the encoder's input. The useful question is <strong>which information was approximated, and what did that change in the picture?</strong></p>
-<h2 id="follow-three-corrections-through-the-codec">Follow three corrections through the codec</h2>
+<h2 id="which-corrections-survive-quantization">Which corrections survive quantization?</h2>
 <p>Suppose a predictor supplies values <strong>100, 100, 100</strong> for three positions. The actual input is <strong>117, 97, 139</strong>, so the differences needed to reproduce it are <strong>17, −3, 39</strong>.</p>
 <p>Now use a deliberately simple quantizer that rounds those corrections to the nearest multiple of eight:</p>
 <table>

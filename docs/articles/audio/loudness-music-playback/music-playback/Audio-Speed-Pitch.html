@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Playback speed and audio pitch | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Playback speed and audio pitch | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Audio-Speed-Pitch">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Audio-Speed-Pitch">
+<h1>Playback speed and audio pitch</h1>
+
+
+<p>A 60-second passage played at <strong>1.25×</strong> lasts <strong>48 seconds</strong>. What happens to its pitch depends on how that speed change is produced.</p>
+<p>If the original waveform is simply traversed faster, every oscillation also happens faster. A 440 Hz tone becomes <strong>550 Hz</strong>. Pitch-preserving time-scale processing instead changes the duration while keeping that tone near 440 Hz.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Speed factor</th>
+<th style="text-align: right;">Duration of a 60 s passage</th>
+<th style="text-align: right;">Tone with ordinary rate change</th>
+<th style="text-align: right;">Tone with ideal pitch preservation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0.8×</td>
+<td style="text-align: right;">75 s</td>
+<td style="text-align: right;">352 Hz</td>
+<td style="text-align: right;">440 Hz</td>
+</tr>
+<tr>
+<td style="text-align: right;">1.0×</td>
+<td style="text-align: right;">60 s</td>
+<td style="text-align: right;">440 Hz</td>
+<td style="text-align: right;">440 Hz</td>
+</tr>
+<tr>
+<td style="text-align: right;">1.25×</td>
+<td style="text-align: right;">48 s</td>
+<td style="text-align: right;">550 Hz</td>
+<td style="text-align: right;">440 Hz</td>
+</tr>
+<tr>
+<td style="text-align: right;">2.0×</td>
+<td style="text-align: right;">30 s</td>
+<td style="text-align: right;">880 Hz</td>
+<td style="text-align: right;">440 Hz</td>
+</tr>
+</tbody>
+</table>
+<p>These are mathematical values. A practical pitch-preserving processor can introduce artifacts whose character depends on the material and algorithm.</p>
+<h2 id="compressing-the-entire-time-axis-changes-pitch">Compressing the entire time axis changes pitch</h2>
+<p>For ordinary rate change, the output samples a waveform described by <strong>y(t) = x(s × t)</strong>, where s is the speed factor. At s = 1.25, a second of output covers 1.25 seconds of the source. The waveform's cycles are squeezed into less time.</p>
+<p>The pitch change in semitones is 12 × log₂(s). At 1.25× it is approximately <strong>3.863 semitones</strong>; at 2× it is one octave.</p>
+<p>This can be implemented while still sending the device its normal output rate. The player computes a faster traversal into that fixed-rate output stream. Changing a file's declared sample rate without recalculating its samples is another way to change their interpretation in time.</p>
+<p>Ordinary <a href="../../fundamentals/Audio-Resampling.html">sample-rate conversion</a> has a different goal: represent the same-duration waveform on another sample grid. Converting 44.1 kHz material correctly to 48 kHz preserves its duration and pitch.</p>
+<h2 id="keeping-local-cycles-while-changing-the-sequence">Keeping local cycles while changing the sequence</h2>
+<p>One family of time-scale methods divides audio into overlapping windows, selects suitable positions in the input, and blends the windows at different spacing in the output. The waveform inside a window keeps its original local oscillations; the sequence advances through the programme at a new pace.</p>
+<p>For an illustrative 1.25× process, input window starts can advance <strong>12.5 ms</strong> for each <strong>10 ms</strong> output advance. Over 48 seconds of output, those advances cover 60 seconds of source. The implementation searches for compatible waveforms near candidate joins, then blends the overlap to avoid abrupt discontinuities.</p>
+<p>FFmpeg's <code>atempo</code> implementation uses WSOLA, a waveform-similarity overlap method. Other processors use frequency-domain methods such as phase vocoders. Their internal window and alignment choices are not specified by the speed factor alone.</p>
+<p>Speech, sustained music and sharp attacks present different problems. A long tonal window gives useful periodic information; a short transient benefits from retaining its time shape. Independently choosing joins for left and right channels can disturb stereo relationships, so multichannel processing needs coordinated treatment.</p>
+<h2 id="the-movie-uses-the-same-new-clock">The movie uses the same new clock</h2>
+<p>For faster video playback, picture presentation times must advance at the corresponding rate. The audio processor may need an internal lookahead or startup buffer, which the player must incorporate into its synchronization.</p>
+<p>In an Emby app, a speed control therefore involves more than changing how many audio packets are fetched. The selected player has to produce the required audio, schedule pictures on the new timeline, and keep its buffer/clock accounting consistent. A voice that rises in pitch and a voice that stays natural can both accompany 1.25× playback; they reveal different signal processing.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../fundamentals/Audio-Resampling.html" title="Audio Resampling">Audio Resampling</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../fundamentals/sample-representation/Audio-Sample-Rate.html" title="Audio Sample Rate">Audio Sample Rate</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../decoding-output/Audio-Video-Synchronization.html" title="Audio/Video Synchronization">Audio/Video Synchronization</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://ffmpeg.org/doxygen/8.1/af__atempo_8c_source.html" title="FFmpeg 8.1 tempo filter source">FFmpeg 8.1 tempo filter source</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-filters.html" title="FFmpeg audio filter documentation">FFmpeg audio filter documentation</a></li>
+			            <li><a class="seealso-link" href="https://developer.apple.com/library/archive/documentation/MusicAudio/Conceptual/CoreAudioOverview/CoreAudioEssentials/CoreAudioEssentials.html" title="Apple: Core Audio Essentials">Apple: Core Audio Essentials</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Audio-Speed-Pitch%0A*%20Title%3A%20Playback%20speed%20and%20audio%20pitch%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Audio encoder delay | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Audio encoder delay | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Audio-Encoder-Delay">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Audio-Encoder-Delay">
+<h1>Audio encoder delay</h1>
+
+
+<p>An audio encoder does not always turn the first input sample into the first sample that a decoder returns. Analysis windows, filter history, lookahead and resampling can introduce <strong>priming</strong> before the intended programme. A block-based codec may also need to fill its final block, producing <strong>padding</strong> after the intended end.</p>
+<p>The file therefore needs enough information to distinguish the decoded representation from the original programme interval. Otherwise, a player can add a pause between tracks or place the start of audio at the wrong time.</p>
+<h2 id="stored-duration-and-intended-duration">Stored duration and intended duration</h2>
+<p>For an illustrative codec that returns 1,024 PCM sample frames per block, suppose the intended programme contains <strong>10,000 frames</strong> and its signaled leading trim is <strong>1,024 frames</strong>.</p>
+<p>The combined length so far is 11,024. Eleven complete blocks contain <strong>11,264 frames</strong>, so the final block needs another <strong>240 frames</strong> of padding.</p>
+<pre><code class="lang-text">decoded total = priming + intended programme + end padding
+11,264 = 1,024 + 10,000 + 240
+</code></pre>
+<p>At 48 kHz, the intended programme lasts <strong>208.333 ms</strong>. The full decoded representation lasts <strong>234.667 ms</strong>. The difference is codec-related framing, not additional music.</p>
+<p><img src="images/gapless-boundary.png" alt="An illustrative eleven-block representation contains leading trim and final padding around ten thousand valid frames."></p>
+<p>The actual priming count must come from the codec and file's timing information. A block length of 1,024 does not prove that a real AAC encoder's delay is 1,024; an implementation can introduce a different count, including one that is not a whole number of blocks.</p>
+<h2 id="formats-describe-trimming-differently">Formats describe trimming differently</h2>
+<p>CAF's packet-table information can record <strong>valid</strong>, <strong>priming</strong> and <strong>remainder</strong> frame counts. These explicitly identify the programme interval within the decoded result.</p>
+<p>Ogg Opus uses a <strong>pre-skip</strong> value at the beginning of the stream and granule-position rules for the ending. Its time count uses a <strong>48 kHz clock per channel</strong>, regardless of the original input rate stored in the header. A pre-skip value of 312, for example, represents <strong>6.5 ms</strong> on that clock. It is an example value, not a rule that all Opus streams use 312.</p>
+<p>The player decodes the required initial material and discards the pre-skip output. It also respects the declared final position. Stereo does not double the time count: 312 simultaneous left/right sample frames still occupy 6.5 ms.</p>
+<p>Trim information can be carried by a container, codec-specific fields or associated metadata. A decoder's block count alone cannot determine the intended end if the final block is partly padding. Detecting runs of zeros is also unreliable: useful audio can contain silence, and priming output can contain nonzero values.</p>
+<h2 id="start-trimming-seeking-and-device-latency">Start trimming, seeking and device latency</h2>
+<p>At a seek point, some codecs need earlier data to rebuild state before producing accurate samples at the requested time. Ogg Opus specifies <strong>pre-roll</strong> for this purpose. It is distinct from the stream's initial pre-skip. Reapplying the original leading trim at every arbitrary seek would confuse two different positions in the programme.</p>
+<p>Device latency comes later. Output buffers, a Bluetooth link and a DAC can delay when valid samples become audible. Removing codec priming does not remove those buffers. Conversely, changing an audio/video offset does not tell a player which trailing samples belong to the programme.</p>
+<p>For a converted Emby stream, timing and duration need to reflect the <strong>new encoder's</strong> representation. Copying an old delay value into a differently encoded result can trim real audio or expose new padding. In <a href="Audio-Gapless-Playback.html">gapless playback</a>, correct trim counts define the boundary; preparation and output scheduling then make that boundary continuous.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Audio-Gapless-Playback.html" title="Gapless playback">Gapless playback</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../formats/lossy/aac-family/AAC-LC.html" title="AAC-LC Audio">AAC-LC Audio</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../formats/lossy/Opus.html" title="Opus Audio">Opus Audio</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../decoding-output/Audio-Video-Synchronization.html" title="Audio/Video Synchronization">Audio/Video Synchronization</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc7845.html" title="RFC 7845: Ogg Opus encapsulation">RFC 7845: Ogg Opus encapsulation</a></li>
+			            <li><a class="seealso-link" href="https://developer.apple.com/library/archive/documentation/MusicAudio/Reference/CAFSpec/CAF_spec/CAF_spec.html" title="Apple Core Audio Format specification: Packet table">Apple Core Audio Format specification: Packet table</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Audio-Encoder-Delay%0A*%20Title%3A%20Audio%20encoder%20delay%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

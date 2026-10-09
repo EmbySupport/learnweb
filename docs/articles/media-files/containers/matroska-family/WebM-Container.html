@@ -134,7 +134,7 @@
 </tbody>
 </table>
 <p>The project guidelines enumerate VP8/VP9 video with Vorbis/Opus audio. Modern writers also handle <a href="../../../video/codecs/vpx-av1/Video-Codec-AV1.html">AV1</a>: the pinned FFmpeg n8.1 WebM codec map explicitly includes it. That is useful when a newer file reports AV1 while an older summary of the format mentions only VP8 and VP9.</p>
-<h2 id="follow-an-audiovideo-recording-into-a-browser">Follow an audio/video recording into a browser</h2>
+<h2 id="browser-decoding-and-synchronized-presentation">Browser decoding and synchronized presentation</h2>
 <p>A reader parses the document type and Tracks information. It creates a video decoding path for the declared codec and an audio path for <a href="../../../audio/formats/lossy/Opus.html">Opus</a> or <a href="../../../audio/formats/lossy/Vorbis.html">Vorbis</a>. Cluster blocks supply encoded packets and presentation timing. The playback framework schedules the reconstructed pictures and samples together.</p>
 <p>The HTTP response's <a href="../../fundamentals/Media-MIME-Types.html">media type and codec parameters</a> can identify this combination before the reader has parsed the complete source. The combination must still match the actual bytes. A declaration of VP9 does not convert an AV1 track into VP9, and the receiving framework needs the appropriate decoder.</p>
 <p>An Emby library source can be opened and repackaged on the server or delivered in its original arrangement. Identify the selected output when comparing a browser's behaviour with another app: decoding the source on a server and decoding it in the browser are different routes.</p>

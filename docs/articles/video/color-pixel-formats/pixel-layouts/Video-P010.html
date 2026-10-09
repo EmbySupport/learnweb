@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>P010 Pixel Format | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="P010 Pixel Format | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Video-P010">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Video-P010">
+<h1>P010 Pixel Format</h1>
+
+
+<p><img src="images/p010-word.png" alt="The ten meaningful bits of a P010 sample occupy the high end of a sixteen-bit word; its little-endian bytes are shown separately."></p>
+<p><strong>P010</strong> gives every 10-bit component sample a <strong>16-bit storage word</strong>. The ten meaningful bits occupy bits 15 through 6, with the low six bits zero in the defined representation. In the little-endian P010 layout described here, the low byte is stored first.</p>
+<p>For the illustrated sample <strong>940</strong>, shifting the sample left by six positions gives <strong>940 × 64 = 60,160 = 0xEB00</strong>. Its two bytes, in increasing address order, are <strong>0x00, 0xEB</strong>.</p>
+<h2 id="a-processing-format-for-ten-bit-values">A processing format for ten-bit values</h2>
+<p>P010 and a fully planar 10-bit format can represent equivalent component values while organizing and aligning their bits differently. A conversion between them moves and places the values correctly. It does not need to reduce their ten-bit precision.</p>
+<p>In an Emby processing description, P010 can identify a working surface used after decoding or between filters and an encoder. It describes the sample layout at that boundary. The <a href="../Video-Color-Signaling.html">color description</a> establishes whether those samples represent SDR, PQ, HLG, or another intended interpretation. Those properties together determine the next stage's reading and processing of the picture.</p>
+<h2 id="sample-numbers-and-stored-words">Sample numbers and stored words</h2>
+<table>
+<thead>
+<tr>
+<th>10-bit sample value</th>
+<th>Stored 16-bit word</th>
+<th>Bytes, low address first</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>64</td>
+<td>4,096 = 0x1000</td>
+<td>00 10</td>
+</tr>
+<tr>
+<td>512</td>
+<td>32,768 = 0x8000</td>
+<td>00 80</td>
+</tr>
+<tr>
+<td>513</td>
+<td>32,832 = 0x8040</td>
+<td>40 80</td>
+</tr>
+<tr>
+<td>940</td>
+<td>60,160 = 0xEB00</td>
+<td>00 EB</td>
+</tr>
+</tbody>
+</table>
+<p>These codes include common limited-range black, neutral chroma, and nominal white values. The example 513 also shows that increasing the sample by one increases its stored word by 64, not one.</p>
+<p>Reading a P010 word as an ordinary unshifted 10-bit sample consequently produces the wrong value. A CPU reader of this defined representation obtains the code by shifting the word right by six. The value's <a href="../Video-Color-Range.html">range interpretation</a> is a subsequent calculation.</p>
+<h2 id="two-planes-wider-elements">Two planes, wider elements</h2>
+<p>P010 retains the semiplanar organization familiar from <a href="Video-NV12.html">NV12</a>: all Y samples in one plane and interleaved Cb/Cr samples in another. For an even W × H picture, each chroma component has W/2 × H/2 samples.</p>
+<p>A 4 × 2 picture has eight Y words and four chroma words, or <strong>24 active bytes</strong>. With a tight 8-byte pitch, Y rows start at offsets 0 and 8; the interleaved chroma row starts at 16. Its Cb0, Cr0, Cb1, Cr1 words start at byte offsets 16, 18, 20, and 22.</p>
+<p>The active byte width of a Y row is 2W. A chroma row holds W/2 pairs, each four bytes, so its active width is also 2W. Padding or extra allocated rows can enlarge a real surface; the API's supplied strides and offsets describe that allocation.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-NV12.html" title="NV12 Pixel Format">NV12 Pixel Format</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-Pixel-Formats.html" title="Pixel Formats and Memory Layout">Pixel Formats and Memory Layout</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../precision-banding/Video-Bit-Depth.html" title="Video Bit Depth">Video Bit Depth</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Video-Color-Signaling.html" title="Video Color Tags and Signaling">Video Color Tags and Signaling</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/medfound/10-bit-and-16-bit-yuv-video-formats" title="Microsoft: 10-bit and 16-bit YUV formats, including P010">Microsoft: 10-bit and 16-bit YUV formats, including P010</a></li>
+			            <li><a class="seealso-link" href="https://docs.kernel.org/userspace-api/media/v4l/pixfmt-yuv-planar.html" title="Linux V4L2: P010 significant bits and byte order">Linux V4L2: P010 significant bits and byte order</a></li>
+			            <li><a class="seealso-link" href="https://www.ffmpeg.org/doxygen/8.1/pixfmt_8h.html" title="FFmpeg 8.1: P010 and planar 10-bit format definitions">FFmpeg 8.1: P010 and planar 10-bit format definitions</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Video-P010%0A*%20Title%3A%20P010%20Pixel%20Format%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

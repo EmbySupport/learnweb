@@ -188,7 +188,7 @@
 <p><img src="images/display-cadence.svg" alt="24 fps pictures held for alternating two and three refreshes on a 60 Hz display."></p>
 <p><em>One illustrative display-hold phase for exact 24 fps and 60 Hz. Ten refresh intervals present four film pictures; these are not newly captured frames.</em></p>
 <p>Selecting a compatible display mode can retain the encoded picture sequence while making its display holds uniform. Creating a 60 fps file by repetition instead stores an output schedule that a 60 Hz display can follow, but does not remove the underlying uneven hold of the film pictures.</p>
-<h2 id="follow-the-operations-in-playback-order">Follow the operations in playback order</h2>
+<h2 id="interlaced-motion-times-before-frame-rate-conversion">Interlaced motion times before frame-rate conversion</h2>
 <p>For an interlaced recording, identify and reconstruct the field times before treating a reported pair rate as a progressive rate. A 25-frame-pair source can contain 50 motion times. Converting those pairs as if they were 25 complete camera moments can omit motion before later processing gets a chance to preserve it.</p>
 <p>For an Emby conversion, compare source timestamps, output timestamps and pictures, programme duration, and display refresh. A rate change with the same duration indicates picture allocation or synthesis; a proportional duration change indicates retiming. The visible result follows the operation performed, rather than the fps number alone.</p>
 

@@ -107,7 +107,7 @@
 
 
 <p>A movie has three English soundtracks: 7.1 surround, stereo commentary, and audio description. Which one should you select? Start with <strong>what the track contains</strong>, then consider how it will play on your listening system. The most impressive channel count is irrelevant if you have selected the director discussing the film instead of the film's dialogue.</p>
-<h2 id="read-a-track-as-a-presentation">Read a track as a presentation</h2>
+<h2 id="language-codec-channels-and-the-selected-presentation">Language, codec, channels, and the selected presentation</h2>
 <p>Each audio track is a separate timed stream in the media file. Its language, title, and accessibility role help identify the intended presentation. Its codec and channel layout describe how that presentation is represented.</p>
 <table>
 <thead>
@@ -141,7 +141,7 @@
 </table>
 <p>Those numbers are not different ways of expressing one quality setting. Changing 5.1 to stereo combines spatial channels. Changing 48 kHz to another sample rate changes the time grid. Changing the encoded bitrate gives a compressed-audio encoder a different data budget. Each operation solves a different problem.</p>
 <p>A <a href="../media-files/fundamentals/Containers-and-Codecs.html">container</a> keeps the tracks together with timing and metadata. That is how a viewer can switch language or commentary while the video remains the same. The selected soundtrack must stay aligned with the picture even when its packets and video packets represent different amounts of time.</p>
-<h2 id="follow-one-soundtrack-to-the-speakers">Follow one soundtrack to the speakers</h2>
+<h2 id="51-audio-on-a-stereo-television">5.1 audio on a stereo television</h2>
 <p>Suppose you choose the 5.1 film track and listen on a stereo television:</p>
 <ol>
 <li>Emby selects that track for delivery. If its codec and packaging fit the app, the server may send the stored audio.</li>

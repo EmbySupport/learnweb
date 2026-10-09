@@ -108,7 +108,7 @@
 
 <p>A FLAC frame can describe a waveform with a predictor and exact residuals rather than storing every PCM sample literally. The decoder reconstructs those samples exactly. RFC 9639 defines the format, including integer PCM precision from 4 to 32 bits and one to eight channels.</p>
 <p>The residual coding makes its lossless promise easier to understand.</p>
-<h2 id="follow-four-illustrative-values">Follow four illustrative values</h2>
+<h2 id="predicting-a-rising-sample-sequence">Predicting a rising sample sequence</h2>
 <p>Consider the sequence 100, 104, 108, 112 within a channel. A previous-sample predictor stores the initial value 100 and residuals +4, +4, +4.</p>
 <table>
 <thead>

@@ -107,7 +107,7 @@
 
 
 <p>A renderer can use Vulkan to submit shader work on a GPU. The shader supplies the picture calculations; Vulkan provides the device, resources, command submission, and synchronization used to execute them.</p>
-<h2 id="follow-a-picture-through-a-renderer">Follow a picture through a renderer</h2>
+<h2 id="gpu-images-and-shader-synchronization">GPU images and shader synchronization</h2>
 <p>A decoded picture becomes accessible as the required GPU image or buffer. A rendering library can assemble operations such as source interpretation, color conversion, tone mapping, scaling, and output preparation into shader processing.</p>
 <p>The application submits the work and manages when resources can be read or written. A following presentation or encoding operation must wait for the prepared result. These relationships matter when frames are shared with another API or transferred from a decoder using a different memory arrangement.</p>
 <p>libplacebo is a rendering-library example with a Vulkan backend. Its image-processing controls sit above Vulkan's lower-level interface. The source/target descriptions, selected curve, and adaptation inputs determine the brightness relationship that its programs perform.</p>

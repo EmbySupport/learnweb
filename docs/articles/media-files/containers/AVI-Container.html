@@ -134,7 +134,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="follow-one-compressed-frame">Follow one compressed frame</h2>
+<h2 id="chunk-ids-connect-payloads-to-stream-descriptions">Chunk IDs connect payloads to stream descriptions</h2>
 <p>A media chunk's ID associates it with a stream and a data kind. The reader uses that stream's header and format description to interpret the payload, then passes compressed video to its decoder. AVI can therefore hold different codecs, including <a href="../../video/codecs/mpeg-itu/Video-Codec-MPEG4-Part2.html">MPEG-4 Part 2</a> or <a href="../../video/codecs/production-preservation/Video-Codec-DV.html">DV</a>, without AVI itself defining their compression.</p>
 <p>The timing model also comes from the stream description and chunk sequence. It predates the flexible per-sample composition conventions of some newer formats. Writers and readers have developed extensions and conventions to accommodate different encoded arrangements; those details matter when handling an unusual legacy file.</p>
 <h2 id="the-same-opening-two-different-seeks">The same opening, two different seeks</h2>

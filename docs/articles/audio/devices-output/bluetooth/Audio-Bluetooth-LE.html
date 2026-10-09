@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Bluetooth LE Audio | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Bluetooth LE Audio | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Audio-Bluetooth-LE">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Audio-Bluetooth-LE">
+<h1>Bluetooth LE Audio</h1>
+
+
+<p>Bluetooth LE Audio is an audio architecture built on Bluetooth Low Energy <strong>isochronous streams</strong>, with <strong>LC3</strong> as its baseline codec and profiles for audio discovery, configuration and control.</p>
+<p>It enables audio to be organized into coordinated streams—for example, a stream for each earbud—and supports both connected unicast audio and broadcast audio. A device's Bluetooth version alone does not establish support for the complete audio architecture. The radio, host software, profiles and receiving device all need the relevant capabilities.</p>
+<h2 id="coordinated-streams-can-have-separate-destinations">Coordinated streams can have separate destinations</h2>
+<p>For unicast, Connected Isochronous Streams (<strong>CIS</strong>) belong to a Connected Isochronous Group (<strong>CIG</strong>). Broadcast uses Broadcast Isochronous Streams (<strong>BIS</strong>) organized in a Broadcast Isochronous Group (<strong>BIG</strong>).</p>
+<p>The groups provide transport timing relationships. Audio capabilities and controls determine which channels and configurations those streams represent. A stream identifier is not automatically a left/right label; channel allocation and the chosen audio configuration supply that meaning.</p>
+<p><img src="images/le-presentation.png" alt="Two audio streams carry separate ear channels while a common timing relationship supports coordinated presentation."></p>
+<p>This arrangement allows a transmitter to supply coordinated devices directly. The device set and selected topology determine the actual delivery; the diagram does not claim that every headset uses this exact route.</p>
+<h2 id="lc3-frame-duration-and-payload-size">LC3 frame duration and payload size</h2>
+<p>LC3 encodes a block of audio into a codec frame. At <strong>48 kHz</strong>, 10 ms contains <strong>480 sample frames per channel</strong>, while 7.5 ms contains <strong>360</strong>.</p>
+<p>The coded frame's byte count determines its payload bitrate. Two example 48 kHz configurations from the Basic Audio Profile are:</p>
+<table>
+<thead>
+<tr>
+<th>Frame interval</th>
+<th style="text-align: right;">Samples per channel</th>
+<th style="text-align: right;">Encoded bytes per channel per frame</th>
+<th style="text-align: right;">Codec payload bitrate per channel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10 ms</td>
+<td style="text-align: right;">480</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">80 kbit/s</td>
+</tr>
+<tr>
+<td>7.5 ms</td>
+<td style="text-align: right;">360</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">80 kbit/s</td>
+</tr>
+</tbody>
+</table>
+<p>For the 10 ms case, 100 bytes × 8 bits / 0.010 s = <strong>80,000 bit/s</strong>. Two channels using that configuration total <strong>160 kbit/s</strong> of codec payload. That excludes transport headers, retransmissions and other radio overhead.</p>
+<p>For an Emby route, these byte counts concern the client's wireless encoding stage. The file codec delivered by the media server is upstream of that stage.</p>
+<p>Holding bitrate constant while shortening the frame reduces the bytes per frame. Holding bytes constant would instead increase bitrate. The negotiated codec and transport configuration must be supported; the frame interval cannot be changed independently of all other parameters.</p>
+<p>The 48 kHz assumption matters. Some other sample-rate configurations have a different relationship between nominal frame-duration labels and their effective duration, as specified in the profile.</p>
+<h2 id="a-shared-presentation-time-is-not-zero-latency">A shared presentation time is not zero latency</h2>
+<p>Two earbuds should reproduce corresponding left and right samples at the intended common instant. The audio framework's <strong>Presentation_Delay</strong> relates presentation to a defined transport synchronization reference and accounts for receiving-side capabilities and processing.</p>
+<p>Consider an abstract frame with synchronization reference <strong>100 ms</strong>. If the chosen presentation delay is <strong>30 ms</strong>, its intended presentation starts at <strong>130 ms</strong>. Earbud A may finish preparing its audio earlier than earbud B; buffering allows both to wait for that scheduled instant.</p>
+<p>This is a synchronization example, not a default LE Audio delay. It also does not measure all the time since an Emby app first decoded the samples. Source-side preparation and queues can occur before the transport reference.</p>
+<p>A small codec frame can help a low-delay design, but frame duration, transport robustness, processing time and presentation delay are separate contributors. Receiver coordination addresses their relative presentation; movie lip sync also needs the overall delay accounted for against video.</p>
+<h2 id="unicast-and-broadcast-have-different-control-models">Unicast and broadcast have different control models</h2>
+<p>A unicast audio configuration establishes connected streams with selected receiving devices and can support bidirectional use cases. Broadcast distributes streams that compatible receivers can discover and join. Auracast refers to the public broadcast audio ecosystem built on this architecture.</p>
+<p>Broadcast is not simply pairing the same transmitter separately to an unlimited list of headphones. Discovery, stream descriptions, synchronization and any broadcast access requirements form another route.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Audio-Bluetooth.html" title="Bluetooth audio">Bluetooth audio</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Audio-Bluetooth-A2DP.html" title="Bluetooth A2DP">Bluetooth A2DP</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../decoding-output/Audio-Video-Synchronization.html" title="Audio/Video Synchronization">Audio/Video Synchronization</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/16212-BAP-html5/out/en/index-en.html" title="Bluetooth SIG Basic Audio Profile">Bluetooth SIG Basic Audio Profile</a></li>
+			            <li><a class="seealso-link" href="https://www.bluetooth.com/learn-about-bluetooth/feature-enhancements/le-audio/le-audio-specifications/" title="Bluetooth SIG LE Audio specifications">Bluetooth SIG LE Audio specifications</a></li>
+			            <li><a class="seealso-link" href="https://www.bluetooth.com/blog/a-technical-overview-of-lc3/" title="Bluetooth SIG: LC3 technical overview">Bluetooth SIG: LC3 technical overview</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Audio-Bluetooth-LE%0A*%20Title%3A%20Bluetooth%20LE%20Audio%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

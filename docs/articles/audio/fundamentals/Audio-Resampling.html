@@ -160,7 +160,7 @@
 <p>A filter that uses neighboring samples needs stored input and may require future samples before it can produce the intended output. This creates latency. For illustration, a symmetric 64-tap linear-phase FIR filter has a group delay of (64−1)/2 = 31.5 sample intervals. At a 48 kHz filter rate that is about 0.656 ms. A complete resampler's buffering and boundary handling can add further delay.</p>
 <p>At the start and end of a finite file, the implementation must handle missing neighbors and flush delayed results. Correct timestamps and output length keep this implementation delay from becoming a missing ending or a permanent audio/video offset.</p>
 <p>A low-latency filter and one optimized for stronger rejection can therefore differ in more than CPU use. Their choices affect delay and transients as well as frequency response.</p>
-<h2 id="follow-the-conversion-in-an-actual-session">Follow the conversion in an actual session</h2>
+<h2 id="pitch-aliasing-and-delay-during-playback">Pitch, aliasing, and delay during playback</h2>
 <p>For an Emby session that changes 44.1 kHz input to 48 kHz output, inspect the stages that require that change: server encoding, the player's decoder/output, or an operating-system mixer. An output fixed at 48 kHz naturally needs a conversion for a 44.1 kHz source.</p>
 <p>Then distinguish three observed problems:</p>
 <table>

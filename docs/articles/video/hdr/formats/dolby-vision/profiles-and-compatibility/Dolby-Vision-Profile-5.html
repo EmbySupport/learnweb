@@ -107,7 +107,7 @@
 
 
 <p>A Profile 5 file can decode as HEVC yet show badly shifted colors if its samples are sent through an ordinary HDR10 interpretation. The compression decoder and the signal renderer have different jobs.</p>
-<h2 id="follow-the-samples-past-the-decoder">Follow the samples past the decoder</h2>
+<h2 id="hevc-decoding-and-profile-5-color-interpretation">HEVC decoding and Profile 5 color interpretation</h2>
 <p>Profile 5 carries a single ten-bit HEVC picture layer with Dolby Vision RPU metadata. Its signal uses PQ with reshaping and the <strong>IPT-PQ-C2</strong> component representation. It does not provide an ordinary HDR10 or SDR-compatible base.</p>
 <p>The HEVC decoder reconstructs those coded component samples. The Dolby Vision processing path then supplies their required interpretation and associated operations. Treating the decoded components as conventional BT.2020 YCbCr would use a different relationship to reconstruct color.</p>
 <p>That difference explains why a codec-capable player can produce an image while rendering it incorrectly. The necessary next stage is appropriate interpretation or a real conversion to another coherent representation.</p>

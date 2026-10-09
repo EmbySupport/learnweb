@@ -108,7 +108,7 @@
 
 <p>A receiver can decode a movie soundtrack only if it receives a compatible <strong>encoded presentation</strong>. Bitstream passthrough arranges that delivery, leaving audio reconstruction to the downstream decoder rather than producing ordinary PCM in the player.</p>
 <p>The server's Direct Play decision happens earlier. It can retain a file that the player either decodes locally or passes onward.</p>
-<h2 id="follow-the-coded-payload-to-the-receiver">Follow the coded payload to the receiver</h2>
+<h2 id="encoded-audio-inside-the-transport-framing">Encoded audio inside the transport framing</h2>
 <p>The player reads the selected track and its codec configuration. It then supplies the encoded audio using the output API and transport convention required for that format.</p>
 <p>IEC 61937 defines transport of encoded audio in a digital-audio framework. Transport data includes framing and format identification so the receiver knows that it contains a coded payload to unpack, not ordinary amplitude samples to play directly.</p>
 <p>A declared carrier rate or channel arrangement can consequently describe <strong>the transport</strong>, while the encoded content has its own audio rate and presentation. Microsoft's transport documentation explicitly distinguishes those fields.</p>

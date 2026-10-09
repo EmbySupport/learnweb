@@ -141,7 +141,7 @@
 <p>The basic function approaches one gradually. At a finite source peak of eight, its endpoint is eight-ninths. Multiplying by nine-eighths makes that known peak reach one and also raises the other mapped values.</p>
 <p><img src="images/tone-mapping-curve-reinhard.png" alt="FFmpeg Reinhard mapping normalized to source peak eight, with a lower-input close-up."></p>
 <p><em>FFmpeg 8.1, public parameter 0.5, source peak 8, output white 1, relative linear light for neutral gray. Dashed gray shows clipping.</em></p>
-<h2 id="read-the-compressed-separation">Read the compressed separation</h2>
+<h2 id="highlight-compression-and-lower-tone-brightness">Highlight compression and lower-tone brightness</h2>
 <p>Inputs 4 and 8 are four units apart, but the normalized outputs differ by only 0.1. The values remain ordered and distinct; much less output contrast separates them. An input of one moves to 0.5625, showing that this mapping also changes ordinary levels.</p>
 <p>Uniform division by eight would put the same input of one at 0.125. The nonlinear relationship spends more of the output on the lower region and compresses the top more strongly. That is the actual compromise visible in the plot.</p>
 <h2 id="distinguish-the-curve-from-the-complete-photographic-operator">Distinguish the curve from the complete photographic operator</h2>

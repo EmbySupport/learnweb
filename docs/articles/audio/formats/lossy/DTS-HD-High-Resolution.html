@@ -143,7 +143,7 @@
 </table>
 <p>The enhancement moved the result closer to +0.83 but did not restore it exactly. These values illustrate quantized correction; they are not a DTS packet example or a complete specification of every High Resolution stream's extension combination.</p>
 <p>Lossless correction must preserve the necessary difference exactly. That is a different reconstruction promise, developed in <a href="../lossless/DTS-HD-Master-Audio.html">DTS-HD Master Audio</a>.</p>
-<h2 id="follow-the-selected-presentation">Follow the selected presentation</h2>
+<h2 id="core-only-decoding-and-the-enhanced-presentation">Core-only decoding and the enhanced presentation</h2>
 <p>A compatible core-only route uses the existing lossy core and misses the supported enhanced result. A full High Resolution decoder uses the appropriate extensions. Either decoder can then output ordinary PCM.</p>
 <p>A receiver's PCM label consequently identifies where decoding finished, not which DTS presentation was reconstructed. To distinguish the routes, identify the player's selected decoder/result and output layout.</p>
 <p>High-rate or 24-bit descriptions concern supported sample representation. They do not make the quantized correction in a lossy coding process reversible. The useful distinction is the reconstructed presentation and its codec profile, rather than treating every “DTS-HD” display abbreviation as Master Audio.</p>

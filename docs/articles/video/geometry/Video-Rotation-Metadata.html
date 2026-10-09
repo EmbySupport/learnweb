@@ -125,7 +125,7 @@ L H D
 <h2 id="the-matrix-is-a-presentation-instruction">The matrix is a presentation instruction</h2>
 <p>QuickTime and related MP4 workflows represent display transformations with a matrix. It can combine a turn with translation, scaling, or mirroring. A media inspector often reduces a simple matrix to an angle for convenience.</p>
 <p>An angle's sign depends on the tool's convention: clockwise and counterclockwise descriptions use opposite signs for the same physical turn. The useful question is where the picture's positions are presented, rather than whether two tools print the same signed number.</p>
-<h2 id="follow-one-upright-playback-route">Follow one upright playback route</h2>
+<h2 id="display-rotation-or-physically-rotated-samples">Display rotation or physically rotated samples</h2>
 <p>When the Emby app receives the original clip, it can decode the stored landscape grid and apply the display transformation as it presents the frame. The coded video remains in its original orientation.</p>
 <p>A conversion can instead rotate the decoded samples before encoding them. It then produces a 1080 × 1920 picture that is already upright, and the output's display information should describe that upright grid.</p>
 <table>

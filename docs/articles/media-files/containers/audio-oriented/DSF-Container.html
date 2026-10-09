@@ -108,7 +108,7 @@
 
 <p>A <strong>DSF</strong>, or DSD Stream File, stores <a href="../../../audio/formats/DSD.html">Direct Stream Digital</a> audio as channel blocks plus a format description and optional tags. Its sample count is especially useful because the final stored block may include padding.</p>
 <p>Sony's specification describes a DSD header, a fmt description, a data chunk, and an optional ID3v2 metadata area at the end. The header supplies the file size and a pointer to the metadata; the format description supplies channel arrangement, sampling frequency, and sample count.</p>
-<h2 id="follow-one-second-through-the-blocks">Follow one second through the blocks</h2>
+<h2 id="block-padding-in-a-one-second-dsd-recording">Block padding in a one-second DSD recording</h2>
 <p>Take an illustrative stereo DSD source at 2,822,400 one-bit samples per second per channel. Its unpadded audio needs:</p>
 <p><code>2,822,400 ÷ 8 = 352,800 bytes per channel per second</code></p>
 <p>The stereo total is 705,600 bytes. DSF groups the data into 4,096-byte blocks for each channel, with a block for one channel followed by a block for the other before the next block group.</p>

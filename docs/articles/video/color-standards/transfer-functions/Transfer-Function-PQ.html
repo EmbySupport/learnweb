@@ -110,7 +110,7 @@
 <p><strong>Perceptual Quantizer (PQ)</strong> is standardized in SMPTE ST 2084. Its nonlinear function distributes precision across a reference-light range extending to 10,000 nits, taking human visual sensitivity into account.</p>
 <p><img src="images/transfer-pq.png" alt="PQ shown with a linear luminance panel and a logarithmic luminance panel."></p>
 <p><em>ST 2084 neutral-gray reference EOTF. The logarithmic panel reveals shadows; zero cannot be plotted on its logarithmic luminance axis.</em></p>
-<h2 id="follow-a-light-request-into-a-stored-sample">Follow a light request into a stored sample</h2>
+<h2 id="100-nits-represented-by-a-10-bit-pq-code">100 nits represented by a 10-bit PQ code</h2>
 <p>A 100-nit neutral gray has a normalized PQ signal of approximately <strong>0.508078</strong>. That value is a signal coordinate, not a luminance percentage. Encoding into a numerical format comes next.</p>
 <p>For an illustrative 10-bit narrow-range neutral-gray component, nominal black is code 64 and the top nominal signal is code 940. There are 876 intervals between those endpoints. Rounding 64 + 876 × 0.508078 gives <strong>code 509</strong>.</p>
 <p>On interpretation, (509 − 64) / 876 gives approximately 0.507991. Applying PQ recovers about <strong>99.913 nits</strong>. The slight difference from 100 is the finite-precision rounding in this example.</p>
@@ -138,7 +138,7 @@
 </tbody>
 </table>
 <p>A player needs the correct range before applying PQ. Treating the integer 509 as a full-range value would produce a different normalized signal and therefore another light request. For colored video, component and primary interpretation also participate in recovering the intended picture.</p>
-<h2 id="read-the-curves-unequal-spacing">Read the curve's unequal spacing</h2>
+<h2 id="unequal-signal-spacing-across-the-light-range">Unequal signal spacing across the light range</h2>
 <table>
 <thead>
 <tr>

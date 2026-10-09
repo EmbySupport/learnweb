@@ -114,7 +114,7 @@
 <p>The input rate describes how quickly the buffer can refill. Capacity is its maximum stored amount. Occupancy is how much it contains at a particular moment.</p>
 <p>A large picture can use data accumulated during easier pictures. It can require more than one frame interval's worth of arriving data without exceeding the model, provided that enough has arrived before its removal time.</p>
 <p>A picture fails the model if it needs bits that are not available when it must be decoded. The opposite limit matters too: arrivals and removals must follow rules that keep stored data within the permitted capacity. Codec models specify these details more precisely than this simplified illustration.</p>
-<h2 id="follow-a-burst-through-the-buffer">Follow a burst through the buffer</h2>
+<h2 id="a-sustained-burst-exhausts-the-reserve">A sustained burst exhausts the reserve</h2>
 <p>The following calculation groups picture removals into one-second intervals to make the arithmetic visible. Real bitstream conformance checks operate at the codec's specified removal times.</p>
 <table>
 <thead>

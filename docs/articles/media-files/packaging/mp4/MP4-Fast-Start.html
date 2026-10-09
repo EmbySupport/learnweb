@@ -133,7 +133,7 @@
 </tbody>
 </table>
 <p>Actual rewriting can also need larger offset fields or layout adjustments. The numerical example isolates the relocation mechanism rather than prescribing every writer's result.</p>
-<h2 id="compare-two-access-paths">Compare two access paths</h2>
+<h2 id="sequential-transfer-and-byte-range-access">Sequential transfer and byte-range access</h2>
 <p>For a purely sequential transfer of a 250 MB file at 5 MB/s, trailing setup could remain unavailable until roughly 50 seconds of data has been received. In the simplified early-moov layout, reading 100 kB at that rate takes roughly 0.02 seconds; codec setup, required media, and request latency still add startup work.</p>
 <p>A byte-range-capable reader can instead fetch the trailing description directly and then request the needed media. It need not transfer the 250 MB prefix to reach moov. Fast-start placement therefore changes one access pattern more than another.</p>
 <p>For an Emby session, establish whether the app receives this original file layout or a repackaged output. <a href="Fragmented-MP4.html">Fragmented delivery</a> supplies initialization and successive sample descriptions through its own arrangement.</p>

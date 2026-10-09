@@ -138,7 +138,7 @@
 </tbody>
 </table>
 <p>These bytes are <strong>container overhead</strong>: information or space needed around the encoded media. The encoded video and soundtrack have their own sizes before this additional packaging is considered.</p>
-<h2 id="compare-the-right-quantities-after-a-remux">Compare the right quantities after a remux</h2>
+<h2 id="packaging-savings-versus-removed-media">Packaging savings versus removed media</h2>
 <p>Suppose a remux copies the same selected video and audio into a format with different packet grouping and index structures. The whole output can have fewer bytes even though its decoded picture and sound are unchanged. The difference belongs to packaging.</p>
 <p>Now remove a 384 kb/s soundtrack lasting two hours. That eliminates 345.6 MB of encoded content, not merely overhead. Similarly, removing a large font or cover attachment changes stored resources. To understand a size difference, account for selected components before comparing the organizational cost.</p>
 <p>Overall file bitrate includes container bytes because it divides total file size by duration. A network transfer adds HTTP, transport, and link costs outside the file. An Emby delivery estimate therefore needs to identify whether a rate describes encoded streams, the whole packaged file, or network traffic.</p>

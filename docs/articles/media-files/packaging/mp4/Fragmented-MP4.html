@@ -110,7 +110,7 @@
 <p><img src="images/fragmented-mp4.svg" alt="An initialization section is followed by repeating movie-fragment and media-data boxes."></p>
 <p><em>Common conceptual layout. Optional boxes, size differences, and additional fragments are omitted.</em></p>
 <p>Initialization supplies track identities, time scales, and codec setup. Successive <strong>moof</strong> boxes describe movie fragments; accompanying <strong>mdat</strong> boxes hold their encoded media. This divides global track setup from information about the current samples.</p>
-<h2 id="read-three-samples-from-a-fragment">Read three samples from a fragment</h2>
+<h2 id="sample-times-and-byte-offsets-inside-a-fragment">Sample times and byte offsets inside a fragment</h2>
 <p>Take an invented fragment for a video track whose clock uses 30,000 ticks per second. Let its base decode time be 60,000 ticks. Each of three samples lasts 1,000 ticks, and their byte sizes are 800, 500, and 650. For this example there is no picture reordering, so the presentation offsets are zero.</p>
 <p>Assume a 120-byte moof followed by an eight-byte mdat header. A sample run uses a data offset of 128 from the moof's beginning with movie-fragment-relative addressing.</p>
 <table>

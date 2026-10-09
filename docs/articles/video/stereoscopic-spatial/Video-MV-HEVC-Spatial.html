@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>MV-HEVC and Spatial Video | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="MV-HEVC and Spatial Video | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <link rel="stylesheet" href="../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    <meta property="docfx:uid" content="Video-MV-HEVC-Spatial">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+    <script type="text/javascript" src="../../../nav.js"></script>
+    <script type="text/javascript" src="../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Video-MV-HEVC-Spatial">
+<h1>MV-HEVC and Spatial Video</h1>
+
+
+<p>An inspection report can show <strong>one HEVC video track, 1920 × 1080</strong>, while a supporting reader reconstructs two 1920 × 1080 eye pictures from each presentation sample. The source is not necessarily a side-by-side rectangle: <strong>Multiview HEVC</strong>, or <strong>MV-HEVC</strong>, can place the related views in codec layers within the same track.</p>
+<p>The codec reconstructs those viewpoints. A spatial-video description also supplies information about capture geometry and presentation. Reading a complete file therefore involves its layers, eye association, timing, and applicable movie-profile metadata.</p>
+<h2 id="from-layer-data-to-a-pair-of-pictures">From layer data to a pair of pictures</h2>
+<p>MV-HEVC uses the multilayer and multiview tools of <a href="../codecs/mpeg-itu/Video-Codec-HEVC.html">HEVC</a>. A compatible base view can be coded using ordinary HEVC tools. The additional view uses multiview coding, including permitted prediction from another reconstructed view.</p>
+<p>Apple's published <strong>HEVC Stereo Video Interoperability Profile v0.9 beta</strong> describes a focused two-view carriage in one MPEG-4 or QuickTime video track. Its base view is Main or Main10, and the corresponding additional view uses Multiview Main or Multiview Main10. Both have matching sample dimensions and precision in that profile.</p>
+<p>The profile's sample entry uses <strong>hvc1</strong>, with <strong>hvcC</strong> supplying the primary decoder configuration and <strong>lhvC</strong> the additional-layer configuration. Each media sample contains the two view components for the same presentation instant. The track's 1920 × 1080 description in our example applies to a view; it does not mean the two pictures have been reduced to 960-pixel-wide halves.</p>
+<p><img src="images/mvhevc-sample.png" alt="An illustrative MV-HEVC sample with distinct layer IDs, view IDs, coding roles, and eye assignments."></p>
+<p><em>The arrow denotes a prediction dependency on the reconstructed base. The numerical IDs are a permitted illustrative mapping, not a claim that every file uses them.</em></p>
+<h2 id="the-base-view-can-be-the-right-eye">The base view can be the right eye</h2>
+<p>The base layer has layer ID 0. That coding role is independent of whether its picture belongs to the left or right eye. The published interoperability profile allows either eye to be primary.</p>
+<p>In the illustration, the stream describes:</p>
+<table>
+<thead>
+<tr>
+<th>Coding role</th>
+<th style="text-align: right;">Layer ID</th>
+<th style="text-align: right;">View ID</th>
+<th>Eye assignment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Base</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">7</td>
+<td>Right</td>
+</tr>
+<tr>
+<td>Additional</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td>Left</td>
+</tr>
+</tbody>
+</table>
+<p>The Video Parameter Set establishes the connection from layers to view identities; stereo reference-display information identifies which view is for each eye. The reader follows that connection. Replacing it with the assumption “layer zero means left” would swap this example's presentation.</p>
+<p>Apple's conversion sample chooses the simpler IDs 0 and 1 with left first. Its layer-ID list, view-ID list, and left/right association list are separate configuration properties even when their chosen numbers happen to match.</p>
+<h2 id="requesting-and-returning-the-required-views">Requesting and returning the required views</h2>
+<p>A decoder interface may require the caller to request the multiview layer set. A path that requests or exposes only the compatible base can produce a normal single-view image; a stereo path needs both requested views and their dependencies.</p>
+<p>Apple's multiview-reading workflow returns related image buffers with tags identifying their layer and stereo-eye roles. The application can then route the left-tagged picture to the left eye and the right-tagged picture to the right. Array position or the smallest numeric ID should not substitute for that role.</p>
+<p>The two buffers share the intended presentation time. Their decode work can depend on reference state and other reconstructed views, but they belong to one stereo instant. Pairing buffers from different instants would introduce the motion-related disparity error described in <a href="Video-Stereoscopic.html">the stereoscopic walkthrough</a>.</p>
+<p>Two full decoded pictures also imply two picture buffers at that instant. For an unpadded 10-bit 4:2:0 representation stored as <a href="../color-pixel-formats/pixel-layouts/Video-P010.html">P010</a>, two 1920 × 1080 views contain <strong>2 × 6,220,800 = 12,441,600 active sample bytes</strong>. Alignment, hardware layout, and reference history can add storage. This arithmetic describes decoded samples, not the compressed file size.</p>
+<h2 id="geometry-metadata-completes-the-spatial-description">Geometry metadata completes the spatial description</h2>
+<p><img src="images/spatial-properties.png" alt="Camera baseline, field of view, disparity adjustment, and projection alongside the stereo view content."></p>
+<p>Apple's <strong>Movie Profiles v0.9 beta</strong>, published in June 2025, distinguishes stereo 3D delivery from its Spatial Video Profile. The latter adds a specific geometry and presentation description to the MV-HEVC stereo track.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Meaning for the representation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Camera baseline</td>
+<td>Separation between the camera optical centers</td>
+</tr>
+<tr>
+<td>Horizontal field of view</td>
+<td>Angular extent represented by the captured image</td>
+</tr>
+<tr>
+<td>Disparity adjustment</td>
+<td>An alignment adjustment for the stereoscopic presentation</td>
+</tr>
+<tr>
+<td>Projection</td>
+<td>Mapping from image coordinates to the intended viewing geometry</td>
+</tr>
+<tr>
+<td>Optional hero-eye preference</td>
+<td>A preferred view for an applicable single-view presentation</td>
+</tr>
+</tbody>
+</table>
+<p>In that published profile, the Video Extended Usage description contains eye, camera, and presentation information, and the sample entry carries horizontal field-of-view information. The linked specification identifies the required boxes and constraints for that version.</p>
+<p>Baseline and field of view describe different aspects of capture. The former affects the viewpoints' separation; the latter affects how image position relates to angle. Disparity adjustment changes presentation alignment. The <a href="Video-Stereoscopic.html">capture and display calculations</a> show why those roles should not be combined into a single generic “depth” value.</p>
+<p>A hero-eye preference likewise describes presentation. It does not change the codec's dependency structure or turn an additional predicted layer into an independently coded base.</p>
+<h2 id="converting-a-packed-source">Converting a packed source</h2>
+<p>For a full <a href="frame-packing-layouts/Video-3D-Side-By-Side.html">side-by-side</a> source of 3840 × 1080, splitting its columns supplies two 1920 × 1080 pictures. A converter assigns their eye roles, encodes the MV-HEVC view layers, and writes the matching track description. That changes both the spatial arrangement and the coding of the pictures.</p>
+<p>A half-SBS source instead supplies two 960 × 1080 regions whose intended view shape needs to be restored or described correctly. Expanding them into a 1920-column grid creates reconstructed samples; the new codec still starts from the detail retained in those narrower source regions.</p>
+<p>Spatial capture metadata should describe the source's real geometry. Writing an arbitrary baseline or field-of-view value does not establish that the original pictures were captured using those values. A conversion with known camera information can preserve or transform that description consistently with its image operations.</p>
+<h2 id="the-movie-profile-and-the-output-route">The movie profile and the output route</h2>
+<p>The linked Apple profiles describe particular interoperability targets. MV-HEVC as a codec representation is broader than one movie profile, and its use does not by itself specify SDR, HDR, or an immersive projection. <a href="../hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-20.html">Dolby Vision Profile 20</a> adds its own color and metadata requirements to supported forms of multiview delivery.</p>
+<p>For an Emby investigation, record the actual source layers and eye description, what the selected playback or conversion path delivered, and which views the app reconstructed. Then examine the final presentation's stereo and spatial interpretation. A remux preserving coded views and a conversion selecting the base eye can create different outcomes from the same source.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../codecs/mpeg-itu/Video-Codec-HEVC.html" title="H.265 / HEVC Video">H.265 / HEVC Video</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-Codec-MVC.html" title="Multiview Video Coding (MVC)">Multiview Video Coding (MVC)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-Stereoscopic.html" title="How Stereoscopic Video Works">How Stereoscopic Video Works</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../media-files/containers/iso-base-media-and-quicktime/MP4-Container.html" title="MP4 and the ISO Base Media File Format">MP4 and the ISO Base Media File Format</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="frame-packing-layouts/Video-3D-Side-By-Side.html" title="Side-by-Side 3D Video">Side-by-Side 3D Video</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-20.html" title="Dolby Vision Profile 20">Dolby Vision Profile 20</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.itu.int/rec/T-REC-H.265" title="ITU-T H.265: HEVC, including multilayer and multiview extensions">ITU-T H.265: HEVC, including multilayer and multiview extensions</a></li>
+			            <li><a class="seealso-link" href="https://developer.apple.com/av-foundation/HEVC-Stereo-Video-Profile.pdf" title="Apple HEVC Stereo Video Interoperability Profile: v0.9 beta, June 2023">Apple HEVC Stereo Video Interoperability Profile: v0.9 beta, June 2023</a></li>
+			            <li><a class="seealso-link" href="https://developer.apple.com/av-foundation/Apple-Movie-Profiles.pdf" title="Apple Movie Profiles for Spatial and Immersive Media: v0.9 beta, June 2025">Apple Movie Profiles for Spatial and Immersive Media: v0.9 beta, June 2025</a></li>
+			            <li><a class="seealso-link" href="https://developer.apple.com/documentation/avfoundation/converting-side-by-side-3d-video-to-multiview-hevc-and-spatial-video" title="Apple: Converting stereo views to MV-HEVC and spatial video">Apple: Converting stereo views to MV-HEVC and spatial video</a></li>
+			            <li><a class="seealso-link" href="https://developer.apple.com/documentation/avfoundation/reading-multiview-3d-video-files" title="Apple: Reading multiview 3D video">Apple: Reading multiview 3D video</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Video-MV-HEVC-Spatial%0A*%20Title%3A%20MV-HEVC%20and%20Spatial%20Video%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

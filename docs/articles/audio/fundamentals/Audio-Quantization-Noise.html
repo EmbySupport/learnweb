@@ -108,7 +108,7 @@
 
 <p>Quantization rounds a value onto a set of available levels. The difference between the value you wanted and the level you stored is <strong>quantization error</strong>.</p>
 <p>That error exists even in an ideal numerical conversion with no microphone noise or analog electronics. It becomes especially interesting near the bottom of the available precision, where a small signal may cross very few levels.</p>
-<h2 id="follow-a-few-values-through-rounding">Follow a few values through rounding</h2>
+<h2 id="rounding-error-at-a-step-size-of-0125">Rounding error at a step size of 0.125</h2>
 <p>Use a deliberately coarse uniform step of 0.125, with no clipping. Rounding to the nearest level produces:</p>
 <table>
 <thead>

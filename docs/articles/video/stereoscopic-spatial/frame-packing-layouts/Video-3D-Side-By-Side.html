@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Side-by-Side 3D Video | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Side-by-Side 3D Video | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Video-3D-Side-By-Side">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Video-3D-Side-By-Side">
+<h1>Side-by-Side 3D Video</h1>
+
+
+<p><img src="images/sbs-crop.png" alt="A half side-by-side frame split into its two column regions, with one view restored to its intended display shape."></p>
+<p><em>Left-first example: a 1920 × 1080 packed frame holds two 960 × 1080 regions. The pictured output expands one region into a 1920 × 1080 grid. Diagram panels use different inspection scales.</em></p>
+<p><strong>Side-by-side</strong>, or <strong>SBS</strong>, stores the two views next to each other inside a conventional frame. An ordinary decoder can recover that combined raster. Stereoscopic presentation then extracts its left and right regions and assigns them to the intended eyes.</p>
+<p>This explains an Emby playback result that shows two narrow pictures beside each other: the packed image has been decoded, while the view-unpacking and stereoscopic presentation have not been applied on that route.</p>
+<h2 id="half-width-and-full-width">Half width and full width</h2>
+<p>For a target view shape of 1920 × 1080 square pixels:</p>
+<table>
+<thead>
+<tr>
+<th>Layout</th>
+<th>Combined coded frame</th>
+<th>Stored region for each eye</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Half SBS</td>
+<td>1920 × 1080</td>
+<td>960 × 1080</td>
+</tr>
+<tr>
+<td>Full SBS</td>
+<td>3840 × 1080</td>
+<td>1920 × 1080</td>
+</tr>
+</tbody>
+</table>
+<p>Half SBS retains the usual overall frame dimensions by giving each view half the horizontal sample count. Its region is 8:9 as a raw square-pixel rectangle; presenting that region as the intended 16:9 view expands the width by two.</p>
+<p>The reconstruction uses <a href="../../scaling-image-processing/Video-Scaling.html">video scaling</a> or an equivalent display mapping to produce the required output positions. The scene's intended shape is restored, while its horizontal detail still originates from the 960 stored columns. Full SBS instead supplies 1920 stored columns for each eye.</p>
+<p>The combined luma counts are <strong>2,073,600</strong> for half SBS and <strong>4,147,200</strong> for full SBS in these examples. Compressed size also depends on coding and content; those numbers describe the picture grids.</p>
+<h2 id="extracting-the-correct-columns">Extracting the correct columns</h2>
+<p>For a packed frame of even width W and height H, the first region uses columns <strong>0 through W/2−1</strong>. The second uses <strong>W/2 through W−1</strong>. Each covers all H rows.</p>
+<p>For the 1920-wide example, the regions are 0–959 and 960–1919. Extracting the first region gives a 960 × 1080 image. Correct shape reconstruction is a further operation; copying that crop to a square-pixel output without the intended mapping produces a narrow picture.</p>
+<p>Left-first storage associates the first region with the left eye. Right-first storage reverses that association. Swapping the eye assignments changes the stereo disparity sign, even though the same two regions remain present.</p>
+<p>The Matroska registry distinguishes left-first SBS with <strong>StereoMode 1</strong> and right-first SBS with <strong>11</strong>. Its specification also separates the combined raw pixel dimensions from the display dimensions of one view: a full SBS track can have PixelWidth 3840 and per-view DisplayWidth 1920. Those fields describe compatible parts of one representation.</p>
+<h2 id="preserving-or-converting-the-arrangement">Preserving or converting the arrangement</h2>
+<p>A compatible stream copy can retain the encoded packed picture. Repackaging also needs the relevant stereo interpretation retained in the destination's description. <a class="xref" href="https://emby.media/support/articles/3D-Videos.html">Emby's 3D naming documentation</a> covers the library identifiers for half and full SBS; the file's region order and view geometry still establish what the renderer should do.</p>
+<p>A converter can unpack both views, process them, and encode another stereo arrangement. It can also select one region to make a 2D version. For half SBS, that selected view needs its intended display shape handled as part of the conversion.</p>
+<p>If a half-SBS combined frame is reduced to 1280 × 720 while preserving its layout, its two regions become <strong>640 × 720</strong>. Their intended 16:9 presentation can expand each to 1280 × 720. Accounting for both the combined width and the per-view width makes the retained horizontal sample count clear.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Video-Stereoscopic.html" title="How Stereoscopic Video Works">How Stereoscopic Video Works</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-3D-Top-And-Bottom.html" title="Top-and-Bottom 3D Video">Top-and-Bottom 3D Video</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../scaling-image-processing/Video-Scaling.html" title="How Video Scaling Works">How Video Scaling Works</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../media-files/containers/matroska-family/Matroska-Container.html" title="Matroska: MKV and MKA">Matroska: MKV and MKA</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.matroska.org/technical/notes.html#multi-planar-and-3d-videos" title="Matroska: Stereo packing and per-view display dimensions">Matroska: Stereo packing and per-view display dimensions</a></li>
+			            <li><a class="seealso-link" href="https://www.iana.org/assignments/matroska" title="IANA: Matroska Stereo Mode registry">IANA: Matroska Stereo Mode registry</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-filters.html#stereo3d" title="FFmpeg: Side-by-side stereo reconstruction">FFmpeg: Side-by-side stereo reconstruction</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Video-3D-Side-By-Side%0A*%20Title%3A%20Side-by-Side%203D%20Video%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,239 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Pixel Formats and Memory Layout | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Pixel Formats and Memory Layout | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Video-Pixel-Formats">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Video-Pixel-Formats">
+<h1>Pixel Formats and Memory Layout</h1>
+
+
+<p>A video decoder's output has to be usable by the next stage. That stage needs to find the components for a picture position, determine their precision, and move from one row to another. <strong>Pixel format</strong> describes the sample representation and organization that makes this possible.</p>
+<p>The compressed movie file has a codec and container. The decoded frame has component arrays or a hardware surface. Pixel format concerns this latter representation; its memory footprint is different from the compressed file's size.</p>
+<h2 id="one-picture-can-have-several-byte-arrangements">One picture can have several byte arrangements</h2>
+<p>Consider an 8-bit 4:2:0 frame with even dimensions. Its luma samples form a full-size grid. Each color-difference component has half as many columns and rows. The same samples can be laid out in different ways:</p>
+<table>
+<thead>
+<tr>
+<th>Arrangement</th>
+<th>Memory regions</th>
+<th>What lies beside what?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fully planar YCbCr, such as yuv420p</td>
+<td>Y, then separate Cb and Cr planes in a simple contiguous allocation</td>
+<td>Neighboring samples of the same component</td>
+</tr>
+<tr>
+<td>Semiplanar <a href="Video-NV12.html">NV12</a></td>
+<td>Y plane and a Cb/Cr plane</td>
+<td>Chroma appears as alternating Cb, Cr values</td>
+</tr>
+<tr>
+<td>Packed RGB24 after a component conversion</td>
+<td>A region with three component bytes per picture position</td>
+<td>R, G, B for one position, then R, G, B for the next</td>
+</tr>
+</tbody>
+</table>
+<p>The first two rows can organize identical YCbCr values. The third row also changes the component representation, requiring the <a href="../Video-YCbCr.html">YCbCr-to-RGB calculation</a>. A processing stage should distinguish a rearrangement of existing values from a conversion that calculates new values.</p>
+<p>“Plane” means a region or array used for a component or component group. It need not be a separate allocation, and the generic name does not guarantee that every implementation places all planes consecutively in one block.</p>
+<h2 id="a-twelve-byte-frame-first-without-padding">A twelve-byte frame, first without padding</h2>
+<p>Use a tiny <strong>4 × 2</strong> picture so every active sample can be counted:</p>
+<ul>
+<li>Y: four columns × two rows = eight samples.</li>
+<li>Cb: two columns × one row = two samples.</li>
+<li>Cr: two columns × one row = two samples.</li>
+</ul>
+<p>At one byte per sample, that is twelve bytes. In a tightly packed planar Y–Cb–Cr allocation, offsets 0–7 hold Y, offsets 8–9 Cb, and 10–11 Cr. In a tightly packed NV12 allocation, offsets 0–7 still hold Y, while offsets 8–11 contain <strong>Cb0, Cr0, Cb1, Cr1</strong>.</p>
+<p>Reading the NV12 chroma bytes as if they were two separate planes pairs the wrong values together. The resulting colors can be badly wrong even though the total byte count is correct.</p>
+<p>The layout's component order matters just as much for RGB. A physically stored B, G, R sequence interpreted as R, G, B swaps red and blue. The exact format definition supplies that order; a broad label such as “32-bit RGB” is insufficient to determine every byte's role and alpha convention.</p>
+<h2 id="row-pitch-explains-the-extra-bytes">Row pitch explains the extra bytes</h2>
+<p><strong>Stride</strong>, or <strong>row pitch</strong>, is the byte distance from the start of one row to the start of the next. It can exceed the active row width because an allocator aligns rows or reserves padding.</p>
+<p><img src="images/nv12-row-pitch.png" alt="Three rows of a four-by-two NV12 allocation, showing four active bytes and four padding bytes in each row."></p>
+<p><em>This deliberately small linear example has an 8-byte pitch. It is one possible allocation, not a required pitch for all four-column surfaces.</em></p>
+<p>With that pitch, the two Y rows occupy sixteen bytes. A chroma row occupies another eight bytes: four active component bytes and four padding bytes. The allocation illustrated holds <strong>24 bytes</strong>, although the active samples still need only twelve.</p>
+<p>For a linear plane whose base pointer is B, a byte-sized sample at column x, row y is found at:</p>
+<p><strong>address = B + y × pitch + x.</strong></p>
+<p>For a two-byte sample, the horizontal term becomes 2x. For interleaved components, each stored element's size and component offset also enter the calculation. The <a href="Video-NV12.html">NV12</a> and <a href="Video-P010.html">P010</a> examples work through those specific conventions.</p>
+<p>Using active width as if it were pitch makes the second row start too early whenever padding is present. A reader then treats padding or the tail of the previous row as picture data. The defect can repeat across the frame as shifted or corrupted rows.</p>
+<p>Some image APIs can expose negative strides for bottom-up storage. Others impose positive strides for a specific video format. The API-provided base, plane offsets, dimensions, and strides establish the accessible rows; a generic width calculation cannot replace them.</p>
+<h2 id="precision-is-not-always-the-storage-width">Precision is not always the storage width</h2>
+<p>The 4 × 2 frame contains twelve component samples regardless of whether they use 8-bit or 10-bit coding precision. NV12 holds each in one byte. P010 holds each in a two-byte word, with its ten meaningful bits in specified positions.</p>
+<p>An unpadded P010 version consequently needs <strong>24 bytes</strong> for its active sample words. The extra storage does not add picture positions. It provides a wider word for each component sample.</p>
+<p>Names such as <strong>yuv420p10le</strong> and <strong>p010le</strong> therefore encode useful differences: both can describe 10-bit 4:2:0 values, while their plane grouping and significant-bit positions differ. A stage receiving one cannot simply rename it as the other. The values must be read and stored according to their respective layouts.</p>
+<h2 id="frame-size-and-the-cost-of-repeated-access">Frame size and the cost of repeated access</h2>
+<p>For a linear unpadded 1920 × 1080 NV12 frame, the active storage is:</p>
+<p><strong>1,920 × 1,080 × 1.5 = 3,110,400 bytes</strong>, about <strong>2.97 MiB</strong>.</p>
+<p>The corresponding P010 sample words occupy <strong>6,220,800 bytes</strong>, about <strong>5.93 MiB</strong>. Real allocations can add row padding, extra allocated height, or device-specific organization.</p>
+<p>Now imagine a processing pass that reads every active NV12 byte and writes a same-sized output at 60 frames per second. Its simple sample-traffic budget is:</p>
+<p><strong>3,110,400 × 2 × 60 = 373,248,000 bytes per second.</strong></p>
+<p>The equivalent P010 read/write budget is twice that. Several distinct passes can repeatedly touch this data. Combining operations, reusing surfaces, or keeping suitable data on a device can reduce transfers between stages.</p>
+<p>These totals are arithmetic for the stated hypothetical pass, not measurements of a GPU bus or an Emby session. Cache reuse, tiling, fused operations, and which memory is accessed change actual traffic. They explain why moving decoded pictures can become substantial work even when the compressed movie arrives at a modest network bitrate.</p>
+<h2 id="hardware-surfaces-have-access-rules">Hardware surfaces have access rules</h2>
+<p>A hardware frame may be described by a device surface rather than a CPU pointer to a simple row-major array. Its storage can be tiled, device-local, or otherwise accessible only through the relevant API. A transfer or mapping operation makes an appropriate representation available to a stage that cannot operate on that surface directly.</p>
+<p>Hardware format and software sample format can both appear in a processing description: the first identifies the device-backed frame, while the latter describes the sample representation associated with it. Reading a reported device format as if it named an ordinary byte array omits the surface's access contract.</p>
+<p>In an Emby conversion, compatibility between decoder output, filters, and encoder input determines where rearrangement, precision conversion, or memory transfer is needed. A pixel-format change in a log is useful evidence about that boundary. The format names, dimensions, and device context together explain the operation it requires.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-NV12.html" title="NV12 Pixel Format">NV12 Pixel Format</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Video-P010.html" title="P010 Pixel Format">P010 Pixel Format</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Video-RGB.html" title="RGB Video">RGB Video</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Video-Chroma-Subsampling.html" title="Chroma Subsampling">Chroma Subsampling</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../precision-banding/Video-Bit-Depth.html" title="Video Bit Depth">Video Bit Depth</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.ffmpeg.org/doxygen/8.1/pixfmt_8h.html" title="FFmpeg 8.1: Pixel-format definitions">FFmpeg 8.1: Pixel-format definitions</a></li>
+			            <li><a class="seealso-link" href="https://www.ffmpeg.org/doxygen/8.1/structAVFrame.html" title="FFmpeg 8.1: AVFrame planes, line sizes, and color properties">FFmpeg 8.1: AVFrame planes, line sizes, and color properties</a></li>
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/medfound/uncompressed-video-buffers" title="Microsoft: Uncompressed video buffers and stride">Microsoft: Uncompressed video buffers and stride</a></li>
+			            <li><a class="seealso-link" href="https://docs.kernel.org/userspace-api/media/v4l/pixfmt-yuv-planar.html" title="Linux V4L2: Planar, semiplanar, contiguous, and tiled layouts">Linux V4L2: Planar, semiplanar, contiguous, and tiled layouts</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Video-Pixel-Formats%0A*%20Title%3A%20Pixel%20Formats%20and%20Memory%20Layout%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

@@ -108,7 +108,7 @@
 
 <p>A phone recording can appear portrait even when its stored picture raster is landscape. A production export can be enormous while a phone file with the same MOV extension is small. These observations make sense once <strong>QuickTime MOV</strong> is read as a presentation structure around media, rather than one codec.</p>
 <p>The format uses <strong>atoms</strong>, each identifying a kind of data and its size. Movie descriptions contain track and timing information; media-data atoms contain the encoded samples. This design was the basis for <a href="MP4-Container.html">ISO base media formats</a>, although their file types and conventions remain distinct.</p>
-<h2 id="read-a-track-into-the-movie-timeline">Read a track into the movie timeline</h2>
+<h2 id="sample-timing-and-track-edit-lists">Sample timing and track edit lists</h2>
 <p>A track describes its media type and sample representation. Sample tables identify encoded samples, how long they last, and where they live. The reader finds the bytes and hands them to the appropriate decoder.</p>
 <p>A movie can also use an <strong>edit list</strong> to relate media time to presentation time. A track may begin after an initial empty interval, or present a range beginning partway through its stored media. Reading every sample from media time zero need not reproduce the presentation described by those edits.</p>
 <table>

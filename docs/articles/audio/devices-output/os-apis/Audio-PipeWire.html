@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>PipeWire | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="PipeWire | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Audio-PipeWire">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Audio-PipeWire">
+<h1>PipeWire</h1>
+
+
+<p>PipeWire organizes audio and other media as a <strong>processing graph</strong>. Applications and devices produce or consume buffers; links carry those buffers between their ports. A separate session manager decides how available devices and streams should be configured and connected.</p>
+<p>This distinction is useful when a Linux player produces audio but it reaches the wrong output: the processing system may be running correctly while the selected route differs from the intended one.</p>
+<p><img src="../images/linux-routes.png" alt="Application interfaces enter a PipeWire processing graph; session policy selects connections, and an ALSA device route reaches hardware."></p>
+<p>The diagram shows one possible local audio configuration. A remote Emby server delivers media to the client app before this local output graph; it is not automatically a node in that client's graph.</p>
+<h2 id="nodes-ports-links-and-policy">Nodes, ports, links and policy</h2>
+<p>A <strong>node</strong> performs or hosts media processing. A <strong>port</strong> is one of its inputs or outputs. A <strong>link</strong> connects an output port to an input port. The graph can represent application streams, processing stages and device-facing nodes.</p>
+<p>A session manager such as <strong>WirePlumber</strong> handles policy: selecting device profiles, remembering or choosing targets and creating appropriate connections. The PipeWire daemon coordinates the graph's processing.</p>
+<p>Consequently, a node can exist without being connected to the intended speakers. A connection can also change when a device appears or disappears. Selecting a default device and observing the links of an already-running stream are related but distinct tasks.</p>
+<h2 id="quantum-is-the-amount-processed-in-a-graph-cycle">Quantum is the amount processed in a graph cycle</h2>
+<p>The graph's <strong>rate</strong> describes its sample clock. Its <strong>quantum</strong> describes the number of sample frames processed per cycle.</p>
+<p>For a chosen quantum of <strong>256 frames at 48 kHz</strong>:</p>
+<pre><code class="lang-text">cycle duration = 256 / 48,000 ≈ 5.333 ms
+cycles per second = 48,000 / 256 = 187.5
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Example quantum at 48 kHz</th>
+<th style="text-align: right;">Nominal cycle duration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">128 frames</td>
+<td style="text-align: right;">2.667 ms</td>
+</tr>
+<tr>
+<td style="text-align: right;">256 frames</td>
+<td style="text-align: right;">5.333 ms</td>
+</tr>
+<tr>
+<td style="text-align: right;">512 frames</td>
+<td style="text-align: right;">10.667 ms</td>
+</tr>
+</tbody>
+</table>
+<p>These are examples, not distribution defaults. Reducing the quantum gives the system shorter processing intervals and more frequent scheduling work. It does not change the pitch or duration of correctly delivered audio.</p>
+<p>The complete audible delay can include client queues, adapters, graph processing, device buffers and a wireless output. A 5.333 ms cycle is therefore not a claim of 5.333 ms total latency.</p>
+<p>Node latency preferences can influence configuration, while device requirements, active clients or forced settings can determine another result. The observed rate and quantum describe the running graph more accurately than a requested value in one application.</p>
+<h2 id="a-driver-starts-cycles-another-clock-can-drift">A driver starts cycles; another clock can drift</h2>
+<p>A graph driver starts processing cycles and supplies timing information. A device-backed driver can be paced by a physical audio clock, while timestamps are related to the system's monotonic time.</p>
+<p>Suppose a USB device's nominal 48 kHz clock runs 100 ppm fast. It consumes <strong>4.8 additional frames per second</strong> relative to an exact 48,000-frame clock. Buffering absorbs short differences, but a persistent difference accumulates.</p>
+<p>The graph needs a consistent strategy for relating those clocks. Rate matching and timing compensation at appropriate boundaries keep a queue from growing or emptying indefinitely. A “48 kHz” format label gives the nominal rate; it does not prove that two independent oscillators advance identically.</p>
+<p>For a movie, the player also relates this output timing to picture presentation. Graph processing that meets every deadline can still require an accurate downstream-delay estimate for lip sync.</p>
+<h2 id="existing-apis-can-enter-the-same-graph">Existing APIs can enter the same graph</h2>
+<p>A native PipeWire client can create a stream directly. A PulseAudio client can connect through <code>pipewire-pulse</code>. Compatibility support can also expose routes to applications using other audio interfaces.</p>
+<p>Those interfaces identify how the application communicates, while the running server and graph identify what processes the audio. ALSA remains important as a Linux hardware interface beneath many device nodes. These are layers in a route rather than mutually exclusive labels for the whole machine.</p>
+<p>Two concrete failures illustrate the distinction. A stream linked to the laptop speakers can play continuously while the listener expects the USB interface: its route is wrong. A stream linked to the correct USB interface can break up when a processing deadline is missed: its timing failed. Changing the default target addresses the first kind of problem only if policy reconnects that stream; changing the quantum addresses the second only if the revised scheduling and buffering meet the deadline.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Audio-ALSA.html" title="ALSA">ALSA</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Audio-PulseAudio.html" title="PulseAudio">PulseAudio</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../decoding-output/Audio-Video-Synchronization.html" title="Audio/Video Synchronization">Audio/Video Synchronization</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Audio-USB.html" title="USB Audio">USB Audio</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://docs.pipewire.org/page_objects_design.html" title="PipeWire: Objects design">PipeWire: Objects design</a></li>
+			            <li><a class="seealso-link" href="https://docs.pipewire.org/page_config.html" title="PipeWire: Configuration and session management">PipeWire: Configuration and session management</a></li>
+			            <li><a class="seealso-link" href="https://docs.pipewire.org/page_man_pipewire-props_7.html" title="PipeWire: Node and scheduling properties">PipeWire: Node and scheduling properties</a></li>
+			            <li><a class="seealso-link" href="https://docs.pipewire.org/page_driver.html" title="PipeWire: Driver architecture and clocks">PipeWire: Driver architecture and clocks</a></li>
+			            <li><a class="seealso-link" href="https://docs.pipewire.org/page_man_pipewire-pulse_1.html" title="PipeWire: PulseAudio-compatible server">PipeWire: PulseAudio-compatible server</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Audio-PipeWire%0A*%20Title%3A%20PipeWire%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

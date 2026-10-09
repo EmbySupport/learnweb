@@ -110,7 +110,7 @@
 <p><img src="images/container-structure.svg" alt="Container structures describe tracks, hold encoded media, and provide timing and navigation."></p>
 <p><em>The jobs are shared across container families; the arrangement of bytes differs.</em></p>
 <p>A file reader typically obtains three kinds of information. <strong>Track descriptions</strong> identify encoded components and their configuration. <strong>Media storage</strong> divides or groups their data so it can be read. <strong>Timing and navigation</strong> connect the groups with positions in the presentation.</p>
-<h2 id="follow-a-subtitle-alongside-a-scene">Follow a subtitle alongside a scene</h2>
+<h2 id="subtitle-timing-beside-video-and-audio">Subtitle timing beside video and audio</h2>
 <p>Suppose a dialogue subtitle should appear from 12.4 to 14.0 seconds. The file must identify it as a subtitle component, store its text or bitmap, and associate it with those times. The video for that scene and its sound are other components. Reading them from one file does not make their internal encodings the same.</p>
 <p>The container reader extracts the chosen components and passes them to the appropriate decoder or renderer. The playback system schedules their results against a shared presentation time. That is how several differently encoded sequences become one viewing experience.</p>
 <p>Additional information can describe the track's language, name a chapter, or carry a font used by the subtitle renderer. These objects do not all behave like timed media: an attached font is a supporting file, while a subtitle event has a presentation interval.</p>

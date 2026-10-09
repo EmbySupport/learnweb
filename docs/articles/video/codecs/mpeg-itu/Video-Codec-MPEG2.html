@@ -108,12 +108,12 @@
 
 <p>An older television recording or disc-derived film often carries <strong>MPEG-2 Video</strong>, standardized as ITU-T H.262 and ISO/IEC 13818-2. Its compressed track describes how to build pictures; a transport or program stream supplies the packaging around that track.</p>
 <p>To understand the format, follow one of its coded pictures.</p>
-<h2 id="read-the-sequence-and-picture-information">Read the sequence and picture information</h2>
+<h2 id="sequence-headers-macroblocks-and-dct-corrections">Sequence headers, macroblocks, and DCT corrections</h2>
 <p>Sequence information establishes the picture grid and relevant timing/format parameters. Picture information identifies the coding type and applicable reconstruction choices.</p>
 <p>In common 8-bit 4:2:0 material, a macroblock covers a <strong>16 × 16 brightness region</strong>. Its brightness corrections are represented in four <strong>8 × 8 blocks</strong>, with corresponding color-difference blocks.</p>
 <p>The encoder uses a <strong>discrete cosine transform (DCT)</strong> to represent correction patterns as coefficients. Quantization reduces their precision. The decoder reconstructs those coefficients, applies the inverse transform, and adds the correction to the picture's predictor.</p>
 <p>The block representation explains familiar low-bitrate artifacts: lost fine patterns or disagreeing coded regions can reveal softened texture and block-shaped boundaries.</p>
-<h2 id="follow-the-i-p-and-b-pictures">Follow the I, P, and B pictures</h2>
+<h2 id="picture-dependencies-and-decoding-order">Picture dependencies and decoding order</h2>
 <p>An <strong>I-picture</strong> reconstructs its picture content without a temporal sample reference. A <strong>P-picture</strong> can predict from an available anchor and encode what changed. A <strong>B-picture</strong> can use the permitted prediction from surrounding anchors, which have to be decoded first.</p>
 <p>For a visible sequence <strong>I0, B1, B2, P3</strong>, the decoder can reconstruct I0 and P3 before B1 and B2. It then shows them in their original viewing order.</p>
 <p>MPEG-2's I/P anchor structure differs from modern structures that can use B-pictures as references. The <a href="../../compression/picture-prediction-and-random-access/Video-GOP.html">GOP explanation</a> gives the general dependency trace; the specific codec's rules determine the legal graph.</p>

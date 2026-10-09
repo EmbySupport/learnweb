@@ -131,7 +131,7 @@
 </tbody>
 </table>
 <p>These are input sizes, not measured CPU throughput. Each position can require component conversion, transfer-function calculations, curve evaluation, and output preparation. The chosen implementation determines how those operations are combined or accelerated with vector instructions and threads.</p>
-<h2 id="follow-a-software-filter-representation">Follow a software-filter representation</h2>
+<h2 id="float-rgb-storage-and-memory-traffic">Float RGB storage and memory traffic</h2>
 <p>FFmpeg's CPU tonemap filter operates on floating-point RGB in linear light. A suitable surrounding path interprets the incoming HDR signal, supplies that working representation, runs the mapping, and prepares the final output format.</p>
 <p>For a 3840 × 2160 picture with three 32-bit float components, the logical sample storage is:</p>
 <p><strong>3840 × 2160 × 3 × 4 = 99,532,800 bytes</strong>, about <strong>99.53 MB per picture</strong> before padding.</p>

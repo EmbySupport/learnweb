@@ -107,7 +107,7 @@
 
 
 <p>BT.2446 Method A is an HDR/SDR conversion method. A renderer option called BT.2446A can use its brightness function within a larger conversion pipeline; the complete report also defines associated color processing.</p>
-<h2 id="follow-the-brightness-calculations-stages">Follow the brightness calculation's stages</h2>
+<h2 id="power-logarithmic-and-piecewise-coordinates">Power, logarithmic, and piecewise coordinates</h2>
 <p>The plotted library function normalizes source light to the source range and applies a power representation. It then compresses that coordinate through a logarithmic relationship whose scale depends on the peak.</p>
 <p>A piecewise function treats three coordinate regions differently: a scaled lower segment, a quadratic middle segment, and a linear upper segment. Finally, the calculation converts back through the destination relationship to obtain output light. The changing slope is what distributes contrast across the range.</p>
 <p><img src="images/tone-mapping-curve-bt2446a.png" alt="Brightness portion of Method A for a 1,000-nit source and 100-nit target."></p>

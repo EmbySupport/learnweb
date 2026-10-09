@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Apple Core Audio | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Apple Core Audio | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Audio-Core-Audio">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Audio-Core-Audio">
+<h1>Apple Core Audio</h1>
+
+
+<p><strong>Core Audio</strong> is a collection of Apple audio services, rather than one codec or one fixed output mode. It covers reading audio, describing formats, converting data, processing samples, and communicating with output devices.</p>
+<p>The name therefore does not establish whether a player mixes audio, changes its sample rate, uses spatial processing or preserves PCM values. Those results depend on the services and configuration used by the application.</p>
+<h2 id="the-responsibilities-within-the-framework">The responsibilities within the framework</h2>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Audio file and stream services</td>
+<td>Interpret stored or incoming audio data</td>
+</tr>
+<tr>
+<td>Audio Converter services</td>
+<td>Convert supported representations and sample formats</td>
+</tr>
+<tr>
+<td>Audio Units</td>
+<td>Process and route signal blocks, including mixing and output</td>
+</tr>
+<tr>
+<td>Audio Queue services</td>
+<td>Manage queued playback or recording buffers</td>
+</tr>
+<tr>
+<td>Audio hardware abstraction layer, HAL</td>
+<td>Provide device-oriented access on macOS</td>
+</tr>
+<tr>
+<td>AVAudioSession on supported Apple platforms</td>
+<td>Express the app's audio use and preferences, and observe the selected route</td>
+</tr>
+</tbody>
+</table>
+<p>Higher-level playback facilities can build on these services. An Emby app using a platform player does not have to call every lower-level API itself.</p>
+<p>The macOS device model and the iOS-family audio-session model also differ. A device access technique on macOS should not be assumed to be an equivalent selectable mode on a phone.</p>
+<h2 id="a-sample-frame-can-span-several-buffers">A sample frame can span several buffers</h2>
+<p>An <code>AudioStreamBasicDescription</code>, commonly <strong>ASBD</strong>, describes the stream's rate, format, channels, sample representation and packet/frame dimensions. Buffer organization then determines where the samples are stored.</p>
+<p>Take <strong>48 kHz stereo with 32-bit floating-point samples</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Arrangement</th>
+<th>Samples in memory</th>
+<th style="text-align: right;">Storage for 480 sample frames</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Interleaved</td>
+<td>L₀, R₀, L₁, R₁… in one buffer</td>
+<td style="text-align: right;">One 3,840-byte buffer</td>
+</tr>
+<tr>
+<td>Noninterleaved</td>
+<td>L₀, L₁… and R₀, R₁… in separate buffers</td>
+<td style="text-align: right;">Two 1,920-byte buffers</td>
+</tr>
+</tbody>
+</table>
+<p>Both represent <strong>10 ms of stereo audio</strong>. Interleaved frames use eight bytes; each noninterleaved channel plane uses four bytes per frame. The number of buffers has not doubled the duration.</p>
+<p>A callback receiving 480 frames needs the appropriate amount of storage in each buffer. Treating a per-plane byte count as the total interleaved count can truncate data or overwrite memory. The format flags and buffer list supply the interpretation; a casual “float stereo” label is incomplete.</p>
+<p>Compressed packets have another relationship to frames. A codec packet can decode to many PCM sample frames. Packet count is not a substitute for the sample clock.</p>
+<h2 id="a-preference-is-not-the-actual-device-format">A preference is not the actual device format</h2>
+<p>An application can request a preferred sample rate or I/O buffer duration through its audio session. Those values express a preference. The actual route and other active audio requirements can produce another result.</p>
+<p>After activation or a route change, the application queries the <strong>actual sample rate and buffer duration</strong>. If a source is 44.1 kHz and the active output route is 48 kHz, some stage must supply suitable 48 kHz samples. A file's original rate remains useful metadata but does not prove the final route's rate.</p>
+<p>A headphone disconnection, Bluetooth selection or other route event can also change capabilities and timing. The player needs to adapt its stream rather than continuing to interpret buffers using an obsolete configuration.</p>
+<h2 id="rendering-on-the-output-deadline">Rendering on the output deadline</h2>
+<p>The output consumes frames at the established clock rate. Callbacks or queues keep it supplied. Data retrieval and expensive preparation need enough advance time so that the render work can meet its deadline.</p>
+<p>For movie playback, the system's audio timing helps the player align video presentation with the output. The duration of one callback is a processing interval, while the complete route can include additional queued and device delay.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../fundamentals/sample-representation/PCM-Sample-Formats.html" title="PCM Sample Formats">PCM Sample Formats</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../fundamentals/sample-representation/Audio-Sample-Rate.html" title="Audio Sample Rate">Audio Sample Rate</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Audio-DAC.html" title="Digital-to-analog conversion (DAC)">Digital-to-analog conversion (DAC)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../decoding-output/Audio-Playback-Path.html" title="The Audio Playback Path">The Audio Playback Path</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://developer.apple.com/library/archive/documentation/MusicAudio/Conceptual/CoreAudioOverview/CoreAudioEssentials/CoreAudioEssentials.html" title="Apple: Core Audio Essentials">Apple: Core Audio Essentials</a></li>
+			            <li><a class="seealso-link" href="https://developer.apple.com/documentation/coreaudiotypes/audiostreambasicdescription" title="Apple: AudioStreamBasicDescription">Apple: AudioStreamBasicDescription</a></li>
+			            <li><a class="seealso-link" href="https://developer.apple.com/documentation/avfaudio/avaudiosession" title="Apple: AVAudioSession">Apple: AVAudioSession</a></li>
+			            <li><a class="seealso-link" href="https://developer.apple.com/documentation/avfaudio/avaudiosession/preferredsamplerate" title="Apple: Preferred sample rate and the actual sample rate">Apple: Preferred sample rate and the actual sample rate</a></li>
+			            <li><a class="seealso-link" href="https://developer.apple.com/library/archive/documentation/MusicAudio/Reference/CAFSpec/CAF_spec/CAF_spec.html" title="Apple Core Audio Format specification: Packet table">Apple Core Audio Format specification: Packet table</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Audio-Core-Audio%0A*%20Title%3A%20Apple%20Core%20Audio%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

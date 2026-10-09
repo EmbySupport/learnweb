@@ -138,7 +138,7 @@
 </tbody>
 </table>
 <p>Use this table when one old WMA file plays and another does not. <strong>WMA names a family</strong>; the reader's format identifier selects a particular decoder job.</p>
-<h2 id="read-the-package-then-the-member">Read the package, then the member</h2>
+<h2 id="asf-packaging-and-wma-family-identification">ASF packaging and WMA family identification</h2>
 <p>A WMA extension commonly names an audio-only ASF file. The ASF stream description identifies the encoded audio. A reader can recognize the outer container while lacking the decoder for its specific WMA member.</p>
 <p>For example, a stereo music file using Standard and a multichannel recording using Professional can share the extension but need different codec capabilities. The latter also needs the appropriate channel-layout handling after decoding.</p>
 <p>A high bitrate or sample rate is not a substitute for that identification. Lossless is distinguished by its format, not by a file happening to be large.</p>

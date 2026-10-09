@@ -108,7 +108,7 @@
 
 <p>An archived SD recording is enlarged to 1080p, and its colored objects change slightly even though neutral gray still looks sensible. One possibility is a disagreement about the luma/color-difference matrix: an image represented using BT.601 values is being reconstructed as if those values used BT.709.</p>
 <p>BT.601, or Rec. 601, defines digital component-video encoding for standard-definition television. Its matrix remains relevant after a picture is resized, because enlarging the sample grid does not automatically change what the samples mean.</p>
-<h2 id="follow-the-color-through-an-upscale">Follow the color through an upscale</h2>
+<h2 id="bt601-color-after-upscaling">BT.601 color after upscaling</h2>
 <p>Start with nonlinear RGB components R′, G′, and B′. The familiar BT.601 luma weighting is:</p>
 <p><strong>Y′ = 0.299R′ + 0.587G′ + 0.114B′</strong></p>
 <p>Two color-difference components describe the color around that luma value. A playback stage uses the matching inverse relationship to recover RGB. The weights operate on nonlinear signal components; this luma is different from a direct measurement of emitted light.</p>

@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Bluetooth A2DP | Emby Learn </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Bluetooth A2DP | Emby Learn ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="theme-color" content="#090d0f">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="stylesheet" href="../../../../styles/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../styles/theme.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    <meta property="docfx:uid" content="Audio-Bluetooth-A2DP">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+    <script type="text/javascript" src="../../../../nav.js"></script>
+    <script type="text/javascript" src="../../../toc.js"></script>
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list">
+                
+                    <li><a href="https://emby.media/about.html" title="How it Works">How it Works</a></li>
+                    <li><a href="https://emby.media/download.html" title="Download">Download</a></li>
+                    <li><a href="https://emby.media/premiere.html" title="Premiere">Premiere</a></li>
+                    <li><a href="../../../../index.html" title="Learn" class="is-current" aria-current="page">Learn</a></li>
+                    <li><a href="https://emby.media/support/" title="Support">Support</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <div class="hide-when-search" id="breadcrumb">
+      	  <ul class="breadcrumb">
+      		<li></li>
+      	  </ul>
+      	</div>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search support topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Audio-Bluetooth-A2DP">
+<h1>Bluetooth A2DP</h1>
+
+
+<p><strong>A2DP</strong>, the Advanced Audio Distribution Profile, defines media-audio delivery over Bluetooth Classic. The transmitting device is the <strong>source (SRC)</strong>; the receiving headphones, speaker or receiver are the <strong>sink (SNK)</strong>.</p>
+<p>A2DP standardizes the supported audio configuration and delivery procedures. It does not mean that every Bluetooth device accepts the same optional codec, nor that an app can assume the codec from the soundtrack's filename.</p>
+<h2 id="a-compatible-configuration-is-selected">A compatible configuration is selected</h2>
+<p>The source and sink exchange capabilities through the audio/video distribution transport framework, AVDTP, and select an agreed configuration. <strong>SBC</strong> supplies the mandatory common codec. Optional codecs, including AAC, require compatible support at both ends.</p>
+<p>Codec support is only the first question. The chosen sampling frequency, channel mode and codec parameters must also be accepted. A device advertising an option does not prove that it was selected for the current stream.</p>
+<p>In an ordinary Emby route, the app or platform decodes the selected movie or music track before the host's wireless subsystem produces the A2DP stream. This can add another lossy encode after a lossy source decode. A lossless source avoids the source's lossy generation, while the separately negotiated radio coding remains.</p>
+<h2 id="one-sbc-frame-is-not-one-transport-packet">One SBC frame is not one transport packet</h2>
+<p>SBC divides the signal into subbands and encodes blocks of subband samples. For a selected configuration with <strong>16 blocks and 8 subbands</strong>, one SBC frame represents <strong>128 samples per channel</strong>.</p>
+<p>At 48 kHz:</p>
+<pre><code class="lang-text">16 × 8 = 128 sample frames
+128 / 48,000 = 0.0026667 s ≈ 2.667 ms
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Example meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sample frame</td>
+<td>Simultaneous left/right samples at one instant</td>
+</tr>
+<tr>
+<td>SBC frame</td>
+<td>128 sample frames in this configuration</td>
+</tr>
+<tr>
+<td>Media payload</td>
+<td>Can contain several complete SBC frames, or specified fragmentation</td>
+</tr>
+<tr>
+<td>Output delay</td>
+<td>Includes more than the duration of one coded frame</td>
+</tr>
+</tbody>
+</table>
+<p>Three of those SBC frames cover <strong>384 sample frames</strong>, or <strong>8 ms</strong> of audio. Packing several frames together changes transport overhead and delivery grouping; it does not change the waveform's sampling rate.</p>
+<p>SBC's bitpool contributes to its coded size along with channel mode, block count and subband count. “SBC” therefore does not describe one fixed bitrate. A bitrate number also needs to distinguish codec payload from packet and radio overhead.</p>
+<h2 id="controls-and-conversation-use-other-roles">Controls and conversation use other roles</h2>
+<p>AVRCP supplies remote-control functions such as media commands. A2DP carries the media audio. A headset can support both while their responsibilities remain separate.</p>
+<p>Likewise, a communications profile for microphone and call audio serves a different use case from A2DP's media distribution. Switching into that use case can change the selected audio format and processing. Successful pairing alone does not establish which route is active.</p>
+<h2 id="receiver-delay-is-part-of-movie-playback">Receiver delay is part of movie playback</h2>
+<p>A sink buffers incoming coded audio before decoding and presenting it. A2DP includes delay-reporting procedures that can help a source account for the receiving side. The resulting end-to-end delay also depends on producer, operating-system and transport buffering.</p>
+<p>For movie playback, the useful comparison is sound presentation against picture presentation. A 2.667 ms SBC frame does not promise 2.667 ms total latency. If a route changes during playback, the player may need an updated delay estimate and a new output configuration.</p>
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Audio-Bluetooth.html" title="Bluetooth audio">Bluetooth audio</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Audio-Bluetooth-LE.html" title="Bluetooth LE Audio">Bluetooth LE Audio</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../fundamentals/Audio-Bitrate.html" title="Audio Bitrate">Audio Bitrate</a>
+      </li>
+</ul>
+
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.bluetooth.org/DocMan/handlers/DownloadDoc.ashx?doc_id=544797" title="Bluetooth SIG Advanced Audio Distribution Profile 1.4">Bluetooth SIG Advanced Audio Distribution Profile 1.4</a></li>
+			            <li><a class="seealso-link" href="https://www.bluetooth.com/specifications/specs/advanced-audio-distribution-profile-1-4/" title="A2DP 1.4 specification and mandatory erratum">A2DP 1.4 specification and mandatory erratum</a></li>
+			            <li><a class="seealso-link" href="https://www.bluetooth.com/specifications/specs/a-v-remote-control-profile-1-6-2/" title="Bluetooth SIG: A/V Remote Control Profile 1.6.2">Bluetooth SIG: A/V Remote Control Profile 1.6.2</a></li>
+			            <li><a class="seealso-link" href="https://www.bluetooth.com/specifications/specs/hands-free-profile-1-10/" title="Bluetooth SIG: Hands-Free Profile 1.10">Bluetooth SIG: Hands-Free Profile 1.10</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Audio-Bluetooth-A2DP%0A*%20Title%3A%20Bluetooth%20A2DP%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>
