@@ -1,0 +1,273 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Casting and screen mirroring: where playback happens | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Casting and screen mirroring send presentation to another device through different media paths, with receiver playback or sender-screen transmission changing resource and processing requirements.">
+  <link rel="canonical" href="https://emby.media/learn/articles/playback-streaming/casting/Playback-Casting-Mirroring.html">
+  <meta property="og:title" content="Casting and screen mirroring: where playback happens | Emby Learn">
+  <meta property="og:description" content="Casting and screen mirroring send presentation to another device through different media paths, with receiver playback or sender-screen transmission changing resource and processing requirements.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/playback-streaming/casting/Playback-Casting-Mirroring.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/playback-streaming/casting/Playback-Casting-Mirroring.html","url":"https://emby.media/learn/articles/playback-streaming/casting/Playback-Casting-Mirroring.html","name":"Casting and screen mirroring: where playback happens","inLanguage":"en","headline":"Casting and screen mirroring: where playback happens","articleSection":"Playback and streaming","proficiencyLevel":"Beginner","accessMode":"textual","description":"Casting and screen mirroring send presentation to another device through different media paths, with receiver playback or sender-screen transmission changing resource and processing requirements.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Playback and streaming","item":"https://emby.media/learn/articles/playback-streaming/index.html"},{"@type":"ListItem","position":3,"name":"Casting and remote playback","item":"https://emby.media/learn/articles/playback-streaming/casting/index.html"},{"@type":"ListItem","position":4,"name":"Casting and screen mirroring","item":"https://emby.media/learn/articles/playback-streaming/casting/Playback-Casting-Mirroring.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Playback-Casting-Mirroring">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../playback-streaming/index.html">Playback and streaming</a></li>
+              <li><a href="../../playback-streaming/casting/index.html">Casting and remote playback</a></li>
+              <li><span aria-current="page">Casting and screen mirroring</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Playback-Casting-Mirroring">
+<h1>Casting and screen mirroring: where playback happens</h1>
+<p class="article-description">Casting and screen mirroring send presentation to another device through different media paths, with receiver playback or sender-screen transmission changing resource and processing requirements.</p>
+
+
+<p><strong>Casting</strong> often makes one device a controller for playback on another. <strong>Screen mirroring</strong> sends a representation of the sender's displayed surface to a receiver. Both put a picture on another screen, but they can move media through different paths.</p>
+<p>Identifying that path explains which device needs the codec, where subtitles are rendered and which connection carries most of the media traffic.</p>
+<h2 id="receiver-playback-can-leave-the-phone-out-of-the-media-path">Receiver playback can leave the phone out of the media path</h2>
+<p>In a typical media-casting arrangement, the controller tells a receiver what to play. The receiver then obtains the programme resource from its origin and performs playback.</p>
+<p>An Emby phone app can act as the controller while Emby Server delivers the selected representation to the receiver. The phone's ability to play the original source does not establish the receiver's compatibility.</p>
+<p><img src="images/casting-versus-mirroring.png" alt="An original comparison shows origin-to-receiver media casting and sender-to-receiver screen mirroring as different media routes."></p>
+<h2 id="mirroring-includes-the-senders-presentation">Mirroring includes the sender's presentation</h2>
+<p>Screen mirroring captures or otherwise produces a representation of the sender's displayed surface. The receiving device presents that transmitted result.</p>
+<p>A movie originally encoded in one format can therefore be decoded on the sender, composed with its interface and subtitles, and transmitted as another representation. Scaling, display timing and the mirroring path can affect what reaches the larger screen.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Receiver media playback</th>
+<th>Screen mirroring</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Primary media preparation</td>
+<td>Receiver's selected media path</td>
+<td>Sender presentation plus mirroring path</td>
+</tr>
+<tr>
+<td>Content represented</td>
+<td>Programme resource and selected features</td>
+<td>Sender's displayed surface</td>
+</tr>
+<tr>
+<td>Subtitle handling</td>
+<td>Receiver or delivered subtitle/video path</td>
+<td>Can be part of the captured displayed result</td>
+</tr>
+<tr>
+<td>Sender activity</td>
+<td>Controller lifecycle</td>
+<td>Ongoing screen/presentation source</td>
+</tr>
+</tbody>
+</table>
+<p>This comparison describes two arrangements. Products such as AirPlay offer multiple modes, so the visible brand or output button alone does not establish which arrangement is active.</p>
+<h2 id="a-picture-quality-change-needs-a-path-explanation">A picture-quality change needs a path explanation</h2>
+<p>If an Emby cast receiver needs a lower-rate compatible representation, the server can change the delivered media. That is different from mirroring a high-resolution source after the phone has already scaled it into a smaller displayed surface.</p>
+<p>Likewise, a mirrored subtitle visible on the phone can appear as pixels in the transmitted screen. Receiver playback can instead select a separate subtitle rendition or require burn-in based on the receiver's capabilities.</p>
+<p>Recording the actual source, selected tracks and receiving mode makes those differences understandable.</p>
+<h2 id="the-senders-lifecycle-follows-its-role">The sender's lifecycle follows its role</h2>
+<p>A receiver pulling media can continue independently of individual controller interactions, subject to its application/session policy. A mirroring path needs its active sender presentation.</p>
+<p>A controller disappearing can still end a receiver session if that receiver's policy says to stop. Continued playback after a phone screen turns off is therefore evidence about a particular session, not a universal rule for all casting.</p>
+<p><a href="Playback-Receiver-Connectivity.html">Controller and receiver connectivity</a> separates discovery, control and media retrieval so each route can be examined directly.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Google-Cast.html" title="Google Cast and receiver-side media playback">Google Cast and receiver-side media playback</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-AirPlay.html" title="AirPlay media presentation and screen mirroring">AirPlay media presentation and screen mirroring</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="dlna/Playback-DLNA.html" title="DLNA media playback and UPnP AV roles">DLNA media playback and UPnP AV roles</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Remote-Control.html" title="Playback remote control and reported session state">Playback remote control and reported session state</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Receiver-Connectivity.html" title="Controller and receiver connectivity">Controller and receiver connectivity</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../from-server/Playback-Track-Selection.html" title="Track selection and playback plans">Track selection and playback plans</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://developers.google.com/cast/docs/reference" title="Google Cast: Sender and receiver APIs">Google Cast: Sender and receiver APIs</a></li>
+			            <li><a class="seealso-link" href="https://developers.google.com/cast/docs/web_receiver/core_features" title="Google Cast: Web Receiver core features">Google Cast: Web Receiver core features</a></li>
+			            <li><a class="seealso-link" href="https://support.apple.com/en-us/102661" title="Apple: AirPlay video streaming and screen mirroring">Apple: AirPlay video streaming and screen mirroring</a></li>
+			            <li><a class="seealso-link" href="https://upnp.org/specs/av/UPnP-av-AVArchitecture-v2.pdf" title="UPnP AV Architecture version 2">UPnP AV Architecture version 2</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Playback-Casting-Mirroring%0A*%20Title%3A%20Casting%20and%20screen%20mirroring%3A%20where%20playback%20happens%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

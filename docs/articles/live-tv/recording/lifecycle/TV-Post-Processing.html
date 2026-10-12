@@ -1,0 +1,295 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Recording post-processing and verified replacement | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Recording post-processing transforms or reorganizes captured media after acquisition, requiring output validation and a consistent publication step before replacing the usable original.">
+  <link rel="canonical" href="https://emby.media/learn/articles/live-tv/recording/lifecycle/TV-Post-Processing.html">
+  <meta property="og:title" content="Recording post-processing and verified replacement | Emby Learn">
+  <meta property="og:description" content="Recording post-processing transforms or reorganizes captured media after acquisition, requiring output validation and a consistent publication step before replacing the usable original.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/live-tv/recording/lifecycle/TV-Post-Processing.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/live-tv/recording/lifecycle/TV-Post-Processing.html","url":"https://emby.media/learn/articles/live-tv/recording/lifecycle/TV-Post-Processing.html","name":"Recording post-processing and verified replacement","inLanguage":"en","headline":"Recording post-processing and verified replacement","articleSection":"Live TV and recording","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"Recording post-processing transforms or reorganizes captured media after acquisition, requiring output validation and a consistent publication step before replacing the usable original.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Live TV and recording","item":"https://emby.media/learn/articles/live-tv/index.html"},{"@type":"ListItem","position":3,"name":"Recording and time shifting","item":"https://emby.media/learn/articles/live-tv/recording/index.html"},{"@type":"ListItem","position":4,"name":"Recording lifecycle","item":"https://emby.media/learn/articles/live-tv/recording/lifecycle/index.html"},{"@type":"ListItem","position":5,"name":"Recording post-processing","item":"https://emby.media/learn/articles/live-tv/recording/lifecycle/TV-Post-Processing.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-TV-Post-Processing">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../live-tv/index.html">Live TV and recording</a></li>
+              <li><a href="../../../live-tv/recording/index.html">Recording and time shifting</a></li>
+              <li><a href="../../../live-tv/recording/lifecycle/index.html">Recording lifecycle</a></li>
+              <li><span aria-current="page">Recording post-processing</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-TV-Post-Processing">
+<h1>Recording post-processing and verified replacement</h1>
+<p class="article-description">Recording post-processing transforms or reorganizes captured media after acquisition, requiring output validation and a consistent publication step before replacing the usable original.</p>
+
+
+<p>Post-processing can change a recording’s container, encoding, programme boundaries or location after capture. Those operations have different effects on the media and on the files that other parts of the server can use.</p>
+<p>Emby provides an optional recording post-processing hook. A hook launches configured work; it does not establish that the resulting artifact is complete, correctly identified or suitable for every client.</p>
+<h2 id="choose-what-is-actually-being-changed">Choose what is actually being changed</h2>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Media consequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Remux</td>
+<td>Repackage selected compressed streams without decoding and re-encoding them</td>
+</tr>
+<tr>
+<td>Transcode</td>
+<td>Decode and encode the selected media, potentially changing its representation</td>
+</tr>
+<tr>
+<td>Cut/edit</td>
+<td>Change the retained timeline, subject to the chosen edit method</td>
+</tr>
+<tr>
+<td>Move</td>
+<td>Change location; container and elementary media can remain unchanged</td>
+</tr>
+</tbody>
+</table>
+<p>Stream selection matters even in a remux. Keeping only video and one audio track can omit wanted subtitles or another language without performing a lossy video encode.</p>
+<p>A precise cut can also require more work than copying whole compressed packets. Decodable entry points and dependencies determine whether the requested boundary can be retained without re-encoding.</p>
+<p><a href="../../../media-files/container-structure/timing-and-navigation/Media-Container-Seeking.html">Container seeking</a> supplies that navigation context.</p>
+<h2 id="a-precise-cut-has-a-dependency-boundary">A precise cut has a dependency boundary</h2>
+<p>Use an original simplified video model with independent entry pictures at zero, four and eight seconds. The desired clip begins at second three and ends at seven.</p>
+<p>Starting copied video at four omits the first wanted second. Retaining the independent picture at zero and all of its following dependency chain also retains three seconds before the wanted beginning.</p>
+<p>The requested cut lies between independent entry points. A decoder can begin at the preceding entry, reconstruct the intervening pictures and discard presentation before second three; producing a new independently decodable start then requires an appropriate encoding/edit strategy.</p>
+<p>This exercise assumes those declared dependency points and omits reordering. It does not identify the actual nearest safe cut in an unspecified codec stream.</p>
+<p>Audio adds another boundary. A packet spanning the wanted cut can contain samples on both sides. Selecting whole packets and selecting exact samples are different operations; timestamp normalization must keep the chosen audio and video aligned.</p>
+<p>A container change alone does not redefine those dependencies. The output requirements need to state whether extra lead-in, a shifted cut or re-encoding is acceptable before a successful process can be judged.</p>
+<h2 id="process-success-is-one-observation">Process success is one observation</h2>
+<p>Here is an original validation exercise:</p>
+<pre><code class="lang-json">{
+  &quot;processExitCode&quot;: 0,
+  &quot;inputStreams&quot;: [&quot;video&quot;, &quot;audio-en&quot;, &quot;audio-de&quot;, &quot;subtitle&quot;],
+  &quot;requiredStreams&quot;: [&quot;video&quot;, &quot;audio-en&quot;, &quot;subtitle&quot;],
+  &quot;outputStreams&quot;: [&quot;video&quot;, &quot;audio-en&quot;],
+  &quot;outputReadable&quot;: true,
+  &quot;timelineCheckPassed&quot;: true
+}
+</code></pre>
+<p>The process reports success, and the output is readable. The required subtitle is absent, so this declared replacement policy rejects it.</p>
+<p>The check needs the intended output, not an assumption that every input stream must always be copied. If the user deliberately wanted only video and English audio, the requirements would be different.</p>
+<p><img src="images/postprocess-validate-publish.png" alt="The original post-processing path validates a separate candidate before choosing which artifact to publish."></p>
+<p>Other meaningful checks can include usable duration/coverage, expected codecs, language/default flags and seeking. A larger file or a zero exit status does not substitute for those properties.</p>
+<h2 id="keep-a-usable-artifact-while-building-the-candidate">Keep a usable artifact while building the candidate</h2>
+<p>Overwriting the original pathname while producing output exposes a partial file to readers and leaves fewer recovery options if the job fails.</p>
+<p>A separate candidate allows the existing artifact to remain available while the replacement is created and checked. Publishing the accepted candidate is then its own operation, coordinated with library metadata and active readers.</p>
+<p>The storage path determines the available publication guarantees. Microsoft documents that a cross-volume move behaves as a copy followed by source deletion; it is not one instantaneous same-volume pathname change. Copy-and-delete replacement can expose partial destinations if interrupted.</p>
+<p>Likewise, flushing application buffers, completing a container and durable storage are separate conditions. A publication design must use the guarantees of its actual filesystem and write path.</p>
+<h2 id="a-retry-needs-the-intended-input-generation">A retry needs the intended input generation</h2>
+<p>Suppose job J1 transforms generation G1 of a recording. Before it publishes, another operation replaces the current artifact with G2.</p>
+<p>J1’s late result should not silently overwrite G2 merely because both use the same display title or final pathname. The job needs to compare the input generation it processed with the artifact it is now replacing.</p>
+<p>An original decision fixture makes that check explicit:</p>
+<pre><code class="lang-json">{
+  &quot;jobInputGeneration&quot;: &quot;G1&quot;,
+  &quot;currentGeneration&quot;: &quot;G2&quot;,
+  &quot;candidateValidated&quot;: true,
+  &quot;publishAllowed&quot;: false
+}
+</code></pre>
+<p>Validation passed for J1’s candidate, but its input is stale for this replacement.</p>
+<p>A retry with an unchanged job identity and input generation can also detect an already-published result rather than creating another independently named copy. The exact job/catalogue mechanism belongs to the implementation.</p>
+<h2 id="temporary-storage-can-exceed-the-final-saving">Temporary storage can exceed the final saving</h2>
+<p>Use a separate original budget: an input of 5 GB, a candidate of 3 GB and 1 GB of working files.</p>
+<p>While all three coexist, they occupy nine decimal GB. Even though the final candidate is two GB smaller than the input, the job needs four GB beyond the original during this modeled peak.</p>
+<p>If the candidate fails validation, retaining the original avoids turning a formatting problem into missing content. <a href="TV-Recording-Retention.html">Recording retention</a> should account for the owners and publication state before reclaiming either artifact.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../TV-DVR.html" title="Digital video recording: from live source to stored media">Digital video recording: from live source to stored media</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="TV-Recording-Retention.html" title="Recording retention and storage ownership">Recording retention and storage ownership</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../playback-streaming/from-server/modes/Playback-Direct-Stream.html" title="Direct Stream in Emby">Direct Stream in Emby</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../media-files/container-structure/timing-and-navigation/Media-Container-Seeking.html" title="Container Indexes and Seeking">Container Indexes and Seeking</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/DVR-Settings.html" title="Emby: DVR settings and recording paths">Emby: DVR settings and recording paths</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg.html" title="FFmpeg: Stream copying, transcoding and stream selection">FFmpeg: Stream copying, transcoding and stream selection</a></li>
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/dotnet/api/system.io.file.move?view=net-10.0" title="Microsoft: File.Move and cross-volume copy semantics">Microsoft: File.Move and cross-volume copy semantics</a></li>
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/dotnet/api/system.io.filestream.flush?view=net-10.0" title="Microsoft: FileStream.Flush and buffered writes">Microsoft: FileStream.Flush and buffered writes</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-TV-Post-Processing%0A*%20Title%3A%20Recording%20post-processing%20and%20verified%20replacement%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,272 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>User-specific playback history | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="User-specific playback history relates viewing state to a viewer and media identity while shared catalogue descriptions remain separate.">
+  <link rel="canonical" href="https://emby.media/learn/articles/libraries-collections/history/Library-User-History.html">
+  <meta property="og:title" content="User-specific playback history | Emby Learn">
+  <meta property="og:description" content="User-specific playback history relates viewing state to a viewer and media identity while shared catalogue descriptions remain separate.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/libraries-collections/history/Library-User-History.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/libraries-collections/history/Library-User-History.html","url":"https://emby.media/learn/articles/libraries-collections/history/Library-User-History.html","name":"User-specific playback history","inLanguage":"en","headline":"User-specific playback history","articleSection":"Libraries and media collections","proficiencyLevel":"Beginner","accessMode":"textual","description":"User-specific playback history relates viewing state to a viewer and media identity while shared catalogue descriptions remain separate.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Libraries and media collections","item":"https://emby.media/learn/articles/libraries-collections/index.html"},{"@type":"ListItem","position":3,"name":"Playback history","item":"https://emby.media/learn/articles/libraries-collections/history/index.html"},{"@type":"ListItem","position":4,"name":"User-specific playback history","item":"https://emby.media/learn/articles/libraries-collections/history/Library-User-History.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Library-User-History">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../libraries-collections/index.html">Libraries and media collections</a></li>
+              <li><a href="../../libraries-collections/history/index.html">Playback history</a></li>
+              <li><span aria-current="page">User-specific playback history</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Library-User-History">
+<h1>User-specific playback history</h1>
+<p class="article-description">User-specific playback history relates viewing state to a viewer and media identity while shared catalogue descriptions remain separate.</p>
+
+
+<p>A movie's title and runtime describe the media. Its watched flag and resume position describe a viewer's relationship to that media. Two people can therefore browse the same catalogue item while seeing different progress.</p>
+<p>Emby's item API can return user-context information, and its user-data operations include a user identity as well as an item identity. That is a separate scope from shared descriptive metadata.</p>
+<p><img src="images/user-state-scope.png" alt="Two fictional users share one catalogue but retain different played flags and resume positions for the same movie and episode."></p>
+<p>The matrix is an original conceptual example. It does not specify Emby's database keys or every rule by which multiple versions share state.</p>
+<h2 id="a-shared-description-several-personal-states">A shared description, several personal states</h2>
+<table>
+<thead>
+<tr>
+<th>Change</th>
+<th>Relevant scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Correct the movie's original title</td>
+<td>Catalogue description</td>
+</tr>
+<tr>
+<td>Record Dana's stopping point</td>
+<td>Dana's playback state for the relevant media</td>
+</tr>
+<tr>
+<td>Record Noor's played classification</td>
+<td>Noor's playback state</td>
+</tr>
+<tr>
+<td>Replace the source with another cut</td>
+<td>Resource/edition identity and any dependent state</td>
+</tr>
+<tr>
+<td>Change the displayed sort order</td>
+<td>A presentation preference or query</td>
+</tr>
+</tbody>
+</table>
+<p>A shared catalogue correction does not mean both users stopped at the same position. A personal played flag does not change the film's credits.</p>
+<p>Resource and presentation grouping can also affect state scope. If several versions share a logical media identity or history association, selecting a different source need not create an independent personal history record. A different cut still presents the <a href="../movies/editions-versions/Library-Movie-Editions.html">timeline correspondence problem</a>, even when the work-level watched classification is shared.</p>
+<h2 id="the-viewer-is-not-the-device">The viewer is not the device</h2>
+<p>Using the same account on a television and a phone gives the server a common user context. Switching devices need not mean switching histories.</p>
+<p>Conversely, two people using one account report into that shared context. The server sees the account association, not a guaranteed identification of the person holding the remote. A household can therefore observe progress changes caused by another person using the same login without any cross-account error.</p>
+<p>The account model explains the scope; it does not promise that every offline or disconnected state change becomes immediately available elsewhere. A device can display cached state, and the server can retain an older point until a new report arrives.</p>
+<h2 id="concurrent-sessions-need-a-state-decision">Concurrent sessions need a state decision</h2>
+<p>Suppose Dana's television reports minute 42 of a movie while the phone still has an older session at minute 20. Accepting a later-arriving phone message blindly would move the apparent resume point backwards.</p>
+<p>An application must decide how report/session context affects saved state. The public playback model includes session and source identifiers, but the field list does not completely define the server's conflict policy. The example identifies the problem rather than claiming how every Emby version resolves it.</p>
+<p>This is also why an accumulated state record is not a complete session log. A last-played date and a current resume point can describe the latest retained state while leaving previous sessions unreconstructable.</p>
+<h2 id="moving-history-requires-two-matches">Moving history requires two matches</h2>
+<p>A transfer between independent catalogues needs to establish:</p>
+<ol>
+<li><strong>Which destination user represents the source viewer.</strong></li>
+<li><strong>Which destination media identity corresponds to the source item.</strong></li>
+</ol>
+<p>Matching only the movie title leaves ambiguity between works and editions. Matching only a source-server item ID assumes an identity that may have no meaning on the destination. Qualified provider IDs can help with work matching, while edition and timeline evidence remain necessary for resume values.</p>
+<p>A played classification can sometimes be meaningfully transferred at work level. A position at 36:30 needs a corresponding timeline. The two state fields can therefore require different matching precision.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Library-Watched-Status.html" title="Watched status">Watched status</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Library-Resume-Positions.html" title="Resume positions and playback timelines">Resume positions and playback timelines</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Library-Play-Counts.html" title="Media play counts">Media play counts</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../concepts/Library-Media-Identity.html" title="Media item identity">Media item identity</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://dev.emby.media/doc/restapi/Item-Information.html" title="Emby API: Item information">Emby API: Item information</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Model.Dto.UserItemDataDto.html" title="Emby API: UserItemDataDto">Emby API: UserItemDataDto</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/RestAPI/PlaystateService/postSessionsPlayingProgress.html" title="Emby API: Playback progress reporting">Emby API: Playback progress reporting</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/RestAPI/PlaystateService/postUsersByUseridItemsByItemidUserdata.html" title="Emby API: Updating user item data">Emby API: Updating user item data</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Metadata-manager.html" title="Emby: Metadata manager">Emby: Metadata manager</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Library-User-History%0A*%20Title%3A%20User-specific%20playback%20history%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

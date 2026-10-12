@@ -1,0 +1,262 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Provider identifiers | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="A provider identifier names a record within a provider's namespace and entity model, independently of a local file path or displayed title.">
+  <link rel="canonical" href="https://emby.media/learn/articles/metadata-discovery/identification/external-identifiers/Metadata-Provider-IDs.html">
+  <meta property="og:title" content="Provider identifiers | Emby Learn">
+  <meta property="og:description" content="A provider identifier names a record within a provider's namespace and entity model, independently of a local file path or displayed title.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/metadata-discovery/identification/external-identifiers/Metadata-Provider-IDs.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/metadata-discovery/identification/external-identifiers/Metadata-Provider-IDs.html","url":"https://emby.media/learn/articles/metadata-discovery/identification/external-identifiers/Metadata-Provider-IDs.html","name":"Provider identifiers","inLanguage":"en","headline":"Provider identifiers","articleSection":"Metadata and discovery","proficiencyLevel":"Beginner","accessMode":"textual","description":"A provider identifier names a record within a provider's namespace and entity model, independently of a local file path or displayed title.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Metadata and discovery","item":"https://emby.media/learn/articles/metadata-discovery/index.html"},{"@type":"ListItem","position":3,"name":"Identification and matching","item":"https://emby.media/learn/articles/metadata-discovery/identification/index.html"},{"@type":"ListItem","position":4,"name":"External identifiers","item":"https://emby.media/learn/articles/metadata-discovery/identification/external-identifiers/index.html"},{"@type":"ListItem","position":5,"name":"Provider identifiers","item":"https://emby.media/learn/articles/metadata-discovery/identification/external-identifiers/Metadata-Provider-IDs.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Metadata-Provider-IDs">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../metadata-discovery/index.html">Metadata and discovery</a></li>
+              <li><a href="../../../metadata-discovery/identification/index.html">Identification and matching</a></li>
+              <li><a href="../../../metadata-discovery/identification/external-identifiers/index.html">External identifiers</a></li>
+              <li><span aria-current="page">Provider identifiers</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Metadata-Provider-IDs">
+<h1>Provider identifiers</h1>
+<p class="article-description">A provider identifier names a record within a provider's namespace and entity model, independently of a local file path or displayed title.</p>
+
+
+<p>A provider identifier refers to a record in a particular catalogue. The useful key includes its <strong>namespace and entity context</strong>, not just the printable value.</p>
+<h2 id="a-value-is-only-one-part-of-the-reference">A value is only one part of the reference</h2>
+<p>Consider this invented key model:</p>
+<pre><code class="lang-text">(provider namespace, entity type, identifier string)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Reference</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Provider A, movie, &quot;42&quot;</td>
+<td>A movie record in A</td>
+</tr>
+<tr>
+<td>Provider B, movie, &quot;42&quot;</td>
+<td>Another provider's movie record</td>
+</tr>
+<tr>
+<td>Provider A, series, &quot;42&quot;</td>
+<td>A potentially different entity class in A</td>
+</tr>
+<tr>
+<td>Local library, item, &quot;42&quot;</td>
+<td>A server's own item relationship</td>
+</tr>
+</tbody>
+</table>
+<p>The identical string does not establish that those references point to the same thing. A catalogue's actual API determines which entity classes share or separate identifier namespaces.</p>
+<p>A local path is another kind of address. Renaming a file need not change its associated work, and one work can have several local file versions.</p>
+<h2 id="keep-opaque-keys-as-keys">Keep opaque keys as keys</h2>
+<p>Identifiers can contain prefixes, leading zeroes or UUID punctuation. Converting them into integers or stripping characters for cosmetic reasons can change the reference.</p>
+<p>The key generally should not be reverse-engineered into a title, release date or quality judgment. A large numeric value does not imply a higher-resolution movie.</p>
+<p><a href="Metadata-IMDb-IDs.html">IMDb</a> and <a href="Metadata-MusicBrainz-IDs.html">MusicBrainz</a> show concrete schemes. Their values have different forms and entity models.</p>
+<h2 id="identity-and-descriptive-values-can-change-independently">Identity and descriptive values can change independently</h2>
+<p>A provider can correct a title without creating a new work. A record merge can also introduce redirects or another canonical relationship under that provider's rules.</p>
+<p>Those changes need a defined interpretation. A stored old identifier does not become the key to an unrelated record merely because its display text changed.</p>
+<p>The selected record still needs the intended scope. A valid music release identifier placed into a field intended for a recording can make subsequent lookup use the wrong entity.</p>
+<h2 id="an-emby-item-has-several-identity-relationships">An Emby item has several identity relationships</h2>
+<p>A library item can have a server-local identity, provider references and one or more media resources. They serve different actions.</p>
+<p>In Emby, <a class="xref" href="https://emby.media/support/articles/Metadata-manager.html">Metadata Manager</a> is the documented place for reviewing a match and its related fields. Compare the provider namespace and entity being corrected, rather than replacing every identifier with the same number.</p>
+<p>A provider work ID also does not prove an exact edition match for subtitles. <a href="../../../subtitles/sources/Subtitle-Release-Matching.html">Subtitle release matching</a> considers the extra timing and content evidence.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Metadata-IMDb-IDs.html" title="IMDb identifiers">IMDb identifiers</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Metadata-MusicBrainz-IDs.html" title="MusicBrainz identifiers">MusicBrainz identifiers</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Metadata-Identification.html" title="Media identification">Media identification</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../understanding/Metadata-Precedence.html" title="Metadata precedence">Metadata precedence</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://data.imdb.com/non-commercial-datasets/" title="IMDb: Published dataset identifier and title fields">IMDb: Published dataset identifier and title fields</a></li>
+			            <li><a class="seealso-link" href="https://musicbrainz.org/doc/MusicBrainz_Identifier" title="MusicBrainz: Identifier model and redirects">MusicBrainz: Identifier model and redirects</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Metadata-Provider-IDs%0A*%20Title%3A%20Provider%20identifiers%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

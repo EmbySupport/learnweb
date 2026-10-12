@@ -1,15 +1,62 @@
 
+:root {
+    --learn-content-max-width: 1180px;
+    --learn-page-gutter: 20px;
+    /* Existing 260px sidebar plus the 35px gap to the article. */
+    --learn-sidebar-space: 295px;
+}
+
+/* Match the main website's resources/home.css .shell sizing. */
 .container {
-    max-width: 81em;
-    width: 100%;
-    padding-right: 50px;
-    padding-left: 40px;
+    width: min(var(--learn-content-max-width), calc(100% - 2 * var(--learn-page-gutter)));
+    max-width: var(--learn-content-max-width);
+    padding-right: 0;
+    padding-left: 0;
     margin-right: auto;
     margin-left: auto;
 }
 
+/* The shell supplies the outer gutters; cancel only the page grid's extra
+   Bootstrap gutters, leaving grids within article content unchanged. */
+.body-content > .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.body-content > .row > [class*="col-"]:first-child {
+    padding-left: 0;
+}
+
+.body-content > .row > [class*="col-"]:last-child {
+    padding-right: 0;
+}
+
+.body-content > .article.grid-right {
+    margin-left: var(--learn-sidebar-space);
+}
+
 .sidetoc {
     text-align: left;
+}
+
+@media (min-width: 992px) {
+    /* The fixed outline occupies the last sixth of the article row. Keep its
+       width inside the capped shell, including its existing 5px left margin. */
+    .article.grid-right .sideaffix {
+        max-width: calc((min(var(--learn-content-max-width), calc(100% - 2 * var(--learn-page-gutter))) - var(--learn-sidebar-space)) / 6 - 5px);
+    }
+}
+
+@media (max-width: 991px) {
+    .body-content > .row > .col-md-10 {
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 800px) {
+    :root {
+        --learn-page-gutter: 14px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -18,9 +65,13 @@
         display: none;
     }
 
-    .container {
-        padding-right: 15px;
-        padding-left: 15px;
+    .body-content > .article.grid-right {
+        margin-left: 0;
+    }
+
+    .sidenav {
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .sidetoc, .sidefilter {
@@ -30,7 +81,7 @@
     }
 
     .sidetoggle {
-        padding: 0 15px;
+        padding: 0;
     }
 
     .sidetoc {

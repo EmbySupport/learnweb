@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>HDMI link bandwidth: TMDS and FRL | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="HDMI link bandwidth depends on the selected timing, sample format and TMDS or FRL transport arrangement rather than on the movie&#8217;s compressed bitrate.">
+  <link rel="canonical" href="https://emby.media/learn/articles/display-av/connections/hdmi/AV-HDMI-Bandwidth.html">
+  <meta property="og:title" content="HDMI link bandwidth: TMDS and FRL | Emby Learn">
+  <meta property="og:description" content="HDMI link bandwidth depends on the selected timing, sample format and TMDS or FRL transport arrangement rather than on the movie&#8217;s compressed bitrate.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/display-av/connections/hdmi/AV-HDMI-Bandwidth.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/display-av/connections/hdmi/AV-HDMI-Bandwidth.html","url":"https://emby.media/learn/articles/display-av/connections/hdmi/AV-HDMI-Bandwidth.html","name":"HDMI link bandwidth: TMDS and FRL","inLanguage":"en","headline":"HDMI link bandwidth: TMDS and FRL","articleSection":"Displays and AV connections","proficiencyLevel":"Beginner","accessMode":"textual","description":"HDMI link bandwidth depends on the selected timing, sample format and TMDS or FRL transport arrangement rather than on the movie’s compressed bitrate.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Displays and AV connections","item":"https://emby.media/learn/articles/display-av/index.html"},{"@type":"ListItem","position":3,"name":"Video connections","item":"https://emby.media/learn/articles/display-av/connections/index.html"},{"@type":"ListItem","position":4,"name":"HDMI connections","item":"https://emby.media/learn/articles/display-av/connections/hdmi/index.html"},{"@type":"ListItem","position":5,"name":"HDMI link bandwidth: TMDS and FRL","item":"https://emby.media/learn/articles/display-av/connections/hdmi/AV-HDMI-Bandwidth.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-AV-HDMI-Bandwidth">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../display-av/index.html">Displays and AV connections</a></li>
+              <li><a href="../../../display-av/connections/index.html">Video connections</a></li>
+              <li><a href="../../../display-av/connections/hdmi/index.html">HDMI connections</a></li>
+              <li><span aria-current="page">HDMI link bandwidth: TMDS and FRL</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-AV-HDMI-Bandwidth">
+<h1>HDMI link bandwidth: TMDS and FRL</h1>
+<p class="article-description">HDMI link bandwidth depends on the selected timing, sample format and TMDS or FRL transport arrangement rather than on the movie&#8217;s compressed bitrate.</p>
+
+
+<p>A movie’s compressed bitrate is not the bandwidth of its display connection. Once the client has decoded and prepared pictures, the output link must transport a defined presentation mode.</p>
+<p>For HDMI, <strong>TMDS</strong> and <strong>FRL</strong> use different transport arrangements. Resolution, refresh, sample precision and chroma all contribute to the requested work.</p>
+<h2 id="start-with-active-picture-samples">Start with active picture samples</h2>
+<p>An original uncompressed RGB model has three components per pixel. Its active sample rate is:</p>
+<pre><code class="lang-text">width × height × refresh × 3 × component bits
+</code></pre>
+<p>At 3840 × 2160, sixty Hz and eight bits per component, this gives 11.943936 Gbit/s. Ten-bit components at the same active geometry give 14.929920 Gbit/s.</p>
+<p>Doubling the refresh to 120 Hz doubles those active rates. A 4K120 ten-bit RGB model consequently has 29.859840 Gbit/s of active samples.</p>
+<p>These values omit timing and transport overhead. They are a starting point, not the cable rate required by a qualified HDMI mode.</p>
+<p><img src="images/hdmi-bandwidth-layers.png" alt="Original active-picture and encoded-link calculations show how precision and refresh affect the selected rate."></p>
+<h2 id="tmds-adds-timing-and-coding-relationships">TMDS adds timing and coding relationships</h2>
+<p>Traditional TMDS uses three data channels and a separate clock relationship. In the basic eight-bit-per-component RGB exercise, each data channel transmits ten-bit symbols.</p>
+<p>Use an original declared sixty-Hz timing with totals of 4400 × 2250:</p>
+<pre><code class="lang-text">Pixel clock = 4400 × 2250 × 60 = 594,000,000 Hz
+Eight-bit RGB TMDS data rate = 594,000,000 × 3 × 10
+                            = 17.82 Gbit/s
+</code></pre>
+<p>The active picture remains 3840 × 2160, but the timing totals include intervals beyond its active samples. That is why the active 11.943936-Gbit/s calculation does not equal the TMDS wire rate.</p>
+<p>For the same declared RGB/4:4:4 timing, a ten-bit Deep Color exercise scales the data rate by <code>10/8</code>:</p>
+<pre><code class="lang-text">17.82 × 10/8 = 22.275 Gbit/s
+</code></pre>
+<p>That exceeds a declared 18-Gbit/s TMDS route even though the eight-bit exercise fits below it.</p>
+<p>YCbCr 4:2:2 has its own packing rules. Its requested transport rate should not be derived by blindly applying this RGB Deep Color formula.</p>
+<h2 id="frl-has-another-link-organization">FRL has another link organization</h2>
+<p><strong>Fixed Rate Link</strong> packetizes the presentation over an implemented lane/rate configuration. AMD’s HDMI transmitter documentation distinguishes its FRL path, including forward-error-correction parity and 16b/18b coding, from its TMDS path.</p>
+<p>For an original four-lane, twelve-Gbit/s-per-lane exercise:</p>
+<pre><code class="lang-text">Gross rate = 4 × 12 = 48 Gbit/s
+Coding-only ceiling = 48 × 16/18 = 42.666667 Gbit/s
+</code></pre>
+<p>The second value removes only that coding expansion. It is not a claim of 42.666667 Gbit/s of usable active picture payload: packet/control and error-correction relationships still need accounting.</p>
+<p>HDMI LA’s current HDMI 2.2 overview specifies an upper bandwidth of 96 Gbit/s. That specification maximum does not establish the lane/rate implementation of every source, receiver or display input.</p>
+<p>A source and sink use a supported actual configuration. A higher edition number is not a replacement for its feature and mode declarations.</p>
+<h2 id="chroma-and-link-compression-change-the-request">Chroma and link compression change the request</h2>
+<p>Reducing chroma sampling can lower the amount of color-detail information carried by a picture. It changes the representation; it is not simply another cable with the same picture data.</p>
+<p><a href="../../../video/color-pixel-formats/Video-Chroma-Subsampling.html">Chroma subsampling</a> describes that spatial relationship. HDMI packing and mode rules determine how the selected format is transported.</p>
+<p><a href="../AV-DSC.html">DSC</a> compresses the display-link representation under a supported arrangement. It is separate from the movie’s HEVC/AV1 compression. Both endpoints and any intermediate path must accept the required DSC configuration.</p>
+<p>Using a compressed or subsampled mode can consequently make a requested output feasible under a different bandwidth condition, while retaining its own format and interoperability constraints.</p>
+<h2 id="establish-feasibility-for-the-whole-route">Establish feasibility for the whole route</h2>
+<p>First identify the exact output: active dimensions, refresh, timing, sample format, precision and whether DSC is used.</p>
+<p>Then establish the actual transmitter, input/output ports, intermediate devices and cable capability. A receiver can accept one signal and expose another link constraint toward the TV.</p>
+<p>Finally, distinguish an advertised mode from successful active operation. Link establishment, format interpretation and sustained transport still need to succeed.</p>
+<p>A movie playing at thirty Mbit/s over the network can ask for the same HDMI mode as another playing at ten Mbit/s. If both are presented through the same desktop mode, their display-link request can be identical.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="AV-HDMI-Video.html" title="HDMI video transport">HDMI video transport</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="AV-HDMI-Cables.html" title="HDMI cable categories">HDMI cable categories</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../AV-DSC.html" title="Display Stream Compression (DSC)">Display Stream Compression (DSC)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../video/color-pixel-formats/Video-Chroma-Subsampling.html" title="Chroma Subsampling">Chroma Subsampling</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../video/color-pixel-formats/precision-banding/Video-Bit-Depth.html" title="Video Bit Depth">Video Bit Depth</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.hdmi.org/spec/hdmi2" title="HDMI LA: HDMI 2.2 specification overview">HDMI LA: HDMI 2.2 specification overview</a></li>
+			            <li><a class="seealso-link" href="https://docs.amd.com/api/khub/documents/viIXGpD3lNo6m5lYoJuJxw/content" title="AMD/Xilinx: TMDS encoding and serialization reference">AMD/Xilinx: TMDS encoding and serialization reference</a></li>
+			            <li><a class="seealso-link" href="https://docs.amd.com/r/en-US/2026.1/pg350-v-hdmi-txss1/HDMI-2.1-Transmitter" title="AMD PG350: HDMI TMDS/FRL transmission and coding">AMD PG350: HDMI TMDS/FRL transmission and coding</a></li>
+			            <li><a class="seealso-link" href="https://shop.cta.tech/products/cta-861" title="CTA: CTA-861 digital-interface standard">CTA: CTA-861 digital-interface standard</a></li>
+			            <li><a class="seealso-link" href="https://cdrdv2-public.intel.com/709293/ug_hdmi-683798-709293.pdf" title="Intel: HDMI Deep Color ratios, versioned FPGA guide">Intel: HDMI Deep Color ratios, versioned FPGA guide</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-AV-HDMI-Bandwidth%0A*%20Title%3A%20HDMI%20link%20bandwidth%3A%20TMDS%20and%20FRL%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

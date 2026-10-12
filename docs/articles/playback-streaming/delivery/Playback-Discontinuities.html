@@ -1,0 +1,305 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Stream discontinuities and timeline changes | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="A stream discontinuity marks a change in media timing or configuration that requires the player to interpret the following interval in a new continuity context.">
+  <link rel="canonical" href="https://emby.media/learn/articles/playback-streaming/delivery/Playback-Discontinuities.html">
+  <meta property="og:title" content="Stream discontinuities and timeline changes | Emby Learn">
+  <meta property="og:description" content="A stream discontinuity marks a change in media timing or configuration that requires the player to interpret the following interval in a new continuity context.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/playback-streaming/delivery/Playback-Discontinuities.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/playback-streaming/delivery/Playback-Discontinuities.html","url":"https://emby.media/learn/articles/playback-streaming/delivery/Playback-Discontinuities.html","name":"Stream discontinuities and timeline changes","inLanguage":"en","headline":"Stream discontinuities and timeline changes","articleSection":"Playback and streaming","proficiencyLevel":"Beginner","accessMode":"textual","description":"A stream discontinuity marks a change in media timing or configuration that requires the player to interpret the following interval in a new continuity context.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Playback and streaming","item":"https://emby.media/learn/articles/playback-streaming/index.html"},{"@type":"ListItem","position":3,"name":"Streaming delivery","item":"https://emby.media/learn/articles/playback-streaming/delivery/index.html"},{"@type":"ListItem","position":4,"name":"Stream discontinuities","item":"https://emby.media/learn/articles/playback-streaming/delivery/Playback-Discontinuities.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Playback-Discontinuities">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../playback-streaming/index.html">Playback and streaming</a></li>
+              <li><a href="../../playback-streaming/delivery/index.html">Streaming delivery</a></li>
+              <li><span aria-current="page">Stream discontinuities</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Playback-Discontinuities">
+<h1>Stream discontinuities and timeline changes</h1>
+<p class="article-description">A stream discontinuity marks a change in media timing or configuration that requires the player to interpret the following interval in a new continuity context.</p>
+
+
+<p>A <strong>stream discontinuity</strong> marks a boundary where the following media needs a changed interpretation. Its timestamp sequence, track configuration or other properties may differ from what preceded it.</p>
+<p>A network delay between continuous segments is a delivery problem. A discontinuity can instead be intentional programme structure, such as switching sources or inserting another sequence.</p>
+<h2 id="a-local-timestamp-can-restart-at-a-continuous-programme-position">A local timestamp can restart at a continuous programme position</h2>
+<p>Consider two original ten-second intervals:</p>
+<table>
+<thead>
+<tr>
+<th>Interval</th>
+<th>Local sample-time range</th>
+<th>Intended programme range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>0–10 seconds</td>
+<td>0–10 seconds</td>
+</tr>
+<tr>
+<td>B</td>
+<td>0–10 seconds after a timestamp reset</td>
+<td>10–20 seconds</td>
+</tr>
+</tbody>
+</table>
+<p>If the player interpreted B using A's unchanged local-time mapping, B's samples would appear to return to programme time zero. The intended programme continues forward.</p>
+<p>A selected HLS media-playlist excerpt can mark that boundary:</p>
+<pre><code class="lang-text">#EXTINF:10.000,
+a.ts
+#EXT-X-DISCONTINUITY
+#EXTINF:10.000,
+b.ts
+</code></pre>
+<p>This is an original boundary illustration, not a complete playlist or generated pair of media files. HLS requires discontinuity signaling for specified changes, including the timestamp sequence.</p>
+<p><img src="images/discontinuity-timelines.png" alt="An original timeline maps two local zero-origin intervals into consecutive programme ranges."></p>
+<p>The marker tells the client that the previous continuity assumptions no longer suffice. It does not give an instruction to display duplicate pictures or erase ten seconds of programme time.</p>
+<h2 id="configuration-can-change-at-the-same-boundary">Configuration can change at the same boundary</h2>
+<p>A transition can also involve different track identifiers, encoded configuration or packaging context. The player may need new initialization or decoder preparation.</p>
+<p>For example, switching from one input source to another can introduce a timestamp reset and different codec parameters. The client must know both how to interpret the new sample timing and how to prepare the encoded samples.</p>
+<p>A valid marker alone does not guarantee seamless operation. The new representation still needs to be supported, correctly described and available early enough. A gap in intended programme coverage remains a gap even when the boundary is signaled.</p>
+<p>In DASH, Period boundaries provide presentation context for changes. Period timing and cross-period continuity have their own model; a new Period should not be treated as a literal spelling variant of an HLS tag.</p>
+<h2 id="wall-clock-time-is-another-mapping">Wall-clock time is another mapping</h2>
+<p>Programme continuity does not imply continuity of raw sample timestamps, and neither directly gives the clock time at which the event occurred.</p>
+<p>A publication can provide a programme-to-wall-clock relationship. That helps compare captures, live delay or parallel tracks. A timestamp reset then needs the correct context to keep those relationships meaningful.</p>
+<p>If a log prints sample time zero twice, identifying the continuity context can explain why the second zero belongs later in the programme. Subtracting the values without that context would report an apparent backward jump.</p>
+<h2 id="rolling-playlists-need-the-retained-context">Rolling playlists need the retained context</h2>
+<p>Imagine a live playlist with a discontinuity before segment 200. A later window begins at 201, after the segment carrying the marker has left the list.</p>
+<p>The client still needs to distinguish this continuity context from an earlier one. HLS uses <code>EXT-X-DISCONTINUITY-SEQUENCE</code> to retain the relevant sequence context as older discontinuity tags leave a rolling playlist.</p>
+<p>That value is separate from <code>EXT-X-MEDIA-SEQUENCE</code>, which identifies the first media segment's sequence number. Their roles should not be combined into one “stream position” counter.</p>
+<h2 id="relate-the-observation-to-the-boundary">Relate the observation to the boundary</h2>
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th>Interpretation to investigate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Media sample timestamps reset at a signaled boundary</td>
+<td>Changed continuity context</td>
+</tr>
+<tr>
+<td>A request takes longer, with otherwise continuous media</td>
+<td>Delivery timing and reserve</td>
+</tr>
+<tr>
+<td>New initialization or codec parameters appear</td>
+<td>Configuration transition</td>
+</tr>
+<tr>
+<td>The intended programme ranges leave a hole</td>
+<td>Missing programme coverage</td>
+</tr>
+<tr>
+<td>Presentation resumes after decoder preparation</td>
+<td>Receiver handling of the transition</td>
+</tr>
+</tbody>
+</table>
+<p>In Emby, a seek or new conversion job can also restart an output timestamp origin. Relating <a href="../behavior/diagnostics/Playback-Information.html">playback information</a> and <a href="../behavior/diagnostics/Playback-Transcode-Logs.html">conversion logs</a> to the affected job distinguishes a new output origin from a fault in one continuous media sequence.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="hls/Playback-HLS-Playlists.html" title="HLS playlists: variants, media order and live windows">HLS playlists: variants, media order and live windows</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-DASH.html" title="MPEG-DASH and its media presentation description">MPEG-DASH and its media presentation description</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="hls/Playback-HLS-Segments.html" title="HLS media segments and initialization">HLS media segments and initialization</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../media-files/container-structure/timing-and-navigation/Media-Packet-Timestamps.html" title="Packet Timestamps">Packet Timestamps</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../behavior/symptoms/Playback-Stalls.html" title="Playback stalls and unavailable next media">Playback stalls and unavailable next media</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Seeking.html" title="Seeking during streaming">Seeking during streaming</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc8216.html" title="IETF RFC 8216: HTTP Live Streaming (informational)">IETF RFC 8216: HTTP Live Streaming (informational)</a></li>
+			            <li><a class="seealso-link" href="https://dashif.org/Guidelines-TimingModel/" title="DASH-IF: Restricted timing model (2024 snapshot)">DASH-IF: Restricted timing model (2024 snapshot)</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/media-source-2/" title="W3C Working Draft: Media Source Extensions">W3C Working Draft: Media Source Extensions</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/mse-byte-stream-format-isobmff/" title="W3C Group Note: ISO BMFF byte stream format">W3C Group Note: ISO BMFF byte stream format</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Playback-Discontinuities%0A*%20Title%3A%20Stream%20discontinuities%20and%20timeline%20changes%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

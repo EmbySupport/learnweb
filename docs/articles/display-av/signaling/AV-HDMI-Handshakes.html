@@ -1,0 +1,381 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>HDMI handshakes and black screens | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="HDMI establishment involves capability exchange, a compatible output choice, transport progress and any required signaling/protection relationships whose failures can produce similar visible symptoms.">
+  <link rel="canonical" href="https://emby.media/learn/articles/display-av/signaling/AV-HDMI-Handshakes.html">
+  <meta property="og:title" content="HDMI handshakes and black screens | Emby Learn">
+  <meta property="og:description" content="HDMI establishment involves capability exchange, a compatible output choice, transport progress and any required signaling/protection relationships whose failures can produce similar visible symptoms.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/display-av/signaling/AV-HDMI-Handshakes.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/display-av/signaling/AV-HDMI-Handshakes.html","url":"https://emby.media/learn/articles/display-av/signaling/AV-HDMI-Handshakes.html","name":"HDMI handshakes and black screens","inLanguage":"en","headline":"HDMI handshakes and black screens","articleSection":"Displays and AV connections","proficiencyLevel":"Beginner","accessMode":"textual","description":"HDMI establishment involves capability exchange, a compatible output choice, transport progress and any required signaling/protection relationships whose failures can produce similar visible symptoms.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Displays and AV connections","item":"https://emby.media/learn/articles/display-av/index.html"},{"@type":"ListItem","position":3,"name":"Capability negotiation and signaling","item":"https://emby.media/learn/articles/display-av/signaling/index.html"},{"@type":"ListItem","position":4,"name":"HDMI handshakes and black screens","item":"https://emby.media/learn/articles/display-av/signaling/AV-HDMI-Handshakes.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-AV-HDMI-Handshakes">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../display-av/index.html">Displays and AV connections</a></li>
+              <li><a href="../../display-av/signaling/index.html">Capability negotiation and signaling</a></li>
+              <li><span aria-current="page">HDMI handshakes and black screens</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-AV-HDMI-Handshakes">
+<h1>HDMI handshakes and black screens</h1>
+<p class="article-description">HDMI establishment involves capability exchange, a compatible output choice, transport progress and any required signaling/protection relationships whose failures can produce similar visible symptoms.</p>
+
+
+<p>A black screen describes what the viewer sees, not which operation failed. The player may be unable to obtain capabilities, establish its selected transport, satisfy an output policy or deliver a correctly interpreted picture.</p>
+<p>“HDMI handshake” is often used for this whole establishment process. It is more useful to separate the relationships inside it.</p>
+<h2 id="connected-configured-and-carrying-pictures-are-different-states">Connected, configured and carrying pictures are different states</h2>
+<p>A source can detect a connected sink before it has selected a working mode. It can read EDID before its selected high-rate transport succeeds. A trained link can still need correct interpretation or protection handling.</p>
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th>What it supports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Connected-device indication</td>
+<td>A relevant connection/detection state</td>
+</tr>
+<tr>
+<td>EDID data read</td>
+<td>Capability information was obtained</td>
+</tr>
+<tr>
+<td>Compatible mode selected</td>
+<td>The source chose a declared/implemented output</td>
+</tr>
+<tr>
+<td>Transport becomes ready</td>
+<td>Relevant link-establishment progress</td>
+</tr>
+<tr>
+<td>Protected-output requirement satisfied</td>
+<td>The applicable authentication/policy stage progressed</td>
+</tr>
+<tr>
+<td>Sink recognizes current signal</td>
+<td>Input recognized timing/interpretation</td>
+</tr>
+<tr>
+<td>Visible picture advances</td>
+<td>Later presentation progress</td>
+</tr>
+</tbody>
+</table>
+<p>These are useful stages of evidence. They need not appear in every platform’s log, and no single row proves every later row.</p>
+<h2 id="a-startup-mode-change-can-create-a-temporary-gap">A startup mode change can create a temporary gap</h2>
+<p>An Emby app can begin playback in a different rate or HDR state from its interface. The local output then has to establish the selected presentation.</p>
+<p>During that transition, the display may temporarily have no usable current picture. A short blackout that occurs once at the output change is a different observation from periodic blackouts during an otherwise stable mode.</p>
+<p><a href="../motion/refresh-synchronization/Display-Frame-Rate-Matching.html">Frame-rate matching</a> explains the rate choice. <a href="AV-HDMI-QMS.html">QMS</a> covers a narrower supported same-resolution rate-switch case rather than every possible transition.</p>
+<h2 id="an-original-dependency-trace">An original dependency trace</h2>
+<p>Consider a teaching model in which the route needs readable capabilities, a chosen mode, usable transport and successful required protection before its first protected picture is shown.</p>
+<table>
+<thead>
+<tr>
+<th>Model event</th>
+<th style="text-align: right;">Declared time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Connection detected</td>
+<td style="text-align: right;">0 ms</td>
+</tr>
+<tr>
+<td>Capability read completed</td>
+<td style="text-align: right;">30 ms</td>
+</tr>
+<tr>
+<td>Compatible mode chosen</td>
+<td style="text-align: right;">40 ms</td>
+</tr>
+<tr>
+<td>Transport ready</td>
+<td style="text-align: right;">120 ms</td>
+</tr>
+<tr>
+<td>Required protection ready</td>
+<td style="text-align: right;">170 ms</td>
+</tr>
+<tr>
+<td>First intended picture visible</td>
+<td style="text-align: right;">200 ms</td>
+</tr>
+</tbody>
+</table>
+<p><img src="images/hdmi-establishment-stages.png" alt="The original dependency trace shows that early capability progress does not establish later transport or visible output."></p>
+<p>The 200-ms duration is invented. The table is not a universal HDMI ordering rule or a benchmark: real operations can overlap, retry or have different dependencies.</p>
+<p>The model’s visibility condition is an intersection of required states. If capability reading succeeds at 30 ms but transport never becomes ready, the first condition is true and the complete route is still incomplete.</p>
+<p>If protection is not required by the actual content/output policy, that particular gate is absent. The model should follow the real policy rather than assume every movie uses the same gate.</p>
+<h2 id="an-absent-requirement-is-different-from-a-failed-requirement">An absent requirement is different from a failed requirement</h2>
+<p>Use this original readable state object:</p>
+<pre><code class="lang-json">{
+  &quot;capabilitiesReady&quot;: true,
+  &quot;modeSelected&quot;: true,
+  &quot;transportReady&quot;: false,
+  &quot;signalInterpretationReady&quot;: true,
+  &quot;protectionRequired&quot;: false,
+  &quot;protectionReady&quot;: false
+}
+</code></pre>
+<p>It is a teaching state, not a native HDMI report or Emby log. Its simplified prerequisite condition is:</p>
+<pre><code class="lang-text">capabilitiesReady AND modeSelected AND transportReady
+AND signalInterpretationReady
+AND (NOT protectionRequired OR protectionReady)
+</code></pre>
+<p>The condition fails because transport is not ready. Protection being false is not another failure in this case, because that requirement is absent.</p>
+<p>If transport becomes ready while the other declared states remain unchanged, all modeled prerequisites pass. Actual picture submission and later presentation must then progress too; the prerequisite result is not a captured visible frame.</p>
+<p>Separating an unused stage from an unsuccessful required stage prevents an irrelevant status from becoming the diagnosis.</p>
+<h2 id="mode-changes-alter-more-than-one-request">Mode changes alter more than one request</h2>
+<p>“4K” does not specify the complete signal. Refresh rate, pixel clock/timing totals, precision, chroma, HDR interpretation and DSC can change its requirements.</p>
+<p>A route that carries an eight-bit SDR mode can fail a higher-rate ten-bit request. A receiver can preserve ordinary video but constrain the required HDR or protected-output relationship.</p>
+<p><a href="../connections/hdmi/AV-HDMI-Bandwidth.html">HDMI bandwidth</a> develops the transport request. <a href="../connections/AV-Receivers.html">AV receivers</a> develops the additional input/output boundaries.</p>
+<p>The correct comparison records the actual mode on both sides, not just the movie’s resolution.</p>
+<h2 id="a-controlled-comparison-changes-one-relevant-boundary">A controlled comparison changes one relevant boundary</h2>
+<p>Use an original comparison matrix:</p>
+<table>
+<thead>
+<tr>
+<th>Case</th>
+<th>Preserved context</th>
+<th>Deliberate change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Player, source, output request and TV input</td>
+<td>Baseline indirect receiver route</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Same source/player/output request</td>
+<td>Direct player-to-TV route</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Baseline topology and source</td>
+<td>Lower declared output rate/precision</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Baseline source/topology/output mode</td>
+<td>Another known cable path</td>
+</tr>
+</tbody>
+</table>
+<p>If B works while A fails, the added intermediate route is relevant. That observation still includes the receiver’s ports, second cable and capability handling; it does not isolate one component yet.</p>
+<p>If C works while A fails, the request matters. It may have changed electrical rate, format or another interpretation, so identify exactly which property changed.</p>
+<p>If D differs, the installed transport path is relevant under the preserved mode. A cable result at a lower mode should not be reported as a test of the higher one.</p>
+<p>These are diagnostic relationships, not instructions to change a user’s system without context.</p>
+<h2 id="audio-and-video-can-advance-through-different-paths">Audio and video can advance through different paths</h2>
+<p>A receiver may extract upstream audio while downstream picture transport or interpretation is failing. A TV can also recognize a connected device without displaying its intended picture.</p>
+<p>Audio continuing is therefore useful evidence that some work progressed. It does not prove that the picture signal reached the final display correctly.</p>
+<p>Likewise, the server showing Direct Play establishes original-media delivery, not the later HDMI link’s state.</p>
+<p>For Emby playback, separate server/client progress, the chosen local output and the final sink’s observations. A network stall prevents new programme data from reaching presentation; a display-link blackout can occur while that data is already available.</p>
+<h2 id="repeated-interruptions-need-their-own-timing-context">Repeated interruptions need their own timing context</h2>
+<p>Record whether the event follows a rate/HDR/input change, occurs at a regular interval or appears unpredictably while the mode stays stable.</p>
+<p>A reported new mode at every interruption suggests a different relationship from a stable-mode link that repeatedly loses progress. Application, receiver and display evidence should be aligned to the same event.</p>
+<p>The useful report contains source/client context, exact topology, before/after output modes and the first stage known to have stopped progressing. That gives the black screen a location in the route instead of treating its appearance as a diagnosis.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="capability-exchange/AV-EDID.html" title="EDID: display capability declarations">EDID: display capability declarations</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="AV-HDCP.html" title="HDCP and protected display links">HDCP and protected display links</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="capability-exchange/AV-HDR-Signaling.html" title="HDMI HDR signaling">HDMI HDR signaling</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../connections/AV-Receivers.html" title="AV receivers in the video path">AV receivers in the video path</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../connections/hdmi/AV-HDMI-Bandwidth.html" title="HDMI link bandwidth: TMDS and FRL">HDMI link bandwidth: TMDS and FRL</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="AV-HDMI-QMS.html" title="Quick Media Switching (QMS)">Quick Media Switching (QMS)</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.hdmi.org/spec/hdmi2" title="HDMI LA: HDMI 2.2 specification overview">HDMI LA: HDMI 2.2 specification overview</a></li>
+			            <li><a class="seealso-link" href="https://docs.kernel.org/gpu/drm-kms.html" title="Linux: Connector properties, EDID and HDR metadata">Linux: Connector properties, EDID and HDR metadata</a></li>
+			            <li><a class="seealso-link" href="https://docs.amd.com/r/en-US/2026.1/pg350-v-hdmi-txss1/HDMI-2.1-Transmitter" title="AMD PG350: HDMI TMDS/FRL transmission and coding">AMD PG350: HDMI TMDS/FRL transmission and coding</a></li>
+			            <li><a class="seealso-link" href="https://www.digital-cp.com/hdcp-specifications" title="DCP: HDCP specifications">DCP: HDCP specifications</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-AV-HDMI-Handshakes%0A*%20Title%3A%20HDMI%20handshakes%20and%20black%20screens%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

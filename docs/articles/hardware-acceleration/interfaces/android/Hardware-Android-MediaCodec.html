@@ -1,0 +1,273 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Android MediaCodec and buffer ownership | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="MediaCodec exposes Android codec components through configured input/output buffers or surfaces whose ownership, timing and state determine how media is processed.">
+  <link rel="canonical" href="https://emby.media/learn/articles/hardware-acceleration/interfaces/android/Hardware-Android-MediaCodec.html">
+  <meta property="og:title" content="Android MediaCodec and buffer ownership | Emby Learn">
+  <meta property="og:description" content="MediaCodec exposes Android codec components through configured input/output buffers or surfaces whose ownership, timing and state determine how media is processed.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/hardware-acceleration/interfaces/android/Hardware-Android-MediaCodec.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/hardware-acceleration/interfaces/android/Hardware-Android-MediaCodec.html","url":"https://emby.media/learn/articles/hardware-acceleration/interfaces/android/Hardware-Android-MediaCodec.html","name":"Android MediaCodec and buffer ownership","inLanguage":"en","headline":"Android MediaCodec and buffer ownership","articleSection":"Media hardware acceleration","proficiencyLevel":"Beginner","accessMode":"textual","description":"MediaCodec exposes Android codec components through configured input/output buffers or surfaces whose ownership, timing and state determine how media is processed.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Media hardware acceleration","item":"https://emby.media/learn/articles/hardware-acceleration/index.html"},{"@type":"ListItem","position":3,"name":"Media engines and acceleration interfaces","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/index.html"},{"@type":"ListItem","position":4,"name":"Platform media APIs","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/platforms/index.html"},{"@type":"ListItem","position":5,"name":"Android and embedded systems","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/android/index.html"},{"@type":"ListItem","position":6,"name":"Android MediaCodec","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/android/Hardware-Android-MediaCodec.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Hardware-Android-MediaCodec">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../hardware-acceleration/index.html">Media hardware acceleration</a></li>
+              <li><a href="../../../hardware-acceleration/interfaces/index.html">Media engines and acceleration interfaces</a></li>
+              <li><a href="../../../hardware-acceleration/interfaces/platforms/index.html">Platform media APIs</a></li>
+              <li><a href="../../../hardware-acceleration/interfaces/android/index.html">Android and embedded systems</a></li>
+              <li><span aria-current="page">Android MediaCodec</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Hardware-Android-MediaCodec">
+<h1>Android MediaCodec and buffer ownership</h1>
+<p class="article-description">MediaCodec exposes Android codec components through configured input/output buffers or surfaces whose ownership, timing and state determine how media is processed.</p>
+
+
+<p><strong>MediaCodec</strong> is Android's interface to codec components. An application selects and configures a decoder or encoder, supplies its inputs and handles its outputs through the component's supported buffer or surface arrangement.</p>
+<p>The interface can expose hardware-accelerated and software implementations. Its name alone does not identify the selected component.</p>
+<h2 id="select-the-operation-and-configuration">Select the operation and configuration</h2>
+<p>The application needs an appropriate component for the media type and operation. Decoder and encoder selection are separate questions.</p>
+<p><code>MediaCodecInfo</code> describes properties including supported types and, on applicable API versions, whether a component reports hardware acceleration or software-only operation. The declared hardware attribute comes from the device implementation; observed processing supplies another kind of evidence.</p>
+<p>A selected HEVC decoder still needs support for the actual profile, dimensions, sample format and other required features. An Android Emby player and an Android-hosted server can request different media work through that platform.</p>
+<h2 id="buffer-ownership-lets-the-codec-make-progress">Buffer ownership lets the codec make progress</h2>
+<p>The application obtains an available input buffer, fills it with valid encoded data or picture input as appropriate, then returns it to the codec through its queueing contract.</p>
+<p>Output availability establishes another ownership stage. After processing or rendering the output, the application releases the output buffer back to the component.</p>
+<p><img src="images/mediacodec-buffer-cycle.png" alt="An original MediaCodec ownership diagram separates available input, queued work, available output and release for further progress."></p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Permission or progress</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Input buffer becomes available</td>
+<td>Application may prepare that offered buffer</td>
+</tr>
+<tr>
+<td>Input is queued</td>
+<td>Codec may consume it</td>
+</tr>
+<tr>
+<td>Output becomes available</td>
+<td>Application can handle the reported output</td>
+</tr>
+<tr>
+<td>Output is released</td>
+<td>Its retained use can end under the contract</td>
+</tr>
+</tbody>
+</table>
+<p>Android's documentation warns that holding buffers can stall component progress. An empty output queue and a pool exhausted by retained outputs are different states.</p>
+<p>Surface-based paths avoid treating every result as an ordinary CPU byte array. Their consumer and presentation lifetimes still need the supported interface behavior.</p>
+<h2 id="media-time-has-a-declared-unit">Media time has a declared unit</h2>
+<p>A codec sample's <code>presentationTimeUs</code> uses microseconds. It is a programme-time coordinate, rather than the wall time at which a callback happened.</p>
+<p>For an original 25-fps sequence:</p>
+<pre><code class="lang-text">One picture interval = 1 / 25 second = 40,000 microseconds
+Picture 0:      0 us
+Picture 1: 40,000 us
+Picture 2: 80,000 us
+</code></pre>
+<p>Those times retain the intended presentation schedule even if decoding produces the pictures ahead of playback.</p>
+<h2 id="synchronous-and-asynchronous-modes-have-different-rules">Synchronous and asynchronous modes have different rules</h2>
+<p>Synchronous processing obtains available buffers through dequeue operations. Asynchronous processing receives availability through configured callbacks and follows its corresponding state model.</p>
+<p>In the documented asynchronous arrangement, a flush requires a subsequent <code>start()</code> to resume the Running state and input callbacks. Old buffer indices or callbacks need their validity context; they are not permanent storage identifiers across arbitrary reconfiguration.</p>
+<p>An output-format change also supplies a new interpretation for subsequent output. Dimensions, format and surface requirements should be related to that changed state rather than inferred from the original configure call.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Hardware-OpenMAX-IL.html" title="OpenMAX IL components, ports and state">OpenMAX IL components, ports and state</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Hardware-Media-APIs.html" title="How media APIs connect applications to hardware">How media APIs connect applications to hardware</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../Hardware-Decoding.html" title="Hardware decoding and software decoding">Hardware decoding and software decoding</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../Hardware-Encoding.html" title="Hardware encoding and software encoding">Hardware encoding and software encoding</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../playback-streaming/players/Playback-Native-Players.html" title="Native media players and their playback engines">Native media players and their playback engines</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://developer.android.com/reference/android/media/MediaCodec" title="Android: MediaCodec">Android: MediaCodec</a></li>
+			            <li><a class="seealso-link" href="https://developer.android.com/reference/android/media/MediaCodecInfo" title="Android: MediaCodecInfo capabilities">Android: MediaCodecInfo capabilities</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Hardware-Acceleration-Overview.html" title="Emby: Hardware acceleration overview">Emby: Hardware acceleration overview</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Hardware-Android-MediaCodec%0A*%20Title%3A%20Android%20MediaCodec%20and%20buffer%20ownership%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

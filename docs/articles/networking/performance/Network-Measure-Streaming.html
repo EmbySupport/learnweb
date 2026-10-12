@@ -1,0 +1,296 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Measuring the actual streaming delivery path | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="A streaming-capacity measurement must use the intended endpoints, direction, protocol and workload, retaining interval and receiver-side progress before testing the actual Emby presentation.">
+  <link rel="canonical" href="https://emby.media/learn/articles/networking/performance/Network-Measure-Streaming.html">
+  <meta property="og:title" content="Measuring the actual streaming delivery path | Emby Learn">
+  <meta property="og:description" content="A streaming-capacity measurement must use the intended endpoints, direction, protocol and workload, retaining interval and receiver-side progress before testing the actual Emby presentation.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/networking/performance/Network-Measure-Streaming.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/networking/performance/Network-Measure-Streaming.html","url":"https://emby.media/learn/articles/networking/performance/Network-Measure-Streaming.html","name":"Measuring the actual streaming delivery path","inLanguage":"en","headline":"Measuring the actual streaming delivery path","articleSection":"Networking and remote access","proficiencyLevel":"Beginner","accessMode":"textual","description":"A streaming-capacity measurement must use the intended endpoints, direction, protocol and workload, retaining interval and receiver-side progress before testing the actual Emby presentation.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Networking and remote access","item":"https://emby.media/learn/articles/networking/index.html"},{"@type":"ListItem","position":3,"name":"Network performance","item":"https://emby.media/learn/articles/networking/performance/index.html"},{"@type":"ListItem","position":4,"name":"Measuring network capacity for streaming","item":"https://emby.media/learn/articles/networking/performance/Network-Measure-Streaming.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Network-Measure-Streaming">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../networking/index.html">Networking and remote access</a></li>
+              <li><a href="../../networking/performance/index.html">Network performance</a></li>
+              <li><span aria-current="page">Measuring network capacity for streaming</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Network-Measure-Streaming">
+<h1>Measuring the actual streaming delivery path</h1>
+<p class="article-description">A streaming-capacity measurement must use the intended endpoints, direction, protocol and workload, retaining interval and receiver-side progress before testing the actual Emby presentation.</p>
+
+
+<p>Start with the path whose result matters: the Emby sender, the actual viewing device or a suitable receiver beside it, and the direction in which the media travels.</p>
+<p>A test to another internet endpoint can be useful context, but it measures another path.</p>
+<h2 id="describe-the-question-before-running-a-test">Describe the question before running a test</h2>
+<p>A useful observation record includes:</p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Why it belongs with the result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sender and receiver</td>
+<td>Selects the path</td>
+</tr>
+<tr>
+<td>Data direction</td>
+<td>Identifies which upload/download resources are used</td>
+</tr>
+<tr>
+<td>Address family and endpoint</td>
+<td>Retains IPv4/IPv6 and proxy/VPN differences</td>
+</tr>
+<tr>
+<td>Protocol and connection count</td>
+<td>Distinguishes one-flow and aggregate behavior</td>
+</tr>
+<tr>
+<td>Duration and interval results</td>
+<td>Exposes transient deficits</td>
+</tr>
+<tr>
+<td>Other active traffic</td>
+<td>Records the sharing context</td>
+</tr>
+</tbody>
+</table>
+<p>For remote playback, data normally leaves the Emby household toward the viewer. A measurement in the opposite direction can miss that uplink constraint.</p>
+<h2 id="a-controlled-receiver-test-has-its-own-service">A controlled receiver test has its own service</h2>
+<p>iperf3 uses an explicitly established client/server measurement arrangement. It does not turn the Emby application port into an iperf receiver.</p>
+<p>An original illustrative invocation is:</p>
+<pre><code class="lang-text">iperf3 -c receiver.example.net -R -t 20 -i 1
+</code></pre>
+<p>The example assumes an appropriate measurement receiver has been arranged. The reserved hostname is not a real target, and the command was not run.</p>
+<p>The reverse flag makes data travel from the measurement server to the invoking client. That can represent a media-server-to-viewer direction when those roles are deliberately placed on the intended path.</p>
+<p>A normal client-to-server test has another direction. Do not label one “upload” without identifying whose side is being described.</p>
+<h2 id="preserve-receiver-side-intervals">Preserve receiver-side intervals</h2>
+<p>Consider original useful payload results over two-second intervals:</p>
+<pre><code class="lang-json">{
+  &quot;secondsPerInterval&quot;: 2,
+  &quot;receivedBytes&quot;: [10000000, 1000000, 10000000]
+}
+</code></pre>
+<p>The interval rates are forty, four and forty Mbit/s. The whole-test average is twenty-eight.</p>
+<p>A twenty-Mbit/s presentation can fit that average yet experience a sixteen-Mbit/s deficit during the slow interval. Its current usable reserve determines whether that interval can be tolerated.</p>
+<p>Sender and receiver reports can differ in what reached the observation boundary. Use the appropriate receiver-side useful data for a delivery claim.</p>
+<h2 id="translate-a-slow-interval-into-required-reserve">Translate a slow interval into required reserve</h2>
+<p>For the separate stated twenty-Mbit/s presentation, the four-Mbit/s interval has a sixteen-Mbit/s deficit. Over two seconds, it consumes thirty-two Mbit of existing usable reserve: four decimal MB.</p>
+<p>A player with only sixteen Mbit available at that interval’s start can absorb one second under a constant within-interval rate assumption. A forty-Mbit reserve can absorb two and a half seconds, leaving eight after this two-second interval.</p>
+<p>Those are conditional arithmetic results, not a fixed recommended buffer size. Real transfers arrive in bursts, and received bytes need their media/container/decoder context before they become usable presentation reserve.</p>
+<p>The example gives an interpretable question for a test: did the observed deficit exceed the reserve actually available at that point? The twenty-eight-Mbit/s whole-test average cannot answer that chronological question alone.</p>
+<h2 id="change-one-path-input-for-an-informative-comparison">Change one path input for an informative comparison</h2>
+<p>A wired receiver near the viewing location can help separate one wireless segment from the rest of the route. Comparing local and remote delivery can identify an internet-path constraint.</p>
+<p>A different IPv4/IPv6 result, tunnel selection or proxy path changes the question too. Retain those endpoint inputs rather than treating every result as one universal property of “the network.”</p>
+<p>Repeated measurements can reveal time-dependent contention. They still describe their measured workload and interval, not every future household condition.</p>
+<h2 id="preserve-what-a-changed-result-can-attribute">Preserve what a changed result can attribute</h2>
+<p>Suppose the same original sender obtains eighty Mbit/s at a wired receiver near the TV, while that TV location’s wireless path has repeated low intervals. That comparison supports examining the changed wireless segment. It does not by itself identify signal, contention, backhaul or driver behavior as the cause.</p>
+<p>A local result and a remote result also change more than distance: they can change endpoint family, gateways, upload capacity and proxy/tunnel use. An attribution needs those differences stated.</p>
+<p>A repeatable test record should therefore keep both the controlled change and the other conditions that remained comparable. That makes a useful hypothesis different from assuming any faster alternative proved one particular device was faulty.</p>
+<h2 id="then-test-the-actual-presentation">Then test the actual presentation</h2>
+<p>A synthetic transfer omits media preparation, container/playlist requests, encryption/application behavior and client decoding/rendering work.</p>
+<p>A real Emby presentation needs its playback mode, selected media rate, server progress and client reserve observed alongside network delivery. A server failing to produce data is different from a path failing to carry already available data.</p>
+<p>Emby’s remote bitrate controls express demand policy; they are not a throughput measurement. <a href="../../playback-streaming/conversion/performance/Playback-Transcode-Speed.html">Transcode speed</a> supplies another potential production limit.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="capacity/Network-Throughput.html" title="Network throughput and useful delivery rate">Network throughput and useful delivery rate</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="capacity/Network-Upload.html" title="Upload bandwidth and simultaneous remote streams">Upload bandwidth and simultaneous remote streams</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="capacity/Network-Jitter.html" title="Network jitter and changing packet delay">Network jitter and changing packet delay</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Network-Ethernet.html" title="Ethernet link speeds and end-to-end capacity">Ethernet link speeds and end-to-end capacity</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../playback-streaming/conversion/performance/Playback-Transcode-Speed.html" title="Transcoding speed, fps and media time">Transcoding speed, fps and media time</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://software.es.net/iperf/invoking.html" title="ESnet: iperf3 invocation and direction">ESnet: iperf3 invocation and direction</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc2330.html" title="RFC 2330: IP performance metrics framework">RFC 2330: IP performance metrics framework</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc7679.html" title="RFC 7679: One-way delay metric">RFC 7679: One-way delay metric</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc2680.html" title="RFC 2680: One-way packet loss metric">RFC 2680: One-way packet loss metric</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Hosting-Settings.html" title="Emby: Network and secure-connection settings">Emby: Network and secure-connection settings</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Network-Measure-Streaming%0A*%20Title%3A%20Measuring%20the%20actual%20streaming%20delivery%20path%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

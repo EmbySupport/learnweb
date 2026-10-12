@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Human Interface Devices (HID) | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Human Interface Device reports describe controls through declared report layouts and usages, which a host interprets before applications assign actions.">
+  <link rel="canonical" href="https://emby.media/learn/articles/display-av/input/Input-HID.html">
+  <meta property="og:title" content="Human Interface Devices (HID) | Emby Learn">
+  <meta property="og:description" content="Human Interface Device reports describe controls through declared report layouts and usages, which a host interprets before applications assign actions.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/display-av/input/Input-HID.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/display-av/input/Input-HID.html","url":"https://emby.media/learn/articles/display-av/input/Input-HID.html","name":"Human Interface Devices (HID)","inLanguage":"en","headline":"Human Interface Devices (HID)","articleSection":"Displays and AV connections","proficiencyLevel":"Beginner","accessMode":"textual","description":"Human Interface Device reports describe controls through declared report layouts and usages, which a host interprets before applications assign actions.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Displays and AV connections","item":"https://emby.media/learn/articles/display-av/index.html"},{"@type":"ListItem","position":3,"name":"Playback input devices","item":"https://emby.media/learn/articles/display-av/input/index.html"},{"@type":"ListItem","position":4,"name":"Human Interface Devices (HID)","item":"https://emby.media/learn/articles/display-av/input/Input-HID.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Input-HID">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../display-av/index.html">Displays and AV connections</a></li>
+              <li><a href="../../display-av/input/index.html">Playback input devices</a></li>
+              <li><span aria-current="page">Human Interface Devices (HID)</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Input-HID">
+<h1>Human Interface Devices (HID)</h1>
+<p class="article-description">Human Interface Device reports describe controls through declared report layouts and usages, which a host interprets before applications assign actions.</p>
+
+
+<p><strong>HID</strong>, Human Interface Device, provides a structured way to describe and report controls. Its use includes keyboards, pointers, gamepads and media-control devices.</p>
+<p>The report’s declared layout and usages tell a host what its fields mean. The receiving application then gives those controls an action in its own context.</p>
+<h2 id="a-descriptor-describes-a-report-supplies-state">A descriptor describes; a report supplies state</h2>
+<p>A report descriptor defines properties such as field sizes, ranges, collections and usages. An input report supplies values using that established layout.</p>
+<p>Reading a byte as an arbitrary key number without its descriptor can give the wrong meaning. The same bit pattern can represent a button, an axis value or padding under different layouts.</p>
+<p>The USB HID class specification defines its USB contract. Other transports, including supported Bluetooth profiles, can carry HID-related report arrangements through their own contracts.</p>
+<h2 id="usage-pages-qualify-the-control-identifier">Usage pages qualify the control identifier</h2>
+<p>USB-IF’s Usage Tables place controls into usage pages. The Consumer page has identifier <code>0x0C</code>; its Play/Pause usage is <code>0xCD</code>.</p>
+<p>Those identifiers describe a control meaning, not the label painted on every handset or a guarantee that every host/application exposes it.</p>
+<p>A keyboard key and a Consumer Play/Pause control are consequently different declarations even when an application maps both to a playback action.</p>
+<h2 id="an-original-one-bit-report-model">An original one-bit report model</h2>
+<p>This readable teaching object defines one media-control field:</p>
+<pre><code class="lang-json">{
+  &quot;usagePage&quot;: 12,
+  &quot;usage&quot;: 205,
+  &quot;logicalRange&quot;: [0, 1],
+  &quot;inputBits&quot;: 1,
+  &quot;paddingBits&quot;: 7
+}
+</code></pre>
+<p>It is not a native HID report descriptor or a device capability capture. The decimal identifiers correspond to the Consumer/Play-Pause meanings above.</p>
+<p>For this original declared one-byte arrangement, with the control in the least significant bit:</p>
+<table>
+<thead>
+<tr>
+<th>Report byte</th>
+<th>Declared control state</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>00</td>
+<td>Not asserted</td>
+</tr>
+<tr>
+<td>01</td>
+<td>Asserted</td>
+</tr>
+</tbody>
+</table>
+<p>Seven other bits are padding in this model. A real descriptor can define more controls, report IDs and other layouts; the host must parse that actual declaration.</p>
+<h2 id="an-assertion-is-not-an-instruction-to-toggle-continuously">An assertion is not an instruction to toggle continuously</h2>
+<p>Polling an asserted report several times does not necessarily mean the user pressed the button several times.</p>
+<p>For an original sequence <code>00, 01, 01, 00</code>, the control has one transition from unasserted to asserted. A toggle action can therefore run once rather than once per asserted sample.</p>
+<p>A navigation action can intentionally use a repeat policy. A continuous analog action can use another policy again. HID reports provide input meaning/state; application behavior decides the operation.</p>
+<h2 id="the-focused-route-determines-the-result">The focused route determines the result</h2>
+<p>The operating system can consume a media control globally or route it to an application. A UI view can also assign a control differently while a movie is playing than while the user browses a library.</p>
+<p>For Emby, a device recognized as HID is only early evidence. The host event, app focus and current action mapping determine whether a press actually pauses, navigates or does something else.</p>
+<p><a class="xref" href="https://emby.media/support/articles/Keyboard-and-Remote-Support.html">Keyboard and remote support</a> describes the app’s control surface. <a href="Input-Gamepads.html">Gamepad input</a> adds axis values and mapping decisions beyond a single media button.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Input-Bluetooth-Remotes.html" title="Bluetooth remote controls">Bluetooth remote controls</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Input-Infrared-Remotes.html" title="Infrared remote controls">Infrared remote controls</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Input-Gamepads.html" title="Gamepad input for media navigation">Gamepad input for media navigation</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.usb.org/hid" title="USB-IF: HID class and usage specifications">USB-IF: HID class and usage specifications</a></li>
+			            <li><a class="seealso-link" href="https://www.usb.org/sites/default/files/hut1_7.pdf" title="USB-IF: HID Usage Tables 1.7">USB-IF: HID Usage Tables 1.7</a></li>
+			            <li><a class="seealso-link" href="https://www.bluetooth.com/specifications/specs/hid-over-gatt-profile-hogp/" title="Bluetooth SIG: HID over GATT Profile 1.2">Bluetooth SIG: HID over GATT Profile 1.2</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Input-HID%0A*%20Title%3A%20Human%20Interface%20Devices%20(HID)%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

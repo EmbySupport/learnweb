@@ -1,0 +1,269 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Browser autoplay restrictions and playback permission | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Browser autoplay restrictions govern when media may begin without suitable user interaction, making a playback request&#8217;s promise result part of the player&#8217;s state.">
+  <link rel="canonical" href="https://emby.media/learn/articles/playback-streaming/players/browser/Playback-Autoplay.html">
+  <meta property="og:title" content="Browser autoplay restrictions and playback permission | Emby Learn">
+  <meta property="og:description" content="Browser autoplay restrictions govern when media may begin without suitable user interaction, making a playback request&#8217;s promise result part of the player&#8217;s state.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/playback-streaming/players/browser/Playback-Autoplay.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/playback-streaming/players/browser/Playback-Autoplay.html","url":"https://emby.media/learn/articles/playback-streaming/players/browser/Playback-Autoplay.html","name":"Browser autoplay restrictions and playback permission","inLanguage":"en","headline":"Browser autoplay restrictions and playback permission","articleSection":"Playback and streaming","proficiencyLevel":"Beginner","accessMode":"textual","description":"Browser autoplay restrictions govern when media may begin without suitable user interaction, making a playback request’s promise result part of the player’s state.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Playback and streaming","item":"https://emby.media/learn/articles/playback-streaming/index.html"},{"@type":"ListItem","position":3,"name":"Players and playback environments","item":"https://emby.media/learn/articles/playback-streaming/players/index.html"},{"@type":"ListItem","position":4,"name":"Browser playback","item":"https://emby.media/learn/articles/playback-streaming/players/browser/index.html"},{"@type":"ListItem","position":5,"name":"Browser autoplay restrictions","item":"https://emby.media/learn/articles/playback-streaming/players/browser/Playback-Autoplay.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Playback-Autoplay">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../playback-streaming/index.html">Playback and streaming</a></li>
+              <li><a href="../../../playback-streaming/players/index.html">Players and playback environments</a></li>
+              <li><a href="../../../playback-streaming/players/browser/index.html">Browser playback</a></li>
+              <li><span aria-current="page">Browser autoplay restrictions</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Playback-Autoplay">
+<h1>Browser autoplay restrictions and playback permission</h1>
+<p class="article-description">Browser autoplay restrictions govern when media may begin without suitable user interaction, making a playback request&#8217;s promise result part of the player&#8217;s state.</p>
+
+
+<p>A browser can refuse to begin media without an appropriate user interaction, even when the resource and codecs are supported. <strong>Autoplay restrictions</strong> govern permission to start, including circumstances involving audible media.</p>
+<p>This explains why a video can be ready while its player still presents a Play button.</p>
+<h2 id="requesting-playback-is-an-action-with-a-result">Requesting playback is an action with a result</h2>
+<p>The HTML <code>autoplay</code> attribute expresses a request; the browser's applicable policy determines whether automatic presentation can begin. Muted and audible media can be treated differently.</p>
+<p>Chrome's documented policy is one concrete example: it distinguishes muted autoplay from audible autoplay and considers factors such as user interaction and permitted embedded playback. Other browsers and embedded views have their own applicable behavior.</p>
+<p>A player should react to the result of its start request. This original example assumes <code>video</code> is the selected media element and the functions update the application's visible controls:</p>
+<pre><code class="lang-javascript">async function requestStart() {
+  try {
+    await video.play();
+    showPlayingControls();
+  } catch (error) {
+    showPlayButton(error.name);
+  }
+}
+</code></pre>
+<p>The code does not claim playback is running merely because it called <code>play()</code>. If the promise rejects, the app can expose a usable action and retain the error context.</p>
+<h2 id="separate-permission-from-media-preparation">Separate permission from media preparation</h2>
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th>Question it raises</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>play() rejects with NotAllowedError</td>
+<td>Was playback permitted under the applicable policy?</td>
+</tr>
+<tr>
+<td>The user clicks Play and presentation starts</td>
+<td>Did that interaction provide the required permission?</td>
+</tr>
+<tr>
+<td>The resource request fails</td>
+<td>Could the media be obtained?</td>
+</tr>
+<tr>
+<td>A decoder reports failure after data is obtained</td>
+<td>Could this encoded media be prepared?</td>
+</tr>
+<tr>
+<td>Playback starts and later stalls</td>
+<td>Is the next required media ready?</td>
+</tr>
+</tbody>
+</table>
+<p>A <code>NotAllowedError</code> is not a codec identifier. Conversely, a user gesture does not repair an inaccessible resource or an unsupported encoding.</p>
+<p>In an Emby Web session, this distinction can prevent a ready-but-paused player from being mistaken for slow transcoding. The server can already have useful output while the browser is waiting for permission to present it.</p>
+<h2 id="embedded-playback-has-another-context">Embedded playback has another context</h2>
+<p>An embedded player can be affected by its embedding page's permission policy. User interaction in one frame is not a universal instruction that every unrelated frame must start audible media.</p>
+<p>Applications need to preserve the intended interaction and examine the actual promise result. A successful user-triggered start can update the controls immediately; a rejected start should leave the user an action that corresponds to the browser's state.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-HTML-Media.html" title="HTML media elements, state and time ranges">HTML media elements, state and time ranges</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Browser.html" title="Browser media playback and its loading paths">Browser media playback and its loading paths</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../behavior/symptoms/Playback-Error-Categories.html" title="Playback error categories and evidence scopes">Playback error categories and evidence scopes</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../behavior/symptoms/Playback-Startup-Delay.html" title="Playback startup delay">Playback startup delay</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://html.spec.whatwg.org/multipage/media.html" title="WHATWG: HTML media elements and playback">WHATWG: HTML media elements and playback</a></li>
+			            <li><a class="seealso-link" href="https://developer.chrome.com/blog/autoplay/" title="Chrome: Autoplay policy and play promises">Chrome: Autoplay policy and play promises</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Playback-Autoplay%0A*%20Title%3A%20Browser%20autoplay%20restrictions%20and%20playback%20permission%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

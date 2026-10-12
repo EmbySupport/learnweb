@@ -1,0 +1,319 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Library scanning and catalogue reconciliation | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Library scanning discovers media resources and reconciles their recognized identities, descriptions and availability with the catalogue.">
+  <link rel="canonical" href="https://emby.media/learn/articles/libraries-collections/scanning/Library-Scanning.html">
+  <meta property="og:title" content="Library scanning and catalogue reconciliation | Emby Learn">
+  <meta property="og:description" content="Library scanning discovers media resources and reconciles their recognized identities, descriptions and availability with the catalogue.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/libraries-collections/scanning/Library-Scanning.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/libraries-collections/scanning/Library-Scanning.html","url":"https://emby.media/learn/articles/libraries-collections/scanning/Library-Scanning.html","name":"Library scanning and catalogue reconciliation","inLanguage":"en","headline":"Library scanning and catalogue reconciliation","articleSection":"Libraries and media collections","proficiencyLevel":"Beginner","accessMode":"textual","description":"Library scanning discovers media resources and reconciles their recognized identities, descriptions and availability with the catalogue.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Libraries and media collections","item":"https://emby.media/learn/articles/libraries-collections/index.html"},{"@type":"ListItem","position":3,"name":"Library scanning and media analysis","item":"https://emby.media/learn/articles/libraries-collections/scanning/index.html"},{"@type":"ListItem","position":4,"name":"Library scanning","item":"https://emby.media/learn/articles/libraries-collections/scanning/Library-Scanning.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Library-Scanning">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../libraries-collections/index.html">Libraries and media collections</a></li>
+              <li><a href="../../libraries-collections/scanning/index.html">Library scanning and media analysis</a></li>
+              <li><span aria-current="page">Library scanning</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Library-Scanning">
+<h1>Library scanning and catalogue reconciliation</h1>
+<p class="article-description">Library scanning discovers media resources and reconciles their recognized identities, descriptions and availability with the catalogue.</p>
+
+
+<p>A library scan compares available resources with the catalogue the server already holds. It discovers additions, notices changes, interprets names and structure, and updates the represented items according to the product's reconciliation rules.</p>
+<p>That can involve much more than listing filenames, but it need not mean decoding every second of every film. Discovery, descriptive metadata retrieval, technical probing and derived analysis are related operations with different purposes.</p>
+<h2 id="from-a-path-to-a-described-item">From a path to a described item</h2>
+<p>An explanatory pipeline is:</p>
+<p><img src="images/scan-stages.png" alt="Discovery and reconciliation feed separate technical-analysis, descriptive-metadata and derived-preview work before their results contribute to the catalogue."></p>
+<p>This is a conceptual dependency diagram. It is not Emby's internal scheduler or an assertion that its tasks run in this exact sequence.</p>
+<p><strong>Discovery</strong> finds entries within configured roots and supported resource structures. It needs to determine which are media, supplementary files, directories or other material.</p>
+<p><strong>Interpretation</strong> gives the resource a role. A season/episode filename, a movie folder, a trailer association or an embedded music tag can supply clues. The configured <a href="../concepts/Library-Content-Models.html">content model</a> provides context.</p>
+<p><strong>Reconciliation</strong> compares the observed resource with existing catalogue state. A newly observed path, a changed resource and a no-longer-observed path call for different decisions.</p>
+<p><strong>Enrichment</strong> adds descriptions and technical facts. A provider lookup supplies catalogue information; a probe inspects the actual resource. Neither operation substitutes for the other.</p>
+<p><strong>Derived work</strong> can create previews or detect recurring intervals. It depends on media content and may be scheduled or completed separately from the basic catalogue update.</p>
+<p>The phases explain why a new entry can appear with a filename-derived title before its final poster or analysis is available. A usable path and a completed description are different milestones.</p>
+<h2 id="a-before-and-after-inventory">A before-and-after inventory</h2>
+<p>Use this original observation set:</p>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Previous observation</th>
+<th>Current observation</th>
+<th>Question for reconciliation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Present</td>
+<td>Present, unchanged signature</td>
+<td>Can existing analysis be reused?</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Present</td>
+<td>Present, changed signature</td>
+<td>Which technical or derived facts became stale?</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Absent</td>
+<td>Present</td>
+<td>What entity and source does it represent?</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Present</td>
+<td>Not found under a reachable root</td>
+<td>Was it removed or moved?</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Present</td>
+<td>Its root could not be read</td>
+<td>Is availability unknown rather than confirmed absent?</td>
+</tr>
+</tbody>
+</table>
+<p>A <em>signature</em> here means the scanner's chosen change evidence, not necessarily a complete-file hash. <a href="Library-Incremental-Scans.html">Incremental scans</a> explains the trade-off between cheap change detection and certainty.</p>
+<p>The final two rows are especially important. A reachable directory that no longer contains D supplies different evidence from a failed attempt to read E's entire disk. “Not observed” is a result; its cause determines how much can be concluded. Actual retention/removal behavior belongs to the server's implementation and settings.</p>
+<p>A move can appear as a disappearance and an addition. Preserving the original logical identity then requires sufficient evidence to relate the two observations. The same title alone is not necessarily sufficient.</p>
+<h2 id="a-file-can-appear-before-it-is-complete">A file can appear before it is complete</h2>
+<p>During a copy, a resource may already have its final-looking name while its size is still growing. Container headers can be incomplete, or essential index information can arrive later. A probe at that moment can fail or discover only a provisional description.</p>
+<p>A change notification tells a scanner that something happened. It does not certify that the final media is complete and ready. Rechecking, observing stability or using a deliberate publish/rename workflow are possible ways for software to handle that dependency; they are not universal guarantees supplied by the filesystem.</p>
+<p>Likewise, a readable directory does not establish that every file can be opened. Resource-level permissions and transient errors can differ from directory enumeration.</p>
+<p>These distinctions help interpret a scan that has found a title but has not yet supplied a dependable duration or stream list.</p>
+<h2 id="scan-refresh-and-extraction-answer-different-questions">Scan, refresh and extraction answer different questions</h2>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Primary question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Discover/reconcile library resources</td>
+<td>What media is present, changed or missing?</td>
+</tr>
+<tr>
+<td>Refresh descriptive metadata</td>
+<td>What catalogue fields should be retrieved or updated?</td>
+</tr>
+<tr>
+<td>Probe a source</td>
+<td>What streams and technical properties does this resource contain?</td>
+</tr>
+<tr>
+<td>Extract seek previews</td>
+<td>Which small pictures represent its timeline?</td>
+</tr>
+<tr>
+<td>Detect episode intros</td>
+<td>Which interval appears to be a recurring introduction?</td>
+</tr>
+</tbody>
+</table>
+<p>A metadata refresh may act on an already known item without discovering another path. Replacing a poster does not establish that cached stream analysis matches a newly replaced video. Finishing enumeration does not establish that preview extraction has finished.</p>
+<p>Emby's <a class="xref" href="https://emby.media/support/articles/Library-Setup.html">Library Setup</a>, <a class="xref" href="https://emby.media/support/articles/Metadata-manager.html">metadata manager</a> and <a class="xref" href="https://emby.media/support/articles/Scheduled-Tasks.html">scheduled-task documentation</a> describe the corresponding product controls. The Learn distinction is about the work they request, rather than their click paths.</p>
+<h2 id="why-scan-duration-varies">Why scan duration varies</h2>
+<p>The cost depends on the number of directory entries, storage latency, how much analysis can be reused and which new work is required. Many small files can be expensive to enumerate even if their total byte count is low. A few large files may be cheap to identify but costly to decode for content-derived analysis.</p>
+<p>Provider access contributes another cost: a new match can require network requests that an unchanged, already described item does not. Image retrieval and background extraction add further dependencies.</p>
+<p>A completed scan therefore has a defined scope. It is useful to ask which catalogue reconciliation finished and which derived tasks remain, rather than treating one percentage as a universal measure of every library operation.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Library-Incremental-Scans.html" title="Incremental library scans">Incremental library scans</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="analysis-previews/Library-Media-Analysis.html" title="Technical analysis of library media">Technical analysis of library media</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../concepts/Library-Media-Identity.html" title="Media item identity">Media item identity</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../metadata-discovery/services/Metadata-Provider-Workflow.html" title="How metadata providers work">How metadata providers work</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Library-Setup.html" title="Emby: Library setup">Emby: Library setup</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Metadata-manager.html" title="Emby: Metadata manager">Emby: Metadata manager</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffprobe.html" title="FFmpeg: ffprobe documentation">FFmpeg: ffprobe documentation</a></li>
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/dotnet/api/system.io.filesystemwatcher?view=net-10.0" title="Microsoft: FileSystemWatcher event behavior">Microsoft: FileSystemWatcher event behavior</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Library-Scanning%0A*%20Title%3A%20Library%20scanning%20and%20catalogue%20reconciliation%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

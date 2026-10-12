@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Subtitle font fallback | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Subtitle font fallback selects usable faces when a requested font or required glyph is unavailable, which can change both shape and layout metrics.">
+  <link rel="canonical" href="https://emby.media/learn/articles/subtitles/rendering/fonts-typesetting/Subtitle-Font-Fallback.html">
+  <meta property="og:title" content="Subtitle font fallback | Emby Learn">
+  <meta property="og:description" content="Subtitle font fallback selects usable faces when a requested font or required glyph is unavailable, which can change both shape and layout metrics.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/subtitles/rendering/fonts-typesetting/Subtitle-Font-Fallback.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/subtitles/rendering/fonts-typesetting/Subtitle-Font-Fallback.html","url":"https://emby.media/learn/articles/subtitles/rendering/fonts-typesetting/Subtitle-Font-Fallback.html","name":"Subtitle font fallback","inLanguage":"en","headline":"Subtitle font fallback","articleSection":"Subtitles and captions","proficiencyLevel":"Beginner","accessMode":"textual","description":"Subtitle font fallback selects usable faces when a requested font or required glyph is unavailable, which can change both shape and layout metrics.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Subtitles and captions","item":"https://emby.media/learn/articles/subtitles/index.html"},{"@type":"ListItem","position":3,"name":"Text rendering and styling","item":"https://emby.media/learn/articles/subtitles/rendering/index.html"},{"@type":"ListItem","position":4,"name":"Fonts and typesetting","item":"https://emby.media/learn/articles/subtitles/rendering/fonts-typesetting/index.html"},{"@type":"ListItem","position":5,"name":"Subtitle font fallback","item":"https://emby.media/learn/articles/subtitles/rendering/fonts-typesetting/Subtitle-Font-Fallback.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Subtitle-Font-Fallback">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../subtitles/index.html">Subtitles and captions</a></li>
+              <li><a href="../../../subtitles/rendering/index.html">Text rendering and styling</a></li>
+              <li><a href="../../../subtitles/rendering/fonts-typesetting/index.html">Fonts and typesetting</a></li>
+              <li><span aria-current="page">Subtitle font fallback</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Subtitle-Font-Fallback">
+<h1>Subtitle font fallback</h1>
+<p class="article-description">Subtitle font fallback selects usable faces when a requested font or required glyph is unavailable, which can change both shape and layout metrics.</p>
+
+
+<p>Font fallback supplies a usable font face when the requested face or a needed glyph is unavailable. It lets a subtitle remain visible, but the replacement can change letter shapes, widths, baselines and line breaks.</p>
+<p>Two different failures can trigger it:</p>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Typical matching question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Requested family is unavailable</td>
+<td>Which available family/style is an acceptable substitute?</td>
+</tr>
+<tr>
+<td>Family exists but lacks characters in a run</td>
+<td>Which face covers those characters and suits their script?</td>
+</tr>
+</tbody>
+</table>
+<p>A renderer can therefore use fallback for part of a line rather than replace the entire caption.</p>
+<h2 id="the-filename-is-not-the-selected-family">The filename is not the selected family</h2>
+<p>Subtitle styles request font family and properties such as weight or italic style. The font's internal names and available faces supply that identity. A file named <code>MovieFont-Regular.ttf</code> need not contain a family named “MovieFont-Regular”.</p>
+<p>Matching can consider family, style, character coverage, language and other properties. Fontconfig documents one such matching system; other platforms and renderers use their own font providers and policies.</p>
+<p>Inspect the selected face rather than assume that the first vaguely matching filename must be the font being used.</p>
+<h2 id="a-fixed-anchor-can-produce-different-visible-bounds">A fixed anchor can produce different visible bounds</h2>
+<p>Imagine a line centred at <strong>x = 800</strong>. With face A, its advance width is <strong>240 units</strong>. With fallback face B, it is <strong>300</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Face</th>
+<th style="text-align: right;">Advance width</th>
+<th style="text-align: right;">Left bound in this simplified model</th>
+<th style="text-align: right;">Right bound</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td style="text-align: right;">240</td>
+<td style="text-align: right;">800 − 120 = 680</td>
+<td style="text-align: right;">920</td>
+</tr>
+<tr>
+<td>B</td>
+<td style="text-align: right;">300</td>
+<td style="text-align: right;">800 − 150 = 650</td>
+<td style="text-align: right;">950</td>
+</tr>
+</tbody>
+</table>
+<p><img src="images/font-fallback-bounds.png" alt="Two invented advance widths produce different line bounds around the same alignment anchor."></p>
+<p>The anchor did not move. The wider line extends farther in both directions. In a 280-unit-wide layout area, face A fits and face B does not, which can trigger wrapping or another layout decision.</p>
+<p>These are invented advance-width values, not measurements of named fonts. Actual ink bounds can also differ from advance bounds, and shaping determines the advances used by a real line.</p>
+<h2 id="coverage-and-shaping-work-together">Coverage and shaping work together</h2>
+<p>A font can contain a base letter while a needed combining mark comes from another face. Coordinated shaping and placement must keep the mark related to the base. A substitution that changes metrics or separates a shaping run can alter the result.</p>
+<p>Arabic and other contextual scripts also need appropriate shaping. Individual code-point coverage is useful, but not the complete test of connected forms or mark positioning.</p>
+<p>A missing-glyph box is different from mojibake. The box can mean a known character lacked a drawable glyph. Mojibake can mean wrong characters were produced before the font provider was asked.</p>
+<h2 id="resources-belong-to-the-active-renderer">Resources belong to the active renderer</h2>
+<p>For an Emby comparison, identify where text is drawn and which face that renderer actually selected. A font attached to the source file must be made available at that consumer; a font installed on a separate machine does not automatically enter its matching process.</p>
+<p>Retaining the intended face can improve repeatability of a typeset sign. Fallback remains useful for missing resources and coverage, while its metric differences explain why an unchanged style and position can still look different.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Subtitle-Font-Attachments.html" title="Subtitle font attachments">Subtitle font attachments</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../encoding-scripts/Subtitle-Unicode.html" title="Unicode in subtitles">Unicode in subtitles</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../encoding-scripts/Subtitle-RTL.html" title="Right-to-left subtitles">Right-to-left subtitles</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Subtitle-ASS-Typesetting.html" title="ASS typesetting">ASS typesetting</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://fontconfig.pages.freedesktop.org/fontconfig/fontconfig-user.html" title="Fontconfig: Font matching and configuration">Fontconfig: Font matching and configuration</a></li>
+			            <li><a class="seealso-link" href="https://harfbuzz.github.io/shaping-concepts.html" title="HarfBuzz: Shaping concepts">HarfBuzz: Shaping concepts</a></li>
+			            <li><a class="seealso-link" href="https://github.com/libass/libass/wiki/ASS-File-Format-Guide" title="libass: ASS file format guide">libass: ASS file format guide</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/ttml2/" title="W3C Timed Text Markup Language 2">W3C Timed Text Markup Language 2</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Subtitle-Font-Fallback%0A*%20Title%3A%20Subtitle%20font%20fallback%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

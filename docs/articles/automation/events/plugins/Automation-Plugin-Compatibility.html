@@ -1,0 +1,264 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Plugin compatibility across server and runtime changes | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Plugin compatibility requires a supported relationship among host interfaces, runtime dependencies, platform assets and persisted data, not merely a successfully loaded package.">
+  <link rel="canonical" href="https://emby.media/learn/articles/automation/events/plugins/Automation-Plugin-Compatibility.html">
+  <meta property="og:title" content="Plugin compatibility across server and runtime changes | Emby Learn">
+  <meta property="og:description" content="Plugin compatibility requires a supported relationship among host interfaces, runtime dependencies, platform assets and persisted data, not merely a successfully loaded package.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/automation/events/plugins/Automation-Plugin-Compatibility.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/automation/events/plugins/Automation-Plugin-Compatibility.html","url":"https://emby.media/learn/articles/automation/events/plugins/Automation-Plugin-Compatibility.html","name":"Plugin compatibility across server and runtime changes","inLanguage":"en","headline":"Plugin compatibility across server and runtime changes","articleSection":"Automation and interoperability","proficiencyLevel":"Beginner","accessMode":"textual","description":"Plugin compatibility requires a supported relationship among host interfaces, runtime dependencies, platform assets and persisted data, not merely a successfully loaded package.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Automation and interoperability","item":"https://emby.media/learn/articles/automation/index.html"},{"@type":"ListItem","position":3,"name":"Events and integrations","item":"https://emby.media/learn/articles/automation/events/index.html"},{"@type":"ListItem","position":4,"name":"Plugins","item":"https://emby.media/learn/articles/automation/events/plugins/index.html"},{"@type":"ListItem","position":5,"name":"Plugin compatibility","item":"https://emby.media/learn/articles/automation/events/plugins/Automation-Plugin-Compatibility.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Automation-Plugin-Compatibility">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../automation/index.html">Automation and interoperability</a></li>
+              <li><a href="../../../automation/events/index.html">Events and integrations</a></li>
+              <li><a href="../../../automation/events/plugins/index.html">Plugins</a></li>
+              <li><span aria-current="page">Plugin compatibility</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Automation-Plugin-Compatibility">
+<h1>Plugin compatibility across server and runtime changes</h1>
+<p class="article-description">Plugin compatibility requires a supported relationship among host interfaces, runtime dependencies, platform assets and persisted data, not merely a successfully loaded package.</p>
+
+
+<p>A plugin is compatible when its required contracts and behavior match the host environment in which it operates. Successful package installation or assembly loading tests only part of that relationship.</p>
+<p>The current server release, plugin package and documented extension interfaces establish the actual target.</p>
+<h2 id="several-layers-can-disagree">Several layers can disagree</h2>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Compatibility question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Host API</td>
+<td>Are the required interfaces and members available?</td>
+</tr>
+<tr>
+<td>Runtime</td>
+<td>Can this assembly and its dependencies execute here?</td>
+</tr>
+<tr>
+<td>Native assets</td>
+<td>Do architecture and operating-system ABI match?</td>
+</tr>
+<tr>
+<td>Behavior</td>
+<td>Does the extension handle the operation's current semantics?</td>
+</tr>
+<tr>
+<td>Persistent state</td>
+<td>Can it interpret existing configuration and stored data?</td>
+</tr>
+<tr>
+<td>External services</td>
+<td>Do its integrations still use a supported contract?</td>
+</tr>
+</tbody>
+</table>
+<p>A package can load while one later feature fails on a missing native library. Another can load and invoke successfully while misinterpreting a changed result field.</p>
+<p>The development documentation contains examples for particular runtime targets. Those examples should not be treated as a timeless list of the runtime versions in every installed Emby release.</p>
+<h2 id="loading-is-one-checkpoint">Loading is one checkpoint</h2>
+<p>An original compatibility scenario is:</p>
+<pre><code class="lang-text">Host H2 loads plugin P1.
+P1 starts its ordinary configuration path.
+Later operation requires interface member M2.
+P1's selected dependency does not provide the required contract.
+Startup success did not establish that later operation.
+</code></pre>
+<p>The labels describe a model rather than real Emby version numbers. Tests should exercise the feature and data path the plugin actually needs.</p>
+<p>A source-code rebuild can resolve an API mismatch while still leaving behavior or migration work. Conversely, preserving one binary does not prove semantic compatibility after a host update.</p>
+<h2 id="stored-data-have-their-own-version-relationship">Stored data have their own version relationship</h2>
+<p>An updated plugin may migrate its configuration. Returning to an older assembly may not reverse that migration or make the resulting state readable by the old code.</p>
+<p>Backups and supported upgrade/downgrade paths therefore belong to the data lifecycle as well as the software lifecycle.</p>
+<p>For Emby plugin use or development, record the actual host/package combination and the failed feature. The current <a class="xref" href="https://dev.emby.media/doc/plugins/dev/index.html">plugin-development documentation</a> supplies the extension contracts; a generic “DLL loads” observation does not establish the whole result.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Automation-Plugins.html" title="Plugin architecture inside a media server">Plugin architecture inside a media server</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../storage/execution/Server-Native-Libraries.html" title="Native libraries and runtime dependencies">Native libraries and runtime dependencies</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://dev.emby.media/doc/plugins/dev/index.html" title="Emby server plugin development">Emby server plugin development</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Common.Plugins.IPlugin.html" title="Emby IPlugin interface">Emby IPlugin interface</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Automation-Plugin-Compatibility%0A*%20Title%3A%20Plugin%20compatibility%20across%20server%20and%20runtime%20changes%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

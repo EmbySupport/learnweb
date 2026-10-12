@@ -1,0 +1,283 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Resume positions and playback timelines | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="A resume position is a saved media-time location that needs the correct user, item and source timeline to continue playback meaningfully.">
+  <link rel="canonical" href="https://emby.media/learn/articles/libraries-collections/history/Library-Resume-Positions.html">
+  <meta property="og:title" content="Resume positions and playback timelines | Emby Learn">
+  <meta property="og:description" content="A resume position is a saved media-time location that needs the correct user, item and source timeline to continue playback meaningfully.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/libraries-collections/history/Library-Resume-Positions.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/libraries-collections/history/Library-Resume-Positions.html","url":"https://emby.media/learn/articles/libraries-collections/history/Library-Resume-Positions.html","name":"Resume positions and playback timelines","inLanguage":"en","headline":"Resume positions and playback timelines","articleSection":"Libraries and media collections","proficiencyLevel":"Beginner","accessMode":"textual","description":"A resume position is a saved media-time location that needs the correct user, item and source timeline to continue playback meaningfully.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Libraries and media collections","item":"https://emby.media/learn/articles/libraries-collections/index.html"},{"@type":"ListItem","position":3,"name":"Playback history","item":"https://emby.media/learn/articles/libraries-collections/history/index.html"},{"@type":"ListItem","position":4,"name":"Resume positions","item":"https://emby.media/learn/articles/libraries-collections/history/Library-Resume-Positions.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Library-Resume-Positions">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../libraries-collections/index.html">Libraries and media collections</a></li>
+              <li><a href="../../libraries-collections/history/index.html">Playback history</a></li>
+              <li><span aria-current="page">Resume positions</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Library-Resume-Positions">
+<h1>Resume positions and playback timelines</h1>
+<p class="article-description">A resume position is a saved media-time location that needs the correct user, item and source timeline to continue playback meaningfully.</p>
+
+
+<p>A resume position identifies a location on a media timeline. It is useful only with the context needed to interpret it: the viewer, the catalogue item and the represented source or edition.</p>
+<p>A value of 36:30 means “36 minutes 30 seconds into this timeline.” It does not mean the viewer spent that long watching, and it is not a wall-clock time.</p>
+<h2 id="a-stored-value-and-its-unit">A stored value and its unit</h2>
+<p>Emby's user-item model exposes <code>PlaybackPositionTicks</code>. Its playback-progress model reports <code>PositionTicks</code> with item and media-source information. The tick convention uses 100-nanosecond units, or ten million ticks per second.</p>
+<p>For a fictional position of 36:30:</p>
+<pre><code class="lang-text">36 × 60 + 30 = 2,190 seconds
+2,190 × 10,000,000 = 21,900,000,000 ticks
+</code></pre>
+<p>The reverse calculation divides by 10,000,000, then formats 2,190 seconds as 36:30. A tick count does not become milliseconds merely because it is an integer.</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>21,900,000,000 ticks</td>
+<td>2,190 seconds under this convention</td>
+</tr>
+<tr>
+<td>2,190,000 milliseconds</td>
+<td>The same interval in another unit</td>
+</tr>
+<tr>
+<td>36:30</td>
+<td>A human-readable location</td>
+</tr>
+<tr>
+<td>A calendar timestamp</td>
+<td>An instant when an event happened, not this location</td>
+</tr>
+</tbody>
+</table>
+<p>The unit's fine resolution does not prove that playback or saved state is accurate to 100 nanoseconds. The player, reporting frequency and media timestamps impose their own practical precision.</p>
+<h2 id="the-server-saves-reported-state">The server saves reported state</h2>
+<p>A player knows its current location during playback. A server can save only the information it receives and accepts.</p>
+<p>Imagine this original reporting sequence:</p>
+<ul>
+<li>A progress update at media position 36:10 reaches the server.</li>
+<li>Playback continues to 36:30.</li>
+<li>The app disappears before its final update is received.</li>
+</ul>
+<p>The last known saved point can remain 20 seconds behind the viewer's stopping point. That result does not require a codec error: the state report was simply older than the final player state.</p>
+<p><img src="images/resume-reporting.png" alt="The original reporting example saves 36:10 while playback reaches 36:30 before a final report is lost; the 20-second difference is separate from decode and seek behavior."></p>
+<p>The times and lost report are fictional. They do not specify an Emby reporting interval, retry policy or failure rate.</p>
+<p>A normal stop report can provide a more recent position. Repeated or delayed reports require session-aware handling so that old state does not accidentally replace newer state. The public API describes report fields; it does not fully specify the server's conflict-resolution algorithm.</p>
+<h2 id="seeking-is-a-second-source-of-difference">Seeking is a second source of difference</h2>
+<p>Even with the correct saved value, a decoder may need to begin reading before the requested picture. Compressed video often uses earlier reference pictures, so random access can start at an appropriate <a href="../../video/compression/picture-prediction-and-random-access/Video-Keyframes.html">keyframe or access point</a>.</p>
+<p>A player can decode forward and discard earlier output to reach the target, or choose a nearby practical position depending on the playback path. Reading from an earlier access point and having an older saved resume point are different mechanisms, even if both appear as “it resumed too early.”</p>
+<p>Container timestamp origins and <a href="../../media-files/container-structure/timing-and-navigation/Media-Time-Bases.html">time bases</a> add another conversion boundary. A stored media location must be interpreted against the relevant source timeline rather than copied as a raw packet timestamp.</p>
+<h2 id="elapsed-viewing-time-is-another-quantity">Elapsed viewing time is another quantity</h2>
+<p>Pause for ten minutes and the wall clock advances while the media position stays still. Play at double speed and 20 minutes of media can advance in about ten minutes of uninterrupted wall-clock playback. Seek forward and the media position jumps without viewing the skipped passage.</p>
+<p>A resume value therefore describes where to continue, not how much content was consumed. <a href="Library-Watched-Status.html">Watched status</a> and viewing-duration analytics need their own definitions.</p>
+<h2 id="a-source-change-can-invalidate-correspondence">A source change can invalidate correspondence</h2>
+<p>Two encodes of an unchanged sequence can have corresponding locations, but a different cut may not. In the <a href="../movies/editions-versions/Library-Movie-Editions.html">edition example</a>, a 13-minute insert moves the scene at theatrical minute 70 to extended minute 83. The number 70 remains valid in the new file while referring to the wrong scene.</p>
+<p>Changing a <a href="../movies/editions-versions/Library-Multipart-Movies.html">multipart representation</a> can also require converting between a whole-feature time and a part-local time. Removing opening material changes subsequent offsets. No work-level provider ID supplies those mappings.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Library-Watched-Status.html" title="Watched status">Watched status</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Library-User-History.html" title="User-specific playback history">User-specific playback history</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../movies/editions-versions/Library-Movie-Editions.html" title="Movie editions and cuts">Movie editions and cuts</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../movies/editions-versions/Library-Multipart-Movies.html" title="Multipart movies and file stacking">Multipart movies and file stacking</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../media-files/container-structure/timing-and-navigation/Media-Time-Bases.html" title="Time Bases">Time Bases</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../video/compression/picture-prediction-and-random-access/Video-Keyframes.html" title="Video Keyframes and Random Access">Video Keyframes and Random Access</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Model.Dto.UserItemDataDto.html" title="Emby API: UserItemDataDto">Emby API: UserItemDataDto</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/RestAPI/PlaystateService/postSessionsPlayingProgress.html" title="Emby API: Playback progress reporting">Emby API: Playback progress reporting</a></li>
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/dotnet/api/system.timespan?view=net-10.0" title="Microsoft: TimeSpan tick units">Microsoft: TimeSpan tick units</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Model.Dto.MediaSourceInfo.html" title="Emby API: MediaSourceInfo">Emby API: MediaSourceInfo</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg.html" title="FFmpeg: Seeking and media processing">FFmpeg: Seeking and media processing</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Library-Resume-Positions%0A*%20Title%3A%20Resume%20positions%20and%20playback%20timelines%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

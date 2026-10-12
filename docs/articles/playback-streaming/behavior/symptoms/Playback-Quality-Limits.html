@@ -1,0 +1,272 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Playback quality limits and output constraints | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Playback quality limits constrain the chosen delivery representation through applicable rate, format and presentation conditions rather than promising one fixed visual quality.">
+  <link rel="canonical" href="https://emby.media/learn/articles/playback-streaming/behavior/symptoms/Playback-Quality-Limits.html">
+  <meta property="og:title" content="Playback quality limits and output constraints | Emby Learn">
+  <meta property="og:description" content="Playback quality limits constrain the chosen delivery representation through applicable rate, format and presentation conditions rather than promising one fixed visual quality.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/playback-streaming/behavior/symptoms/Playback-Quality-Limits.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/playback-streaming/behavior/symptoms/Playback-Quality-Limits.html","url":"https://emby.media/learn/articles/playback-streaming/behavior/symptoms/Playback-Quality-Limits.html","name":"Playback quality limits and output constraints","inLanguage":"en","headline":"Playback quality limits and output constraints","articleSection":"Playback and streaming","proficiencyLevel":"Beginner","accessMode":"textual","description":"Playback quality limits constrain the chosen delivery representation through applicable rate, format and presentation conditions rather than promising one fixed visual quality.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Playback and streaming","item":"https://emby.media/learn/articles/playback-streaming/index.html"},{"@type":"ListItem","position":3,"name":"Understanding playback behavior","item":"https://emby.media/learn/articles/playback-streaming/behavior/index.html"},{"@type":"ListItem","position":4,"name":"Playback symptoms","item":"https://emby.media/learn/articles/playback-streaming/behavior/symptoms/index.html"},{"@type":"ListItem","position":5,"name":"Playback quality limits","item":"https://emby.media/learn/articles/playback-streaming/behavior/symptoms/Playback-Quality-Limits.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Playback-Quality-Limits">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../playback-streaming/index.html">Playback and streaming</a></li>
+              <li><a href="../../../playback-streaming/behavior/index.html">Understanding playback behavior</a></li>
+              <li><a href="../../../playback-streaming/behavior/symptoms/index.html">Playback symptoms</a></li>
+              <li><span aria-current="page">Playback quality limits</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Playback-Quality-Limits">
+<h1>Playback quality limits and output constraints</h1>
+<p class="article-description">Playback quality limits constrain the chosen delivery representation through applicable rate, format and presentation conditions rather than promising one fixed visual quality.</p>
+
+
+<p>A playback limit describes a constraint on the selected representation. It does not guarantee one visual quality, nor require the encoder to fill the permitted rate exactly.</p>
+<p>The relevant constraints can come from the client request, delivery context, user/server policy and the media configuration. Their applicability needs the actual session context.</p>
+<h2 id="an-original-set-of-applicable-caps">An original set of applicable caps</h2>
+<p>Assume an invented planner applies all four limits below and chooses their minimum:</p>
+<table>
+<thead>
+<tr>
+<th>Applicable cap in the model</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Player/profile limit</td>
+<td>12 Mbit/s</td>
+</tr>
+<tr>
+<td>Server delivery policy</td>
+<td>8 Mbit/s</td>
+</tr>
+<tr>
+<td>User policy</td>
+<td>6 Mbit/s</td>
+</tr>
+<tr>
+<td>Current app request</td>
+<td>4 Mbit/s</td>
+</tr>
+</tbody>
+</table>
+<p>Under that declared policy, the effective ceiling is 4 Mbit/s. Seeing a server setting of 8 does not make the other stated constraints disappear.</p>
+<p>This is not a specification of Emby's complete precedence or network-classification algorithm. Its public request/profile models and transcoding documentation do establish that rate constraints participate in a session decision.</p>
+<h2 id="a-ceiling-and-a-target-are-different-quantities">A ceiling and a target are different quantities</h2>
+<p>If an existing compatible source uses 3.192 Mbit/s in the original source-selection example, a 4 Mbit/s ceiling does not require padding it to four.</p>
+<p>If a conversion is requested, the actual achieved average can depend on rate control and content. A maximum, a target average and a constant-quality control have different meanings.</p>
+<p>A combined-stream budget also differs from a video-only rate. With a nominal 4 Mbit/s combined budget and 192 kbit/s audio, 3.808 Mbit/s remains before any additional packaging allowance. Allocating the entire four to video would ignore the audio contribution.</p>
+<h2 id="output-dimensions-and-compression-interact">Output dimensions and compression interact</h2>
+<p>Reducing dimensions can change the number of samples encoded per picture. At a fixed delivery rate, that changes the encoder's allocation problem, but it does not supply a universal visual-quality score.</p>
+<p>A suitable lower-resolution presentation on a small display can be useful. Enlarging it later cannot recover spatial detail that the preparation removed.</p>
+<p>Codec efficiency, content motion/texture, cadence and encoder decisions all matter. “More Mbit/s” is not a complete comparison across different sources or output formats.</p>
+<p>The <a href="../../../video/encoding-quality/rate-control/Video-Encoding-Bitrate.html">encoding quality</a> articles explain the underlying controls. The playback limit is the session constraint that makes a particular output necessary or permissible.</p>
+<h2 id="source-information-and-displayed-output">Source information and displayed output</h2>
+<p>A library item can report 4K source video while a session delivers a 720p conversion. Those values describe different resources in the path.</p>
+<p>The target may also have a different colour presentation or channel layout. A change to bitrate alone does not establish whether scaling, tone mapping or audio preparation occurred.</p>
+<p>Another encode can reduce additional visible degradation relative to a less suitable encode. It cannot reconstruct information already absent from the source. Raising a maximum does not automatically retrieve another master or edition.</p>
+<h2 id="a-limit-should-be-assessed-in-its-context">A limit should be assessed in its context</h2>
+<p>A source or track change can alter the selected plan. A client-request change can affect the effective conditions. A conservative or incomplete capability observation can produce a different available path.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../from-server/compatibility/Playback-Compatibility.html" title="What determines playback compatibility?">What determines playback compatibility?</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../from-server/Playback-Source-Selection.html" title="Media source selection for playback">Media source selection for playback</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../from-server/modes/Playback-Transcoding.html" title="Video transcoding in Emby">Video transcoding in Emby</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../video/encoding-quality/rate-control/Video-Encoding-Bitrate.html" title="Video Bitrate">Video Bitrate</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../video/encoding-quality/rate-control/Video-Encoding-CRF.html" title="Constant Rate Factor (CRF) for Video">Constant Rate Factor (CRF) for Video</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../video/scaling-image-processing/Video-Scaling.html" title="How Video Scaling Works">How Video Scaling Works</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Transcoding.html" title="Emby: Transcoding">Emby: Transcoding</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Model.MediaInfo.PlaybackInfoRequest.html" title="Emby API: PlaybackInfoRequest">Emby API: PlaybackInfoRequest</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Model.Dlna.DeviceProfile.html" title="Emby API: DeviceProfile">Emby API: DeviceProfile</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-codecs.html" title="FFmpeg: Codec options">FFmpeg: Codec options</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Playback-Quality-Limits%0A*%20Title%3A%20Playback%20quality%20limits%20and%20output%20constraints%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

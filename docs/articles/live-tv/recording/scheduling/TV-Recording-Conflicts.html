@@ -1,0 +1,329 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Recording conflicts and feasible resource assignments | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="A recording conflict occurs when requested capture intervals cannot all be assigned compatible acquisition or processing resources under the implemented sharing and priority rules.">
+  <link rel="canonical" href="https://emby.media/learn/articles/live-tv/recording/scheduling/TV-Recording-Conflicts.html">
+  <meta property="og:title" content="Recording conflicts and feasible resource assignments | Emby Learn">
+  <meta property="og:description" content="A recording conflict occurs when requested capture intervals cannot all be assigned compatible acquisition or processing resources under the implemented sharing and priority rules.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/live-tv/recording/scheduling/TV-Recording-Conflicts.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/live-tv/recording/scheduling/TV-Recording-Conflicts.html","url":"https://emby.media/learn/articles/live-tv/recording/scheduling/TV-Recording-Conflicts.html","name":"Recording conflicts and feasible resource assignments","inLanguage":"en","headline":"Recording conflicts and feasible resource assignments","articleSection":"Live TV and recording","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"A recording conflict occurs when requested capture intervals cannot all be assigned compatible acquisition or processing resources under the implemented sharing and priority rules.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Live TV and recording","item":"https://emby.media/learn/articles/live-tv/index.html"},{"@type":"ListItem","position":3,"name":"Recording and time shifting","item":"https://emby.media/learn/articles/live-tv/recording/index.html"},{"@type":"ListItem","position":4,"name":"Scheduling and conflicts","item":"https://emby.media/learn/articles/live-tv/recording/scheduling/index.html"},{"@type":"ListItem","position":5,"name":"Recording conflicts","item":"https://emby.media/learn/articles/live-tv/recording/scheduling/TV-Recording-Conflicts.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-TV-Recording-Conflicts">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../live-tv/index.html">Live TV and recording</a></li>
+              <li><a href="../../../live-tv/recording/index.html">Recording and time shifting</a></li>
+              <li><a href="../../../live-tv/recording/scheduling/index.html">Scheduling and conflicts</a></li>
+              <li><span aria-current="page">Recording conflicts</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-TV-Recording-Conflicts">
+<h1>Recording conflicts and feasible resource assignments</h1>
+<p class="article-description">A recording conflict occurs when requested capture intervals cannot all be assigned compatible acquisition or processing resources under the implemented sharing and priority rules.</p>
+
+
+<p>Two programmes can fit neatly beside each other in a guide and still compete for the same source. Their actual recording intervals include padding, acquisition lifetimes and any other overlapping consumers.</p>
+<p>A <strong>recording conflict</strong> means the requested uses cannot all obtain the compatible resources they require. The programme grid is only the starting input.</p>
+<h2 id="expand-the-programme-intervals-first">Expand the programme intervals first</h2>
+<p>Use these original recordings, with minutes measured from 20:00 UTC:</p>
+<table>
+<thead>
+<tr>
+<th>Request</th>
+<th>Acquisition key</th>
+<th>Nominal interval</th>
+<th>Pre/post padding</th>
+<th>Requested interval</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>M1</td>
+<td>[0,30)</td>
+<td>2 / 3 min</td>
+<td>[-2,33)</td>
+</tr>
+<tr>
+<td>B</td>
+<td>M2</td>
+<td>[30,60)</td>
+<td>2 / 3 min</td>
+<td>[28,63)</td>
+</tr>
+<tr>
+<td>C</td>
+<td>M3</td>
+<td>[29,40)</td>
+<td>0 / 0 min</td>
+<td>[29,40)</td>
+</tr>
+</tbody>
+</table>
+<p>Assume two otherwise compatible resources, one independently acquired key per resource, and no sharing between these three keys.</p>
+<p>A and B have no nominal overlap. Their padded intervals overlap from minute 28 to 33. Adding C raises demand to three during minutes 29 through 33.</p>
+<p><img src="images/recording-conflict-intervals.png" alt="The original padded intervals reveal four minutes of three-acquisition demand against two available resources."></p>
+<table>
+<thead>
+<tr>
+<th>Interval</th>
+<th>Active requested acquisitions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[-2,28)</td>
+<td>A</td>
+</tr>
+<tr>
+<td>[28,29)</td>
+<td>A, B</td>
+</tr>
+<tr>
+<td>[29,33)</td>
+<td>A, B, C</td>
+</tr>
+<tr>
+<td>[33,40)</td>
+<td>B, C</td>
+</tr>
+<tr>
+<td>[40,63)</td>
+<td>B</td>
+</tr>
+</tbody>
+</table>
+<p>Only [29,33) exceeds the declared two-resource capacity. Looking at a programme’s total duration or average daily workload would miss that four-minute conflict.</p>
+<h2 id="sharing-changes-the-resource-key">Sharing changes the resource key</h2>
+<p>Now suppose A and C are services in the same multiplex and the route explicitly supports one shared full-multiplex acquisition.</p>
+<p>The simultaneous requests still number three. Their required acquisition keys become M1 and M2, so two suitable resources can serve the interval under that different policy.</p>
+<p>Same-service sharing would not give the same result if A and C are different programmes. A backend redistributing one service does not automatically expose the full multiplex.</p>
+<p><a href="../../sources/capacity/TV-Tuner-Concurrency.html">Tuner concurrency</a> develops the distinctions. The sharing behavior must be established by the actual route, not inferred from equal station names or tuner marketing counts.</p>
+<h2 id="a-sufficient-count-still-needs-a-compatible-assignment">A sufficient count still needs a compatible assignment</h2>
+<p>Consider a separate original allocation:</p>
+<pre><code class="lang-json">{
+  &quot;resources&quot;: [
+    {&quot;id&quot;: &quot;F1&quot;, &quot;accepts&quot;: [&quot;M1&quot;, &quot;M2&quot;]},
+    {&quot;id&quot;: &quot;F2&quot;, &quot;accepts&quot;: [&quot;M1&quot;]}
+  ],
+  &quot;required&quot;: [&quot;M1&quot;, &quot;M2&quot;],
+  &quot;validAssignment&quot;: {&quot;F1&quot;: &quot;M2&quot;, &quot;F2&quot;: &quot;M1&quot;}
+}
+</code></pre>
+<p>Both resources are free, and two acquisitions are wanted. A greedy choice of F1 for M1 strands M2 because F2 cannot acquire it.</p>
+<p>The listed assignment succeeds by preserving the less flexible resource for M1. If F1 instead accepts only M1, no assignment can serve M2 regardless of priorities.</p>
+<p>Eligibility can include delivery-system support, input arrangement, provider/source restrictions or the resource’s current ownership. It is a condition of the assignment, not an extra resource created after counting.</p>
+<h2 id="a-feasible-assignment-must-last-across-time">A feasible assignment must last across time</h2>
+<p>The allocator can know about later demand before it arrives. Choosing a free compatible resource for the first request can still strand a future recording.</p>
+<p>Use a separate original case with the same F1/F2 eligibility. M1 is wanted from minute zero to thirty; M2 is wanted from ten to twenty.</p>
+<p>Assigning M1 to F1 at zero leaves F2 idle, but F2 cannot supply M2 when minute ten arrives. The free count then remains one while the required compatible resource is occupied.</p>
+<p>Assigning M1 to F2 from the outset leaves F1 available for M2 during [10,20). Both captures can continue without moving either acquisition.</p>
+<p>Moving an already active M1 capture from F1 to F2 at minute ten requires a source handoff. It may need overlap or reacquisition and can create a gap; it is not equivalent to the uninterrupted initial assignment.</p>
+<p>The planned decision therefore needs the resource eligibility and requested lifetimes together. A count at each instant is a useful capacity test, but does not by itself choose which continuing acquisition owns each resource.</p>
+<h2 id="priority-chooses-the-consequence">Priority chooses the consequence</h2>
+<p>For the original three-key conflict, a policy might keep A and B and delay C until minute 33. C then misses its requested first four minutes, from 29 to 33.</p>
+<p>Keeping B and C instead can end A at minute 29. That removes A’s tail padding and one minute of its nominal programme. Keeping A and C can delay B, losing part of B’s requested beginning.</p>
+<p>Those are different losses. “Highest priority wins” describes a choice between them; it cannot make the excluded acquisition available.</p>
+<p>If padding is optional under the chosen policy, removing A’s tail after minute 30 reduces the conflict. It does not remove the three-key overlap from minute 29 to 30 because B is still using its start padding while A and C contain nominal programme material.</p>
+<p>Removing all margins leaves at most two nominal acquisitions in this original request set. That resolves the modeled capacity conflict while giving up the protection those margins supplied.</p>
+<h2 id="a-replacement-airing-can-solve-another-problem">A replacement airing can solve another problem</h2>
+<p>If the guide supplies a suitable repeat, recording it later can satisfy the viewer’s episode intent without serving the conflicting airing. That requires reliable <a href="../../guides/TV-Programme-IDs.html">episode identity</a> and an acceptable replacement.</p>
+<p>The later recording does not recover minutes from the original source retrospectively. It obtains another airing of the intended content.</p>
+<h2 id="recheck-when-the-inputs-change">Recheck when the inputs change</h2>
+<p>A schedule revision, larger padding or another viewer can alter the active intervals. A source failure or incompatible input can shrink the eligible pool.</p>
+<p>Source acquisition, IPTV session limits, media preparation and storage throughput can each constrain a recording route. A warning about one does not establish that the others were exhausted too.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../sources/capacity/TV-Tuner-Concurrency.html" title="Tuner concurrency and shared acquisition">Tuner concurrency and shared acquisition</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../sources/capacity/TV-IPTV-Limits.html" title="IPTV connection limits">IPTV connection limits</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="TV-Recording-Padding.html" title="Recording padding and programme coverage">Recording padding and programme coverage</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="TV-Series-Rules.html" title="Series recording rules and future airings">Series recording rules and future airings</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Controller.LiveTv.TimerInfo.html" title="Emby plugin API: TimerInfo identity, UTC dates and padding">Emby plugin API: TimerInfo identity, UTC dates and padding</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Controller.LiveTv.SeriesTimerInfo.html" title="Emby plugin API: SeriesTimerInfo recording rules">Emby plugin API: SeriesTimerInfo recording rules</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/DVR-Settings.html" title="Emby: DVR settings and recording paths">Emby: DVR settings and recording paths</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Live-TV.html" title="Emby: Live TV sources and guide setup">Emby: Live TV sources and guide setup</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-TV-Recording-Conflicts%0A*%20Title%3A%20Recording%20conflicts%20and%20feasible%20resource%20assignments%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

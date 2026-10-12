@@ -1,0 +1,253 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>MusicBrainz | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="MusicBrainz supplies structured music catalogue entities and relationships through separate search, lookup and browse operations.">
+  <link rel="canonical" href="https://emby.media/learn/articles/metadata-discovery/services/Metadata-MusicBrainz.html">
+  <meta property="og:title" content="MusicBrainz | Emby Learn">
+  <meta property="og:description" content="MusicBrainz supplies structured music catalogue entities and relationships through separate search, lookup and browse operations.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/metadata-discovery/services/Metadata-MusicBrainz.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/metadata-discovery/services/Metadata-MusicBrainz.html","url":"https://emby.media/learn/articles/metadata-discovery/services/Metadata-MusicBrainz.html","name":"MusicBrainz","inLanguage":"en","headline":"MusicBrainz","articleSection":"Metadata and discovery","proficiencyLevel":"Beginner","accessMode":"textual","description":"MusicBrainz supplies structured music catalogue entities and relationships through separate search, lookup and browse operations.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Metadata and discovery","item":"https://emby.media/learn/articles/metadata-discovery/index.html"},{"@type":"ListItem","position":3,"name":"Metadata services","item":"https://emby.media/learn/articles/metadata-discovery/services/index.html"},{"@type":"ListItem","position":4,"name":"MusicBrainz","item":"https://emby.media/learn/articles/metadata-discovery/services/Metadata-MusicBrainz.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Metadata-MusicBrainz">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../metadata-discovery/index.html">Metadata and discovery</a></li>
+              <li><a href="../../metadata-discovery/services/index.html">Metadata services</a></li>
+              <li><span aria-current="page">MusicBrainz</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Metadata-MusicBrainz">
+<h1>MusicBrainz</h1>
+<p class="article-description">MusicBrainz supplies structured music catalogue entities and relationships through separate search, lookup and browse operations.</p>
+
+
+<p>MusicBrainz organizes music information into entities such as artists, recordings, releases, release groups and works. Its relationships let a library describe more than one title string attached to an audio file.</p>
+<h2 id="three-operations-ask-different-questions">Three operations ask different questions</h2>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Original example question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Search</td>
+<td>Which artists or releases match these words?</td>
+</tr>
+<tr>
+<td>Lookup</td>
+<td>What does this known entity identifier describe?</td>
+</tr>
+<tr>
+<td>Browse</td>
+<td>Which releases are related to this known artist or recording?</td>
+</tr>
+</tbody>
+</table>
+<p>Searching by an album name can produce several candidate releases. Selecting an MBID gives a particular reference for later lookup; browsing then explores connected records.</p>
+<p>The distinction matters when the library already has a reliable identifier. Repeating a broad name search can reintroduce ambiguity that the selected identity had resolved.</p>
+<h2 id="recording-and-release-data-serve-different-actions">Recording and release data serve different actions</h2>
+<p>An invented recording, <em>Platform Lights</em>, appears on a standard album and a compilation. Both releases refer to its audio relationship, but each can have its own track order, credits and product information.</p>
+<p><a href="../identification/external-identifiers/Metadata-MusicBrainz-IDs.html">MusicBrainz identifiers</a> explains those entity levels. A fingerprint-assisted recording match does not necessarily choose the album release whose cover belongs to the local files.</p>
+<p>In Emby music matching, local tags and the selected provider relationship should agree at the intended level. <a class="xref" href="https://emby.media/support/articles/Music-Naming.html">Music naming guidance</a> gives the product context; the provider model explains the meanings of those references.</p>
+<h2 id="related-information-is-not-always-in-one-response">Related information is not always in one response</h2>
+<p>A lookup can request supported related information through the API's inclusion mechanisms. Browse and search also have their own result sets and pagination relationships.</p>
+<p>A short response can consequently be complete for its requested shape while omitting data that another operation would retrieve. Absence from that one response does not prove the catalogue lacks the relationship.</p>
+<p>A useful integration retains the request scope with the response, including entity, requested additions and language/format context where applicable.</p>
+<h2 id="a-catalogue-reference-is-separate-from-a-media-resource">A catalogue reference is separate from a media resource</h2>
+<p>MusicBrainz metadata describes music relationships; it is not the local encoded song. Artwork retrieval also has an associated-resource boundary, and the correct release or release group matters there.</p>
+<p>Imported descriptions can coexist with <a href="../artwork/cover-branding/Metadata-Embedded-Cover-Art.html">embedded cover art</a> and edited library values. Matching the catalogue entity is the basis for selecting related data, rather than an instruction to replace every existing resource.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../identification/external-identifiers/Metadata-MusicBrainz-IDs.html" title="MusicBrainz identifiers">MusicBrainz identifiers</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../identification/Metadata-Acoustic-Fingerprinting.html" title="Acoustic fingerprinting">Acoustic fingerprinting</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Metadata-Provider-Workflow.html" title="How metadata providers work">How metadata providers work</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../artwork/cover-branding/Metadata-Embedded-Cover-Art.html" title="Embedded cover art">Embedded cover art</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://musicbrainz.org/doc/MusicBrainz_API" title="MusicBrainz: Search, lookup and browse API">MusicBrainz: Search, lookup and browse API</a></li>
+			            <li><a class="seealso-link" href="https://musicbrainz.org/doc/MusicBrainz_Identifier" title="MusicBrainz: Entity identifiers">MusicBrainz: Entity identifiers</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Metadata-MusicBrainz%0A*%20Title%3A%20MusicBrainz%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

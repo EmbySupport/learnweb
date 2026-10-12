@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Split DNS and location-dependent server endpoints | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Split DNS supplies different answers for a name under different resolver views, allowing one server hostname to select local and external endpoints without changing its other URL components.">
+  <link rel="canonical" href="https://emby.media/learn/articles/networking/names/dns/Network-Split-DNS.html">
+  <meta property="og:title" content="Split DNS and location-dependent server endpoints | Emby Learn">
+  <meta property="og:description" content="Split DNS supplies different answers for a name under different resolver views, allowing one server hostname to select local and external endpoints without changing its other URL components.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/networking/names/dns/Network-Split-DNS.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/networking/names/dns/Network-Split-DNS.html","url":"https://emby.media/learn/articles/networking/names/dns/Network-Split-DNS.html","name":"Split DNS and location-dependent server endpoints","inLanguage":"en","headline":"Split DNS and location-dependent server endpoints","articleSection":"Networking and remote access","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"Split DNS supplies different answers for a name under different resolver views, allowing one server hostname to select local and external endpoints without changing its other URL components.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Networking and remote access","item":"https://emby.media/learn/articles/networking/index.html"},{"@type":"ListItem","position":3,"name":"Names and discovery","item":"https://emby.media/learn/articles/networking/names/index.html"},{"@type":"ListItem","position":4,"name":"DNS and naming","item":"https://emby.media/learn/articles/networking/names/dns/index.html"},{"@type":"ListItem","position":5,"name":"Split DNS","item":"https://emby.media/learn/articles/networking/names/dns/Network-Split-DNS.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Network-Split-DNS">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../networking/index.html">Networking and remote access</a></li>
+              <li><a href="../../../networking/names/index.html">Names and discovery</a></li>
+              <li><a href="../../../networking/names/dns/index.html">DNS and naming</a></li>
+              <li><span aria-current="page">Split DNS</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Network-Split-DNS">
+<h1>Split DNS and location-dependent server endpoints</h1>
+<p class="article-description">Split DNS supplies different answers for a name under different resolver views, allowing one server hostname to select local and external endpoints without changing its other URL components.</p>
+
+
+<p>The same server hostname can lead to a local endpoint at home and an outside endpoint when the viewer is away.</p>
+<p><strong>Split DNS</strong> makes that choice in the name-resolution view rather than asking every user to keep two hostnames.</p>
+<h2 id="one-name-two-answers">One name, two answers</h2>
+<p>This original reduced view model uses documentation data for the outside label:</p>
+<pre><code class="lang-json">{
+  &quot;name&quot;: &quot;media.example.net&quot;,
+  &quot;views&quot;: {
+    &quot;homeResolver&quot;: {&quot;type&quot;: &quot;A&quot;, &quot;address&quot;: &quot;192.168.50.10&quot;},
+    &quot;outsideResolver&quot;: {&quot;type&quot;: &quot;A&quot;, &quot;address&quot;: &quot;198.51.100.12&quot;}
+  }
+}
+</code></pre>
+<p>The answer depends on the resolver/view that handles the query. Physical location alone does not force the home answer if the client uses another DNS path.</p>
+<p><img src="images/split-dns-views.png" alt="The original split-DNS case selects a home endpoint or outside endpoint for one unchanged hostname."></p>
+<p>The inside endpoint can be the server itself or an appropriate local proxy. It must implement the service the client’s unchanged URL requests.</p>
+<h2 id="address-selection-does-not-rewrite-the-urls-port">Address selection does not rewrite the URL’s port</h2>
+<p>Suppose the public URL is:</p>
+<pre><code class="lang-text">https://media.example.net:45000/
+</code></pre>
+<p>Outside, the gateway maps TCP 45000 to the server’s configured HTTPS listener at 8920. Now make the inside A answer point directly to that server at 192.168.50.20.</p>
+<p>The home client still requests port 45000. Ordinary A-record resolution does not substitute 8920, so the direct inside path fails if nothing listens on 45000 there.</p>
+<p>A local proxy or listener using the requested port can provide the intended inside endpoint. Alternatively, the connection design can use separate URLs. The DNS answer alone cannot choose between those arrangements.</p>
+<h2 id="the-hostname-remains-the-requested-identity">The hostname remains the requested identity</h2>
+<p>Changing the resolved address does not replace media.example.net in the URL. In HTTPS, the client still needs the service’s certificate/authentication context to satisfy that name.</p>
+<p>A consistent hostname can therefore preserve the requested identity across two address paths. It does not guarantee that both endpoints were configured consistently.</p>
+<p>Path prefixes matter too. If one endpoint serves an application under a prefix and the other expects another path, the same URL can select a different resource arrangement even with correct address resolution.</p>
+<h2 id="network-changes-can-leave-an-old-view-cached">Network changes can leave an old view cached</h2>
+<p>A phone can obtain the home answer and then move onto mobile data while retaining it. That private address may no longer be reachable from the new network.</p>
+<p>The reverse transition can retain the outside answer at home. It then depends on the outside/hairpin path rather than automatically using the local one.</p>
+<p><a href="Network-DNS.html">DNS</a> explains record lifetimes. Resolver selection and VPN-provided DNS can also change which view supplies the next answer.</p>
+<h2 id="split-dns-and-nat-loopback-solve-different-parts">Split DNS and NAT loopback solve different parts</h2>
+<p>Split DNS can supply an inside endpoint so the client avoids sending the connection to the outside gateway mapping.</p>
+<p><a href="../../routers/nat/Network-NAT-Loopback.html">NAT loopback</a> instead makes that outside endpoint usable from the inside. One can work while the other is absent.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Network-DNS.html" title="DNS resolution, record types and cached answers">DNS resolution, record types and cached answers</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../routers/nat/Network-NAT-Loopback.html" title="NAT loopback and same-network public endpoints">NAT loopback and same-network public endpoints</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../routers/vpn/Network-VPN-Routing.html" title="VPN routing, overlapping prefixes and split tunneling">VPN routing, overlapping prefixes and split tunneling</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../routers/proxy/Network-Reverse-Proxy.html" title="Reverse proxies and the two-sided server path">Reverse proxies and the two-sided server path</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc9499" title="RFC 9499: DNS terminology and views">RFC 9499: DNS terminology and views</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc1034" title="RFC 1034: DNS concepts and facilities">RFC 1034: DNS concepts and facilities</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Hosting-Settings.html" title="Emby: Network settings and reported addresses">Emby: Network settings and reported addresses</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Network-Split-DNS%0A*%20Title%3A%20Split%20DNS%20and%20location-dependent%20server%20endpoints%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

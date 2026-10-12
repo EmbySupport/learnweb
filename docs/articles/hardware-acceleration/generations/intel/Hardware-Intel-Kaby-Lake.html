@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Intel Kaby Lake media capabilities | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Kaby Lake&#8217;s media capabilities provide important AVC and ten-bit HEVC decoding paths, with encoding classifications and exposed features dependent on the documented software implementation.">
+  <link rel="canonical" href="https://emby.media/learn/articles/hardware-acceleration/generations/intel/Hardware-Intel-Kaby-Lake.html">
+  <meta property="og:title" content="Intel Kaby Lake media capabilities | Emby Learn">
+  <meta property="og:description" content="Kaby Lake&#8217;s media capabilities provide important AVC and ten-bit HEVC decoding paths, with encoding classifications and exposed features dependent on the documented software implementation.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/hardware-acceleration/generations/intel/Hardware-Intel-Kaby-Lake.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/hardware-acceleration/generations/intel/Hardware-Intel-Kaby-Lake.html","url":"https://emby.media/learn/articles/hardware-acceleration/generations/intel/Hardware-Intel-Kaby-Lake.html","name":"Intel Kaby Lake media capabilities","inLanguage":"en","headline":"Intel Kaby Lake media capabilities","articleSection":"Media hardware acceleration","proficiencyLevel":"Beginner","accessMode":"textual","description":"Kaby Lake’s media capabilities provide important AVC and ten-bit HEVC decoding paths, with encoding classifications and exposed features dependent on the documented software implementation.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Media hardware acceleration","item":"https://emby.media/learn/articles/hardware-acceleration/index.html"},{"@type":"ListItem","position":3,"name":"Media-engine generations","item":"https://emby.media/learn/articles/hardware-acceleration/generations/index.html"},{"@type":"ListItem","position":4,"name":"Intel media-engine generations","item":"https://emby.media/learn/articles/hardware-acceleration/generations/intel/index.html"},{"@type":"ListItem","position":5,"name":"Intel Kaby Lake media capabilities","item":"https://emby.media/learn/articles/hardware-acceleration/generations/intel/Hardware-Intel-Kaby-Lake.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Hardware-Intel-Kaby-Lake">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../hardware-acceleration/index.html">Media hardware acceleration</a></li>
+              <li><a href="../../../hardware-acceleration/generations/index.html">Media-engine generations</a></li>
+              <li><a href="../../../hardware-acceleration/generations/intel/index.html">Intel media-engine generations</a></li>
+              <li><span aria-current="page">Intel Kaby Lake media capabilities</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Hardware-Intel-Kaby-Lake">
+<h1>Intel Kaby Lake media capabilities</h1>
+<p class="article-description">Kaby Lake&#8217;s media capabilities provide important AVC and ten-bit HEVC decoding paths, with encoding classifications and exposed features dependent on the documented software implementation.</p>
+
+
+<p>Kaby Lake is an important Intel generation for reconstructing mainstream HEVC Main 10 video. The supported integrated media path can decode the ten-bit source pictures needed by many HDR files.</p>
+<p>Decoding those pictures and preparing an SDR output are separate work. The latter still needs the selected tone-mapping and other picture operations.</p>
+<h2 id="use-the-kblx-column-with-its-legend">Use the KBLx column with its legend</h2>
+<p>Intel Media Driver groups Kaby Lake with related platforms in its KBLx column. These selected entries come from the pinned implementation snapshot:</p>
+<table>
+<thead>
+<tr>
+<th>Configuration row</th>
+<th>Full-Feature build</th>
+<th>Free-Kernel build</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AVC</td>
+<td>D/E/Es</td>
+<td>D/E</td>
+</tr>
+<tr>
+<td>HEVC 10-bit</td>
+<td>D/Es</td>
+<td>D</td>
+</tr>
+<tr>
+<td>VP9 10-bit</td>
+<td>D</td>
+<td>D</td>
+</tr>
+<tr>
+<td>AV1 10-bit</td>
+<td>Not listed</td>
+<td>Not listed</td>
+</tr>
+</tbody>
+</table>
+<p>D identifies decoding, E the source's hardware/low-power encoding path, and Es hardware-plus-shader encoding.</p>
+<p>Intel's separate 2024 hardware reference likewise classifies the 7th/8th-generation HEVC encoder under its hardware-plus-shader row. Describing every listed HEVC operation as one pure fixed-function path would erase that distinction.</p>
+<p><img src="images/kaby-decode-encode-roles.png" alt="An original Kaby Lake interpretation separates supported HEVC decoding from the table’s hardware-plus-shader encoding arrangement."></p>
+<h2 id="a-ten-bit-hdr-input-needs-a-complete-picture-route">A ten-bit HDR input needs a complete picture route</h2>
+<p>Imagine an Emby conversion taking HEVC Main 10 input and delivering an 8-bit H.264 SDR target.</p>
+<p>The selected source decoder is one requirement. The picture route needs the intended <a href="../../../video/tone-mapping/fundamentals/Tone-Mapping-HDR-to-SDR.html">HDR-to-SDR relationship</a>, output dimensions and selected subtitle handling before the target encoder receives its pictures.</p>
+<p>Main 10 decode support does not apply those transformations automatically. A software or device-based filter choice determines the actual intermediate path and its frame access.</p>
+<h2 id="the-processor-sku-must-provide-the-media-resource">The processor SKU must provide the media resource</h2>
+<p>A processor product without enabled processor graphics does not supply this integrated media path merely because its CPU architecture belongs to the generation. Another discrete adapter is a separately identified resource.</p>
+<p>The installed runtime/driver and application need a usable route to the selected device. An older Media SDK description and a current driver matrix have their respective implementation scopes.</p>
+<h2 id="retain-the-operation-that-matters-to-the-session">Retain the operation that matters to the session</h2>
+<p>For Kaby Lake source compatibility, HEVC Main 10 decode and AV1 decode are different questions. The selected table declares the former and does not list the latter.</p>
+<p>For output, the AVC and HEVC rows have different classifications. Choosing the actual target codec and implementation therefore changes the route being assessed, even with the same source file.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../interfaces/intel/Hardware-Intel-QSV.html" title="Intel Quick Sync Video (QSV)">Intel Quick Sync Video (QSV)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../interfaces/intel/Hardware-Intel-VPL.html" title="Intel VPL and the oneVPL name">Intel VPL and the oneVPL name</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Hardware-Intel-Elkhart-Jasper.html" title="Intel Elkhart Lake and Jasper Lake media capabilities">Intel Elkhart Lake and Jasper Lake media capabilities</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Hardware-Codec-Matrix.html" title="How to read a hardware codec support matrix">How to read a hardware codec support matrix</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../pipelines/Hardware-Mixed-Filtering.html" title="Mixed hardware and software filtering">Mixed hardware and software filtering</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../video/tone-mapping/fundamentals/Tone-Mapping-HDR-to-SDR.html" title="How HDR-to-SDR Tone Mapping Works">How HDR-to-SDR Tone Mapping Works</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://github.com/intel/media-driver/blob/2a32c7fafd8fa169112e962587777969cc8c654f/README.md" title="Intel Media Driver: Capability matrix snapshot">Intel Media Driver: Capability matrix snapshot</a></li>
+			            <li><a class="seealso-link" href="https://www.intel.com/content/www/us/en/docs/onevpl/developer-reference-media-intel-hardware/1-1/overview.html" title="Intel: Published hardware media reference (2024)">Intel: Published hardware media reference (2024)</a></li>
+			            <li><a class="seealso-link" href="https://www.intel.com/content/www/us/en/developer/tools/vpl/overview.html" title="Intel: Video Processing Library and oneVPL naming">Intel: Video Processing Library and oneVPL naming</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Hardware-Acceleration-on-Windows.html" title="Emby: Hardware acceleration on Windows">Emby: Hardware acceleration on Windows</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Hardware-Acceleration-on-Linux.html" title="Emby: Hardware acceleration on Linux">Emby: Hardware acceleration on Linux</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Hardware-Intel-Kaby-Lake%0A*%20Title%3A%20Intel%20Kaby%20Lake%20media%20capabilities%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Storage latency: waiting for individual operations | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Storage latency is the response time of an operation, including waiting in queues as well as the device's own work.">
+  <link rel="canonical" href="https://emby.media/learn/articles/storage/fundamentals/performance/Storage-Latency.html">
+  <meta property="og:title" content="Storage latency: waiting for individual operations | Emby Learn">
+  <meta property="og:description" content="Storage latency is the response time of an operation, including waiting in queues as well as the device's own work.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/storage/fundamentals/performance/Storage-Latency.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/storage/fundamentals/performance/Storage-Latency.html","url":"https://emby.media/learn/articles/storage/fundamentals/performance/Storage-Latency.html","name":"Storage latency: waiting for individual operations","inLanguage":"en","headline":"Storage latency: waiting for individual operations","articleSection":"Storage and server platforms","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"Storage latency is the response time of an operation, including waiting in queues as well as the device's own work.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Storage and server platforms","item":"https://emby.media/learn/articles/storage/index.html"},{"@type":"ListItem","position":3,"name":"Media storage fundamentals","item":"https://emby.media/learn/articles/storage/fundamentals/index.html"},{"@type":"ListItem","position":4,"name":"Storage performance","item":"https://emby.media/learn/articles/storage/fundamentals/performance/index.html"},{"@type":"ListItem","position":5,"name":"Storage latency","item":"https://emby.media/learn/articles/storage/fundamentals/performance/Storage-Latency.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Storage-Latency">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../storage/index.html">Storage and server platforms</a></li>
+              <li><a href="../../../storage/fundamentals/index.html">Media storage fundamentals</a></li>
+              <li><a href="../../../storage/fundamentals/performance/index.html">Storage performance</a></li>
+              <li><span aria-current="page">Storage latency</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Storage-Latency">
+<h1>Storage latency: waiting for individual operations</h1>
+<p class="article-description">Storage latency is the response time of an operation, including waiting in queues as well as the device's own work.</p>
+
+
+<p>Storage latency answers “How long did this operation take?” Throughput answers “How much useful data arrived over an interval?” A system can score well on one and poorly on the other.</p>
+<p>For a media server, individual latency affects the start of a read, artwork retrieval, seeking and small application-data operations. Continuing playback can absorb some delays through buffering, but a buffer must contain enough data before it can hide a pause.</p>
+<h2 id="the-operation-has-a-timeline">The operation has a timeline</h2>
+<p>A read may wait in an operating-system queue before the device services it. A remote file read adds network and server processing. A cached read may bypass physical storage entirely.</p>
+<p>An original request budget is:</p>
+<pre><code class="lang-text">Client queue wait:    12.0 ms
+Device service:       8.0 ms
+Completion handling:  0.1 ms
+Observed response:   20.1 ms
+</code></pre>
+<p><img src="images/storage-latency-timeline.png" alt="The measured request spans queue wait, device service and completion handling, adding to 20.1 milliseconds."></p>
+<p>The eight-ms service component is not the whole response time. Conversely, a tool reporting a device-level measure may not include all delay observed by the application. State the measurement layer before comparing numbers.</p>
+<h2 id="averages-can-hide-the-operation-that-stalled">Averages can hide the operation that stalled</h2>
+<p>Suppose 99 operations each finish in 1 ms and one takes 500 ms. The average is 5.99 ms. That average is mathematically correct, yet none of the individual operations took 5.99 ms.</p>
+<p>A distribution, maximum or suitable percentile helps reveal the slow tail. Percentile definitions and sample size matter: a small sample cannot precisely characterize a rare stall. A time series can also show whether delays occur together during a scan, import or wake event.</p>
+<p>For a queued workload, increasing the number of outstanding operations may improve total throughput while increasing how long each request waits. That tradeoff is particularly visible when background work shares a device with interactive reads.</p>
+<h2 id="why-a-small-request-can-matter-to-a-large-film">Why a small request can matter to a large film</h2>
+<p>Before reading the main body of a film, software may need to open its path, inspect metadata and seek to a starting location. Slow dependent operations add together even if they transfer few bytes. A high sequential MB/s result measures a different part of the job.</p>
+<p>A write adds another question: was it accepted into a cache, or did the caller request synchronization to durable storage? Compare equivalent completion conditions. <a href="Storage-Caches.html">Storage caches</a> explains why a rapid buffered completion and a durable write have different timelines.</p>
+<p>To interpret a playback stall, relate delayed source reads to the player's reserve. If source bytes arrived promptly, the next investigation belongs in conversion or delivery rather than in the disk's latency.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Storage-Sequential-Random.html" title="Sequential and random I/O in media workloads">Sequential and random I/O in media workloads</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Storage-Caches.html" title="Storage caches: reusable reads and deferred writes">Storage caches: reusable reads and deferred writes</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../playback-streaming/delivery/Playback-Buffering.html" title="Buffering, ready media and playback reserve">Buffering, ready media and playback reserve</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://nvmexpress.org/specification/nvm-express-base-specification/" title="NVM Express Base Specification">NVM Express Base Specification</a></li>
+			            <li><a class="seealso-link" href="https://man7.org/linux/man-pages/man2/fsync.2.html" title="Linux man-pages: fsync">Linux man-pages: fsync</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Storage-Latency%0A*%20Title%3A%20Storage%20latency%3A%20waiting%20for%20individual%20operations%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Backup restoration: recovering a usable server | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Backup restoration reconstructs a usable data set in a recovery environment, then verifies its content, access and application behavior.">
+  <link rel="canonical" href="https://emby.media/learn/articles/storage/data-protection/backups/Storage-Restore.html">
+  <meta property="og:title" content="Backup restoration: recovering a usable server | Emby Learn">
+  <meta property="og:description" content="Backup restoration reconstructs a usable data set in a recovery environment, then verifies its content, access and application behavior.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/storage/data-protection/backups/Storage-Restore.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/storage/data-protection/backups/Storage-Restore.html","url":"https://emby.media/learn/articles/storage/data-protection/backups/Storage-Restore.html","name":"Backup restoration: recovering a usable server","inLanguage":"en","headline":"Backup restoration: recovering a usable server","articleSection":"Storage and server platforms","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"Backup restoration reconstructs a usable data set in a recovery environment, then verifies its content, access and application behavior.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Storage and server platforms","item":"https://emby.media/learn/articles/storage/index.html"},{"@type":"ListItem","position":3,"name":"Data protection","item":"https://emby.media/learn/articles/storage/data-protection/index.html"},{"@type":"ListItem","position":4,"name":"Backups and recovery","item":"https://emby.media/learn/articles/storage/data-protection/backups/index.html"},{"@type":"ListItem","position":5,"name":"Backup restoration","item":"https://emby.media/learn/articles/storage/data-protection/backups/Storage-Restore.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Storage-Restore">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../storage/index.html">Storage and server platforms</a></li>
+              <li><a href="../../../storage/data-protection/index.html">Data protection</a></li>
+              <li><a href="../../../storage/data-protection/backups/index.html">Backups and recovery</a></li>
+              <li><span aria-current="page">Backup restoration</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Storage-Restore">
+<h1>Backup restoration: recovering a usable server</h1>
+<p class="article-description">Backup restoration reconstructs a usable data set in a recovery environment, then verifies its content, access and application behavior.</p>
+
+
+<p>Restoration is the operation a backup is meant to make possible. It has to produce usable files and server state in the recovery environment, not merely demonstrate that an archive can be opened.</p>
+<p>For an Emby server, usability includes the application data, source media, supported software versions, correct paths and access from the running server identity. These can return at different times.</p>
+<h2 id="define-the-recovery-point-and-the-recovery-service">Define the recovery point and the recovery service</h2>
+<p>Two useful objectives are <strong>recovery point</strong> and <strong>recovery time</strong>. The recovery point describes how old the recovered state may be. Recovery time describes how long it takes to return the service you actually need.</p>
+<p>In an original example, the last usable backup completed at 01:00 and a loss occurred at 09:00. Up to eight hours of later changes may be absent. If recovery produces a working server at 12:00, the observed outage interval is three hours.</p>
+<pre><code class="lang-text">Recovery-point gap: 09:00 - 01:00 = 8 hours
+Service recovery interval: 12:00 - 09:00 = 3 hours
+</code></pre>
+<p>A 12:00 archive extraction is not automatically a 12:00 service recovery. The server may still lack media paths, permissions or database migration. Likewise, “backup scheduled every hour” is not proof that the last usable copy is only one hour old.</p>
+<h2 id="a-rehearsal-begins-with-a-particular-generation">A rehearsal begins with a particular generation</h2>
+<p>Identify the intended backup, its scope and any dependencies. An incremental set may require a full base and several increments. A database backup may need the complete state captured by its supported method. A snapshot of one volume may omit application files on another.</p>
+<p>Verify that the recovery destination is the one you intend to use. A rehearsal can use a separate environment so it supplies evidence without replacing the functioning original installation.</p>
+<p><img src="images/restore-generation-to-service.png" alt="Restoration moves from a usable generation through environment mapping to verified server behavior."></p>
+<p>The important evidence is not just a success message from extraction. It is whether the restored data set is complete enough for the required next operation.</p>
+<h2 id="the-software-has-to-interpret-the-saved-state">The software has to interpret the saved state</h2>
+<p>A supported version relationship matters. A newer server may migrate stored data when it opens it; an older version may not understand that resulting state. Plugin data can have separate migration rules.</p>
+<p>A server executable, plugin package and restored database are therefore not three freely interchangeable pieces. Use the documented Emby restore or migration workflow for their relationship. Keep the recovery generation intact while establishing whether that combination works.</p>
+<p>This also explains why a restored server can launch but still be incomplete. Launch tests the initial startup path. Reading a library, retrieving user state and invoking a particular plugin exercise additional parts of the restored environment.</p>
+<h2 id="path-text-must-reach-the-recovered-storage">Path text must reach the recovered storage</h2>
+<p>The original library path might have been <code>M:\Movies</code>, <code>/srv/media</code> or a container path such as <code>/media</code>. Those strings must resolve in the recovered server's environment.</p>
+<p>A restored container configuration can point to a host directory that is empty or absent. A Windows service can lack the old desktop's mapped drive. An NFS share can be present while identity mapping differs.</p>
+<table>
+<thead>
+<tr>
+<th>Restored element</th>
+<th>Additional verification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Library definition</td>
+<td>Path reaches the intended media tree</td>
+</tr>
+<tr>
+<td>Media files</td>
+<td>Known files are readable under the server identity</td>
+</tr>
+<tr>
+<td>User records</td>
+<td>Expected user-specific state is available</td>
+</tr>
+<tr>
+<td>Application-data location</td>
+<td>Required writes succeed</td>
+</tr>
+<tr>
+<td>Plugin configuration</td>
+<td>Referenced resources and supported plugin version are available</td>
+</tr>
+</tbody>
+</table>
+<p>Changing the path arrangement can require supported library updates. A scan of an inaccessible or wrong tree is not the same as verifying recovered content.</p>
+<h2 id="test-content-and-behavior-separately">Test content and behavior separately</h2>
+<p>A checksum comparison can verify particular bytes against a trusted reference. Opening media through the restored server tests storage access and playback. Checking a favorite or resume position tests recovered user state.</p>
+<p>A small sample does not prove every file is intact, but it can expose the difference between a readable archive and a functioning server. Choose the sample around the recovery scope: a large film, a sidecar, a user record and a plugin-owned resource answer different questions.</p>
+<p>The outcome should state what was recovered, from which point, and what remains dependent on other storage. That makes a rehearsal useful for estimating recovery time rather than turning it into a vague “backup looks fine” result.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Storage-App-Backups.html" title="Application-data backups and consistent server state">Application-data backups and consistent server state</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Storage-Media-Backups.html" title="Media backups and recoverable generations">Media backups and recoverable generations</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Storage-Checksums.html" title="File checksums and content verification">File checksums and content verification</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../sharing/permissions/Storage-Service-Access.html" title="Storage access from background services">Storage access from background services</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Backup-Restore-To-New-System.html" title="Emby restore to a new system">Emby restore to a new system</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Backup.html" title="Emby server backup and restore">Emby server backup and restore</a></li>
+			            <li><a class="seealso-link" href="https://www.sqlite.org/backup.html" title="SQLite online backup API">SQLite online backup API</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Storage-Restore%0A*%20Title%3A%20Backup%20restoration%3A%20recovering%20a%20usable%20server%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

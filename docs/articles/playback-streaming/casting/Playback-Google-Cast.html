@@ -1,0 +1,298 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Google Cast and receiver-side media playback | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Google Cast connects a sender application to a receiver application that manages the selected media presentation and its resource-loading path.">
+  <link rel="canonical" href="https://emby.media/learn/articles/playback-streaming/casting/Playback-Google-Cast.html">
+  <meta property="og:title" content="Google Cast and receiver-side media playback | Emby Learn">
+  <meta property="og:description" content="Google Cast connects a sender application to a receiver application that manages the selected media presentation and its resource-loading path.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/playback-streaming/casting/Playback-Google-Cast.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/playback-streaming/casting/Playback-Google-Cast.html","url":"https://emby.media/learn/articles/playback-streaming/casting/Playback-Google-Cast.html","name":"Google Cast and receiver-side media playback","inLanguage":"en","headline":"Google Cast and receiver-side media playback","articleSection":"Playback and streaming","proficiencyLevel":"Beginner","accessMode":"textual","description":"Google Cast connects a sender application to a receiver application that manages the selected media presentation and its resource-loading path.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Playback and streaming","item":"https://emby.media/learn/articles/playback-streaming/index.html"},{"@type":"ListItem","position":3,"name":"Casting and remote playback","item":"https://emby.media/learn/articles/playback-streaming/casting/index.html"},{"@type":"ListItem","position":4,"name":"Google Cast","item":"https://emby.media/learn/articles/playback-streaming/casting/Playback-Google-Cast.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Playback-Google-Cast">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../playback-streaming/index.html">Playback and streaming</a></li>
+              <li><a href="../../playback-streaming/casting/index.html">Casting and remote playback</a></li>
+              <li><span aria-current="page">Google Cast</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Playback-Google-Cast">
+<h1>Google Cast and receiver-side media playback</h1>
+<p class="article-description">Google Cast connects a sender application to a receiver application that manages the selected media presentation and its resource-loading path.</p>
+
+
+<p><strong>Google Cast</strong> connects a sender app to a receiver app. The sender manages the user's interaction; the receiver manages presentation on the receiving device.</p>
+<p>For media casting, the receiver's playback path is the one that needs to obtain and use the selected programme resources. Emby's <a class="xref" href="https://emby.media/support/articles/Chromecast.html">Chromecast documentation</a> describes its casting integration.</p>
+<h2 id="the-receivers-load-sequence">The receiver's load sequence</h2>
+<p>A sender initiates or joins a Cast session and supplies a media load request through the supported application integration. A receiver can interpret or customize that request before its player loads the media.</p>
+<p>The receiver then retrieves the relevant resource, prepares its media path and reports playback status. Sender commands can request play, pause, seek and other supported behavior.</p>
+<p><img src="images/cast-receiver-path.png" alt="An original Cast topology separates sender control/status messages from the origin-to-receiver media transfer."></p>
+<p>A content identifier in a load request need not be the final direct resource URL. A custom receiver can resolve or alter the request under its own integration. Google's Web Receiver message-interception API is one documented mechanism for that behavior.</p>
+<h2 id="device-and-application-capabilities-both-matter">Device and application capabilities both matter</h2>
+<p>Google's media documentation separates container support, encoded-media configurations and device-specific limits. It also distinguishes facilities that need additional receiver integration.</p>
+<p>One concrete example is its published device list: third-generation Chromecast's stated H.264 path goes up to 1080p60, while Google TV Streamer lists additional video configurations including AV1. Those entries should not be flattened into “all Chromecast devices support the same formats.”</p>
+<table>
+<thead>
+<tr>
+<th>Context</th>
+<th>Requirement to establish</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Receiver model</td>
+<td>Relevant decoding and output capabilities</td>
+</tr>
+<tr>
+<td>Receiver application</td>
+<td>Supported delivery, tracks and playback integration</td>
+</tr>
+<tr>
+<td>Selected source</td>
+<td>Actual codec configuration and packaging</td>
+</tr>
+<tr>
+<td>Audio/subtitle choice</td>
+<td>Additional selected media requirements</td>
+</tr>
+<tr>
+<td>Origin access</td>
+<td>Receiver can obtain the needed resources</td>
+</tr>
+</tbody>
+</table>
+<p>The sender's successful local playback establishes a different media path. Emby Server may supply an adapted representation for the receiver even when the phone played the original.</p>
+<h2 id="resource-access-belongs-to-the-receiver">Resource access belongs to the receiver</h2>
+<p>The receiver must reach the addresses it uses. A server-local file path or a phone-only address is not automatically meaningful there.</p>
+<p>A Web Receiver also has the relevant web loading context. For script-managed delivery, cross-origin behavior can affect its requests. A phone's authenticated fetch does not prove that a separate receiver request has the same access state.</p>
+<p>Seeing the device in a Cast chooser establishes discovery. Successfully connecting a session establishes additional control communication. Neither observation, by itself, proves media-resource retrieval.</p>
+<h2 id="relate-status-to-actual-presentation">Relate status to actual presentation</h2>
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th>Evidence supplied</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Receiver appears in the chooser</td>
+<td>Discovery under the current environment</td>
+</tr>
+<tr>
+<td>Receiver application starts</td>
+<td>Session/application activation</td>
+</tr>
+<tr>
+<td>Load request is handled</td>
+<td>Receiver accepted that request stage</td>
+</tr>
+<tr>
+<td>Media bytes are obtained</td>
+<td>Retrieval succeeded for those resources</td>
+</tr>
+<tr>
+<td>Playback status advances</td>
+<td>Receiver reports progress in its playback context</td>
+</tr>
+</tbody>
+</table>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Casting-Mirroring.html" title="Casting and screen mirroring: where playback happens">Casting and screen mirroring: where playback happens</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Receiver-Connectivity.html" title="Controller and receiver connectivity">Controller and receiver connectivity</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../from-server/compatibility/Playback-Compatibility.html" title="What determines playback compatibility?">What determines playback compatibility?</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../players/browser/Playback-Browser.html" title="Browser media playback and its loading paths">Browser media playback and its loading paths</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Remote-Control.html" title="Playback remote control and reported session state">Playback remote control and reported session state</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://developers.google.com/cast/docs/reference" title="Google Cast: Sender and receiver APIs">Google Cast: Sender and receiver APIs</a></li>
+			            <li><a class="seealso-link" href="https://developers.google.com/cast/docs/media" title="Google Cast: Supported media">Google Cast: Supported media</a></li>
+			            <li><a class="seealso-link" href="https://developers.google.com/cast/docs/web_receiver/core_features" title="Google Cast: Web Receiver core features">Google Cast: Web Receiver core features</a></li>
+			            <li><a class="seealso-link" href="https://developers.google.com/cast/docs/discovery" title="Google Cast: Discovery troubleshooting">Google Cast: Discovery troubleshooting</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Chromecast.html" title="Emby: Chromecast">Emby: Chromecast</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Playback-Google-Cast%0A*%20Title%3A%20Google%20Cast%20and%20receiver-side%20media%20playback%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

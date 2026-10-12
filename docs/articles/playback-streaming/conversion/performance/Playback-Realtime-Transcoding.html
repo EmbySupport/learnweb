@@ -1,0 +1,273 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Real-time transcoding and playback deadlines | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Real-time transcoding must supply usable media at the rate playback consumes it, with temporary buffer lead covering only finite production deficits.">
+  <link rel="canonical" href="https://emby.media/learn/articles/playback-streaming/conversion/performance/Playback-Realtime-Transcoding.html">
+  <meta property="og:title" content="Real-time transcoding and playback deadlines | Emby Learn">
+  <meta property="og:description" content="Real-time transcoding must supply usable media at the rate playback consumes it, with temporary buffer lead covering only finite production deficits.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/playback-streaming/conversion/performance/Playback-Realtime-Transcoding.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/playback-streaming/conversion/performance/Playback-Realtime-Transcoding.html","url":"https://emby.media/learn/articles/playback-streaming/conversion/performance/Playback-Realtime-Transcoding.html","name":"Real-time transcoding and playback deadlines","inLanguage":"en","headline":"Real-time transcoding and playback deadlines","articleSection":"Playback and streaming","proficiencyLevel":"Beginner","accessMode":"textual","description":"Real-time transcoding must supply usable media at the rate playback consumes it, with temporary buffer lead covering only finite production deficits.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Playback and streaming","item":"https://emby.media/learn/articles/playback-streaming/index.html"},{"@type":"ListItem","position":3,"name":"Conversion pipelines","item":"https://emby.media/learn/articles/playback-streaming/conversion/index.html"},{"@type":"ListItem","position":4,"name":"Transcoding performance and capacity","item":"https://emby.media/learn/articles/playback-streaming/conversion/performance/index.html"},{"@type":"ListItem","position":5,"name":"Real-time transcoding","item":"https://emby.media/learn/articles/playback-streaming/conversion/performance/Playback-Realtime-Transcoding.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Playback-Realtime-Transcoding">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../playback-streaming/index.html">Playback and streaming</a></li>
+              <li><a href="../../../playback-streaming/conversion/index.html">Conversion pipelines</a></li>
+              <li><a href="../../../playback-streaming/conversion/performance/index.html">Transcoding performance and capacity</a></li>
+              <li><span aria-current="page">Real-time transcoding</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Playback-Realtime-Transcoding">
+<h1>Real-time transcoding and playback deadlines</h1>
+<p class="article-description">Real-time transcoding must supply usable media at the rate playback consumes it, with temporary buffer lead covering only finite production deficits.</p>
+
+
+<p>Real-time transcoding needs to produce usable media soon enough for its playback deadlines. At ordinary speed, the viewer consumes about one second of media per second of wall time. A production path that sustains less than that rate loses ground.</p>
+<p>A prepared buffer can delay the resulting stall. It cannot make a persistent production deficit disappear.</p>
+<h2 id="production-rate-is-media-time-divided-by-wall-time">Production rate is media time divided by wall time</h2>
+<p>If a job produces 60 seconds of usable output in 30 seconds, its average rate is 2 media seconds per wall second, commonly described as 2x.</p>
+<p>That result concerns the specified output and measured interval. It does not automatically predict another resolution, filter graph or concurrent workload.</p>
+<p>A pipeline also needs to produce all the data required for presentation. Having video ready while required audio or output packaging is delayed does not supply a complete playable interval.</p>
+<h2 id="a-thirty-second-lead-can-drain">A thirty-second lead can drain</h2>
+<p>Use an original simplified model:</p>
+<pre><code class="lang-text">buffer lead Q(t) = Q(0) + (production rate - consumption rate) × t
+</code></pre>
+<p>Assume the initial lead is 30 media seconds, production is 0.75 media seconds per wall second, and consumption is 1. The lead decreases by 0.25 seconds each second.</p>
+<table>
+<thead>
+<tr>
+<th>Wall time since playback starts</th>
+<th>Remaining lead</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 seconds</td>
+<td>30 seconds</td>
+</tr>
+<tr>
+<td>40 seconds</td>
+<td>20 seconds</td>
+</tr>
+<tr>
+<td>80 seconds</td>
+<td>10 seconds</td>
+</tr>
+<tr>
+<td>120 seconds</td>
+<td>0 seconds</td>
+</tr>
+</tbody>
+</table>
+<p><img src="images/realtime-deficit.png" alt="An original constant-rate model shows a thirty-second lead draining over 120 wall seconds when production sustains only 0.75x."></p>
+<p>The model assumes a single relevant ready-data buffer and steady rates. Actual playback has several queues and can use recovery policies. After the buffer empties, uninterrupted playback is no longer supported by these assumptions.</p>
+<p>Adding a larger initial lead changes the waiting time. It does not change the negative slope.</p>
+<h2 id="playback-rate-changes-the-deadline">Playback rate changes the deadline</h2>
+<p>At 1.5x playback, consumption is 1.5 media seconds per wall second. A producer at 1.2x then has a deficit of 0.3.</p>
+<p>With the same 30-second initial lead, the model reaches zero in <code>30 / 0.3 = 100 wall seconds</code>. Calling 1.2x “faster than real time” without specifying playback rate hides that deficit.</p>
+<p>A deliberate pause in playback changes consumption instead. A deliberate <a href="Playback-Transcode-Throttling.html">transcode throttle</a> changes production when enough lead exists. Neither is equivalent to an overloaded converter that cannot meet active demand.</p>
+<h2 id="server-output-is-not-client-ready-media">Server output is not client-ready media</h2>
+<p>Suppose a server produces at 2x but the delivery path supplies 3 Mbit/s for a constant 6 Mbit/s representation. The simplified delivery rate is only 0.5 media seconds per wall second.</p>
+<p>A client buffer with 15 media seconds then drains in 30 wall seconds at ordinary playback. Fast conversion has not fixed the delivery constraint.</p>
+<p>Likewise, sufficient network goodput does not fix a slow client decoder or display path. <a href="../../behavior/symptoms/Playback-Stalls.html">Playback stalls</a> and <a href="../../behavior/symptoms/Playback-Dropped-Frames.html">dropped frames</a> describe different symptoms.</p>
+<h2 id="capacity-needs-margin-over-the-tested-interval">Capacity needs margin over the tested interval</h2>
+<p>Difficult source portions can cost more than easy ones. Storage, transfers and concurrent jobs can change the available service rate. A short high-speed sample therefore supplies evidence about that sample, rather than proof of sustainable capacity for every session.</p>
+<p>For a live source, the future input is not available in advance. An engine that could process stored media at 4x cannot create four future seconds of a real-time source before those seconds arrive.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Transcode-Speed.html" title="Transcoding speed, fps and media time">Transcoding speed, fps and media time</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Bottlenecks.html" title="Transcoding bottlenecks">Transcoding bottlenecks</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../delivery/Playback-Buffering.html" title="Buffering, ready media and playback reserve">Buffering, ready media and playback reserve</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../behavior/symptoms/Playback-Stalls.html" title="Playback stalls and unavailable next media">Playback stalls and unavailable next media</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Transcode-Throttling.html" title="Transcode throttling and producer lead">Transcode throttling and producer lead</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg.html" title="FFmpeg: Processing, mapping and progress">FFmpeg: Processing, mapping and progress</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/doxygen/trunk/group__lavc__encdec.html" title="FFmpeg API: Send/receive encoding and decoding">FFmpeg API: Send/receive encoding and decoding</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Model.Session.TranscodingInfo.html" title="Emby API: TranscodingInfo">Emby API: TranscodingInfo</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-formats.html" title="FFmpeg: Container and segment formats">FFmpeg: Container and segment formats</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Playback-Realtime-Transcoding%0A*%20Title%3A%20Real-time%20transcoding%20and%20playback%20deadlines%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

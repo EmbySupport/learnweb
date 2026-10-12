@@ -1,0 +1,266 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Network-attached storage: files served by another computer | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="A NAS serves files over a network, so media access depends on its disks, sharing protocol, access policy and connection to the Emby server.">
+  <link rel="canonical" href="https://emby.media/learn/articles/storage/fundamentals/hardware/Storage-NAS.html">
+  <meta property="og:title" content="Network-attached storage: files served by another computer | Emby Learn">
+  <meta property="og:description" content="A NAS serves files over a network, so media access depends on its disks, sharing protocol, access policy and connection to the Emby server.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/storage/fundamentals/hardware/Storage-NAS.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/storage/fundamentals/hardware/Storage-NAS.html","url":"https://emby.media/learn/articles/storage/fundamentals/hardware/Storage-NAS.html","name":"Network-attached storage: files served by another computer","inLanguage":"en","headline":"Network-attached storage: files served by another computer","articleSection":"Storage and server platforms","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"A NAS serves files over a network, so media access depends on its disks, sharing protocol, access policy and connection to the Emby server.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Storage and server platforms","item":"https://emby.media/learn/articles/storage/index.html"},{"@type":"ListItem","position":3,"name":"Media storage fundamentals","item":"https://emby.media/learn/articles/storage/fundamentals/index.html"},{"@type":"ListItem","position":4,"name":"Storage hardware and connections","item":"https://emby.media/learn/articles/storage/fundamentals/hardware/index.html"},{"@type":"ListItem","position":5,"name":"Network-attached storage (NAS)","item":"https://emby.media/learn/articles/storage/fundamentals/hardware/Storage-NAS.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Storage-NAS">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../storage/index.html">Storage and server platforms</a></li>
+              <li><a href="../../../storage/fundamentals/index.html">Media storage fundamentals</a></li>
+              <li><a href="../../../storage/fundamentals/hardware/index.html">Storage hardware and connections</a></li>
+              <li><span aria-current="page">Network-attached storage (NAS)</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Storage-NAS">
+<h1>Network-attached storage: files served by another computer</h1>
+<p class="article-description">A NAS serves files over a network, so media access depends on its disks, sharing protocol, access policy and connection to the Emby server.</p>
+
+
+<p>A network-attached storage system is a computer that supplies storage services to other computers. An Emby server can open media on the NAS through a file-sharing protocol such as <a href="../../sharing/protocols/Storage-SMB.html">SMB</a> or <a href="../../sharing/protocols/Storage-NFS.html">NFS</a>.</p>
+<p>The NAS reads its own disks and returns file data. The Emby server still performs its own library work and any transcoding. Merely placing a film on a NAS does not move the encoder onto that NAS.</p>
+<h2 id="where-the-work-runs">Where the work runs</h2>
+<p><img src="images/nas-server-viewer-path.png" alt="A NAS supplies file bytes to an Emby server, which separately delivers a playback stream to a viewer."></p>
+<p>There are two common arrangements. Emby Server can run on a separate computer with the NAS as a media source, or it can run directly on a supported NAS platform. In the second arrangement, storage and server workloads share the NAS's processor, memory and other resources.</p>
+<p>In the first arrangement, a remote viewer's stream may involve both the NAS-to-server connection and the server-to-viewer connection. If those use the same constrained interface, their traffic can compete. A client that is explicitly configured and supported for direct file access is a different path again; an ordinary Emby HTTP stream does not require the viewer to mount the NAS share.</p>
+<h2 id="the-slowest-active-part-of-a-read">The slowest active part of a read</h2>
+<p>A simplified sustained-read model uses independent useful-rate limits:</p>
+<pre><code class="lang-text">Disk service:          180 MB/s
+Network file delivery: 110 MB/s
+Client receive path:   150 MB/s
+Upper bound: min(180, 110, 150) = 110 MB/s
+</code></pre>
+<p>The figures are teaching assumptions. Actual results include protocol operations, caching, queues and any shared resources. Small operations can be latency-limited even when their combined byte rate is tiny.</p>
+<p>For four 40-Mbit/s films, average source payload is 20 MB/s. That comparison suggests capacity in the model, but it does not establish real peak behavior, recording coexistence or fast scans. A scan can produce far more file opens and metadata operations than four long reads.</p>
+<h2 id="a-reachable-nas-is-not-yet-a-readable-library">A reachable NAS is not yet a readable library</h2>
+<table>
+<thead>
+<tr>
+<th>Successful check</th>
+<th>What remains unproven</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The NAS responds on the network</td>
+<td>The file-sharing service is available</td>
+</tr>
+<tr>
+<td>The share is visible</td>
+<td>The server process can authenticate</td>
+</tr>
+<tr>
+<td>The directory opens</td>
+<td>Each required file is readable</td>
+</tr>
+<tr>
+<td>The desktop can play a file</td>
+<td>The background service has the same identity and path</td>
+</tr>
+<tr>
+<td>Emby lists an existing item</td>
+<td>The source remains accessible now</td>
+</tr>
+</tbody>
+</table>
+<p>The file-sharing account is usually separate from an Emby viewer account. Share permissions and the NAS's underlying file permissions both influence operations. For NFS, identity mapping and export policy also matter.</p>
+<p>Stable names and mounted paths help the library continue to address the same content. During an outage, establish whether the share is truly empty, inaccessible, or absent from the current namespace before treating missing observations as file removals. <a href="../../sharing/Storage-Unavailable-Mounts.html">Unavailable mounts</a> develops those states.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../sharing/protocols/Storage-SMB.html" title="SMB file shares: sessions, shares and file operations">SMB file shares: sessions, shares and file operations</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../sharing/protocols/Storage-NFS.html" title="NFS file shares and server-side identity mapping">NFS file shares and server-side identity mapping</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../sharing/Storage-Unavailable-Mounts.html" title="Unavailable network mounts and trustworthy library state">Unavailable network mounts and trustworthy library state</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../networking/performance/capacity/Network-Throughput.html" title="Network throughput and useful delivery rate">Network throughput and useful delivery rate</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-smb2/4287490c-602c-41c0-a23e-140a1f137832" title="Microsoft SMB versions 2 and 3 protocol specification">Microsoft SMB versions 2 and 3 protocol specification</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc8881.html" title="RFC 8881: NFS version 4.1">RFC 8881: NFS version 4.1</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Library-Setup.html" title="Emby library setup">Emby library setup</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Storage-NAS%0A*%20Title%3A%20Network-attached%20storage%3A%20files%20served%20by%20another%20computer%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

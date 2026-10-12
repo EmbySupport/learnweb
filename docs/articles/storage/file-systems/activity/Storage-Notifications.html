@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>File-system notifications and library reconciliation | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="File-system notifications report observed changes with platform-specific limits, so a trustworthy library inventory also needs reconciliation.">
+  <link rel="canonical" href="https://emby.media/learn/articles/storage/file-systems/activity/Storage-Notifications.html">
+  <meta property="og:title" content="File-system notifications and library reconciliation | Emby Learn">
+  <meta property="og:description" content="File-system notifications report observed changes with platform-specific limits, so a trustworthy library inventory also needs reconciliation.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/storage/file-systems/activity/Storage-Notifications.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/storage/file-systems/activity/Storage-Notifications.html","url":"https://emby.media/learn/articles/storage/file-systems/activity/Storage-Notifications.html","name":"File-system notifications and library reconciliation","inLanguage":"en","headline":"File-system notifications and library reconciliation","articleSection":"Storage and server platforms","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"File-system notifications report observed changes with platform-specific limits, so a trustworthy library inventory also needs reconciliation.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Storage and server platforms","item":"https://emby.media/learn/articles/storage/index.html"},{"@type":"ListItem","position":3,"name":"File systems and paths","item":"https://emby.media/learn/articles/storage/file-systems/index.html"},{"@type":"ListItem","position":4,"name":"File activity and notifications","item":"https://emby.media/learn/articles/storage/file-systems/activity/index.html"},{"@type":"ListItem","position":5,"name":"File system change notifications","item":"https://emby.media/learn/articles/storage/file-systems/activity/Storage-Notifications.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Storage-Notifications">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../storage/index.html">Storage and server platforms</a></li>
+              <li><a href="../../../storage/file-systems/index.html">File systems and paths</a></li>
+              <li><a href="../../../storage/file-systems/activity/index.html">File activity and notifications</a></li>
+              <li><span aria-current="page">File system change notifications</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Storage-Notifications">
+<h1>File-system notifications and library reconciliation</h1>
+<p class="article-description">File-system notifications report observed changes with platform-specific limits, so a trustworthy library inventory also needs reconciliation.</p>
+
+
+<p>File-system notifications let software react when files or directories change without repeatedly scanning every entry. Emby's real-time monitoring uses available file-system support to notice additions and changes.</p>
+<p>A notification stream is not a complete transaction log. An event says that an observed kind of activity occurred; it does not by itself describe a finished media import or a trustworthy current inventory.</p>
+<h2 id="one-file-can-produce-several-events">One file can produce several events</h2>
+<p>A copy may create a file, write many chunks, change metadata and rename the result. Depending on the notification API and workload, software may receive several events, combined events or repeated events for that work.</p>
+<p>An original sequence is:</p>
+<pre><code class="lang-text">00:00  create Film.part
+00:01  write first range
+00:02  write another range
+00:03  close writer
+00:04  rename Film.part to Film.mkv
+</code></pre>
+<p>The first event occurs before the movie is complete. Even a close event has the meaning supplied by its API and producer; it does not universally certify a durable, valid media file. A scanner may need to reopen and analyze the result.</p>
+<p><img src="images/notification-observe-reconcile.png" alt="Change events prompt a library observation; a later scan reconciles the actual reachable tree rather than treating each event as a finished import."></p>
+<h2 id="an-event-queue-has-limits">An event queue has limits</h2>
+<p>Events consume memory and require processing. If a producer outruns the consumer, a bounded queue can overflow. Linux inotify reports queue overflow; .NET FileSystemWatcher documents loss when its internal buffer is exceeded.</p>
+<p>An original four-slot queue model receives six separate events before any are consumed. At most four fit, so the remaining events cannot all be retained under that model. The overflow signal tells the consumer that completeness has been lost; it does not recreate the missing details.</p>
+<p>Increasing a buffer can help with a particular burst, but it does not turn a finite queue into an unlimited history. Notification scope, filters and processing work also matter.</p>
+<h2 id="a-remote-change-may-bypass-the-watcher">A remote change may bypass the watcher</h2>
+<p>Linux inotify observes events generated through the local kernel's file-system activity. It does not generally catch changes made by other machines directly on a network file system.</p>
+<p>Another protocol or platform may supply server-side change notifications. SMB change notification, an NFS mount and a local ext4 watch do not all provide identical behavior. “The path is readable” is therefore insufficient evidence that every remote edit will produce the events a monitoring API expects.</p>
+<p>Emby's documentation limits real-time monitoring to supported file systems. A server restart after changing that setting is also part of its documented setup. Scheduled or explicit scans remain relevant when the notification path is incomplete.</p>
+<h2 id="reconciliation-asks-what-exists-now">Reconciliation asks what exists now</h2>
+<p>A reconciliation scan enumerates the current tree and compares it with the stored library view. That can recover an addition whose notification was lost or combine several events into one current file state.</p>
+<p>The observation still needs context. A successful scan of the intended accessible tree can support an inventory update. A failed enumeration, a disconnected share or an uncovered <a href="../paths/Storage-Mount-Points.html">mount-point directory</a> is different evidence.</p>
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th>Appropriate interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Several events for one path</td>
+<td>Recheck the current file; do not assume several independent movies</td>
+</tr>
+<tr>
+<td>Queue overflow</td>
+<td>The event history is incomplete</td>
+</tr>
+<tr>
+<td>No remote notification</td>
+<td>The watch mechanism may not observe that remote activity</td>
+</tr>
+<tr>
+<td>Successful enumeration of the intended tree</td>
+<td>Current inventory evidence</td>
+</tr>
+<tr>
+<td>Enumeration fails or reaches the wrong tree</td>
+<td>Incomplete or misleading inventory evidence</td>
+</tr>
+</tbody>
+</table>
+<p>The implementation may debounce changes, retry analysis or schedule reconciliation. Those are application choices, not guarantees inherent in receiving a file event. The useful model is a notification prompting observation, with scanning restoring current state when event completeness cannot be relied upon.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../libraries-collections/scanning/Library-Incremental-Scans.html" title="Incremental library scans">Incremental library scans</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../libraries-collections/scanning/Library-Scanning.html" title="Library scanning and catalogue reconciliation">Library scanning and catalogue reconciliation</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../sharing/Storage-Unavailable-Mounts.html" title="Unavailable network mounts and trustworthy library state">Unavailable network mounts and trustworthy library state</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/dotnet/api/system.io.filesystemwatcher" title=".NET FileSystemWatcher contract and limitations">.NET FileSystemWatcher contract and limitations</a></li>
+			            <li><a class="seealso-link" href="https://man7.org/linux/man-pages/man7/inotify.7.html" title="Linux man-pages: inotify">Linux man-pages: inotify</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Library-Setup.html" title="Emby library setup">Emby library setup</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Storage-Notifications%0A*%20Title%3A%20File-system%20notifications%20and%20library%20reconciliation%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

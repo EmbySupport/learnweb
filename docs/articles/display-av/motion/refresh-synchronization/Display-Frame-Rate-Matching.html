@@ -1,0 +1,290 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Frame-rate matching at the display | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Frame-rate matching selects a display timing compatible with the source cadence so source pictures can receive regular presentation durations.">
+  <link rel="canonical" href="https://emby.media/learn/articles/display-av/motion/refresh-synchronization/Display-Frame-Rate-Matching.html">
+  <meta property="og:title" content="Frame-rate matching at the display | Emby Learn">
+  <meta property="og:description" content="Frame-rate matching selects a display timing compatible with the source cadence so source pictures can receive regular presentation durations.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/display-av/motion/refresh-synchronization/Display-Frame-Rate-Matching.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/display-av/motion/refresh-synchronization/Display-Frame-Rate-Matching.html","url":"https://emby.media/learn/articles/display-av/motion/refresh-synchronization/Display-Frame-Rate-Matching.html","name":"Frame-rate matching at the display","inLanguage":"en","headline":"Frame-rate matching at the display","articleSection":"Displays and AV connections","proficiencyLevel":"Beginner","accessMode":"textual","description":"Frame-rate matching selects a display timing compatible with the source cadence so source pictures can receive regular presentation durations.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Displays and AV connections","item":"https://emby.media/learn/articles/display-av/index.html"},{"@type":"ListItem","position":3,"name":"Motion on a display","item":"https://emby.media/learn/articles/display-av/motion/index.html"},{"@type":"ListItem","position":4,"name":"Refresh and synchronization","item":"https://emby.media/learn/articles/display-av/motion/refresh-synchronization/index.html"},{"@type":"ListItem","position":5,"name":"Frame-rate matching","item":"https://emby.media/learn/articles/display-av/motion/refresh-synchronization/Display-Frame-Rate-Matching.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Display-Frame-Rate-Matching">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../display-av/index.html">Displays and AV connections</a></li>
+              <li><a href="../../../display-av/motion/index.html">Motion on a display</a></li>
+              <li><a href="../../../display-av/motion/refresh-synchronization/index.html">Refresh and synchronization</a></li>
+              <li><span aria-current="page">Frame-rate matching</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Display-Frame-Rate-Matching">
+<h1>Frame-rate matching at the display</h1>
+<p class="article-description">Frame-rate matching selects a display timing compatible with the source cadence so source pictures can receive regular presentation durations.</p>
+
+
+<p>A player needs to place each source picture onto the available presentation schedule. <strong>Frame-rate matching</strong> selects an output timing that makes that relationship regular.</p>
+<p>Matching can use the source rate itself or a suitable integer multiple. A 24-fps film does not require the physical display to refresh only twenty-four times per second.</p>
+<h2 id="why-sixty-refreshes-are-awkward-for-twenty-four-pictures">Why sixty refreshes are awkward for twenty-four pictures</h2>
+<p>Take an original exact-rate exercise. Twenty-four source pictures per second need to occupy sixty refresh intervals:</p>
+<pre><code class="lang-text">60 / 24 = 2.5 refreshes per source picture
+</code></pre>
+<p>A fixed presentation cannot hold every picture for half an additional refresh. A common repeat schedule alternates three and two intervals.</p>
+<p>At sixty Hz, those holds are 50 and 33.333 milliseconds. The intended source interval is 41.667 milliseconds. The average duration is right, while each neighbouring hold differs.</p>
+<p>At 120 Hz:</p>
+<pre><code class="lang-text">120 / 24 = 5 refreshes per source picture
+5 / 120 = 1 / 24 second
+</code></pre>
+<p>Every picture can receive the same duration without synthesizing another source picture.</p>
+<p><img src="images/frame-rate-matching-cadence.png" alt="An original cadence compares unequal three/two holds at sixty Hz with equal five-interval holds at 120 Hz."></p>
+<p>That removes the unequal-repeat contribution to <a href="../Display-Judder.html">judder</a>. It does not remove the discrete motion sampling already present in twenty-four-fps footage.</p>
+<h2 id="exact-rates-matter-beyond-the-rounded-label">Exact rates matter beyond the rounded label</h2>
+<p>Consider a <code>24000/1001</code>-fps movie presented with one source picture per refresh on an exact 24-Hz grid.</p>
+<p>The source interval is <code>1001/24000</code> seconds; the display interval is <code>1/24</code> seconds. The difference per source picture is:</p>
+<pre><code class="lang-text">1001/24000 − 1/24 = 1/24000 second
+                         = 0.041667 ms
+</code></pre>
+<p>After 1000 pictures, that difference totals one exact 24-Hz refresh interval: 41.667 milliseconds.</p>
+<p>If the programme speed stays unchanged, the presentation system must accommodate the growing mismatch. It can make a repeat/drop or another scheduling correction according to its implementation. This exercise does not predict the exact moment a particular player performs that correction.</p>
+<p>Using <code>24000/1001</code> Hz, or its exact fivefold multiple <code>120000/1001</code> Hz, removes this particular clock mismatch. “24” and “120” in a menu can be rounded displays of a more precise mode, so the actual rate is the useful evidence.</p>
+<p><a href="../../../video/frame-timing/frame-rates/Fractional-Frame-Rates.html">Fractional frame rates</a> explains the source conventions.</p>
+<h2 id="other-source-rates-need-their-own-mapping">Other source rates need their own mapping</h2>
+<table>
+<thead>
+<tr>
+<th>Exact source</th>
+<th>Example fixed output</th>
+<th style="text-align: right;">Even repeat count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>24 fps</td>
+<td>120 Hz</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td>25 fps</td>
+<td>50 Hz</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td>30 fps</td>
+<td>60 Hz</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td>50 fps</td>
+<td>100 Hz</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td>60 fps</td>
+<td>120 Hz</td>
+<td style="text-align: right;">2</td>
+</tr>
+</tbody>
+</table>
+<p>The table is arithmetic, not a promise that a connected TV exposes every mode. Resolution, color representation, link capability and the device’s mode list constrain which choices exist.</p>
+<p>Variable-frame-rate content has a changing source interval. One fixed repeat count cannot describe its whole sequence. A variable presentation arrangement or timed repeats may be needed.</p>
+<h2 id="changing-playback-speed-is-another-solution-with-another-result">Changing playback speed is another solution with another result</h2>
+<p>A player can sometimes conform source timing to a nearby rate by changing programme speed. Conforming <code>24000/1001</code> fps to 24 fps requires a speed ratio of <code>1001/1000</code>, a 0.1% increase.</p>
+<p>That avoids this cadence drift by changing playback duration. Audio must participate in the intended timing relationship; maintaining pitch can require additional processing.</p>
+<p>It is not the same result as preserving programme timing and correcting an occasional presentation interval. An explanation of smooth motion should state which choice occurred.</p>
+<p>Motion interpolation is another distinct option. It estimates additional pictures rather than simply repeating the original ones evenly.</p>
+<h2 id="emby-switching-needs-a-supported-local-route">Emby switching needs a supported local route</h2>
+<p>Emby’s documented <a class="xref" href="https://emby.media/support/articles/apps/windows/features/Win-Feature-DisplayControl.html">Display Control feature</a> detects available display rates and can switch rates when enabled on its supported application route. Its options depend on the GPU, connection, resolution and color mode.</p>
+<p>That is a local output-mode operation. It does not require the server to turn the movie into a different source frame rate merely because the client changes its display timing.</p>
+<p>A mode change can briefly re-establish the connection, producing a blackout. <a href="../../signaling/AV-HDMI-QMS.html">Quick Media Switching</a> addresses a narrower supported rate-change case; it does not make every resolution or HDR change seamless.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Display-Refresh-Rate.html" title="Display refresh rate">Display refresh rate</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Display-Judder.html" title="Judder and uneven picture cadence">Judder and uneven picture cadence</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../video/frame-timing/frame-rates/Fractional-Frame-Rates.html" title="Fractional Frame Rates: 23.976, 29.97, and 59.94">Fractional Frame Rates: 23.976, 29.97, and 59.94</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../signaling/AV-HDMI-QMS.html" title="Quick Media Switching (QMS)">Quick Media Switching (QMS)</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/api/dxgi/nf-dxgi-idxgiswapchain-present" title="Microsoft: DXGI presentation and synchronization">Microsoft: DXGI presentation and synchronization</a></li>
+			            <li><a class="seealso-link" href="https://www.hdmi.org/spec/hdmi2" title="HDMI LA: HDMI 2.2 specification overview">HDMI LA: HDMI 2.2 specification overview</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Display-Frame-Rate-Matching%0A*%20Title%3A%20Frame-rate%20matching%20at%20the%20display%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

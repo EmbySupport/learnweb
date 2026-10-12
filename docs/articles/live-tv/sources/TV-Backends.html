@@ -1,0 +1,273 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Live TV backend adapters | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="A Live TV backend adapter connects Emby to an external acquisition/service interface, translating source identities and operations while the backend retains its own hardware and resource responsibilities.">
+  <link rel="canonical" href="https://emby.media/learn/articles/live-tv/sources/TV-Backends.html">
+  <meta property="og:title" content="Live TV backend adapters | Emby Learn">
+  <meta property="og:description" content="A Live TV backend adapter connects Emby to an external acquisition/service interface, translating source identities and operations while the backend retains its own hardware and resource responsibilities.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/live-tv/sources/TV-Backends.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/live-tv/sources/TV-Backends.html","url":"https://emby.media/learn/articles/live-tv/sources/TV-Backends.html","name":"Live TV backend adapters","inLanguage":"en","headline":"Live TV backend adapters","articleSection":"Live TV and recording","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"A Live TV backend adapter connects Emby to an external acquisition/service interface, translating source identities and operations while the backend retains its own hardware and resource responsibilities.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Live TV and recording","item":"https://emby.media/learn/articles/live-tv/index.html"},{"@type":"ListItem","position":3,"name":"Tuners and television sources","item":"https://emby.media/learn/articles/live-tv/sources/index.html"},{"@type":"ListItem","position":4,"name":"Live TV backend adapters","item":"https://emby.media/learn/articles/live-tv/sources/TV-Backends.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-TV-Backends">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../live-tv/index.html">Live TV and recording</a></li>
+              <li><a href="../../live-tv/sources/index.html">Tuners and television sources</a></li>
+              <li><span aria-current="page">Live TV backend adapters</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-TV-Backends">
+<h1>Live TV backend adapters</h1>
+<p class="article-description">A Live TV backend adapter connects Emby to an external acquisition/service interface, translating source identities and operations while the backend retains its own hardware and resource responsibilities.</p>
+
+
+<p>A <strong>Live TV backend adapter</strong> gives Emby a supported interface to another system that acquires and manages television services.</p>
+<p>The adapter is not the RF receiver itself. It translates operations and identifiers across the boundary between Emby and a standalone backend.</p>
+<h2 id="ownership-is-split-across-the-route">Ownership is split across the route</h2>
+<p>An external backend can own tuner configuration, channel scans, service selection and finite acquisition resources. The adapter exposes the relevant catalogue and media operations in a form Emby can use.</p>
+<p><img src="images/backend-ownership-translation.png" alt="The original backend route separates acquisition ownership, adapter translation and the server/client presentation."></p>
+<p>Emby’s <a class="xref" href="https://emby.media/support/articles/Live-TV-Plugins.html">Live TV plugin documentation</a> explicitly distinguishes the plugin from the standalone application it depends on. Adding an adapter does not necessarily create or configure that backend.</p>
+<p>The actual plugin/backend version pair must expose the operations needed for the selected service.</p>
+<h2 id="a-channel-label-needs-a-stable-backend-key">A channel label needs a stable backend key</h2>
+<p>Use an original translation exercise:</p>
+<pre><code class="lang-json">{
+  &quot;embyChannelKey&quot;: &quot;sourceA:news&quot;,
+  &quot;displayName&quot;: &quot;Harbour News&quot;,
+  &quot;backendServiceKey&quot;: &quot;mux10:service101&quot;,
+  &quot;openOperation&quot;: &quot;open-selected-service&quot;
+}
+</code></pre>
+<p>The adapter uses the backend key to request the service. Changing only the displayed name does not need to change that key.</p>
+<p>The object is a readable teaching model, not an Emby API payload or a captured backend report.</p>
+<p>An adapter that mistakenly requests another key can supply the wrong programme even while the catalogue and network connection both work. <a href="../channels/identity/TV-Service-IDs.html">Service identifiers</a> develops the underlying identity scope.</p>
+<h2 id="catalog-access-and-media-access-can-fail-independently">Catalog access and media access can fail independently</h2>
+<p>The backend can return channel metadata while a later request lacks a free compatible tuner, current service data or required supported access.</p>
+<p>A successful catalogue call does not make these later conditions true. Likewise, a backend stream can be usable while a chosen Emby client needs additional media preparation.</p>
+<p>A useful stage distinction is:</p>
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th>Boundary established</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Catalogue returned</td>
+<td>Inventory/identity interface</td>
+</tr>
+<tr>
+<td>Acquisition allocated</td>
+<td>Backend resource selection</td>
+</tr>
+<tr>
+<td>Usable media begins arriving</td>
+<td>Selected-service production/delivery</td>
+</tr>
+<tr>
+<td>Client output advances</td>
+<td>Later server/client presentation</td>
+</tr>
+</tbody>
+</table>
+<p>This ordering gives an error a position rather than treating every failure as a missing plugin.</p>
+<h2 id="a-shared-acquisition-needs-explicit-lifetime-rules">A shared acquisition needs explicit lifetime rules</h2>
+<p>In an original sharing model, viewers A and B both use one backend acquisition. Its consumer count is two.</p>
+<p>A closing its request reduces the count to one. The acquisition cannot be released solely because A ended; B still needs it. When B ends, the count becomes zero and the model can release the resource.</p>
+<p>If the adapter opens an independent acquisition for each viewer, its count and resource use have a different relationship. A shared display name does not prove shared acquisition.</p>
+<p>Cancellation, disconnects and retries also need to preserve the backend’s ownership semantics. Otherwise a resource can remain held after its intended consumer has gone away or be released while another still needs it.</p>
+<p><a href="capacity/TV-Tuner-Concurrency.html">Tuner concurrency</a> develops the demand side of this relationship.</p>
+<h2 id="the-backend-can-perform-preparation-before-emby-sees-the-stream">The backend can perform preparation before Emby sees the stream</h2>
+<p>A backend might expose a full multiplex, a selected encoded programme or an already prepared representation. The adapter contract should identify which one it supplies.</p>
+<p>If preparation has already happened upstream, a later Emby “direct” delivery choice describes that received representation. It does not imply the original broadcast went through no earlier selection or conversion.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="hardware/TV-Tuners.html" title="TV tuners and service acquisition">TV tuners and service acquisition</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="hardware/TV-Network-Tuners.html" title="Network TV tuners">Network TV tuners</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="capacity/TV-Tuner-Concurrency.html" title="Tuner concurrency and shared acquisition">Tuner concurrency and shared acquisition</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Live-TV-Plugins.html" title="Emby: Live TV backend adapters">Emby: Live TV backend adapters</a></li>
+			            <li><a class="seealso-link" href="https://docs.kernel.org/userspace-api/media/dvb/frontend.html" title="Linux: Digital TV frontend API">Linux: Digital TV frontend API</a></li>
+			            <li><a class="seealso-link" href="https://docs.kernel.org/userspace-api/media/dvb/demux.html" title="Linux: Digital TV demultiplexer and MPEG-TS filters">Linux: Digital TV demultiplexer and MPEG-TS filters</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-TV-Backends%0A*%20Title%3A%20Live%20TV%20backend%20adapters%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

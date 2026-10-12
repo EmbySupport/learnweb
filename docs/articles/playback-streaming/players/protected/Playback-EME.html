@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Encrypted Media Extensions (EME) and browser key sessions | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Encrypted Media Extensions provides browser APIs for selecting a supported key system and coordinating key sessions needed for encrypted media playback.">
+  <link rel="canonical" href="https://emby.media/learn/articles/playback-streaming/players/protected/Playback-EME.html">
+  <meta property="og:title" content="Encrypted Media Extensions (EME) and browser key sessions | Emby Learn">
+  <meta property="og:description" content="Encrypted Media Extensions provides browser APIs for selecting a supported key system and coordinating key sessions needed for encrypted media playback.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/playback-streaming/players/protected/Playback-EME.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/playback-streaming/players/protected/Playback-EME.html","url":"https://emby.media/learn/articles/playback-streaming/players/protected/Playback-EME.html","name":"Encrypted Media Extensions (EME) and browser key sessions","inLanguage":"en","headline":"Encrypted Media Extensions (EME) and browser key sessions","articleSection":"Playback and streaming","proficiencyLevel":"Beginner","accessMode":"textual","description":"Encrypted Media Extensions provides browser APIs for selecting a supported key system and coordinating key sessions needed for encrypted media playback.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Playback and streaming","item":"https://emby.media/learn/articles/playback-streaming/index.html"},{"@type":"ListItem","position":3,"name":"Players and playback environments","item":"https://emby.media/learn/articles/playback-streaming/players/index.html"},{"@type":"ListItem","position":4,"name":"Protected media","item":"https://emby.media/learn/articles/playback-streaming/players/protected/index.html"},{"@type":"ListItem","position":5,"name":"Encrypted Media Extensions (EME)","item":"https://emby.media/learn/articles/playback-streaming/players/protected/Playback-EME.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Playback-EME">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../playback-streaming/index.html">Playback and streaming</a></li>
+              <li><a href="../../../playback-streaming/players/index.html">Players and playback environments</a></li>
+              <li><a href="../../../playback-streaming/players/protected/index.html">Protected media</a></li>
+              <li><span aria-current="page">Encrypted Media Extensions (EME)</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Playback-EME">
+<h1>Encrypted Media Extensions (EME) and browser key sessions</h1>
+<p class="article-description">Encrypted Media Extensions provides browser APIs for selecting a supported key system and coordinating key sessions needed for encrypted media playback.</p>
+
+
+<p><strong>Encrypted Media Extensions</strong>, or <strong>EME</strong>, is the browser API layer through which an application works with a supported media key system. It coordinates the protected-playback configuration and the key sessions required for encrypted media.</p>
+<p>EME is not itself one DRM product, a media-delivery protocol or a video codec. The application, browser and selected content decryption module have different responsibilities.</p>
+<h2 id="media-loading-and-key-acquisition-take-separate-paths">Media loading and key acquisition take separate paths</h2>
+<p>The media player obtains encoded media through its normal supported loading route, possibly using <a href="../browser/Playback-MSE.html">MSE</a>. Protection information identifies what the key system needs to interpret.</p>
+<p>In parallel, the application manages a key-system exchange. A key session can produce a message for the application to send to an appropriate service. The response is returned to the session for system-specific interpretation.</p>
+<p><img src="images/eme-media-license-paths.png" alt="An original protected-playback diagram separates encoded-media loading from application-mediated key-session messages and responses."></p>
+<p>The diagram describes authorized playback. It does not depict an application obtaining unrestricted raw keys to use as ordinary decoder options.</p>
+<h2 id="configuration-is-negotiated-before-a-usable-key-session">Configuration is negotiated before a usable key session</h2>
+<p><code>requestMediaKeySystemAccess()</code> asks about a named key system and candidate configurations. These include encoded-media capabilities and relevant session requirements.</p>
+<p>A configuration can require properties that the browser/device path cannot supply. Support for unprotected H.264 alone does not answer that negotiation question.</p>
+<p>The returned access object can create <code>MediaKeys</code>. The application associates those keys with its media element through <code>setMediaKeys()</code>. Key sessions then belong to that selected key-system context.</p>
+<table>
+<thead>
+<tr>
+<th>Object or operation</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MediaKeySystemAccess</td>
+<td>An accepted key-system configuration</td>
+</tr>
+<tr>
+<td>MediaKeys</td>
+<td>Key-system context associated with playback</td>
+</tr>
+<tr>
+<td>MediaKeySession</td>
+<td>One session's request/response and key-status lifecycle</td>
+</tr>
+<tr>
+<td>generateRequest()</td>
+<td>Begin the session's request from suitable initialization data</td>
+</tr>
+<tr>
+<td>message event</td>
+<td>Deliver a key-system message to the application</td>
+</tr>
+<tr>
+<td>update()</td>
+<td>Supply a response for the session to process</td>
+</tr>
+</tbody>
+</table>
+<p>These are roles in a lifecycle, not a complete portable license-server implementation. Message contents and server exchanges depend on the key system and service.</p>
+<h2 id="the-application-transports-the-message">The application transports the message</h2>
+<p>EME does not choose a universal license endpoint or standardize every provider's account and entitlement workflow.</p>
+<p>The app receives a session message, communicates it through the supported service integration and passes the resulting response to <code>update()</code>. Network access, application authorization and the key system's interpretation each can fail at their own boundary.</p>
+<p>For example, successfully obtaining the media bytes can coexist with an incomplete license exchange. A client waiting for a usable key may therefore stop presenting while its media buffer already contains encrypted intervals.</p>
+<p>A useful observation identifies both media readiness and key readiness. Treating every wait as “the video download is slow” loses the separate key-session path.</p>
+<h2 id="key-status-and-session-lifetime-are-observations">Key status and session lifetime are observations</h2>
+<p>The session can expose key-status changes and an expiration value. A usable key, an expired key and an output restriction have different implications.</p>
+<p>The application can update controls and diagnostics in response to those changes. A successful HTTP response from a service is not by itself proof that the session accepted it or that all needed keys are usable.</p>
+<p>Likewise, completing one key session does not make an unsupported encoded representation decodable. Media capabilities and protection capabilities are cooperating prerequisites.</p>
+<h2 id="persistent-sessions-retain-a-different-kind-of-state">Persistent sessions retain a different kind of state</h2>
+<p>The <code>temporary</code> session type and the optional <code>persistent-license</code> type have different storage lifecycles.</p>
+<p>Persistent-license support can retain key-session state for later authorized playback. It does not download or retain the movie itself. An offline protected presentation still needs its corresponding local media resources and an application capable of using the persisted session.</p>
+<p>The 2017 EME Recommendation establishes the baseline model. The cited level-two document is a W3C Working Draft, so its additions should be distinguished from implemented browser behavior.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-DRM.html" title="DRM-protected media and authorized playback paths">DRM-protected media and authorized playback paths</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../browser/Playback-MSE.html" title="Media Source Extensions (MSE) and scripted media delivery">Media Source Extensions (MSE) and scripted media delivery</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../browser/Playback-Browser.html" title="Browser media playback and its loading paths">Browser media playback and its loading paths</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../browser/Playback-Codec-Detection.html" title="Browser codec detection and capability predictions">Browser codec detection and capability predictions</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Playback-Offline.html" title="Offline playback and prepared local media">Offline playback and prepared local media</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/2017/REC-encrypted-media-20170918/" title="W3C Recommendation: Encrypted Media Extensions (2017)">W3C Recommendation: Encrypted Media Extensions (2017)</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/encrypted-media-2/" title="W3C Working Draft: Encrypted Media Extensions">W3C Working Draft: Encrypted Media Extensions</a></li>
+			            <li><a class="seealso-link" href="https://html.spec.whatwg.org/multipage/media.html" title="WHATWG: HTML media elements and playback">WHATWG: HTML media elements and playback</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/media-capabilities/" title="W3C Working Draft: Media Capabilities">W3C Working Draft: Media Capabilities</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Playback-EME%0A*%20Title%3A%20Encrypted%20Media%20Extensions%20(EME)%20and%20browser%20key%20sessions%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

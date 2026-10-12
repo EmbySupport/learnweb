@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Subtitle rendering compatibility in Emby | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Subtitle compatibility in Emby includes source recognition, delivery, presentation features and resources at the selected app/server rendering stage.">
+  <link rel="canonical" href="https://emby.media/learn/articles/subtitles/emby-processing/Subtitle-Compatibility-Emby.html">
+  <meta property="og:title" content="Subtitle rendering compatibility in Emby | Emby Learn">
+  <meta property="og:description" content="Subtitle compatibility in Emby includes source recognition, delivery, presentation features and resources at the selected app/server rendering stage.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/subtitles/emby-processing/Subtitle-Compatibility-Emby.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/subtitles/emby-processing/Subtitle-Compatibility-Emby.html","url":"https://emby.media/learn/articles/subtitles/emby-processing/Subtitle-Compatibility-Emby.html","name":"Subtitle rendering compatibility in Emby","inLanguage":"en","headline":"Subtitle rendering compatibility in Emby","articleSection":"Subtitles and captions","proficiencyLevel":"Beginner","accessMode":"textual","description":"Subtitle compatibility in Emby includes source recognition, delivery, presentation features and resources at the selected app/server rendering stage.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Subtitles and captions","item":"https://emby.media/learn/articles/subtitles/index.html"},{"@type":"ListItem","position":3,"name":"Subtitle processing in Emby","item":"https://emby.media/learn/articles/subtitles/emby-processing/index.html"},{"@type":"ListItem","position":4,"name":"Subtitle rendering compatibility in Emby","item":"https://emby.media/learn/articles/subtitles/emby-processing/Subtitle-Compatibility-Emby.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Subtitle-Compatibility-Emby">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../subtitles/index.html">Subtitles and captions</a></li>
+              <li><a href="../../subtitles/emby-processing/index.html">Subtitle processing in Emby</a></li>
+              <li><span aria-current="page">Subtitle rendering compatibility in Emby</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Subtitle-Compatibility-Emby">
+<h1>Subtitle rendering compatibility in Emby</h1>
+<p class="article-description">Subtitle compatibility in Emby includes source recognition, delivery, presentation features and resources at the selected app/server rendering stage.</p>
+
+
+<p>Subtitle compatibility is more specific than a file extension. A route can recognize ASS, recover its text correctly and still fail to reproduce the intended animated sign because it lacks a presentation feature or font resource.</p>
+<p>The meaningful comparison is the <strong>selected app and delivered representation</strong>, including what that representation needs to present.</p>
+<h2 id="a-compatibility-ladder">A compatibility ladder</h2>
+<table>
+<thead>
+<tr>
+<th>Boundary</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Source recognition</td>
+<td>Identify the selected subtitle track/service and its coding</td>
+</tr>
+<tr>
+<td>Recovery</td>
+<td>Obtain payloads, timing and configuration</td>
+</tr>
+<tr>
+<td>Delivery</td>
+<td>Supply an accepted representation and usable resources</td>
+</tr>
+<tr>
+<td>Rendering</td>
+<td>Interpret the text/graphics, styles, geometry and timed effects</td>
+</tr>
+<tr>
+<td>Composition</td>
+<td>Place the correct result over the correct picture at the right instant</td>
+</tr>
+</tbody>
+</table>
+<p>Recognizing a codec answers the first question. A readable sentence answers part of rendering, but not every layout or timing requirement.</p>
+<h2 id="a-sign-exposes-the-difference">A sign exposes the difference</h2>
+<p>Consider an ASS translation with a named font, top-left anchor, a one-second movement and a clipping window. A plain text conversion can preserve its words and whole-event interval without representing that geometry.</p>
+<p>A player drawing the resulting simple cue has not “lost the video”. It received a narrower subtitle presentation. The useful evidence is which features the conversion retained.</p>
+<p><a href="../rendering/fonts-typesetting/Subtitle-Font-Attachments.html">Font attachments</a> add another boundary. A renderer can support the style syntax but use fallback if the requested face never reached its font provider.</p>
+<h2 id="the-actual-emby-route-is-version-and-platform-dependent">The actual Emby route is version and platform dependent</h2>
+<p><a class="xref" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html">Transcoding behavior</a>, selected subtitle format and app capabilities explain why one route presents text separately while another requests upstream rendering.</p>
+<p>The public Emby FFmpeg archive examined here is specifically <strong>5.1-emby_2023_06_25_u1</strong>. It contains native subtitle filters and text/graphics converters. Their source demonstrates processing designs; it does not identify the binary or enabled features of every current installation.</p>
+<p>The current SDK <a class="xref" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Model.Session.TranscodingInfo.html#MediaBrowser_Model_Session_TranscodingInfo_SubtitlePipelineInfos">subtitle pipeline field</a> provides a way for its model to describe processing. A complete investigation still uses the actual session/tool details and output.</p>
+<h2 id="compare-one-requirement-at-a-time">Compare one requirement at a time</h2>
+<p>Keep the selected resource and media edition fixed when comparing routes. Test readable characters, appearance/resources, dynamic effects, cue timing and seeking as separate observations.</p>
+<p>The result can then distinguish wrong selection, missing resources, a reduced conversion and a renderer behavior. Changing a codec, a font and a timing offset together makes those boundaries harder to assess.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Subtitle-Delivery-Emby.html" title="Subtitle delivery in Emby">Subtitle delivery in Emby</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../rendering/fonts-typesetting/Subtitle-ASS-Typesetting.html" title="ASS typesetting">ASS typesetting</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../rendering/fonts-typesetting/Subtitle-Font-Attachments.html" title="Subtitle font attachments">Subtitle font attachments</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../storage-delivery/Subtitle-Container-Support.html" title="Subtitle support in media containers">Subtitle support in media containers</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="overlay-filters/Subtitle-Burn-In.html" title="Subtitle burn-in">Subtitle burn-in</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://mediabrowser.github.io/embytools/ffmpeg-2023_06_25-u1.tar.gz" title="Emby FFmpeg source archive: 2023_06_25-u1">Emby FFmpeg source archive: 2023_06_25-u1</a></li>
+			            <li><a class="seealso-link" href="https://www.matroska.org/technical/subtitles.html" title="Matroska subtitle mappings">Matroska subtitle mappings</a></li>
+			            <li><a class="seealso-link" href="https://github.com/libass/libass/wiki/ASS-File-Format-Guide" title="libass: ASS file format guide">libass: ASS file format guide</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/2026/CRD-webvtt1-20260520/" title="W3C WebVTT, May 2026 Candidate Recommendation Draft">W3C WebVTT, May 2026 Candidate Recommendation Draft</a></li>
+			            <li><a class="seealso-link" href="https://github.com/libass/libass" title="libass: Subtitle rendering library">libass: Subtitle rendering library</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Subtitle-Compatibility-Emby%0A*%20Title%3A%20Subtitle%20rendering%20compatibility%20in%20Emby%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

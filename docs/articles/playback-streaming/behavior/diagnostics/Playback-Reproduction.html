@@ -1,0 +1,307 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Reproducing a media playback problem | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="A playback reproduction preserves a defined source, session context and observation interval so that a controlled change can test a specific media-processing or delivery hypothesis.">
+  <link rel="canonical" href="https://emby.media/learn/articles/playback-streaming/behavior/diagnostics/Playback-Reproduction.html">
+  <meta property="og:title" content="Reproducing a media playback problem | Emby Learn">
+  <meta property="og:description" content="A playback reproduction preserves a defined source, session context and observation interval so that a controlled change can test a specific media-processing or delivery hypothesis.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/playback-streaming/behavior/diagnostics/Playback-Reproduction.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/playback-streaming/behavior/diagnostics/Playback-Reproduction.html","url":"https://emby.media/learn/articles/playback-streaming/behavior/diagnostics/Playback-Reproduction.html","name":"Reproducing a media playback problem","inLanguage":"en","headline":"Reproducing a media playback problem","articleSection":"Playback and streaming","proficiencyLevel":"Beginner","accessMode":"textual","description":"A playback reproduction preserves a defined source, session context and observation interval so that a controlled change can test a specific media-processing or delivery hypothesis.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Playback and streaming","item":"https://emby.media/learn/articles/playback-streaming/index.html"},{"@type":"ListItem","position":3,"name":"Understanding playback behavior","item":"https://emby.media/learn/articles/playback-streaming/behavior/index.html"},{"@type":"ListItem","position":4,"name":"Playback diagnostics","item":"https://emby.media/learn/articles/playback-streaming/behavior/diagnostics/index.html"},{"@type":"ListItem","position":5,"name":"Reproducing a media playback problem","item":"https://emby.media/learn/articles/playback-streaming/behavior/diagnostics/Playback-Reproduction.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Playback-Reproduction">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../playback-streaming/index.html">Playback and streaming</a></li>
+              <li><a href="../../../playback-streaming/behavior/index.html">Understanding playback behavior</a></li>
+              <li><a href="../../../playback-streaming/behavior/diagnostics/index.html">Playback diagnostics</a></li>
+              <li><span aria-current="page">Reproducing a media playback problem</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Playback-Reproduction">
+<h1>Reproducing a media playback problem</h1>
+<p class="article-description">A playback reproduction preserves a defined source, session context and observation interval so that a controlled change can test a specific media-processing or delivery hypothesis.</p>
+
+
+<p>A useful reproduction defines the session that produced the observation. The title alone leaves source version, tracks, app, starting point, limits and activity uncontrolled.</p>
+<p>A controlled comparison changes a specified input while retaining enough context to interpret the resulting media plan and symptom.</p>
+<h2 id="an-original-three-case-worksheet">An original three-case worksheet</h2>
+<p>Assume source F1 has compatible video, stereo AAC at audio index 2, six-channel AC-3 at index 1, and bitmap subtitles at index 6. Assume the target needs packaging adaptation, cannot use that AC-3 presentation, and needs bitmap subtitles rendered into video.</p>
+<table>
+<thead>
+<tr>
+<th>Case</th>
+<th>Changed request relative to A</th>
+<th>What the comparison tests</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Baseline: audio 2, no subtitle</td>
+<td>Video/audio copy with packaging adaptation</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Audio 1 replaces audio 2</td>
+<td>Additional audio conversion</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Subtitle 6 is selected; audio stays 2</td>
+<td>Additional picture rendering and video encoding</td>
+</tr>
+</tbody>
+</table>
+<p><img src="images/reproduction-matrix.png" alt="An original controlled-comparison model varies audio and subtitle choices from one retained baseline rather than changing every session input together."></p>
+<p>These are declared hypotheses for the example capabilities, not observed Emby results. The actual source and app may support another plan.</p>
+<p>The resulting pipeline is allowed to change: that is the consequence being examined. Holding the output mode artificially fixed would remove the effect of the input change.</p>
+<h2 id="keep-the-context-that-matters">Keep the context that matters</h2>
+<table>
+<thead>
+<tr>
+<th>Context</th>
+<th>Reason to retain it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Work/episode and edition</td>
+<td>Distinguishes different content under one title</td>
+</tr>
+<tr>
+<td>Media source identity and technical facts</td>
+<td>Identifies the actual represented streams</td>
+</tr>
+<tr>
+<td>Audio/subtitle choices</td>
+<td>Defines selected content and processing requirements</td>
+</tr>
+<tr>
+<td>App/player and output route</td>
+<td>Defines the receiving capability context</td>
+</tr>
+<tr>
+<td>Requested position</td>
+<td>Distinguishes startup, seek and a difficult source interval</td>
+</tr>
+<tr>
+<td>Applicable rate/format conditions</td>
+<td>Explains another output plan</td>
+</tr>
+<tr>
+<td>Delivery/storage path</td>
+<td>Identifies relevant access and retrieval context</td>
+</tr>
+<tr>
+<td>Competing activity and cold/warm state</td>
+<td>Describes shared load and reusable work</td>
+</tr>
+</tbody>
+</table>
+<p>This is an experiment description, not a requirement to exhaustively vary every item before understanding a problem. It selects the evidence relevant to a specific hypothesis.</p>
+<h2 id="observation-and-explanation-should-remain-separate">Observation and explanation should remain separate</h2>
+<p>“The playhead stopped near minute 12” is an observation. “The network caused it” is an explanation that needs relevant evidence.</p>
+<p>A conversion log can establish stream handling and progress. A client observation can establish received ranges or presentation behavior. The artifacts should be related to the same session and time interval.</p>
+<p>An output-mode change after selecting another track supplies evidence that the media plan changed. It does not alone prove that the original symptom was caused by that plan.</p>
+<h2 id="repeats-also-have-a-state">Repeats also have a state</h2>
+<p>A repeat may reuse opened resources, analysis or generated data. Competing activity can change. The same nominal request can therefore have another cold/warm context.</p>
+<p>A problem disappearing on one repeat is useful evidence about that run. It is not automatically a permanent fix or proof of one particular cache mechanism.</p>
+<p>A reproducible observation should retain what occurred, when, and under which relevant state. <a href="Playback-Information.html">Reading playback information</a> and <a href="Playback-Transcode-Logs.html">reading a conversion log</a> explain the artifact scopes that make the comparison assessable.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Information.html" title="Reading Emby playback information">Reading Emby playback information</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Transcode-Logs.html" title="Reading a transcoding log">Reading a transcoding log</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../from-server/Playback-Track-Selection.html" title="Track selection and playback plans">Track selection and playback plans</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../from-server/Playback-Source-Selection.html" title="Media source selection for playback">Media source selection for playback</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../symptoms/Playback-Error-Categories.html" title="Playback error categories and evidence scopes">Playback error categories and evidence scopes</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Log-Files.html" title="Emby: Log files">Emby: Log files</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Transcoding.html" title="Emby: Transcoding">Emby: Transcoding</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Model.MediaInfo.PlaybackInfoRequest.html" title="Emby API: PlaybackInfoRequest">Emby API: PlaybackInfoRequest</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/RestAPI/PlaystateService/postSessionsPlayingProgress.html" title="Emby API: Playback progress reporting">Emby API: Playback progress reporting</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Playback-Reproduction%0A*%20Title%3A%20Reproducing%20a%20media%20playback%20problem%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

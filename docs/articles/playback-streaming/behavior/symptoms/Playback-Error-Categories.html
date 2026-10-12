@@ -1,0 +1,277 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Playback error categories and evidence scopes | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Playback errors identify observations at planning, access, processing, delivery or player stages, with their namespace and event context needed for interpretation.">
+  <link rel="canonical" href="https://emby.media/learn/articles/playback-streaming/behavior/symptoms/Playback-Error-Categories.html">
+  <meta property="og:title" content="Playback error categories and evidence scopes | Emby Learn">
+  <meta property="og:description" content="Playback errors identify observations at planning, access, processing, delivery or player stages, with their namespace and event context needed for interpretation.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/playback-streaming/behavior/symptoms/Playback-Error-Categories.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/playback-streaming/behavior/symptoms/Playback-Error-Categories.html","url":"https://emby.media/learn/articles/playback-streaming/behavior/symptoms/Playback-Error-Categories.html","name":"Playback error categories and evidence scopes","inLanguage":"en","headline":"Playback error categories and evidence scopes","articleSection":"Playback and streaming","proficiencyLevel":"Beginner","accessMode":"textual","description":"Playback errors identify observations at planning, access, processing, delivery or player stages, with their namespace and event context needed for interpretation.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Playback and streaming","item":"https://emby.media/learn/articles/playback-streaming/index.html"},{"@type":"ListItem","position":3,"name":"Understanding playback behavior","item":"https://emby.media/learn/articles/playback-streaming/behavior/index.html"},{"@type":"ListItem","position":4,"name":"Playback symptoms","item":"https://emby.media/learn/articles/playback-streaming/behavior/symptoms/index.html"},{"@type":"ListItem","position":5,"name":"Playback error categories","item":"https://emby.media/learn/articles/playback-streaming/behavior/symptoms/Playback-Error-Categories.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Playback-Error-Categories">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../playback-streaming/index.html">Playback and streaming</a></li>
+              <li><a href="../../../playback-streaming/behavior/index.html">Understanding playback behavior</a></li>
+              <li><a href="../../../playback-streaming/behavior/symptoms/index.html">Playback symptoms</a></li>
+              <li><span aria-current="page">Playback error categories</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Playback-Error-Categories">
+<h1>Playback error categories and evidence scopes</h1>
+<p class="article-description">Playback errors identify observations at planning, access, processing, delivery or player stages, with their namespace and event context needed for interpretation.</p>
+
+
+<p>Playback can fail before a media plan exists, while accessing a resource, during conversion, during retrieval or inside the player. Those failures need different evidence.</p>
+<p>An error message describes an observation at one of those stages. Its code or wording is not automatically the original cause.</p>
+<h2 id="keep-the-namespace-with-the-code">Keep the namespace with the code</h2>
+<table>
+<thead>
+<tr>
+<th>Example observation</th>
+<th>Namespace and meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTP 403</td>
+<td>This HTTP request was forbidden</td>
+</tr>
+<tr>
+<td>HTTP 404</td>
+<td>This request did not find an available target resource</td>
+</tr>
+<tr>
+<td>Browser MediaError code 3</td>
+<td>A decoding-stage media error in the HTML media model</td>
+</tr>
+<tr>
+<td>Browser MediaError code 4</td>
+<td>The selected source was unsuitable in that model</td>
+</tr>
+<tr>
+<td>Emby NoCompatibleStream</td>
+<td>A playback-information error identifying no compatible offered stream</td>
+</tr>
+<tr>
+<td>A conversion-reason identifier</td>
+<td>Evidence about why another media plan was selected</td>
+</tr>
+</tbody>
+</table>
+<p>The browser's number 3 has no universal meaning for a native player's unrelated error namespace. An HTTP status also concerns a particular request, not every aspect of the catalogue item.</p>
+<p>Emby's public playback-information response defines its own error vocabulary. Its conversion-reason model describes another kind of state.</p>
+<h2 id="identify-the-failing-boundary">Identify the failing boundary</h2>
+<p><img src="images/error-boundaries.png" alt="An original failure-scope diagram separates plan selection, source access, conversion output, delivery and player presentation."></p>
+<p>A denied source access can prevent any conversion. A writable-output failure can interrupt a converter that decoded the input correctly. A delivery request can fail after the server generated usable media.</p>
+<p>A browser decode error supplies evidence about the player's stage. It does not, by itself, prove which packet or resource property caused it. The source representation, received data and decoder context still matter.</p>
+<p>Likewise, “no compatible stream” does not prove the original file is corrupt. The available plan can fail to meet the requesting client's constraints even when the source is valid.</p>
+<h2 id="a-reason-is-not-always-a-failure">A reason is not always a failure</h2>
+<p>A container or audio mismatch can lead to a successful Direct Stream plan. An unsupported video presentation can lead to a successful replacement video.</p>
+<p>Conversion-reason information therefore explains a decision; it should not automatically be counted as a failed playback.</p>
+<p>A later fallback after an attempted original path introduces another event. Its reason and the final successful mode need the order of observations rather than one flattened label.</p>
+<h2 id="aborts-and-interruptions-need-context">Aborts and interruptions need context</h2>
+<p>A user cancellation, seek-triggered job replacement or deliberate session stop can end a request or process. An exit or aborted operation is not automatically evidence of an accidental playback failure.</p>
+<p>Conversely, a process can have started and printed output configuration before failing to deliver any useful interval. The earlier messages do not establish successful presentation.</p>
+<h2 id="retain-enough-evidence-to-test-a-cause">Retain enough evidence to test a cause</h2>
+<p>The relevant record includes the affected stage, timestamp/clock context, source and selected tracks, the actual request or process, and what the player did next.</p>
+<p><a href="../diagnostics/Playback-Information.html">Playback information</a>, <a href="../diagnostics/Playback-Transcode-Logs.html">conversion logs</a> and a <a href="../diagnostics/Playback-Reproduction.html">controlled reproduction</a> supply complementary evidence. Their value comes from relating observations to the same session and boundary.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../from-server/compatibility/Playback-Compatibility.html" title="What determines playback compatibility?">What determines playback compatibility?</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Stalls.html" title="Playback stalls and unavailable next media">Playback stalls and unavailable next media</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../diagnostics/Playback-Information.html" title="Reading Emby playback information">Reading Emby playback information</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../diagnostics/Playback-Transcode-Logs.html" title="Reading a transcoding log">Reading a transcoding log</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../diagnostics/Playback-Reproduction.html" title="Reproducing a media playback problem">Reproducing a media playback problem</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/RestAPI/MediaInfoService/postItemsByIdPlaybackinfo.html" title="Emby API: Playback information negotiation">Emby API: Playback information negotiation</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Model.Session.TranscodeReason.html" title="Emby API: TranscodeReason">Emby API: TranscodeReason</a></li>
+			            <li><a class="seealso-link" href="https://html.spec.whatwg.org/multipage/media.html" title="WHATWG: HTML media playback">WHATWG: HTML media playback</a></li>
+			            <li><a class="seealso-link" href="https://datatracker.ietf.org/doc/html/rfc9110" title="IETF RFC 9110: HTTP semantics and ranges">IETF RFC 9110: HTTP semantics and ranges</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Log-Files.html" title="Emby: Log files">Emby: Log files</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Playback-Error-Categories%0A*%20Title%3A%20Playback%20error%20categories%20and%20evidence%20scopes%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,290 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Playback events and dependable home automation | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Playback-driven home automation maps particular player observations into room policy and physical effects, with multiple sessions and uncertain events requiring explicit state handling.">
+  <link rel="canonical" href="https://emby.media/learn/articles/automation/events/Automation-Home-Automation.html">
+  <meta property="og:title" content="Playback events and dependable home automation | Emby Learn">
+  <meta property="og:description" content="Playback-driven home automation maps particular player observations into room policy and physical effects, with multiple sessions and uncertain events requiring explicit state handling.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/automation/events/Automation-Home-Automation.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/automation/events/Automation-Home-Automation.html","url":"https://emby.media/learn/articles/automation/events/Automation-Home-Automation.html","name":"Playback events and dependable home automation","inLanguage":"en","headline":"Playback events and dependable home automation","articleSection":"Automation and interoperability","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"Playback-driven home automation maps particular player observations into room policy and physical effects, with multiple sessions and uncertain events requiring explicit state handling.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Automation and interoperability","item":"https://emby.media/learn/articles/automation/index.html"},{"@type":"ListItem","position":3,"name":"Events and integrations","item":"https://emby.media/learn/articles/automation/events/index.html"},{"@type":"ListItem","position":4,"name":"Playback events in home automation","item":"https://emby.media/learn/articles/automation/events/Automation-Home-Automation.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Automation-Home-Automation">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../automation/index.html">Automation and interoperability</a></li>
+              <li><a href="../../automation/events/index.html">Events and integrations</a></li>
+              <li><span aria-current="page">Playback events in home automation</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Automation-Home-Automation">
+<h1>Playback events and dependable home automation</h1>
+<p class="article-description">Playback-driven home automation maps particular player observations into room policy and physical effects, with multiple sessions and uncertain events requiring explicit state handling.</p>
+
+
+<p>Playback-driven home automation connects media activity to another environment: dimming a room, changing a scene or updating a display. Emby documents webhooks as a way to supply such activity to an integration.</p>
+<p>The difficult part is deciding which playback observation controls which room, then keeping the desired behavior coherent through duplicates, missed events and independent human actions.</p>
+<h2 id="a-room-needs-a-specific-source">A room needs a specific source</h2>
+<p>One user can play media on a television and a phone at the same time. Selecting all events for that user can therefore let a phone change the television room.</p>
+<p>A mapping can identify the intended device/session relationship, room and applicable event types. Display names alone may not be stable unique keys.</p>
+<p>An original normalized example maps TV-A to Living Room. Phone-B belongs to another policy even when both sessions have the same user.</p>
+<h2 id="more-than-one-session-needs-an-aggregation-rule">More than one session needs an aggregation rule</h2>
+<p>Suppose a room can have two relevant sessions. The integration's declared policy is to dim while <strong>any relevant session is playing</strong>, and to restore its configured scene when none is playing.</p>
+<table>
+<thead>
+<tr>
+<th>Session S1</th>
+<th>Session S2</th>
+<th>Desired room state under this policy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Playing</td>
+<td>Stopped</td>
+<td>Dim</td>
+</tr>
+<tr>
+<td>Paused</td>
+<td>Playing</td>
+<td>Dim</td>
+</tr>
+<tr>
+<td>Paused</td>
+<td>Stopped</td>
+<td>Restore</td>
+</tr>
+<tr>
+<td>Stopped</td>
+<td>Stopped</td>
+<td>Restore</td>
+</tr>
+<tr>
+<td>Unknown after an outage</td>
+<td>Stopped</td>
+<td>Unknown/reconciliation policy applies</td>
+</tr>
+</tbody>
+</table>
+<p>This is one teaching policy. A real room may choose to keep dimming during pause or apply another preference. The useful feature is that the decision comes from the relevant combined state, not from whichever single stop event arrived last.</p>
+<p>If S1 stops while S2 continues, blindly restoring the room would violate the declared policy.</p>
+<h2 id="duplicates-should-not-invert-the-room">Duplicates should not invert the room</h2>
+<p>A command such as “toggle lights” has a different duplication effect from “set brightness to 20%.” Repeating a toggle can undo the intended first effect.</p>
+<p>An absolute desired state can be repeated under a suitable device contract without intentionally changing direction each time. The destination still needs its own acceptance and completion evidence.</p>
+<p><img src="images/home-automation-state-and-effect.png" alt="Playback observations update a declared room policy, which creates a desired state; the lighting service and physical room supply separate effect observations."></p>
+<p>An accepted HTTP request to a lighting service does not prove the physical lamps reached the scene. Keep those observations separate if the integration needs to detect and recover a failed effect.</p>
+<h2 id="old-observations-can-arrive-late">Old observations can arrive late</h2>
+<p>An original adapter model supplies a monotonically increasing version <strong>within one session</strong>:</p>
+<pre><code class="lang-text">Session S1, version 10: playing
+Session S1, version 11: stopped
+Delivery order: version 11 arrives, then version 10
+Current stored version 11 rejects the older version 10 as stale.
+</code></pre>
+<p>The version rule is explicitly part of this fictional adapter contract. Do not assume every Emby webhook or WebSocket message supplies such a version or identical ordering semantics.</p>
+<p>A timestamp alone may not supply the same guarantee: clocks, resolution and independent producers can complicate ordering. If the source has no suitable ordering contract, a current-state query and reconciliation rule can establish a newer observation.</p>
+<p>Event identity detects repeats. Per-entity versioning, where supported, detects stale state. Those are different decisions.</p>
+<h2 id="silence-and-absence-are-different-states">Silence and absence are different states</h2>
+<p>If the event channel disconnects, the room does not know that every player stopped. If a session query fails, it did not successfully observe an empty session set.</p>
+<p>A policy can retain the last known state for a limited interval, enter an explicit unknown state or query again through a supported path. The choice should be visible in the integration's behavior.</p>
+<p>On restart, an in-memory session map may be empty while playback continues. Querying current state before applying an “all stopped” action prevents that empty local map from being mistaken for the server's current state.</p>
+<h2 id="manual-actions-have-their-own-authority">Manual actions have their own authority</h2>
+<p>A person can brighten the room during playback. If the integration continually reapplies its scene without an override rule, it can fight that action.</p>
+<p>A room policy can suspend automation after a manual change, allow an explicit override, or define another supported relationship. Restoring “the previous state” also needs an actual captured baseline; an integration cannot reliably invent it after the fact.</p>
+<p>The recovered baseline can become stale if other automations change the room. Coordinate the intended ownership rather than assuming the playback integration is the only writer.</p>
+<h2 id="recovery-returns-to-observations">Recovery returns to observations</h2>
+<p>A dependable workflow identifies the source, reconciles relevant playback state, derives its room policy and verifies the desired effect where the destination permits that observation.</p>
+<p>It can use webhooks or a continuing message channel for timely changes and polling for recovery. The tools have different observation properties; no single successful event delivery establishes every later stage.</p>
+<p>The example verifier evaluates the room policy, repeated identities and stale versions on original data. It does not send lighting commands or operate a home-automation system.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../api/Automation-Sessions.html" title="Playback sessions and current player state">Playback sessions and current player state</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Automation-Retries.html" title="Event delivery, retries and duplicate processing">Event delivery, retries and duplicate processing</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="receiving/Automation-Polling.html" title="Polling for updates and observation intervals">Polling for updates and observation intervals</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="receiving/Automation-Webhooks.html" title="Webhooks and pushed event notifications">Webhooks and pushed event notifications</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Webhooks.html" title="Emby webhooks">Emby webhooks</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/RestAPI/SessionsService/getSessions.html" title="Emby session API">Emby session API</a></li>
+			            <li><a class="seealso-link" href="https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md" title="CloudEvents 1.0.2 event identity and specification">CloudEvents 1.0.2 event identity and specification</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Automation-Home-Automation%0A*%20Title%3A%20Playback%20events%20and%20dependable%20home%20automation%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

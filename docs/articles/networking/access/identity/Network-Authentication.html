@@ -1,0 +1,249 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Media server authentication and credential evidence | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Media-server authentication verifies credential evidence for a requested account, while user/device labels and later operation permissions have separate roles.">
+  <link rel="canonical" href="https://emby.media/learn/articles/networking/access/identity/Network-Authentication.html">
+  <meta property="og:title" content="Media server authentication and credential evidence | Emby Learn">
+  <meta property="og:description" content="Media-server authentication verifies credential evidence for a requested account, while user/device labels and later operation permissions have separate roles.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/networking/access/identity/Network-Authentication.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/networking/access/identity/Network-Authentication.html","url":"https://emby.media/learn/articles/networking/access/identity/Network-Authentication.html","name":"Media server authentication and credential evidence","inLanguage":"en","headline":"Media server authentication and credential evidence","articleSection":"Networking and remote access","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"Media-server authentication verifies credential evidence for a requested account, while user/device labels and later operation permissions have separate roles.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Networking and remote access","item":"https://emby.media/learn/articles/networking/index.html"},{"@type":"ListItem","position":3,"name":"User identity and access","item":"https://emby.media/learn/articles/networking/access/index.html"},{"@type":"ListItem","position":4,"name":"Identity and sessions","item":"https://emby.media/learn/articles/networking/access/identity/index.html"},{"@type":"ListItem","position":5,"name":"Media server authentication","item":"https://emby.media/learn/articles/networking/access/identity/Network-Authentication.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Network-Authentication">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../networking/index.html">Networking and remote access</a></li>
+              <li><a href="../../../networking/access/index.html">User identity and access</a></li>
+              <li><a href="../../../networking/access/identity/index.html">Identity and sessions</a></li>
+              <li><span aria-current="page">Media server authentication</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Network-Authentication">
+<h1>Media server authentication and credential evidence</h1>
+<p class="article-description">Media-server authentication verifies credential evidence for a requested account, while user/device labels and later operation permissions have separate roles.</p>
+
+
+<p>A client names a user and describes its device. The server still needs evidence that the request is entitled to act as that account.</p>
+<p><strong>Authentication</strong> evaluates that credential relationship. It precedes deciding which library or operation the account is allowed to use.</p>
+<h2 id="labels-describe-a-claim">Labels describe a claim</h2>
+<p>A user ID, display name and device ID can identify intended objects in a request. They are not secret proof merely because they are unique.</p>
+<p>An original reduced decision is:</p>
+<pre><code class="lang-json">{
+  &quot;requestedUser&quot;: &quot;U1&quot;,
+  &quot;deviceLabel&quot;: &quot;Living Room&quot;,
+  &quot;credentialValid&quot;: false,
+  &quot;authenticatedUser&quot;: null
+}
+</code></pre>
+<p>The user and device labels are present, but the declared verifier result is false. No authenticated account follows from those labels alone.</p>
+<p><img src="images/authentication-evidence.png" alt="The original authentication model separates claimed account/device labels from verified evidence and the resulting user context."></p>
+<p>The fields are explanatory outcomes, not native Emby authentication input.</p>
+<h2 id="a-login-establishes-evidence-for-later-requests">A login establishes evidence for later requests</h2>
+<p>Emby’s developer documentation describes user authentication and a successful result with an access token. Later requests carry that token under the documented protocol.</p>
+<p>The application serializes credential information in its request body. HTTPS protects the transport to the validated endpoint; application-body text and plaintext transmission over an unprotected connection are different concepts.</p>
+<p>A token then represents the accepted relationship according to its scope/lifetime. It needs protection as credential material, rather than being treated like a harmless device label.</p>
+<h2 id="a-displayed-user-still-needs-authentication">A displayed user still needs authentication</h2>
+<p>The documented public-user list supports login-screen presentation. Its presence identifies selectable accounts; it does not establish that a viewer has authenticated as one.</p>
+<p>The same documentation says authentication is still required when the displayed user’s HasPassword value is false. The intended protocol result matters, rather than inferring access from a missing password prompt.</p>
+<p>A client can consequently show the correct account image while failing to establish its valid request context.</p>
+<h2 id="the-server-and-account-scopes-belong-together">The server and account scopes belong together</h2>
+<p>An account on one server is not automatically the same account on another. A token accepted by server A should not be sent as proof to unrelated server B merely because the user’s displayed name matches.</p>
+<p>Emby’s documented token storage guidance associates it with the server ID. <a href="Network-User-Identity.html">User identity</a> develops that scope.</p>
+<p>NIST’s authentication guidance supplies broader verifier/session concepts. It is not a claim that every Emby authentication route implements a particular government assurance level.</p>
+<h2 id="successful-authentication-leaves-an-authorization-question">Successful authentication leaves an authorization question</h2>
+<p>A valid U1 request can still be denied administration, deletion or access to another user’s library scope.</p>
+<p><a href="Network-Authorization.html">Authorization</a> evaluates those operations. <a href="Network-Login-Sessions.html">Login sessions</a> follows persistence and revocation of the established evidence.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Network-Authorization.html" title="Media server authorization and operation-specific access">Media server authorization and operation-specific access</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Network-User-Identity.html" title="Server user identity and scoped account state">Server user identity and scoped account state</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Network-Login-Sessions.html" title="Login sessions, tokens and revocation">Login sessions, tokens and revocation</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../security/Network-HTTPS-TLS.html" title="HTTPS and TLS: transport protection and peer identity">HTTPS and TLS: transport protection and peer identity</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://dev.emby.media/doc/restapi/User-Authentication.html" title="Emby developer documentation: User authentication and tokens">Emby developer documentation: User authentication and tokens</a></li>
+			            <li><a class="seealso-link" href="https://pages.nist.gov/800-63-4/sp800-63b.html" title="NIST SP 800-63B-4: Authentication and session concepts">NIST SP 800-63B-4: Authentication and session concepts</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Users.html" title="Emby: Server-local users">Emby: Server-local users</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Secure-Your-Server.html" title="Emby: Server and account security">Emby: Server and account security</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Network-Authentication%0A*%20Title%3A%20Media%20server%20authentication%20and%20credential%20evidence%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

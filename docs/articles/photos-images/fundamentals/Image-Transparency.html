@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Image transparency | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Transparency tells a compositor how an image contributes over a background, using alpha or a format-specific transparent index rather than an ordinary background colour.">
+  <link rel="canonical" href="https://emby.media/learn/articles/photos-images/fundamentals/Image-Transparency.html">
+  <meta property="og:title" content="Image transparency | Emby Learn">
+  <meta property="og:description" content="Transparency tells a compositor how an image contributes over a background, using alpha or a format-specific transparent index rather than an ordinary background colour.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/photos-images/fundamentals/Image-Transparency.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/photos-images/fundamentals/Image-Transparency.html","url":"https://emby.media/learn/articles/photos-images/fundamentals/Image-Transparency.html","name":"Image transparency","inLanguage":"en","headline":"Image transparency","articleSection":"Photos and images","proficiencyLevel":"Beginner","accessMode":"textual","description":"Transparency tells a compositor how an image contributes over a background, using alpha or a format-specific transparent index rather than an ordinary background colour.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Photos and images","item":"https://emby.media/learn/articles/photos-images/index.html"},{"@type":"ListItem","position":3,"name":"Digital image fundamentals","item":"https://emby.media/learn/articles/photos-images/fundamentals/index.html"},{"@type":"ListItem","position":4,"name":"Image transparency","item":"https://emby.media/learn/articles/photos-images/fundamentals/Image-Transparency.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Image-Transparency">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../photos-images/index.html">Photos and images</a></li>
+              <li><a href="../../photos-images/fundamentals/index.html">Digital image fundamentals</a></li>
+              <li><span aria-current="page">Image transparency</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Image-Transparency">
+<h1>Image transparency</h1>
+<p class="article-description">Transparency tells a compositor how an image contributes over a background, using alpha or a format-specific transparent index rather than an ordinary background colour.</p>
+
+
+<p>A logo placed on a dark page can carry an unexpected white rectangle. The white pixels may be part of the image, while the intended design needed transparent background positions.</p>
+<p>Transparency describes how the source contributes to a composition. A checkerboard in an image editor is usually a visualization of transparent regions, rather than the background that every viewer will receive.</p>
+<h2 id="coverage-changes-the-result-over-each-background">Coverage changes the result over each background</h2>
+<p>For an opaque destination, a straight-alpha blend in a declared numerical domain is:</p>
+<p><strong>result = alpha × source + (1 − alpha) × background.</strong></p>
+<p>Take a white source sample with value 1 and coverage 0.25:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Background sample</th>
+<th>Calculation</th>
+<th style="text-align: right;">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0, black</td>
+<td>0.25 × 1 + 0.75 × 0</td>
+<td style="text-align: right;">0.25</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.4, gray</td>
+<td>0.25 × 1 + 0.75 × 0.4</td>
+<td style="text-align: right;">0.55</td>
+</tr>
+<tr>
+<td style="text-align: right;">1, white</td>
+<td>0.25 × 1 + 0.75 × 1</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+<p>The same image edge therefore produces different final pixels on different backgrounds. This is arithmetic in the stated working domain; perceptual display brightness also depends on colour encoding.</p>
+<h2 id="a-transparent-index-and-an-alpha-channel-have-different-scope">A transparent index and an alpha channel have different scope</h2>
+<p>An indexed format can designate an entry as transparent. GIF's transparent index leaves those destination positions unchanged. It does not provide arbitrary fractional coverage for each palette colour.</p>
+<p>An alpha-capable image can retain intermediate values around an antialiased edge. PNG's colour samples are stored unassociated with alpha. A processing buffer may use premultiplied samples instead, so the decoder/compositor boundary must preserve the convention.</p>
+<p>The <a href="../../subtitles/emby-processing/overlay-filters/Subtitle-Overlay-Filtering.html">subtitle overlay example</a> develops the corresponding straight/premultiplied calculations. They apply to image layers as well as captions.</p>
+<h2 id="flattening-commits-to-a-background">Flattening commits to a background</h2>
+<p>Flattening the white edge above onto black produces a gray sample of 0.25. Saving that result without alpha makes the gray edge permanent. Placing it on a white page later cannot recover the original white source and its coverage from that single value.</p>
+<p>This is why an Emby logo and a rectangular photographic backdrop have different image requirements. The intended layer needs useful alpha through the source, any generated derivative and the app's composition.</p>
+<p>Resizing introduces another boundary. Filtering colour and alpha inconsistently can pull hidden background colours into the edge and create a fringe. A suitable process keeps their relationship coherent, then encodes the result in the output format's required convention.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../formats/Image-PNG.html" title="PNG images">PNG images</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../formats/Image-GIF.html" title="GIF images">GIF images</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../formats/Image-WebP.html" title="WebP images">WebP images</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../presentation/Image-Resizing.html" title="Image resizing">Image resizing</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../subtitles/emby-processing/overlay-filters/Subtitle-Overlay-Filtering.html" title="Subtitle overlay filtering">Subtitle overlay filtering</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/compositing-1/" title="W3C Compositing and Blending Level 1">W3C Compositing and Blending Level 1</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/2025/REC-png-3-20250624/" title="W3C PNG Third Edition, Recommendation of 24 June 2025">W3C PNG Third Edition, Recommendation of 24 June 2025</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/Graphics/GIF/spec-gif89a.txt" title="GIF89a specification">GIF89a specification</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Image-Transparency%0A*%20Title%3A%20Image%20transparency%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

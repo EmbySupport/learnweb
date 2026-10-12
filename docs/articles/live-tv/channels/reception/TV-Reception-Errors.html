@@ -1,0 +1,335 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Uncorrectable reception errors | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Uncorrectable reception errors indicate data the receiver&#8217;s defined correction stage could not recover, with counter scope and later media dependencies determining their significance.">
+  <link rel="canonical" href="https://emby.media/learn/articles/live-tv/channels/reception/TV-Reception-Errors.html">
+  <meta property="og:title" content="Uncorrectable reception errors | Emby Learn">
+  <meta property="og:description" content="Uncorrectable reception errors indicate data the receiver&#8217;s defined correction stage could not recover, with counter scope and later media dependencies determining their significance.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/live-tv/channels/reception/TV-Reception-Errors.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/live-tv/channels/reception/TV-Reception-Errors.html","url":"https://emby.media/learn/articles/live-tv/channels/reception/TV-Reception-Errors.html","name":"Uncorrectable reception errors","inLanguage":"en","headline":"Uncorrectable reception errors","articleSection":"Live TV and recording","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"Uncorrectable reception errors indicate data the receiver’s defined correction stage could not recover, with counter scope and later media dependencies determining their significance.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Live TV and recording","item":"https://emby.media/learn/articles/live-tv/index.html"},{"@type":"ListItem","position":3,"name":"Channels and reception","item":"https://emby.media/learn/articles/live-tv/channels/index.html"},{"@type":"ListItem","position":4,"name":"Reception quality","item":"https://emby.media/learn/articles/live-tv/channels/reception/index.html"},{"@type":"ListItem","position":5,"name":"Uncorrectable reception errors","item":"https://emby.media/learn/articles/live-tv/channels/reception/TV-Reception-Errors.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-TV-Reception-Errors">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../live-tv/index.html">Live TV and recording</a></li>
+              <li><a href="../../../live-tv/channels/index.html">Channels and reception</a></li>
+              <li><a href="../../../live-tv/channels/reception/index.html">Reception quality</a></li>
+              <li><span aria-current="page">Uncorrectable reception errors</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-TV-Reception-Errors">
+<h1>Uncorrectable reception errors</h1>
+<p class="article-description">Uncorrectable reception errors indicate data the receiver&#8217;s defined correction stage could not recover, with counter scope and later media dependencies determining their significance.</p>
+
+
+<p>Error protection can correct some received-data damage, but it has defined limits. An <strong>uncorrectable reception error</strong> reports an integrity problem the receiver’s stated correction stage could not resolve.</p>
+<p>Its count is not automatically a count of damaged movie frames. The reporting unit, stage and interval need to be identified first.</p>
+<h2 id="corrected-input-and-bad-output-are-different-results">Corrected input and bad output are different results</h2>
+<p>An earlier-stage error can be repaired before the receiver emits usable data. An uncorrectable block or transport error instead concerns information that remains unreliable at its declared output stage.</p>
+<p>Receiver APIs report different measures: bits, blocks, transport flags, continuity-related observations or derived quality indices. The device’s definition establishes what one increment means.</p>
+<p>SiliconDust’s diagnostic material, for example, separates RF, transport and network fields. Linux’s frontend documentation likewise gives statistic availability and counter/stage semantics.</p>
+<p><img src="images/uncorrectable-data-picture-path.png" alt="The original reception-integrity route separates correction, recovered transport, network arrival and picture reconstruction."></p>
+<h2 id="cumulative-values-need-interval-differences">Cumulative values need interval differences</h2>
+<p>Use an original counter exercise:</p>
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th style="text-align: right;">Error-block counter</th>
+<th style="text-align: right;">Total-block counter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>At 0 s</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">500,000</td>
+</tr>
+<tr>
+<td>At 10 s</td>
+<td style="text-align: right;">1012</td>
+<td style="text-align: right;">600,000</td>
+</tr>
+</tbody>
+</table>
+<p>The interval has twelve additional error blocks among 100,000 additional blocks:</p>
+<pre><code class="lang-text">Error rate = (1012 − 1000) / 10 = 1.2 error blocks/s
+Block-error fraction = 12 / 100,000 = 0.00012 = 0.012%
+</code></pre>
+<p>Dividing the whole lifetime count 1012 by only the latest interval’s blocks mixes different scopes.</p>
+<p>If the counter later becomes three after a reset or resource change, its difference from 1012 is not a meaningful negative number of reception errors. The continuity/reset context must be re-established.</p>
+<p>The table is invented, not a tuner measurement.</p>
+<h2 id="the-same-interval-count-can-hide-different-timing">The same interval count can hide different timing</h2>
+<p>Twelve errors spread across ten seconds and twelve errors concentrated within one-tenth of a second have the same ten-second total.</p>
+<p>Their effects on required tables, media packets or picture reconstruction can differ. A short burst can damage a critical entry point or reference relationship, while another interval may affect different components.</p>
+<p>A coarse average therefore does not describe which data was affected or when the first visible problem occurred.</p>
+<h2 id="transport-discontinuity-can-arise-later">Transport discontinuity can arise later</h2>
+<p>A source can emit recovered packets correctly while the network or receiving process loses some of them. Later packet gaps are not automatically proof of uncorrectable RF errors.</p>
+<p>For MPEG-TS, continuity observations also need packet/PID context and the applicable rules, including payload, discontinuity indications and resets. A raw counter jump should not be called a physical reception fault solely because the final picture broke.</p>
+<p><a href="../../../media-files/container-structure/track-and-programme-descriptions/Media-MPEG-TS-Program-Tables.html">MPEG-TS programme tables</a> develops the component context. The source’s reception and output observations, then the server’s arrival observations, locate the missing-data boundary.</p>
+<h2 id="a-boundary-specific-observation-narrows-the-location">A boundary-specific observation narrows the location</h2>
+<p>Use an original ten-second comparison for one declared component and continuous counter context:</p>
+<table>
+<thead>
+<tr>
+<th>Model observation</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Receiver uncorrectable-error delta</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Relevant source-output continuity gaps</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Same component’s server-arrival continuity gaps</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>Under the model’s payload/continuity assumptions, the first new gap appears between the observed source output and server arrival. A later visible artifact does not turn the receiver’s zero delta into five RF errors.</p>
+<p>This does not identify the exact network or receiving-process cause. It identifies the boundary containing the first observed loss. Another model with errors already present at the source output would locate a different starting point.</p>
+<p>The table is invented and assumes the same packet/component context at both observations. No tuner or network capture was made.</p>
+<h2 id="one-unreliable-reference-can-affect-later-pictures">One unreliable reference can affect later pictures</h2>
+<p>Consider this original simplified prediction model:</p>
+<table>
+<thead>
+<tr>
+<th>Picture</th>
+<th>Reference</th>
+<th>Declared input state</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I0</td>
+<td>None</td>
+<td>Usable</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>I0</td>
+<td>Its coded payload is damaged</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>P1</td>
+<td>Its own payload is usable</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>P2</td>
+<td>Its own payload is usable</td>
+</tr>
+<tr>
+<td>I4</td>
+<td>None</td>
+<td>Usable independent entry</td>
+</tr>
+</tbody>
+</table>
+<p>Assume this model has no successful concealment and every dependency on an unreliable reference remains unreliable.</p>
+<p>P1 is affected by its own payload. P2 and P3 are then affected by their reference chain even though their own modeled payloads are usable. I4 can restore an independent usable context.</p>
+<p>A receiver’s one error increment cannot therefore be translated directly into one damaged presentation picture. The association depends on which packets/components and prediction state were affected.</p>
+<p>Real codecs and decoders can conceal, recover or propagate damage differently. The table is a dependency exercise, not an executed bitstream or a guarantee about a particular client.</p>
+<h2 id="buffering-and-transcoding-operate-on-the-supplied-data">Buffering and transcoding operate on the supplied data</h2>
+<p>A larger client reserve can absorb arrival variation when usable media eventually arrives. It cannot reconstruct arbitrary programme information that the source never recovered.</p>
+<p>A transcoder can also encounter or conceal upstream damage and encode a result containing it. Its selected encoder being hardware-accelerated does not establish that the original input was error-free.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="TV-Signal-Quality.html" title="TV signal quality and decoding margin">TV signal quality and decoding margin</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="TV-Signal-Strength.html" title="TV signal strength">TV signal strength</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../playback-streaming/behavior/symptoms/Playback-Dropped-Frames.html" title="Dropped video frames during playback">Dropped video frames during playback</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../media-files/container-structure/track-and-programme-descriptions/Media-MPEG-TS-Program-Tables.html" title="MPEG-TS Program Tables: PAT and PMT">MPEG-TS Program Tables: PAT and PMT</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://cdn.kernel.org/doc/html/latest/driver-api/media/dtv-frontend.html" title="Linux: Frontend counter and signal-statistic semantics">Linux: Frontend counter and signal-statistic semantics</a></li>
+			            <li><a class="seealso-link" href="https://info.hdhomerun.com/info/tech" title="SiliconDust: RF, transport and network diagnostic fields">SiliconDust: RF, transport and network diagnostic fields</a></li>
+			            <li><a class="seealso-link" href="https://www.atsc.org/atsc-documents/a78-transport-stream-verification/" title="ATSC: A/78 transport-stream verification scope">ATSC: A/78 transport-stream verification scope</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-TV-Reception-Errors%0A*%20Title%3A%20Uncorrectable%20reception%20errors%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

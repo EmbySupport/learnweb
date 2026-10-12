@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Reverse proxies and the two-sided server path | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="A reverse proxy accepts a public-facing application request and makes a separate upstream request, translating endpoint and resource context according to its configured policy.">
+  <link rel="canonical" href="https://emby.media/learn/articles/networking/routers/proxy/Network-Reverse-Proxy.html">
+  <meta property="og:title" content="Reverse proxies and the two-sided server path | Emby Learn">
+  <meta property="og:description" content="A reverse proxy accepts a public-facing application request and makes a separate upstream request, translating endpoint and resource context according to its configured policy.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/networking/routers/proxy/Network-Reverse-Proxy.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/networking/routers/proxy/Network-Reverse-Proxy.html","url":"https://emby.media/learn/articles/networking/routers/proxy/Network-Reverse-Proxy.html","name":"Reverse proxies and the two-sided server path","inLanguage":"en","headline":"Reverse proxies and the two-sided server path","articleSection":"Networking and remote access","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"A reverse proxy accepts a public-facing application request and makes a separate upstream request, translating endpoint and resource context according to its configured policy.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Networking and remote access","item":"https://emby.media/learn/articles/networking/index.html"},{"@type":"ListItem","position":3,"name":"Routers and remote reachability","item":"https://emby.media/learn/articles/networking/routers/index.html"},{"@type":"ListItem","position":4,"name":"Reverse proxy behavior","item":"https://emby.media/learn/articles/networking/routers/proxy/index.html"},{"@type":"ListItem","position":5,"name":"Reverse proxies","item":"https://emby.media/learn/articles/networking/routers/proxy/Network-Reverse-Proxy.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Network-Reverse-Proxy">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../networking/index.html">Networking and remote access</a></li>
+              <li><a href="../../../networking/routers/index.html">Routers and remote reachability</a></li>
+              <li><a href="../../../networking/routers/proxy/index.html">Reverse proxy behavior</a></li>
+              <li><span aria-current="page">Reverse proxies</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Network-Reverse-Proxy">
+<h1>Reverse proxies and the two-sided server path</h1>
+<p class="article-description">A reverse proxy accepts a public-facing application request and makes a separate upstream request, translating endpoint and resource context according to its configured policy.</p>
+
+
+<p>A reverse proxy can accept a client connection at a public hostname and forward the application request to Emby through another endpoint.</p>
+<p>There are two service-facing connections: client to proxy, and proxy to origin. Success on one side does not establish success on the other.</p>
+<h2 id="the-public-and-upstream-endpoints-can-differ">The public and upstream endpoints can differ</h2>
+<p>Use this original reduced arrangement:</p>
+<pre><code class="lang-json">{
+  &quot;publicBase&quot;: &quot;https://media.example.net/emby/&quot;,
+  &quot;proxyAddress&quot;: &quot;192.168.50.10&quot;,
+  &quot;upstreamBase&quot;: &quot;http://192.168.50.20:8096/&quot;,
+  &quot;removeRequestPrefix&quot;: &quot;/emby&quot;
+}
+</code></pre>
+<p>These fields describe a model, not executable proxy settings. The public connection uses HTTPS with its scheme-default port; the declared upstream connection uses another scheme and explicit port.</p>
+<p><img src="images/reverse-proxy-two-sides.png" alt="The original reverse-proxy path gives the public connection and origin connection independent endpoints and progress."></p>
+<p>The proxy can perform TLS termination on the public side. The origin side has its own transport and security properties. Public HTTPS does not by itself describe every later hop.</p>
+<p>The origin’s socket peer is the proxy’s upstream endpoint. <a href="Network-Forwarded-Addresses.html">Forwarded addresses</a> can describe the earlier client only within the relevant trust policy.</p>
+<h2 id="request-paths-need-a-consistent-transformation">Request paths need a consistent transformation</h2>
+<p>An original client request to /emby/api/item is transformed to /api/item under this model’s stated prefix removal.</p>
+<p>That works only if the origin expects that path. Retaining the prefix would produce another upstream resource name.</p>
+<p>The application can also have its own base-path behavior. Applying both an application prefix and an incompatible proxy rewrite can duplicate or remove path segments unexpectedly.</p>
+<p>A successful first page can hide the problem until a later media, script or API URL uses another form.</p>
+<h2 id="response-references-need-the-public-base-too">Response references need the public base too</h2>
+<p>Consider three generic references in a response, resolved against <a href="https://media.example.net/emby/">https://media.example.net/emby/</a>:</p>
+<table>
+<thead>
+<tr>
+<th>Returned reference</th>
+<th>Client destination path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>login</td>
+<td>/emby/login</td>
+</tr>
+<tr>
+<td>/login</td>
+<td>/login</td>
+</tr>
+<tr>
+<td><a href="http://192.168.50.20:8096/login">http://192.168.50.20:8096/login</a></td>
+<td>A different explicit origin</td>
+</tr>
+</tbody>
+</table>
+<p>The client resolves those references; it does not know that the proxy administrator intended the /emby prefix.</p>
+<p>An absolute inside address can be unusable from outside. A root-relative link can leave the public prefix. A hostname-correct redirect can still choose an unintended scheme or port.</p>
+<p><a href="../../names/dns/Network-Hostnames-URLs.html">URL structure</a> explains that resolution. Proxy redirect rewriting and the application’s original-host/base-URL interpretation must describe a coherent public service.</p>
+<h2 id="request-headers-describe-another-context">Request headers describe another context</h2>
+<p>A proxy can send an upstream Host value reflecting the public host or its chosen origin arrangement. Forwarded metadata can describe an original scheme, host or client address.</p>
+<p>The origin should interpret that context according to the actual trusted proxy path. A client-written header is not evidence that the request traversed the intended proxy.</p>
+<p>Emby’s network settings include a reverse-proxy secure-connection mode and header interpretation. The relevant application behavior must match the configured forwarding design, rather than assuming any header creates the needed route.</p>
+<h2 id="long-lived-or-upgraded-operations-have-their-own-forwarding-behavior">Long-lived or upgraded operations have their own forwarding behavior</h2>
+<p>A proxy that returns a small ordinary HTTP response can still handle streaming, range requests or an upgraded connection differently.</p>
+<p>WebSocket proxying, for example, involves specific handling for the upgrade and hop-by-hop headers. It is not guaranteed by serving the web app’s initial HTML successfully.</p>
+<p>Likewise, <a href="Network-Proxy-Buffering.html">buffering and timeout clocks</a> govern progress over the separate sides. These can explain an operation that starts correctly and later stalls.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../names/dns/Network-Hostnames-URLs.html" title="Hostnames, URLs and the complete server endpoint">Hostnames, URLs and the complete server endpoint</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Network-Forwarded-Addresses.html" title="Forwarded client addresses and trusted proxy context">Forwarded client addresses and trusted proxy context</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Network-Proxy-Buffering.html" title="Proxy buffering, progress and timeout clocks">Proxy buffering, progress and timeout clocks</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../nat/Network-Port-Forwarding.html" title="Port forwarding and the complete inbound path">Port forwarding and the complete inbound path</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc9110.html" title="RFC 9110: HTTP semantics">RFC 9110: HTTP semantics</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc3986" title="RFC 3986: URI structure and relative references">RFC 3986: URI structure and relative references</a></li>
+			            <li><a class="seealso-link" href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html" title="NGINX: HTTP proxy buffering, headers and timeouts">NGINX: HTTP proxy buffering, headers and timeouts</a></li>
+			            <li><a class="seealso-link" href="https://nginx.org/en/docs/http/websocket.html" title="NGINX: WebSocket proxying">NGINX: WebSocket proxying</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Hosting-Settings.html" title="Emby: Network settings and reported addresses">Emby: Network settings and reported addresses</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Network-Reverse-Proxy%0A*%20Title%3A%20Reverse%20proxies%20and%20the%20two-sided%20server%20path%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

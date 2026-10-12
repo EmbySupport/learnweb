@@ -1,0 +1,279 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Programme identifiers: airings, episodes and series | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Programme identifiers distinguish series, episodes and scheduled airings within a provider or broadcast context, enabling reliable joins without treating titles or local IDs as universal keys.">
+  <link rel="canonical" href="https://emby.media/learn/articles/live-tv/guides/TV-Programme-IDs.html">
+  <meta property="og:title" content="Programme identifiers: airings, episodes and series | Emby Learn">
+  <meta property="og:description" content="Programme identifiers distinguish series, episodes and scheduled airings within a provider or broadcast context, enabling reliable joins without treating titles or local IDs as universal keys.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/live-tv/guides/TV-Programme-IDs.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/live-tv/guides/TV-Programme-IDs.html","url":"https://emby.media/learn/articles/live-tv/guides/TV-Programme-IDs.html","name":"Programme identifiers: airings, episodes and series","inLanguage":"en","headline":"Programme identifiers: airings, episodes and series","articleSection":"Live TV and recording","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"Programme identifiers distinguish series, episodes and scheduled airings within a provider or broadcast context, enabling reliable joins without treating titles or local IDs as universal keys.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Live TV and recording","item":"https://emby.media/learn/articles/live-tv/index.html"},{"@type":"ListItem","position":3,"name":"Electronic programme guides","item":"https://emby.media/learn/articles/live-tv/guides/index.html"},{"@type":"ListItem","position":4,"name":"Programme identifiers","item":"https://emby.media/learn/articles/live-tv/guides/TV-Programme-IDs.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-TV-Programme-IDs">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../live-tv/index.html">Live TV and recording</a></li>
+              <li><a href="../../live-tv/guides/index.html">Electronic programme guides</a></li>
+              <li><span aria-current="page">Programme identifiers</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-TV-Programme-IDs">
+<h1>Programme identifiers: airings, episodes and series</h1>
+<p class="article-description">Programme identifiers distinguish series, episodes and scheduled airings within a provider or broadcast context, enabling reliable joins without treating titles or local IDs as universal keys.</p>
+
+
+<p>“Programme ID” can mean several different things. It may identify a scheduled airing, the episode being aired or a series containing that episode.</p>
+<p>Those identities support different decisions. A timer needs an airing and time. A series rule needs series membership. Duplicate detection usually needs the content identity and an assessment of what was already captured.</p>
+<h2 id="one-episode-can-have-two-airings">One episode can have two airings</h2>
+<p>Use this original inventory:</p>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Identity</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Series</td>
+<td>P/series/HARBOUR</td>
+<td>Harbour Stories</td>
+</tr>
+<tr>
+<td>Episode</td>
+<td>P/episode/CROSSING</td>
+<td>The First Crossing</td>
+</tr>
+<tr>
+<td>Monday airing</td>
+<td>P/airing/A100</td>
+<td>That episode on station N at 18:00</td>
+</tr>
+<tr>
+<td>Wednesday repeat</td>
+<td>P/airing/A240</td>
+<td>That episode on station N at 21:00</td>
+</tr>
+</tbody>
+</table>
+<p>There are two airings but one episode. Recording both airings would produce two captures of the same intended content, although their edits, reception and completeness can differ.</p>
+<p>Replacing the airing ID with the episode ID loses the ability to distinguish the two scheduled requests. Replacing the episode ID with the airing ID prevents a simple identity comparison from recognizing the repeat.</p>
+<p><img src="images/programme-identity-scopes.png" alt="The original identity graph connects two separate airings to one episode and its series."></p>
+<h2 id="the-namespace-belongs-in-the-key">The namespace belongs in the key</h2>
+<p>Provider-local values can collide:</p>
+<pre><code class="lang-json">[
+  {&quot;provider&quot;: &quot;P&quot;, &quot;kind&quot;: &quot;episode&quot;, &quot;id&quot;: &quot;42&quot;, &quot;title&quot;: &quot;The First Crossing&quot;},
+  {&quot;provider&quot;: &quot;Q&quot;, &quot;kind&quot;: &quot;episode&quot;, &quot;id&quot;: &quot;42&quot;, &quot;title&quot;: &quot;Harbour Storm&quot;},
+  {&quot;provider&quot;: &quot;P&quot;, &quot;kind&quot;: &quot;airing&quot;, &quot;id&quot;: &quot;42&quot;, &quot;title&quot;: &quot;Coast Weather&quot;}
+]
+</code></pre>
+<p>The string <code>42</code> appears three times. Each complete <code>(provider, kind, id)</code> key describes a different object.</p>
+<p>A server can translate supplied keys into internal IDs. That translation does not make equal raw IDs from unrelated providers interchangeable.</p>
+<p><a href="../../metadata-discovery/identification/external-identifiers/Metadata-Provider-IDs.html">Provider identifiers</a> develops the broader namespace principle. Television adds an explicit scheduled-airing dimension.</p>
+<h2 id="broadcast-event-identity-is-another-representation">Broadcast event identity is another representation</h2>
+<p>DVB event IDs are allocated within service definitions; ATSC event IDs belong to their virtual-channel/EIT context. They describe broadcast events rather than automatically supplying a provider’s persistent episode identity.</p>
+<p>The associated service/source and relevant table/time context matter. A display number is not a complete replacement for that context, and a reused event number should not be treated as a permanent global key.</p>
+<p>Emby exposes programme and timer identities along with separate channel, series and provider-related properties. Use the identity appropriate to the decision rather than assuming every field containing “Id” has the same lifetime.</p>
+<h2 id="episode-coordinates-need-their-numbering-convention">Episode coordinates need their numbering convention</h2>
+<p>XMLTV’s <code>xmltv_ns</code> convention uses zero-based season, episode and part coordinates. Thus <code>1.4.</code> denotes season two, episode five, with part unspecified.</p>
+<p>An onscreen label such as <code>S02E05</code> is a different representation. A missing coordinate is unknown; it does not mean the first episode.</p>
+<p>Even known season/episode coordinates require the intended series and order. Two series can each have a season-two episode-five, and alternative episode orders can use different coordinates for the same content.</p>
+<h2 id="missing-identity-changes-the-confidence-of-the-decision">Missing identity changes the confidence of the decision</h2>
+<p>A title can help a viewer find a programme, but identical titles occur across episodes, remakes and daily broadcasts. A changed title can also describe the same content.</p>
+<p>When a trusted content ID is absent, matching may need several pieces of metadata and an explicit policy for uncertain results. False matches skip wanted recordings; failed matches capture repeats.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../channels/identity/TV-Service-IDs.html" title="Broadcast service identifiers">Broadcast service identifiers</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../recording/scheduling/TV-Series-Rules.html" title="Series recording rules and future airings">Series recording rules and future airings</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../recording/lifecycle/TV-Duplicate-Recordings.html" title="Duplicate recording detection and episode identity">Duplicate recording detection and episode identity</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../metadata-discovery/identification/external-identifiers/Metadata-Provider-IDs.html" title="Provider identifiers">Provider identifiers</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://raw.githubusercontent.com/XMLTV/xmltv/b424ef772a667856ca44b9dac3b4310d02191dea/xmltv.dtd" title="XMLTV: Version-pinned listings DTD and field semantics">XMLTV: Version-pinned listings DTD and field semantics</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/doc/restapi/Live-TV.html" title="Emby developer documentation: Programmes, timers and series timers">Emby developer documentation: Programmes, timers and series timers</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Controller.LiveTv.TimerInfo.html" title="Emby plugin API: TimerInfo identity, UTC dates and padding">Emby plugin API: TimerInfo identity, UTC dates and padding</a></li>
+			            <li><a class="seealso-link" href="https://www.etsi.org/deliver/etsi_en/300400_300499/300468/01.20.01_60/en_300468v012001p.pdf" title="ETSI: EN 300 468 V1.20.1, DVB Service Information">ETSI: EN 300 468 V1.20.1, DVB Service Information</a></li>
+			            <li><a class="seealso-link" href="https://www.atsc.org/wp-content/uploads/2021/04/A65_2013.pdf" title="ATSC: A/65:2013 virtual-channel, event and time tables">ATSC: A/65:2013 virtual-channel, event and time tables</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-TV-Programme-IDs%0A*%20Title%3A%20Programme%20identifiers%3A%20airings%2C%20episodes%20and%20series%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

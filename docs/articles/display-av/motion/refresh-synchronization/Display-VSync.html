@@ -1,0 +1,264 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Vertical synchronization (VSync) | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Vertical synchronization coordinates presentation with display refresh boundaries to avoid showing incompatible picture updates within a scan.">
+  <link rel="canonical" href="https://emby.media/learn/articles/display-av/motion/refresh-synchronization/Display-VSync.html">
+  <meta property="og:title" content="Vertical synchronization (VSync) | Emby Learn">
+  <meta property="og:description" content="Vertical synchronization coordinates presentation with display refresh boundaries to avoid showing incompatible picture updates within a scan.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/display-av/motion/refresh-synchronization/Display-VSync.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/display-av/motion/refresh-synchronization/Display-VSync.html","url":"https://emby.media/learn/articles/display-av/motion/refresh-synchronization/Display-VSync.html","name":"Vertical synchronization (VSync)","inLanguage":"en","headline":"Vertical synchronization (VSync)","articleSection":"Displays and AV connections","proficiencyLevel":"Beginner","accessMode":"textual","description":"Vertical synchronization coordinates presentation with display refresh boundaries to avoid showing incompatible picture updates within a scan.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Displays and AV connections","item":"https://emby.media/learn/articles/display-av/index.html"},{"@type":"ListItem","position":3,"name":"Motion on a display","item":"https://emby.media/learn/articles/display-av/motion/index.html"},{"@type":"ListItem","position":4,"name":"Refresh and synchronization","item":"https://emby.media/learn/articles/display-av/motion/refresh-synchronization/index.html"},{"@type":"ListItem","position":5,"name":"Vertical synchronization (VSync)","item":"https://emby.media/learn/articles/display-av/motion/refresh-synchronization/Display-VSync.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Display-VSync">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../display-av/index.html">Displays and AV connections</a></li>
+              <li><a href="../../../display-av/motion/index.html">Motion on a display</a></li>
+              <li><a href="../../../display-av/motion/refresh-synchronization/index.html">Refresh and synchronization</a></li>
+              <li><span aria-current="page">Vertical synchronization (VSync)</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Display-VSync">
+<h1>Vertical synchronization (VSync)</h1>
+<p class="article-description">Vertical synchronization coordinates presentation with display refresh boundaries to avoid showing incompatible picture updates within a scan.</p>
+
+
+<p>A display can scan a picture progressively. If the presented image changes partway through that scan, one part can come from an older picture and another from a newer picture.</p>
+<p>A moving edge can then appear discontinuous at the boundary: a <strong>tear line</strong>. Vertical synchronization, or <strong>VSync</strong>, coordinates updates with the refresh schedule so the intended picture is presented coherently.</p>
+<h2 id="the-scan-and-the-update-need-a-relationship">The scan and the update need a relationship</h2>
+<p>Imagine an original sixty-Hz scan beginning with picture A. Halfway down the screen, the output starts reading picture B, whose moving object has shifted.</p>
+<p>The top rows contain A’s position; the bottom rows contain B’s. The mismatch belongs to presentation within the scan, not necessarily to corrupted decoding.</p>
+<p><img src="images/vsync-scan-boundary.png" alt="An original progressive-scan comparison shows a mid-scan picture change and a synchronized picture selection."></p>
+<p>A synchronized arrangement selects or schedules the new picture at an appropriate refresh boundary. Its buffering and presentation rules determine the concrete handoff.</p>
+<h2 id="a-ready-picture-can-wait">A ready picture can wait</h2>
+<p>For an original fixed sixty-Hz grid, let refresh boundaries occur at 0, 16.667, 33.333 and 50 ms. Assume each ready picture is selected at the next boundary, with no additional queue:</p>
+<table>
+<thead>
+<tr>
+<th>Ready time</th>
+<th style="text-align: right;">Selected boundary</th>
+<th style="text-align: right;">Modeled wait</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10 ms</td>
+<td style="text-align: right;">16.667 ms</td>
+<td style="text-align: right;">6.667 ms</td>
+</tr>
+<tr>
+<td>17 ms</td>
+<td style="text-align: right;">33.333 ms</td>
+<td style="text-align: right;">16.333 ms</td>
+</tr>
+<tr>
+<td>34 ms</td>
+<td style="text-align: right;">50 ms</td>
+<td style="text-align: right;">16 ms</td>
+</tr>
+</tbody>
+</table>
+<p>A picture arriving just after a boundary can wait nearly an interval. Additional queued pictures or display processing can add time again.</p>
+<p>This model explains boundary waiting; it is not a benchmark of VSync latency. Actual operating systems expose different queue and presentation arrangements.</p>
+<p>Microsoft’s DXGI <code>Present</code> documentation, for example, gives synchronization-interval semantics for its presentation models. Their flags and queue behavior are part of that specific contract.</p>
+<h2 id="coherent-scanout-does-not-guarantee-smooth-cadence">Coherent scanout does not guarantee smooth cadence</h2>
+<p>A perfectly coherent sequence can still hold film pictures for uneven durations. Twenty-four source pictures fitted to sixty fixed refreshes commonly need three/two interval repetition.</p>
+<p>VSync prevents a particular scan/update mismatch. <a href="Display-Frame-Rate-Matching.html">Frame-rate matching</a> addresses the source-to-output timing ratio.</p>
+<p>Similarly, if the next usable picture is late, the system can continue showing the previous one. That can produce a visible pause or repeat without a tear line. Decoder readiness, presentation deadlines and the chosen queue policy remain relevant.</p>
+<p>For Emby playback, a regular uneven pan, a single missed deadline and a picture torn during scanout are different observations.</p>
+<h2 id="vrr-has-an-api-specific-presentation-contract">VRR has an API-specific presentation contract</h2>
+<p>A variable-refresh route can schedule an output update around picture readiness within its supported range. It still needs synchronization and valid picture selection.</p>
+<p>Microsoft’s documented DXGI VRR route requires particular tearing-capability flags and sync-interval settings. The word “tearing” in that API permission is not, by itself, evidence that every presented picture will contain a visible tear.</p>
+<p>The actual output mode, supported variable range and presentation behavior determine the result. <a href="Display-VRR.html">VRR</a> explains why those conditions matter.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Display-VRR.html" title="Variable refresh rate (VRR)">Variable refresh rate (VRR)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Display-Judder.html" title="Judder and uneven picture cadence">Judder and uneven picture cadence</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Display-Refresh-Rate.html" title="Display refresh rate">Display refresh rate</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../playback-streaming/behavior/symptoms/Playback-Dropped-Frames.html" title="Dropped video frames during playback">Dropped video frames during playback</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/api/dxgi/nf-dxgi-idxgiswapchain-present" title="Microsoft: DXGI presentation and synchronization">Microsoft: DXGI presentation and synchronization</a></li>
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/direct3ddxgi/variable-refresh-rate-displays" title="Microsoft: Variable refresh rate displays">Microsoft: Variable refresh rate displays</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Display-VSync%0A*%20Title%3A%20Vertical%20synchronization%20(VSync)%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

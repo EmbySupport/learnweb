@@ -1,0 +1,375 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Hardware acceleration in Emby Server | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Emby Server&#8217;s accelerated conversion uses supported selected decode, picture-processing and encode paths whose source/target, runtime and resource evidence establish the actual session route.">
+  <link rel="canonical" href="https://emby.media/learn/articles/hardware-acceleration/pipelines/Hardware-Emby-Server.html">
+  <meta property="og:title" content="Hardware acceleration in Emby Server | Emby Learn">
+  <meta property="og:description" content="Emby Server&#8217;s accelerated conversion uses supported selected decode, picture-processing and encode paths whose source/target, runtime and resource evidence establish the actual session route.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/hardware-acceleration/pipelines/Hardware-Emby-Server.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/hardware-acceleration/pipelines/Hardware-Emby-Server.html","url":"https://emby.media/learn/articles/hardware-acceleration/pipelines/Hardware-Emby-Server.html","name":"Hardware acceleration in Emby Server","inLanguage":"en","headline":"Hardware acceleration in Emby Server","articleSection":"Media hardware acceleration","proficiencyLevel":"Beginner","accessMode":"textual","description":"Emby Server’s accelerated conversion uses supported selected decode, picture-processing and encode paths whose source/target, runtime and resource evidence establish the actual session route.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Media hardware acceleration","item":"https://emby.media/learn/articles/hardware-acceleration/index.html"},{"@type":"ListItem","position":3,"name":"Hardware pipelines and their limits","item":"https://emby.media/learn/articles/hardware-acceleration/pipelines/index.html"},{"@type":"ListItem","position":4,"name":"Hardware acceleration in Emby Server","item":"https://emby.media/learn/articles/hardware-acceleration/pipelines/Hardware-Emby-Server.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Hardware-Emby-Server">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../hardware-acceleration/index.html">Media hardware acceleration</a></li>
+              <li><a href="../../hardware-acceleration/pipelines/index.html">Hardware pipelines and their limits</a></li>
+              <li><span aria-current="page">Hardware acceleration in Emby Server</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Hardware-Emby-Server">
+<h1>Hardware acceleration in Emby Server</h1>
+<p class="article-description">Emby Server&#8217;s accelerated conversion uses supported selected decode, picture-processing and encode paths whose source/target, runtime and resource evidence establish the actual session route.</p>
+
+
+<p>Emby Server uses a media-conversion route appropriate to the selected source, tracks, client and output constraints. Hardware acceleration can supply supported operations within that route.</p>
+<p>Emby lists hardware-accelerated transcoding as an Emby Premiere feature. Feature availability, usable device/runtime capability and the actual session's work are separate conditions.</p>
+<h2 id="establish-whether-the-server-needs-new-video">Establish whether the server needs new video</h2>
+<p>A <a href="../../playback-streaming/from-server/modes/Playback-Direct-Play.html">Direct Play</a> session uses the original representation. Enabling acceleration does not require the server to decode and re-encode video that the client can use directly.</p>
+<p>A Direct Stream session can preserve video while adapting packaging or another stream. Audio conversion in that session is different from a newly encoded video representation.</p>
+<p>When video conversion is required, the selected source decoder, picture operations and target encoder form the route.</p>
+<p><img src="images/emby-selected-acceleration.png" alt="An original Emby decision diagram separates client compatibility, required stream operations and the selected accelerated or software stages."></p>
+<h2 id="treat-settings-as-selection-input">Treat settings as selection input</h2>
+<p>The server's configured acceleration preferences and detected paths influence selection. They do not report that a given source profile and target were successfully initialized.</p>
+<p>A device can support HEVC Main 10 reconstruction while another requested profile or filter needs another path. A target encoder has its own capability and resource requirements.</p>
+<p>Emby's platform documentation supplies high-level route context. Some public lists and setup remarks reflect older versions, so the actual server build, available settings and current runtime result should accompany an investigation.</p>
+<p>This page explains the technology and evidence, rather than prescribing one forced setting for every platform.</p>
+<h2 id="work-through-a-selected-original-session">Work through a selected original session</h2>
+<p>Imagine an original source with 4K HEVC Main 10 video, AC-3 audio and a subtitle that the client cannot present separately. The target is 1080p H.264 SDR with stereo AAC.</p>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Operation to establish</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Source HEVC pictures</td>
+<td>Supported selected decoder</td>
+</tr>
+<tr>
+<td>Smaller SDR presentation</td>
+<td>Appropriate scale/colour processing</td>
+</tr>
+<tr>
+<td>Painted subtitle</td>
+<td>Selected composition path</td>
+</tr>
+<tr>
+<td>H.264 video output</td>
+<td>Supported target encoder</td>
+</tr>
+<tr>
+<td>Stereo AAC</td>
+<td>Selected audio preparation</td>
+</tr>
+<tr>
+<td>Streaming resources</td>
+<td>Output packaging and delivery</td>
+</tr>
+</tbody>
+</table>
+<p>One route could use hardware reconstruction, CPU-specific picture work and hardware encoding. Another could use compatible device picture processing. The active route, not the enabled setting alone, establishes those handoffs.</p>
+<p>The example does not claim a particular private Emby planning algorithm or captured session.</p>
+<h2 id="distinguish-availability-initialization-and-progress">Distinguish availability, initialization and progress</h2>
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th>Stage it supports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Device/path appears as available</td>
+<td>Detected or exposed selection context</td>
+</tr>
+<tr>
+<td>Decoder/encoder configuration accepted</td>
+<td>Successful initialization at that stage</td>
+</tr>
+<tr>
+<td>Mapped/processed pictures become available</td>
+<td>Picture-path progress</td>
+</tr>
+<tr>
+<td>Encoded output advances</td>
+<td>Producer progress through the selected target</td>
+</tr>
+<tr>
+<td>Client presents the next interval</td>
+<td>Later delivery and receiver progress</td>
+</tr>
+</tbody>
+</table>
+<p>A source/output codec label can appear in both copying and re-encoding scenarios. Stream-operation mappings identify the difference.</p>
+<p>A process called transcoding can also perform packaging or other-stream adaptation. The name of the process is less specific than its actual selected operations.</p>
+<h2 id="relate-playback-information-and-the-relevant-log">Relate playback information and the relevant log</h2>
+<p><a href="../../playback-streaming/behavior/diagnostics/Playback-Information.html">Playback information</a> relates source properties, selected output and session observations. <a href="../../playback-streaming/behavior/diagnostics/Playback-Transcode-Logs.html">A conversion log</a> records input, mappings, filters and progress in the relevant job context.</p>
+<p>The public TranscodingInfo model includes decoder/encoder and hardware-related fields. Their interpretation belongs to that session and reporting stage, rather than a whole-server guarantee for every file.</p>
+<p>Source codec/profile, dimensions, bit depth, selected tracks, target constraints and server/runtime versions help explain why a different path was selected.</p>
+<h2 id="progress-clocks-can-locate-a-later-wait">Progress clocks can locate a later wait</h2>
+<p>Successful hardware initialization establishes the configured stage, while producer, receiver and viewer progress describe later boundaries.</p>
+<p>Use an original common-origin programme-time model:</p>
+<table>
+<thead>
+<tr>
+<th>Wall-clock observation</th>
+<th style="text-align: right;">Server-ready position</th>
+<th style="text-align: right;">Client-received position</th>
+<th style="text-align: right;">Viewer position</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>50 seconds</td>
+<td style="text-align: right;">120 seconds</td>
+<td style="text-align: right;">95 seconds</td>
+<td style="text-align: right;">90 seconds</td>
+</tr>
+<tr>
+<td>60 seconds</td>
+<td style="text-align: right;">150 seconds</td>
+<td style="text-align: right;">100 seconds</td>
+<td style="text-align: right;">100 seconds</td>
+</tr>
+</tbody>
+</table>
+<p>The producer advanced thirty media seconds in ten wall seconds, giving a modeled 3x rate over this interval. The client’s usable lead fell from five seconds to zero while the viewer advanced at 1x.</p>
+<p>In this example, fast server output coexists with client starvation at the final boundary. A stall alone would not show that the hardware encoder stopped working.</p>
+<p>The model stops at that first starvation point and assumes the received intervals are continuous and usable. A real record needs common timestamp origins and the actual readiness/receipt observations.</p>
+<p>After a seek or a replaced conversion job, an output timestamp can have another origin. Relating a new log's zero to the programme position is necessary before comparing its progress with the viewer’s current time.</p>
+<h2 id="change-one-relevant-input-in-a-reproduction">Change one relevant input in a reproduction</h2>
+<p>A useful original comparison is:</p>
+<table>
+<thead>
+<tr>
+<th>Case</th>
+<th>Preserved context</th>
+<th>Changed input</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Source, client, target limit, programme interval</td>
+<td>Baseline track selection</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Same as A</td>
+<td>Subtitle requiring another processing path</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Same as A</td>
+<td>A source variant with another encoded profile</td>
+</tr>
+</tbody>
+</table>
+<p>B can change picture processing while leaving decoder support intact. C can change reconstruction requirements while keeping the title the same.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../generations/Hardware-Codec-Matrix.html" title="How to read a hardware codec support matrix">How to read a hardware codec support matrix</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Hardware-Driver-Capabilities.html" title="Driver-dependent media capabilities">Driver-dependent media capabilities</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Hardware-Mixed-Filtering.html" title="Mixed hardware and software filtering">Mixed hardware and software filtering</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Hardware-CPU-Work.html" title="Why hardware acceleration can still use the CPU">Why hardware acceleration can still use the CPU</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../playback-streaming/behavior/diagnostics/Playback-Information.html" title="Reading Emby playback information">Reading Emby playback information</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../playback-streaming/behavior/diagnostics/Playback-Transcode-Logs.html" title="Reading a transcoding log">Reading a transcoding log</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Hardware-Acceleration-Overview.html" title="Emby: Hardware acceleration overview">Emby: Hardware acceleration overview</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Hardware-Acceleration-on-Windows.html" title="Emby: Hardware acceleration on Windows">Emby: Hardware acceleration on Windows</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Hardware-Acceleration-on-Linux.html" title="Emby: Hardware acceleration on Linux">Emby: Hardware acceleration on Linux</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/premiere.html" title="Emby: Premiere hardware-transcoding feature">Emby: Premiere hardware-transcoding feature</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Transcoding.html" title="Emby: Transcoding">Emby: Transcoding</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Log-Files.html" title="Emby: Log files">Emby: Log files</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Model.Session.TranscodingInfo.html" title="Emby API: TranscodingInfo">Emby API: TranscodingInfo</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg.html" title="FFmpeg: Hardware devices and processing">FFmpeg: Hardware devices and processing</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Hardware-Emby-Server%0A*%20Title%3A%20Hardware%20acceleration%20in%20Emby%20Server%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,289 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>How media APIs connect applications to hardware | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="A media acceleration API connects an application&#8217;s requested video operation to a compatible runtime, driver and device configuration with defined buffers and completion behavior.">
+  <link rel="canonical" href="https://emby.media/learn/articles/hardware-acceleration/interfaces/Hardware-Media-APIs.html">
+  <meta property="og:title" content="How media APIs connect applications to hardware | Emby Learn">
+  <meta property="og:description" content="A media acceleration API connects an application&#8217;s requested video operation to a compatible runtime, driver and device configuration with defined buffers and completion behavior.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/hardware-acceleration/interfaces/Hardware-Media-APIs.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/hardware-acceleration/interfaces/Hardware-Media-APIs.html","url":"https://emby.media/learn/articles/hardware-acceleration/interfaces/Hardware-Media-APIs.html","name":"How media APIs connect applications to hardware","inLanguage":"en","headline":"How media APIs connect applications to hardware","articleSection":"Media hardware acceleration","proficiencyLevel":"Beginner","accessMode":"textual","description":"A media acceleration API connects an application’s requested video operation to a compatible runtime, driver and device configuration with defined buffers and completion behavior.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Media hardware acceleration","item":"https://emby.media/learn/articles/hardware-acceleration/index.html"},{"@type":"ListItem","position":3,"name":"Media engines and acceleration interfaces","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/index.html"},{"@type":"ListItem","position":4,"name":"How media APIs connect applications to hardware","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/Hardware-Media-APIs.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Hardware-Media-APIs">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../hardware-acceleration/index.html">Media hardware acceleration</a></li>
+              <li><a href="../../hardware-acceleration/interfaces/index.html">Media engines and acceleration interfaces</a></li>
+              <li><span aria-current="page">How media APIs connect applications to hardware</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Hardware-Media-APIs">
+<h1>How media APIs connect applications to hardware</h1>
+<p class="article-description">A media acceleration API connects an application&#8217;s requested video operation to a compatible runtime, driver and device configuration with defined buffers and completion behavior.</p>
+
+
+<p>An acceleration API turns an application's requested media operation into work on a supported device path. Between the call and the hardware are implementation and driver layers that define how configurations, buffers and completion are represented.</p>
+<p>This is why the API, runtime and media engine need to be identified separately.</p>
+<h2 id="the-call-passes-through-an-implementation">The call passes through an implementation</h2>
+<p><img src="images/api-runtime-engine.png" alt="An original layer diagram connects application intent, API/runtime selection, driver implementation and media hardware."></p>
+<p>The application calls an interface it was built to use. A library or dispatcher can select an implementation, which communicates through the relevant driver path to the device.</p>
+<p>A development SDK supplies interfaces and development material. The usable execution path also needs the runtime/driver and the exposed hardware operation. Installing development headers does not add a missing hardware decoder.</p>
+<p>Emby's <a class="xref" href="https://emby.media/support/articles/Hardware-Acceleration-Overview.html">platform documentation</a> provides product context for supported routes. The device capabilities are then a separate configuration question.</p>
+<h2 id="a-query-describes-an-operation-and-its-conditions">A query describes an operation and its conditions</h2>
+<p>This original readable capability example is a teaching structure, not the wire format of a vendor API:</p>
+<pre><code class="lang-json">{
+  &quot;device&quot;: &quot;model-adapter-A&quot;,
+  &quot;operation&quot;: &quot;decode&quot;,
+  &quot;codec&quot;: &quot;hevc&quot;,
+  &quot;profile&quot;: &quot;Main 10&quot;,
+  &quot;chroma&quot;: &quot;4:2:0&quot;,
+  &quot;bitDepth&quot;: 10,
+  &quot;maximumWidth&quot;: 3840,
+  &quot;maximumHeight&quot;: 2160,
+  &quot;outputLayout&quot;: &quot;P010&quot;
+}
+</code></pre>
+<p>It describes one decoded-video path. It does not describe encoding, every video filter or the availability of another adapter.</p>
+<p>An output encoder needs its own target query. A filter needs its accepted input/output relationship. A complete job combines those compatible operations rather than treating the first successful query as a device-wide “yes.”</p>
+<h2 id="buffers-and-completion-are-part-of-the-interface">Buffers and completion are part of the interface</h2>
+<p>The API exposes or accepts frame storage under a defined memory model. Some paths use system memory, others device surfaces, and others can import compatible shared resources.</p>
+<p>The consumer needs the correct device and frame context, layout and completion dependencies. A surface handle meaningful to one context is not automatically usable by an unrelated context.</p>
+<p>Asynchronous calls also need their specified completion behavior. An accepted operation can still be working after control returns to the CPU.</p>
+<h2 id="several-names-can-describe-one-route">Several names can describe one route</h2>
+<table>
+<thead>
+<tr>
+<th>Name category</th>
+<th>Example of the fact it conveys</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Codec</td>
+<td>The compressed format being processed</td>
+</tr>
+<tr>
+<td>API</td>
+<td>The interface used to request processing</td>
+</tr>
+<tr>
+<td>Runtime/backend</td>
+<td>The implementation of those calls</td>
+</tr>
+<tr>
+<td>Driver</td>
+<td>The device/operating-system execution path</td>
+</tr>
+<tr>
+<td>Media engine</td>
+<td>The hardware carrying out the specialized work</td>
+</tr>
+<tr>
+<td>Application wrapper</td>
+<td>The integration selected by the media program</td>
+</tr>
+</tbody>
+</table>
+<p>An Intel media operation can be exposed through Intel VPL or through a supported VA-API path. The interfaces differ while the underlying hardware can overlap.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../building-blocks/Hardware-Fixed-Function.html" title="Fixed-function media engines">Fixed-function media engines</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="intel/Hardware-Intel-VPL.html" title="Intel VPL and the oneVPL name">Intel VPL and the oneVPL name</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="nvidia/Hardware-NVIDIA-CUVID.html" title="NVDEC and CUVID API names">NVDEC and CUVID API names</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="amd/Hardware-AMD-AMF.html" title="AMD Advanced Media Framework (AMF)">AMD Advanced Media Framework (AMF)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="linux/Hardware-Linux-VAAPI.html" title="Video Acceleration API (VA-API)">Video Acceleration API (VA-API)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="windows/Hardware-Windows-D3D11VA.html" title="Direct3D 11 video acceleration (D3D11VA)">Direct3D 11 video acceleration (D3D11VA)</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://intel.github.io/libvpl/latest/API_ref/VPL_disp_api_func.html" title="Intel VPL: Dispatcher function reference">Intel VPL: Dispatcher function reference</a></li>
+			            <li><a class="seealso-link" href="https://docs.nvidia.com/video-technologies/video-codec-sdk/13.1/nvdec-video-decoder-api-prog-guide/index.html" title="NVIDIA SDK 13.1: NVDEC programming guide">NVIDIA SDK 13.1: NVDEC programming guide</a></li>
+			            <li><a class="seealso-link" href="https://github.com/GPUOpen-LibrariesAndSDKs/AMF/blob/master/amf/doc/AMF_API_Reference.md" title="AMD AMF: API reference">AMD AMF: API reference</a></li>
+			            <li><a class="seealso-link" href="https://intel.github.io/libva/" title="VA-API: Core interface documentation">VA-API: Core interface documentation</a></li>
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/medfound/supporting-direct3d-11-video-decoding-in-media-foundation" title="Microsoft: Direct3D 11 decoding in Media Foundation">Microsoft: Direct3D 11 decoding in Media Foundation</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg.html" title="FFmpeg: Hardware devices and processing">FFmpeg: Hardware devices and processing</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Hardware-Media-APIs%0A*%20Title%3A%20How%20media%20APIs%20connect%20applications%20to%20hardware%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

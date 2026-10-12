@@ -1,0 +1,257 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>VPN routing, overlapping prefixes and split tunneling | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="VPN routing determines which destination prefixes use a tunnel, with route specificity, overlapping address realms and DNS policy separate from the tunnel&#8217;s connected state.">
+  <link rel="canonical" href="https://emby.media/learn/articles/networking/routers/vpn/Network-VPN-Routing.html">
+  <meta property="og:title" content="VPN routing, overlapping prefixes and split tunneling | Emby Learn">
+  <meta property="og:description" content="VPN routing determines which destination prefixes use a tunnel, with route specificity, overlapping address realms and DNS policy separate from the tunnel&#8217;s connected state.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/networking/routers/vpn/Network-VPN-Routing.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/networking/routers/vpn/Network-VPN-Routing.html","url":"https://emby.media/learn/articles/networking/routers/vpn/Network-VPN-Routing.html","name":"VPN routing, overlapping prefixes and split tunneling","inLanguage":"en","headline":"VPN routing, overlapping prefixes and split tunneling","articleSection":"Networking and remote access","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"VPN routing determines which destination prefixes use a tunnel, with route specificity, overlapping address realms and DNS policy separate from the tunnel’s connected state.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Networking and remote access","item":"https://emby.media/learn/articles/networking/index.html"},{"@type":"ListItem","position":3,"name":"Routers and remote reachability","item":"https://emby.media/learn/articles/networking/routers/index.html"},{"@type":"ListItem","position":4,"name":"VPN routing","item":"https://emby.media/learn/articles/networking/routers/vpn/index.html"},{"@type":"ListItem","position":5,"name":"VPN routing and split tunneling","item":"https://emby.media/learn/articles/networking/routers/vpn/Network-VPN-Routing.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Network-VPN-Routing">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../networking/index.html">Networking and remote access</a></li>
+              <li><a href="../../../networking/routers/index.html">Routers and remote reachability</a></li>
+              <li><a href="../../../networking/routers/vpn/index.html">VPN routing</a></li>
+              <li><span aria-current="page">VPN routing and split tunneling</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Network-VPN-Routing">
+<h1>VPN routing, overlapping prefixes and split tunneling</h1>
+<p class="article-description">VPN routing determines which destination prefixes use a tunnel, with route specificity, overlapping address realms and DNS policy separate from the tunnel&#8217;s connected state.</p>
+
+
+<p>A connected VPN does not automatically receive every packet. The client’s routes and policy select which destinations use it.</p>
+<p><strong>Split tunneling</strong> sends selected traffic through the tunnel while other traffic follows another path. A full-tunnel design has a broader selection, but still needs the tunnel’s own outer connection to remain reachable.</p>
+<h2 id="select-the-route-for-the-actual-destination">Select the route for the actual destination</h2>
+<p>Use this original reduced client table:</p>
+<pre><code class="lang-json">{
+  &quot;routes&quot;: [
+    {&quot;prefix&quot;: &quot;0.0.0.0/0&quot;, &quot;path&quot;: &quot;ordinary-gateway&quot;, &quot;metric&quot;: 10},
+    {&quot;prefix&quot;: &quot;192.168.50.0/24&quot;, &quot;path&quot;: &quot;vpn&quot;, &quot;metric&quot;: 50}
+  ],
+  &quot;serverDestination&quot;: &quot;192.168.50.20&quot;,
+  &quot;otherDestination&quot;: &quot;203.0.113.80&quot;
+}
+</code></pre>
+<p>Under longest-prefix matching, the server uses the VPN /24. The outside documentation destination uses the ordinary default route.</p>
+<p>The lower metric on that default does not override the more-specific /24. Metrics are compared within the relevant competing-route context.</p>
+<p><img src="images/vpn-route-selection.png" alt="The original route model selects server, ordinary traffic and the tunnel carrier through different matching prefixes."></p>
+<h2 id="equal-private-ranges-can-describe-different-places">Equal private ranges can describe different places</h2>
+<p>Suppose the visiting network also uses 192.168.50.0/24. The server’s home address and a visiting local address can now have equal numeric text.</p>
+<p>Add a second matching /24 route through the local interface with metric ten. In this deliberately simple tie policy, that local route wins over the VPN /24 at metric fifty.</p>
+<p>The request can then head toward the visiting realm instead of the home server. No amount of successful tunnel authentication changes what the chosen local route means.</p>
+<p>A prefix is an address grouping; it is not a global site identifier. Reusing RFC 1918 ranges makes overlapping private realms possible.</p>
+<h2 id="a-more-specific-destination-can-change-the-choice">A more-specific destination can change the choice</h2>
+<p>For a separate model, add a route for 192.168.50.20/32 through the VPN. That host route is longer than either /24 and selects the tunnel for that one address even with metric one thousand.</p>
+<p>This illustrates specificity, not a universal configuration prescription. Some systems also use routing tables, policy rules or interface-bound sockets beyond this reduced model.</p>
+<p>The chosen route still needs a reachable tunnel destination and permitted return path. A host route cannot distinguish two services simultaneously wanted at the same numeric address without another separation strategy.</p>
+<h2 id="a-broad-tunnel-route-needs-an-underlay-path">A broad tunnel route needs an underlay path</h2>
+<p>One full-tunnel model can use the two half-space prefixes 0.0.0.0/1 and 128.0.0.0/1. Together they match the IPv4 address space more specifically than an ordinary /0 default.</p>
+<p>The tunnel peer itself is also an IP destination. An outer packet accidentally routed into the tunnel it is supposed to carry creates a dependency problem.</p>
+<p>This original carrier exception makes the intended separation explicit:</p>
+<pre><code class="lang-json">{
+  &quot;fullTunnelPrefixes&quot;: [&quot;0.0.0.0/1&quot;, &quot;128.0.0.0/1&quot;],
+  &quot;peerAddress&quot;: &quot;198.51.100.12&quot;,
+  &quot;peerRoute&quot;: {&quot;prefix&quot;: &quot;198.51.100.12/32&quot;, &quot;path&quot;: &quot;underlay&quot;}
+}
+</code></pre>
+<p>The /32 keeps that peer on the underlay in this model. Actual clients can implement another appropriate mechanism; the numerical exception is not a packet capture or a native route command.</p>
+<h2 id="dns-policy-is-another-selection">DNS policy is another selection</h2>
+<p>Routing a media address through the VPN does not determine which resolver supplies that address. A client can use a tunnel resolver, local resolver, encrypted resolver or application-specific resolution arrangement.</p>
+<p>The resolver’s traffic then has its own route. Split DNS can deliberately supply another address depending on the chosen view.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Network-VPN-Access.html" title="VPN access and the routed path to a media server">VPN access and the routed path to a media server</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../addressing/Network-CIDR.html" title="Subnets, CIDR and matching routes">Subnets, CIDR and matching routes</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../names/dns/Network-DNS.html" title="DNS resolution, record types and cached answers">DNS resolution, record types and cached answers</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../fundamentals/Network-Local-Remote.html" title="Local and remote connections to Emby">Local and remote connections to Emby</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc4632" title="RFC 4632: CIDR addressing and aggregation">RFC 4632: CIDR addressing and aggregation</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc4301" title="RFC 4301: IPsec policy and tunnel architecture">RFC 4301: IPsec policy and tunnel architecture</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc9499" title="RFC 9499: DNS terminology and views">RFC 9499: DNS terminology and views</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Network-VPN-Routing%0A*%20Title%3A%20VPN%20routing%2C%20overlapping%20prefixes%20and%20split%20tunneling%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,2372 @@
+{
+    "23.976":  {
+                   "uid":  "Learn-Fractional-Frame-Rates",
+                   "title":  "Fractional Frame Rates: 23.976, 29.97, and 59.94",
+                   "description":  "These familiar fractional frame rates are exact integer rates divided by 1.001.",
+                   "url":  "https://emby.media/learn/articles/video/frame-timing/frame-rates/Fractional-Frame-Rates.html"
+               },
+    "29.97":  {
+                  "uid":  "Learn-Fractional-Frame-Rates",
+                  "title":  "Fractional Frame Rates: 23.976, 29.97, and 59.94",
+                  "description":  "These familiar fractional frame rates are exact integer rates divided by 1.001.",
+                  "url":  "https://emby.media/learn/articles/video/frame-timing/frame-rates/Fractional-Frame-Rates.html"
+              },
+    "3:2 pulldown":  {
+                         "uid":  "Learn-Telecine-Pulldown",
+                         "title":  "Telecine and 3:2 Pulldown",
+                         "description":  "3:2 pulldown distributes film pictures over alternating two-field and three-field intervals for television presentation.",
+                         "url":  "https://emby.media/learn/articles/video/frame-timing/interlacing-and-cadence/Telecine-Pulldown.html"
+                     },
+    "5.1 surround":  {
+                         "uid":  "Learn-Surround-Sound-5-1",
+                         "title":  "5.1 Surround Sound",
+                         "description":  "5.1 surround sound uses five main channels and a separate low-frequency-effects channel.",
+                         "url":  "https://emby.media/learn/articles/audio/channels/layouts/Surround-Sound-5-1.html"
+                     },
+    "59.94":  {
+                  "uid":  "Learn-Fractional-Frame-Rates",
+                  "title":  "Fractional Frame Rates: 23.976, 29.97, and 59.94",
+                  "description":  "These familiar fractional frame rates are exact integer rates divided by 1.001.",
+                  "url":  "https://emby.media/learn/articles/video/frame-timing/frame-rates/Fractional-Frame-Rates.html"
+              },
+    "7.1 surround":  {
+                         "uid":  "Learn-Surround-Sound-7-1",
+                         "title":  "7.1 Surround Sound",
+                         "description":  "A common 7.1 layout uses seven main channels with separate side and rear surrounds, plus LFE.",
+                         "url":  "https://emby.media/learn/articles/audio/channels/layouts/Surround-Sound-7-1.html"
+                     },
+    "8-VSB":  {
+                  "uid":  "Learn-TV-ATSC1",
+                  "title":  "ATSC 1.0 broadcast television",
+                  "description":  "ATSC 1.0 uses the A/53 television system, including its terrestrial 8-VSB transmission and MPEG transport/service relationships, with PSIP providing relevant channel information.",
+                  "url":  "https://emby.media/learn/articles/live-tv/standards/atsc/TV-ATSC1.html"
+              },
+    "A2DP":  {
+                 "uid":  "Learn-Audio-Bluetooth-A2DP",
+                 "title":  "Bluetooth A2DP",
+                 "description":  "A2DP defines Bluetooth Classic media-audio distribution with source/sink roles, codec negotiation, and framed audio transport.",
+                 "url":  "https://emby.media/learn/articles/audio/devices-output/bluetooth/Audio-Bluetooth-A2DP.html"
+             },
+    "AAC-LC":  {
+                   "uid":  "Learn-AAC-LC",
+                   "title":  "AAC-LC Audio",
+                   "description":  "AAC-LC is the Low Complexity form of Advanced Audio Coding used for lossy mono, stereo, and multichannel audio.",
+                   "url":  "https://emby.media/learn/articles/audio/formats/lossy/aac-family/AAC-LC.html"
+               },
+    "AArch64":  {
+                    "uid":  "Learn-Server-ARM64",
+                    "title":  "ARM64 architecture and native software compatibility",
+                    "description":  "ARM64 commonly identifies software for Arm\u0027s AArch64 execution environment, with operating-system and native-library compatibility still required.",
+                    "url":  "https://emby.media/learn/articles/storage/execution/processors/Server-ARM64.html"
+                },
+    "ABL":  {
+                "uid":  "Learn-Display-ABL",
+                "title":  "Automatic brightness limiting",
+                "description":  "Automatic brightness limiting reduces permitted display output as picture loading reaches the implementation’s power or drive constraints.",
+                "url":  "https://emby.media/learn/articles/display-av/characteristics/hdr/Display-ABL.html"
+            },
+    "ABR streaming":  {
+                          "uid":  "Learn-Playback-Adaptive-Bitrate",
+                          "title":  "Adaptive bitrate streaming and representation selection",
+                          "description":  "Adaptive bitrate streaming selects among suitable representations of the same programme timeline to balance presentation quality, delivery capacity and playback reserve.",
+                          "url":  "https://emby.media/learn/articles/playback-streaming/delivery/Playback-Adaptive-Bitrate.html"
+                      },
+    "AC-3":  {
+                 "uid":  "Learn-Dolby-Digital-AC3",
+                 "title":  "Dolby Digital (AC-3)",
+                 "description":  "Dolby Digital, also called AC-3, is a lossy audio format supporting mono, stereo, and surround presentations.",
+                 "url":  "https://emby.media/learn/articles/audio/formats/lossy/dolby/Dolby-Digital-AC3.html"
+             },
+    "AC-4":  {
+                 "uid":  "Learn-Dolby-AC4",
+                 "title":  "Dolby AC-4 Audio",
+                 "description":  "Dolby AC-4 is a lossy audio system supporting channel-based, immersive, and personalized presentations.",
+                 "url":  "https://emby.media/learn/articles/audio/formats/lossy/dolby/Dolby-AC4.html"
+             },
+    "AC3":  {
+                "uid":  "Learn-Dolby-Digital-AC3",
+                "title":  "Dolby Digital (AC-3)",
+                "description":  "Dolby Digital, also called AC-3, is a lossy audio format supporting mono, stereo, and surround presentations.",
+                "url":  "https://emby.media/learn/articles/audio/formats/lossy/dolby/Dolby-Digital-AC3.html"
+            },
+    "ACL":  {
+                "uid":  "Learn-Storage-ACLs",
+                "title":  "Access control lists: entries, masks and inheritance",
+                "description":  "Access control lists assign rights to named identities, but masks, entry order and inheritance determine how visible grants become effective access.",
+                "url":  "https://emby.media/learn/articles/storage/sharing/permissions/Storage-ACLs.html"
+            },
+    "ACME":  {
+                 "uid":  "Learn-Network-ACME",
+                 "title":  "Certificate renewal, ACME and deployed results",
+                 "description":  "Certificate renewal obtains and deploys successor TLS evidence through distinct validation, issuance, installation and endpoint-reload stages, which ACME can automate in part.",
+                 "url":  "https://emby.media/learn/articles/networking/security/certificates/Network-ACME.html"
+             },
+    "ADTS":  {
+                 "uid":  "Learn-AAC-ADTS",
+                 "title":  "AAC: Audio Data Transport Stream (ADTS)",
+                 "description":  "ADTS frames AAC audio with repeated headers containing synchronization, frame length, and core decoding information.",
+                 "url":  "https://emby.media/learn/articles/media-files/packaging/aac/AAC-ADTS.html"
+             },
+    "ALAC":  {
+                 "uid":  "Learn-ALAC",
+                 "title":  "Apple Lossless (ALAC)",
+                 "description":  "Apple Lossless is a lossless codec that preserves supported PCM audio and is commonly stored in M4A files.",
+                 "url":  "https://emby.media/learn/articles/audio/formats/lossless/ALAC.html"
+             },
+    "ALSA":  {
+                 "uid":  "Learn-Audio-ALSA",
+                 "title":  "ALSA",
+                 "description":  "ALSA supplies Linux audio driver interfaces and a PCM library with configurable device routes, sample formats, and ring-buffer timing.",
+                 "url":  "https://emby.media/learn/articles/audio/devices-output/os-apis/Audio-ALSA.html"
+             },
+    "AMD64":  {
+                  "uid":  "Learn-Server-X86-64",
+                  "title":  "x86-64 architecture and compatible server software",
+                  "description":  "x86-64 is a 64-bit processor architecture used by common server packages, but software also needs a matching operating system, ABI and instruction support.",
+                  "url":  "https://emby.media/learn/articles/storage/execution/processors/Server-X86-64.html"
+              },
+    "AMF":  {
+                "uid":  "Learn-Hardware-AMD-AMF",
+                "title":  "AMD Advanced Media Framework (AMF)",
+                "description":  "AMD AMF is a component framework that connects media applications to supported AMD decoding, encoding and processing paths with defined memory and asynchronous data-flow behavior.",
+                "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/amd/Hardware-AMD-AMF.html"
+            },
+    "AMR-NB":  {
+                   "uid":  "Learn-AMR-NB",
+                   "title":  "AMR-NB Speech Audio",
+                   "description":  "AMR-NB is the narrowband Adaptive Multi-Rate speech codec used in mobile voice and recorded speech.",
+                   "url":  "https://emby.media/learn/articles/audio/formats/speech/AMR-NB.html"
+               },
+    "AMR-WB":  {
+                   "uid":  "Learn-AMR-WB",
+                   "title":  "AMR-WB Speech Audio",
+                   "description":  "AMR-WB is a wideband Adaptive Multi-Rate speech codec using 16 kHz sampling to carry a broader voice spectrum than AMR-NB.",
+                   "url":  "https://emby.media/learn/articles/audio/formats/speech/AMR-WB.html"
+               },
+    "ARIB STD-B24":  {
+                         "uid":  "Learn-Caption-ARIB-B24",
+                         "title":  "ARIB STD-B24 captions",
+                         "description":  "ARIB STD-B24 captions combine coded characters, display controls and resources such as DRCS glyphs under their applicable broadcast profile.",
+                         "url":  "https://emby.media/learn/articles/subtitles/formats/broadcast/Caption-ARIB-B24.html"
+                     },
+    "ARM64":  {
+                  "uid":  "Learn-Server-ARM64",
+                  "title":  "ARM64 architecture and native software compatibility",
+                  "description":  "ARM64 commonly identifies software for Arm\u0027s AArch64 execution environment, with operating-system and native-library compatibility still required.",
+                  "url":  "https://emby.media/learn/articles/storage/execution/processors/Server-ARM64.html"
+              },
+    "ASR captions":  {
+                         "uid":  "Learn-Subtitle-ASR",
+                         "title":  "Automatic speech recognition for captions",
+                         "description":  "ASR estimates spoken text from audio, after which alignment, caption segmentation and content review produce a useful timed-caption resource.",
+                         "url":  "https://emby.media/learn/articles/subtitles/sources/Subtitle-ASR.html"
+                     },
+    "ATSC 1.0":  {
+                     "uid":  "Learn-TV-ATSC1",
+                     "title":  "ATSC 1.0 broadcast television",
+                     "description":  "ATSC 1.0 uses the A/53 television system, including its terrestrial 8-VSB transmission and MPEG transport/service relationships, with PSIP providing relevant channel information.",
+                     "url":  "https://emby.media/learn/articles/live-tv/standards/atsc/TV-ATSC1.html"
+                 },
+    "ATSC 3.0":  {
+                     "uid":  "Learn-TV-ATSC3",
+                     "title":  "ATSC 3.0 broadcast television",
+                     "description":  "ATSC 3.0 is a layered terrestrial television system using a different physical and delivery architecture from ATSC 1.0, with service coding and protection remaining additional compatibility conditions.",
+                     "url":  "https://emby.media/learn/articles/live-tv/standards/atsc/TV-ATSC3.html"
+                 },
+    "AVIF":  {
+                 "uid":  "Learn-Image-AVIF",
+                 "title":  "AVIF images",
+                 "description":  "AVIF defines AV1-coded images within an image-file container, with specified colour, alpha and derived-image arrangements beyond the capabilities of a video decoder alone.",
+                 "url":  "https://emby.media/learn/articles/photos-images/formats/Image-AVIF.html"
+             },
+    "Advanced Media Framework":  {
+                                     "uid":  "Learn-Hardware-AMD-AMF",
+                                     "title":  "AMD Advanced Media Framework (AMF)",
+                                     "description":  "AMD AMF is a component framework that connects media applications to supported AMD decoding, encoding and processing paths with defined memory and asynchronous data-flow behavior.",
+                                     "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/amd/Hardware-AMD-AMF.html"
+                                 },
+    "Advanced SubStation Alpha":  {
+                                      "uid":  "Learn-Subtitle-ASS",
+                                      "title":  "Advanced SubStation Alpha subtitles (ASS)",
+                                      "description":  "ASS stores styled subtitle events with a script coordinate system, reusable styles, and local or timed override instructions.",
+                                      "url":  "https://emby.media/learn/articles/subtitles/formats/text/Subtitle-ASS.html"
+                                  },
+    "AirPlay":  {
+                    "uid":  "Learn-Playback-AirPlay",
+                    "title":  "AirPlay media presentation and screen mirroring",
+                    "description":  "AirPlay provides supported media-output and screen-mirroring routes whose sender, application and receiver choices determine how the presentation reaches another screen or audio device.",
+                    "url":  "https://emby.media/learn/articles/playback-streaming/casting/Playback-AirPlay.html"
+                },
+    "Audio Return Channel":  {
+                                 "uid":  "Learn-AV-HDMI-ARC",
+                                 "title":  "HDMI Audio Return Channel (ARC)",
+                                 "description":  "HDMI Audio Return Channel sends supported audio from a TV toward an audio system over a designated return-audio connection.",
+                                 "url":  "https://emby.media/learn/articles/display-av/signaling/audio-return/AV-HDMI-ARC.html"
+                             },
+    "Auracast":  {
+                     "uid":  "Learn-Audio-Bluetooth-LE",
+                     "title":  "Bluetooth LE Audio",
+                     "description":  "Bluetooth LE Audio combines LC3 coding, isochronous streams, and audio control profiles to coordinate unicast or broadcast sound.",
+                     "url":  "https://emby.media/learn/articles/audio/devices-output/bluetooth/Audio-Bluetooth-LE.html"
+                 },
+    "BCP 47":  {
+                   "uid":  "Learn-Metadata-Language-Tags",
+                   "title":  "Language tags for metadata",
+                   "description":  "A language tag identifies a linguistic presentation with applicable language, script, region and extension information, while selection and fallback remain separate policies.",
+                   "url":  "https://emby.media/learn/articles/metadata-discovery/fields/text-localization/Metadata-Language-Tags.html"
+               },
+    "BCP47":  {
+                  "uid":  "Learn-Metadata-Language-Tags",
+                  "title":  "Language tags for metadata",
+                  "description":  "A language tag identifies a linguistic presentation with applicable language, script, region and extension information, while selection and fallback remain separate policies.",
+                  "url":  "https://emby.media/learn/articles/metadata-discovery/fields/text-localization/Metadata-Language-Tags.html"
+              },
+    "BFF":  {
+                "uid":  "Learn-Video-Field-Order",
+                "title":  "Video Field Order",
+                "description":  "Field order identifies which set of alternating picture lines comes first in time.",
+                "url":  "https://emby.media/learn/articles/video/frame-timing/interlacing-and-cadence/Video-Field-Order.html"
+            },
+    "BFI":  {
+                "uid":  "Learn-Display-Black-Frame-Insertion",
+                "title":  "Black-frame insertion and display persistence",
+                "description":  "Black-frame insertion or timed dark intervals reduce visible picture persistence by interrupting illumination between presentations.",
+                "url":  "https://emby.media/learn/articles/display-av/motion/Display-Black-Frame-Insertion.html"
+            },
+    "BT.1886":  {
+                    "uid":  "Learn-Transfer-Function-BT1886",
+                    "title":  "ITU-R BT.1886",
+                    "description":  "ITU-R BT.1886 defines a reference SDR display response using a 2.4 exponent and the display black and white levels.",
+                    "url":  "https://emby.media/learn/articles/video/color-standards/transfer-functions/Transfer-Function-BT1886.html"
+                },
+    "BT.2020":  {
+                    "uid":  "Learn-Color-Standard-BT2020",
+                    "title":  "ITU-R BT.2020",
+                    "description":  "ITU-R BT.2020 defines UHD television parameters and a wide set of color primaries.",
+                    "url":  "https://emby.media/learn/articles/video/color-standards/standards/Color-Standard-BT2020.html"
+                },
+    "BT.2100":  {
+                    "uid":  "Learn-Color-Standard-BT2100",
+                    "title":  "ITU-R BT.2100",
+                    "description":  "ITU-R BT.2100 specifies HDR television image parameters for PQ and HLG systems.",
+                    "url":  "https://emby.media/learn/articles/video/color-standards/standards/Color-Standard-BT2100.html"
+                },
+    "BT.2390":  {
+                    "uid":  "Learn-Tone-Mapping-Curve-BT2390",
+                    "title":  "Tone Mapping Curve: BT.2390",
+                    "description":  "The BT.2390 EETF uses a smooth highlight roll-off to adapt an HDR signal to a display with a smaller luminance range.",
+                    "url":  "https://emby.media/learn/articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-BT2390.html"
+                },
+    "BT.2446 Method A":  {
+                             "uid":  "Learn-Tone-Mapping-Curve-BT2446A",
+                             "title":  "Tone Mapping Curve: BT.2446 Method A",
+                             "description":  "BT.2446 Method A defines a conversion between HDR and SDR that includes a shaped brightness mapping and associated color processing.",
+                             "url":  "https://emby.media/learn/articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-BT2446A.html"
+                         },
+    "BT.601":  {
+                   "uid":  "Learn-Color-Standard-BT601",
+                   "title":  "ITU-R BT.601",
+                   "description":  "ITU-R BT.601 defines digital component-video encoding for standard-definition television.",
+                   "url":  "https://emby.media/learn/articles/video/color-standards/standards/Color-Standard-BT601.html"
+               },
+    "BT.709":  {
+                   "uid":  "Learn-Color-Standard-BT709",
+                   "title":  "ITU-R BT.709",
+                   "description":  "ITU-R BT.709 defines HDTV image and signal parameters, including the familiar SDR color primaries.",
+                   "url":  "https://emby.media/learn/articles/video/color-standards/standards/Color-Standard-BT709.html"
+               },
+    "BT2390":  {
+                   "uid":  "Learn-Tone-Mapping-Curve-BT2390",
+                   "title":  "Tone Mapping Curve: BT.2390",
+                   "description":  "The BT.2390 EETF uses a smooth highlight roll-off to adapt an HDR signal to a display with a smaller luminance range.",
+                   "url":  "https://emby.media/learn/articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-BT2390.html"
+               },
+    "BT2446A":  {
+                    "uid":  "Learn-Tone-Mapping-Curve-BT2446A",
+                    "title":  "Tone Mapping Curve: BT.2446 Method A",
+                    "description":  "BT.2446 Method A defines a conversion between HDR and SDR that includes a shaped brightness mapping and associated color processing.",
+                    "url":  "https://emby.media/learn/articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-BT2446A.html"
+                },
+    "CAF":  {
+                "uid":  "Learn-CAF-Container",
+                "title":  "CAF: Core Audio Format",
+                "description":  "Apple Core Audio Format uses extensible chunks and 64-bit size fields to store audio, packet descriptions, and metadata.",
+                "url":  "https://emby.media/learn/articles/media-files/containers/audio-oriented/CAF-Container.html"
+            },
+    "CBR":  {
+                "uid":  "Learn-Library-Comic-Archives",
+                "title":  "Comic book archives: CBZ and CBR",
+                "description":  "A comic book archive packages page-image resources and optional descriptive metadata whose archive format, reading order and page roles require separate interpretation.",
+                "url":  "https://emby.media/learn/articles/libraries-collections/books-spoken-audio/Library-Comic-Archives.html"
+            },
+    "CBZ":  {
+                "uid":  "Learn-Library-Comic-Archives",
+                "title":  "Comic book archives: CBZ and CBR",
+                "description":  "A comic book archive packages page-image resources and optional descriptive metadata whose archive format, reading order and page roles require separate interpretation.",
+                "url":  "https://emby.media/learn/articles/libraries-collections/books-spoken-audio/Library-Comic-Archives.html"
+            },
+    "CEA-608":  {
+                    "uid":  "Learn-Caption-CTA-608",
+                    "title":  "CEA-608 / CTA-608 captions",
+                    "description":  "CTA-608 describes legacy line-21 caption data with channel selection, character/control codes and a cell-based presentation model that can also be carried digitally.",
+                    "url":  "https://emby.media/learn/articles/subtitles/formats/broadcast/Caption-CTA-608.html"
+                },
+    "CEA-708":  {
+                    "uid":  "Learn-Caption-CTA-708",
+                    "title":  "CEA-708 / CTA-708 captions",
+                    "description":  "CTA-708 describes digital caption services with window, pen, text and visibility commands, alongside separate 608 compatibility carriage.",
+                    "url":  "https://emby.media/learn/articles/subtitles/formats/broadcast/Caption-CTA-708.html"
+                },
+    "CEC":  {
+                "uid":  "Learn-AV-HDMI-CEC",
+                "title":  "HDMI-CEC control and device addressing",
+                "description":  "HDMI-CEC carries device-control messages on a control path whose addressing and application handling remain distinct from HDMI picture and audio transport.",
+                "url":  "https://emby.media/learn/articles/display-av/signaling/AV-HDMI-CEC.html"
+            },
+    "CGNAT":  {
+                  "uid":  "Learn-Network-CGNAT",
+                  "title":  "Carrier-grade NAT and control of inbound mappings",
+                  "description":  "Carrier-grade NAT places subscriber traffic behind an operator-controlled translation layer, so household gateway settings do not necessarily provide an outside inbound service mapping.",
+                  "url":  "https://emby.media/learn/articles/networking/routers/nat/Network-CGNAT.html"
+              },
+    "CIDR":  {
+                 "uid":  "Learn-Network-CIDR",
+                 "title":  "Subnets, CIDR and matching routes",
+                 "description":  "CIDR notation specifies how many leading address bits form a prefix, defining address membership and the specificity used to choose matching routes.",
+                 "url":  "https://emby.media/learn/articles/networking/addressing/Network-CIDR.html"
+             },
+    "CMAF":  {
+                 "uid":  "Learn-Playback-CMAF",
+                 "title":  "Common Media Application Format (CMAF)",
+                 "description":  "CMAF constrains segmented media tracks and their relationships so compatible delivery systems can use shared addressable media objects for timed presentation and switching.",
+                 "url":  "https://emby.media/learn/articles/playback-streaming/delivery/Playback-CMAF.html"
+             },
+    "CORS":  {
+                 "uid":  "Learn-Network-CORS",
+                 "title":  "Same-origin policy, CORS and readable responses",
+                 "description":  "The same-origin policy and CORS govern script access across browser origins, with preflight, credentials and allowed responses separate from the server’s authentication and authorization.",
+                 "url":  "https://emby.media/learn/articles/networking/security/browser/Network-CORS.html"
+             },
+    "CQP":  {
+                "uid":  "Learn-Video-Encoding-QP",
+                "title":  "Video Quantization Parameter (QP)",
+                "description":  "A quantization parameter selects quantization strength in a video coding process and is not a universal picture-quality score.",
+                "url":  "https://emby.media/learn/articles/video/encoding-quality/rate-control/Video-Encoding-QP.html"
+            },
+    "CRF":  {
+                "uid":  "Learn-Video-Encoding-CRF",
+                "title":  "Constant Rate Factor (CRF) for Video",
+                "description":  "Constant rate factor is an encoder-specific quality control that produces variable bitrate without targeting an exact output size.",
+                "url":  "https://emby.media/learn/articles/video/encoding-quality/rate-control/Video-Encoding-CRF.html"
+            },
+    "CTA-608":  {
+                    "uid":  "Learn-Caption-CTA-608",
+                    "title":  "CEA-608 / CTA-608 captions",
+                    "description":  "CTA-608 describes legacy line-21 caption data with channel selection, character/control codes and a cell-based presentation model that can also be carried digitally.",
+                    "url":  "https://emby.media/learn/articles/subtitles/formats/broadcast/Caption-CTA-608.html"
+                },
+    "CTA-708":  {
+                    "uid":  "Learn-Caption-CTA-708",
+                    "title":  "CEA-708 / CTA-708 captions",
+                    "description":  "CTA-708 describes digital caption services with window, pen, text and visibility commands, alongside separate 608 compatibility carriage.",
+                    "url":  "https://emby.media/learn/articles/subtitles/formats/broadcast/Caption-CTA-708.html"
+                },
+    "CTA-861":  {
+                    "uid":  "Learn-AV-CTA861",
+                    "title":  "CTA-861 capability blocks",
+                    "description":  "CTA-861 capability structures extend display declarations with defined video, audio, color and metadata information used by consumer digital-interface routes.",
+                    "url":  "https://emby.media/learn/articles/display-av/signaling/capability-exchange/AV-CTA861.html"
+                },
+    "CUDA":  {
+                 "uid":  "Learn-Hardware-NVIDIA-CUDA",
+                 "title":  "NVIDIA CUDA in media processing",
+                 "description":  "CUDA provides NVIDIA GPU compute and device-memory interfaces used for programmable picture processing and interoperability around dedicated video engines.",
+                 "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/nvidia/Hardware-NVIDIA-CUDA.html"
+             },
+    "CUDA subtitle overlay":  {
+                                  "uid":  "Learn-Subtitle-Overlay-CUDA",
+                                  "title":  "CUDA subtitle overlay",
+                                  "description":  "CUDA subtitle composition blends accepted device video/image formats and remains distinct from text rendering, codec engines and the selected Emby graph.",
+                                  "url":  "https://emby.media/learn/articles/subtitles/emby-processing/overlay-filters/gpu/Subtitle-Overlay-CUDA.html"
+                              },
+    "CUVID":  {
+                  "uid":  "Learn-Hardware-NVIDIA-CUVID",
+                  "title":  "NVDEC and CUVID API names",
+                  "description":  "NVDEC names NVIDIA’s decoding engine while CUVID and NVDECODE names persist in software interfaces, library symbols and media-program wrappers that reach its supported decode paths.",
+                  "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/nvidia/Hardware-NVIDIA-CUVID.html"
+              },
+    "Clear QAM":  {
+                      "uid":  "Learn-TV-Clear-QAM",
+                      "title":  "Clear QAM cable television",
+                      "description":  "Clear QAM refers to relevant unencrypted digital cable services carried through a compatible QAM reception path, rather than to every cable channel or every QAM system.",
+                      "url":  "https://emby.media/learn/articles/live-tv/sources/TV-Clear-QAM.html"
+                  },
+    "Common Media Application Format":  {
+                                            "uid":  "Learn-Playback-CMAF",
+                                            "title":  "Common Media Application Format (CMAF)",
+                                            "description":  "CMAF constrains segmented media tracks and their relationships so compatible delivery systems can use shared addressable media objects for timed presentation and switching.",
+                                            "url":  "https://emby.media/learn/articles/playback-streaming/delivery/Playback-CMAF.html"
+                                        },
+    "D3D11VA":  {
+                    "uid":  "Learn-Hardware-Windows-D3D11VA",
+                    "title":  "Direct3D 11 video acceleration (D3D11VA)",
+                    "description":  "Direct3D 11 video acceleration uses driver-backed video interfaces and texture resources to reconstruct supported encoded pictures and connect them to compatible consumers.",
+                    "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/windows/Hardware-Windows-D3D11VA.html"
+                },
+    "DAC":  {
+                "uid":  "Learn-Audio-DAC",
+                "title":  "Digital-to-analog conversion (DAC)",
+                "description":  "A DAC converts timed digital samples into an analog signal using conversion circuitry, reconstruction filtering, and an output stage.",
+                "url":  "https://emby.media/learn/articles/audio/devices-output/Audio-DAC.html"
+            },
+    "DASH manifest":  {
+                          "uid":  "Learn-Playback-DASH",
+                          "title":  "MPEG-DASH and its media presentation description",
+                          "description":  "MPEG-DASH describes timed media representations and their addressable segments in a Media Presentation Description that a player uses for HTTP delivery and adaptation.",
+                          "url":  "https://emby.media/learn/articles/playback-streaming/delivery/Playback-DASH.html"
+                      },
+    "DCI-P3":  {
+                   "uid":  "Learn-P3-Color-Gamuts",
+                   "title":  "P3 Color Gamuts",
+                   "description":  "P3 names a family of color spaces that share wide-gamut primaries but can differ in white point and transfer function.",
+                   "url":  "https://emby.media/learn/articles/video/color-standards/standards/P3-Color-Gamuts.html"
+               },
+    "DDNS":  {
+                 "uid":  "Learn-Network-DDNS",
+                 "title":  "Dynamic DNS and a changing server address",
+                 "description":  "Dynamic DNS updates a name’s address records when the represented endpoint changes, while caches and the actual inbound network path retain independent lifetimes.",
+                 "url":  "https://emby.media/learn/articles/networking/names/dns/Network-DDNS.html"
+             },
+    "DHCP reservation":  {
+                             "uid":  "Learn-Network-DHCP-Reservations",
+                             "title":  "DHCP reservations and stable server addresses",
+                             "description":  "A DHCP reservation binds a chosen server-side client identity to a stable address allocation while the client continues obtaining its network configuration through DHCP.",
+                             "url":  "https://emby.media/learn/articles/networking/addressing/Network-DHCP-Reservations.html"
+                         },
+    "DLNA":  {
+                 "uid":  "Learn-Playback-DLNA",
+                 "title":  "DLNA media playback and UPnP AV roles",
+                 "description":  "DLNA media playback uses interoperable media and UPnP AV roles to discover content, select a renderer and establish a supported media-delivery path.",
+                 "url":  "https://emby.media/learn/articles/playback-streaming/casting/dlna/Playback-DLNA.html"
+             },
+    "DMA-BUF":  {
+                    "uid":  "Learn-Hardware-Linux-DMABuf",
+                    "title":  "DRM PRIME and DMA-BUF frame sharing",
+                    "description":  "DRM PRIME and DMA-BUF let compatible Linux subsystems exchange references to frame storage while layout, synchronization and ownership determine how the shared picture may be used.",
+                    "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/linux/Hardware-Linux-DMABuf.html"
+                },
+    "DMABUF":  {
+                   "uid":  "Learn-Hardware-Linux-DMABuf",
+                   "title":  "DRM PRIME and DMA-BUF frame sharing",
+                   "description":  "DRM PRIME and DMA-BUF let compatible Linux subsystems exchange references to frame storage while layout, synchronization and ownership determine how the shared picture may be used.",
+                   "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/linux/Hardware-Linux-DMABuf.html"
+               },
+    "DNS":  {
+                "uid":  "Learn-Network-DNS",
+                "title":  "DNS resolution, record types and cached answers",
+                "description":  "DNS resolves typed questions about names through authoritative data and caches, with address answers providing only one stage of a server connection.",
+                "url":  "https://emby.media/learn/articles/networking/names/dns/Network-DNS.html"
+            },
+    "DNxHD":  {
+                  "uid":  "Learn-Video-Codec-DNxHD",
+                  "title":  "Avid DNxHD Video",
+                  "description":  "Avid DNxHD identifies the established HD production-codec workflows within the VC-3 video coding family.",
+                  "url":  "https://emby.media/learn/articles/video/codecs/production-preservation/Video-Codec-DNxHD.html"
+              },
+    "DNxHR":  {
+                  "uid":  "Learn-Video-Codec-DNxHR",
+                  "title":  "Avid DNxHR Video",
+                  "description":  "Avid DNxHR identifies resolution-independent production workflows in the VC-3 video coding family.",
+                  "url":  "https://emby.media/learn/articles/video/codecs/production-preservation/Video-Codec-DNxHR.html"
+              },
+    "DRCS":  {
+                 "uid":  "Learn-Caption-ARIB-B24",
+                 "title":  "ARIB STD-B24 captions",
+                 "description":  "ARIB STD-B24 captions combine coded characters, display controls and resources such as DRCS glyphs under their applicable broadcast profile.",
+                 "url":  "https://emby.media/learn/articles/subtitles/formats/broadcast/Caption-ARIB-B24.html"
+             },
+    "DRM PRIME":  {
+                      "uid":  "Learn-Hardware-Linux-DMABuf",
+                      "title":  "DRM PRIME and DMA-BUF frame sharing",
+                      "description":  "DRM PRIME and DMA-BUF let compatible Linux subsystems exchange references to frame storage while layout, synchronization and ownership determine how the shared picture may be used.",
+                      "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/linux/Hardware-Linux-DMABuf.html"
+                  },
+    "DRM-protected media":  {
+                                "uid":  "Learn-Playback-DRM",
+                                "title":  "DRM-protected media and authorized playback paths",
+                                "description":  "DRM-protected playback combines encrypted media with a compatible key system, usable authorization and the required processing and output conditions.",
+                                "url":  "https://emby.media/learn/articles/playback-streaming/players/protected/Playback-DRM.html"
+                            },
+    "DSC":  {
+                "uid":  "Learn-AV-DSC",
+                "title":  "Display Stream Compression (DSC)",
+                "description":  "Display Stream Compression encodes the display-link picture representation to reduce transport demand under a supported source/sink configuration.",
+                "url":  "https://emby.media/learn/articles/display-av/connections/AV-DSC.html"
+            },
+    "DSCP":  {
+                 "uid":  "Learn-Network-QoS",
+                 "title":  "Quality of service, classification and scheduling",
+                 "description":  "Quality-of-service policy classifies traffic and schedules limited service, with markings and priority meaningful only under the policies that interpret them.",
+                 "url":  "https://emby.media/learn/articles/networking/performance/traffic/Network-QoS.html"
+             },
+    "DSD128":  {
+                   "uid":  "Learn-DSD",
+                   "title":  "Direct Stream Digital (DSD)",
+                   "description":  "Direct Stream Digital represents audio using a high-rate one-bit stream rather than conventional multibit linear PCM samples.",
+                   "url":  "https://emby.media/learn/articles/audio/formats/DSD.html"
+               },
+    "DSD256":  {
+                   "uid":  "Learn-DSD",
+                   "title":  "Direct Stream Digital (DSD)",
+                   "description":  "Direct Stream Digital represents audio using a high-rate one-bit stream rather than conventional multibit linear PCM samples.",
+                   "url":  "https://emby.media/learn/articles/audio/formats/DSD.html"
+               },
+    "DSD64":  {
+                  "uid":  "Learn-DSD",
+                  "title":  "Direct Stream Digital (DSD)",
+                  "description":  "Direct Stream Digital represents audio using a high-rate one-bit stream rather than conventional multibit linear PCM samples.",
+                  "url":  "https://emby.media/learn/articles/audio/formats/DSD.html"
+              },
+    "DSDIFF":  {
+                   "uid":  "Learn-DSDIFF-Container",
+                   "title":  "DSDIFF: DFF Container",
+                   "description":  "Philips DSDIFF stores DSD audio or its losslessly compressed DST representation with properties and optional production information.",
+                   "url":  "https://emby.media/learn/articles/media-files/containers/audio-oriented/DSDIFF-Container.html"
+               },
+    "DSF":  {
+                "uid":  "Learn-DSF-Container",
+                "title":  "DSF: DSD Stream File",
+                "description":  "Sony DSF stores raw DSD audio in channel blocks together with an optional ID3v2 metadata section.",
+                "url":  "https://emby.media/learn/articles/media-files/containers/audio-oriented/DSF-Container.html"
+            },
+    "DST":  {
+                "uid":  "Learn-DSDIFF-Container",
+                "title":  "DSDIFF: DFF Container",
+                "description":  "Philips DSDIFF stores DSD audio or its losslessly compressed DST representation with properties and optional production information.",
+                "url":  "https://emby.media/learn/articles/media-files/containers/audio-oriented/DSDIFF-Container.html"
+            },
+    "DTMB":  {
+                 "uid":  "Learn-TV-DTMB",
+                 "title":  "DTMB terrestrial television",
+                 "description":  "DTMB is a terrestrial television transmission system defined by GB 20600, with its specific framing, coding and modulation required before service media can be recovered.",
+                 "url":  "https://emby.media/learn/articles/live-tv/standards/TV-DTMB.html"
+             },
+    "DTS core":  {
+                     "uid":  "Learn-DTS-Core",
+                     "title":  "DTS Core Audio",
+                     "description":  "DTS core audio is the independently decodable lossy foundation used by conventional DTS Digital Surround and many DTS-HD streams.",
+                     "url":  "https://emby.media/learn/articles/audio/formats/lossy/DTS-Core.html"
+                 },
+    "DTS-HD High Resolution":  {
+                                   "uid":  "Learn-DTS-HD-High-Resolution",
+                                   "title":  "DTS-HD High Resolution Audio",
+                                   "description":  "DTS-HD High Resolution Audio is a lossy DTS-HD format that extends the conventional DTS presentation.",
+                                   "url":  "https://emby.media/learn/articles/audio/formats/lossy/DTS-HD-High-Resolution.html"
+                               },
+    "DTS-HD Master Audio":  {
+                                "uid":  "Learn-DTS-HD-Master-Audio",
+                                "title":  "DTS-HD Master Audio",
+                                "description":  "DTS-HD Master Audio uses lossless extension information to reconstruct the encoded source audio exactly.",
+                                "url":  "https://emby.media/learn/articles/audio/formats/lossless/DTS-HD-Master-Audio.html"
+                            },
+    "DTS:X":  {
+                  "uid":  "Learn-DTS-X",
+                  "title":  "DTS:X",
+                  "description":  "DTS:X uses spatial audio information to render a soundtrack for the playback system rather than one fixed speaker count.",
+                  "url":  "https://emby.media/learn/articles/audio/channels/object-based/DTS-X.html"
+              },
+    "DV video":  {
+                     "uid":  "Learn-Video-Codec-DV",
+                     "title":  "DV Video",
+                     "description":  "DV video is an intra-frame compressed video format commonly encountered in digital tape transfers.",
+                     "url":  "https://emby.media/learn/articles/video/codecs/production-preservation/Video-Codec-DV.html"
+                 },
+    "DV25":  {
+                 "uid":  "Learn-Video-Codec-DV",
+                 "title":  "DV Video",
+                 "description":  "DV video is an intra-frame compressed video format commonly encountered in digital tape transfers.",
+                 "url":  "https://emby.media/learn/articles/video/codecs/production-preservation/Video-Codec-DV.html"
+             },
+    "DVB-C":  {
+                  "uid":  "Learn-TV-DVB-C",
+                  "title":  "DVB-C cable television",
+                  "description":  "DVB-C specifies a digital cable transmission arrangement whose QAM modulation and framing recover service data before access and media decoding are established.",
+                  "url":  "https://emby.media/learn/articles/live-tv/standards/dvb/TV-DVB-C.html"
+              },
+    "DVB-S":  {
+                  "uid":  "Learn-TV-DVB-S",
+                  "title":  "DVB-S satellite television",
+                  "description":  "DVB-S defines a satellite transmission system using QPSK and specified framing/error-protection relationships before programme services are recovered.",
+                  "url":  "https://emby.media/learn/articles/live-tv/standards/dvb/TV-DVB-S.html"
+              },
+    "DVB-S2":  {
+                   "uid":  "Learn-TV-DVB-S2",
+                   "title":  "DVB-S2 satellite television",
+                   "description":  "DVB-S2 specifies second-generation satellite framing, modulation and error protection, with the selected configuration determining the required reception and transport relationships.",
+                   "url":  "https://emby.media/learn/articles/live-tv/standards/dvb/TV-DVB-S2.html"
+               },
+    "DVB-SI":  {
+                   "uid":  "Learn-TV-DVB-SI",
+                   "title":  "DVB Service Information and broadcast guides",
+                   "description":  "DVB Service Information describes broadcast services, programme events and timing context through tables that a receiver must collect, interpret and associate with the selected service.",
+                   "url":  "https://emby.media/learn/articles/live-tv/guides/formats/TV-DVB-SI.html"
+               },
+    "DVB-T":  {
+                  "uid":  "Learn-TV-DVB-T",
+                  "title":  "DVB-T terrestrial television",
+                  "description":  "DVB-T specifies terrestrial television transmission using an OFDM-based carrier arrangement, framing and error protection before programme services are selected from recovered data.",
+                  "url":  "https://emby.media/learn/articles/live-tv/standards/dvb/TV-DVB-T.html"
+              },
+    "DVB-T2":  {
+                   "uid":  "Learn-TV-DVB-T2",
+                   "title":  "DVB-T2 terrestrial television",
+                   "description":  "DVB-T2 defines a second-generation terrestrial transmission arrangement with its own coding, framing and physical-layer-pipe configuration requirements.",
+                   "url":  "https://emby.media/learn/articles/live-tv/standards/dvb/TV-DVB-T2.html"
+               },
+    "DVBSub":  {
+                   "uid":  "Learn-Subtitle-DVB",
+                   "title":  "DVB subtitles (DVBSub)",
+                   "description":  "DVBSub carries broadcast subtitle services using timed page, region, object and colour-table segments in a transport stream.",
+                   "url":  "https://emby.media/learn/articles/subtitles/formats/bitmap/Subtitle-DVB.html"
+               },
+    "DVDSub":  {
+                   "uid":  "Learn-Subtitle-DVD",
+                   "title":  "DVD subtitles: DVDSub and VobSub",
+                   "description":  "DVD subtitle subpictures are compressed indexed graphics, while VobSub packages related subtitle data into external SUB and IDX files.",
+                   "url":  "https://emby.media/learn/articles/subtitles/formats/bitmap/Subtitle-DVD.html"
+               },
+    "DXVA 2.0":  {
+                     "uid":  "Learn-Hardware-Windows-DXVA2",
+                     "title":  "DirectX Video Acceleration (DXVA2)",
+                     "description":  "DXVA2 exposes Windows video-acceleration services through which a software media implementation submits supported decoding or processing work to a driver-backed device.",
+                     "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/windows/Hardware-Windows-DXVA2.html"
+                 },
+    "DXVA2":  {
+                  "uid":  "Learn-Hardware-Windows-DXVA2",
+                  "title":  "DirectX Video Acceleration (DXVA2)",
+                  "description":  "DXVA2 exposes Windows video-acceleration services through which a software media implementation submits supported decoding or processing work to a driver-backed device.",
+                  "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/windows/Hardware-Windows-DXVA2.html"
+              },
+    "Display Stream Compression":  {
+                                       "uid":  "Learn-AV-DSC",
+                                       "title":  "Display Stream Compression (DSC)",
+                                       "description":  "Display Stream Compression encodes the display-link picture representation to reduce transport demand under a supported source/sink configuration.",
+                                       "url":  "https://emby.media/learn/articles/display-av/connections/AV-DSC.html"
+                                   },
+    "DisplayPort Alt Mode":  {
+                                 "uid":  "Learn-AV-USB-C-DisplayPort",
+                                 "title":  "USB-C DisplayPort Alt Mode",
+                                 "description":  "USB-C DisplayPort Alt Mode uses a supported USB-C connection arrangement to carry DisplayPort signaling, with lane allocation and adapters determining the available presentation path.",
+                                 "url":  "https://emby.media/learn/articles/display-av/connections/displayport/AV-USB-C-DisplayPort.html"
+                             },
+    "Dolby Atmos":  {
+                        "uid":  "Learn-Dolby-Atmos",
+                        "title":  "Dolby Atmos",
+                        "description":  "Dolby Atmos uses channel and object information to render an immersive soundtrack for a supported playback arrangement.",
+                        "url":  "https://emby.media/learn/articles/audio/channels/object-based/Dolby-Atmos.html"
+                    },
+    "Dolby MAT":  {
+                      "uid":  "Learn-Dolby-MAT",
+                      "title":  "Dolby MAT Audio Transport",
+                      "description":  "Dolby MAT is a metadata-enhanced audio transport used for TrueHD carriage and supported PCM-based Dolby Atmos delivery.",
+                      "url":  "https://emby.media/learn/articles/audio/decoding-output/output-transport/Dolby-MAT.html"
+                  },
+    "E-AC-3":  {
+                   "uid":  "Learn-Dolby-Digital-Plus-EAC3",
+                   "title":  "Dolby Digital Plus (E-AC-3)",
+                   "description":  "Dolby Digital Plus is the Enhanced AC-3 lossy audio format used for multichannel and compatible immersive delivery.",
+                   "url":  "https://emby.media/learn/articles/audio/formats/lossy/dolby/Dolby-Digital-Plus-EAC3.html"
+               },
+    "EAC3":  {
+                 "uid":  "Learn-Dolby-Digital-Plus-EAC3",
+                 "title":  "Dolby Digital Plus (E-AC-3)",
+                 "description":  "Dolby Digital Plus is the Enhanced AC-3 lossy audio format used for multichannel and compatible immersive delivery.",
+                 "url":  "https://emby.media/learn/articles/audio/formats/lossy/dolby/Dolby-Digital-Plus-EAC3.html"
+             },
+    "EC-3":  {
+                 "uid":  "Learn-Dolby-Digital-Plus-EAC3",
+                 "title":  "Dolby Digital Plus (E-AC-3)",
+                 "description":  "Dolby Digital Plus is the Enhanced AC-3 lossy audio format used for multichannel and compatible immersive delivery.",
+                 "url":  "https://emby.media/learn/articles/audio/formats/lossy/dolby/Dolby-Digital-Plus-EAC3.html"
+             },
+    "EDID":  {
+                 "uid":  "Learn-AV-EDID",
+                 "title":  "EDID: display capability declarations",
+                 "description":  "EDID is a structured display-capability declaration that a source reads to learn supported timings and related properties, potentially through an intermediate device.",
+                 "url":  "https://emby.media/learn/articles/display-av/signaling/capability-exchange/AV-EDID.html"
+             },
+    "EME":  {
+                "uid":  "Learn-Playback-EME",
+                "title":  "Encrypted Media Extensions (EME) and browser key sessions",
+                "description":  "Encrypted Media Extensions provides browser APIs for selecting a supported key system and coordinating key sessions needed for encrypted media playback.",
+                "url":  "https://emby.media/learn/articles/playback-streaming/players/protected/Playback-EME.html"
+            },
+    "EOTF":  {
+                 "uid":  "Learn-Transfer-Function-EOTF",
+                 "title":  "Electro-Optical Transfer Function (EOTF)",
+                 "description":  "An EOTF maps an encoded picture signal to the light a display should produce.",
+                 "url":  "https://emby.media/learn/articles/video/color-standards/transfer-functions/Transfer-Function-EOTF.html"
+             },
+    "EPG":  {
+                "uid":  "Learn-TV-EPG",
+                "title":  "Electronic programme guides",
+                "description":  "An electronic programme guide associates stations and time intervals with programme descriptions, supplying the schedule information used for browsing and programme-based recording.",
+                "url":  "https://emby.media/learn/articles/live-tv/guides/TV-EPG.html"
+            },
+    "EXIF":  {
+                 "uid":  "Learn-Metadata-Exif",
+                 "title":  "Exif photo metadata",
+                 "description":  "Exif specifies image-associated capture and presentation records, including camera information, capture-time context, orientation and applicable location data.",
+                 "url":  "https://emby.media/learn/articles/metadata-discovery/local-formats/photo-metadata/Metadata-Exif.html"
+             },
+    "Encrypted Media Extensions":  {
+                                       "uid":  "Learn-Playback-EME",
+                                       "title":  "Encrypted Media Extensions (EME) and browser key sessions",
+                                       "description":  "Encrypted Media Extensions provides browser APIs for selecting a supported key system and coordinating key sessions needed for encrypted media playback.",
+                                       "url":  "https://emby.media/learn/articles/playback-streaming/players/protected/Playback-EME.html"
+                                   },
+    "Enhanced Audio Return Channel":  {
+                                          "uid":  "Learn-AV-HDMI-eARC",
+                                          "title":  "HDMI Enhanced Audio Return Channel (eARC)",
+                                          "description":  "Enhanced Audio Return Channel expands the supported TV-to-audio-system transport and capability relationship beyond conventional ARC.",
+                                          "url":  "https://emby.media/learn/articles/display-av/signaling/audio-return/AV-HDMI-eARC.html"
+                                      },
+    "Exif":  {
+                 "uid":  "Learn-Metadata-Exif",
+                 "title":  "Exif photo metadata",
+                 "description":  "Exif specifies image-associated capture and presentation records, including camera information, capture-time context, orientation and applicable location data.",
+                 "url":  "https://emby.media/learn/articles/metadata-discovery/local-formats/photo-metadata/Metadata-Exif.html"
+             },
+    "Extended M3U":  {
+                         "uid":  "Learn-TV-M3U",
+                         "title":  "Extended M3U channel lists",
+                         "description":  "An extended M3U channel list associates source URLs with channel labels and attributes, while actual stream access and programme timing remain separate operations.",
+                         "url":  "https://emby.media/learn/articles/live-tv/sources/TV-M3U.html"
+                     },
+    "FEL":  {
+                "uid":  "Learn-Dolby-Vision-MEL-FEL",
+                "title":  "Dolby Vision MEL and FEL",
+                "description":  "MEL and FEL distinguish Dolby Vision enhancement layers with no picture residual from layers that carry additional reconstruction information.",
+                "url":  "https://emby.media/learn/articles/video/hdr/formats/dolby-vision/metadata-and-layers/Dolby-Vision-MEL-FEL.html"
+            },
+    "FFV1":  {
+                 "uid":  "Learn-Video-Codec-FFV1",
+                 "title":  "FFV1 Lossless Video",
+                 "description":  "FFV1 is a lossless video coding format whose decoded sample values match the samples supplied to its encoder.",
+                 "url":  "https://emby.media/learn/articles/video/codecs/production-preservation/Video-Codec-FFV1.html"
+             },
+    "FRL":  {
+                "uid":  "Learn-AV-HDMI-Bandwidth",
+                "title":  "HDMI link bandwidth: TMDS and FRL",
+                "description":  "HDMI link bandwidth depends on the selected timing, sample format and TMDS or FRL transport arrangement rather than on the movie’s compressed bitrate.",
+                "url":  "https://emby.media/learn/articles/display-av/connections/hdmi/AV-HDMI-Bandwidth.html"
+            },
+    "G.722.2":  {
+                    "uid":  "Learn-AMR-WB",
+                    "title":  "AMR-WB Speech Audio",
+                    "description":  "AMR-WB is a wideband Adaptive Multi-Rate speech codec using 16 kHz sampling to carry a broader voice spectrum than AMR-NB.",
+                    "url":  "https://emby.media/learn/articles/audio/formats/speech/AMR-WB.html"
+                },
+    "GOP":  {
+                "uid":  "Learn-Video-GOP",
+                "title":  "Groups of Pictures (GOPs)",
+                "description":  "A group of pictures describes a sequence of coded pictures and their prediction relationships around access points.",
+                "url":  "https://emby.media/learn/articles/video/compression/picture-prediction-and-random-access/Video-GOP.html"
+            },
+    "Google Cast":  {
+                        "uid":  "Learn-Playback-Google-Cast",
+                        "title":  "Google Cast and receiver-side media playback",
+                        "description":  "Google Cast connects a sender application to a receiver application that manages the selected media presentation and its resource-loading path.",
+                        "url":  "https://emby.media/learn/articles/playback-streaming/casting/Playback-Google-Cast.html"
+                    },
+    "H.266":  {
+                  "uid":  "Learn-Video-Codec-VVC",
+                  "title":  "H.266 / VVC Video",
+                  "description":  "H.266, also called VVC, is a video coding standard that requires its own compatible decoder and playback integration.",
+                  "url":  "https://emby.media/learn/articles/video/codecs/mpeg-itu/Video-Codec-VVC.html"
+              },
+    "HDCP":  {
+                 "uid":  "Learn-AV-HDCP",
+                 "title":  "HDCP and protected display links",
+                 "description":  "HDCP authenticates supported display-link participants and protects audiovisual transport under the applicable content and output policy.",
+                 "url":  "https://emby.media/learn/articles/display-av/signaling/AV-HDCP.html"
+             },
+    "HDMI ARC":  {
+                     "uid":  "Learn-AV-HDMI-ARC",
+                     "title":  "HDMI Audio Return Channel (ARC)",
+                     "description":  "HDMI Audio Return Channel sends supported audio from a TV toward an audio system over a designated return-audio connection.",
+                     "url":  "https://emby.media/learn/articles/display-av/signaling/audio-return/AV-HDMI-ARC.html"
+                 },
+    "HDMI-CEC":  {
+                     "uid":  "Learn-AV-HDMI-CEC",
+                     "title":  "HDMI-CEC control and device addressing",
+                     "description":  "HDMI-CEC carries device-control messages on a control path whose addressing and application handling remain distinct from HDMI picture and audio transport.",
+                     "url":  "https://emby.media/learn/articles/display-av/signaling/AV-HDMI-CEC.html"
+                 },
+    "HDR10":  {
+                  "uid":  "Learn-HDR10",
+                  "title":  "HDR10",
+                  "description":  "HDR10 combines ten-bit PQ video, BT.2020 color signaling, and static mastering metadata for HDR delivery.",
+                  "url":  "https://emby.media/learn/articles/video/hdr/formats/HDR10.html"
+              },
+    "HDR10+":  {
+                   "uid":  "Learn-HDR10-Plus",
+                   "title":  "HDR10+",
+                   "description":  "HDR10+ extends HDR10 with dynamic metadata that can guide how each scene or frame is adapted to a display.",
+                   "url":  "https://emby.media/learn/articles/video/hdr/formats/HDR10-Plus.html"
+               },
+    "HE-AAC":  {
+                   "uid":  "Learn-HE-AAC",
+                   "title":  "HE-AAC Audio",
+                   "description":  "HE-AAC combines an AAC-LC core with Spectral Band Replication to encode audio efficiently at lower bitrates.",
+                   "url":  "https://emby.media/learn/articles/audio/formats/lossy/aac-family/HE-AAC.html"
+               },
+    "HE-AAC v2":  {
+                      "uid":  "Learn-HE-AAC-v2",
+                      "title":  "HE-AAC v2 Audio",
+                      "description":  "HE-AAC v2 adds parametric stereo coding to HE-AAC for efficient delivery of stereo audio at very low bitrates.",
+                      "url":  "https://emby.media/learn/articles/audio/formats/lossy/aac-family/HE-AAC-v2.html"
+                  },
+    "HEIC":  {
+                 "uid":  "Learn-Image-HEIF",
+                 "title":  "HEIF and HEIC images",
+                 "description":  "HEIF is an image-container framework with item relationships and presentation properties; HEIC commonly identifies HEVC-based usage rather than a separate universal image codec.",
+                 "url":  "https://emby.media/learn/articles/photos-images/formats/Image-HEIF.html"
+             },
+    "HEIF":  {
+                 "uid":  "Learn-Image-HEIF",
+                 "title":  "HEIF and HEIC images",
+                 "description":  "HEIF is an image-container framework with item relationships and presentation properties; HEIC commonly identifies HEVC-based usage rather than a separate universal image codec.",
+                 "url":  "https://emby.media/learn/articles/photos-images/formats/Image-HEIF.html"
+             },
+    "HID":  {
+                "uid":  "Learn-Input-HID",
+                "title":  "Human Interface Devices (HID)",
+                "description":  "Human Interface Device reports describe controls through declared report layouts and usages, which a host interprets before applications assign actions.",
+                "url":  "https://emby.media/learn/articles/display-av/input/Input-HID.html"
+            },
+    "HLG":  {
+                "uid":  "Learn-HLG",
+                "title":  "Hybrid Log-Gamma (HLG)",
+                "description":  "Hybrid Log-Gamma is an HDR television system that relates the delivered picture to scene light and adapts it for the viewing display.",
+                "url":  "https://emby.media/learn/articles/video/hdr/formats/HLG.html"
+            },
+    "HLS":  {
+                "uid":  "Learn-Playback-HLS",
+                "title":  "HTTP Live Streaming (HLS)",
+                "description":  "HTTP Live Streaming describes a media presentation through playlists that direct a player to successive media intervals and, when offered, alternative representations.",
+                "url":  "https://emby.media/learn/articles/playback-streaming/delivery/hls/Playback-HLS.html"
+            },
+    "HRTF":  {
+                 "uid":  "Learn-Binaural-Audio",
+                 "title":  "Binaural Audio",
+                 "description":  "Binaural audio supplies left-ear and right-ear signals with the cues used to perceive sound direction.",
+                 "url":  "https://emby.media/learn/articles/audio/channels/Binaural-Audio.html"
+             },
+    "HTTP Live Streaming":  {
+                                "uid":  "Learn-Playback-HLS",
+                                "title":  "HTTP Live Streaming (HLS)",
+                                "description":  "HTTP Live Streaming describes a media presentation through playlists that direct a player to successive media intervals and, when offered, alternative representations.",
+                                "url":  "https://emby.media/learn/articles/playback-streaming/delivery/hls/Playback-HLS.html"
+                            },
+    "HTTP range request":  {
+                               "uid":  "Learn-Playback-HTTP-Ranges",
+                               "title":  "HTTP range requests for media resources",
+                               "description":  "An HTTP range request asks for selected bytes of a resource representation, allowing a media player to retrieve the regions needed for container analysis or playback.",
+                               "url":  "https://emby.media/learn/articles/playback-streaming/delivery/http-files/Playback-HTTP-Ranges.html"
+                           },
+    "HTTP range requests":  {
+                                "uid":  "Learn-Playback-HTTP-Ranges",
+                                "title":  "HTTP range requests for media resources",
+                                "description":  "An HTTP range request asks for selected bytes of a resource representation, allowing a media player to retrieve the regions needed for container analysis or playback.",
+                                "url":  "https://emby.media/learn/articles/playback-streaming/delivery/http-files/Playback-HTTP-Ranges.html"
+                            },
+    "Hable":  {
+                  "uid":  "Learn-Tone-Mapping-Algorithm-Hable",
+                  "title":  "Tone Mapping Curve: Hable",
+                  "description":  "Hable is a filmic tone mapping curve that compresses bright highlights while also shaping shadows and midtones.",
+                  "url":  "https://emby.media/learn/articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Algorithm-Hable.html"
+              },
+    "Human Interface Device":  {
+                                   "uid":  "Learn-Input-HID",
+                                   "title":  "Human Interface Devices (HID)",
+                                   "description":  "Human Interface Device reports describe controls through declared report layouts and usages, which a host interprets before applications assign actions.",
+                                   "url":  "https://emby.media/learn/articles/display-av/input/Input-HID.html"
+                               },
+    "Hybrid Log-Gamma":  {
+                             "uid":  "Learn-HLG",
+                             "title":  "Hybrid Log-Gamma (HLG)",
+                             "description":  "Hybrid Log-Gamma is an HDR television system that relates the delivered picture to scene light and adapts it for the viewing display.",
+                             "url":  "https://emby.media/learn/articles/video/hdr/formats/HLG.html"
+                         },
+    "ICC profile":  {
+                        "uid":  "Learn-Image-ICC-Profiles",
+                        "title":  "ICC color profiles",
+                        "description":  "An ICC profile describes a colour relationship used by a colour-management process to interpret source samples and prepare values for a destination.",
+                        "url":  "https://emby.media/learn/articles/photos-images/presentation/Image-ICC-Profiles.html"
+                    },
+    "ICM profile":  {
+                        "uid":  "Learn-Image-ICC-Profiles",
+                        "title":  "ICC color profiles",
+                        "description":  "An ICC profile describes a colour relationship used by a colour-management process to interpret source samples and prepare values for a destination.",
+                        "url":  "https://emby.media/learn/articles/photos-images/presentation/Image-ICC-Profiles.html"
+                    },
+    "ID3v1":  {
+                  "uid":  "Learn-Metadata-ID3v1",
+                  "title":  "ID3v1 audio tags",
+                  "description":  "ID3v1 stores a fixed 128-byte trailing metadata record, while ID3v1.1 reuses part of its comment space for a track number.",
+                  "url":  "https://emby.media/learn/articles/metadata-discovery/local-formats/audio-tags/Metadata-ID3v1.html"
+              },
+    "ID3v2":  {
+                  "uid":  "Learn-Metadata-ID3v2",
+                  "title":  "ID3v2 audio tags",
+                  "description":  "ID3v2 organizes audio metadata into identified frames with version-specific sizes, text encodings and structured payloads rather than a fixed set of trailing fields.",
+                  "url":  "https://emby.media/learn/articles/metadata-discovery/local-formats/audio-tags/Metadata-ID3v2.html"
+              },
+    "IDR":  {
+                "uid":  "Learn-Video-Keyframes",
+                "title":  "Video Keyframes and Random Access",
+                "description":  "A video random-access point lets decoding begin without reconstructing the whole preceding stream.",
+                "url":  "https://emby.media/learn/articles/video/compression/picture-prediction-and-random-access/Video-Keyframes.html"
+            },
+    "IGMP":  {
+                 "uid":  "Learn-Network-Multicast-Routing",
+                 "title":  "Multicast membership, routing and local scope",
+                 "description":  "Multicast delivery uses receiver membership and forwarding context to copy group traffic onto selected paths, with link-local discovery retaining its own scope rules.",
+                 "url":  "https://emby.media/learn/articles/networking/boundaries/Network-Multicast-Routing.html"
+             },
+    "IMDb ID":  {
+                    "uid":  "Learn-Metadata-IMDb-IDs",
+                    "title":  "IMDb identifiers",
+                    "description":  "IMDb identifiers distinguish catalogue title and person records, with published dataset fields preserving the keys as strings and recording entity relationships separately.",
+                    "url":  "https://emby.media/learn/articles/metadata-discovery/identification/external-identifiers/Metadata-IMDb-IDs.html"
+                },
+    "IMSC":  {
+                 "uid":  "Learn-Subtitle-IMSC",
+                 "title":  "IMSC timed text",
+                 "description":  "IMSC defines constrained TTML profiles for interoperable internet-media subtitles and captions, with version-specific text and image capabilities.",
+                 "url":  "https://emby.media/learn/articles/subtitles/formats/Subtitle-IMSC.html"
+             },
+    "IPTC Photo Metadata":  {
+                                "uid":  "Learn-Metadata-IPTC",
+                                "title":  "IPTC Photo Metadata",
+                                "description":  "IPTC Photo Metadata defines descriptive and contextual photo properties whose meanings remain distinct from their XMP, legacy or other storage representations.",
+                                "url":  "https://emby.media/learn/articles/metadata-discovery/local-formats/photo-metadata/Metadata-IPTC.html"
+                            },
+    "IPTV":  {
+                 "uid":  "Learn-TV-IPTV",
+                 "title":  "IPTV and internet-delivered live channels",
+                 "description":  "IPTV delivers television services through IP networks, with channel discovery, session access and media transport determining the stream a playback system can acquire.",
+                 "url":  "https://emby.media/learn/articles/live-tv/fundamentals/TV-IPTV.html"
+             },
+    "IPv4":  {
+                 "uid":  "Learn-Network-IPv4",
+                 "title":  "IPv4 packet addressing and forwarding",
+                 "description":  "IPv4 carries packets between 32-bit source and destination addresses, with routing, packet lifetime and fragmentation separate from the transport service carried inside.",
+                 "url":  "https://emby.media/learn/articles/networking/addressing/Network-IPv4.html"
+             },
+    "IPv6":  {
+                 "uid":  "Learn-Network-IPv6",
+                 "title":  "IPv6 addressing, scope and reachability",
+                 "description":  "IPv6 uses 128-bit addresses with explicit scope and interface context, allowing several addresses and routes that a client must interpret when reaching a server.",
+                 "url":  "https://emby.media/learn/articles/networking/addressing/Network-IPv6.html"
+             },
+    "ISDB-T":  {
+                   "uid":  "Learn-TV-ISDB-T",
+                   "title":  "ISDB-T terrestrial television",
+                   "description":  "ISDB-T defines segmented terrestrial transmission with layer/configuration relationships, while regional media profiles and the selected service determine later playback requirements.",
+                   "url":  "https://emby.media/learn/articles/live-tv/standards/TV-ISDB-T.html"
+               },
+    "ISO image":  {
+                      "uid":  "Learn-Disc-Images-ISO",
+                      "title":  "Disc Images: ISO Files",
+                      "description":  "A disc image stores a volume and its filesystem as a file, preserving a disc presentation rather than replacing it with a single encoded movie.",
+                      "url":  "https://emby.media/learn/articles/media-files/packaging/disc/Disc-Images-ISO.html"
+                  },
+    "IVTC":  {
+                 "uid":  "Learn-Inverse-Telecine",
+                 "title":  "Inverse Telecine",
+                 "description":  "Inverse telecine reconstructs progressive film pictures from a telecined television cadence.",
+                 "url":  "https://emby.media/learn/articles/video/frame-timing/interlacing-and-cadence/Inverse-Telecine.html"
+             },
+    "Intel Media SDK":  {
+                            "uid":  "Learn-Hardware-Intel-Media-SDK",
+                            "title":  "Intel Media SDK (legacy)",
+                            "description":  "Intel Media SDK is a discontinued media software interface whose names remain in older Intel acceleration stacks and logs, distinct from the hardware generations those stacks use.",
+                            "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/intel/Hardware-Intel-Media-SDK.html"
+                        },
+    "Intel VPL":  {
+                      "uid":  "Learn-Hardware-Intel-VPL",
+                      "title":  "Intel VPL and the oneVPL name",
+                      "description":  "Intel VPL is the media library interface and dispatcher used to select supported Intel video implementations and coordinate decode, encode and processing sessions.",
+                      "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/intel/Hardware-Intel-VPL.html"
+                  },
+    "Intel VPP":  {
+                      "uid":  "Learn-Hardware-Intel-VPP",
+                      "title":  "Intel video processing (VPP)",
+                      "description":  "Intel VPP processes decoded pictures into a requested output picture configuration, coordinating supported transformations, output cadence and surface completion.",
+                      "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/intel/Hardware-Intel-VPP.html"
+                  },
+    "LATM":  {
+                 "uid":  "Learn-AAC-LATM",
+                 "title":  "AAC: Low Overhead Audio Transport Multiplex (LATM)",
+                 "description":  "LATM packages MPEG-4 audio and configuration information in a multiplex structure that can be carried over several delivery transports.",
+                 "url":  "https://emby.media/learn/articles/media-files/packaging/aac/AAC-LATM.html"
+             },
+    "LC3":  {
+                "uid":  "Learn-Audio-Bluetooth-LE",
+                "title":  "Bluetooth LE Audio",
+                "description":  "Bluetooth LE Audio combines LC3 coding, isochronous streams, and audio control profiles to coordinate unicast or broadcast sound.",
+                "url":  "https://emby.media/learn/articles/audio/devices-output/bluetooth/Audio-Bluetooth-LE.html"
+            },
+    "LE Audio":  {
+                     "uid":  "Learn-Audio-Bluetooth-LE",
+                     "title":  "Bluetooth LE Audio",
+                     "description":  "Bluetooth LE Audio combines LC3 coding, isochronous streams, and audio control profiles to coordinate unicast or broadcast sound.",
+                     "url":  "https://emby.media/learn/articles/audio/devices-output/bluetooth/Audio-Bluetooth-LE.html"
+                 },
+    "LFE":  {
+                "uid":  "Learn-Audio-LFE",
+                "title":  "Low-Frequency Effects (LFE)",
+                "description":  "LFE is a separate band-limited effects channel, distinct from bass redirected from the main channels.",
+                "url":  "https://emby.media/learn/articles/audio/channels/roles-and-ordering/Audio-LFE.html"
+            },
+    "LKFS":  {
+                 "uid":  "Learn-Audio-LUFS",
+                 "title":  "LUFS loudness measurement",
+                 "description":  "LUFS expresses standardized programme loudness using frequency weighting, channel energy, measurement windows, and level gating.",
+                 "url":  "https://emby.media/learn/articles/audio/loudness-music-playback/measurement-control/Audio-LUFS.html"
+             },
+    "LOAS":  {
+                 "uid":  "Learn-AAC-LATM",
+                 "title":  "AAC: Low Overhead Audio Transport Multiplex (LATM)",
+                 "description":  "LATM packages MPEG-4 audio and configuration information in a multiplex structure that can be carried over several delivery transports.",
+                 "url":  "https://emby.media/learn/articles/media-files/packaging/aac/AAC-LATM.html"
+             },
+    "LPCM":  {
+                 "uid":  "Learn-LPCM",
+                 "title":  "Linear PCM (LPCM)",
+                 "description":  "Linear PCM represents digital audio as regularly spaced sample values with uniform amplitude steps.",
+                 "url":  "https://emby.media/learn/articles/audio/formats/LPCM.html"
+             },
+    "LRC":  {
+                "uid":  "Learn-Library-LRC",
+                "title":  "LRC lyric files",
+                "description":  "LRC is a text-file convention that prefixes lyric text with playback timestamps, with parser-dependent extensions for metadata and finer timing.",
+                "url":  "https://emby.media/learn/articles/libraries-collections/music/lyrics/Library-LRC.html"
+            },
+    "LUFS":  {
+                 "uid":  "Learn-Audio-LUFS",
+                 "title":  "LUFS loudness measurement",
+                 "description":  "LUFS expresses standardized programme loudness using frequency weighting, channel energy, measurement windows, and level gating.",
+                 "url":  "https://emby.media/learn/articles/audio/loudness-music-playback/measurement-control/Audio-LUFS.html"
+             },
+    "Lt/Rt":  {
+                  "uid":  "Learn-Matrix-Surround",
+                  "title":  "Matrix Surround",
+                  "description":  "Matrix surround encodes spatial relationships into fewer channels for later surround decoding.",
+                  "url":  "https://emby.media/learn/articles/audio/channels/Matrix-Surround.html"
+              },
+    "M2TS":  {
+                 "uid":  "Learn-MPEG-Transport-Stream",
+                 "title":  "MPEG Transport Stream: TS and M2TS",
+                 "description":  "MPEG transport stream interleaves encoded media and programme information in small fixed-size packets suited to continuous delivery.",
+                 "url":  "https://emby.media/learn/articles/media-files/containers/mpeg-systems/MPEG-Transport-Stream.html"
+             },
+    "MBID":  {
+                 "uid":  "Learn-Metadata-MusicBrainz-IDs",
+                 "title":  "MusicBrainz identifiers",
+                 "description":  "MusicBrainz identifiers are UUID-shaped keys for distinct music entities, so recording, release and release-group references must retain their intended scope.",
+                 "url":  "https://emby.media/learn/articles/metadata-discovery/identification/external-identifiers/Metadata-MusicBrainz-IDs.html"
+             },
+    "MEL":  {
+                "uid":  "Learn-Dolby-Vision-MEL-FEL",
+                "title":  "Dolby Vision MEL and FEL",
+                "description":  "MEL and FEL distinguish Dolby Vision enhancement layers with no picture residual from layers that carry additional reconstruction information.",
+                "url":  "https://emby.media/learn/articles/video/hdr/formats/dolby-vision/metadata-and-layers/Dolby-Vision-MEL-FEL.html"
+            },
+    "MFT":  {
+                "uid":  "Learn-Hardware-Windows-Media-Foundation",
+                "title":  "Media Foundation transforms and processing state",
+                "description":  "A Media Foundation transform is a Windows media-processing component whose negotiated types, input/output state and resource context determine its decoding, encoding or processing role.",
+                "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/windows/Hardware-Windows-Media-Foundation.html"
+            },
+    "MJPEG":  {
+                  "uid":  "Learn-Video-Codec-Motion-JPEG",
+                  "title":  "Motion JPEG Video",
+                  "description":  "Motion JPEG stores video as independently JPEG-compressed pictures or fields, with packaging details that vary by implementation.",
+                  "url":  "https://emby.media/learn/articles/video/codecs/production-preservation/Video-Codec-Motion-JPEG.html"
+              },
+    "MLDv2":  {
+                  "uid":  "Learn-Network-Multicast-Routing",
+                  "title":  "Multicast membership, routing and local scope",
+                  "description":  "Multicast delivery uses receiver membership and forwarding context to copy group traffic onto selected paths, with link-local discovery retaining its own scope rules.",
+                  "url":  "https://emby.media/learn/articles/networking/boundaries/Network-Multicast-Routing.html"
+              },
+    "MPD":  {
+                "uid":  "Learn-Playback-DASH",
+                "title":  "MPEG-DASH and its media presentation description",
+                "description":  "MPEG-DASH describes timed media representations and their addressable segments in a Media Presentation Description that a player uses for HTTP delivery and adaptation.",
+                "url":  "https://emby.media/learn/articles/playback-streaming/delivery/Playback-DASH.html"
+            },
+    "MPEG-DASH":  {
+                      "uid":  "Learn-Playback-DASH",
+                      "title":  "MPEG-DASH and its media presentation description",
+                      "description":  "MPEG-DASH describes timed media representations and their addressable segments in a Media Presentation Description that a player uses for HTTP delivery and adaptation.",
+                      "url":  "https://emby.media/learn/articles/playback-streaming/delivery/Playback-DASH.html"
+                  },
+    "MPEG-TS":  {
+                    "uid":  "Learn-MPEG-Transport-Stream",
+                    "title":  "MPEG Transport Stream: TS and M2TS",
+                    "description":  "MPEG transport stream interleaves encoded media and programme information in small fixed-size packets suited to continuous delivery.",
+                    "url":  "https://emby.media/learn/articles/media-files/containers/mpeg-systems/MPEG-Transport-Stream.html"
+                },
+    "MSE":  {
+                "uid":  "Learn-Playback-MSE",
+                "title":  "Media Source Extensions (MSE) and scripted media delivery",
+                "description":  "Media Source Extensions lets an application append supported encoded media byte streams to a browser playback path while coordinating buffering, timing and asynchronous updates.",
+                "url":  "https://emby.media/learn/articles/playback-streaming/players/browser/Playback-MSE.html"
+            },
+    "MaxCLL":  {
+                   "uid":  "Learn-HDR-MaxCLL-MaxFALL",
+                   "title":  "MaxCLL and MaxFALL",
+                   "description":  "MaxCLL and MaxFALL summarize the highest content light level and highest frame-average light level reported for a video.",
+                   "url":  "https://emby.media/learn/articles/video/hdr/metadata-and-light-levels/HDR-MaxCLL-MaxFALL.html"
+               },
+    "MaxFALL":  {
+                    "uid":  "Learn-HDR-MaxCLL-MaxFALL",
+                    "title":  "MaxCLL and MaxFALL",
+                    "description":  "MaxCLL and MaxFALL summarize the highest content light level and highest frame-average light level reported for a video.",
+                    "url":  "https://emby.media/learn/articles/video/hdr/metadata-and-light-levels/HDR-MaxCLL-MaxFALL.html"
+                },
+    "Media Foundation transform":  {
+                                       "uid":  "Learn-Hardware-Windows-Media-Foundation",
+                                       "title":  "Media Foundation transforms and processing state",
+                                       "description":  "A Media Foundation transform is a Windows media-processing component whose negotiated types, input/output state and resource context determine its decoding, encoding or processing role.",
+                                       "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/windows/Hardware-Windows-Media-Foundation.html"
+                                   },
+    "Media Request API":  {
+                              "uid":  "Learn-Hardware-Linux-V4L2-Stateless",
+                              "title":  "V4L2 stateless decoding and the Request API",
+                              "description":  "V4L2 stateless decoding makes the application supply per-picture decoding state, references and encoded data through requests that bind the operation’s controls and buffers.",
+                              "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/linux/Hardware-Linux-V4L2-Stateless.html"
+                          },
+    "Media Source Extensions":  {
+                                    "uid":  "Learn-Playback-MSE",
+                                    "title":  "Media Source Extensions (MSE) and scripted media delivery",
+                                    "description":  "Media Source Extensions lets an application append supported encoded media byte streams to a browser playback path while coordinating buffering, timing and asynchronous updates.",
+                                    "url":  "https://emby.media/learn/articles/playback-streaming/players/browser/Playback-MSE.html"
+                                },
+    "MediaCodec":  {
+                       "uid":  "Learn-Hardware-Android-MediaCodec",
+                       "title":  "Android MediaCodec and buffer ownership",
+                       "description":  "MediaCodec exposes Android codec components through configured input/output buffers or surfaces whose ownership, timing and state determine how media is processed.",
+                       "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/android/Hardware-Android-MediaCodec.html"
+                   },
+    "Metal video processing":  {
+                                   "uid":  "Learn-Hardware-Apple-Metal",
+                                   "title":  "Metal for video processing",
+                                   "description":  "Metal exposes Apple GPU graphics and compute work used to process suitable picture textures, with CoreVideo interoperability, layout and synchronization connecting it to media sessions.",
+                                   "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/apple/Hardware-Apple-Metal.html"
+                               },
+    "MicroDVD":  {
+                     "uid":  "Learn-Subtitle-MicroDVD",
+                     "title":  "MicroDVD subtitles",
+                     "description":  "MicroDVD stores text cues using numbered frame boundaries, so their elapsed times depend on the associated frame rate.",
+                     "url":  "https://emby.media/learn/articles/subtitles/formats/text/Subtitle-MicroDVD.html"
+                 },
+    "Mobius":  {
+                   "uid":  "Learn-Tone-Mapping-Algorithm-Mobius",
+                   "title":  "Tone Mapping Curve: Mobius",
+                   "description":  "Mobius is a tone mapping curve that preserves lower signal values and smoothly compresses values above a chosen transition point.",
+                   "url":  "https://emby.media/learn/articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Algorithm-Mobius.html"
+               },
+    "Monkey\u0027s Audio":  {
+                                "uid":  "Learn-Monkeys-Audio-APE",
+                                "title":  "Monkey\u0027s Audio (APE)",
+                                "description":  "Monkey\u0027s Audio is a lossless audio codec commonly stored in APE files.",
+                                "url":  "https://emby.media/learn/articles/audio/formats/lossless/Monkeys-Audio-APE.html"
+                            },
+    "Motion JPEG":  {
+                        "uid":  "Learn-Video-Codec-Motion-JPEG",
+                        "title":  "Motion JPEG Video",
+                        "description":  "Motion JPEG stores video as independently JPEG-compressed pictures or fields, with packaging details that vary by implementation.",
+                        "url":  "https://emby.media/learn/articles/video/codecs/production-preservation/Video-Codec-Motion-JPEG.html"
+                    },
+    "MusicBrainz ID":  {
+                           "uid":  "Learn-Metadata-MusicBrainz-IDs",
+                           "title":  "MusicBrainz identifiers",
+                           "description":  "MusicBrainz identifiers are UUID-shaped keys for distinct music entities, so recording, release and release-group references must retain their intended scope.",
+                           "url":  "https://emby.media/learn/articles/metadata-discovery/identification/external-identifiers/Metadata-MusicBrainz-IDs.html"
+                       },
+    "Möbius":  {
+                   "uid":  "Learn-Tone-Mapping-Algorithm-Mobius",
+                   "title":  "Tone Mapping Curve: Mobius",
+                   "description":  "Mobius is a tone mapping curve that preserves lower signal values and smoothly compresses values above a chosen transition point.",
+                   "url":  "https://emby.media/learn/articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Algorithm-Mobius.html"
+               },
+    "NAPT":  {
+                 "uid":  "Learn-Network-NAT",
+                 "title":  "NAT and address/port translation state",
+                 "description":  "NAT rewrites endpoint addressing across network realms, with address/port translation retaining state that associates outside traffic with the intended inside flow.",
+                 "url":  "https://emby.media/learn/articles/networking/routers/nat/Network-NAT.html"
+             },
+    "NAS":  {
+                "uid":  "Learn-Storage-NAS",
+                "title":  "Network-attached storage: files served by another computer",
+                "description":  "A NAS serves files over a network, so media access depends on its disks, sharing protocol, access policy and connection to the Emby server.",
+                "url":  "https://emby.media/learn/articles/storage/fundamentals/hardware/Storage-NAS.html"
+            },
+    "NAT":  {
+                "uid":  "Learn-Network-NAT",
+                "title":  "NAT and address/port translation state",
+                "description":  "NAT rewrites endpoint addressing across network realms, with address/port translation retaining state that associates outside traffic with the intended inside flow.",
+                "url":  "https://emby.media/learn/articles/networking/routers/nat/Network-NAT.html"
+            },
+    "NAT loopback":  {
+                         "uid":  "Learn-Network-NAT-Loopback",
+                         "title":  "NAT loopback and same-network public endpoints",
+                         "description":  "NAT loopback lets an inside client use an outside mapped endpoint for an inside service, with compatible translation and return routing keeping the client’s expected peer consistent.",
+                         "url":  "https://emby.media/learn/articles/networking/routers/nat/Network-NAT-Loopback.html"
+                     },
+    "NFO metadata":  {
+                         "uid":  "Learn-Metadata-NFO",
+                         "title":  "NFO metadata files",
+                         "description":  "A media-library NFO is an associated metadata record, commonly XML, whose supported fields, item type and association determine what is imported or saved.",
+                         "url":  "https://emby.media/learn/articles/metadata-discovery/local-formats/Metadata-NFO.html"
+                     },
+    "NFS":  {
+                "uid":  "Learn-Storage-NFS",
+                "title":  "NFS file shares and server-side identity mapping",
+                "description":  "NFS exposes a remote file tree through a client mount, with protocol state and identity mapping affecting access and recovery.",
+                "url":  "https://emby.media/learn/articles/storage/sharing/protocols/Storage-NFS.html"
+            },
+    "NVCUVID":  {
+                    "uid":  "Learn-Hardware-NVIDIA-CUVID",
+                    "title":  "NVDEC and CUVID API names",
+                    "description":  "NVDEC names NVIDIA’s decoding engine while CUVID and NVDECODE names persist in software interfaces, library symbols and media-program wrappers that reach its supported decode paths.",
+                    "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/nvidia/Hardware-NVIDIA-CUVID.html"
+                },
+    "NVDEC":  {
+                  "uid":  "Learn-Hardware-NVIDIA-NVDEC",
+                  "title":  "NVIDIA NVDEC",
+                  "description":  "NVDEC is NVIDIA’s dedicated video-decoding engine, exposed through a decoder API that reconstructs supported encoded streams and makes decoded surfaces available to later processing.",
+                  "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/nvidia/Hardware-NVIDIA-NVDEC.html"
+              },
+    "NVDECODE":  {
+                     "uid":  "Learn-Hardware-NVIDIA-NVDEC",
+                     "title":  "NVIDIA NVDEC",
+                     "description":  "NVDEC is NVIDIA’s dedicated video-decoding engine, exposed through a decoder API that reconstructs supported encoded streams and makes decoded surfaces available to later processing.",
+                     "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/nvidia/Hardware-NVIDIA-NVDEC.html"
+                 },
+    "NVENC":  {
+                  "uid":  "Learn-Hardware-NVIDIA-NVENC",
+                  "title":  "NVIDIA NVENC",
+                  "description":  "NVENC is NVIDIA’s dedicated video-encoding engine, creating a supported compressed representation from prepared input pictures through its encoder API.",
+                  "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/nvidia/Hardware-NVIDIA-NVENC.html"
+              },
+    "NVMe":  {
+                 "uid":  "Learn-Storage-NVMe",
+                 "title":  "NVMe storage: commands, PCIe lanes and queues",
+                 "description":  "NVMe defines storage commands and queues, commonly carried over PCIe for local SSDs, while slot wiring and workload determine usable performance.",
+                 "url":  "https://emby.media/learn/articles/storage/fundamentals/hardware/Storage-NVMe.html"
+             },
+    "Nyquist frequency":  {
+                              "uid":  "Learn-Audio-Sample-Rate",
+                              "title":  "Audio Sample Rate",
+                              "description":  "Sample rate is the number of audio samples per channel per second.",
+                              "url":  "https://emby.media/learn/articles/audio/fundamentals/sample-representation/Audio-Sample-Rate.html"
+                          },
+    "OETF":  {
+                 "uid":  "Learn-Transfer-Function-OETF",
+                 "title":  "Opto-Electronic Transfer Function (OETF)",
+                 "description":  "An OETF maps scene light into the nonlinear signal used to represent a captured image.",
+                 "url":  "https://emby.media/learn/articles/video/color-standards/transfer-functions/Transfer-Function-OETF.html"
+             },
+    "OMX":  {
+                "uid":  "Learn-Hardware-OpenMAX-IL",
+                "title":  "OpenMAX IL components, ports and state",
+                "description":  "OpenMAX IL defines a multimedia component interface whose ports, buffer exchanges and asynchronous state transitions coordinate supported processing implementations.",
+                "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/android/Hardware-OpenMAX-IL.html"
+            },
+    "OOTF":  {
+                 "uid":  "Learn-Transfer-Function-OOTF",
+                 "title":  "Opto-Optical Transfer Function (OOTF)",
+                 "description":  "An OOTF describes the overall relationship between scene light and the light reproduced by a display.",
+                 "url":  "https://emby.media/learn/articles/video/color-standards/transfer-functions/Transfer-Function-OOTF.html"
+             },
+    "Ogg":  {
+                "uid":  "Learn-Ogg-Container",
+                "title":  "Ogg Container",
+                "description":  "Ogg encapsulates codec packets in pages that support continuous delivery, logical streams, and codec-specific timing.",
+                "url":  "https://emby.media/learn/articles/media-files/containers/Ogg-Container.html"
+            },
+    "One-Seg":  {
+                    "uid":  "Learn-TV-ISDB-T",
+                    "title":  "ISDB-T terrestrial television",
+                    "description":  "ISDB-T defines segmented terrestrial transmission with layer/configuration relationships, while regional media profiles and the selected service determine later playback requirements.",
+                    "url":  "https://emby.media/learn/articles/live-tv/standards/TV-ISDB-T.html"
+                },
+    "OpenCL":  {
+                   "uid":  "Learn-Hardware-OpenCL",
+                   "title":  "OpenCL for media processing",
+                   "description":  "OpenCL runs programmable work on supported compute devices through contexts, memory objects and command queues, with explicit capability and completion relationships for picture processing.",
+                   "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/portable/Hardware-OpenCL.html"
+               },
+    "OpenCL subtitle overlay":  {
+                                    "uid":  "Learn-Subtitle-Overlay-OpenCL",
+                                    "title":  "OpenCL subtitle overlay",
+                                    "description":  "OpenCL subtitle composition operates on compatible device image planes, after subtitle content has been rendered into an accepted image representation.",
+                                    "url":  "https://emby.media/learn/articles/subtitles/emby-processing/overlay-filters/gpu/Subtitle-Overlay-OpenCL.html"
+                                },
+    "OpenMAX IL":  {
+                       "uid":  "Learn-Hardware-OpenMAX-IL",
+                       "title":  "OpenMAX IL components, ports and state",
+                       "description":  "OpenMAX IL defines a multimedia component interface whose ports, buffer exchanges and asynchronous state transitions coordinate supported processing implementations.",
+                       "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/android/Hardware-OpenMAX-IL.html"
+                   },
+    "OpenSubtitles":  {
+                          "uid":  "Learn-Subtitle-OpenSubtitles",
+                          "title":  "OpenSubtitles",
+                          "description":  "OpenSubtitles provides searchable subtitle candidates and file downloads, with separate release-matching, authentication and quota relationships.",
+                          "url":  "https://emby.media/learn/articles/subtitles/sources/Subtitle-OpenSubtitles.html"
+                      },
+    "Opus":  {
+                 "uid":  "Learn-Opus",
+                 "title":  "Opus Audio",
+                 "description":  "Opus is a lossy audio codec designed to handle both speech and music with flexible bitrate and low delay.",
+                 "url":  "https://emby.media/learn/articles/audio/formats/lossy/Opus.html"
+             },
+    "Ordered chapters":  {
+                             "uid":  "Learn-Matroska-Ordered-Chapters",
+                             "title":  "Matroska Ordered Chapters",
+                             "description":  "Matroska ordered chapters define a presentation sequence that can reuse or rearrange ranges from one or more segments.",
+                             "url":  "https://emby.media/learn/articles/media-files/packaging/matroska/Matroska-Ordered-Chapters.html"
+                         },
+    "P3-D65":  {
+                   "uid":  "Learn-P3-Color-Gamuts",
+                   "title":  "P3 Color Gamuts",
+                   "description":  "P3 names a family of color spaces that share wide-gamut primaries but can differ in white point and transfer function.",
+                   "url":  "https://emby.media/learn/articles/video/color-standards/standards/P3-Color-Gamuts.html"
+               },
+    "PCM sample format":  {
+                              "uid":  "Learn-PCM-Sample-Formats",
+                              "title":  "PCM Sample Formats",
+                              "description":  "PCM sample formats specify how audio sample values are represented and arranged in memory or storage.",
+                              "url":  "https://emby.media/learn/articles/audio/fundamentals/sample-representation/PCM-Sample-Formats.html"
+                          },
+    "PGS":  {
+                "uid":  "Learn-Subtitle-PGS",
+                "title":  "Blu-ray subtitles (PGS)",
+                "description":  "PGS assembles timed Blu-ray presentation graphics from palette, object, window and composition segments.",
+                "url":  "https://emby.media/learn/articles/subtitles/formats/bitmap/Subtitle-PGS.html"
+            },
+    "PID":  {
+                "uid":  "Learn-MPEG-Transport-Stream",
+                "title":  "MPEG Transport Stream: TS and M2TS",
+                "description":  "MPEG transport stream interleaves encoded media and programme information in small fixed-size packets suited to continuous delivery.",
+                "url":  "https://emby.media/learn/articles/media-files/containers/mpeg-systems/MPEG-Transport-Stream.html"
+            },
+    "PLP":  {
+                "uid":  "Learn-TV-DVB-T2",
+                "title":  "DVB-T2 terrestrial television",
+                "description":  "DVB-T2 defines a second-generation terrestrial transmission arrangement with its own coding, framing and physical-layer-pipe configuration requirements.",
+                "url":  "https://emby.media/learn/articles/live-tv/standards/dvb/TV-DVB-T2.html"
+            },
+    "PSIP":  {
+                 "uid":  "Learn-TV-PSIP",
+                 "title":  "ATSC PSIP: virtual channels, events and time",
+                 "description":  "ATSC PSIP connects virtual-channel identity with event descriptions, table-discovery information and a GPS-based system clock in the ATSC 1.0 broadcast environment.",
+                 "url":  "https://emby.media/learn/articles/live-tv/guides/formats/TV-PSIP.html"
+             },
+    "PSNR":  {
+                 "uid":  "Learn-Video-Quality-PSNR",
+                 "title":  "Peak Signal-to-Noise Ratio (PSNR) for Video",
+                 "description":  "PSNR expresses decoded sample error relative to a declared peak value using a logarithmic decibel scale.",
+                 "url":  "https://emby.media/learn/articles/video/encoding-quality/quality-metrics/Video-Quality-PSNR.html"
+             },
+    "Parametric Stereo":  {
+                              "uid":  "Learn-HE-AAC-v2",
+                              "title":  "HE-AAC v2 Audio",
+                              "description":  "HE-AAC v2 adds parametric stereo coding to HE-AAC for efficient delivery of stereo audio at very low bitrates.",
+                              "url":  "https://emby.media/learn/articles/audio/formats/lossy/aac-family/HE-AAC-v2.html"
+                          },
+    "Perceptual Quantizer":  {
+                                 "uid":  "Learn-Transfer-Function-PQ",
+                                 "title":  "Perceptual Quantizer (PQ): SMPTE ST 2084",
+                                 "description":  "PQ is an HDR transfer function that assigns encoded signal values to absolute light levels up to 10,000 nits.",
+                                 "url":  "https://emby.media/learn/articles/video/color-standards/transfer-functions/Transfer-Function-PQ.html"
+                             },
+    "PipeWire":  {
+                     "uid":  "Learn-Audio-PipeWire",
+                     "title":  "PipeWire",
+                     "description":  "PipeWire routes media through a scheduled graph of nodes, ports, and links, with session policy and compatibility interfaces around that graph.",
+                     "url":  "https://emby.media/learn/articles/audio/devices-output/os-apis/Audio-PipeWire.html"
+                 },
+    "ProRes":  {
+                   "uid":  "Learn-Video-Codec-ProRes",
+                   "title":  "Apple ProRes Video",
+                   "description":  "Apple ProRes is a family of intra-frame video codecs used for production and editing, with separate variants for different quality and sample requirements.",
+                   "url":  "https://emby.media/learn/articles/video/codecs/production-preservation/Video-Codec-ProRes.html"
+               },
+    "PulseAudio":  {
+                       "uid":  "Learn-Audio-PulseAudio",
+                       "title":  "PulseAudio",
+                       "description":  "PulseAudio provides a sound-server interface that routes, mixes, buffers, and converts application streams for selected output sinks.",
+                       "url":  "https://emby.media/learn/articles/audio/devices-output/os-apis/Audio-PulseAudio.html"
+                   },
+    "QMS":  {
+                "uid":  "Learn-AV-HDMI-QMS",
+                "title":  "Quick Media Switching (QMS)",
+                "description":  "Quick Media Switching uses a supported HDMI variable-refresh mechanism to reduce interruption during compatible frame-rate changes at a retained resolution.",
+                "url":  "https://emby.media/learn/articles/display-av/signaling/AV-HDMI-QMS.html"
+            },
+    "QP":  {
+               "uid":  "Learn-Video-Encoding-QP",
+               "title":  "Video Quantization Parameter (QP)",
+               "description":  "A quantization parameter selects quantization strength in a video coding process and is not a universal picture-quality score.",
+               "url":  "https://emby.media/learn/articles/video/encoding-quality/rate-control/Video-Encoding-QP.html"
+           },
+    "QSV":  {
+                "uid":  "Learn-Hardware-Intel-QSV",
+                "title":  "Intel Quick Sync Video (QSV)",
+                "description":  "Intel Quick Sync Video is the name for Intel’s dedicated media-acceleration capabilities, reached through supported software and driver paths for decoding, processing and encoding.",
+                "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/intel/Hardware-Intel-QSV.html"
+            },
+    "QoS":  {
+                "uid":  "Learn-Network-QoS",
+                "title":  "Quality of service, classification and scheduling",
+                "description":  "Quality-of-service policy classifies traffic and schedules limited service, with markings and priority meaningful only under the policies that interpret them.",
+                "url":  "https://emby.media/learn/articles/networking/performance/traffic/Network-QoS.html"
+            },
+    "Quick Media Switching":  {
+                                  "uid":  "Learn-AV-HDMI-QMS",
+                                  "title":  "Quick Media Switching (QMS)",
+                                  "description":  "Quick Media Switching uses a supported HDMI variable-refresh mechanism to reduce interruption during compatible frame-rate changes at a retained resolution.",
+                                  "url":  "https://emby.media/learn/articles/display-av/signaling/AV-HDMI-QMS.html"
+                              },
+    "Quick Sync":  {
+                       "uid":  "Learn-Hardware-Intel-QSV",
+                       "title":  "Intel Quick Sync Video (QSV)",
+                       "description":  "Intel Quick Sync Video is the name for Intel’s dedicated media-acceleration capabilities, reached through supported software and driver paths for decoding, processing and encoding.",
+                       "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/intel/Hardware-Intel-QSV.html"
+                   },
+    "QuickSync":  {
+                      "uid":  "Learn-Hardware-Intel-QSV",
+                      "title":  "Intel Quick Sync Video (QSV)",
+                      "description":  "Intel Quick Sync Video is the name for Intel’s dedicated media-acceleration capabilities, reached through supported software and driver paths for decoding, processing and encoding.",
+                      "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/intel/Hardware-Intel-QSV.html"
+                  },
+    "RAID":  {
+                 "uid":  "Learn-Storage-RAID",
+                 "title":  "RAID: drive redundancy and failure boundaries",
+                 "description":  "RAID combines drives in a layout that can provide particular failure tolerance, capacity and I/O behavior for a media server.",
+                 "url":  "https://emby.media/learn/articles/storage/data-protection/redundancy/Storage-RAID.html"
+             },
+    "RFC 1918":  {
+                     "uid":  "Learn-Network-Private-Public",
+                     "title":  "Private, public and special-purpose IP addresses",
+                     "description":  "Private, shared, local and special-purpose address ranges have different routing roles, and a globally assigned address still needs a permitted service path to be reachable.",
+                     "url":  "https://emby.media/learn/articles/networking/addressing/Network-Private-Public.html"
+                 },
+    "RKMPP":  {
+                  "uid":  "Learn-Hardware-Rockchip-MPP",
+                  "title":  "Rockchip Media Process Platform (RKMPP)",
+                  "description":  "Rockchip MPP connects supported codec implementations, buffer management and hardware abstraction to a compatible Rockchip platform and kernel interface.",
+                  "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/android/Hardware-Rockchip-MPP.html"
+              },
+    "RPU":  {
+                "uid":  "Learn-Dolby-Vision-RPU",
+                "title":  "Dolby Vision RPU Metadata",
+                "description":  "The Dolby Vision RPU carries metadata used to interpret and manage the picture during playback.",
+                "url":  "https://emby.media/learn/articles/video/hdr/formats/dolby-vision/metadata-and-layers/Dolby-Vision-RPU.html"
+            },
+    "RSS feed":  {
+                     "uid":  "Learn-Library-Podcast-RSS",
+                     "title":  "Podcast RSS feeds",
+                     "description":  "A podcast RSS feed publishes show and episode metadata with media enclosure references that clients can discover separately from downloading or playing the media.",
+                     "url":  "https://emby.media/learn/articles/libraries-collections/books-spoken-audio/podcasts/Library-Podcast-RSS.html"
+                 },
+    "Rec. 2020":  {
+                      "uid":  "Learn-Color-Standard-BT2020",
+                      "title":  "ITU-R BT.2020",
+                      "description":  "ITU-R BT.2020 defines UHD television parameters and a wide set of color primaries.",
+                      "url":  "https://emby.media/learn/articles/video/color-standards/standards/Color-Standard-BT2020.html"
+                  },
+    "Rec. 2100":  {
+                      "uid":  "Learn-Color-Standard-BT2100",
+                      "title":  "ITU-R BT.2100",
+                      "description":  "ITU-R BT.2100 specifies HDR television image parameters for PQ and HLG systems.",
+                      "url":  "https://emby.media/learn/articles/video/color-standards/standards/Color-Standard-BT2100.html"
+                  },
+    "Rec. 601":  {
+                     "uid":  "Learn-Color-Standard-BT601",
+                     "title":  "ITU-R BT.601",
+                     "description":  "ITU-R BT.601 defines digital component-video encoding for standard-definition television.",
+                     "url":  "https://emby.media/learn/articles/video/color-standards/standards/Color-Standard-BT601.html"
+                 },
+    "Rec. 709":  {
+                     "uid":  "Learn-Color-Standard-BT709",
+                     "title":  "ITU-R BT.709",
+                     "description":  "ITU-R BT.709 defines HDTV image and signal parameters, including the familiar SDR color primaries.",
+                     "url":  "https://emby.media/learn/articles/video/color-standards/standards/Color-Standard-BT709.html"
+                 },
+    "Reinhard":  {
+                     "uid":  "Learn-Tone-Mapping-Algorithm-Reinhard",
+                     "title":  "Tone Mapping Curve: Reinhard",
+                     "description":  "Reinhard is a tone mapping curve that compresses increasingly bright values into a limited output range.",
+                     "url":  "https://emby.media/learn/articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Algorithm-Reinhard.html"
+                 },
+    "ReplayGain":  {
+                       "uid":  "Learn-Audio-ReplayGain",
+                       "title":  "ReplayGain",
+                       "description":  "ReplayGain stores recommended track and album playback gains so supporting players can match listening levels without rewriting the audio.",
+                       "url":  "https://emby.media/learn/articles/audio/loudness-music-playback/measurement-control/Audio-ReplayGain.html"
+                   },
+    "Rockchip MPP":  {
+                         "uid":  "Learn-Hardware-Rockchip-MPP",
+                         "title":  "Rockchip Media Process Platform (RKMPP)",
+                         "description":  "Rockchip MPP connects supported codec implementations, buffer management and hardware abstraction to a compatible Rockchip platform and kernel interface.",
+                         "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/android/Hardware-Rockchip-MPP.html"
+                     },
+    "S/PDIF":  {
+                   "uid":  "Learn-Audio-SPDIF",
+                   "title":  "S/PDIF digital audio",
+                   "description":  "S/PDIF transports a consumer digital audio stream whose framing can carry stereo PCM or supported encoded audio bursts.",
+                   "url":  "https://emby.media/learn/articles/audio/devices-output/Audio-SPDIF.html"
+               },
+    "SAMI":  {
+                 "uid":  "Learn-Subtitle-SAMI",
+                 "title":  "SAMI captions",
+                 "description":  "SAMI stores HTML-like synchronized caption blocks and can associate different language classes with the same media timing.",
+                 "url":  "https://emby.media/learn/articles/subtitles/formats/text/Subtitle-SAMI.html"
+             },
+    "SCC":  {
+                "uid":  "Learn-Caption-SCC",
+                "title":  "Scenarist Closed Captions (SCC)",
+                "description":  "SCC stores timecoded hexadecimal 608 caption words whose decoder commands determine the actual visible caption presentation.",
+                "url":  "https://emby.media/learn/articles/subtitles/formats/broadcast/Caption-SCC.html"
+            },
+    "SDH":  {
+                "uid":  "Learn-Subtitle-SDH",
+                "title":  "Subtitles for the deaf and hard of hearing (SDH)",
+                "description":  "SDH subtitles include dialogue and relevant speaker, music and sound information for viewers who cannot rely on the soundtrack.",
+                "url":  "https://emby.media/learn/articles/subtitles/selection/Subtitle-SDH.html"
+            },
+    "SMB":  {
+                "uid":  "Learn-Storage-SMB",
+                "title":  "SMB file shares: sessions, shares and file operations",
+                "description":  "SMB serves network file operations through authenticated sessions and named shares, with access and caching rules distinct from Emby playback delivery.",
+                "url":  "https://emby.media/learn/articles/storage/sharing/protocols/Storage-SMB.html"
+            },
+    "SMPTE ST 2084":  {
+                          "uid":  "Learn-Transfer-Function-PQ",
+                          "title":  "Perceptual Quantizer (PQ): SMPTE ST 2084",
+                          "description":  "PQ is an HDR transfer function that assigns encoded signal values to absolute light levels up to 10,000 nits.",
+                          "url":  "https://emby.media/learn/articles/video/color-standards/transfer-functions/Transfer-Function-PQ.html"
+                      },
+    "SMPTE ST 2086":  {
+                          "uid":  "Learn-HDR-Mastering-Display-Metadata",
+                          "title":  "Mastering Display Metadata: SMPTE ST 2086",
+                          "description":  "SMPTE ST 2086 describes the color primaries, white point, and luminance range configured for the mastering display.",
+                          "url":  "https://emby.media/learn/articles/video/hdr/metadata-and-light-levels/HDR-Mastering-Display-Metadata.html"
+                      },
+    "SPDIF":  {
+                  "uid":  "Learn-Audio-SPDIF",
+                  "title":  "S/PDIF digital audio",
+                  "description":  "S/PDIF transports a consumer digital audio stream whose framing can carry stereo PCM or supported encoded audio bursts.",
+                  "url":  "https://emby.media/learn/articles/audio/devices-output/Audio-SPDIF.html"
+              },
+    "SRT":  {
+                "uid":  "Learn-Subtitle-SRT",
+                "title":  "SubRip subtitles (SRT)",
+                "description":  "SRT stores numbered text cues with millisecond start and end timestamps separated into plain-text blocks.",
+                "url":  "https://emby.media/learn/articles/subtitles/formats/text/Subtitle-SRT.html"
+            },
+    "SSDP":  {
+                 "uid":  "Learn-Network-SSDP",
+                 "title":  "SSDP discovery, advertisements and service locations",
+                 "description":  "SSDP discovers UPnP candidates through advertisements and searches, returning service-description locations whose later accessibility must be evaluated separately.",
+                 "url":  "https://emby.media/learn/articles/networking/names/discovery/Network-SSDP.html"
+             },
+    "SSIM":  {
+                 "uid":  "Learn-Video-Quality-SSIM",
+                 "title":  "Structural Similarity (SSIM) for Video",
+                 "description":  "SSIM compares local luminance, contrast, and structure between decoded pictures and a reference.",
+                 "url":  "https://emby.media/learn/articles/video/encoding-quality/quality-metrics/Video-Quality-SSIM.html"
+             },
+    "ST 2086":  {
+                    "uid":  "Learn-HDR-Mastering-Display-Metadata",
+                    "title":  "Mastering Display Metadata: SMPTE ST 2086",
+                    "description":  "SMPTE ST 2086 describes the color primaries, white point, and luminance range configured for the mastering display.",
+                    "url":  "https://emby.media/learn/articles/video/hdr/metadata-and-light-levels/HDR-Mastering-Display-Metadata.html"
+                },
+    "ST 2094-10":  {
+                       "uid":  "Learn-Tone-Mapping-Curve-ST2094-10",
+                       "title":  "Tone Mapping Curve: ST 2094-10 in libplacebo",
+                       "description":  "libplacebo\u0027s ST 2094-10 mapper fits a brightness curve using source and target range information plus a selected adaptation point.",
+                       "url":  "https://emby.media/learn/articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-ST2094-10.html"
+                   },
+    "ST 2094-40":  {
+                       "uid":  "Learn-Tone-Mapping-Curve-ST2094-40",
+                       "title":  "Tone Mapping Curve: ST 2094-40 in libplacebo",
+                       "description":  "libplacebo\u0027s ST 2094-40 mapper can use a metadata-defined Bézier curve and adapts it to the output display range.",
+                       "url":  "https://emby.media/learn/articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-ST2094-40.html"
+                   },
+    "ST2094-10":  {
+                      "uid":  "Learn-Tone-Mapping-Curve-ST2094-10",
+                      "title":  "Tone Mapping Curve: ST 2094-10 in libplacebo",
+                      "description":  "libplacebo\u0027s ST 2094-10 mapper fits a brightness curve using source and target range information plus a selected adaptation point.",
+                      "url":  "https://emby.media/learn/articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-ST2094-10.html"
+                  },
+    "ST2094-40":  {
+                      "uid":  "Learn-Tone-Mapping-Curve-ST2094-40",
+                      "title":  "Tone Mapping Curve: ST 2094-40 in libplacebo",
+                      "description":  "libplacebo\u0027s ST 2094-40 mapper can use a metadata-defined Bézier curve and adapts it to the output display range.",
+                      "url":  "https://emby.media/learn/articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-ST2094-40.html"
+                  },
+    "Scenarist Closed Captions":  {
+                                      "uid":  "Learn-Caption-SCC",
+                                      "title":  "Scenarist Closed Captions (SCC)",
+                                      "description":  "SCC stores timecoded hexadecimal 608 caption words whose decoder commands determine the actual visible caption presentation.",
+                                      "url":  "https://emby.media/learn/articles/subtitles/formats/broadcast/Caption-SCC.html"
+                                  },
+    "Spectral Band Replication":  {
+                                      "uid":  "Learn-HE-AAC",
+                                      "title":  "HE-AAC Audio",
+                                      "description":  "HE-AAC combines an AAC-LC core with Spectral Band Replication to encode audio efficiently at lower bitrates.",
+                                      "url":  "https://emby.media/learn/articles/audio/formats/lossy/aac-family/HE-AAC.html"
+                                  },
+    "Speex":  {
+                  "uid":  "Learn-Speex",
+                  "title":  "Speex Speech Audio",
+                  "description":  "Speex is an open speech codec using code-excited linear prediction with narrowband, wideband, and ultra-wideband modes.",
+                  "url":  "https://emby.media/learn/articles/audio/formats/speech/Speex.html"
+              },
+    "SubRip":  {
+                   "uid":  "Learn-Subtitle-SRT",
+                   "title":  "SubRip subtitles (SRT)",
+                   "description":  "SRT stores numbered text cues with millisecond start and end timestamps separated into plain-text blocks.",
+                   "url":  "https://emby.media/learn/articles/subtitles/formats/text/Subtitle-SRT.html"
+               },
+    "SubStation Alpha":  {
+                             "uid":  "Learn-Subtitle-SSA",
+                             "title":  "SubStation Alpha subtitles (SSA)",
+                             "description":  "SSA is a styled subtitle script format whose v4 sections describe reusable styles and timed dialogue events.",
+                             "url":  "https://emby.media/learn/articles/subtitles/formats/text/Subtitle-SSA.html"
+                         },
+    "Subtitle OCR":  {
+                         "uid":  "Learn-Subtitle-OCR",
+                         "title":  "Subtitle OCR",
+                         "description":  "Subtitle OCR recognizes character text from subtitle graphics and combines it with recovered timing and reviewed reading order.",
+                         "url":  "https://emby.media/learn/articles/subtitles/storage-delivery/extraction-conversion/Subtitle-OCR.html"
+                     },
+    "TCP":  {
+                "uid":  "Learn-Network-TCP",
+                "title":  "TCP: an ordered byte stream for media delivery",
+                "description":  "TCP supplies an ordered reliable byte stream, recovering missing transport data while leaving message structure, encryption and successful media decoding to higher layers.",
+                "url":  "https://emby.media/learn/articles/networking/transport/Network-TCP.html"
+            },
+    "TFF":  {
+                "uid":  "Learn-Video-Field-Order",
+                "title":  "Video Field Order",
+                "description":  "Field order identifies which set of alternating picture lines comes first in time.",
+                "url":  "https://emby.media/learn/articles/video/frame-timing/interlacing-and-cadence/Video-Field-Order.html"
+            },
+    "TIFF":  {
+                 "uid":  "Learn-Image-TIFF",
+                 "title":  "TIFF images",
+                 "description":  "TIFF organizes image data through tagged directories, allowing different sample layouts, compression choices and multiple image representations within one file.",
+                 "url":  "https://emby.media/learn/articles/photos-images/formats/Image-TIFF.html"
+             },
+    "TLS":  {
+                "uid":  "Learn-Network-HTTPS-TLS",
+                "title":  "HTTPS and TLS: transport protection and peer identity",
+                "description":  "HTTPS uses TLS to protect an HTTP connection and verify the intended peer, with routing, handshake validation and application login forming distinct stages.",
+                "url":  "https://emby.media/learn/articles/networking/security/Network-HTTPS-TLS.html"
+            },
+    "TMDS":  {
+                 "uid":  "Learn-AV-HDMI-Bandwidth",
+                 "title":  "HDMI link bandwidth: TMDS and FRL",
+                 "description":  "HDMI link bandwidth depends on the selected timing, sample format and TMDS or FRL transport arrangement rather than on the movie’s compressed bitrate.",
+                 "url":  "https://emby.media/learn/articles/display-av/connections/hdmi/AV-HDMI-Bandwidth.html"
+             },
+    "TTML":  {
+                 "uid":  "Learn-Subtitle-TTML",
+                 "title":  "Timed Text Markup Language (TTML)",
+                 "description":  "TTML uses XML to describe timed text, styles, regions, and the timing relationships of nested content.",
+                 "url":  "https://emby.media/learn/articles/subtitles/formats/text/Subtitle-TTML.html"
+             },
+    "Teletext subtitles":  {
+                               "uid":  "Learn-Caption-Teletext",
+                               "title":  "Teletext subtitles",
+                               "description":  "Teletext subtitles select a caption page whose character/control data, row updates and broadcast signaling establish the timed display.",
+                               "url":  "https://emby.media/learn/articles/subtitles/formats/broadcast/Caption-Teletext.html"
+                           },
+    "TrueHD":  {
+                   "uid":  "Learn-Dolby-TrueHD",
+                   "title":  "Dolby TrueHD Audio",
+                   "description":  "Dolby TrueHD is a lossless audio format that can also carry Dolby Atmos information.",
+                   "url":  "https://emby.media/learn/articles/audio/formats/lossless/Dolby-TrueHD.html"
+               },
+    "UDP":  {
+                "uid":  "Learn-Network-UDP",
+                "title":  "UDP datagrams and application delivery policy",
+                "description":  "UDP carries bounded datagrams without supplying TCP-style ordering or retransmission, allowing each application protocol to define its own response to loss and timing.",
+                "url":  "https://emby.media/learn/articles/networking/transport/Network-UDP.html"
+            },
+    "UHBR":  {
+                 "uid":  "Learn-AV-DisplayPort",
+                 "title":  "DisplayPort video links",
+                 "description":  "DisplayPort carries presentation streams over a negotiated link with separate lane/rate, stream-format and capability relationships.",
+                 "url":  "https://emby.media/learn/articles/display-av/connections/displayport/AV-DisplayPort.html"
+             },
+    "UID/GID":  {
+                    "uid":  "Learn-Storage-Linux-IDs",
+                    "title":  "Linux user and group IDs in storage access",
+                    "description":  "Linux storage access uses process and file user/group IDs, so matching account names do not guarantee matching permissions across hosts or namespaces.",
+                    "url":  "https://emby.media/learn/articles/storage/sharing/permissions/Storage-Linux-IDs.html"
+                },
+    "UNC":  {
+                "uid":  "Learn-Storage-UNC",
+                "title":  "UNC paths and network-share names",
+                "description":  "A UNC path identifies a Windows network server, share and remaining pathname without depending on a mapped drive letter.",
+                "url":  "https://emby.media/learn/articles/storage/sharing/protocols/Storage-UNC.html"
+            },
+    "UPS":  {
+                "uid":  "Learn-Storage-UPS",
+                "title":  "UPS power continuity and orderly shutdown",
+                "description":  "A UPS supplies temporary power during an interruption, allowing a supported shutdown sequence to complete before its available energy is exhausted.",
+                "url":  "https://emby.media/learn/articles/storage/data-protection/Storage-UPS.html"
+            },
+    "UPnP AV":  {
+                    "uid":  "Learn-Playback-DLNA",
+                    "title":  "DLNA media playback and UPnP AV roles",
+                    "description":  "DLNA media playback uses interoperable media and UPnP AV roles to discover content, select a renderer and establish a supported media-delivery path.",
+                    "url":  "https://emby.media/learn/articles/playback-streaming/casting/dlna/Playback-DLNA.html"
+                },
+    "UPnP IGD":  {
+                     "uid":  "Learn-Network-UPnP-Mapping",
+                     "title":  "UPnP port mapping and gateway control",
+                     "description":  "UPnP gateway port mapping asks a compatible gateway to maintain an inbound endpoint association, with granted mapping details and lifetime distinct from complete server reachability.",
+                     "url":  "https://emby.media/learn/articles/networking/routers/nat/Network-UPnP-Mapping.html"
+                 },
+    "USAC":  {
+                 "uid":  "Learn-xHE-AAC",
+                 "title":  "xHE-AAC Audio",
+                 "description":  "xHE-AAC combines Extended HE-AAC based on USAC with MPEG-D loudness and dynamic-range control for speech and music delivery.",
+                 "url":  "https://emby.media/learn/articles/audio/formats/lossy/aac-family/xHE-AAC.html"
+             },
+    "UVD":  {
+                "uid":  "Learn-Hardware-AMD-UVD",
+                "title":  "AMD Unified Video Decoder (UVD, legacy)",
+                "description":  "UVD names AMD’s legacy dedicated video-decoder family, while related identifiers can persist in software interfaces that run on later supported devices.",
+                "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/amd/Hardware-AMD-UVD.html"
+            },
+    "Unified Video Decoder":  {
+                                  "uid":  "Learn-Hardware-AMD-UVD",
+                                  "title":  "AMD Unified Video Decoder (UVD, legacy)",
+                                  "description":  "UVD names AMD’s legacy dedicated video-decoder family, while related identifiers can persist in software interfaces that run on later supported devices.",
+                                  "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/amd/Hardware-AMD-UVD.html"
+                              },
+    "V4L2 M2M":  {
+                     "uid":  "Learn-Hardware-Linux-V4L2-M2M",
+                     "title":  "V4L2 memory-to-memory codecs",
+                     "description":  "A V4L2 memory-to-memory codec transforms application-supplied buffers through paired source and destination queues whose formats, ownership and state define the media operation.",
+                     "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/linux/Hardware-Linux-V4L2-M2M.html"
+                 },
+    "V4L2 memory-to-memory":  {
+                                  "uid":  "Learn-Hardware-Linux-V4L2-M2M",
+                                  "title":  "V4L2 memory-to-memory codecs",
+                                  "description":  "A V4L2 memory-to-memory codec transforms application-supplied buffers through paired source and destination queues whose formats, ownership and state define the media operation.",
+                                  "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/linux/Hardware-Linux-V4L2-M2M.html"
+                              },
+    "V4L2 stateless decoding":  {
+                                    "uid":  "Learn-Hardware-Linux-V4L2-Stateless",
+                                    "title":  "V4L2 stateless decoding and the Request API",
+                                    "description":  "V4L2 stateless decoding makes the application supply per-picture decoding state, references and encoded data through requests that bind the operation’s controls and buffers.",
+                                    "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/linux/Hardware-Linux-V4L2-Stateless.html"
+                                },
+    "VA-API":  {
+                   "uid":  "Learn-Hardware-Linux-VAAPI",
+                   "title":  "Video Acceleration API (VA-API)",
+                   "description":  "VA-API exposes video decode, encode and processing operations through profile/entrypoint configurations implemented by a selected device driver backend.",
+                   "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/linux/Hardware-Linux-VAAPI.html"
+               },
+    "VAAPI":  {
+                  "uid":  "Learn-Hardware-Linux-VAAPI",
+                  "title":  "Video Acceleration API (VA-API)",
+                  "description":  "VA-API exposes video decode, encode and processing operations through profile/entrypoint configurations implemented by a selected device driver backend.",
+                  "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/linux/Hardware-Linux-VAAPI.html"
+              },
+    "VBV":  {
+                "uid":  "Learn-Video-Encoding-VBV",
+                "title":  "Video Buffering Verifier (VBV)",
+                "description":  "VBV constrains encoded video using a modeled buffer capacity and input rate rather than a whole-file average alone.",
+                "url":  "https://emby.media/learn/articles/video/encoding-quality/rate-control/Video-Encoding-VBV.html"
+            },
+    "VC-1":  {
+                 "uid":  "Learn-Video-Codec-VC1",
+                 "title":  "VC-1 Video",
+                 "description":  "VC-1 is the video coding format standardized in SMPTE ST 421 with Simple, Main, and Advanced profiles.",
+                 "url":  "https://emby.media/learn/articles/video/codecs/Video-Codec-VC1.html"
+             },
+    "VCE":  {
+                "uid":  "Learn-Hardware-AMD-VCE",
+                "title":  "AMD Video Coding Engine (VCE, legacy)",
+                "description":  "VCE names AMD’s legacy video-encoding engine family, separating compressed-output creation from source decoding and from the software framework controlling the job.",
+                "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/amd/Hardware-AMD-VCE.html"
+            },
+    "VCN":  {
+                "uid":  "Learn-Hardware-AMD-VCN",
+                "title":  "AMD Video Core Next (VCN)",
+                "description":  "VCN is AMD’s video-engine family associated with supported media decoding and encoding operations, distinct from its graphics architecture and the software API used to access it.",
+                "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/amd/Hardware-AMD-VCN.html"
+            },
+    "VDPAU":  {
+                  "uid":  "Learn-Hardware-Linux-VDPAU",
+                  "title":  "Video Decode and Presentation API for Unix (VDPAU)",
+                  "description":  "VDPAU provides Unix video decoding, mixing and presentation interfaces with defined surface types and driver-backed capability relationships.",
+                  "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/linux/Hardware-Linux-VDPAU.html"
+              },
+    "VFR":  {
+                "uid":  "Learn-Variable-Frame-Rate",
+                "title":  "Variable Frame Rate",
+                "description":  "Variable frame rate allows the interval between successive video pictures to change.",
+                "url":  "https://emby.media/learn/articles/video/frame-timing/frame-rates/Variable-Frame-Rate.html"
+            },
+    "VLAN":  {
+                 "uid":  "Learn-Network-VLANs",
+                 "title":  "VLANs, tagged links and routed policy",
+                 "description":  "A VLAN identifies a bridged network context through port and tag handling, with routing and policy required for communication between separately defined realms.",
+                 "url":  "https://emby.media/learn/articles/networking/boundaries/Network-VLANs.html"
+             },
+    "VMAF":  {
+                 "uid":  "Learn-Video-Quality-VMAF",
+                 "title":  "VMAF Video Quality Metric",
+                 "description":  "VMAF predicts perceived video quality by comparing a decoded test video with a reference under a selected model and viewing context.",
+                 "url":  "https://emby.media/learn/articles/video/encoding-quality/quality-metrics/Video-Quality-VMAF.html"
+             },
+    "VPP":  {
+                "uid":  "Learn-Hardware-Intel-VPP",
+                "title":  "Intel video processing (VPP)",
+                "description":  "Intel VPP processes decoded pictures into a requested output picture configuration, coordinating supported transformations, output cadence and surface completion.",
+                "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/intel/Hardware-Intel-VPP.html"
+            },
+    "VRR":  {
+                "uid":  "Learn-Display-VRR",
+                "title":  "Variable refresh rate (VRR)",
+                "description":  "Variable refresh rate allows a supported display route to vary presentation intervals within a defined operating range.",
+                "url":  "https://emby.media/learn/articles/display-av/motion/refresh-synchronization/Display-VRR.html"
+            },
+    "VSync":  {
+                  "uid":  "Learn-Display-VSync",
+                  "title":  "Vertical synchronization (VSync)",
+                  "description":  "Vertical synchronization coordinates presentation with display refresh boundaries to avoid showing incompatible picture updates within a scan.",
+                  "url":  "https://emby.media/learn/articles/display-av/motion/refresh-synchronization/Display-VSync.html"
+              },
+    "VVC":  {
+                "uid":  "Learn-Video-Codec-VVC",
+                "title":  "H.266 / VVC Video",
+                "description":  "H.266, also called VVC, is a video coding standard that requires its own compatible decoder and playback integration.",
+                "url":  "https://emby.media/learn/articles/video/codecs/mpeg-itu/Video-Codec-VVC.html"
+            },
+    "Video Buffering Verifier":  {
+                                     "uid":  "Learn-Video-Encoding-VBV",
+                                     "title":  "Video Buffering Verifier (VBV)",
+                                     "description":  "VBV constrains encoded video using a modeled buffer capacity and input rate rather than a whole-file average alone.",
+                                     "url":  "https://emby.media/learn/articles/video/encoding-quality/rate-control/Video-Encoding-VBV.html"
+                                 },
+    "Video Coding Engine":  {
+                                "uid":  "Learn-Hardware-AMD-VCE",
+                                "title":  "AMD Video Coding Engine (VCE, legacy)",
+                                "description":  "VCE names AMD’s legacy video-encoding engine family, separating compressed-output creation from source decoding and from the software framework controlling the job.",
+                                "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/amd/Hardware-AMD-VCE.html"
+                            },
+    "Video Core Next":  {
+                            "uid":  "Learn-Hardware-AMD-VCN",
+                            "title":  "AMD Video Core Next (VCN)",
+                            "description":  "VCN is AMD’s video-engine family associated with supported media decoding and encoding operations, distinct from its graphics architecture and the software API used to access it.",
+                            "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/amd/Hardware-AMD-VCN.html"
+                        },
+    "VideoToolbox":  {
+                         "uid":  "Learn-Hardware-Apple-VideoToolbox",
+                         "title":  "Apple VideoToolbox",
+                         "description":  "VideoToolbox provides Apple-platform compression and decompression sessions whose selected implementation, pixel buffers and completion behavior define the media-processing path.",
+                         "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/apple/Hardware-Apple-VideoToolbox.html"
+                     },
+    "VobSub":  {
+                   "uid":  "Learn-Subtitle-DVD",
+                   "title":  "DVD subtitles: DVDSub and VobSub",
+                   "description":  "DVD subtitle subpictures are compressed indexed graphics, while VobSub packages related subtitle data into external SUB and IDX files.",
+                   "url":  "https://emby.media/learn/articles/subtitles/formats/bitmap/Subtitle-DVD.html"
+               },
+    "Vorbis comments":  {
+                            "uid":  "Learn-Metadata-Vorbis-Comments",
+                            "title":  "Vorbis comments",
+                            "description":  "Vorbis comments store length-prefixed UTF-8 name/value entries with case-insensitive field names and support for repeated values, within the enclosing codec\u0027s metadata structure.",
+                            "url":  "https://emby.media/learn/articles/metadata-discovery/local-formats/audio-tags/Metadata-Vorbis-Comments.html"
+                        },
+    "Vulkan Video":  {
+                         "uid":  "Learn-Hardware-Vulkan-Video",
+                         "title":  "Vulkan Video profiles, queues and sessions",
+                         "description":  "Vulkan Video exposes supported codec operations through video profiles, queue capabilities, session resources and codec-specific picture parameters.",
+                         "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/portable/Hardware-Vulkan-Video.html"
+                     },
+    "Vulkan media processing":  {
+                                    "uid":  "Learn-Hardware-Vulkan",
+                                    "title":  "Vulkan for media processing",
+                                    "description":  "Vulkan exposes device queues, image resources and programmable processing whose formats, synchronization and ownership determine how pictures move through a compatible media pipeline.",
+                                    "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/portable/Hardware-Vulkan.html"
+                                },
+    "WAL":  {
+                "uid":  "Learn-Server-WAL",
+                "title":  "Database write-ahead logging, readers and checkpoints",
+                "description":  "Write-ahead logging records committed database changes in a log before checkpointing them into the main file, supporting reader snapshots with particular concurrency rules.",
+                "url":  "https://emby.media/learn/articles/storage/workload/databases/Server-WAL.html"
+            },
+    "WASAPI":  {
+                   "uid":  "Learn-Audio-WASAPI",
+                   "title":  "Windows Audio Session API (WASAPI)",
+                   "description":  "WASAPI lets Windows applications negotiate and feed endpoint audio streams using shared or exclusive access and explicit buffer accounting.",
+                   "url":  "https://emby.media/learn/articles/audio/devices-output/os-apis/Audio-WASAPI.html"
+               },
+    "WavPack":  {
+                    "uid":  "Learn-WavPack",
+                    "title":  "WavPack Audio",
+                    "description":  "WavPack can compress audio losslessly or use lossy and hybrid modes with an optional correction file.",
+                    "url":  "https://emby.media/learn/articles/audio/formats/lossless/WavPack.html"
+                },
+    "WebP":  {
+                 "uid":  "Learn-Image-WebP",
+                 "title":  "WebP images",
+                 "description":  "WebP packages lossy or lossless image coding in a RIFF container that can also describe alpha, colour/metadata and animation.",
+                 "url":  "https://emby.media/learn/articles/photos-images/formats/Image-WebP.html"
+             },
+    "WebVTT":  {
+                   "uid":  "Learn-Subtitle-WebVTT",
+                   "title":  "WebVTT subtitles",
+                   "description":  "WebVTT defines UTF-8 timed text cues, presentation settings, and cue markup for web-oriented text tracks.",
+                   "url":  "https://emby.media/learn/articles/subtitles/formats/text/Subtitle-WebVTT.html"
+               },
+    "WirePlumber":  {
+                        "uid":  "Learn-Audio-PipeWire",
+                        "title":  "PipeWire",
+                        "description":  "PipeWire routes media through a scheduled graph of nodes, ports, and links, with session policy and compatibility interfaces around that graph.",
+                        "url":  "https://emby.media/learn/articles/audio/devices-output/os-apis/Audio-PipeWire.html"
+                    },
+    "X-Forwarded-For":  {
+                            "uid":  "Learn-Network-Forwarded-Addresses",
+                            "title":  "Forwarded client addresses and trusted proxy context",
+                            "description":  "Forwarded client-address metadata describes an earlier request path only when interpreted through trusted proxy context, separately from the origin’s actual socket peer.",
+                            "url":  "https://emby.media/learn/articles/networking/routers/proxy/Network-Forwarded-Addresses.html"
+                        },
+    "XMLTV":  {
+                  "uid":  "Learn-TV-XMLTV",
+                  "title":  "XMLTV listings: channels, programmes and time",
+                  "description":  "XMLTV represents channel identities and programme listings in XML, with format-specific timestamps and episode-number systems that a guide importer must interpret.",
+                  "url":  "https://emby.media/learn/articles/live-tv/guides/formats/TV-XMLTV.html"
+              },
+    "XMP":  {
+                "uid":  "Learn-Metadata-XMP",
+                "title":  "XMP metadata",
+                "description":  "XMP defines an extensible metadata model and RDF/XML serialization whose namespaced properties can be embedded in resources or carried in associated sidecars.",
+                "url":  "https://emby.media/learn/articles/metadata-discovery/local-formats/photo-metadata/Metadata-XMP.html"
+            },
+    "adaptive bitrate streaming":  {
+                                       "uid":  "Learn-Playback-Adaptive-Bitrate",
+                                       "title":  "Adaptive bitrate streaming and representation selection",
+                                       "description":  "Adaptive bitrate streaming selects among suitable representations of the same programme timeline to balance presentation quality, delivery capacity and playback reserve.",
+                                       "url":  "https://emby.media/learn/articles/playback-streaming/delivery/Playback-Adaptive-Bitrate.html"
+                                   },
+    "audio clipping":  {
+                           "uid":  "Learn-Audio-Clipping",
+                           "title":  "Audio Clipping",
+                           "description":  "Clipping occurs when a signal exceeds a stage’s available range and its peaks are limited.",
+                           "url":  "https://emby.media/learn/articles/audio/fundamentals/Audio-Clipping.html"
+                       },
+    "audio dithering":  {
+                            "uid":  "Learn-Audio-Dithering",
+                            "title":  "Audio Dithering",
+                            "description":  "Dither adds a small controlled noise signal before quantization to avoid signal-dependent rounding distortion.",
+                            "url":  "https://emby.media/learn/articles/audio/fundamentals/Audio-Dithering.html"
+                        },
+    "automatic brightness limiting":  {
+                                          "uid":  "Learn-Display-ABL",
+                                          "title":  "Automatic brightness limiting",
+                                          "description":  "Automatic brightness limiting reduces permitted display output as picture loading reaches the implementation’s power or drive constraints.",
+                                          "url":  "https://emby.media/learn/articles/display-av/characteristics/hdr/Display-ABL.html"
+                                      },
+    "binaural":  {
+                     "uid":  "Learn-Binaural-Audio",
+                     "title":  "Binaural Audio",
+                     "description":  "Binaural audio supplies left-ear and right-ear signals with the cues used to perceive sound direction.",
+                     "url":  "https://emby.media/learn/articles/audio/channels/Binaural-Audio.html"
+                 },
+    "black-frame insertion":  {
+                                  "uid":  "Learn-Display-Black-Frame-Insertion",
+                                  "title":  "Black-frame insertion and display persistence",
+                                  "description":  "Black-frame insertion or timed dark intervals reduce visible picture persistence by interrupting illumination between presentations.",
+                                  "url":  "https://emby.media/learn/articles/display-av/motion/Display-Black-Frame-Insertion.html"
+                              },
+    "broadcast multiplex":  {
+                                "uid":  "Learn-TV-Multiplexes",
+                                "title":  "Broadcast multiplexes",
+                                "description":  "A broadcast multiplex combines several service/component data streams into one defined transport/acquisition context, with shared capacity and signaling linking the selected programme to its packets.",
+                                "url":  "https://emby.media/learn/articles/live-tv/channels/identity/TV-Multiplexes.html"
+                            },
+    "bufferbloat":  {
+                        "uid":  "Learn-Network-Bufferbloat",
+                        "title":  "Bufferbloat and standing queue delay",
+                        "description":  "Bufferbloat is excessive standing queue delay under load, where retained work can keep link utilization high while delaying interactive and media-control traffic.",
+                        "url":  "https://emby.media/learn/articles/networking/performance/traffic/Network-Bufferbloat.html"
+                    },
+    "chase playback":  {
+                           "uid":  "Learn-TV-Chase-Playback",
+                           "title":  "Chase playback while a recording grows",
+                           "description":  "Chase playback reads an ongoing recording before capture finishes, coordinating a growing usable endpoint with the reader’s position and the recording’s final completion state.",
+                           "url":  "https://emby.media/learn/articles/live-tv/recording/time-shifting/TV-Chase-Playback.html"
+                       },
+    "codec level":  {
+                        "uid":  "Learn-Video-Codec-Levels-Tiers",
+                        "title":  "Video Codec Levels and Tiers",
+                        "description":  "Codec levels and tiers describe resource limits that a compatible decoder must satisfy.",
+                        "url":  "https://emby.media/learn/articles/video/compression/Video-Codec-Levels-Tiers.html"
+                    },
+    "codec profile":  {
+                          "uid":  "Learn-Video-Codec-Profiles",
+                          "title":  "Video Codec Profiles",
+                          "description":  "A video codec profile constrains the coding tools and sample formats a stream may use.",
+                          "url":  "https://emby.media/learn/articles/video/compression/Video-Codec-Profiles.html"
+                      },
+    "constant rate factor":  {
+                                 "uid":  "Learn-Video-Encoding-CRF",
+                                 "title":  "Constant Rate Factor (CRF) for Video",
+                                 "description":  "Constant rate factor is an encoder-specific quality control that produces variable bitrate without targeting an exact output size.",
+                                 "url":  "https://emby.media/learn/articles/video/encoding-quality/rate-control/Video-Encoding-CRF.html"
+                             },
+    "copy back video":  {
+                            "uid":  "Learn-Hardware-Copy-Back",
+                            "title":  "Copy-back video pipelines",
+                            "description":  "A copy-back video path makes hardware-decoded pictures available in a CPU-oriented representation so software consumers can process them before later delivery or encoding.",
+                            "url":  "https://emby.media/learn/articles/hardware-acceleration/pipelines/memory/Hardware-Copy-Back.html"
+                        },
+    "copy-back video":  {
+                            "uid":  "Learn-Hardware-Copy-Back",
+                            "title":  "Copy-back video pipelines",
+                            "description":  "A copy-back video path makes hardware-decoded pictures available in a CPU-oriented representation so software consumers can process them before later delivery or encoding.",
+                            "url":  "https://emby.media/learn/articles/hardware-acceleration/pipelines/memory/Hardware-Copy-Back.html"
+                        },
+    "deinterlacing":  {
+                          "uid":  "Learn-Deinterlacing",
+                          "title":  "Deinterlacing",
+                          "description":  "Deinterlacing reconstructs complete display pictures from an interlaced video\u0027s alternating fields.",
+                          "url":  "https://emby.media/learn/articles/video/frame-timing/interlacing-and-cadence/Deinterlacing.html"
+                      },
+    "dialnorm":  {
+                     "uid":  "Learn-Audio-Dialogue-Normalization",
+                     "title":  "Dialogue normalization (dialnorm)",
+                     "description":  "Dialnorm metadata describes a Dolby programme\u0027s dialogue reference level so the reproduction system can choose a corresponding gain.",
+                     "url":  "https://emby.media/learn/articles/audio/loudness-music-playback/measurement-control/Audio-Dialogue-Normalization.html"
+                 },
+    "double NAT":  {
+                       "uid":  "Learn-Network-Double-NAT",
+                       "title":  "Double NAT and two translation boundaries",
+                       "description":  "Double NAT places two translation boundaries in a connection path, requiring their endpoint mappings and state to compose before outside traffic can reach an internal server.",
+                       "url":  "https://emby.media/learn/articles/networking/routers/nat/Network-Double-NAT.html"
+                   },
+    "eARC":  {
+                 "uid":  "Learn-AV-HDMI-eARC",
+                 "title":  "HDMI Enhanced Audio Return Channel (eARC)",
+                 "description":  "Enhanced Audio Return Channel expands the supported TV-to-audio-system transport and capability relationship beyond conventional ARC.",
+                 "url":  "https://emby.media/learn/articles/display-av/signaling/audio-return/AV-HDMI-eARC.html"
+             },
+    "fMP4":  {
+                 "uid":  "Learn-Fragmented-MP4",
+                 "title":  "Fragmented MP4",
+                 "description":  "Fragmented MP4 distributes timing and sample descriptions across successive media fragments after an initial track description.",
+                 "url":  "https://emby.media/learn/articles/media-files/packaging/mp4/Fragmented-MP4.html"
+             },
+    "field order":  {
+                        "uid":  "Learn-Video-Field-Order",
+                        "title":  "Video Field Order",
+                        "description":  "Field order identifies which set of alternating picture lines comes first in time.",
+                        "url":  "https://emby.media/learn/articles/video/frame-timing/interlacing-and-cadence/Video-Field-Order.html"
+                    },
+    "file stacking":  {
+                          "uid":  "Learn-Library-Multipart-Movies",
+                          "title":  "Multipart movies and file stacking",
+                          "description":  "A multipart movie divides one intended feature across sequential resources whose local timelines must be interpreted as parts of a whole.",
+                          "url":  "https://emby.media/learn/articles/libraries-collections/movies/editions-versions/Library-Multipart-Movies.html"
+                      },
+    "filter graph":  {
+                         "uid":  "Learn-Playback-Filter-Graphs",
+                         "title":  "Media filter graphs",
+                         "description":  "A media filter graph connects decoded-frame transformations through defined input/output relationships whose order, format and branching affect the result.",
+                         "url":  "https://emby.media/learn/articles/playback-streaming/conversion/pipeline-stages/Playback-Filter-Graphs.html"
+                     },
+    "filtergraph":  {
+                        "uid":  "Learn-Playback-Filter-Graphs",
+                        "title":  "Media filter graphs",
+                        "description":  "A media filter graph connects decoded-frame transformations through defined input/output relationships whose order, format and branching affect the result.",
+                        "url":  "https://emby.media/learn/articles/playback-streaming/conversion/pipeline-stages/Playback-Filter-Graphs.html"
+                    },
+    "group of pictures":  {
+                              "uid":  "Learn-Video-GOP",
+                              "title":  "Groups of Pictures (GOPs)",
+                              "description":  "A group of pictures describes a sequence of coded pictures and their prediction relationships around access points.",
+                              "url":  "https://emby.media/learn/articles/video/compression/picture-prediction-and-random-access/Video-GOP.html"
+                          },
+    "hairpin NAT":  {
+                        "uid":  "Learn-Network-NAT-Loopback",
+                        "title":  "NAT loopback and same-network public endpoints",
+                        "description":  "NAT loopback lets an inside client use an outside mapped endpoint for an inside service, with compatible translation and return routing keeping the client’s expected peer consistent.",
+                        "url":  "https://emby.media/learn/articles/networking/routers/nat/Network-NAT-Loopback.html"
+                    },
+    "inter-frame prediction":  {
+                                   "uid":  "Learn-Inter-Frame-Prediction",
+                                   "title":  "Inter-Frame Video Prediction",
+                                   "description":  "Inter-frame prediction reconstructs a picture using previously decoded reference pictures and coded corrections.",
+                                   "url":  "https://emby.media/learn/articles/video/compression/picture-prediction-and-random-access/Inter-Frame-Prediction.html"
+                               },
+    "interlaced video":  {
+                             "uid":  "Learn-Interlaced-Video",
+                             "title":  "Interlaced Video",
+                             "description":  "Interlaced video records alternating sets of picture lines as fields captured at successive times.",
+                             "url":  "https://emby.media/learn/articles/video/frame-timing/interlacing-and-cadence/Interlaced-Video.html"
+                         },
+    "intra-frame compression":  {
+                                    "uid":  "Learn-Intra-Frame-Compression",
+                                    "title":  "Intra-Frame Video Compression",
+                                    "description":  "Intra-frame compression represents a picture using information from within that picture rather than other pictures.",
+                                    "url":  "https://emby.media/learn/articles/video/compression/picture-prediction-and-random-access/Intra-Frame-Compression.html"
+                                },
+    "inverse telecine":  {
+                             "uid":  "Learn-Inverse-Telecine",
+                             "title":  "Inverse Telecine",
+                             "description":  "Inverse telecine reconstructs progressive film pictures from a telecined television cadence.",
+                             "url":  "https://emby.media/learn/articles/video/frame-timing/interlacing-and-cadence/Inverse-Telecine.html"
+                         },
+    "keyframe":  {
+                     "uid":  "Learn-Video-Keyframes",
+                     "title":  "Video Keyframes and Random Access",
+                     "description":  "A video random-access point lets decoding begin without reconstructing the whole preceding stream.",
+                     "url":  "https://emby.media/learn/articles/video/compression/picture-prediction-and-random-access/Video-Keyframes.html"
+                 },
+    "local dimming":  {
+                          "uid":  "Learn-Display-Local-Dimming",
+                          "title":  "Local dimming and backlight zones",
+                          "description":  "Local dimming adjusts illumination in backlight regions so an LCD can use different light levels across the same picture.",
+                          "url":  "https://emby.media/learn/articles/display-av/characteristics/hdr/Display-Local-Dimming.html"
+                      },
+    "loopback address":  {
+                             "uid":  "Learn-Network-Loopback",
+                             "title":  "Loopback addresses and the meaning of localhost",
+                             "description":  "Loopback addresses reach the requesting host’s own network stack, making localhost useful for same-host access while proving little about another device’s server path.",
+                             "url":  "https://emby.media/learn/articles/networking/addressing/Network-Loopback.html"
+                         },
+    "mDNS":  {
+                 "uid":  "Learn-Network-MDNS",
+                 "title":  "Multicast DNS and local-link naming",
+                 "description":  "Multicast DNS resolves specified names on a local link through participating responders, with DNS-based service discovery adding service-instance and endpoint information.",
+                 "url":  "https://emby.media/learn/articles/networking/names/discovery/Network-MDNS.html"
+             },
+    "matrix surround":  {
+                            "uid":  "Learn-Matrix-Surround",
+                            "title":  "Matrix Surround",
+                            "description":  "Matrix surround encodes spatial relationships into fewer channels for later surround decoding.",
+                            "url":  "https://emby.media/learn/articles/audio/channels/Matrix-Surround.html"
+                        },
+    "mixed content":  {
+                          "uid":  "Learn-Network-Mixed-Content",
+                          "title":  "Mixed content and a browser’s secure-page boundary",
+                          "description":  "Mixed-content processing governs insecure subrequests made by a secure browser page, with request type, upgrade policy and local-network features separate from CORS and server reachability.",
+                          "url":  "https://emby.media/learn/articles/networking/security/browser/Network-Mixed-Content.html"
+                      },
+    "motion interpolation":  {
+                                 "uid":  "Learn-Motion-Interpolation",
+                                 "title":  "Motion Interpolation",
+                                 "description":  "Motion interpolation estimates new pictures between existing video frames to create a smoother presentation.",
+                                 "url":  "https://emby.media/learn/articles/video/frame-timing/Motion-Interpolation.html"
+                             },
+    "nit":  {
+                "uid":  "Learn-HDR-Luminance-Nits",
+                "title":  "Luminance and Nits",
+                "description":  "A nit is one candela per square metre, a unit used to describe the luminance of displayed images.",
+                "url":  "https://emby.media/learn/articles/video/hdr/HDR-Luminance-Nits.html"
+            },
+    "nits":  {
+                 "uid":  "Learn-HDR-Luminance-Nits",
+                 "title":  "Luminance and Nits",
+                 "description":  "A nit is one candela per square metre, a unit used to describe the luminance of displayed images.",
+                 "url":  "https://emby.media/learn/articles/video/hdr/HDR-Luminance-Nits.html"
+             },
+    "object-based audio":  {
+                               "uid":  "Learn-Object-Based-Audio",
+                               "title":  "Object-Based Audio",
+                               "description":  "Object-based audio combines sound components with metadata that a renderer uses to place them for the listening system.",
+                               "url":  "https://emby.media/learn/articles/audio/channels/object-based/Object-Based-Audio.html"
+                           },
+    "oneVPL":  {
+                   "uid":  "Learn-Hardware-Intel-VPL",
+                   "title":  "Intel VPL and the oneVPL name",
+                   "description":  "Intel VPL is the media library interface and dispatcher used to select supported Intel video implementations and coordinate decode, encode and processing sessions.",
+                   "url":  "https://emby.media/learn/articles/hardware-acceleration/interfaces/intel/Hardware-Intel-VPL.html"
+               },
+    "pixel aspect ratio":  {
+                               "uid":  "Learn-Video-Pixel-Aspect-Ratio",
+                               "title":  "Video Pixel Aspect Ratio",
+                               "description":  "Pixel aspect ratio describes how wide each video sample is intended to appear relative to its height.",
+                               "url":  "https://emby.media/learn/articles/video/geometry/aspect-ratios/Video-Pixel-Aspect-Ratio.html"
+                           },
+    "progressive video":  {
+                              "uid":  "Learn-Progressive-Video",
+                              "title":  "Progressive Video",
+                              "description":  "Progressive video represents each picture as a complete frame rather than fields from successive capture times.",
+                              "url":  "https://emby.media/learn/articles/video/frame-timing/interlacing-and-cadence/Progressive-Video.html"
+                          },
+    "quantization parameter":  {
+                                   "uid":  "Learn-Video-Encoding-QP",
+                                   "title":  "Video Quantization Parameter (QP)",
+                                   "description":  "A quantization parameter selects quantization strength in a video coding process and is not a universal picture-quality score.",
+                                   "url":  "https://emby.media/learn/articles/video/encoding-quality/rate-control/Video-Encoding-QP.html"
+                               },
+    "reference frames":  {
+                             "uid":  "Learn-Reference-Frames",
+                             "title":  "Video Reference Frames",
+                             "description":  "Reference frames are decoded pictures retained so that other pictures can use them for prediction.",
+                             "url":  "https://emby.media/learn/articles/video/compression/picture-prediction-and-random-access/Reference-Frames.html"
+                         },
+    "remux":  {
+                  "uid":  "Learn-Playback-Remuxing",
+                  "title":  "Remuxing media containers",
+                  "description":  "Remuxing places existing encoded streams into another container or delivery package without re-encoding those streams.",
+                  "url":  "https://emby.media/learn/articles/playback-streaming/from-server/Playback-Remuxing.html"
+              },
+    "remuxing":  {
+                     "uid":  "Learn-Playback-Remuxing",
+                     "title":  "Remuxing media containers",
+                     "description":  "Remuxing places existing encoded streams into another container or delivery package without re-encoding those streams.",
+                     "url":  "https://emby.media/learn/articles/playback-streaming/from-server/Playback-Remuxing.html"
+                 },
+    "reverse proxy":  {
+                          "uid":  "Learn-Network-Reverse-Proxy",
+                          "title":  "Reverse proxies and the two-sided server path",
+                          "description":  "A reverse proxy accepts a public-facing application request and makes a separate upstream request, translating endpoint and resource context according to its configured policy.",
+                          "url":  "https://emby.media/learn/articles/networking/routers/proxy/Network-Reverse-Proxy.html"
+                      },
+    "split DNS":  {
+                      "uid":  "Learn-Network-Split-DNS",
+                      "title":  "Split DNS and location-dependent server endpoints",
+                      "description":  "Split DNS supplies different answers for a name under different resolver views, allowing one server hostname to select local and external endpoints without changing its other URL components.",
+                      "url":  "https://emby.media/learn/articles/networking/names/dns/Network-Split-DNS.html"
+                  },
+    "split tunneling":  {
+                            "uid":  "Learn-Network-VPN-Routing",
+                            "title":  "VPN routing, overlapping prefixes and split tunneling",
+                            "description":  "VPN routing determines which destination prefixes use a tunnel, with route specificity, overlapping address realms and DNS policy separate from the tunnel’s connected state.",
+                            "url":  "https://emby.media/learn/articles/networking/routers/vpn/Network-VPN-Routing.html"
+                        },
+    "stream copy":  {
+                        "uid":  "Learn-Playback-Stream-Copy",
+                        "title":  "Stream copying and encoded packet handling",
+                        "description":  "Stream copying passes selected encoded stream data to an output path without decoding and re-encoding its pictures or samples.",
+                        "url":  "https://emby.media/learn/articles/playback-streaming/from-server/Playback-Stream-Copy.html"
+                    },
+    "streamcopy":  {
+                       "uid":  "Learn-Playback-Stream-Copy",
+                       "title":  "Stream copying and encoded packet handling",
+                       "description":  "Stream copying passes selected encoded stream data to an output path without decoding and re-encoding its pictures or samples.",
+                       "url":  "https://emby.media/learn/articles/playback-streaming/from-server/Playback-Stream-Copy.html"
+                   },
+    "structural similarity":  {
+                                  "uid":  "Learn-Video-Quality-SSIM",
+                                  "title":  "Structural Similarity (SSIM) for Video",
+                                  "description":  "SSIM compares local luminance, contrast, and structure between decoded pictures and a reference.",
+                                  "url":  "https://emby.media/learn/articles/video/encoding-quality/quality-metrics/Video-Quality-SSIM.html"
+                              },
+    "telecine":  {
+                     "uid":  "Learn-Telecine-Pulldown",
+                     "title":  "Telecine and 3:2 Pulldown",
+                     "description":  "3:2 pulldown distributes film pictures over alternating two-field and three-field intervals for television presentation.",
+                     "url":  "https://emby.media/learn/articles/video/frame-timing/interlacing-and-cadence/Telecine-Pulldown.html"
+                 },
+    "time-shift buffer":  {
+                              "uid":  "Learn-TV-Time-Shift-Buffers",
+                              "title":  "Time-shift buffers and the retained live window",
+                              "description":  "A time-shift buffer retains a bounded portion of an advancing live stream so playback can pause or rewind within media that has not yet been evicted.",
+                              "url":  "https://emby.media/learn/articles/live-tv/recording/time-shifting/TV-Time-Shift-Buffers.html"
+                          },
+    "transcode throttling":  {
+                                 "uid":  "Learn-Playback-Transcode-Throttling",
+                                 "title":  "Transcode throttling and producer lead",
+                                 "description":  "Transcode throttling limits work produced ahead of playback by pausing or reducing a producer whose output lead is already sufficient.",
+                                 "url":  "https://emby.media/learn/articles/playback-streaming/conversion/performance/Playback-Transcode-Throttling.html"
+                             },
+    "transmuxing":  {
+                        "uid":  "Learn-Playback-Remuxing",
+                        "title":  "Remuxing media containers",
+                        "description":  "Remuxing places existing encoded streams into another container or delivery package without re-encoding those streams.",
+                        "url":  "https://emby.media/learn/articles/playback-streaming/from-server/Playback-Remuxing.html"
+                    },
+    "two-pass encoding":  {
+                              "uid":  "Learn-Video-Encoding-Two-Pass",
+                              "title":  "Two-Pass Video Encoding",
+                              "description":  "Two-pass video encoding analyzes a source before a final encode so the encoder can allocate an overall bitrate budget across it.",
+                              "url":  "https://emby.media/learn/articles/video/encoding-quality/rate-control/Video-Encoding-Two-Pass.html"
+                          },
+    "tx3g":  {
+                 "uid":  "Learn-Subtitle-Tx3g",
+                 "title":  "MP4 timed text (tx3g)",
+                 "description":  "tx3g identifies a 3GPP timed-text sample entry whose container timing and text modifiers describe a subtitle track.",
+                 "url":  "https://emby.media/learn/articles/subtitles/formats/text/Subtitle-Tx3g.html"
+             },
+    "variable frame rate":  {
+                                "uid":  "Learn-Variable-Frame-Rate",
+                                "title":  "Variable Frame Rate",
+                                "description":  "Variable frame rate allows the interval between successive video pictures to change.",
+                                "url":  "https://emby.media/learn/articles/video/frame-timing/frame-rates/Variable-Frame-Rate.html"
+                            },
+    "variable refresh rate":  {
+                                  "uid":  "Learn-Display-VRR",
+                                  "title":  "Variable refresh rate (VRR)",
+                                  "description":  "Variable refresh rate allows a supported display route to vary presentation intervals within a defined operating range.",
+                                  "url":  "https://emby.media/learn/articles/display-av/motion/refresh-synchronization/Display-VRR.html"
+                              },
+    "virtual surround":  {
+                             "uid":  "Learn-Virtual-Surround",
+                             "title":  "Virtual Surround",
+                             "description":  "Virtual surround uses signal processing to suggest spatial positions with fewer physical speakers or with headphones.",
+                             "url":  "https://emby.media/learn/articles/audio/channels/Virtual-Surround.html"
+                         },
+    "x86-64":  {
+                   "uid":  "Learn-Server-X86-64",
+                   "title":  "x86-64 architecture and compatible server software",
+                   "description":  "x86-64 is a 64-bit processor architecture used by common server packages, but software also needs a matching operating system, ABI and instruction support.",
+                   "url":  "https://emby.media/learn/articles/storage/execution/processors/Server-X86-64.html"
+               },
+    "xHE-AAC":  {
+                    "uid":  "Learn-xHE-AAC",
+                    "title":  "xHE-AAC Audio",
+                    "description":  "xHE-AAC combines Extended HE-AAC based on USAC with MPEG-D loudness and dynamic-range control for speech and music delivery.",
+                    "url":  "https://emby.media/learn/articles/audio/formats/lossy/aac-family/xHE-AAC.html"
+                },
+    "xmltv_ns":  {
+                     "uid":  "Learn-TV-XMLTV",
+                     "title":  "XMLTV listings: channels, programmes and time",
+                     "description":  "XMLTV represents channel identities and programme listings in XML, with format-specific timestamps and episode-number systems that a guide importer must interpret.",
+                     "url":  "https://emby.media/learn/articles/live-tv/guides/formats/TV-XMLTV.html"
+                 },
+    "zero copy video":  {
+                            "uid":  "Learn-Hardware-Zero-Copy",
+                            "title":  "Zero-copy video pipelines and the boundary being avoided",
+                            "description":  "A zero-copy claim identifies a picture handoff that avoids a particular data copy, while compatible storage, processing and synchronization determine the remaining pipeline traffic.",
+                            "url":  "https://emby.media/learn/articles/hardware-acceleration/pipelines/memory/Hardware-Zero-Copy.html"
+                        },
+    "zero-copy video":  {
+                            "uid":  "Learn-Hardware-Zero-Copy",
+                            "title":  "Zero-copy video pipelines and the boundary being avoided",
+                            "description":  "A zero-copy claim identifies a picture handoff that avoids a particular data copy, while compatible storage, processing and synchronization determine the remaining pipeline traffic.",
+                            "url":  "https://emby.media/learn/articles/hardware-acceleration/pipelines/memory/Hardware-Zero-Copy.html"
+                        }
+}

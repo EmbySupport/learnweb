@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Display color calibration | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Display calibration adjusts a defined output state toward a chosen target, while characterization and profiling describe how that state reproduces colors.">
+  <link rel="canonical" href="https://emby.media/learn/articles/display-av/characteristics/Display-Calibration.html">
+  <meta property="og:title" content="Display color calibration | Emby Learn">
+  <meta property="og:description" content="Display calibration adjusts a defined output state toward a chosen target, while characterization and profiling describe how that state reproduces colors.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/display-av/characteristics/Display-Calibration.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/display-av/characteristics/Display-Calibration.html","url":"https://emby.media/learn/articles/display-av/characteristics/Display-Calibration.html","name":"Display color calibration","inLanguage":"en","headline":"Display color calibration","articleSection":"Displays and AV connections","proficiencyLevel":"Beginner","accessMode":"textual","description":"Display calibration adjusts a defined output state toward a chosen target, while characterization and profiling describe how that state reproduces colors.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Displays and AV connections","item":"https://emby.media/learn/articles/display-av/index.html"},{"@type":"ListItem","position":3,"name":"Display characteristics","item":"https://emby.media/learn/articles/display-av/characteristics/index.html"},{"@type":"ListItem","position":4,"name":"Color calibration","item":"https://emby.media/learn/articles/display-av/characteristics/Display-Calibration.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Display-Calibration">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../display-av/index.html">Displays and AV connections</a></li>
+              <li><a href="../../display-av/characteristics/index.html">Display characteristics</a></li>
+              <li><span aria-current="page">Color calibration</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Display-Calibration">
+<h1>Display color calibration</h1>
+<p class="article-description">Display calibration adjusts a defined output state toward a chosen target, while characterization and profiling describe how that state reproduces colors.</p>
+
+
+<p>Calibration starts with a target: the behavior a display should produce in a defined viewing and signal state. Measurement then shows how its current output differs from that target, and suitable controls reduce the difference.</p>
+<p>An ICC profile serves a related but different purpose. It describes the characterized color behavior so a color-managed route can interpret and transform colors appropriately.</p>
+<h2 id="adjustment-and-description-are-separate-operations">Adjustment and description are separate operations</h2>
+<p>The ICC’s display guidance treats calibration and profiling together: first establish a desired display behavior, then communicate the resulting behavior through a profile.</p>
+<p>A display can be adjusted through internal controls or calibration tables. Some arrangements also apply a correction in the graphics/output path. Profiling measures the resulting state and records its color relationships.</p>
+<p>If an application uses a profile that describes a different state, its transformation is based on the wrong description. Changing a display preset, white balance or other substantial control after profiling can consequently invalidate that relationship.</p>
+<p>A profile copied from another unit also describes another measured response. A shared model name does not prove that the units, modes and ages have identical output.</p>
+<h2 id="a-target-needs-a-viewing-and-signal-context">A target needs a viewing and signal context</h2>
+<table>
+<thead>
+<tr>
+<th>Target property</th>
+<th>What must be defined</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>White appearance</td>
+<td>Intended chromaticity or white-point reference</td>
+</tr>
+<tr>
+<td>Luminance</td>
+<td>Output suitable for the intended viewing condition</td>
+</tr>
+<tr>
+<td>Tone response</td>
+<td>How encoded levels become light</td>
+</tr>
+<tr>
+<td>Color reproduction</td>
+<td>The source/working space and destination behavior</td>
+</tr>
+<tr>
+<td>Signal state</td>
+<td>SDR/HDR interpretation, range and active display mode</td>
+</tr>
+</tbody>
+</table>
+<p>“Make it look good” does not specify a reproducible target. Conversely, matching a named target numerically does not make every viewing room or every content type use the same presentation.</p>
+<p>An Emby video route also needs the correct <a href="../../video/color-pixel-formats/Video-Color-Range.html">range interpretation</a>. A limited/full mismatch can crush or lift the dark end before a calibration adjustment is even considered.</p>
+<h2 id="an-inverse-response-exercise">An inverse-response exercise</h2>
+<p>Consider an original one-channel model. Let command <code>u</code> range from zero to one. The uncorrected display produces normalized luminance:</p>
+<pre><code class="lang-text">Actual display: L = u²
+Desired response to source value x: Ltarget = x^2.2
+</code></pre>
+<p>To achieve the target, solve the actual response for its required command:</p>
+<pre><code class="lang-text">u² = x^2.2
+u = x^1.1
+</code></pre>
+<p>At source value <code>x = 0.5</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th style="text-align: right;">Command sent</th>
+<th style="text-align: right;">Model luminance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No correction</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">0.25</td>
+</tr>
+<tr>
+<td>Inverse correction</td>
+<td style="text-align: right;">0.466516</td>
+<td style="text-align: right;">0.217638</td>
+</tr>
+<tr>
+<td>Desired target</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">0.217638</td>
+</tr>
+</tbody>
+</table>
+<p><img src="images/calibration-inverse-response.png" alt="Calculated original curves show a target response, an uncorrected response and the corrected result, with a separate command curve."></p>
+<p>The correction changes the command; the target describes the emitted result. Those are different curves.</p>
+<p>This exercise assumes an exact, monotonic scalar response, unlimited command precision and a zero black floor. Real calibration has finite code steps, measurement uncertainty, channel interactions and output limits. Real SDR encodings can also have piecewise responses; this power-law model is not an sRGB, BT.1886 or HDR prescription.</p>
+<h2 id="finite-command-levels-limit-the-correction">Finite command levels limit the correction</h2>
+<p>The inverse curve above assumes continuous commands. Suppose an original restricted output can send only 0, 0.25, 0.5, 0.75 or 1.</p>
+<p>For the midpoint target, the ideal command 0.466516 must be rounded to an available value. Choosing 0.5 produces 0.25 luminance again, rather than the desired 0.217638.</p>
+<p>Knowing the correct curve did not create an extra output level. A higher-precision implemented path can make finer adjustments, while dithering can change the time/spatial distribution of available levels.</p>
+<p>Neither case should be described as an exact continuous result without its own assumptions. Measurement tests the combined curve, quantization and display response.</p>
+<h2 id="measurement-closes-the-loop">Measurement closes the loop</h2>
+<p>A useful sequence is to establish the relevant mode, measure selected patches, calculate or choose adjustments, then remeasure their output.</p>
+<p>Remeasurement matters because a requested correction and the resulting light are not interchangeable. The display can clip, quantize or apply other processing; the graphics path can change which table is used.</p>
+<p>Neutral patches test the balance and tone response of gray output. Colored patches test properties that a gray-only adjustment does not establish. A correction that matches one midpoint does not automatically match the whole curve or gamut.</p>
+<p>Instrument behavior and the display’s spectral output also affect the measurement. The required method depends on the accuracy being sought.</p>
+<h2 id="a-calibrated-state-has-a-valid-scope">A calibrated state has a valid scope</h2>
+<p>An SDR state and an HDR state can use different transfer interpretation and processing. A curve that compensates a toy SDR response is not a universal correction for PQ.</p>
+<p>HDR output can also depend on patch area, surrounding content and duration. If those conditions change during measurement, the observed variation may belong to a brightness controller rather than to an ordinary fixed tone curve.</p>
+<p><a href="hdr/Display-Peak-Brightness.html">Peak brightness</a> and <a href="hdr/Display-ABL.html">automatic brightness limiting</a> explain those conditions. The calibration target should identify which state and patterns were actually characterized.</p>
+<p>A calibration cannot create colors or luminance outside the display’s usable output range. Transforming an out-of-gamut color into a reproducible one is a mapping decision, not evidence that the panel acquired a larger gamut.</p>
+<h2 id="the-players-complete-path-needs-validation">The player’s complete path needs validation</h2>
+<p>A photo application using a traditional ICC transform, a video renderer targeting a calibrated output space and an operating system’s Advanced Color route can apply color handling at different stages.</p>
+<p>For Emby playback, identify the actual client and renderer route before assuming that a desktop profile applies in exactly the same way everywhere. <a href="Display-Color-Management.html">Display color management</a> develops those responsibilities.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Display-Color-Management.html" title="Display color management">Display color management</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../photos-images/presentation/Image-ICC-Profiles.html" title="ICC color profiles">ICC color profiles</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../video/color-standards/transfer-functions/Video-Gamma.html" title="Video Gamma">Video Gamma</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../video/color-pixel-formats/Video-Color-Range.html" title="Limited and Full Video Range">Limited and Full Video Range</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.color.org/displaycalibration/" title="ICC: Display calibration and profiling">ICC: Display calibration and profiling</a></li>
+			            <li><a class="seealso-link" href="https://www.color.org/icc_specs2/" title="ICC: Profile specifications">ICC: Profile specifications</a></li>
+			            <li><a class="seealso-link" href="https://displayhdr.org/performance-criteria/" title="VESA: DisplayHDR performance criteria">VESA: DisplayHDR performance criteria</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Display-Calibration%0A*%20Title%3A%20Display%20color%20calibration%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

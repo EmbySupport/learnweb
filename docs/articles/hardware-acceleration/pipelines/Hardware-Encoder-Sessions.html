@@ -1,0 +1,279 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Concurrent encoder sessions, policy and capacity | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Concurrent encoding is constrained by session policy, supported configurations and available processing/memory resources, with encoder sessions differing from client count and physical engine count.">
+  <link rel="canonical" href="https://emby.media/learn/articles/hardware-acceleration/pipelines/Hardware-Encoder-Sessions.html">
+  <meta property="og:title" content="Concurrent encoder sessions, policy and capacity | Emby Learn">
+  <meta property="og:description" content="Concurrent encoding is constrained by session policy, supported configurations and available processing/memory resources, with encoder sessions differing from client count and physical engine count.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/hardware-acceleration/pipelines/Hardware-Encoder-Sessions.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/hardware-acceleration/pipelines/Hardware-Encoder-Sessions.html","url":"https://emby.media/learn/articles/hardware-acceleration/pipelines/Hardware-Encoder-Sessions.html","name":"Concurrent encoder sessions, policy and capacity","inLanguage":"en","headline":"Concurrent encoder sessions, policy and capacity","articleSection":"Media hardware acceleration","proficiencyLevel":"Beginner","accessMode":"textual","description":"Concurrent encoding is constrained by session policy, supported configurations and available processing/memory resources, with encoder sessions differing from client count and physical engine count.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Media hardware acceleration","item":"https://emby.media/learn/articles/hardware-acceleration/index.html"},{"@type":"ListItem","position":3,"name":"Hardware pipelines and their limits","item":"https://emby.media/learn/articles/hardware-acceleration/pipelines/index.html"},{"@type":"ListItem","position":4,"name":"Concurrent encoder sessions","item":"https://emby.media/learn/articles/hardware-acceleration/pipelines/Hardware-Encoder-Sessions.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Hardware-Encoder-Sessions">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../hardware-acceleration/index.html">Media hardware acceleration</a></li>
+              <li><a href="../../hardware-acceleration/pipelines/index.html">Hardware pipelines and their limits</a></li>
+              <li><span aria-current="page">Concurrent encoder sessions</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Hardware-Encoder-Sessions">
+<h1>Concurrent encoder sessions, policy and capacity</h1>
+<p class="article-description">Concurrent encoding is constrained by session policy, supported configurations and available processing/memory resources, with encoder sessions differing from client count and physical engine count.</p>
+
+
+<p>An <strong>encoder session</strong> is a configured encoding operation with its own input/output and resource state. It is different from a playback client and from a physical encoder unit.</p>
+<p>Several constraints cooperate: whether the session is permitted, whether its configuration is supported, and whether the combined workload has enough capacity and memory.</p>
+<h2 id="count-encoding-operations-not-just-viewers">Count encoding operations, not just viewers</h2>
+<table>
+<thead>
+<tr>
+<th>Selected media work</th>
+<th style="text-align: right;">New video-encoding operations in this example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Direct Play of original video</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td>Copied video with converted audio</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td>One new video representation</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>A job creating two video representations</td>
+<td style="text-align: right;">2</td>
+</tr>
+</tbody>
+</table>
+<p>The table counts declared video-encoding work, not every process or audio operation. An application can implement its configured representations with additional internal details.</p>
+<p>A server with several clients can therefore have fewer video encoders than clients. Conversely, another processing job can add encoder work without another viewer.</p>
+<h2 id="a-physical-unit-is-a-work-resource">A physical unit is a work resource</h2>
+<p>A device can schedule several sessions through its available media engines. The physical count does not impose a universal one-session-per-engine rule.</p>
+<p>Engine count is useful for aggregate work under the actual implementation, workload and driver scheduling. Decoder, filtering and memory resources can limit the complete route separately.</p>
+<p><img src="images/encoder-policy-capacity.png" alt="An original concurrency diagram separates client work, encoder sessions, policy checks and physical-resource demand."></p>
+<h2 id="nvidias-published-policy-has-a-system-scope">NVIDIA’s published policy has a system scope</h2>
+<p>SDK 13.1 distinguishes qualified and non-qualified products. It describes qualified products as resource-limited and gives <strong>twelve simultaneous encoding sessions per system across all non-qualified cards combined</strong>.</p>
+<p>This is the referenced policy as checked on 11 October 2026, not a timeless limit for every driver version or a policy for other vendors.</p>
+<p>For an original two-card example:</p>
+<pre><code class="lang-text">Card A: 7 sessions
+Card B: 5 sessions
+Combined: 12 sessions
+
+A new session on either card would make the combined count 13.
+</code></pre>
+<p>Adding another non-qualified card does not make that stated combined policy twenty-four. A qualified card's resource-limited sessions have the separate scope described by the source.</p>
+<h2 id="permission-does-not-calculate-sustained-speed">Permission does not calculate sustained speed</h2>
+<p>Use an original declared encoder capacity of 120 prepared pictures per second for one defined configuration.</p>
+<p>Four independent thirty-fps sessions request 120 pictures per second, leaving no modeled spare capacity. Five request 150, beyond the declared capacity even though five is below twelve.</p>
+<p>The rates are invented. Changing codec, resolution, preset, preprocessing or device clock changes the relevant measured capacity.</p>
+<p>The selected pipeline also has source decoding, filters and delivery. A fast encoder cannot consume pictures that a slower upstream stage has not prepared.</p>
+<h2 id="memory-and-lifetime-add-another-constraint">Memory and lifetime add another constraint</h2>
+<p>Each session can retain inputs, references, analysis state and output buffers. Their combined live memory must fit the usable resource budget.</p>
+<p>The <a href="memory/Hardware-GPU-Memory.html">GPU-memory example</a> shows two individually valid jobs exceeding a combined budget. A policy allowing those sessions does not change that allocation result.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="memory/Hardware-GPU-Memory.html" title="GPU memory limits in video processing">GPU memory limits in video processing</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Hardware-CPU-Work.html" title="Why hardware acceleration can still use the CPU">Why hardware acceleration can still use the CPU</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../interfaces/nvidia/Hardware-NVIDIA-NVENC.html" title="NVIDIA NVENC">NVIDIA NVENC</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../generations/nvidia/Hardware-NVIDIA-Ada.html" title="NVIDIA Ada Lovelace media capabilities">NVIDIA Ada Lovelace media capabilities</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../generations/nvidia/Hardware-NVIDIA-Blackwell.html" title="NVIDIA Blackwell media capabilities">NVIDIA Blackwell media capabilities</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../playback-streaming/conversion/performance/Playback-Concurrent-Workloads.html" title="Concurrent playback workloads">Concurrent playback workloads</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://docs.nvidia.com/video-technologies/video-codec-sdk/13.1/nvenc-application-note/index.html" title="NVIDIA SDK 13.1: NVENC capabilities and session policy">NVIDIA SDK 13.1: NVENC capabilities and session policy</a></li>
+			            <li><a class="seealso-link" href="https://developer.nvidia.com/video-encode-decode-support-matrix" title="NVIDIA: Video encode/decode support matrix">NVIDIA: Video encode/decode support matrix</a></li>
+			            <li><a class="seealso-link" href="https://docs.nvidia.com/video-technologies/video-codec-sdk/13.1/nvenc-video-encoder-api-prog-guide/index.html" title="NVIDIA SDK 13.1: NVENC programming guide">NVIDIA SDK 13.1: NVENC programming guide</a></li>
+			            <li><a class="seealso-link" href="https://gpuopen.com/advanced-media-framework/" title="AMD GPUOpen: Advanced Media Framework">AMD GPUOpen: Advanced Media Framework</a></li>
+			            <li><a class="seealso-link" href="https://intel.github.io/libvpl/latest/index.html" title="Intel VPL: API and programming documentation">Intel VPL: API and programming documentation</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Hardware-Encoder-Sessions%0A*%20Title%3A%20Concurrent%20encoder%20sessions%2C%20policy%20and%20capacity%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

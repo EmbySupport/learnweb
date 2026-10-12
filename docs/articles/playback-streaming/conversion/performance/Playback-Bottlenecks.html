@@ -1,0 +1,272 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Transcoding bottlenecks | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="A transcoding bottleneck is the limiting processing or delivery dependency under the actual workload, which may differ from the most visible utilisation counter.">
+  <link rel="canonical" href="https://emby.media/learn/articles/playback-streaming/conversion/performance/Playback-Bottlenecks.html">
+  <meta property="og:title" content="Transcoding bottlenecks | Emby Learn">
+  <meta property="og:description" content="A transcoding bottleneck is the limiting processing or delivery dependency under the actual workload, which may differ from the most visible utilisation counter.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/playback-streaming/conversion/performance/Playback-Bottlenecks.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/playback-streaming/conversion/performance/Playback-Bottlenecks.html","url":"https://emby.media/learn/articles/playback-streaming/conversion/performance/Playback-Bottlenecks.html","name":"Transcoding bottlenecks","inLanguage":"en","headline":"Transcoding bottlenecks","articleSection":"Playback and streaming","proficiencyLevel":"Beginner","accessMode":"textual","description":"A transcoding bottleneck is the limiting processing or delivery dependency under the actual workload, which may differ from the most visible utilisation counter.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Playback and streaming","item":"https://emby.media/learn/articles/playback-streaming/index.html"},{"@type":"ListItem","position":3,"name":"Conversion pipelines","item":"https://emby.media/learn/articles/playback-streaming/conversion/index.html"},{"@type":"ListItem","position":4,"name":"Transcoding performance and capacity","item":"https://emby.media/learn/articles/playback-streaming/conversion/performance/index.html"},{"@type":"ListItem","position":5,"name":"Transcoding bottlenecks","item":"https://emby.media/learn/articles/playback-streaming/conversion/performance/Playback-Bottlenecks.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Playback-Bottlenecks">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../playback-streaming/index.html">Playback and streaming</a></li>
+              <li><a href="../../../playback-streaming/conversion/index.html">Conversion pipelines</a></li>
+              <li><a href="../../../playback-streaming/conversion/performance/index.html">Transcoding performance and capacity</a></li>
+              <li><span aria-current="page">Transcoding bottlenecks</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Playback-Bottlenecks">
+<h1>Transcoding bottlenecks</h1>
+<p class="article-description">A transcoding bottleneck is the limiting processing or delivery dependency under the actual workload, which may differ from the most visible utilisation counter.</p>
+
+
+<p>A bottleneck is the dependency that limits the current job. It can be decoding, filtering, encoding, resource access, transfers or delivery. A prominent CPU or GPU percentage is an observation, not a complete identification of that dependency.</p>
+<p>The useful question is what prevents the next required usable media interval from becoming available in time.</p>
+<h2 id="a-three-stage-model">A three-stage model</h2>
+<p>Assume original independent stage capacities for one specified picture format and workload:</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Service capacity</th>
+<th>Ideal per-picture service time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decode</td>
+<td>120 pictures/s</td>
+<td>8.33 ms</td>
+</tr>
+<tr>
+<td>Filter</td>
+<td>30 pictures/s</td>
+<td>33.33 ms</td>
+</tr>
+<tr>
+<td>Encode</td>
+<td>90 pictures/s</td>
+<td>11.11 ms</td>
+</tr>
+</tbody>
+</table>
+<p>If the stages can overlap with sufficient buffering and do not share another limiting resource, steady throughput cannot exceed the slowest stage: 30 pictures/s.</p>
+<p>For a 24-fps output, that is <code>30 / 24 = 1.25x</code>. The example has some idealised processing reserve, not a guarantee of smooth playback.</p>
+<h2 id="latency-adds-while-overlapped-throughput-can-differ">Latency adds while overlapped throughput can differ</h2>
+<p>A picture still needs the relevant work at each stage. The ideal sum of the listed service times is about 52.78 ms, before additional waits or buffering.</p>
+<p>If pictures were processed strictly one at a time through all three stages, that sum would yield about 18.95 pictures/s. Overlap lets different pictures occupy different stages, producing the higher steady 30-picture/s result.</p>
+<p>Thus reciprocal stage rates are useful for this defined model, but “the pipeline is 30 fps” does not mean every picture completes the whole dependency chain in 33.33 ms.</p>
+<h2 id="an-upgrade-can-leave-the-limit-in-place">An upgrade can leave the limit in place</h2>
+<p><img src="images/bottleneck-rates.png" alt="An original independent-stage model compares decoder and filter changes; improving an already faster stage leaves the slow filter as the limit."></p>
+<p>Doubling decode capacity from 120 to 240 pictures/s leaves the filter at 30. The ideal steady result stays 30.</p>
+<p>Raising filter capacity to 60 changes the result to 60. Raising it to 150 leaves encoding at 90 as the new limit. The limiting stage moves as capacities change.</p>
+<p>These are arithmetic outcomes for the assumed model, not measured improvements from buying a component or changing an Emby setting.</p>
+<h2 id="shared-resources-break-simple-independence">Shared resources break simple independence</h2>
+<p>Stages can compete for CPU cores, memory bandwidth or accelerator resources. A hardware decode path and hardware encode path can still require a filter in another memory domain.</p>
+<p>For an ideal 24,883,200-byte picture buffer, two full-picture transfers per frame at 24 fps would move about 1.194 GB/s. Actual transfer volume and memory layout vary. The point is that copied decoded data has another scale from the source's compressed bitrate.</p>
+<p>A graph that avoids a particular transfer can change that work. A utilisation counter alone does not establish whether a transfer was avoided.</p>
+<p>Likewise, a blocked output writer can slow the whole process while an encoder appears idle. Faster encoding cannot make an unavailable temporary directory writable or fix a constrained delivery path.</p>
+<h2 id="compare-rates-in-compatible-units">Compare rates in compatible units</h2>
+<p>Storage/network rates in bytes or bits per second cannot be compared directly with pictures per second without the relevant media representation.</p>
+<p>A source read rate concerns its encoded bytes. A picture transfer concerns raw surfaces. Output delivery concerns the generated encoded representation. Each conversion to “media seconds ready per wall second” needs the corresponding size/rate context.</p>
+<p>Total CPU usage can also hide a single saturated worker or serial dependency. Low overall usage is not proof that no CPU-bound stage exists.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Playback-Transcode-Pipeline.html" title="How a transcoding pipeline works">How a transcoding pipeline works</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Realtime-Transcoding.html" title="Real-time transcoding and playback deadlines">Real-time transcoding and playback deadlines</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Concurrent-Workloads.html" title="Concurrent playback workloads">Concurrent playback workloads</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../pipeline-stages/Playback-Filter-Graphs.html" title="Media filter graphs">Media filter graphs</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Playback-Temporary-Files.html" title="Transcode temporary files and generated output">Transcode temporary files and generated output</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://ffmpeg.org/doxygen/trunk/group__lavc__encdec.html" title="FFmpeg API: Send/receive encoding and decoding">FFmpeg API: Send/receive encoding and decoding</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-filters.html" title="FFmpeg: Media filters">FFmpeg: Media filters</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Model.Session.TranscodingInfo.html" title="Emby API: TranscodingInfo">Emby API: TranscodingInfo</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg.html" title="FFmpeg: Processing, mapping and progress">FFmpeg: Processing, mapping and progress</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Playback-Bottlenecks%0A*%20Title%3A%20Transcoding%20bottlenecks%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

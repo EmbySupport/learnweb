@@ -1,903 +1,3327 @@
 ### YamlMime:XRefMap
 sorted: true
 references:
-- uid: AAC-ADTS
+- uid: Learn-AAC-ADTS
   name: 'AAC: Audio Data Transport Stream (ADTS)'
   href: articles/media-files/packaging/aac/AAC-ADTS.html
-- uid: AAC-LATM
+- uid: Learn-AAC-LATM
   name: 'AAC: Low Overhead Audio Transport Multiplex (LATM)'
   href: articles/media-files/packaging/aac/AAC-LATM.html
-- uid: AAC-LC
+- uid: Learn-AAC-LC
   name: AAC-LC Audio
   href: articles/audio/formats/lossy/aac-family/AAC-LC.html
-- uid: AAC-Stream-Packaging
+- uid: Learn-AAC-Stream-Packaging
   name: AAC Stream Packaging
   href: articles/media-files/packaging/aac/AAC-Stream-Packaging.html
-- uid: AIFF-Container
+- uid: Learn-AIFF-Container
   name: AIFF Container
   href: articles/media-files/containers/audio-oriented/AIFF-Container.html
-- uid: ALAC
+- uid: Learn-ALAC
   name: Apple Lossless (ALAC)
   href: articles/audio/formats/lossless/ALAC.html
-- uid: AMR-NB
+- uid: Learn-AMR-NB
   name: AMR-NB Speech Audio
   href: articles/audio/formats/speech/AMR-NB.html
-- uid: AMR-WB
+- uid: Learn-AMR-WB
   name: AMR-WB Speech Audio
   href: articles/audio/formats/speech/AMR-WB.html
-- uid: Anamorphic-Video
+- uid: Learn-Anamorphic-Video
   name: Anamorphic Video
   href: articles/video/geometry/aspect-ratios/Anamorphic-Video.html
-- uid: ASF-Container
+- uid: Learn-ASF-Container
   name: ASF Container
   href: articles/media-files/containers/ASF-Container.html
-- uid: Audio-ALSA
+- uid: Learn-Audio-ALSA
   name: ALSA
   href: articles/audio/devices-output/os-apis/Audio-ALSA.html
-- uid: Audio-Bit-Depth
+- uid: Learn-Audio-Bit-Depth
   name: Audio Bit Depth
   href: articles/audio/fundamentals/sample-representation/Audio-Bit-Depth.html
-- uid: Audio-Bit-Perfect-Playback
+- uid: Learn-Audio-Bit-Perfect-Playback
   name: Bit-perfect playback
   href: articles/audio/loudness-music-playback/music-playback/Audio-Bit-Perfect-Playback.html
-- uid: Audio-Bitrate
+- uid: Learn-Audio-Bitrate
   name: Audio Bitrate
   href: articles/audio/fundamentals/Audio-Bitrate.html
-- uid: Audio-Bitstream-Passthrough
+- uid: Learn-Audio-Bitstream-Passthrough
   name: Audio Bitstream Passthrough
   href: articles/audio/decoding-output/output-transport/Audio-Bitstream-Passthrough.html
-- uid: Audio-Bluetooth
+- uid: Learn-Audio-Bluetooth
   name: Bluetooth audio
   href: articles/audio/devices-output/bluetooth/Audio-Bluetooth.html
-- uid: Audio-Bluetooth-A2DP
+- uid: Learn-Audio-Bluetooth-A2DP
   name: Bluetooth A2DP
   href: articles/audio/devices-output/bluetooth/Audio-Bluetooth-A2DP.html
-- uid: Audio-Bluetooth-LE
+- uid: Learn-Audio-Bluetooth-LE
   name: Bluetooth LE Audio
   href: articles/audio/devices-output/bluetooth/Audio-Bluetooth-LE.html
-- uid: Audio-Center-Channel
+- uid: Learn-Audio-Center-Channel
   name: The Audio Center Channel
   href: articles/audio/channels/roles-and-ordering/Audio-Center-Channel.html
-- uid: Audio-Channel-Order
+- uid: Learn-Audio-Channel-Order
   name: Audio Channel Order
   href: articles/audio/channels/roles-and-ordering/Audio-Channel-Order.html
-- uid: Audio-Clipping
+- uid: Learn-Audio-Clipping
   name: Audio Clipping
   href: articles/audio/fundamentals/Audio-Clipping.html
-- uid: Audio-Codecs
+- uid: Learn-Audio-Codecs
   name: Audio Codecs Explained
   href: articles/audio/formats/Audio-Codecs.html
-- uid: Audio-Core-Audio
+- uid: Learn-Audio-Core-Audio
   name: Apple Core Audio
   href: articles/audio/devices-output/os-apis/Audio-Core-Audio.html
-- uid: Audio-DAC
+- uid: Learn-Audio-DAC
   name: Digital-to-analog conversion (DAC)
   href: articles/audio/devices-output/Audio-DAC.html
-- uid: Audio-Description-Tracks
+- uid: Learn-Audio-Description-Tracks
   name: Audio-Description Tracks
   href: articles/audio/decoding-output/Audio-Description-Tracks.html
-- uid: Audio-Dialogue-Normalization
+- uid: Learn-Audio-Dialogue-Normalization
   name: Dialogue normalization (dialnorm)
   href: articles/audio/loudness-music-playback/measurement-control/Audio-Dialogue-Normalization.html
-- uid: Audio-Dithering
+- uid: Learn-Audio-Dithering
   name: Audio Dithering
   href: articles/audio/fundamentals/Audio-Dithering.html
-- uid: Audio-Downmixing
+- uid: Learn-Audio-Downmixing
   name: Audio Downmixing
   href: articles/audio/decoding-output/conversion-fallback/Audio-Downmixing.html
-- uid: Audio-Dynamic-Range
+- uid: Learn-Audio-Dynamic-Range
   name: Audio Dynamic Range
   href: articles/audio/fundamentals/Audio-Dynamic-Range.html
-- uid: Audio-Dynamic-Range-Compression
+- uid: Learn-Audio-Dynamic-Range-Compression
   name: Dynamic range compression
   href: articles/audio/loudness-music-playback/measurement-control/Audio-Dynamic-Range-Compression.html
-- uid: Audio-Encoder-Delay
+- uid: Learn-Audio-Encoder-Delay
   name: Audio encoder delay
   href: articles/audio/loudness-music-playback/music-playback/Audio-Encoder-Delay.html
-- uid: Audio-Exclusive-Output
+- uid: Learn-Audio-Exclusive-Output
   name: Exclusive-mode audio output
   href: articles/audio/devices-output/Audio-Exclusive-Output.html
-- uid: Audio-Gapless-Playback
+- uid: Learn-Audio-Gapless-Playback
   name: Gapless playback
   href: articles/audio/loudness-music-playback/music-playback/Audio-Gapless-Playback.html
-- uid: Audio-LFE
+- uid: Learn-Audio-LFE
   name: Low-Frequency Effects (LFE)
   href: articles/audio/channels/roles-and-ordering/Audio-LFE.html
-- uid: Audio-Lossless-Compression
+- uid: Learn-Audio-Lossless-Compression
   name: Lossless Audio Compression
   href: articles/audio/formats/lossless/Audio-Lossless-Compression.html
-- uid: Audio-Lossy-Compression
+- uid: Learn-Audio-Lossy-Compression
   name: Lossy Audio Compression
   href: articles/audio/formats/lossy/Audio-Lossy-Compression.html
-- uid: Audio-Loudness
+- uid: Learn-Audio-Loudness
   name: Audio loudness
   href: articles/audio/loudness-music-playback/Audio-Loudness.html
-- uid: Audio-Loudness-Normalization
+- uid: Learn-Audio-Loudness-Normalization
   name: Loudness normalization
   href: articles/audio/loudness-music-playback/measurement-control/Audio-Loudness-Normalization.html
-- uid: Audio-LUFS
+- uid: Learn-Audio-LUFS
   name: LUFS loudness measurement
   href: articles/audio/loudness-music-playback/measurement-control/Audio-LUFS.html
-- uid: Audio-PipeWire
+- uid: Learn-Audio-PipeWire
   name: PipeWire
   href: articles/audio/devices-output/os-apis/Audio-PipeWire.html
-- uid: Audio-Playback-Path
+- uid: Learn-Audio-Playback-Path
   name: The Audio Playback Path
   href: articles/audio/decoding-output/Audio-Playback-Path.html
-- uid: Audio-PulseAudio
+- uid: Learn-Audio-PulseAudio
   name: PulseAudio
   href: articles/audio/devices-output/os-apis/Audio-PulseAudio.html
-- uid: Audio-Quantization-Noise
+- uid: Learn-Audio-Quantization-Noise
   name: Audio Quantization Noise
   href: articles/audio/fundamentals/Audio-Quantization-Noise.html
-- uid: Audio-ReplayGain
+- uid: Learn-Audio-ReplayGain
   name: ReplayGain
   href: articles/audio/loudness-music-playback/measurement-control/Audio-ReplayGain.html
-- uid: Audio-Resampling
+- uid: Learn-Audio-Resampling
   name: Audio Resampling
   href: articles/audio/fundamentals/Audio-Resampling.html
-- uid: Audio-Sample-Rate
+- uid: Learn-Audio-Sample-Rate
   name: Audio Sample Rate
   href: articles/audio/fundamentals/sample-representation/Audio-Sample-Rate.html
-- uid: Audio-SPDIF
+- uid: Learn-Audio-SPDIF
   name: S/PDIF digital audio
   href: articles/audio/devices-output/Audio-SPDIF.html
-- uid: Audio-Speed-Pitch
+- uid: Learn-Audio-Speed-Pitch
   name: Playback speed and audio pitch
   href: articles/audio/loudness-music-playback/music-playback/Audio-Speed-Pitch.html
-- uid: Audio-Transcoding
+- uid: Learn-Audio-Transcoding
   name: Audio Transcoding
   href: articles/audio/decoding-output/conversion-fallback/Audio-Transcoding.html
-- uid: Audio-Upmixing
+- uid: Learn-Audio-Upmixing
   name: Audio Upmixing
   href: articles/audio/decoding-output/conversion-fallback/Audio-Upmixing.html
-- uid: Audio-USB
+- uid: Learn-Audio-USB
   name: USB Audio
   href: articles/audio/devices-output/Audio-USB.html
-- uid: Audio-Video-Synchronization
+- uid: Learn-Audio-Video-Synchronization
   name: Audio/Video Synchronization
   href: articles/audio/decoding-output/Audio-Video-Synchronization.html
-- uid: Audio-WASAPI
+- uid: Learn-Audio-WASAPI
   name: Windows Audio Session API (WASAPI)
   href: articles/audio/devices-output/os-apis/Audio-WASAPI.html
-- uid: AVI-Container
+- uid: Learn-Automation-API
+  name: Media server APIs and programmable operations
+  href: articles/automation/api/Automation-API.html
+- uid: Learn-Automation-API-Keys
+  name: API keys for server integrations
+  href: articles/automation/api/credentials/Automation-API-Keys.html
+- uid: Learn-Automation-Home-Automation
+  name: Playback events and dependable home automation
+  href: articles/automation/events/Automation-Home-Automation.html
+- uid: Learn-Automation-HTTP
+  name: HTTP API requests and interpretable responses
+  href: articles/automation/api/requests/Automation-HTTP.html
+- uid: Learn-Automation-Integration-Permissions
+  name: Integration permissions and effective operations
+  href: articles/automation/events/Automation-Integration-Permissions.html
+- uid: Learn-Automation-JSON
+  name: JSON payloads, types and field meaning
+  href: articles/automation/api/requests/Automation-JSON.html
+- uid: Learn-Automation-Notifications
+  name: Notification delivery from event to recipient
+  href: articles/automation/events/Automation-Notifications.html
+- uid: Learn-Automation-Pagination
+  name: API pagination and changing result sets
+  href: articles/automation/api/requests/Automation-Pagination.html
+- uid: Learn-Automation-Plugin-Compatibility
+  name: Plugin compatibility across server and runtime changes
+  href: articles/automation/events/plugins/Automation-Plugin-Compatibility.html
+- uid: Learn-Automation-Plugins
+  name: Plugin architecture inside a media server
+  href: articles/automation/events/plugins/Automation-Plugins.html
+- uid: Learn-Automation-Polling
+  name: Polling for updates and observation intervals
+  href: articles/automation/events/receiving/Automation-Polling.html
+- uid: Learn-Automation-Rate-Limits
+  name: API rate limits and respectful request scheduling
+  href: articles/automation/api/Automation-Rate-Limits.html
+- uid: Learn-Automation-Retries
+  name: Event delivery, retries and duplicate processing
+  href: articles/automation/events/Automation-Retries.html
+- uid: Learn-Automation-Sessions
+  name: Playback sessions and current player state
+  href: articles/automation/api/Automation-Sessions.html
+- uid: Learn-Automation-Tokens
+  name: API authentication tokens and request identity
+  href: articles/automation/api/credentials/Automation-Tokens.html
+- uid: Learn-Automation-Webhooks
+  name: Webhooks and pushed event notifications
+  href: articles/automation/events/receiving/Automation-Webhooks.html
+- uid: Learn-Automation-WebSockets
+  name: WebSockets and a continuing message connection
+  href: articles/automation/events/receiving/Automation-WebSockets.html
+- uid: Learn-AV-CTA861
+  name: CTA-861 capability blocks
+  href: articles/display-av/signaling/capability-exchange/AV-CTA861.html
+- uid: Learn-AV-DisplayPort
+  name: DisplayPort video links
+  href: articles/display-av/connections/displayport/AV-DisplayPort.html
+- uid: Learn-AV-DSC
+  name: Display Stream Compression (DSC)
+  href: articles/display-av/connections/AV-DSC.html
+- uid: Learn-AV-EDID
+  name: 'EDID: display capability declarations'
+  href: articles/display-av/signaling/capability-exchange/AV-EDID.html
+- uid: Learn-AV-HDCP
+  name: HDCP and protected display links
+  href: articles/display-av/signaling/AV-HDCP.html
+- uid: Learn-AV-HDMI-ARC
+  name: HDMI Audio Return Channel (ARC)
+  href: articles/display-av/signaling/audio-return/AV-HDMI-ARC.html
+- uid: Learn-AV-HDMI-Bandwidth
+  name: 'HDMI link bandwidth: TMDS and FRL'
+  href: articles/display-av/connections/hdmi/AV-HDMI-Bandwidth.html
+- uid: Learn-AV-HDMI-Cables
+  name: HDMI cable categories
+  href: articles/display-av/connections/hdmi/AV-HDMI-Cables.html
+- uid: Learn-AV-HDMI-CEC
+  name: HDMI-CEC control and device addressing
+  href: articles/display-av/signaling/AV-HDMI-CEC.html
+- uid: Learn-AV-HDMI-eARC
+  name: HDMI Enhanced Audio Return Channel (eARC)
+  href: articles/display-av/signaling/audio-return/AV-HDMI-eARC.html
+- uid: Learn-AV-HDMI-Handshakes
+  name: HDMI handshakes and black screens
+  href: articles/display-av/signaling/AV-HDMI-Handshakes.html
+- uid: Learn-AV-HDMI-QMS
+  name: Quick Media Switching (QMS)
+  href: articles/display-av/signaling/AV-HDMI-QMS.html
+- uid: Learn-AV-HDMI-Video
+  name: HDMI video transport
+  href: articles/display-av/connections/hdmi/AV-HDMI-Video.html
+- uid: Learn-AV-HDR-Signaling
+  name: HDMI HDR signaling
+  href: articles/display-av/signaling/capability-exchange/AV-HDR-Signaling.html
+- uid: Learn-AVI-Container
   name: AVI Container
   href: articles/media-files/containers/AVI-Container.html
-- uid: Binaural-Audio
+- uid: Learn-AV-Receivers
+  name: AV receivers in the video path
+  href: articles/display-av/connections/AV-Receivers.html
+- uid: Learn-AV-USB-C-DisplayPort
+  name: USB-C DisplayPort Alt Mode
+  href: articles/display-av/connections/displayport/AV-USB-C-DisplayPort.html
+- uid: Learn-Binaural-Audio
   name: Binaural Audio
   href: articles/audio/channels/Binaural-Audio.html
-- uid: Blu-ray-File-Structure
+- uid: Learn-Blu-ray-File-Structure
   name: Blu-ray File Structure
   href: articles/media-files/packaging/disc/Blu-ray-File-Structure.html
-- uid: CAF-Container
+- uid: Learn-CAF-Container
   name: 'CAF: Core Audio Format'
   href: articles/media-files/containers/audio-oriented/CAF-Container.html
-- uid: Color-Gamut
+- uid: Learn-Caption-ARIB-B24
+  name: ARIB STD-B24 captions
+  href: articles/subtitles/formats/broadcast/Caption-ARIB-B24.html
+- uid: Learn-Caption-CTA-608
+  name: CEA-608 / CTA-608 captions
+  href: articles/subtitles/formats/broadcast/Caption-CTA-608.html
+- uid: Learn-Caption-CTA-708
+  name: CEA-708 / CTA-708 captions
+  href: articles/subtitles/formats/broadcast/Caption-CTA-708.html
+- uid: Learn-Caption-SCC
+  name: Scenarist Closed Captions (SCC)
+  href: articles/subtitles/formats/broadcast/Caption-SCC.html
+- uid: Learn-Caption-Services
+  name: Closed-caption services
+  href: articles/subtitles/formats/broadcast/Caption-Services.html
+- uid: Learn-Caption-Teletext
+  name: Teletext subtitles
+  href: articles/subtitles/formats/broadcast/Caption-Teletext.html
+- uid: Learn-Color-Gamut
   name: Color Gamut
   href: articles/video/color-standards/Color-Gamut.html
-- uid: Color-Standard-BT2020
+- uid: Learn-Color-Standard-BT2020
   name: ITU-R BT.2020
   href: articles/video/color-standards/standards/Color-Standard-BT2020.html
-- uid: Color-Standard-BT2100
+- uid: Learn-Color-Standard-BT2100
   name: ITU-R BT.2100
   href: articles/video/color-standards/standards/Color-Standard-BT2100.html
-- uid: Color-Standard-BT601
+- uid: Learn-Color-Standard-BT601
   name: ITU-R BT.601
   href: articles/video/color-standards/standards/Color-Standard-BT601.html
-- uid: Color-Standard-BT709
+- uid: Learn-Color-Standard-BT709
   name: ITU-R BT.709
   href: articles/video/color-standards/standards/Color-Standard-BT709.html
-- uid: Color-Volume
+- uid: Learn-Color-Volume
   name: Color Volume
   href: articles/video/color-standards/Color-Volume.html
-- uid: Containers-and-Codecs
+- uid: Learn-Containers-and-Codecs
   name: Containers and Codecs
   href: articles/media-files/fundamentals/Containers-and-Codecs.html
-- uid: Decoded-PCM-Output
+- uid: Learn-Decoded-PCM-Output
   name: Decoded PCM Output
   href: articles/audio/decoding-output/output-transport/Decoded-PCM-Output.html
-- uid: Deinterlacing
+- uid: Learn-Deinterlacing
   name: Deinterlacing
   href: articles/video/frame-timing/interlacing-and-cadence/Deinterlacing.html
-- uid: Digital-Audio-Sampling
+- uid: Learn-Digital-Audio-Sampling
   name: Digital Audio Sampling
   href: articles/audio/fundamentals/sample-representation/Digital-Audio-Sampling.html
-- uid: Digital-Video
+- uid: Learn-Digital-Video
   name: How Digital Video Represents Moving Pictures
   href: articles/video/fundamentals/Digital-Video.html
-- uid: Disc-Images-ISO
+- uid: Learn-Disc-Images-ISO
   name: 'Disc Images: ISO Files'
   href: articles/media-files/packaging/disc/Disc-Images-ISO.html
-- uid: Dolby-AC4
+- uid: Learn-Display-ABL
+  name: Automatic brightness limiting
+  href: articles/display-av/characteristics/hdr/Display-ABL.html
+- uid: Learn-Display-Black-Frame-Insertion
+  name: Black-frame insertion and display persistence
+  href: articles/display-av/motion/Display-Black-Frame-Insertion.html
+- uid: Learn-Display-Calibration
+  name: Display color calibration
+  href: articles/display-av/characteristics/Display-Calibration.html
+- uid: Learn-Display-Color-Management
+  name: Display color management
+  href: articles/display-av/characteristics/Display-Color-Management.html
+- uid: Learn-Display-Frame-Rate-Matching
+  name: Frame-rate matching at the display
+  href: articles/display-av/motion/refresh-synchronization/Display-Frame-Rate-Matching.html
+- uid: Learn-Display-Frame-to-Screen
+  name: The path from decoded frames to the screen
+  href: articles/display-av/Display-Frame-to-Screen.html
+- uid: Learn-Display-HDR-Capabilities
+  name: HDR display capabilities
+  href: articles/display-av/characteristics/hdr/Display-HDR-Capabilities.html
+- uid: Learn-Display-Judder
+  name: Judder and uneven picture cadence
+  href: articles/display-av/motion/Display-Judder.html
+- uid: Learn-Display-LCD-LED
+  name: LCD and LED-backlit displays
+  href: articles/display-av/characteristics/technologies/Display-LCD-LED.html
+- uid: Learn-Display-Local-Dimming
+  name: Local dimming and backlight zones
+  href: articles/display-av/characteristics/hdr/Display-Local-Dimming.html
+- uid: Learn-Display-Native-Resolution
+  name: Native display resolution
+  href: articles/display-av/characteristics/Display-Native-Resolution.html
+- uid: Learn-Display-OLED
+  name: OLED displays
+  href: articles/display-av/characteristics/technologies/Display-OLED.html
+- uid: Learn-Display-Peak-Brightness
+  name: Display peak brightness
+  href: articles/display-av/characteristics/hdr/Display-Peak-Brightness.html
+- uid: Learn-Display-Projectors
+  name: Projectors and the viewing surface
+  href: articles/display-av/characteristics/technologies/Display-Projectors.html
+- uid: Learn-Display-Refresh-Rate
+  name: Display refresh rate
+  href: articles/display-av/motion/refresh-synchronization/Display-Refresh-Rate.html
+- uid: Learn-Display-Response-Time
+  name: Display response time and motion blur
+  href: articles/display-av/motion/Display-Response-Time.html
+- uid: Learn-Display-VRR
+  name: Variable refresh rate (VRR)
+  href: articles/display-av/motion/refresh-synchronization/Display-VRR.html
+- uid: Learn-Display-VSync
+  name: Vertical synchronization (VSync)
+  href: articles/display-av/motion/refresh-synchronization/Display-VSync.html
+- uid: Learn-Dolby-AC4
   name: Dolby AC-4 Audio
   href: articles/audio/formats/lossy/dolby/Dolby-AC4.html
-- uid: Dolby-Atmos
+- uid: Learn-Dolby-Atmos
   name: Dolby Atmos
   href: articles/audio/channels/object-based/Dolby-Atmos.html
-- uid: Dolby-Digital-AC3
+- uid: Learn-Dolby-Digital-AC3
   name: Dolby Digital (AC-3)
   href: articles/audio/formats/lossy/dolby/Dolby-Digital-AC3.html
-- uid: Dolby-Digital-Plus-EAC3
+- uid: Learn-Dolby-Digital-Plus-EAC3
   name: Dolby Digital Plus (E-AC-3)
   href: articles/audio/formats/lossy/dolby/Dolby-Digital-Plus-EAC3.html
-- uid: Dolby-MAT
+- uid: Learn-Dolby-MAT
   name: Dolby MAT Audio Transport
   href: articles/audio/decoding-output/output-transport/Dolby-MAT.html
-- uid: Dolby-TrueHD
+- uid: Learn-Dolby-TrueHD
   name: Dolby TrueHD Audio
   href: articles/audio/formats/lossless/Dolby-TrueHD.html
-- uid: Dolby-Vision
+- uid: Learn-Dolby-Vision
   name: How Dolby Vision Works
   href: articles/video/hdr/formats/dolby-vision/Dolby-Vision.html
-- uid: Dolby-Vision-Fallback
+- uid: Learn-Dolby-Vision-Fallback
   name: Dolby Vision Fallback Compatibility
   href: articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Fallback.html
-- uid: Dolby-Vision-Layers
+- uid: Learn-Dolby-Vision-Layers
   name: Dolby Vision Base and Enhancement Layers
   href: articles/video/hdr/formats/dolby-vision/metadata-and-layers/Dolby-Vision-Layers.html
-- uid: Dolby-Vision-MEL-FEL
+- uid: Learn-Dolby-Vision-MEL-FEL
   name: Dolby Vision MEL and FEL
   href: articles/video/hdr/formats/dolby-vision/metadata-and-layers/Dolby-Vision-MEL-FEL.html
-- uid: Dolby-Vision-Profile-10
+- uid: Learn-Dolby-Vision-Profile-10
   name: Dolby Vision Profile 10
   href: articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-10.html
-- uid: Dolby-Vision-Profile-20
+- uid: Learn-Dolby-Vision-Profile-20
   name: Dolby Vision Profile 20
   href: articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-20.html
-- uid: Dolby-Vision-Profile-3
+- uid: Learn-Dolby-Vision-Profile-3
   name: Dolby Vision Profile 3 (Legacy)
   href: articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-3.html
-- uid: Dolby-Vision-Profile-4
+- uid: Learn-Dolby-Vision-Profile-4
   name: Dolby Vision Profile 4 (Legacy)
   href: articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-4.html
-- uid: Dolby-Vision-Profile-5
+- uid: Learn-Dolby-Vision-Profile-5
   name: Dolby Vision Profile 5
   href: articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-5.html
-- uid: Dolby-Vision-Profile-7
+- uid: Learn-Dolby-Vision-Profile-7
   name: Dolby Vision Profile 7
   href: articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-7.html
-- uid: Dolby-Vision-Profile-8
+- uid: Learn-Dolby-Vision-Profile-8
   name: Dolby Vision Profile 8
   href: articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-8.html
-- uid: Dolby-Vision-Profile-9
+- uid: Learn-Dolby-Vision-Profile-9
   name: Dolby Vision Profile 9
   href: articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profile-9.html
-- uid: Dolby-Vision-Profiles-Levels
+- uid: Learn-Dolby-Vision-Profiles-Levels
   name: Dolby Vision Profiles and Levels
   href: articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/Dolby-Vision-Profiles-Levels.html
-- uid: Dolby-Vision-RPU
+- uid: Learn-Dolby-Vision-RPU
   name: Dolby Vision RPU Metadata
   href: articles/video/hdr/formats/dolby-vision/metadata-and-layers/Dolby-Vision-RPU.html
-- uid: DSD
+- uid: Learn-DSD
   name: Direct Stream Digital (DSD)
   href: articles/audio/formats/DSD.html
-- uid: DSDIFF-Container
+- uid: Learn-DSDIFF-Container
   name: 'DSDIFF: DFF Container'
   href: articles/media-files/containers/audio-oriented/DSDIFF-Container.html
-- uid: DSF-Container
+- uid: Learn-DSF-Container
   name: 'DSF: DSD Stream File'
   href: articles/media-files/containers/audio-oriented/DSF-Container.html
-- uid: DTS-Core
+- uid: Learn-DTS-Core
   name: DTS Core Audio
   href: articles/audio/formats/lossy/DTS-Core.html
-- uid: DTS-HD-High-Resolution
+- uid: Learn-DTS-HD-High-Resolution
   name: DTS-HD High Resolution Audio
   href: articles/audio/formats/lossy/DTS-HD-High-Resolution.html
-- uid: DTS-HD-Master-Audio
+- uid: Learn-DTS-HD-Master-Audio
   name: DTS-HD Master Audio
   href: articles/audio/formats/lossless/DTS-HD-Master-Audio.html
-- uid: DTS-X
+- uid: Learn-DTS-X
   name: DTS:X
   href: articles/audio/channels/object-based/DTS-X.html
-- uid: DVD-Video-File-Structure
+- uid: Learn-DVD-Video-File-Structure
   name: DVD-Video File Structure
   href: articles/media-files/packaging/disc/DVD-Video-File-Structure.html
-- uid: Embedded-Audio-Core-Fallback
+- uid: Learn-Embedded-Audio-Core-Fallback
   name: Fallback to an Embedded Audio Core
   href: articles/audio/decoding-output/conversion-fallback/Embedded-Audio-Core-Fallback.html
-- uid: FLAC
+- uid: Learn-Emby-Learn
+  name: Understand your media
+  href: index.html
+- uid: Learn-FLAC
   name: FLAC Audio
   href: articles/audio/formats/lossless/FLAC.html
-- uid: Fractional-Frame-Rates
+- uid: Learn-Fractional-Frame-Rates
   name: 'Fractional Frame Rates: 23.976, 29.97, and 59.94'
   href: articles/video/frame-timing/frame-rates/Fractional-Frame-Rates.html
-- uid: Fragmented-MP4
+- uid: Learn-Fragmented-MP4
   name: Fragmented MP4
   href: articles/media-files/packaging/mp4/Fragmented-MP4.html
-- uid: Frame-Rate-Conversion
+- uid: Learn-Frame-Rate-Conversion
   name: Frame-Rate Conversion
   href: articles/video/frame-timing/Frame-Rate-Conversion.html
-- uid: Gamut-Mapping
+- uid: Learn-Gamut-Mapping
   name: Gamut Mapping
   href: articles/video/tone-mapping/color-and-luminance/Gamut-Mapping.html
-- uid: HDR10
+- uid: Learn-Hardware-AMD-AMF
+  name: AMD Advanced Media Framework (AMF)
+  href: articles/hardware-acceleration/interfaces/amd/Hardware-AMD-AMF.html
+- uid: Learn-Hardware-AMD-UVD
+  name: AMD Unified Video Decoder (UVD, legacy)
+  href: articles/hardware-acceleration/interfaces/amd/Hardware-AMD-UVD.html
+- uid: Learn-Hardware-AMD-VCE
+  name: AMD Video Coding Engine (VCE, legacy)
+  href: articles/hardware-acceleration/interfaces/amd/Hardware-AMD-VCE.html
+- uid: Learn-Hardware-AMD-VCN
+  name: AMD Video Core Next (VCN)
+  href: articles/hardware-acceleration/interfaces/amd/Hardware-AMD-VCN.html
+- uid: Learn-Hardware-AMD-VCN-Generations
+  name: AMD VCN generation capabilities
+  href: articles/hardware-acceleration/generations/amd/Hardware-AMD-VCN-Generations.html
+- uid: Learn-Hardware-Android-MediaCodec
+  name: Android MediaCodec and buffer ownership
+  href: articles/hardware-acceleration/interfaces/android/Hardware-Android-MediaCodec.html
+- uid: Learn-Hardware-Apple-Metal
+  name: Metal for video processing
+  href: articles/hardware-acceleration/interfaces/apple/Hardware-Apple-Metal.html
+- uid: Learn-Hardware-Apple-Silicon
+  name: Apple silicon media engines
+  href: articles/hardware-acceleration/interfaces/apple/Hardware-Apple-Silicon.html
+- uid: Learn-Hardware-Apple-VideoToolbox
+  name: Apple VideoToolbox
+  href: articles/hardware-acceleration/interfaces/apple/Hardware-Apple-VideoToolbox.html
+- uid: Learn-Hardware-Codec-Matrix
+  name: How to read a hardware codec support matrix
+  href: articles/hardware-acceleration/generations/Hardware-Codec-Matrix.html
+- uid: Learn-Hardware-Copy-Back
+  name: Copy-back video pipelines
+  href: articles/hardware-acceleration/pipelines/memory/Hardware-Copy-Back.html
+- uid: Learn-Hardware-CPU-Work
+  name: Why hardware acceleration can still use the CPU
+  href: articles/hardware-acceleration/pipelines/Hardware-CPU-Work.html
+- uid: Learn-Hardware-Decode-Filter-Encode
+  name: The hardware decode-filter-encode pipeline
+  href: articles/hardware-acceleration/building-blocks/Hardware-Decode-Filter-Encode.html
+- uid: Learn-Hardware-Decoding
+  name: Hardware decoding and software decoding
+  href: articles/hardware-acceleration/Hardware-Decoding.html
+- uid: Learn-Hardware-Driver-Capabilities
+  name: Driver-dependent media capabilities
+  href: articles/hardware-acceleration/pipelines/Hardware-Driver-Capabilities.html
+- uid: Learn-Hardware-Emby-Server
+  name: Hardware acceleration in Emby Server
+  href: articles/hardware-acceleration/pipelines/Hardware-Emby-Server.html
+- uid: Learn-Hardware-Encoder-Sessions
+  name: Concurrent encoder sessions, policy and capacity
+  href: articles/hardware-acceleration/pipelines/Hardware-Encoder-Sessions.html
+- uid: Learn-Hardware-Encoding
+  name: Hardware encoding and software encoding
+  href: articles/hardware-acceleration/Hardware-Encoding.html
+- uid: Learn-Hardware-Fixed-Function
+  name: Fixed-function media engines
+  href: articles/hardware-acceleration/building-blocks/Hardware-Fixed-Function.html
+- uid: Learn-Hardware-Frame-Surfaces
+  name: Hardware frame surfaces and GPU contexts
+  href: articles/hardware-acceleration/pipelines/memory/Hardware-Frame-Surfaces.html
+- uid: Learn-Hardware-GPU-Compute
+  name: GPU compute and video processing
+  href: articles/hardware-acceleration/building-blocks/Hardware-GPU-Compute.html
+- uid: Learn-Hardware-GPU-Memory
+  name: GPU memory limits in video processing
+  href: articles/hardware-acceleration/pipelines/memory/Hardware-GPU-Memory.html
+- uid: Learn-Hardware-Intel-Alchemist
+  name: Intel Arc Alchemist media capabilities
+  href: articles/hardware-acceleration/generations/intel/Hardware-Intel-Alchemist.html
+- uid: Learn-Hardware-Intel-Elkhart-Jasper
+  name: Intel Elkhart Lake and Jasper Lake media capabilities
+  href: articles/hardware-acceleration/generations/intel/Hardware-Intel-Elkhart-Jasper.html
+- uid: Learn-Hardware-Intel-Kaby-Lake
+  name: Intel Kaby Lake media capabilities
+  href: articles/hardware-acceleration/generations/intel/Hardware-Intel-Kaby-Lake.html
+- uid: Learn-Hardware-Intel-Media-SDK
+  name: Intel Media SDK (legacy)
+  href: articles/hardware-acceleration/interfaces/intel/Hardware-Intel-Media-SDK.html
+- uid: Learn-Hardware-Intel-QSV
+  name: Intel Quick Sync Video (QSV)
+  href: articles/hardware-acceleration/interfaces/intel/Hardware-Intel-QSV.html
+- uid: Learn-Hardware-Intel-VPL
+  name: Intel VPL and the oneVPL name
+  href: articles/hardware-acceleration/interfaces/intel/Hardware-Intel-VPL.html
+- uid: Learn-Hardware-Intel-VPP
+  name: Intel video processing (VPP)
+  href: articles/hardware-acceleration/interfaces/intel/Hardware-Intel-VPP.html
+- uid: Learn-Hardware-Intel-Xe2
+  name: 'Intel Xe2 media capabilities: Lunar Lake and Battlemage'
+  href: articles/hardware-acceleration/generations/intel/Hardware-Intel-Xe2.html
+- uid: Learn-Hardware-Intel-Xe-LP
+  name: Intel Xe-LP media capabilities
+  href: articles/hardware-acceleration/generations/intel/Hardware-Intel-Xe-LP.html
+- uid: Learn-Hardware-Intel-Xe-LPG
+  name: 'Intel Xe-LPG media capabilities: Meteor Lake and Arrow Lake'
+  href: articles/hardware-acceleration/generations/intel/Hardware-Intel-Xe-LPG.html
+- uid: Learn-Hardware-Linux-DMABuf
+  name: DRM PRIME and DMA-BUF frame sharing
+  href: articles/hardware-acceleration/interfaces/linux/Hardware-Linux-DMABuf.html
+- uid: Learn-Hardware-Linux-V4L2-M2M
+  name: V4L2 memory-to-memory codecs
+  href: articles/hardware-acceleration/interfaces/linux/Hardware-Linux-V4L2-M2M.html
+- uid: Learn-Hardware-Linux-V4L2-Stateless
+  name: V4L2 stateless decoding and the Request API
+  href: articles/hardware-acceleration/interfaces/linux/Hardware-Linux-V4L2-Stateless.html
+- uid: Learn-Hardware-Linux-VAAPI
+  name: Video Acceleration API (VA-API)
+  href: articles/hardware-acceleration/interfaces/linux/Hardware-Linux-VAAPI.html
+- uid: Learn-Hardware-Linux-VAAPI-Drivers
+  name: VA-API driver backends
+  href: articles/hardware-acceleration/interfaces/linux/Hardware-Linux-VAAPI-Drivers.html
+- uid: Learn-Hardware-Linux-VDPAU
+  name: Video Decode and Presentation API for Unix (VDPAU)
+  href: articles/hardware-acceleration/interfaces/linux/Hardware-Linux-VDPAU.html
+- uid: Learn-Hardware-Media-Acceleration
+  name: What hardware acceleration does for media
+  href: articles/hardware-acceleration/Hardware-Media-Acceleration.html
+- uid: Learn-Hardware-Media-APIs
+  name: How media APIs connect applications to hardware
+  href: articles/hardware-acceleration/interfaces/Hardware-Media-APIs.html
+- uid: Learn-Hardware-Mixed-Filtering
+  name: Mixed hardware and software filtering
+  href: articles/hardware-acceleration/pipelines/Hardware-Mixed-Filtering.html
+- uid: Learn-Hardware-NVIDIA-Ada
+  name: NVIDIA Ada Lovelace media capabilities
+  href: articles/hardware-acceleration/generations/nvidia/Hardware-NVIDIA-Ada.html
+- uid: Learn-Hardware-NVIDIA-Ampere
+  name: NVIDIA Ampere media capabilities
+  href: articles/hardware-acceleration/generations/nvidia/Hardware-NVIDIA-Ampere.html
+- uid: Learn-Hardware-NVIDIA-Blackwell
+  name: NVIDIA Blackwell media capabilities
+  href: articles/hardware-acceleration/generations/nvidia/Hardware-NVIDIA-Blackwell.html
+- uid: Learn-Hardware-NVIDIA-CUDA
+  name: NVIDIA CUDA in media processing
+  href: articles/hardware-acceleration/interfaces/nvidia/Hardware-NVIDIA-CUDA.html
+- uid: Learn-Hardware-NVIDIA-CUVID
+  name: NVDEC and CUVID API names
+  href: articles/hardware-acceleration/interfaces/nvidia/Hardware-NVIDIA-CUVID.html
+- uid: Learn-Hardware-NVIDIA-NVDEC
+  name: NVIDIA NVDEC
+  href: articles/hardware-acceleration/interfaces/nvidia/Hardware-NVIDIA-NVDEC.html
+- uid: Learn-Hardware-NVIDIA-NVENC
+  name: NVIDIA NVENC
+  href: articles/hardware-acceleration/interfaces/nvidia/Hardware-NVIDIA-NVENC.html
+- uid: Learn-Hardware-NVIDIA-Pascal
+  name: NVIDIA Pascal media capabilities
+  href: articles/hardware-acceleration/generations/nvidia/Hardware-NVIDIA-Pascal.html
+- uid: Learn-Hardware-NVIDIA-Turing
+  name: NVIDIA Turing media capabilities
+  href: articles/hardware-acceleration/generations/nvidia/Hardware-NVIDIA-Turing.html
+- uid: Learn-Hardware-OpenCL
+  name: OpenCL for media processing
+  href: articles/hardware-acceleration/interfaces/portable/Hardware-OpenCL.html
+- uid: Learn-Hardware-OpenMAX-IL
+  name: OpenMAX IL components, ports and state
+  href: articles/hardware-acceleration/interfaces/android/Hardware-OpenMAX-IL.html
+- uid: Learn-Hardware-Rockchip-MPP
+  name: Rockchip Media Process Platform (RKMPP)
+  href: articles/hardware-acceleration/interfaces/android/Hardware-Rockchip-MPP.html
+- uid: Learn-Hardware-Vulkan
+  name: Vulkan for media processing
+  href: articles/hardware-acceleration/interfaces/portable/Hardware-Vulkan.html
+- uid: Learn-Hardware-Vulkan-Video
+  name: Vulkan Video profiles, queues and sessions
+  href: articles/hardware-acceleration/interfaces/portable/Hardware-Vulkan-Video.html
+- uid: Learn-Hardware-Windows-D3D11VA
+  name: Direct3D 11 video acceleration (D3D11VA)
+  href: articles/hardware-acceleration/interfaces/windows/Hardware-Windows-D3D11VA.html
+- uid: Learn-Hardware-Windows-DXVA2
+  name: DirectX Video Acceleration (DXVA2)
+  href: articles/hardware-acceleration/interfaces/windows/Hardware-Windows-DXVA2.html
+- uid: Learn-Hardware-Windows-Media-Foundation
+  name: Media Foundation transforms and processing state
+  href: articles/hardware-acceleration/interfaces/windows/Hardware-Windows-Media-Foundation.html
+- uid: Learn-Hardware-Zero-Copy
+  name: Zero-copy video pipelines and the boundary being avoided
+  href: articles/hardware-acceleration/pipelines/memory/Hardware-Zero-Copy.html
+- uid: Learn-HDR10
   name: HDR10
   href: articles/video/hdr/formats/HDR10.html
-- uid: HDR10-Plus
+- uid: Learn-HDR10-Plus
   name: HDR10+
   href: articles/video/hdr/formats/HDR10-Plus.html
-- uid: HDR-Camera-Capture
+- uid: Learn-HDR-Camera-Capture
   name: HDR Capture in Cameras
   href: articles/video/hdr/HDR-Camera-Capture.html
-- uid: HDR-Luminance-Nits
+- uid: Learn-HDR-Luminance-Nits
   name: Luminance and Nits
   href: articles/video/hdr/HDR-Luminance-Nits.html
-- uid: HDR-Mastering
+- uid: Learn-HDR-Mastering
   name: HDR Mastering in the Studio
   href: articles/video/hdr/HDR-Mastering.html
-- uid: HDR-Mastering-Display-Metadata
+- uid: Learn-HDR-Mastering-Display-Metadata
   name: 'Mastering Display Metadata: SMPTE ST 2086'
   href: articles/video/hdr/metadata-and-light-levels/HDR-Mastering-Display-Metadata.html
-- uid: HDR-MaxCLL-MaxFALL
+- uid: Learn-HDR-MaxCLL-MaxFALL
   name: MaxCLL and MaxFALL
   href: articles/video/hdr/metadata-and-light-levels/HDR-MaxCLL-MaxFALL.html
-- uid: HDR-Metadata
+- uid: Learn-HDR-Metadata
   name: HDR Metadata
   href: articles/video/hdr/metadata-and-light-levels/HDR-Metadata.html
-- uid: HDR-Video
+- uid: Learn-HDR-Video
   name: What HDR Video Adds to SDR
   href: articles/video/hdr/HDR-Video.html
-- uid: HE-AAC
+- uid: Learn-HE-AAC
   name: HE-AAC Audio
   href: articles/audio/formats/lossy/aac-family/HE-AAC.html
-- uid: HE-AAC-v2
+- uid: Learn-HE-AAC-v2
   name: HE-AAC v2 Audio
   href: articles/audio/formats/lossy/aac-family/HE-AAC-v2.html
-- uid: HLG
+- uid: Learn-HLG
   name: Hybrid Log-Gamma (HLG)
   href: articles/video/hdr/formats/HLG.html
-- uid: Immersive-Audio-Metadata
+- uid: Learn-Image-Animated
+  name: Animated images
+  href: articles/photos-images/presentation/Image-Animated.html
+- uid: Learn-Image-AVIF
+  name: AVIF images
+  href: articles/photos-images/formats/Image-AVIF.html
+- uid: Learn-Image-Camera-Raw
+  name: Camera raw images
+  href: articles/photos-images/formats/Image-Camera-Raw.html
+- uid: Learn-Image-Compression
+  name: Image compression
+  href: articles/photos-images/fundamentals/Image-Compression.html
+- uid: Learn-Image-GIF
+  name: GIF images
+  href: articles/photos-images/formats/Image-GIF.html
+- uid: Learn-Image-HDR
+  name: HDR still images
+  href: articles/photos-images/presentation/Image-HDR.html
+- uid: Learn-Image-HEIF
+  name: HEIF and HEIC images
+  href: articles/photos-images/formats/Image-HEIF.html
+- uid: Learn-Image-ICC-Profiles
+  name: ICC color profiles
+  href: articles/photos-images/presentation/Image-ICC-Profiles.html
+- uid: Learn-Image-JPEG
+  name: JPEG images
+  href: articles/photos-images/formats/Image-JPEG.html
+- uid: Learn-Image-Orientation
+  name: Image orientation
+  href: articles/photos-images/fundamentals/Image-Orientation.html
+- uid: Learn-Image-PNG
+  name: PNG images
+  href: articles/photos-images/formats/Image-PNG.html
+- uid: Learn-Image-Raster
+  name: Raster images
+  href: articles/photos-images/fundamentals/Image-Raster.html
+- uid: Learn-Image-Resizing
+  name: Image resizing
+  href: articles/photos-images/presentation/Image-Resizing.html
+- uid: Learn-Image-Resolution
+  name: Image resolution
+  href: articles/photos-images/fundamentals/Image-Resolution.html
+- uid: Learn-Image-Thumbnails
+  name: Image thumbnail generation
+  href: articles/photos-images/presentation/Image-Thumbnails.html
+- uid: Learn-Image-TIFF
+  name: TIFF images
+  href: articles/photos-images/formats/Image-TIFF.html
+- uid: Learn-Image-Transparency
+  name: Image transparency
+  href: articles/photos-images/fundamentals/Image-Transparency.html
+- uid: Learn-Image-WebP
+  name: WebP images
+  href: articles/photos-images/formats/Image-WebP.html
+- uid: Learn-Immersive-Audio-Metadata
   name: Preserving Immersive Audio Metadata
   href: articles/audio/decoding-output/Immersive-Audio-Metadata.html
-- uid: Inter-Frame-Prediction
+- uid: Learn-Index-audio
+  name: 'Overview: Audio'
+  href: articles/audio/index.html
+- uid: Learn-Index-audio-channels
+  name: 'Overview: Channels and spatial audio'
+  href: articles/audio/channels/index.html
+- uid: Learn-Index-audio-channels-layouts
+  name: 'Overview: Channel layouts'
+  href: articles/audio/channels/layouts/index.html
+- uid: Learn-Index-audio-channels-object-based
+  name: 'Overview: Object-based audio formats'
+  href: articles/audio/channels/object-based/index.html
+- uid: Learn-Index-audio-channels-roles-and-ordering
+  name: 'Overview: Channel roles and ordering'
+  href: articles/audio/channels/roles-and-ordering/index.html
+- uid: Learn-Index-audio-decoding-output
+  name: 'Overview: Audio decoding and output'
+  href: articles/audio/decoding-output/index.html
+- uid: Learn-Index-audio-decoding-output-conversion-fallback
+  name: 'Overview: Conversion and fallback'
+  href: articles/audio/decoding-output/conversion-fallback/index.html
+- uid: Learn-Index-audio-decoding-output-output-transport
+  name: 'Overview: Output and transport'
+  href: articles/audio/decoding-output/output-transport/index.html
+- uid: Learn-Index-audio-devices-output
+  name: 'Overview: Audio devices and operating-system output'
+  href: articles/audio/devices-output/index.html
+- uid: Learn-Index-audio-devices-output-bluetooth
+  name: 'Overview: Bluetooth connections'
+  href: articles/audio/devices-output/bluetooth/index.html
+- uid: Learn-Index-audio-devices-output-os-apis
+  name: 'Overview: Operating-system audio APIs'
+  href: articles/audio/devices-output/os-apis/index.html
+- uid: Learn-Index-audio-formats
+  name: 'Overview: Audio formats and codecs'
+  href: articles/audio/formats/index.html
+- uid: Learn-Index-audio-formats-lossless
+  name: 'Overview: Lossless audio codecs'
+  href: articles/audio/formats/lossless/index.html
+- uid: Learn-Index-audio-formats-lossy
+  name: 'Overview: Lossy audio codecs'
+  href: articles/audio/formats/lossy/index.html
+- uid: Learn-Index-audio-formats-lossy-aac-family
+  name: 'Overview: AAC family'
+  href: articles/audio/formats/lossy/aac-family/index.html
+- uid: Learn-Index-audio-formats-lossy-dolby
+  name: 'Overview: Dolby lossy codecs'
+  href: articles/audio/formats/lossy/dolby/index.html
+- uid: Learn-Index-audio-formats-speech
+  name: 'Overview: Speech audio codecs'
+  href: articles/audio/formats/speech/index.html
+- uid: Learn-Index-audio-fundamentals
+  name: 'Overview: Digital audio fundamentals'
+  href: articles/audio/fundamentals/index.html
+- uid: Learn-Index-audio-fundamentals-sample-representation
+  name: 'Overview: Sample representation'
+  href: articles/audio/fundamentals/sample-representation/index.html
+- uid: Learn-Index-audio-loudness-music-playback
+  name: 'Overview: Loudness and music playback'
+  href: articles/audio/loudness-music-playback/index.html
+- uid: Learn-Index-audio-loudness-music-playback-measurement-control
+  name: 'Overview: Loudness measurement and control'
+  href: articles/audio/loudness-music-playback/measurement-control/index.html
+- uid: Learn-Index-audio-loudness-music-playback-music-playback
+  name: 'Overview: Music playback behavior'
+  href: articles/audio/loudness-music-playback/music-playback/index.html
+- uid: Learn-Index-automation
+  name: 'Overview: Automation and interoperability'
+  href: articles/automation/index.html
+- uid: Learn-Index-automation-api
+  name: 'Overview: Media server APIs'
+  href: articles/automation/api/index.html
+- uid: Learn-Index-automation-api-credentials
+  name: 'Overview: API credentials'
+  href: articles/automation/api/credentials/index.html
+- uid: Learn-Index-automation-api-requests
+  name: 'Overview: Requests and responses'
+  href: articles/automation/api/requests/index.html
+- uid: Learn-Index-automation-events
+  name: 'Overview: Events and integrations'
+  href: articles/automation/events/index.html
+- uid: Learn-Index-automation-events-plugins
+  name: 'Overview: Plugins'
+  href: articles/automation/events/plugins/index.html
+- uid: Learn-Index-automation-events-receiving
+  name: 'Overview: Receiving events and state'
+  href: articles/automation/events/receiving/index.html
+- uid: Learn-Index-display-av
+  name: 'Overview: Displays and AV connections'
+  href: articles/display-av/index.html
+- uid: Learn-Index-display-av-characteristics
+  name: 'Overview: Display characteristics'
+  href: articles/display-av/characteristics/index.html
+- uid: Learn-Index-display-av-characteristics-hdr
+  name: 'Overview: HDR and brightness'
+  href: articles/display-av/characteristics/hdr/index.html
+- uid: Learn-Index-display-av-characteristics-technologies
+  name: 'Overview: Display technologies'
+  href: articles/display-av/characteristics/technologies/index.html
+- uid: Learn-Index-display-av-connections
+  name: 'Overview: Video connections'
+  href: articles/display-av/connections/index.html
+- uid: Learn-Index-display-av-connections-displayport
+  name: 'Overview: DisplayPort connections'
+  href: articles/display-av/connections/displayport/index.html
+- uid: Learn-Index-display-av-connections-hdmi
+  name: 'Overview: HDMI connections'
+  href: articles/display-av/connections/hdmi/index.html
+- uid: Learn-Index-display-av-input
+  name: 'Overview: Playback input devices'
+  href: articles/display-av/input/index.html
+- uid: Learn-Index-display-av-motion
+  name: 'Overview: Motion on a display'
+  href: articles/display-av/motion/index.html
+- uid: Learn-Index-display-av-motion-refresh-synchronization
+  name: 'Overview: Refresh and synchronization'
+  href: articles/display-av/motion/refresh-synchronization/index.html
+- uid: Learn-Index-display-av-signaling
+  name: 'Overview: Capability negotiation and signaling'
+  href: articles/display-av/signaling/index.html
+- uid: Learn-Index-display-av-signaling-audio-return
+  name: 'Overview: Audio return channels'
+  href: articles/display-av/signaling/audio-return/index.html
+- uid: Learn-Index-display-av-signaling-capability-exchange
+  name: 'Overview: Capability exchange'
+  href: articles/display-av/signaling/capability-exchange/index.html
+- uid: Learn-Index-hardware-acceleration
+  name: 'Overview: Media hardware acceleration'
+  href: articles/hardware-acceleration/index.html
+- uid: Learn-Index-hardware-acceleration-building-blocks
+  name: 'Overview: Processing building blocks'
+  href: articles/hardware-acceleration/building-blocks/index.html
+- uid: Learn-Index-hardware-acceleration-generations
+  name: 'Overview: Media-engine generations'
+  href: articles/hardware-acceleration/generations/index.html
+- uid: Learn-Index-hardware-acceleration-generations-intel
+  name: 'Overview: Intel media-engine generations'
+  href: articles/hardware-acceleration/generations/intel/index.html
+- uid: Learn-Index-hardware-acceleration-generations-nvidia
+  name: 'Overview: NVIDIA media-engine generations'
+  href: articles/hardware-acceleration/generations/nvidia/index.html
+- uid: Learn-Index-hardware-acceleration-interfaces
+  name: 'Overview: Media engines and acceleration interfaces'
+  href: articles/hardware-acceleration/interfaces/index.html
+- uid: Learn-Index-hardware-acceleration-interfaces-amd
+  name: 'Overview: AMD'
+  href: articles/hardware-acceleration/interfaces/amd/index.html
+- uid: Learn-Index-hardware-acceleration-interfaces-android
+  name: 'Overview: Android and embedded systems'
+  href: articles/hardware-acceleration/interfaces/android/index.html
+- uid: Learn-Index-hardware-acceleration-interfaces-apple
+  name: 'Overview: Apple'
+  href: articles/hardware-acceleration/interfaces/apple/index.html
+- uid: Learn-Index-hardware-acceleration-interfaces-intel
+  name: 'Overview: Intel'
+  href: articles/hardware-acceleration/interfaces/intel/index.html
+- uid: Learn-Index-hardware-acceleration-interfaces-linux
+  name: 'Overview: Linux'
+  href: articles/hardware-acceleration/interfaces/linux/index.html
+- uid: Learn-Index-hardware-acceleration-interfaces-nvidia
+  name: 'Overview: NVIDIA'
+  href: articles/hardware-acceleration/interfaces/nvidia/index.html
+- uid: Learn-Index-hardware-acceleration-interfaces-platforms
+  name: 'Overview: Platform media APIs'
+  href: articles/hardware-acceleration/interfaces/platforms/index.html
+- uid: Learn-Index-hardware-acceleration-interfaces-portable
+  name: 'Overview: Portable GPU processing'
+  href: articles/hardware-acceleration/interfaces/portable/index.html
+- uid: Learn-Index-hardware-acceleration-interfaces-vendors
+  name: 'Overview: Vendor media technologies'
+  href: articles/hardware-acceleration/interfaces/vendors/index.html
+- uid: Learn-Index-hardware-acceleration-interfaces-windows
+  name: 'Overview: Windows'
+  href: articles/hardware-acceleration/interfaces/windows/index.html
+- uid: Learn-Index-hardware-acceleration-pipelines
+  name: 'Overview: Hardware pipelines and their limits'
+  href: articles/hardware-acceleration/pipelines/index.html
+- uid: Learn-Index-hardware-acceleration-pipelines-memory
+  name: 'Overview: Frame memory and transfers'
+  href: articles/hardware-acceleration/pipelines/memory/index.html
+- uid: Learn-Index-libraries-collections
+  name: 'Overview: Libraries and media collections'
+  href: articles/libraries-collections/index.html
+- uid: Learn-Index-libraries-collections-books-spoken-audio
+  name: 'Overview: Books and spoken audio'
+  href: articles/libraries-collections/books-spoken-audio/index.html
+- uid: Learn-Index-libraries-collections-books-spoken-audio-audiobooks
+  name: 'Overview: Audiobooks'
+  href: articles/libraries-collections/books-spoken-audio/audiobooks/index.html
+- uid: Learn-Index-libraries-collections-books-spoken-audio-podcasts
+  name: 'Overview: Podcasts'
+  href: articles/libraries-collections/books-spoken-audio/podcasts/index.html
+- uid: Learn-Index-libraries-collections-concepts
+  name: 'Overview: Library concepts'
+  href: articles/libraries-collections/concepts/index.html
+- uid: Learn-Index-libraries-collections-history
+  name: 'Overview: Playback history'
+  href: articles/libraries-collections/history/index.html
+- uid: Learn-Index-libraries-collections-movies
+  name: 'Overview: Movies and related videos'
+  href: articles/libraries-collections/movies/index.html
+- uid: Learn-Index-libraries-collections-movies-editions-versions
+  name: 'Overview: Editions and versions'
+  href: articles/libraries-collections/movies/editions-versions/index.html
+- uid: Learn-Index-libraries-collections-movies-supplementary
+  name: 'Overview: Supplementary videos'
+  href: articles/libraries-collections/movies/supplementary/index.html
+- uid: Learn-Index-libraries-collections-music
+  name: 'Overview: Music libraries'
+  href: articles/libraries-collections/music/index.html
+- uid: Learn-Index-libraries-collections-music-albums-credits
+  name: 'Overview: Albums and credits'
+  href: articles/libraries-collections/music/albums-credits/index.html
+- uid: Learn-Index-libraries-collections-music-lyrics
+  name: 'Overview: Lyrics'
+  href: articles/libraries-collections/music/lyrics/index.html
+- uid: Learn-Index-libraries-collections-music-works-recordings-releases
+  name: 'Overview: Works, recordings, and releases'
+  href: articles/libraries-collections/music/works-recordings-releases/index.html
+- uid: Learn-Index-libraries-collections-personal-media
+  name: 'Overview: Personal media'
+  href: articles/libraries-collections/personal-media/index.html
+- uid: Learn-Index-libraries-collections-personal-media-photo-organization
+  name: 'Overview: Photo organization'
+  href: articles/libraries-collections/personal-media/photo-organization/index.html
+- uid: Learn-Index-libraries-collections-scanning
+  name: 'Overview: Library scanning and media analysis'
+  href: articles/libraries-collections/scanning/index.html
+- uid: Learn-Index-libraries-collections-scanning-analysis-previews
+  name: 'Overview: Media analysis and previews'
+  href: articles/libraries-collections/scanning/analysis-previews/index.html
+- uid: Learn-Index-libraries-collections-television
+  name: 'Overview: Television and episodic media'
+  href: articles/libraries-collections/television/index.html
+- uid: Learn-Index-libraries-collections-television-episode-order
+  name: 'Overview: Episode ordering'
+  href: articles/libraries-collections/television/episode-order/index.html
+- uid: Learn-Index-live-tv
+  name: 'Overview: Live TV and recording'
+  href: articles/live-tv/index.html
+- uid: Learn-Index-live-tv-channels
+  name: 'Overview: Channels and reception'
+  href: articles/live-tv/channels/index.html
+- uid: Learn-Index-live-tv-channels-identity
+  name: 'Overview: Channel identity'
+  href: articles/live-tv/channels/identity/index.html
+- uid: Learn-Index-live-tv-channels-reception
+  name: 'Overview: Reception quality'
+  href: articles/live-tv/channels/reception/index.html
+- uid: Learn-Index-live-tv-fundamentals
+  name: 'Overview: Live television fundamentals'
+  href: articles/live-tv/fundamentals/index.html
+- uid: Learn-Index-live-tv-guides
+  name: 'Overview: Electronic programme guides'
+  href: articles/live-tv/guides/index.html
+- uid: Learn-Index-live-tv-guides-formats
+  name: 'Overview: Guide sources and formats'
+  href: articles/live-tv/guides/formats/index.html
+- uid: Learn-Index-live-tv-recording
+  name: 'Overview: Recording and time shifting'
+  href: articles/live-tv/recording/index.html
+- uid: Learn-Index-live-tv-recording-lifecycle
+  name: 'Overview: Recording lifecycle'
+  href: articles/live-tv/recording/lifecycle/index.html
+- uid: Learn-Index-live-tv-recording-scheduling
+  name: 'Overview: Scheduling and conflicts'
+  href: articles/live-tv/recording/scheduling/index.html
+- uid: Learn-Index-live-tv-recording-time-shifting
+  name: 'Overview: Time shifting'
+  href: articles/live-tv/recording/time-shifting/index.html
+- uid: Learn-Index-live-tv-sources
+  name: 'Overview: Tuners and television sources'
+  href: articles/live-tv/sources/index.html
+- uid: Learn-Index-live-tv-sources-capacity
+  name: 'Overview: Source capacity'
+  href: articles/live-tv/sources/capacity/index.html
+- uid: Learn-Index-live-tv-sources-hardware
+  name: 'Overview: Tuner hardware'
+  href: articles/live-tv/sources/hardware/index.html
+- uid: Learn-Index-live-tv-standards
+  name: 'Overview: Broadcast standards'
+  href: articles/live-tv/standards/index.html
+- uid: Learn-Index-live-tv-standards-atsc
+  name: 'Overview: ATSC family'
+  href: articles/live-tv/standards/atsc/index.html
+- uid: Learn-Index-live-tv-standards-dvb
+  name: 'Overview: DVB family'
+  href: articles/live-tv/standards/dvb/index.html
+- uid: Learn-Index-media-files
+  name: 'Overview: Media files and containers'
+  href: articles/media-files/index.html
+- uid: Learn-Index-media-files-containers
+  name: 'Overview: Common containers'
+  href: articles/media-files/containers/index.html
+- uid: Learn-Index-media-files-containers-audio-oriented
+  name: 'Overview: Audio-oriented containers'
+  href: articles/media-files/containers/audio-oriented/index.html
+- uid: Learn-Index-media-files-containers-iso-base-media-and-quicktime
+  name: 'Overview: ISO base media and QuickTime'
+  href: articles/media-files/containers/iso-base-media-and-quicktime/index.html
+- uid: Learn-Index-media-files-containers-matroska-family
+  name: 'Overview: Matroska family'
+  href: articles/media-files/containers/matroska-family/index.html
+- uid: Learn-Index-media-files-containers-mpeg-systems
+  name: 'Overview: MPEG systems'
+  href: articles/media-files/containers/mpeg-systems/index.html
+- uid: Learn-Index-media-files-container-structure
+  name: 'Overview: Container structure'
+  href: articles/media-files/container-structure/index.html
+- uid: Learn-Index-media-files-container-structure-timing-and-navigation
+  name: 'Overview: Timing and navigation'
+  href: articles/media-files/container-structure/timing-and-navigation/index.html
+- uid: Learn-Index-media-files-container-structure-track-and-programme-descriptions
+  name: 'Overview: Track and programme descriptions'
+  href: articles/media-files/container-structure/track-and-programme-descriptions/index.html
+- uid: Learn-Index-media-files-fundamentals
+  name: 'Overview: Media file fundamentals'
+  href: articles/media-files/fundamentals/index.html
+- uid: Learn-Index-media-files-fundamentals-bitrate-and-file-size
+  name: 'Overview: Bitrate and file size'
+  href: articles/media-files/fundamentals/bitrate-and-file-size/index.html
+- uid: Learn-Index-media-files-inspection
+  name: 'Overview: Media inspection'
+  href: articles/media-files/inspection/index.html
+- uid: Learn-Index-media-files-packaging
+  name: 'Overview: File packaging details'
+  href: articles/media-files/packaging/index.html
+- uid: Learn-Index-media-files-packaging-aac
+  name: 'Overview: AAC transport formats'
+  href: articles/media-files/packaging/aac/index.html
+- uid: Learn-Index-media-files-packaging-disc
+  name: 'Overview: Disc structures and images'
+  href: articles/media-files/packaging/disc/index.html
+- uid: Learn-Index-media-files-packaging-matroska
+  name: 'Overview: Matroska features'
+  href: articles/media-files/packaging/matroska/index.html
+- uid: Learn-Index-media-files-packaging-mp4
+  name: 'Overview: MP4 packaging'
+  href: articles/media-files/packaging/mp4/index.html
+- uid: Learn-Index-media-files-playlists-and-references
+  name: 'Overview: Playlists and media references'
+  href: articles/media-files/playlists-and-references/index.html
+- uid: Learn-Index-metadata-discovery
+  name: 'Overview: Metadata and discovery'
+  href: articles/metadata-discovery/index.html
+- uid: Learn-Index-metadata-discovery-artwork
+  name: 'Overview: Artwork and preview images'
+  href: articles/metadata-discovery/artwork/index.html
+- uid: Learn-Index-metadata-discovery-artwork-cover-branding
+  name: 'Overview: Cover and branding artwork'
+  href: articles/metadata-discovery/artwork/cover-branding/index.html
+- uid: Learn-Index-metadata-discovery-artwork-preview-thumbnails
+  name: 'Overview: Preview thumbnails'
+  href: articles/metadata-discovery/artwork/preview-thumbnails/index.html
+- uid: Learn-Index-metadata-discovery-discovery
+  name: 'Overview: Finding related media'
+  href: articles/metadata-discovery/discovery/index.html
+- uid: Learn-Index-metadata-discovery-fields
+  name: 'Overview: Metadata fields and localization'
+  href: articles/metadata-discovery/fields/index.html
+- uid: Learn-Index-metadata-discovery-fields-text-localization
+  name: 'Overview: Text and localization'
+  href: articles/metadata-discovery/fields/text-localization/index.html
+- uid: Learn-Index-metadata-discovery-identification
+  name: 'Overview: Identification and matching'
+  href: articles/metadata-discovery/identification/index.html
+- uid: Learn-Index-metadata-discovery-identification-external-identifiers
+  name: 'Overview: External identifiers'
+  href: articles/metadata-discovery/identification/external-identifiers/index.html
+- uid: Learn-Index-metadata-discovery-local-formats
+  name: 'Overview: Local metadata formats'
+  href: articles/metadata-discovery/local-formats/index.html
+- uid: Learn-Index-metadata-discovery-local-formats-audio-tags
+  name: 'Overview: Audio tags'
+  href: articles/metadata-discovery/local-formats/audio-tags/index.html
+- uid: Learn-Index-metadata-discovery-local-formats-container-metadata
+  name: 'Overview: Container metadata structures'
+  href: articles/metadata-discovery/local-formats/container-metadata/index.html
+- uid: Learn-Index-metadata-discovery-local-formats-photo-metadata
+  name: 'Overview: Photo metadata standards'
+  href: articles/metadata-discovery/local-formats/photo-metadata/index.html
+- uid: Learn-Index-metadata-discovery-services
+  name: 'Overview: Metadata services'
+  href: articles/metadata-discovery/services/index.html
+- uid: Learn-Index-metadata-discovery-services-movie-television
+  name: 'Overview: Movie and television databases'
+  href: articles/metadata-discovery/services/movie-television/index.html
+- uid: Learn-Index-metadata-discovery-understanding
+  name: 'Overview: Understanding metadata'
+  href: articles/metadata-discovery/understanding/index.html
+- uid: Learn-Index-networking
+  name: 'Overview: Networking and remote access'
+  href: articles/networking/index.html
+- uid: Learn-Index-networking-access
+  name: 'Overview: User identity and access'
+  href: articles/networking/access/index.html
+- uid: Learn-Index-networking-access-identity
+  name: 'Overview: Identity and sessions'
+  href: articles/networking/access/identity/index.html
+- uid: Learn-Index-networking-access-rules
+  name: 'Overview: Media access rules'
+  href: articles/networking/access/rules/index.html
+- uid: Learn-Index-networking-addressing
+  name: 'Overview: IP addressing'
+  href: articles/networking/addressing/index.html
+- uid: Learn-Index-networking-boundaries
+  name: 'Overview: Network boundaries'
+  href: articles/networking/boundaries/index.html
+- uid: Learn-Index-networking-fundamentals
+  name: 'Overview: Home network fundamentals'
+  href: articles/networking/fundamentals/index.html
+- uid: Learn-Index-networking-names
+  name: 'Overview: Names and discovery'
+  href: articles/networking/names/index.html
+- uid: Learn-Index-networking-names-discovery
+  name: 'Overview: Service discovery'
+  href: articles/networking/names/discovery/index.html
+- uid: Learn-Index-networking-names-dns
+  name: 'Overview: DNS and naming'
+  href: articles/networking/names/dns/index.html
+- uid: Learn-Index-networking-performance
+  name: 'Overview: Network performance'
+  href: articles/networking/performance/index.html
+- uid: Learn-Index-networking-performance-capacity
+  name: 'Overview: Capacity and delivery quality'
+  href: articles/networking/performance/capacity/index.html
+- uid: Learn-Index-networking-performance-traffic
+  name: 'Overview: Congestion and traffic management'
+  href: articles/networking/performance/traffic/index.html
+- uid: Learn-Index-networking-performance-wireless
+  name: 'Overview: Wireless links'
+  href: articles/networking/performance/wireless/index.html
+- uid: Learn-Index-networking-routers
+  name: 'Overview: Routers and remote reachability'
+  href: articles/networking/routers/index.html
+- uid: Learn-Index-networking-routers-nat
+  name: 'Overview: Address translation and port mapping'
+  href: articles/networking/routers/nat/index.html
+- uid: Learn-Index-networking-routers-proxy
+  name: 'Overview: Reverse proxy behavior'
+  href: articles/networking/routers/proxy/index.html
+- uid: Learn-Index-networking-routers-vpn
+  name: 'Overview: VPN routing'
+  href: articles/networking/routers/vpn/index.html
+- uid: Learn-Index-networking-security
+  name: 'Overview: Connection security'
+  href: articles/networking/security/index.html
+- uid: Learn-Index-networking-security-browser
+  name: 'Overview: Browser security boundaries'
+  href: articles/networking/security/browser/index.html
+- uid: Learn-Index-networking-security-certificates
+  name: 'Overview: Certificate validation and lifecycle'
+  href: articles/networking/security/certificates/index.html
+- uid: Learn-Index-networking-transport
+  name: 'Overview: Transport protocols and ports'
+  href: articles/networking/transport/index.html
+- uid: Learn-Index-photos-images
+  name: 'Overview: Photos and images'
+  href: articles/photos-images/index.html
+- uid: Learn-Index-photos-images-formats
+  name: 'Overview: Image formats'
+  href: articles/photos-images/formats/index.html
+- uid: Learn-Index-photos-images-fundamentals
+  name: 'Overview: Digital image fundamentals'
+  href: articles/photos-images/fundamentals/index.html
+- uid: Learn-Index-photos-images-presentation
+  name: 'Overview: Image presentation'
+  href: articles/photos-images/presentation/index.html
+- uid: Learn-Index-playback-streaming
+  name: 'Overview: Playback and streaming'
+  href: articles/playback-streaming/index.html
+- uid: Learn-Index-playback-streaming-behavior
+  name: 'Overview: Understanding playback behavior'
+  href: articles/playback-streaming/behavior/index.html
+- uid: Learn-Index-playback-streaming-behavior-diagnostics
+  name: 'Overview: Playback diagnostics'
+  href: articles/playback-streaming/behavior/diagnostics/index.html
+- uid: Learn-Index-playback-streaming-behavior-symptoms
+  name: 'Overview: Playback symptoms'
+  href: articles/playback-streaming/behavior/symptoms/index.html
+- uid: Learn-Index-playback-streaming-casting
+  name: 'Overview: Casting and remote playback'
+  href: articles/playback-streaming/casting/index.html
+- uid: Learn-Index-playback-streaming-casting-dlna
+  name: 'Overview: DLNA playback'
+  href: articles/playback-streaming/casting/dlna/index.html
+- uid: Learn-Index-playback-streaming-conversion
+  name: 'Overview: Conversion pipelines'
+  href: articles/playback-streaming/conversion/index.html
+- uid: Learn-Index-playback-streaming-conversion-performance
+  name: 'Overview: Transcoding performance and capacity'
+  href: articles/playback-streaming/conversion/performance/index.html
+- uid: Learn-Index-playback-streaming-conversion-pipeline-stages
+  name: 'Overview: Pipeline stages'
+  href: articles/playback-streaming/conversion/pipeline-stages/index.html
+- uid: Learn-Index-playback-streaming-delivery
+  name: 'Overview: Streaming delivery'
+  href: articles/playback-streaming/delivery/index.html
+- uid: Learn-Index-playback-streaming-delivery-hls
+  name: 'Overview: HLS delivery'
+  href: articles/playback-streaming/delivery/hls/index.html
+- uid: Learn-Index-playback-streaming-delivery-http-files
+  name: 'Overview: HTTP file delivery'
+  href: articles/playback-streaming/delivery/http-files/index.html
+- uid: Learn-Index-playback-streaming-from-server
+  name: 'Overview: From server to player'
+  href: articles/playback-streaming/from-server/index.html
+- uid: Learn-Index-playback-streaming-from-server-compatibility
+  name: 'Overview: Playback compatibility'
+  href: articles/playback-streaming/from-server/compatibility/index.html
+- uid: Learn-Index-playback-streaming-from-server-modes
+  name: 'Overview: Emby playback modes'
+  href: articles/playback-streaming/from-server/modes/index.html
+- uid: Learn-Index-playback-streaming-players
+  name: 'Overview: Players and playback environments'
+  href: articles/playback-streaming/players/index.html
+- uid: Learn-Index-playback-streaming-players-browser
+  name: 'Overview: Browser playback'
+  href: articles/playback-streaming/players/browser/index.html
+- uid: Learn-Index-playback-streaming-players-protected
+  name: 'Overview: Protected media'
+  href: articles/playback-streaming/players/protected/index.html
+- uid: Learn-Index-storage
+  name: 'Overview: Storage and server platforms'
+  href: articles/storage/index.html
+- uid: Learn-Index-storage-data-protection
+  name: 'Overview: Data protection'
+  href: articles/storage/data-protection/index.html
+- uid: Learn-Index-storage-data-protection-backups
+  name: 'Overview: Backups and recovery'
+  href: articles/storage/data-protection/backups/index.html
+- uid: Learn-Index-storage-data-protection-redundancy
+  name: 'Overview: Redundancy and pooling'
+  href: articles/storage/data-protection/redundancy/index.html
+- uid: Learn-Index-storage-execution
+  name: 'Overview: Server execution environments'
+  href: articles/storage/execution/index.html
+- uid: Learn-Index-storage-execution-containers
+  name: 'Overview: Container execution'
+  href: articles/storage/execution/containers/index.html
+- uid: Learn-Index-storage-execution-processors
+  name: 'Overview: Processors and memory'
+  href: articles/storage/execution/processors/index.html
+- uid: Learn-Index-storage-file-systems
+  name: 'Overview: File systems and paths'
+  href: articles/storage/file-systems/index.html
+- uid: Learn-Index-storage-file-systems-activity
+  name: 'Overview: File activity and notifications'
+  href: articles/storage/file-systems/activity/index.html
+- uid: Learn-Index-storage-file-systems-paths
+  name: 'Overview: Path names and links'
+  href: articles/storage/file-systems/paths/index.html
+- uid: Learn-Index-storage-fundamentals
+  name: 'Overview: Media storage fundamentals'
+  href: articles/storage/fundamentals/index.html
+- uid: Learn-Index-storage-fundamentals-hardware
+  name: 'Overview: Storage hardware and connections'
+  href: articles/storage/fundamentals/hardware/index.html
+- uid: Learn-Index-storage-fundamentals-performance
+  name: 'Overview: Storage performance'
+  href: articles/storage/fundamentals/performance/index.html
+- uid: Learn-Index-storage-sharing
+  name: 'Overview: Shared storage and permissions'
+  href: articles/storage/sharing/index.html
+- uid: Learn-Index-storage-sharing-permissions
+  name: 'Overview: Access identities and permissions'
+  href: articles/storage/sharing/permissions/index.html
+- uid: Learn-Index-storage-sharing-protocols
+  name: 'Overview: Network file access'
+  href: articles/storage/sharing/protocols/index.html
+- uid: Learn-Index-storage-workload
+  name: 'Overview: Server data and workload'
+  href: articles/storage/workload/index.html
+- uid: Learn-Index-storage-workload-databases
+  name: 'Overview: Databases'
+  href: articles/storage/workload/databases/index.html
+- uid: Learn-Index-storage-workload-logging
+  name: 'Overview: Logging'
+  href: articles/storage/workload/logging/index.html
+- uid: Learn-Index-storage-workload-power
+  name: 'Overview: Power and thermal behavior'
+  href: articles/storage/workload/power/index.html
+- uid: Learn-Index-subtitles
+  name: 'Overview: Subtitles and captions'
+  href: articles/subtitles/index.html
+- uid: Learn-Index-subtitles-emby-processing
+  name: 'Overview: Subtitle processing in Emby'
+  href: articles/subtitles/emby-processing/index.html
+- uid: Learn-Index-subtitles-emby-processing-overlay-filters
+  name: 'Overview: Subtitle overlay filters'
+  href: articles/subtitles/emby-processing/overlay-filters/index.html
+- uid: Learn-Index-subtitles-emby-processing-overlay-filters-gpu
+  name: 'Overview: GPU subtitle overlay'
+  href: articles/subtitles/emby-processing/overlay-filters/gpu/index.html
+- uid: Learn-Index-subtitles-emby-processing-overlay-pipelines
+  name: 'Overview: Subtitle overlay pipelines'
+  href: articles/subtitles/emby-processing/overlay-pipelines/index.html
+- uid: Learn-Index-subtitles-formats
+  name: 'Overview: Subtitle formats'
+  href: articles/subtitles/formats/index.html
+- uid: Learn-Index-subtitles-formats-bitmap
+  name: 'Overview: Bitmap subtitle formats'
+  href: articles/subtitles/formats/bitmap/index.html
+- uid: Learn-Index-subtitles-formats-broadcast
+  name: 'Overview: Broadcast captions'
+  href: articles/subtitles/formats/broadcast/index.html
+- uid: Learn-Index-subtitles-formats-text
+  name: 'Overview: Text subtitle formats'
+  href: articles/subtitles/formats/text/index.html
+- uid: Learn-Index-subtitles-rendering
+  name: 'Overview: Text rendering and styling'
+  href: articles/subtitles/rendering/index.html
+- uid: Learn-Index-subtitles-rendering-encoding-scripts
+  name: 'Overview: Character encoding and scripts'
+  href: articles/subtitles/rendering/encoding-scripts/index.html
+- uid: Learn-Index-subtitles-rendering-fonts-typesetting
+  name: 'Overview: Fonts and typesetting'
+  href: articles/subtitles/rendering/fonts-typesetting/index.html
+- uid: Learn-Index-subtitles-selection
+  name: 'Overview: Track selection and accessibility'
+  href: articles/subtitles/selection/index.html
+- uid: Learn-Index-subtitles-sources
+  name: 'Overview: Subtitle sources'
+  href: articles/subtitles/sources/index.html
+- uid: Learn-Index-subtitles-storage-delivery
+  name: 'Overview: Subtitle storage and delivery'
+  href: articles/subtitles/storage-delivery/index.html
+- uid: Learn-Index-subtitles-storage-delivery-extraction-conversion
+  name: 'Overview: Extraction and conversion'
+  href: articles/subtitles/storage-delivery/extraction-conversion/index.html
+- uid: Learn-Index-subtitles-storage-delivery-locations
+  name: 'Overview: Subtitle locations'
+  href: articles/subtitles/storage-delivery/locations/index.html
+- uid: Learn-Index-subtitles-storage-delivery-streaming
+  name: 'Overview: Streaming subtitle transports'
+  href: articles/subtitles/storage-delivery/streaming/index.html
+- uid: Learn-Index-subtitles-timing
+  name: 'Overview: Timing and synchronization'
+  href: articles/subtitles/timing/index.html
+- uid: Learn-Index-video
+  name: 'Overview: Video'
+  href: articles/video/index.html
+- uid: Learn-Index-video-codecs
+  name: 'Overview: Video codecs'
+  href: articles/video/codecs/index.html
+- uid: Learn-Index-video-codecs-mpeg-itu
+  name: 'Overview: MPEG and ITU-T video codecs'
+  href: articles/video/codecs/mpeg-itu/index.html
+- uid: Learn-Index-video-codecs-production-preservation
+  name: 'Overview: Production and preservation codecs'
+  href: articles/video/codecs/production-preservation/index.html
+- uid: Learn-Index-video-codecs-vpx-av1
+  name: 'Overview: VPx and AV1'
+  href: articles/video/codecs/vpx-av1/index.html
+- uid: Learn-Index-video-color-pixel-formats
+  name: 'Overview: Color and pixel formats'
+  href: articles/video/color-pixel-formats/index.html
+- uid: Learn-Index-video-color-pixel-formats-pixel-layouts
+  name: 'Overview: Pixel layouts'
+  href: articles/video/color-pixel-formats/pixel-layouts/index.html
+- uid: Learn-Index-video-color-pixel-formats-precision-banding
+  name: 'Overview: Precision and banding'
+  href: articles/video/color-pixel-formats/precision-banding/index.html
+- uid: Learn-Index-video-color-standards
+  name: 'Overview: Color standards and transfer functions'
+  href: articles/video/color-standards/index.html
+- uid: Learn-Index-video-color-standards-standards
+  name: 'Overview: Color standards'
+  href: articles/video/color-standards/standards/index.html
+- uid: Learn-Index-video-color-standards-transfer-functions
+  name: 'Overview: Transfer functions'
+  href: articles/video/color-standards/transfer-functions/index.html
+- uid: Learn-Index-video-compression
+  name: 'Overview: Video compression'
+  href: articles/video/compression/index.html
+- uid: Learn-Index-video-compression-picture-prediction-and-random-access
+  name: 'Overview: Picture prediction and random access'
+  href: articles/video/compression/picture-prediction-and-random-access/index.html
+- uid: Learn-Index-video-encoding-quality
+  name: 'Overview: Encoding and picture quality'
+  href: articles/video/encoding-quality/index.html
+- uid: Learn-Index-video-encoding-quality-quality-changes-artifacts
+  name: 'Overview: Quality changes and artifacts'
+  href: articles/video/encoding-quality/quality-changes-artifacts/index.html
+- uid: Learn-Index-video-encoding-quality-quality-metrics
+  name: 'Overview: Quality metrics'
+  href: articles/video/encoding-quality/quality-metrics/index.html
+- uid: Learn-Index-video-encoding-quality-rate-control
+  name: 'Overview: Rate control'
+  href: articles/video/encoding-quality/rate-control/index.html
+- uid: Learn-Index-video-frame-timing
+  name: 'Overview: Frame timing and interlacing'
+  href: articles/video/frame-timing/index.html
+- uid: Learn-Index-video-frame-timing-frame-rates
+  name: 'Overview: Frame rates'
+  href: articles/video/frame-timing/frame-rates/index.html
+- uid: Learn-Index-video-frame-timing-interlacing-and-cadence
+  name: 'Overview: Interlacing and cadence'
+  href: articles/video/frame-timing/interlacing-and-cadence/index.html
+- uid: Learn-Index-video-geometry
+  name: 'Overview: Picture geometry'
+  href: articles/video/geometry/index.html
+- uid: Learn-Index-video-geometry-aspect-ratios
+  name: 'Overview: Aspect ratios'
+  href: articles/video/geometry/aspect-ratios/index.html
+- uid: Learn-Index-video-hdr
+  name: 'Overview: High dynamic range (HDR)'
+  href: articles/video/hdr/index.html
+- uid: Learn-Index-video-hdr-formats
+  name: 'Overview: HDR formats'
+  href: articles/video/hdr/formats/index.html
+- uid: Learn-Index-video-hdr-formats-dolby-vision
+  name: 'Overview: Dolby Vision'
+  href: articles/video/hdr/formats/dolby-vision/index.html
+- uid: Learn-Index-video-hdr-formats-dolby-vision-metadata-and-layers
+  name: 'Overview: Metadata and layers'
+  href: articles/video/hdr/formats/dolby-vision/metadata-and-layers/index.html
+- uid: Learn-Index-video-hdr-formats-dolby-vision-profiles-and-compatibility
+  name: 'Overview: Profiles and compatibility'
+  href: articles/video/hdr/formats/dolby-vision/profiles-and-compatibility/index.html
+- uid: Learn-Index-video-hdr-metadata-and-light-levels
+  name: 'Overview: HDR metadata and light levels'
+  href: articles/video/hdr/metadata-and-light-levels/index.html
+- uid: Learn-Index-video-scaling-image-processing
+  name: 'Overview: Scaling and image processing'
+  href: articles/video/scaling-image-processing/index.html
+- uid: Learn-Index-video-scaling-image-processing-image-cleanup
+  name: 'Overview: Image cleanup'
+  href: articles/video/scaling-image-processing/image-cleanup/index.html
+- uid: Learn-Index-video-scaling-image-processing-kernels
+  name: 'Overview: Scaling kernels'
+  href: articles/video/scaling-image-processing/kernels/index.html
+- uid: Learn-Index-video-stereoscopic-spatial
+  name: 'Overview: Stereoscopic and spatial video'
+  href: articles/video/stereoscopic-spatial/index.html
+- uid: Learn-Index-video-stereoscopic-spatial-frame-packing-layouts
+  name: 'Overview: Frame packing layouts'
+  href: articles/video/stereoscopic-spatial/frame-packing-layouts/index.html
+- uid: Learn-Index-video-tone-mapping
+  name: 'Overview: Tone mapping'
+  href: articles/video/tone-mapping/index.html
+- uid: Learn-Index-video-tone-mapping-color-and-luminance
+  name: 'Overview: Color and luminance handling'
+  href: articles/video/tone-mapping/color-and-luminance/index.html
+- uid: Learn-Index-video-tone-mapping-curves
+  name: 'Overview: Tone-mapping curves'
+  href: articles/video/tone-mapping/curves/index.html
+- uid: Learn-Index-video-tone-mapping-curves-general-purpose
+  name: 'Overview: General-purpose curves'
+  href: articles/video/tone-mapping/curves/general-purpose/index.html
+- uid: Learn-Index-video-tone-mapping-curves-standards-based
+  name: 'Overview: Standards-based curves'
+  href: articles/video/tone-mapping/curves/standards-based/index.html
+- uid: Learn-Index-video-tone-mapping-execution
+  name: 'Overview: Tone-mapping execution'
+  href: articles/video/tone-mapping/execution/index.html
+- uid: Learn-Index-video-tone-mapping-execution-gpu
+  name: 'Overview: GPU execution'
+  href: articles/video/tone-mapping/execution/gpu/index.html
+- uid: Learn-Index-video-tone-mapping-fundamentals
+  name: 'Overview: Fundamentals'
+  href: articles/video/tone-mapping/fundamentals/index.html
+- uid: Learn-Input-Bluetooth-Remotes
+  name: Bluetooth remote controls
+  href: articles/display-av/input/Input-Bluetooth-Remotes.html
+- uid: Learn-Input-Gamepads
+  name: Gamepad input for media navigation
+  href: articles/display-av/input/Input-Gamepads.html
+- uid: Learn-Input-HID
+  name: Human Interface Devices (HID)
+  href: articles/display-av/input/Input-HID.html
+- uid: Learn-Input-Infrared-Remotes
+  name: Infrared remote controls
+  href: articles/display-av/input/Input-Infrared-Remotes.html
+- uid: Learn-Inter-Frame-Prediction
   name: Inter-Frame Video Prediction
   href: articles/video/compression/picture-prediction-and-random-access/Inter-Frame-Prediction.html
-- uid: Interlaced-Video
+- uid: Learn-Interlaced-Video
   name: Interlaced Video
   href: articles/video/frame-timing/interlacing-and-cadence/Interlaced-Video.html
-- uid: Intra-Frame-Compression
+- uid: Learn-Intra-Frame-Compression
   name: Intra-Frame Video Compression
   href: articles/video/compression/picture-prediction-and-random-access/Intra-Frame-Compression.html
-- uid: Inverse-Telecine
+- uid: Learn-Inverse-Telecine
   name: Inverse Telecine
   href: articles/video/frame-timing/interlacing-and-cadence/Inverse-Telecine.html
-- uid: Learn.Index
-  name: Emby Learn
-  href: index.html
-- uid: Letterboxing-Pillarboxing
+- uid: Learn-Letterboxing-Pillarboxing
   name: Letterboxing and Pillarboxing
   href: articles/video/geometry/Letterboxing-Pillarboxing.html
-- uid: Lossless-Video-Compression
+- uid: Learn-Library-Absolute-Numbering
+  name: Absolute episode numbering
+  href: articles/libraries-collections/television/episode-order/Library-Absolute-Numbering.html
+- uid: Learn-Library-Aired-Order
+  name: Aired episode order
+  href: articles/libraries-collections/television/episode-order/Library-Aired-Order.html
+- uid: Learn-Library-Album-Artists
+  name: Album artists and track artists
+  href: articles/libraries-collections/music/albums-credits/Library-Album-Artists.html
+- uid: Learn-Library-Alternate-Versions
+  name: Alternate media versions
+  href: articles/libraries-collections/movies/editions-versions/Library-Alternate-Versions.html
+- uid: Learn-Library-Anthology-Series
+  name: Anthology series
+  href: articles/libraries-collections/television/Library-Anthology-Series.html
+- uid: Learn-Library-Audiobook-Chapters
+  name: Audiobook chapter structure
+  href: articles/libraries-collections/books-spoken-audio/audiobooks/Library-Audiobook-Chapters.html
+- uid: Learn-Library-Audiobook-Editions
+  name: Audiobook editions and narrated versions
+  href: articles/libraries-collections/books-spoken-audio/audiobooks/Library-Audiobook-Editions.html
+- uid: Learn-Library-Audiobook-Narrators
+  name: Audiobook narrators and reader credits
+  href: articles/libraries-collections/books-spoken-audio/audiobooks/Library-Audiobook-Narrators.html
+- uid: Learn-Library-Audiobook-Organization
+  name: Audiobook organization
+  href: articles/libraries-collections/books-spoken-audio/audiobooks/Library-Audiobook-Organization.html
+- uid: Learn-Library-Classical-Credits
+  name: Classical music credits
+  href: articles/libraries-collections/music/albums-credits/Library-Classical-Credits.html
+- uid: Learn-Library-Collections
+  name: Media collections
+  href: articles/libraries-collections/concepts/Library-Collections.html
+- uid: Learn-Library-Comic-Archives
+  name: 'Comic book archives: CBZ and CBR'
+  href: articles/libraries-collections/books-spoken-audio/Library-Comic-Archives.html
+- uid: Learn-Library-Compilation-Albums
+  name: Compilation albums
+  href: articles/libraries-collections/music/albums-credits/Library-Compilation-Albums.html
+- uid: Learn-Library-Content-Models
+  name: Library content models
+  href: articles/libraries-collections/concepts/Library-Content-Models.html
+- uid: Learn-Library-Date-Episodes
+  name: Date-based episodes
+  href: articles/libraries-collections/television/Library-Date-Episodes.html
+- uid: Learn-Library-Duplicates
+  name: Duplicate library entries
+  href: articles/libraries-collections/movies/Library-Duplicates.html
+- uid: Learn-Library-DVD-Order
+  name: DVD episode order
+  href: articles/libraries-collections/television/episode-order/Library-DVD-Order.html
+- uid: Learn-Library-Electronic-Books
+  name: Electronic books and reading resources
+  href: articles/libraries-collections/books-spoken-audio/Library-Electronic-Books.html
+- uid: Learn-Library-Episode-Order
+  name: Understanding episode order
+  href: articles/libraries-collections/television/episode-order/Library-Episode-Order.html
+- uid: Learn-Library-Franchises
+  name: Film franchises in a media library
+  href: articles/libraries-collections/movies/Library-Franchises.html
+- uid: Learn-Library-Home-Videos
+  name: Home video cataloguing
+  href: articles/libraries-collections/personal-media/Library-Home-Videos.html
+- uid: Learn-Library-Incremental-Scans
+  name: Incremental library scans
+  href: articles/libraries-collections/scanning/Library-Incremental-Scans.html
+- uid: Learn-Library-Intro-Detection
+  name: Episode intro detection
+  href: articles/libraries-collections/scanning/analysis-previews/Library-Intro-Detection.html
+- uid: Learn-Library-LRC
+  name: LRC lyric files
+  href: articles/libraries-collections/music/lyrics/Library-LRC.html
+- uid: Learn-Library-Media-Analysis
+  name: Technical analysis of library media
+  href: articles/libraries-collections/scanning/analysis-previews/Library-Media-Analysis.html
+- uid: Learn-Library-Media-Identity
+  name: Media item identity
+  href: articles/libraries-collections/concepts/Library-Media-Identity.html
+- uid: Learn-Library-Movie-Editions
+  name: Movie editions and cuts
+  href: articles/libraries-collections/movies/editions-versions/Library-Movie-Editions.html
+- uid: Learn-Library-Movie-Extras
+  name: Movie extras and supplementary videos
+  href: articles/libraries-collections/movies/supplementary/Library-Movie-Extras.html
+- uid: Learn-Library-Movie-Trailers
+  name: Movie trailers
+  href: articles/libraries-collections/movies/supplementary/Library-Movie-Trailers.html
+- uid: Learn-Library-Multi-Disc-Albums
+  name: Multi-disc albums
+  href: articles/libraries-collections/music/albums-credits/Library-Multi-Disc-Albums.html
+- uid: Learn-Library-Multi-Episode-Files
+  name: Multi-episode files
+  href: articles/libraries-collections/television/Library-Multi-Episode-Files.html
+- uid: Learn-Library-Multipart-Movies
+  name: Multipart movies and file stacking
+  href: articles/libraries-collections/movies/editions-versions/Library-Multipart-Movies.html
+- uid: Learn-Library-Musical-Works
+  name: Musical works and compositions
+  href: articles/libraries-collections/music/works-recordings-releases/Library-Musical-Works.html
+- uid: Learn-Library-Music-Recordings
+  name: Music recordings and track occurrences
+  href: articles/libraries-collections/music/works-recordings-releases/Library-Music-Recordings.html
+- uid: Learn-Library-Music-Releases
+  name: Music releases and album editions
+  href: articles/libraries-collections/music/works-recordings-releases/Library-Music-Releases.html
+- uid: Learn-Library-Music-Videos
+  name: Music video cataloguing
+  href: articles/libraries-collections/music/Library-Music-Videos.html
+- uid: Learn-Library-Next-Episode
+  name: Next-episode selection
+  href: articles/libraries-collections/history/Library-Next-Episode.html
+- uid: Learn-Library-Overview
+  name: What is a media library?
+  href: articles/libraries-collections/concepts/Library-Overview.html
+- uid: Learn-Library-Photo-Albums
+  name: Photo albums and picture membership
+  href: articles/libraries-collections/personal-media/photo-organization/Library-Photo-Albums.html
+- uid: Learn-Library-Photo-Dates
+  name: Photo capture dates and camera clocks
+  href: articles/libraries-collections/personal-media/photo-organization/Library-Photo-Dates.html
+- uid: Learn-Library-Photo-Geolocation
+  name: Photo geolocation and coordinate metadata
+  href: articles/libraries-collections/personal-media/photo-organization/Library-Photo-Geolocation.html
+- uid: Learn-Library-Play-Counts
+  name: Media play counts
+  href: articles/libraries-collections/history/Library-Play-Counts.html
+- uid: Learn-Library-Playlists
+  name: Media playlists
+  href: articles/libraries-collections/concepts/Library-Playlists.html
+- uid: Learn-Library-Podcast-Identifiers
+  name: Podcast episode identifiers
+  href: articles/libraries-collections/books-spoken-audio/podcasts/Library-Podcast-Identifiers.html
+- uid: Learn-Library-Podcast-RSS
+  name: Podcast RSS feeds
+  href: articles/libraries-collections/books-spoken-audio/podcasts/Library-Podcast-RSS.html
+- uid: Learn-Library-Podcast-Series
+  name: Podcast series and episode organisation
+  href: articles/libraries-collections/books-spoken-audio/podcasts/Library-Podcast-Series.html
+- uid: Learn-Library-Release-Groups
+  name: Music release groups
+  href: articles/libraries-collections/music/works-recordings-releases/Library-Release-Groups.html
+- uid: Learn-Library-Resume-Positions
+  name: Resume positions and playback timelines
+  href: articles/libraries-collections/history/Library-Resume-Positions.html
+- uid: Learn-Library-Scanning
+  name: Library scanning and catalogue reconciliation
+  href: articles/libraries-collections/scanning/Library-Scanning.html
+- uid: Learn-Library-Seek-Previews
+  name: Seek-preview thumbnails
+  href: articles/libraries-collections/scanning/analysis-previews/Library-Seek-Previews.html
+- uid: Learn-Library-Series-Hierarchy
+  name: Series, seasons and episodes
+  href: articles/libraries-collections/television/Library-Series-Hierarchy.html
+- uid: Learn-Library-Synchronized-Lyrics
+  name: Synchronized lyrics and music timelines
+  href: articles/libraries-collections/music/lyrics/Library-Synchronized-Lyrics.html
+- uid: Learn-Library-Television-Specials
+  name: Television specials
+  href: articles/libraries-collections/television/Library-Television-Specials.html
+- uid: Learn-Library-Unsynchronized-Lyrics
+  name: Unsynchronized lyrics
+  href: articles/libraries-collections/music/lyrics/Library-Unsynchronized-Lyrics.html
+- uid: Learn-Library-User-History
+  name: User-specific playback history
+  href: articles/libraries-collections/history/Library-User-History.html
+- uid: Learn-Library-Virtual-Organization
+  name: Virtual library organization
+  href: articles/libraries-collections/concepts/Library-Virtual-Organization.html
+- uid: Learn-Library-Watched-Status
+  name: Watched status
+  href: articles/libraries-collections/history/Library-Watched-Status.html
+- uid: Learn-Lossless-Video-Compression
   name: Lossless Video Compression
   href: articles/video/compression/Lossless-Video-Compression.html
-- uid: Lossy-Video-Compression
+- uid: Learn-Lossy-Video-Compression
   name: Lossy Video Compression
   href: articles/video/compression/Lossy-Video-Compression.html
-- uid: LPCM
+- uid: Learn-LPCM
   name: Linear PCM (LPCM)
   href: articles/audio/formats/LPCM.html
-- uid: M4A-M4B-Files
+- uid: Learn-M4A-M4B-Files
   name: M4A and M4B File Conventions
   href: articles/media-files/packaging/mp4/M4A-M4B-Files.html
-- uid: Matrix-Surround
+- uid: Learn-Matrix-Surround
   name: Matrix Surround
   href: articles/audio/channels/Matrix-Surround.html
-- uid: Matroska-Attachments
+- uid: Learn-Matroska-Attachments
   name: Matroska Attachments
   href: articles/media-files/packaging/matroska/Matroska-Attachments.html
-- uid: Matroska-Container
+- uid: Learn-Matroska-Container
   name: 'Matroska: MKV and MKA'
   href: articles/media-files/containers/matroska-family/Matroska-Container.html
-- uid: Matroska-Ordered-Chapters
+- uid: Learn-Matroska-Ordered-Chapters
   name: Matroska Ordered Chapters
   href: articles/media-files/packaging/matroska/Matroska-Ordered-Chapters.html
-- uid: Media-Bitrate
+- uid: Learn-Media-Bitrate
   name: Bitrate
   href: articles/media-files/fundamentals/bitrate-and-file-size/Media-Bitrate.html
-- uid: Media-Bitrate-Variation
+- uid: Learn-Media-Bitrate-Variation
   name: Bitrate Variation
   href: articles/media-files/fundamentals/bitrate-and-file-size/Media-Bitrate-Variation.html
-- uid: Media-Chapter-Markers
+- uid: Learn-Media-Chapter-Markers
   name: Chapter Markers
   href: articles/media-files/container-structure/timing-and-navigation/Media-Chapter-Markers.html
-- uid: Media-Codec-Identifiers
+- uid: Learn-Media-Codec-Identifiers
   name: Codec Identifiers and FourCC
   href: articles/media-files/container-structure/Media-Codec-Identifiers.html
-- uid: Media-Container
+- uid: Learn-Media-Container
   name: What Is a Media Container?
   href: articles/media-files/container-structure/Media-Container.html
-- uid: Media-Container-Codec-Support
+- uid: Learn-Media-Container-Codec-Support
   name: Codec Support in Containers
   href: articles/media-files/container-structure/Media-Container-Codec-Support.html
-- uid: Media-Container-Overhead
+- uid: Learn-Media-Container-Overhead
   name: Container Overhead
   href: articles/media-files/container-structure/Media-Container-Overhead.html
-- uid: Media-Container-Seeking
+- uid: Learn-Media-Container-Seeking
   name: Container Indexes and Seeking
   href: articles/media-files/container-structure/timing-and-navigation/Media-Container-Seeking.html
-- uid: Media-Container-Types
+- uid: Learn-Media-Container-Types
   name: Types of Media Containers
   href: articles/media-files/container-structure/Media-Container-Types.html
-- uid: Media-CUE-Sheets
+- uid: Learn-Media-CUE-Sheets
   name: CUE Sheets
   href: articles/media-files/playlists-and-references/Media-CUE-Sheets.html
-- uid: Media-Damaged-Incomplete-Files
+- uid: Learn-Media-Damaged-Incomplete-Files
   name: Damaged and Incomplete Media Files
   href: articles/media-files/container-structure/Media-Damaged-Incomplete-Files.html
-- uid: Media-Data-Units
+- uid: Learn-Media-Data-Units
   name: Digital Media Data Units
   href: articles/media-files/fundamentals/bitrate-and-file-size/Media-Data-Units.html
-- uid: Media-Default-Track-Flags
+- uid: Learn-Media-Default-Track-Flags
   name: Default Track Flags
   href: articles/media-files/container-structure/track-and-programme-descriptions/Media-Default-Track-Flags.html
-- uid: Media-Elementary-Streams
+- uid: Learn-Media-Elementary-Streams
   name: Elementary Streams
   href: articles/media-files/container-structure/Media-Elementary-Streams.html
-- uid: Media-File
+- uid: Learn-Media-File
   name: What Is a Media File?
   href: articles/media-files/fundamentals/Media-File.html
-- uid: Media-File-Extensions
+- uid: Learn-Media-File-Extensions
   name: Media File Extensions
   href: articles/media-files/fundamentals/Media-File-Extensions.html
-- uid: Media-File-Size-Duration
+- uid: Learn-Media-File-Size-Duration
   name: File Size and Duration
   href: articles/media-files/fundamentals/bitrate-and-file-size/Media-File-Size-Duration.html
-- uid: Media-Inspection-ffprobe
+- uid: Learn-Media-Inspection-ffprobe
   name: Media Stream Inspection with ffprobe
   href: articles/media-files/inspection/Media-Inspection-ffprobe.html
-- uid: Media-Inspection-MediaInfo
+- uid: Learn-Media-Inspection-MediaInfo
   name: Media Stream Inspection with MediaInfo
   href: articles/media-files/inspection/Media-Inspection-MediaInfo.html
-- uid: Media-Lossy-Lossless
+- uid: Learn-Media-Lossy-Lossless
   name: Lossy and Lossless Compression
   href: articles/media-files/fundamentals/Media-Lossy-Lossless.html
-- uid: Media-M3U-Playlists
+- uid: Learn-Media-M3U-Playlists
   name: M3U Playlists
   href: articles/media-files/playlists-and-references/Media-M3U-Playlists.html
-- uid: Media-MIME-Types
+- uid: Learn-Media-MIME-Types
   name: Media MIME Types
   href: articles/media-files/fundamentals/Media-MIME-Types.html
-- uid: Media-MPEG-TS-Program-Tables
+- uid: Learn-Media-MPEG-TS-Program-Tables
   name: 'MPEG-TS Program Tables: PAT and PMT'
   href: articles/media-files/container-structure/track-and-programme-descriptions/Media-MPEG-TS-Program-Tables.html
-- uid: Media-Multiplexing
+- uid: Learn-Media-Multiplexing
   name: Multiplexing and Demultiplexing
   href: articles/media-files/container-structure/Media-Multiplexing.html
-- uid: Media-Packet-Timestamps
+- uid: Learn-Media-Packet-Timestamps
   name: Packet Timestamps
   href: articles/media-files/container-structure/timing-and-navigation/Media-Packet-Timestamps.html
-- uid: Media-PLS-Playlists
+- uid: Learn-Media-PLS-Playlists
   name: PLS Playlists
   href: articles/media-files/playlists-and-references/Media-PLS-Playlists.html
-- uid: Media-Probing
+- uid: Learn-Media-Probing
   name: Media Probing
   href: articles/media-files/inspection/Media-Probing.html
-- uid: Media-Streams-Tracks
+- uid: Learn-Media-Streams-Tracks
   name: Streams and Tracks
   href: articles/media-files/fundamentals/Media-Streams-Tracks.html
-- uid: Media-STRM-Files
+- uid: Learn-Media-STRM-Files
   name: 'Media Pointer Files: STRM'
   href: articles/media-files/playlists-and-references/Media-STRM-Files.html
-- uid: Media-Time-Bases
+- uid: Learn-Media-Time-Bases
   name: Time Bases
   href: articles/media-files/container-structure/timing-and-navigation/Media-Time-Bases.html
-- uid: Media-Track-Language
+- uid: Learn-Media-Track-Language
   name: Track Language Metadata
   href: articles/media-files/container-structure/track-and-programme-descriptions/Media-Track-Language.html
-- uid: Monkeys-Audio-APE
+- uid: Learn-Metadata-Acoustic-Fingerprinting
+  name: Acoustic fingerprinting
+  href: articles/metadata-discovery/identification/Metadata-Acoustic-Fingerprinting.html
+- uid: Learn-Metadata-Artwork-Language
+  name: Artwork language selection
+  href: articles/metadata-discovery/artwork/Metadata-Artwork-Language.html
+- uid: Learn-Metadata-Artwork-Roles
+  name: Media artwork roles
+  href: articles/metadata-discovery/artwork/Metadata-Artwork-Roles.html
+- uid: Learn-Metadata-Backdrops
+  name: Media backdrops
+  href: articles/metadata-discovery/artwork/cover-branding/Metadata-Backdrops.html
+- uid: Learn-Metadata-Cast-Crew
+  name: Cast and crew credits
+  href: articles/metadata-discovery/fields/Metadata-Cast-Crew.html
+- uid: Learn-Metadata-Chapter-Thumbnails
+  name: Chapter thumbnails
+  href: articles/metadata-discovery/artwork/preview-thumbnails/Metadata-Chapter-Thumbnails.html
+- uid: Learn-Metadata-Conflicting
+  name: Conflicting metadata
+  href: articles/metadata-discovery/identification/Metadata-Conflicting.html
+- uid: Learn-Metadata-Content-Ratings
+  name: Content ratings
+  href: articles/metadata-discovery/fields/Metadata-Content-Ratings.html
+- uid: Learn-Metadata-Descriptive
+  name: Descriptive metadata
+  href: articles/metadata-discovery/understanding/Metadata-Descriptive.html
+- uid: Learn-Metadata-Embedded
+  name: Embedded metadata
+  href: articles/metadata-discovery/understanding/Metadata-Embedded.html
+- uid: Learn-Metadata-Embedded-Cover-Art
+  name: Embedded cover art
+  href: articles/metadata-discovery/artwork/cover-branding/Metadata-Embedded-Cover-Art.html
+- uid: Learn-Metadata-Episode-Thumbnails
+  name: Episode thumbnails
+  href: articles/metadata-discovery/artwork/preview-thumbnails/Metadata-Episode-Thumbnails.html
+- uid: Learn-Metadata-Exif
+  name: Exif photo metadata
+  href: articles/metadata-discovery/local-formats/photo-metadata/Metadata-Exif.html
+- uid: Learn-Metadata-Faceted-Browsing
+  name: Faceted browsing
+  href: articles/metadata-discovery/discovery/Metadata-Faceted-Browsing.html
+- uid: Learn-Metadata-Fanart
+  name: Fanart.tv
+  href: articles/metadata-discovery/services/Metadata-Fanart.html
+- uid: Learn-Metadata-Genre-Taxonomies
+  name: Genre taxonomies
+  href: articles/metadata-discovery/fields/Metadata-Genre-Taxonomies.html
+- uid: Learn-Metadata-ID3v1
+  name: ID3v1 audio tags
+  href: articles/metadata-discovery/local-formats/audio-tags/Metadata-ID3v1.html
+- uid: Learn-Metadata-ID3v2
+  name: ID3v2 audio tags
+  href: articles/metadata-discovery/local-formats/audio-tags/Metadata-ID3v2.html
+- uid: Learn-Metadata-Identification
+  name: Media identification
+  href: articles/metadata-discovery/identification/Metadata-Identification.html
+- uid: Learn-Metadata-IMDb-IDs
+  name: IMDb identifiers
+  href: articles/metadata-discovery/identification/external-identifiers/Metadata-IMDb-IDs.html
+- uid: Learn-Metadata-IMVDb
+  name: IMVDb music-video metadata
+  href: articles/metadata-discovery/services/Metadata-IMVDb.html
+- uid: Learn-Metadata-IPTC
+  name: IPTC Photo Metadata
+  href: articles/metadata-discovery/local-formats/photo-metadata/Metadata-IPTC.html
+- uid: Learn-Metadata-Language-Tags
+  name: Language tags for metadata
+  href: articles/metadata-discovery/fields/text-localization/Metadata-Language-Tags.html
+- uid: Learn-Metadata-Localized-Titles
+  name: Localized titles
+  href: articles/metadata-discovery/fields/text-localization/Metadata-Localized-Titles.html
+- uid: Learn-Metadata-Matroska-Tags
+  name: Matroska tags
+  href: articles/metadata-discovery/local-formats/container-metadata/Metadata-Matroska-Tags.html
+- uid: Learn-Metadata-Missing
+  name: Missing metadata
+  href: articles/metadata-discovery/identification/Metadata-Missing.html
+- uid: Learn-Metadata-MP4-Atoms
+  name: MP4 metadata atoms
+  href: articles/metadata-discovery/local-formats/container-metadata/Metadata-MP4-Atoms.html
+- uid: Learn-Metadata-Multi-Valued
+  name: Multi-valued metadata fields
+  href: articles/metadata-discovery/fields/Metadata-Multi-Valued.html
+- uid: Learn-Metadata-MusicBrainz
+  name: MusicBrainz
+  href: articles/metadata-discovery/services/Metadata-MusicBrainz.html
+- uid: Learn-Metadata-MusicBrainz-IDs
+  name: MusicBrainz identifiers
+  href: articles/metadata-discovery/identification/external-identifiers/Metadata-MusicBrainz-IDs.html
+- uid: Learn-Metadata-NFO
+  name: NFO metadata files
+  href: articles/metadata-discovery/local-formats/Metadata-NFO.html
+- uid: Learn-Metadata-OMDb
+  name: The Open Movie Database (OMDb)
+  href: articles/metadata-discovery/services/movie-television/Metadata-OMDb.html
+- uid: Learn-Metadata-Overview
+  name: What is metadata?
+  href: articles/metadata-discovery/understanding/Metadata-Overview.html
+- uid: Learn-Metadata-Posters
+  name: Media posters
+  href: articles/metadata-discovery/artwork/cover-branding/Metadata-Posters.html
+- uid: Learn-Metadata-Precedence
+  name: Metadata precedence
+  href: articles/metadata-discovery/understanding/Metadata-Precedence.html
+- uid: Learn-Metadata-Provenance
+  name: Metadata provenance
+  href: articles/metadata-discovery/understanding/Metadata-Provenance.html
+- uid: Learn-Metadata-Provider-IDs
+  name: Provider identifiers
+  href: articles/metadata-discovery/identification/external-identifiers/Metadata-Provider-IDs.html
+- uid: Learn-Metadata-Providers-Emby
+  name: Metadata providers in Emby Server
+  href: articles/metadata-discovery/services/Metadata-Providers-Emby.html
+- uid: Learn-Metadata-Provider-Workflow
+  name: How metadata providers work
+  href: articles/metadata-discovery/services/Metadata-Provider-Workflow.html
+- uid: Learn-Metadata-Recommendations
+  name: Recommendation systems for media
+  href: articles/metadata-discovery/discovery/Metadata-Recommendations.html
+- uid: Learn-Metadata-Relationships
+  name: Metadata relationships
+  href: articles/metadata-discovery/discovery/Metadata-Relationships.html
+- uid: Learn-Metadata-Release-Dates
+  name: Release dates
+  href: articles/metadata-discovery/fields/Metadata-Release-Dates.html
+- uid: Learn-Metadata-Search-Indexing
+  name: Search indexing for media metadata
+  href: articles/metadata-discovery/discovery/Metadata-Search-Indexing.html
+- uid: Learn-Metadata-Sidecar
+  name: Sidecar metadata
+  href: articles/metadata-discovery/understanding/Metadata-Sidecar.html
+- uid: Learn-Metadata-Sort-Titles
+  name: Sort titles
+  href: articles/metadata-discovery/fields/text-localization/Metadata-Sort-Titles.html
+- uid: Learn-Metadata-Technical
+  name: Technical media metadata
+  href: articles/metadata-discovery/understanding/Metadata-Technical.html
+- uid: Learn-Metadata-TheTVDB
+  name: TheTVDB
+  href: articles/metadata-discovery/services/movie-television/Metadata-TheTVDB.html
+- uid: Learn-Metadata-Title-Disambiguation
+  name: Title disambiguation
+  href: articles/metadata-discovery/identification/Metadata-Title-Disambiguation.html
+- uid: Learn-Metadata-TMDB
+  name: The Movie Database (TMDB)
+  href: articles/metadata-discovery/services/movie-television/Metadata-TMDB.html
+- uid: Learn-Metadata-Transparent-Logos
+  name: Transparent media logos
+  href: articles/metadata-discovery/artwork/cover-branding/Metadata-Transparent-Logos.html
+- uid: Learn-Metadata-Unicode
+  name: Unicode metadata
+  href: articles/metadata-discovery/fields/text-localization/Metadata-Unicode.html
+- uid: Learn-Metadata-Vorbis-Comments
+  name: Vorbis comments
+  href: articles/metadata-discovery/local-formats/audio-tags/Metadata-Vorbis-Comments.html
+- uid: Learn-Metadata-XMP
+  name: XMP metadata
+  href: articles/metadata-discovery/local-formats/photo-metadata/Metadata-XMP.html
+- uid: Learn-Monkeys-Audio-APE
   name: Monkey's Audio (APE)
   href: articles/audio/formats/lossless/Monkeys-Audio-APE.html
-- uid: Mono-Audio
+- uid: Learn-Mono-Audio
   name: Mono Audio
   href: articles/audio/channels/layouts/Mono-Audio.html
-- uid: Motion-Interpolation
+- uid: Learn-Motion-Interpolation
   name: Motion Interpolation
   href: articles/video/frame-timing/Motion-Interpolation.html
-- uid: MP2
+- uid: Learn-MP2
   name: MPEG Audio Layer II (MP2)
   href: articles/audio/formats/lossy/MP2.html
-- uid: MP3
+- uid: Learn-MP3
   name: MP3 Audio
   href: articles/audio/formats/lossy/MP3.html
-- uid: MP3-Files
+- uid: Learn-MP3-Files
   name: MP3 Files and MPEG Audio Frames
   href: articles/media-files/packaging/MP3-Files.html
-- uid: MP4-Container
+- uid: Learn-MP4-Container
   name: MP4 and the ISO Base Media File Format
   href: articles/media-files/containers/iso-base-media-and-quicktime/MP4-Container.html
-- uid: MP4-Fast-Start
+- uid: Learn-MP4-Fast-Start
   name: MP4 Fast Start
   href: articles/media-files/packaging/mp4/MP4-Fast-Start.html
-- uid: MPEG-Program-Stream
+- uid: Learn-MPEG-Program-Stream
   name: MPEG Program Stream
   href: articles/media-files/containers/mpeg-systems/MPEG-Program-Stream.html
-- uid: MPEG-Transport-Stream
+- uid: Learn-MPEG-Transport-Stream
   name: 'MPEG Transport Stream: TS and M2TS'
   href: articles/media-files/containers/mpeg-systems/MPEG-Transport-Stream.html
-- uid: Multichannel-Audio
+- uid: Learn-Multichannel-Audio
   name: Multichannel Audio
   href: articles/audio/channels/Multichannel-Audio.html
-- uid: Object-Based-Audio
+- uid: Learn-Network-ACME
+  name: Certificate renewal, ACME and deployed results
+  href: articles/networking/security/certificates/Network-ACME.html
+- uid: Learn-Network-Authentication
+  name: Media server authentication and credential evidence
+  href: articles/networking/access/identity/Network-Authentication.html
+- uid: Learn-Network-Authorization
+  name: Media server authorization and operation-specific access
+  href: articles/networking/access/identity/Network-Authorization.html
+- uid: Learn-Network-Bufferbloat
+  name: Bufferbloat and standing queue delay
+  href: articles/networking/performance/traffic/Network-Bufferbloat.html
+- uid: Learn-Network-CGNAT
+  name: Carrier-grade NAT and control of inbound mappings
+  href: articles/networking/routers/nat/Network-CGNAT.html
+- uid: Learn-Network-CIDR
+  name: Subnets, CIDR and matching routes
+  href: articles/networking/addressing/Network-CIDR.html
+- uid: Learn-Network-Congestion
+  name: Network congestion and competing arrival rates
+  href: articles/networking/performance/traffic/Network-Congestion.html
+- uid: Learn-Network-Container-Modes
+  name: Container network modes and reachable service endpoints
+  href: articles/networking/boundaries/Network-Container-Modes.html
+- uid: Learn-Network-CORS
+  name: Same-origin policy, CORS and readable responses
+  href: articles/networking/security/browser/Network-CORS.html
+- uid: Learn-Network-DDNS
+  name: Dynamic DNS and a changing server address
+  href: articles/networking/names/dns/Network-DDNS.html
+- uid: Learn-Network-DHCP-Reservations
+  name: DHCP reservations and stable server addresses
+  href: articles/networking/addressing/Network-DHCP-Reservations.html
+- uid: Learn-Network-DNS
+  name: DNS resolution, record types and cached answers
+  href: articles/networking/names/dns/Network-DNS.html
+- uid: Learn-Network-Double-NAT
+  name: Double NAT and two translation boundaries
+  href: articles/networking/routers/nat/Network-Double-NAT.html
+- uid: Learn-Network-Emby-Connect
+  name: Emby Connect and the path to the selected server
+  href: articles/networking/routers/Network-Emby-Connect.html
+- uid: Learn-Network-Emby-Discovery
+  name: Emby server discovery and advertised endpoints
+  href: articles/networking/names/discovery/Network-Emby-Discovery.html
+- uid: Learn-Network-Ethernet
+  name: Ethernet link speeds and end-to-end capacity
+  href: articles/networking/performance/Network-Ethernet.html
+- uid: Learn-Network-Firewalls
+  name: Firewalls, traffic rules and connection state
+  href: articles/networking/routers/Network-Firewalls.html
+- uid: Learn-Network-Forwarded-Addresses
+  name: Forwarded client addresses and trusted proxy context
+  href: articles/networking/routers/proxy/Network-Forwarded-Addresses.html
+- uid: Learn-Network-Guest-Isolation
+  name: Guest network isolation and permitted paths
+  href: articles/networking/boundaries/Network-Guest-Isolation.html
+- uid: Learn-Network-Home
+  name: How a home media network carries an Emby stream
+  href: articles/networking/fundamentals/Network-Home.html
+- uid: Learn-Network-Hostnames-URLs
+  name: Hostnames, URLs and the complete server endpoint
+  href: articles/networking/names/dns/Network-Hostnames-URLs.html
+- uid: Learn-Network-HTTPS-TLS
+  name: 'HTTPS and TLS: transport protection and peer identity'
+  href: articles/networking/security/Network-HTTPS-TLS.html
+- uid: Learn-Network-IP-Addresses
+  name: IP addresses and reachable interfaces
+  href: articles/networking/addressing/Network-IP-Addresses.html
+- uid: Learn-Network-IPv4
+  name: IPv4 packet addressing and forwarding
+  href: articles/networking/addressing/Network-IPv4.html
+- uid: Learn-Network-IPv6
+  name: IPv6 addressing, scope and reachability
+  href: articles/networking/addressing/Network-IPv6.html
+- uid: Learn-Network-Jitter
+  name: Network jitter and changing packet delay
+  href: articles/networking/performance/capacity/Network-Jitter.html
+- uid: Learn-Network-Latency
+  name: Network latency, delay components and round trips
+  href: articles/networking/performance/capacity/Network-Latency.html
+- uid: Learn-Network-Library-Permissions
+  name: Library access permissions and the user’s media scope
+  href: articles/networking/access/rules/Network-Library-Permissions.html
+- uid: Learn-Network-Local-Remote
+  name: Local and remote connections to Emby
+  href: articles/networking/fundamentals/Network-Local-Remote.html
+- uid: Learn-Network-Login-Sessions
+  name: Login sessions, tokens and revocation
+  href: articles/networking/access/identity/Network-Login-Sessions.html
+- uid: Learn-Network-Loopback
+  name: Loopback addresses and the meaning of localhost
+  href: articles/networking/addressing/Network-Loopback.html
+- uid: Learn-Network-MDNS
+  name: Multicast DNS and local-link naming
+  href: articles/networking/names/discovery/Network-MDNS.html
+- uid: Learn-Network-Measure-Streaming
+  name: Measuring the actual streaming delivery path
+  href: articles/networking/performance/Network-Measure-Streaming.html
+- uid: Learn-Network-Mixed-Content
+  name: Mixed content and a browser’s secure-page boundary
+  href: articles/networking/security/browser/Network-Mixed-Content.html
+- uid: Learn-Network-Multicast-Routing
+  name: Multicast membership, routing and local scope
+  href: articles/networking/boundaries/Network-Multicast-Routing.html
+- uid: Learn-Network-Multiple-Interfaces
+  name: Multiple network interfaces and selected server paths
+  href: articles/networking/boundaries/Network-Multiple-Interfaces.html
+- uid: Learn-Network-NAT
+  name: NAT and address/port translation state
+  href: articles/networking/routers/nat/Network-NAT.html
+- uid: Learn-Network-NAT-Loopback
+  name: NAT loopback and same-network public endpoints
+  href: articles/networking/routers/nat/Network-NAT-Loopback.html
+- uid: Learn-Network-Packet-Loss
+  name: Packet loss, recovery and media deadlines
+  href: articles/networking/performance/capacity/Network-Packet-Loss.html
+- uid: Learn-Network-Port-Forwarding
+  name: Port forwarding and the complete inbound path
+  href: articles/networking/routers/nat/Network-Port-Forwarding.html
+- uid: Learn-Network-Ports
+  name: Network ports, listeners and connection endpoints
+  href: articles/networking/transport/Network-Ports.html
+- uid: Learn-Network-Powerline
+  name: Powerline networking and a variable shared channel
+  href: articles/networking/performance/Network-Powerline.html
+- uid: Learn-Network-Private-Public
+  name: Private, public and special-purpose IP addresses
+  href: articles/networking/addressing/Network-Private-Public.html
+- uid: Learn-Network-Proxy-Buffering
+  name: Proxy buffering, progress and timeout clocks
+  href: articles/networking/routers/proxy/Network-Proxy-Buffering.html
+- uid: Learn-Network-QoS
+  name: Quality of service, classification and scheduling
+  href: articles/networking/performance/traffic/Network-QoS.html
+- uid: Learn-Network-Rating-Restrictions
+  name: Rating-based restrictions and unknown metadata
+  href: articles/networking/access/rules/Network-Rating-Restrictions.html
+- uid: Learn-Network-Reverse-Proxy
+  name: Reverse proxies and the two-sided server path
+  href: articles/networking/routers/proxy/Network-Reverse-Proxy.html
+- uid: Learn-Network-Split-DNS
+  name: Split DNS and location-dependent server endpoints
+  href: articles/networking/names/dns/Network-Split-DNS.html
+- uid: Learn-Network-SSDP
+  name: SSDP discovery, advertisements and service locations
+  href: articles/networking/names/discovery/Network-SSDP.html
+- uid: Learn-Network-TCP
+  name: 'TCP: an ordered byte stream for media delivery'
+  href: articles/networking/transport/Network-TCP.html
+- uid: Learn-Network-Throughput
+  name: Network throughput and useful delivery rate
+  href: articles/networking/performance/capacity/Network-Throughput.html
+- uid: Learn-Network-TLS-Certificates
+  name: TLS certificates, public keys and endpoint evidence
+  href: articles/networking/security/certificates/Network-TLS-Certificates.html
+- uid: Learn-Network-TLS-Chains
+  name: Certificate trust chains and path validation
+  href: articles/networking/security/certificates/Network-TLS-Chains.html
+- uid: Learn-Network-TLS-Names
+  name: Certificate hostnames and the requested service identity
+  href: articles/networking/security/certificates/Network-TLS-Names.html
+- uid: Learn-Network-TLS-Termination
+  name: TLS termination and independent connection legs
+  href: articles/networking/security/Network-TLS-Termination.html
+- uid: Learn-Network-UDP
+  name: UDP datagrams and application delivery policy
+  href: articles/networking/transport/Network-UDP.html
+- uid: Learn-Network-Upload
+  name: Upload bandwidth and simultaneous remote streams
+  href: articles/networking/performance/capacity/Network-Upload.html
+- uid: Learn-Network-UPnP-Mapping
+  name: UPnP port mapping and gateway control
+  href: articles/networking/routers/nat/Network-UPnP-Mapping.html
+- uid: Learn-Network-User-Identity
+  name: Server user identity and scoped account state
+  href: articles/networking/access/identity/Network-User-Identity.html
+- uid: Learn-Network-VLANs
+  name: VLANs, tagged links and routed policy
+  href: articles/networking/boundaries/Network-VLANs.html
+- uid: Learn-Network-VPN-Access
+  name: VPN access and the routed path to a media server
+  href: articles/networking/routers/vpn/Network-VPN-Access.html
+- uid: Learn-Network-VPN-Routing
+  name: VPN routing, overlapping prefixes and split tunneling
+  href: articles/networking/routers/vpn/Network-VPN-Routing.html
+- uid: Learn-Network-WiFi-Bands
+  name: Wi-Fi frequency bands and link conditions
+  href: articles/networking/performance/wireless/Network-WiFi-Bands.html
+- uid: Learn-Network-WiFi-Quality
+  name: Wi-Fi signal quality, noise and useful airtime
+  href: articles/networking/performance/wireless/Network-WiFi-Quality.html
+- uid: Learn-Network-Wireless-Backhaul
+  name: Wireless backhaul and repeated airtime
+  href: articles/networking/performance/wireless/Network-Wireless-Backhaul.html
+- uid: Learn-Object-Based-Audio
   name: Object-Based Audio
   href: articles/audio/channels/object-based/Object-Based-Audio.html
-- uid: Ogg-Container
+- uid: Learn-Ogg-Container
   name: Ogg Container
   href: articles/media-files/containers/Ogg-Container.html
-- uid: Opus
+- uid: Learn-Opus
   name: Opus Audio
   href: articles/audio/formats/lossy/Opus.html
-- uid: P3-Color-Gamuts
+- uid: Learn-P3-Color-Gamuts
   name: P3 Color Gamuts
   href: articles/video/color-standards/standards/P3-Color-Gamuts.html
-- uid: PCM-Sample-Formats
+- uid: Learn-PCM-Sample-Formats
   name: PCM Sample Formats
   href: articles/audio/fundamentals/sample-representation/PCM-Sample-Formats.html
-- uid: Progressive-Video
+- uid: Learn-Playback-Adaptive-Bitrate
+  name: Adaptive bitrate streaming and representation selection
+  href: articles/playback-streaming/delivery/Playback-Adaptive-Bitrate.html
+- uid: Learn-Playback-AirPlay
+  name: AirPlay media presentation and screen mirroring
+  href: articles/playback-streaming/casting/Playback-AirPlay.html
+- uid: Learn-Playback-Autoplay
+  name: Browser autoplay restrictions and playback permission
+  href: articles/playback-streaming/players/browser/Playback-Autoplay.html
+- uid: Learn-Playback-Bottlenecks
+  name: Transcoding bottlenecks
+  href: articles/playback-streaming/conversion/performance/Playback-Bottlenecks.html
+- uid: Learn-Playback-Browser
+  name: Browser media playback and its loading paths
+  href: articles/playback-streaming/players/browser/Playback-Browser.html
+- uid: Learn-Playback-Buffering
+  name: Buffering, ready media and playback reserve
+  href: articles/playback-streaming/delivery/Playback-Buffering.html
+- uid: Learn-Playback-Casting-Mirroring
+  name: 'Casting and screen mirroring: where playback happens'
+  href: articles/playback-streaming/casting/Playback-Casting-Mirroring.html
+- uid: Learn-Playback-Client-Capabilities
+  name: Client playback capabilities
+  href: articles/playback-streaming/from-server/compatibility/Playback-Client-Capabilities.html
+- uid: Learn-Playback-CMAF
+  name: Common Media Application Format (CMAF)
+  href: articles/playback-streaming/delivery/Playback-CMAF.html
+- uid: Learn-Playback-Codec-Detection
+  name: Browser codec detection and capability predictions
+  href: articles/playback-streaming/players/browser/Playback-Codec-Detection.html
+- uid: Learn-Playback-Compatibility
+  name: What determines playback compatibility?
+  href: articles/playback-streaming/from-server/compatibility/Playback-Compatibility.html
+- uid: Learn-Playback-Concurrent-Workloads
+  name: Concurrent playback workloads
+  href: articles/playback-streaming/conversion/performance/Playback-Concurrent-Workloads.html
+- uid: Learn-Playback-DASH
+  name: MPEG-DASH and its media presentation description
+  href: articles/playback-streaming/delivery/Playback-DASH.html
+- uid: Learn-Playback-Decoding
+  name: Decoding media streams
+  href: articles/playback-streaming/conversion/pipeline-stages/Playback-Decoding.html
+- uid: Learn-Playback-Direct-Play
+  name: Direct Play in Emby
+  href: articles/playback-streaming/from-server/modes/Playback-Direct-Play.html
+- uid: Learn-Playback-Direct-Stream
+  name: Direct Stream in Emby
+  href: articles/playback-streaming/from-server/modes/Playback-Direct-Stream.html
+- uid: Learn-Playback-Discontinuities
+  name: Stream discontinuities and timeline changes
+  href: articles/playback-streaming/delivery/Playback-Discontinuities.html
+- uid: Learn-Playback-DLNA
+  name: DLNA media playback and UPnP AV roles
+  href: articles/playback-streaming/casting/dlna/Playback-DLNA.html
+- uid: Learn-Playback-DLNA-Profiles
+  name: DLNA device profiles and declared media constraints
+  href: articles/playback-streaming/casting/dlna/Playback-DLNA-Profiles.html
+- uid: Learn-Playback-DRM
+  name: DRM-protected media and authorized playback paths
+  href: articles/playback-streaming/players/protected/Playback-DRM.html
+- uid: Learn-Playback-Dropped-Frames
+  name: Dropped video frames during playback
+  href: articles/playback-streaming/behavior/symptoms/Playback-Dropped-Frames.html
+- uid: Learn-Playback-EME
+  name: Encrypted Media Extensions (EME) and browser key sessions
+  href: articles/playback-streaming/players/protected/Playback-EME.html
+- uid: Learn-Playback-Encoding
+  name: Encoding a new media representation
+  href: articles/playback-streaming/conversion/pipeline-stages/Playback-Encoding.html
+- uid: Learn-Playback-Error-Categories
+  name: Playback error categories and evidence scopes
+  href: articles/playback-streaming/behavior/symptoms/Playback-Error-Categories.html
+- uid: Learn-Playback-External-Players
+  name: External players and the application handoff
+  href: articles/playback-streaming/players/Playback-External-Players.html
+- uid: Learn-Playback-Filter-Graphs
+  name: Media filter graphs
+  href: articles/playback-streaming/conversion/pipeline-stages/Playback-Filter-Graphs.html
+- uid: Learn-Playback-Google-Cast
+  name: Google Cast and receiver-side media playback
+  href: articles/playback-streaming/casting/Playback-Google-Cast.html
+- uid: Learn-Playback-HLS
+  name: HTTP Live Streaming (HLS)
+  href: articles/playback-streaming/delivery/hls/Playback-HLS.html
+- uid: Learn-Playback-HLS-Playlists
+  name: 'HLS playlists: variants, media order and live windows'
+  href: articles/playback-streaming/delivery/hls/Playback-HLS-Playlists.html
+- uid: Learn-Playback-HLS-Segments
+  name: HLS media segments and initialization
+  href: articles/playback-streaming/delivery/hls/Playback-HLS-Segments.html
+- uid: Learn-Playback-HTML-Media
+  name: HTML media elements, state and time ranges
+  href: articles/playback-streaming/players/browser/Playback-HTML-Media.html
+- uid: Learn-Playback-HTTP-Ranges
+  name: HTTP range requests for media resources
+  href: articles/playback-streaming/delivery/http-files/Playback-HTTP-Ranges.html
+- uid: Learn-Playback-Information
+  name: Reading Emby playback information
+  href: articles/playback-streaming/behavior/diagnostics/Playback-Information.html
+- uid: Learn-Playback-Live-On-Demand
+  name: Live streams and on-demand streams
+  href: articles/playback-streaming/delivery/Playback-Live-On-Demand.html
+- uid: Learn-Playback-Low-Latency
+  name: Low-latency streaming and the live presentation delay
+  href: articles/playback-streaming/delivery/Playback-Low-Latency.html
+- uid: Learn-Playback-Mobile
+  name: Media playback on mobile devices
+  href: articles/playback-streaming/players/Playback-Mobile.html
+- uid: Learn-Playback-MSE
+  name: Media Source Extensions (MSE) and scripted media delivery
+  href: articles/playback-streaming/players/browser/Playback-MSE.html
+- uid: Learn-Playback-Native-Players
+  name: Native media players and their playback engines
+  href: articles/playback-streaming/players/Playback-Native-Players.html
+- uid: Learn-Playback-Offline
+  name: Offline playback and prepared local media
+  href: articles/playback-streaming/players/Playback-Offline.html
+- uid: Learn-Playback-Offline-Conversion
+  name: Offline media conversion and prepared versions
+  href: articles/playback-streaming/conversion/Playback-Offline-Conversion.html
+- uid: Learn-Playback-Progressive-Download
+  name: Progressive download and playback before completion
+  href: articles/playback-streaming/delivery/http-files/Playback-Progressive-Download.html
+- uid: Learn-Playback-Quality-Limits
+  name: Playback quality limits and output constraints
+  href: articles/playback-streaming/behavior/symptoms/Playback-Quality-Limits.html
+- uid: Learn-Playback-Realtime-Transcoding
+  name: Real-time transcoding and playback deadlines
+  href: articles/playback-streaming/conversion/performance/Playback-Realtime-Transcoding.html
+- uid: Learn-Playback-Receiver-Connectivity
+  name: Controller and receiver connectivity
+  href: articles/playback-streaming/casting/Playback-Receiver-Connectivity.html
+- uid: Learn-Playback-Remote-Control
+  name: Playback remote control and reported session state
+  href: articles/playback-streaming/casting/Playback-Remote-Control.html
+- uid: Learn-Playback-Remuxing
+  name: Remuxing media containers
+  href: articles/playback-streaming/from-server/Playback-Remuxing.html
+- uid: Learn-Playback-Reproduction
+  name: Reproducing a media playback problem
+  href: articles/playback-streaming/behavior/diagnostics/Playback-Reproduction.html
+- uid: Learn-Playback-Seeking
+  name: Seeking during streaming
+  href: articles/playback-streaming/delivery/Playback-Seeking.html
+- uid: Learn-Playback-Segmented-Streaming
+  name: Segmented streaming and addressable media intervals
+  href: articles/playback-streaming/delivery/Playback-Segmented-Streaming.html
+- uid: Learn-Playback-Server-Delivery
+  name: How a media server delivers playback
+  href: articles/playback-streaming/from-server/Playback-Server-Delivery.html
+- uid: Learn-Playback-Source-Selection
+  name: Media source selection for playback
+  href: articles/playback-streaming/from-server/Playback-Source-Selection.html
+- uid: Learn-Playback-Stalls
+  name: Playback stalls and unavailable next media
+  href: articles/playback-streaming/behavior/symptoms/Playback-Stalls.html
+- uid: Learn-Playback-Startup-Delay
+  name: Playback startup delay
+  href: articles/playback-streaming/behavior/symptoms/Playback-Startup-Delay.html
+- uid: Learn-Playback-Stream-Copy
+  name: Stream copying and encoded packet handling
+  href: articles/playback-streaming/from-server/Playback-Stream-Copy.html
+- uid: Learn-Playback-Temporary-Files
+  name: Transcode temporary files and generated output
+  href: articles/playback-streaming/conversion/Playback-Temporary-Files.html
+- uid: Learn-Playback-Track-Selection
+  name: Track selection and playback plans
+  href: articles/playback-streaming/from-server/Playback-Track-Selection.html
+- uid: Learn-Playback-Transcode-Logs
+  name: Reading a transcoding log
+  href: articles/playback-streaming/behavior/diagnostics/Playback-Transcode-Logs.html
+- uid: Learn-Playback-Transcode-Pipeline
+  name: How a transcoding pipeline works
+  href: articles/playback-streaming/conversion/Playback-Transcode-Pipeline.html
+- uid: Learn-Playback-Transcode-Speed
+  name: Transcoding speed, fps and media time
+  href: articles/playback-streaming/conversion/performance/Playback-Transcode-Speed.html
+- uid: Learn-Playback-Transcode-Throttling
+  name: Transcode throttling and producer lead
+  href: articles/playback-streaming/conversion/performance/Playback-Transcode-Throttling.html
+- uid: Learn-Playback-Transcoding
+  name: Video transcoding in Emby
+  href: articles/playback-streaming/from-server/modes/Playback-Transcoding.html
+- uid: Learn-Playback-TV-Limits
+  name: Smart TV playback limitations and player paths
+  href: articles/playback-streaming/players/Playback-TV-Limits.html
+- uid: Learn-Progressive-Video
   name: Progressive Video
   href: articles/video/frame-timing/interlacing-and-cadence/Progressive-Video.html
-- uid: QuickTime-Container
+- uid: Learn-QuickTime-Container
   name: 'QuickTime: MOV Container'
   href: articles/media-files/containers/iso-base-media-and-quicktime/QuickTime-Container.html
-- uid: Reference-Frames
+- uid: Learn-Reference-Frames
   name: Video Reference Frames
   href: articles/video/compression/picture-prediction-and-random-access/Reference-Frames.html
-- uid: Speech-Coding
+- uid: Learn-Server-ARM64
+  name: ARM64 architecture and native software compatibility
+  href: articles/storage/execution/processors/Server-ARM64.html
+- uid: Learn-Server-Bind-Mounts
+  name: Container bind mounts and host-path mappings
+  href: articles/storage/execution/containers/Server-Bind-Mounts.html
+- uid: Learn-Server-Caches
+  name: Server caches, reuse and invalidation
+  href: articles/storage/workload/Server-Caches.html
+- uid: Learn-Server-Container-Limits
+  name: Container CPU and memory limits
+  href: articles/storage/execution/containers/Server-Container-Limits.html
+- uid: Learn-Server-Containers
+  name: Software containers and shared-kernel isolation
+  href: articles/storage/execution/containers/Server-Containers.html
+- uid: Learn-Server-CPU-Concurrency
+  name: CPU cores, threads and concurrent workloads
+  href: articles/storage/execution/processors/Server-CPU-Concurrency.html
+- uid: Learn-Server-Database-Locking
+  name: Database locking and competing operations
+  href: articles/storage/workload/databases/Server-Database-Locking.html
+- uid: Learn-Server-Data-Roles
+  name: Media files and server application data
+  href: articles/storage/workload/Server-Data-Roles.html
+- uid: Learn-Server-Docker-Images
+  name: Docker images, running containers and writable layers
+  href: articles/storage/execution/containers/Server-Docker-Images.html
+- uid: Learn-Server-Library-Database
+  name: Library databases, identities and indexes
+  href: articles/storage/workload/databases/Server-Library-Database.html
+- uid: Learn-Server-Log-Levels
+  name: Logging levels and diagnostic detail
+  href: articles/storage/workload/logging/Server-Log-Levels.html
+- uid: Learn-Server-Log-Rotation
+  name: Log rotation, retention and bounded evidence
+  href: articles/storage/workload/logging/Server-Log-Rotation.html
+- uid: Learn-Server-Memory
+  name: RAM, reclaim and memory pressure
+  href: articles/storage/execution/processors/Server-Memory.html
+- uid: Learn-Server-Native-Libraries
+  name: Native libraries and runtime dependencies
+  href: articles/storage/execution/Server-Native-Libraries.html
+- uid: Learn-Server-Persistent-Data
+  name: Persistent application data across server recreation
+  href: articles/storage/execution/Server-Persistent-Data.html
+- uid: Learn-Server-Processes
+  name: Server processes and background services
+  href: articles/storage/execution/Server-Processes.html
+- uid: Learn-Server-Sleep
+  name: Server sleep, wake and availability
+  href: articles/storage/workload/power/Server-Sleep.html
+- uid: Learn-Server-Tasks
+  name: Background task scheduling and shared resources
+  href: articles/storage/workload/Server-Tasks.html
+- uid: Learn-Server-Thermal
+  name: Thermal throttling and sustained server throughput
+  href: articles/storage/workload/power/Server-Thermal.html
+- uid: Learn-Server-Transactions
+  name: Database transactions and atomic application changes
+  href: articles/storage/workload/databases/Server-Transactions.html
+- uid: Learn-Server-VM
+  name: Virtual machines and the guest server environment
+  href: articles/storage/execution/Server-VM.html
+- uid: Learn-Server-Volumes
+  name: Container volumes and managed persistent storage
+  href: articles/storage/execution/containers/Server-Volumes.html
+- uid: Learn-Server-WAL
+  name: Database write-ahead logging, readers and checkpoints
+  href: articles/storage/workload/databases/Server-WAL.html
+- uid: Learn-Server-X86-64
+  name: x86-64 architecture and compatible server software
+  href: articles/storage/execution/processors/Server-X86-64.html
+- uid: Learn-Speech-Coding
   name: Speech Coding
   href: articles/audio/formats/speech/Speech-Coding.html
-- uid: Speex
+- uid: Learn-Speex
   name: Speex Speech Audio
   href: articles/audio/formats/speech/Speex.html
-- uid: Stereo-Audio
+- uid: Learn-Stereo-Audio
   name: Stereo Audio
   href: articles/audio/channels/layouts/Stereo-Audio.html
-- uid: Surround-Sound-5-1
+- uid: Learn-Storage-ACLs
+  name: 'Access control lists: entries, masks and inheritance'
+  href: articles/storage/sharing/permissions/Storage-ACLs.html
+- uid: Learn-Storage-App-Backups
+  name: Application-data backups and consistent server state
+  href: articles/storage/data-protection/backups/Storage-App-Backups.html
+- uid: Learn-Storage-Caches
+  name: 'Storage caches: reusable reads and deferred writes'
+  href: articles/storage/fundamentals/performance/Storage-Caches.html
+- uid: Learn-Storage-Case-Sensitivity
+  name: Case-sensitive paths and preserved spelling
+  href: articles/storage/file-systems/paths/Storage-Case-Sensitivity.html
+- uid: Learn-Storage-Checksums
+  name: File checksums and content verification
+  href: articles/storage/data-protection/Storage-Checksums.html
+- uid: Learn-Storage-File-Size-Limits
+  name: File size limits and large media files
+  href: articles/storage/file-systems/Storage-File-Size-Limits.html
+- uid: Learn-Storage-File-Systems
+  name: 'File systems: names, allocation and persistent metadata'
+  href: articles/storage/file-systems/Storage-File-Systems.html
+- uid: Learn-Storage-Hard-Links
+  name: 'Hard links: several names for one file'
+  href: articles/storage/file-systems/paths/Storage-Hard-Links.html
+- uid: Learn-Storage-HDD
+  name: 'Hard disk drives: rotation, positioning and media workloads'
+  href: articles/storage/fundamentals/hardware/Storage-HDD.html
+- uid: Learn-Storage-Latency
+  name: 'Storage latency: waiting for individual operations'
+  href: articles/storage/fundamentals/performance/Storage-Latency.html
+- uid: Learn-Storage-Linux-IDs
+  name: Linux user and group IDs in storage access
+  href: articles/storage/sharing/permissions/Storage-Linux-IDs.html
+- uid: Learn-Storage-Locking
+  name: File locking, share modes and concurrent access
+  href: articles/storage/file-systems/activity/Storage-Locking.html
+- uid: Learn-Storage-Media-Backups
+  name: Media backups and recoverable generations
+  href: articles/storage/data-protection/backups/Storage-Media-Backups.html
+- uid: Learn-Storage-Mount-Points
+  name: Mount points and the file system behind a path
+  href: articles/storage/file-systems/paths/Storage-Mount-Points.html
+- uid: Learn-Storage-NAS
+  name: 'Network-attached storage: files served by another computer'
+  href: articles/storage/fundamentals/hardware/Storage-NAS.html
+- uid: Learn-Storage-NFS
+  name: NFS file shares and server-side identity mapping
+  href: articles/storage/sharing/protocols/Storage-NFS.html
+- uid: Learn-Storage-Notifications
+  name: File-system notifications and library reconciliation
+  href: articles/storage/file-systems/activity/Storage-Notifications.html
+- uid: Learn-Storage-NVMe
+  name: 'NVMe storage: commands, PCIe lanes and queues'
+  href: articles/storage/fundamentals/hardware/Storage-NVMe.html
+- uid: Learn-Storage-Overview
+  name: How media storage affects an Emby server
+  href: articles/storage/fundamentals/Storage-Overview.html
+- uid: Learn-Storage-Parity
+  name: Parity protection and reconstruction
+  href: articles/storage/data-protection/redundancy/Storage-Parity.html
+- uid: Learn-Storage-Permissions
+  name: File ownership and permissions across a library path
+  href: articles/storage/sharing/permissions/Storage-Permissions.html
+- uid: Learn-Storage-Pooling
+  name: Storage pooling and logical capacity
+  href: articles/storage/data-protection/redundancy/Storage-Pooling.html
+- uid: Learn-Storage-RAID
+  name: 'RAID: drive redundancy and failure boundaries'
+  href: articles/storage/data-protection/redundancy/Storage-RAID.html
+- uid: Learn-Storage-Read-Only
+  name: Read-only media access and separate writable data
+  href: articles/storage/sharing/permissions/Storage-Read-Only.html
+- uid: Learn-Storage-Restore
+  name: 'Backup restoration: recovering a usable server'
+  href: articles/storage/data-protection/backups/Storage-Restore.html
+- uid: Learn-Storage-SATA
+  name: SATA storage and negotiated interface rates
+  href: articles/storage/fundamentals/hardware/Storage-SATA.html
+- uid: Learn-Storage-Sequential-Random
+  name: Sequential and random I/O in media workloads
+  href: articles/storage/fundamentals/performance/Storage-Sequential-Random.html
+- uid: Learn-Storage-Service-Access
+  name: Storage access from background services
+  href: articles/storage/sharing/permissions/Storage-Service-Access.html
+- uid: Learn-Storage-SMB
+  name: 'SMB file shares: sessions, shares and file operations'
+  href: articles/storage/sharing/protocols/Storage-SMB.html
+- uid: Learn-Storage-Snapshots
+  name: File-system snapshots and retained versions
+  href: articles/storage/data-protection/Storage-Snapshots.html
+- uid: Learn-Storage-Spin-Down
+  name: Disk spin-down, wake latency and idle workloads
+  href: articles/storage/fundamentals/performance/Storage-Spin-Down.html
+- uid: Learn-Storage-SSD
+  name: 'Solid-state drives: flash access, writes and endurance'
+  href: articles/storage/fundamentals/hardware/Storage-SSD.html
+- uid: Learn-Storage-Symlinks
+  name: Symbolic links and target-path resolution
+  href: articles/storage/file-systems/paths/Storage-Symlinks.html
+- uid: Learn-Storage-Temporary
+  name: Temporary storage and RAM disks
+  href: articles/storage/fundamentals/Storage-Temporary.html
+- uid: Learn-Storage-Timestamps
+  name: File timestamps and what each clock field means
+  href: articles/storage/file-systems/activity/Storage-Timestamps.html
+- uid: Learn-Storage-Unavailable-Mounts
+  name: Unavailable network mounts and trustworthy library state
+  href: articles/storage/sharing/Storage-Unavailable-Mounts.html
+- uid: Learn-Storage-UNC
+  name: UNC paths and network-share names
+  href: articles/storage/sharing/protocols/Storage-UNC.html
+- uid: Learn-Storage-Unicode-Names
+  name: Unicode file names and visually identical spellings
+  href: articles/storage/file-systems/paths/Storage-Unicode-Names.html
+- uid: Learn-Storage-UPS
+  name: UPS power continuity and orderly shutdown
+  href: articles/storage/data-protection/Storage-UPS.html
+- uid: Learn-Storage-USB
+  name: USB-attached storage and the enclosure connection
+  href: articles/storage/fundamentals/hardware/Storage-USB.html
+- uid: Learn-Subtitle-ASR
+  name: Automatic speech recognition for captions
+  href: articles/subtitles/sources/Subtitle-ASR.html
+- uid: Learn-Subtitle-ASS
+  name: Advanced SubStation Alpha subtitles (ASS)
+  href: articles/subtitles/formats/text/Subtitle-ASS.html
+- uid: Learn-Subtitle-ASS-Typesetting
+  name: ASS typesetting
+  href: articles/subtitles/rendering/fonts-typesetting/Subtitle-ASS-Typesetting.html
+- uid: Learn-Subtitle-Bitmap
+  name: Bitmap subtitles
+  href: articles/subtitles/formats/bitmap/Subtitle-Bitmap.html
+- uid: Learn-Subtitle-Burn-In
+  name: Subtitle burn-in
+  href: articles/subtitles/emby-processing/overlay-filters/Subtitle-Burn-In.html
+- uid: Learn-Subtitle-Compatibility-Emby
+  name: Subtitle rendering compatibility in Emby
+  href: articles/subtitles/emby-processing/Subtitle-Compatibility-Emby.html
+- uid: Learn-Subtitle-Container-Support
+  name: Subtitle support in media containers
+  href: articles/subtitles/storage-delivery/Subtitle-Container-Support.html
+- uid: Learn-Subtitle-Conversion
+  name: Subtitle format conversion
+  href: articles/subtitles/storage-delivery/extraction-conversion/Subtitle-Conversion.html
+- uid: Learn-Subtitle-Cues
+  name: Subtitle cues
+  href: articles/subtitles/timing/Subtitle-Cues.html
+- uid: Learn-Subtitle-DASH
+  name: Timed text in MPEG-DASH
+  href: articles/subtitles/storage-delivery/streaming/Subtitle-DASH.html
+- uid: Learn-Subtitle-Delivery-Emby
+  name: Subtitle delivery in Emby
+  href: articles/subtitles/emby-processing/Subtitle-Delivery-Emby.html
+- uid: Learn-Subtitle-Drift
+  name: Subtitle timing drift
+  href: articles/subtitles/timing/Subtitle-Drift.html
+- uid: Learn-Subtitle-DVB
+  name: DVB subtitles (DVBSub)
+  href: articles/subtitles/formats/bitmap/Subtitle-DVB.html
+- uid: Learn-Subtitle-DVD
+  name: 'DVD subtitles: DVDSub and VobSub'
+  href: articles/subtitles/formats/bitmap/Subtitle-DVD.html
+- uid: Learn-Subtitle-Edition-Mismatch
+  name: Subtitle edition mismatches
+  href: articles/subtitles/timing/Subtitle-Edition-Mismatch.html
+- uid: Learn-Subtitle-Embedded
+  name: Embedded subtitle tracks
+  href: articles/subtitles/storage-delivery/locations/Subtitle-Embedded.html
+- uid: Learn-Subtitle-Encoding
+  name: Subtitle character encoding
+  href: articles/subtitles/rendering/encoding-scripts/Subtitle-Encoding.html
+- uid: Learn-Subtitle-External
+  name: External subtitle files
+  href: articles/subtitles/storage-delivery/locations/Subtitle-External.html
+- uid: Learn-Subtitle-Extraction
+  name: Subtitle extraction
+  href: articles/subtitles/storage-delivery/extraction-conversion/Subtitle-Extraction.html
+- uid: Learn-Subtitle-Font-Attachments
+  name: Subtitle font attachments
+  href: articles/subtitles/rendering/fonts-typesetting/Subtitle-Font-Attachments.html
+- uid: Learn-Subtitle-Font-Fallback
+  name: Subtitle font fallback
+  href: articles/subtitles/rendering/fonts-typesetting/Subtitle-Font-Fallback.html
+- uid: Learn-Subtitle-Forced
+  name: Forced subtitles
+  href: articles/subtitles/selection/Subtitle-Forced.html
+- uid: Learn-Subtitle-Formats
+  name: Subtitle formats explained
+  href: articles/subtitles/formats/Subtitle-Formats.html
+- uid: Learn-Subtitle-Frame-Timing
+  name: Frame-based subtitle timing
+  href: articles/subtitles/timing/Subtitle-Frame-Timing.html
+- uid: Learn-Subtitle-Fundamentals
+  name: Understanding subtitles and captions
+  href: articles/subtitles/Subtitle-Fundamentals.html
+- uid: Learn-Subtitle-HLS
+  name: Subtitles in HLS
+  href: articles/subtitles/storage-delivery/streaming/Subtitle-HLS.html
+- uid: Learn-Subtitle-IMSC
+  name: IMSC timed text
+  href: articles/subtitles/formats/Subtitle-IMSC.html
+- uid: Learn-Subtitle-In-Band
+  name: In-band captions
+  href: articles/subtitles/storage-delivery/locations/Subtitle-In-Band.html
+- uid: Learn-Subtitle-Karaoke
+  name: Karaoke subtitle timing
+  href: articles/subtitles/rendering/fonts-typesetting/Subtitle-Karaoke.html
+- uid: Learn-Subtitle-Language-Preferences
+  name: Subtitle language preferences
+  href: articles/subtitles/selection/Subtitle-Language-Preferences.html
+- uid: Learn-Subtitle-MicroDVD
+  name: MicroDVD subtitles
+  href: articles/subtitles/formats/text/Subtitle-MicroDVD.html
+- uid: Learn-Subtitle-OCR
+  name: Subtitle OCR
+  href: articles/subtitles/storage-delivery/extraction-conversion/Subtitle-OCR.html
+- uid: Learn-Subtitle-Offsets
+  name: Subtitle time offsets
+  href: articles/subtitles/timing/Subtitle-Offsets.html
+- uid: Learn-Subtitle-OpenSubtitles
+  name: OpenSubtitles
+  href: articles/subtitles/sources/Subtitle-OpenSubtitles.html
+- uid: Learn-Subtitle-Overlay-CUDA
+  name: CUDA subtitle overlay
+  href: articles/subtitles/emby-processing/overlay-filters/gpu/Subtitle-Overlay-CUDA.html
+- uid: Learn-Subtitle-Overlay-Filtering
+  name: Subtitle overlay filtering
+  href: articles/subtitles/emby-processing/overlay-filters/Subtitle-Overlay-Filtering.html
+- uid: Learn-Subtitle-Overlay-Legacy
+  name: Legacy subtitle overlay filters
+  href: articles/subtitles/emby-processing/overlay-filters/Subtitle-Overlay-Legacy.html
+- uid: Learn-Subtitle-Overlay-OpenCL
+  name: OpenCL subtitle overlay
+  href: articles/subtitles/emby-processing/overlay-filters/gpu/Subtitle-Overlay-OpenCL.html
+- uid: Learn-Subtitle-Overlay-Software
+  name: Software subtitle overlay
+  href: articles/subtitles/emby-processing/overlay-filters/Subtitle-Overlay-Software.html
+- uid: Learn-Subtitle-Overlay-Vulkan
+  name: Vulkan subtitle overlay
+  href: articles/subtitles/emby-processing/overlay-filters/gpu/Subtitle-Overlay-Vulkan.html
+- uid: Learn-Subtitle-PGS
+  name: Blu-ray subtitles (PGS)
+  href: articles/subtitles/formats/bitmap/Subtitle-PGS.html
+- uid: Learn-Subtitle-Pipeline-Classic
+  name: Classic subtitle overlay pipeline
+  href: articles/subtitles/emby-processing/overlay-pipelines/Subtitle-Pipeline-Classic.html
+- uid: Learn-Subtitle-Pipeline-Filtering
+  name: Subtitle filtering pipeline
+  href: articles/subtitles/emby-processing/overlay-pipelines/Subtitle-Pipeline-Filtering.html
+- uid: Learn-Subtitle-Pipeline-Fundamentals
+  name: Subtitle overlay pipeline fundamentals
+  href: articles/subtitles/emby-processing/overlay-pipelines/Subtitle-Pipeline-Fundamentals.html
+- uid: Learn-Subtitle-Pipeline-Hardware
+  name: Hardware subtitle overlay pipeline
+  href: articles/subtitles/emby-processing/overlay-pipelines/Subtitle-Pipeline-Hardware.html
+- uid: Learn-Subtitle-Release-Matching
+  name: Subtitle release matching
+  href: articles/subtitles/sources/Subtitle-Release-Matching.html
+- uid: Learn-Subtitle-Rendering
+  name: Subtitle rendering
+  href: articles/subtitles/rendering/Subtitle-Rendering.html
+- uid: Learn-Subtitle-RTL
+  name: Right-to-left subtitles
+  href: articles/subtitles/rendering/encoding-scripts/Subtitle-RTL.html
+- uid: Learn-Subtitle-SAMI
+  name: SAMI captions
+  href: articles/subtitles/formats/text/Subtitle-SAMI.html
+- uid: Learn-Subtitle-SDH
+  name: Subtitles for the deaf and hard of hearing (SDH)
+  href: articles/subtitles/selection/Subtitle-SDH.html
+- uid: Learn-Subtitle-Selection
+  name: Subtitle track selection
+  href: articles/subtitles/selection/Subtitle-Selection.html
+- uid: Learn-Subtitle-Sources
+  name: Finding subtitle sources
+  href: articles/subtitles/sources/Subtitle-Sources.html
+- uid: Learn-Subtitle-SRT
+  name: SubRip subtitles (SRT)
+  href: articles/subtitles/formats/text/Subtitle-SRT.html
+- uid: Learn-Subtitle-SSA
+  name: SubStation Alpha subtitles (SSA)
+  href: articles/subtitles/formats/text/Subtitle-SSA.html
+- uid: Learn-Subtitle-Text
+  name: Text-based subtitles
+  href: articles/subtitles/formats/text/Subtitle-Text.html
+- uid: Learn-Subtitle-Timestamps
+  name: Subtitle timestamps
+  href: articles/subtitles/timing/Subtitle-Timestamps.html
+- uid: Learn-Subtitle-Translation
+  name: Subtitle translation
+  href: articles/subtitles/sources/Subtitle-Translation.html
+- uid: Learn-Subtitle-Transports
+  name: Subtitle transports
+  href: articles/subtitles/storage-delivery/Subtitle-Transports.html
+- uid: Learn-Subtitle-TTML
+  name: Timed Text Markup Language (TTML)
+  href: articles/subtitles/formats/text/Subtitle-TTML.html
+- uid: Learn-Subtitle-Tx3g
+  name: MP4 timed text (tx3g)
+  href: articles/subtitles/formats/text/Subtitle-Tx3g.html
+- uid: Learn-Subtitle-Unicode
+  name: Unicode in subtitles
+  href: articles/subtitles/rendering/encoding-scripts/Subtitle-Unicode.html
+- uid: Learn-Subtitle-WebVTT
+  name: WebVTT subtitles
+  href: articles/subtitles/formats/text/Subtitle-WebVTT.html
+- uid: Learn-Surround-Sound-5-1
   name: 5.1 Surround Sound
   href: articles/audio/channels/layouts/Surround-Sound-5-1.html
-- uid: Surround-Sound-7-1
+- uid: Learn-Surround-Sound-7-1
   name: 7.1 Surround Sound
   href: articles/audio/channels/layouts/Surround-Sound-7-1.html
-- uid: Telecine-Pulldown
+- uid: Learn-Telecine-Pulldown
   name: Telecine and 3:2 Pulldown
   href: articles/video/frame-timing/interlacing-and-cadence/Telecine-Pulldown.html
-- uid: Tone-Mapping-Algorithm-Hable
+- uid: Learn-Tone-Mapping-Algorithm-Hable
   name: 'Tone Mapping Curve: Hable'
   href: articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Algorithm-Hable.html
-- uid: Tone-Mapping-Algorithm-Mobius
+- uid: Learn-Tone-Mapping-Algorithm-Mobius
   name: 'Tone Mapping Curve: Mobius'
   href: articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Algorithm-Mobius.html
-- uid: Tone-Mapping-Algorithm-Reinhard
+- uid: Learn-Tone-Mapping-Algorithm-Reinhard
   name: 'Tone Mapping Curve: Reinhard'
   href: articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Algorithm-Reinhard.html
-- uid: Tone-Mapping-CPU
+- uid: Learn-Tone-Mapping-CPU
   name: CPU Tone Mapping
   href: articles/video/tone-mapping/execution/Tone-Mapping-CPU.html
-- uid: Tone-Mapping-CUDA
+- uid: Learn-Tone-Mapping-CUDA
   name: CUDA Tone Mapping
   href: articles/video/tone-mapping/execution/gpu/Tone-Mapping-CUDA.html
-- uid: Tone-Mapping-Curve-BT2390
+- uid: Learn-Tone-Mapping-Curve-BT2390
   name: 'Tone Mapping Curve: BT.2390'
   href: articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-BT2390.html
-- uid: Tone-Mapping-Curve-BT2446A
+- uid: Learn-Tone-Mapping-Curve-BT2446A
   name: 'Tone Mapping Curve: BT.2446 Method A'
   href: articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-BT2446A.html
-- uid: Tone-Mapping-Curve-Clip
+- uid: Learn-Tone-Mapping-Curve-Clip
   name: 'Tone Mapping Curve: Clip'
   href: articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Curve-Clip.html
-- uid: Tone-Mapping-Curve-Gamma
+- uid: Learn-Tone-Mapping-Curve-Gamma
   name: 'Tone Mapping Curve: Gamma'
   href: articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Curve-Gamma.html
-- uid: Tone-Mapping-Curve-Linear
+- uid: Learn-Tone-Mapping-Curve-Linear
   name: 'Tone Mapping Curve: Linear'
   href: articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Curve-Linear.html
-- uid: Tone-Mapping-Curves
+- uid: Learn-Tone-Mapping-Curves
   name: What a Tone-Mapping Curve Controls
   href: articles/video/tone-mapping/curves/Tone-Mapping-Curves.html
-- uid: Tone-Mapping-Curve-Spline
+- uid: Learn-Tone-Mapping-Curve-Spline
   name: 'Tone Mapping Curve: Spline'
   href: articles/video/tone-mapping/curves/general-purpose/Tone-Mapping-Curve-Spline.html
-- uid: Tone-Mapping-Curve-ST2094-10
+- uid: Learn-Tone-Mapping-Curve-ST2094-10
   name: 'Tone Mapping Curve: ST 2094-10 in libplacebo'
   href: articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-ST2094-10.html
-- uid: Tone-Mapping-Curve-ST2094-40
+- uid: Learn-Tone-Mapping-Curve-ST2094-40
   name: 'Tone Mapping Curve: ST 2094-40 in libplacebo'
   href: articles/video/tone-mapping/curves/standards-based/Tone-Mapping-Curve-ST2094-40.html
-- uid: Tone-Mapping-HDR-to-HDR
+- uid: Learn-Tone-Mapping-HDR-to-HDR
   name: HDR-to-HDR Tone Mapping
   href: articles/video/tone-mapping/fundamentals/Tone-Mapping-HDR-to-HDR.html
-- uid: Tone-Mapping-HDR-to-SDR
+- uid: Learn-Tone-Mapping-HDR-to-SDR
   name: How HDR-to-SDR Tone Mapping Works
   href: articles/video/tone-mapping/fundamentals/Tone-Mapping-HDR-to-SDR.html
-- uid: Tone-Mapping-Highlight-Roll-Off
+- uid: Learn-Tone-Mapping-Highlight-Roll-Off
   name: Highlight Roll-Off in Tone Mapping
   href: articles/video/tone-mapping/color-and-luminance/Tone-Mapping-Highlight-Roll-Off.html
-- uid: Tone-Mapping-OpenCL
+- uid: Learn-Tone-Mapping-OpenCL
   name: OpenCL Tone Mapping
   href: articles/video/tone-mapping/execution/gpu/Tone-Mapping-OpenCL.html
-- uid: Tone-Mapping-Peak-Detection
+- uid: Learn-Tone-Mapping-Peak-Detection
   name: Peak-Luminance Detection for Tone Mapping
   href: articles/video/tone-mapping/color-and-luminance/Tone-Mapping-Peak-Detection.html
-- uid: Tone-Mapping-Playback-Path
+- uid: Learn-Tone-Mapping-Playback-Path
   name: Where Tone Mapping Happens in an Emby Playback Session
   href: articles/video/tone-mapping/execution/Tone-Mapping-Playback-Path.html
-- uid: Tone-Mapping-Scene-Adaptive
+- uid: Learn-Tone-Mapping-Scene-Adaptive
   name: Scene-Adaptive Tone Mapping
   href: articles/video/tone-mapping/color-and-luminance/Tone-Mapping-Scene-Adaptive.html
-- uid: Tone-Mapping-Vulkan
+- uid: Learn-Tone-Mapping-Vulkan
   name: Vulkan Tone Mapping
   href: articles/video/tone-mapping/execution/gpu/Tone-Mapping-Vulkan.html
-- uid: Tone-Mapping-Why
+- uid: Learn-Tone-Mapping-Why
   name: Why Tone Mapping Is Needed
   href: articles/video/tone-mapping/fundamentals/Tone-Mapping-Why.html
-- uid: Transfer-Function-BT1886
+- uid: Learn-Transfer-Function-BT1886
   name: ITU-R BT.1886
   href: articles/video/color-standards/transfer-functions/Transfer-Function-BT1886.html
-- uid: Transfer-Function-EOTF
+- uid: Learn-Transfer-Function-EOTF
   name: Electro-Optical Transfer Function (EOTF)
   href: articles/video/color-standards/transfer-functions/Transfer-Function-EOTF.html
-- uid: Transfer-Function-OETF
+- uid: Learn-Transfer-Function-OETF
   name: Opto-Electronic Transfer Function (OETF)
   href: articles/video/color-standards/transfer-functions/Transfer-Function-OETF.html
-- uid: Transfer-Function-OOTF
+- uid: Learn-Transfer-Function-OOTF
   name: Opto-Optical Transfer Function (OOTF)
   href: articles/video/color-standards/transfer-functions/Transfer-Function-OOTF.html
-- uid: Transfer-Function-PQ
+- uid: Learn-Transfer-Function-PQ
   name: 'Perceptual Quantizer (PQ): SMPTE ST 2084'
   href: articles/video/color-standards/transfer-functions/Transfer-Function-PQ.html
-- uid: Understanding-Audio-in-Media
+- uid: Learn-TV-ATSC1
+  name: ATSC 1.0 broadcast television
+  href: articles/live-tv/standards/atsc/TV-ATSC1.html
+- uid: Learn-TV-ATSC3
+  name: ATSC 3.0 broadcast television
+  href: articles/live-tv/standards/atsc/TV-ATSC3.html
+- uid: Learn-TV-Backends
+  name: Live TV backend adapters
+  href: articles/live-tv/sources/TV-Backends.html
+- uid: Learn-TV-Cable
+  name: Cable television
+  href: articles/live-tv/fundamentals/TV-Cable.html
+- uid: Learn-TV-Channel-Mapping
+  name: Mapping source channels to guide stations
+  href: articles/live-tv/guides/TV-Channel-Mapping.html
+- uid: Learn-TV-Chase-Playback
+  name: Chase playback while a recording grows
+  href: articles/live-tv/recording/time-shifting/TV-Chase-Playback.html
+- uid: Learn-TV-Clear-QAM
+  name: Clear QAM cable television
+  href: articles/live-tv/sources/TV-Clear-QAM.html
+- uid: Learn-TV-Digital-Standards
+  name: Digital television standards and compatibility layers
+  href: articles/live-tv/standards/TV-Digital-Standards.html
+- uid: Learn-TV-DTMB
+  name: DTMB terrestrial television
+  href: articles/live-tv/standards/TV-DTMB.html
+- uid: Learn-TV-Duplicate-Recordings
+  name: Duplicate recording detection and episode identity
+  href: articles/live-tv/recording/lifecycle/TV-Duplicate-Recordings.html
+- uid: Learn-TV-DVB-C
+  name: DVB-C cable television
+  href: articles/live-tv/standards/dvb/TV-DVB-C.html
+- uid: Learn-TV-DVB-S
+  name: DVB-S satellite television
+  href: articles/live-tv/standards/dvb/TV-DVB-S.html
+- uid: Learn-TV-DVB-S2
+  name: DVB-S2 satellite television
+  href: articles/live-tv/standards/dvb/TV-DVB-S2.html
+- uid: Learn-TV-DVB-SI
+  name: DVB Service Information and broadcast guides
+  href: articles/live-tv/guides/formats/TV-DVB-SI.html
+- uid: Learn-TV-DVB-T
+  name: DVB-T terrestrial television
+  href: articles/live-tv/standards/dvb/TV-DVB-T.html
+- uid: Learn-TV-DVB-T2
+  name: DVB-T2 terrestrial television
+  href: articles/live-tv/standards/dvb/TV-DVB-T2.html
+- uid: Learn-TV-DVR
+  name: 'Digital video recording: from live source to stored media'
+  href: articles/live-tv/recording/TV-DVR.html
+- uid: Learn-TV-Emby-Guide
+  name: Emby guide data and lineup selection
+  href: articles/live-tv/guides/formats/TV-Emby-Guide.html
+- uid: Learn-TV-Encrypted-Channels
+  name: Encrypted TV channels and supported playback paths
+  href: articles/live-tv/sources/TV-Encrypted-Channels.html
+- uid: Learn-TV-EPG
+  name: Electronic programme guides
+  href: articles/live-tv/guides/TV-EPG.html
+- uid: Learn-TV-Guide-Time-Zones
+  name: Guide time zones and clock changes
+  href: articles/live-tv/guides/TV-Guide-Time-Zones.html
+- uid: Learn-TV-Hauppauge
+  name: Hauppauge TV tuner routes
+  href: articles/live-tv/sources/hardware/TV-Hauppauge.html
+- uid: Learn-TV-HDHomeRun
+  name: HDHomeRun network tuner routes
+  href: articles/live-tv/sources/hardware/TV-HDHomeRun.html
+- uid: Learn-TV-Incomplete-Recordings
+  name: Incomplete recordings and missing programme intervals
+  href: articles/live-tv/recording/lifecycle/TV-Incomplete-Recordings.html
+- uid: Learn-TV-IPTV
+  name: IPTV and internet-delivered live channels
+  href: articles/live-tv/fundamentals/TV-IPTV.html
+- uid: Learn-TV-IPTV-Limits
+  name: IPTV connection limits
+  href: articles/live-tv/sources/capacity/TV-IPTV-Limits.html
+- uid: Learn-TV-ISDB-T
+  name: ISDB-T terrestrial television
+  href: articles/live-tv/standards/TV-ISDB-T.html
+- uid: Learn-TV-Lineups
+  name: Channel lineups and source identity
+  href: articles/live-tv/channels/identity/TV-Lineups.html
+- uid: Learn-TV-Live
+  name: What is live TV?
+  href: articles/live-tv/fundamentals/TV-Live.html
+- uid: Learn-TV-Live-Edge
+  name: The live playback edge and delivery delay
+  href: articles/live-tv/recording/time-shifting/TV-Live-Edge.html
+- uid: Learn-TV-M3U
+  name: Extended M3U channel lists
+  href: articles/live-tv/sources/TV-M3U.html
+- uid: Learn-TV-Multiplexes
+  name: Broadcast multiplexes
+  href: articles/live-tv/channels/identity/TV-Multiplexes.html
+- uid: Learn-TV-Network-Tuners
+  name: Network TV tuners
+  href: articles/live-tv/sources/hardware/TV-Network-Tuners.html
+- uid: Learn-TV-OTA
+  name: Over-the-air television
+  href: articles/live-tv/fundamentals/TV-OTA.html
+- uid: Learn-TV-Post-Processing
+  name: Recording post-processing and verified replacement
+  href: articles/live-tv/recording/lifecycle/TV-Post-Processing.html
+- uid: Learn-TV-Programme-IDs
+  name: 'Programme identifiers: airings, episodes and series'
+  href: articles/live-tv/guides/TV-Programme-IDs.html
+- uid: Learn-TV-PSIP
+  name: 'ATSC PSIP: virtual channels, events and time'
+  href: articles/live-tv/guides/formats/TV-PSIP.html
+- uid: Learn-TV-Reception-Errors
+  name: Uncorrectable reception errors
+  href: articles/live-tv/channels/reception/TV-Reception-Errors.html
+- uid: Learn-TV-Recording-Conflicts
+  name: Recording conflicts and feasible resource assignments
+  href: articles/live-tv/recording/scheduling/TV-Recording-Conflicts.html
+- uid: Learn-TV-Recording-Padding
+  name: Recording padding and programme coverage
+  href: articles/live-tv/recording/scheduling/TV-Recording-Padding.html
+- uid: Learn-TV-Recording-Retention
+  name: Recording retention and storage ownership
+  href: articles/live-tv/recording/lifecycle/TV-Recording-Retention.html
+- uid: Learn-TV-Recording-Timers
+  name: Recording timers and acquisition deadlines
+  href: articles/live-tv/recording/scheduling/TV-Recording-Timers.html
+- uid: Learn-TV-Satellite
+  name: Satellite television reception
+  href: articles/live-tv/fundamentals/TV-Satellite.html
+- uid: Learn-TV-Schedule-Changes
+  name: Programme schedule changes and recording plans
+  href: articles/live-tv/guides/TV-Schedule-Changes.html
+- uid: Learn-TV-Series-Rules
+  name: Series recording rules and future airings
+  href: articles/live-tv/recording/scheduling/TV-Series-Rules.html
+- uid: Learn-TV-Service-IDs
+  name: Broadcast service identifiers
+  href: articles/live-tv/channels/identity/TV-Service-IDs.html
+- uid: Learn-TV-Signal-Quality
+  name: TV signal quality and decoding margin
+  href: articles/live-tv/channels/reception/TV-Signal-Quality.html
+- uid: Learn-TV-Signal-Strength
+  name: TV signal strength
+  href: articles/live-tv/channels/reception/TV-Signal-Strength.html
+- uid: Learn-TV-Time-Shift-Buffers
+  name: Time-shift buffers and the retained live window
+  href: articles/live-tv/recording/time-shifting/TV-Time-Shift-Buffers.html
+- uid: Learn-TV-Tuner-Concurrency
+  name: Tuner concurrency and shared acquisition
+  href: articles/live-tv/sources/capacity/TV-Tuner-Concurrency.html
+- uid: Learn-TV-Tuners
+  name: TV tuners and service acquisition
+  href: articles/live-tv/sources/hardware/TV-Tuners.html
+- uid: Learn-TV-Virtual-Channels
+  name: Virtual channel numbers
+  href: articles/live-tv/channels/identity/TV-Virtual-Channels.html
+- uid: Learn-TV-XMLTV
+  name: 'XMLTV listings: channels, programmes and time'
+  href: articles/live-tv/guides/formats/TV-XMLTV.html
+- uid: Learn-Understanding-Audio-in-Media
   name: Understanding Audio in Media
   href: articles/audio/Understanding-Audio-in-Media.html
-- uid: Variable-Frame-Rate
+- uid: Learn-Variable-Frame-Rate
   name: Variable Frame Rate
   href: articles/video/frame-timing/frame-rates/Variable-Frame-Rate.html
-- uid: Video-3D-Frame-Packing
+- uid: Learn-Video-3D-Frame-Packing
   name: Frame-Packed 3D Video
   href: articles/video/stereoscopic-spatial/frame-packing-layouts/Video-3D-Frame-Packing.html
-- uid: Video-3D-Side-By-Side
+- uid: Learn-Video-3D-Side-By-Side
   name: Side-by-Side 3D Video
   href: articles/video/stereoscopic-spatial/frame-packing-layouts/Video-3D-Side-By-Side.html
-- uid: Video-3D-Top-And-Bottom
+- uid: Learn-Video-3D-Top-And-Bottom
   name: Top-and-Bottom 3D Video
   href: articles/video/stereoscopic-spatial/frame-packing-layouts/Video-3D-Top-And-Bottom.html
-- uid: Video-Bit-Depth
+- uid: Learn-Video-Bit-Depth
   name: Video Bit Depth
   href: articles/video/color-pixel-formats/precision-banding/Video-Bit-Depth.html
-- uid: Video-Chroma-Sample-Location
+- uid: Learn-Video-Chroma-Sample-Location
   name: Chroma Sample Location
   href: articles/video/color-pixel-formats/Video-Chroma-Sample-Location.html
-- uid: Video-Chroma-Subsampling
+- uid: Learn-Video-Chroma-Subsampling
   name: Chroma Subsampling
   href: articles/video/color-pixel-formats/Video-Chroma-Subsampling.html
-- uid: Video-Chroma-Upsampling
+- uid: Learn-Video-Chroma-Upsampling
   name: Chroma Upsampling
   href: articles/video/scaling-image-processing/Video-Chroma-Upsampling.html
-- uid: Video-Codec-AV1
+- uid: Learn-Video-Codec-AV1
   name: AV1 Video
   href: articles/video/codecs/vpx-av1/Video-Codec-AV1.html
-- uid: Video-Codec-Compatibility
+- uid: Learn-Video-Codec-Compatibility
   name: How Video Codecs Affect Playback Compatibility
   href: articles/video/codecs/Video-Codec-Compatibility.html
-- uid: Video-Codec-DNxHD
+- uid: Learn-Video-Codec-DNxHD
   name: Avid DNxHD Video
   href: articles/video/codecs/production-preservation/Video-Codec-DNxHD.html
-- uid: Video-Codec-DNxHR
+- uid: Learn-Video-Codec-DNxHR
   name: Avid DNxHR Video
   href: articles/video/codecs/production-preservation/Video-Codec-DNxHR.html
-- uid: Video-Codec-DV
+- uid: Learn-Video-Codec-DV
   name: DV Video
   href: articles/video/codecs/production-preservation/Video-Codec-DV.html
-- uid: Video-Codec-FFV1
+- uid: Learn-Video-Codec-FFV1
   name: FFV1 Lossless Video
   href: articles/video/codecs/production-preservation/Video-Codec-FFV1.html
-- uid: Video-Codec-H264
+- uid: Learn-Video-Codec-H264
   name: H.264 / AVC Video
   href: articles/video/codecs/mpeg-itu/Video-Codec-H264.html
-- uid: Video-Codec-HEVC
+- uid: Learn-Video-Codec-HEVC
   name: H.265 / HEVC Video
   href: articles/video/codecs/mpeg-itu/Video-Codec-HEVC.html
-- uid: Video-Codec-Levels-Tiers
+- uid: Learn-Video-Codec-Levels-Tiers
   name: Video Codec Levels and Tiers
   href: articles/video/compression/Video-Codec-Levels-Tiers.html
-- uid: Video-Codec-Motion-JPEG
+- uid: Learn-Video-Codec-Motion-JPEG
   name: Motion JPEG Video
   href: articles/video/codecs/production-preservation/Video-Codec-Motion-JPEG.html
-- uid: Video-Codec-MPEG2
+- uid: Learn-Video-Codec-MPEG2
   name: MPEG-2 Video
   href: articles/video/codecs/mpeg-itu/Video-Codec-MPEG2.html
-- uid: Video-Codec-MPEG4-Part2
+- uid: Learn-Video-Codec-MPEG4-Part2
   name: 'MPEG-4 Part 2: DivX and Xvid'
   href: articles/video/codecs/mpeg-itu/Video-Codec-MPEG4-Part2.html
-- uid: Video-Codec-MVC
+- uid: Learn-Video-Codec-MVC
   name: Multiview Video Coding (MVC)
   href: articles/video/stereoscopic-spatial/Video-Codec-MVC.html
-- uid: Video-Codec-Profiles
+- uid: Learn-Video-Codec-Profiles
   name: Video Codec Profiles
   href: articles/video/compression/Video-Codec-Profiles.html
-- uid: Video-Codec-ProRes
+- uid: Learn-Video-Codec-ProRes
   name: Apple ProRes Video
   href: articles/video/codecs/production-preservation/Video-Codec-ProRes.html
-- uid: Video-Codec-VC1
+- uid: Learn-Video-Codec-VC1
   name: VC-1 Video
   href: articles/video/codecs/Video-Codec-VC1.html
-- uid: Video-Codec-VP8
+- uid: Learn-Video-Codec-VP8
   name: VP8 Video
   href: articles/video/codecs/vpx-av1/Video-Codec-VP8.html
-- uid: Video-Codec-VP9
+- uid: Learn-Video-Codec-VP9
   name: VP9 Video
   href: articles/video/codecs/vpx-av1/Video-Codec-VP9.html
-- uid: Video-Codec-VVC
+- uid: Learn-Video-Codec-VVC
   name: H.266 / VVC Video
   href: articles/video/codecs/mpeg-itu/Video-Codec-VVC.html
-- uid: Video-Color-Banding
+- uid: Learn-Video-Color-Banding
   name: Color Banding
   href: articles/video/color-pixel-formats/precision-banding/Video-Color-Banding.html
-- uid: Video-Color-Range
+- uid: Learn-Video-Color-Range
   name: Limited and Full Video Range
   href: articles/video/color-pixel-formats/Video-Color-Range.html
-- uid: Video-Color-Representation
+- uid: Learn-Video-Color-Representation
   name: How Video Color Is Represented
   href: articles/video/color-pixel-formats/Video-Color-Representation.html
-- uid: Video-Color-Signaling
+- uid: Learn-Video-Color-Signaling
   name: Video Color Tags and Signaling
   href: articles/video/color-pixel-formats/Video-Color-Signaling.html
-- uid: Video-Compression
+- uid: Learn-Video-Compression
   name: How Video Compression Works
   href: articles/video/compression/Video-Compression.html
-- uid: Video-Compression-Artifacts
+- uid: Learn-Video-Compression-Artifacts
   name: Video Compression Artifacts
   href: articles/video/encoding-quality/quality-changes-artifacts/Video-Compression-Artifacts.html
-- uid: Video-Cropping
+- uid: Learn-Video-Cropping
   name: Cropping Video
   href: articles/video/geometry/Video-Cropping.html
-- uid: Video-Debanding
+- uid: Learn-Video-Debanding
   name: Video Debanding
   href: articles/video/scaling-image-processing/image-cleanup/Video-Debanding.html
-- uid: Video-Denoising
+- uid: Learn-Video-Denoising
   name: Video Denoising
   href: articles/video/scaling-image-processing/image-cleanup/Video-Denoising.html
-- uid: Video-Display-Aspect-Ratio
+- uid: Learn-Video-Display-Aspect-Ratio
   name: Video Display Aspect Ratio
   href: articles/video/geometry/aspect-ratios/Video-Display-Aspect-Ratio.html
-- uid: Video-Dithering
+- uid: Learn-Video-Dithering
   name: Video Dithering
   href: articles/video/color-pixel-formats/precision-banding/Video-Dithering.html
-- uid: Video-Encoder-Presets
+- uid: Learn-Video-Encoder-Presets
   name: Video Encoder Presets
   href: articles/video/encoding-quality/Video-Encoder-Presets.html
-- uid: Video-Encoding-Bitrate
+- uid: Learn-Video-Encoding-Bitrate
   name: Video Bitrate
   href: articles/video/encoding-quality/rate-control/Video-Encoding-Bitrate.html
-- uid: Video-Encoding-CBR
+- uid: Learn-Video-Encoding-CBR
   name: Constant Bitrate Video Encoding
   href: articles/video/encoding-quality/rate-control/Video-Encoding-CBR.html
-- uid: Video-Encoding-Constant-Quality
+- uid: Learn-Video-Encoding-Constant-Quality
   name: Constant Quality Video Encoding
   href: articles/video/encoding-quality/rate-control/Video-Encoding-Constant-Quality.html
-- uid: Video-Encoding-CRF
+- uid: Learn-Video-Encoding-CRF
   name: Constant Rate Factor (CRF) for Video
   href: articles/video/encoding-quality/rate-control/Video-Encoding-CRF.html
-- uid: Video-Encoding-QP
+- uid: Learn-Video-Encoding-QP
   name: Video Quantization Parameter (QP)
   href: articles/video/encoding-quality/rate-control/Video-Encoding-QP.html
-- uid: Video-Encoding-Two-Pass
+- uid: Learn-Video-Encoding-Two-Pass
   name: Two-Pass Video Encoding
   href: articles/video/encoding-quality/rate-control/Video-Encoding-Two-Pass.html
-- uid: Video-Encoding-VBR
+- uid: Learn-Video-Encoding-VBR
   name: Variable Bitrate Video Encoding
   href: articles/video/encoding-quality/rate-control/Video-Encoding-VBR.html
-- uid: Video-Encoding-VBV
+- uid: Learn-Video-Encoding-VBV
   name: Video Buffering Verifier (VBV)
   href: articles/video/encoding-quality/rate-control/Video-Encoding-VBV.html
-- uid: Video-Field-Order
+- uid: Learn-Video-Field-Order
   name: Video Field Order
   href: articles/video/frame-timing/interlacing-and-cadence/Video-Field-Order.html
-- uid: Video-Film-Grain
+- uid: Learn-Video-Film-Grain
   name: Film Grain in Compressed Video
   href: articles/video/encoding-quality/quality-changes-artifacts/Video-Film-Grain.html
-- uid: Video-Frame-Rate
+- uid: Learn-Video-Frame-Rate
   name: Video Frame Rate
   href: articles/video/frame-timing/frame-rates/Video-Frame-Rate.html
-- uid: Video-Gamma
+- uid: Learn-Video-Gamma
   name: Video Gamma
   href: articles/video/color-standards/transfer-functions/Video-Gamma.html
-- uid: Video-Generation-Loss
+- uid: Learn-Video-Generation-Loss
   name: Video Generation Loss
   href: articles/video/encoding-quality/quality-changes-artifacts/Video-Generation-Loss.html
-- uid: Video-GOP
+- uid: Learn-Video-GOP
   name: Groups of Pictures (GOPs)
   href: articles/video/compression/picture-prediction-and-random-access/Video-GOP.html
-- uid: Video-Keyframes
+- uid: Learn-Video-Keyframes
   name: Video Keyframes and Random Access
   href: articles/video/compression/picture-prediction-and-random-access/Video-Keyframes.html
-- uid: Video-MV-HEVC-Spatial
+- uid: Learn-Video-MV-HEVC-Spatial
   name: MV-HEVC and Spatial Video
   href: articles/video/stereoscopic-spatial/Video-MV-HEVC-Spatial.html
-- uid: Video-NV12
+- uid: Learn-Video-NV12
   name: NV12 Pixel Format
   href: articles/video/color-pixel-formats/pixel-layouts/Video-NV12.html
-- uid: Video-P010
+- uid: Learn-Video-P010
   name: P010 Pixel Format
   href: articles/video/color-pixel-formats/pixel-layouts/Video-P010.html
-- uid: Video-Pixel-Aspect-Ratio
+- uid: Learn-Video-Pixel-Aspect-Ratio
   name: Video Pixel Aspect Ratio
   href: articles/video/geometry/aspect-ratios/Video-Pixel-Aspect-Ratio.html
-- uid: Video-Pixel-Formats
+- uid: Learn-Video-Pixel-Formats
   name: Pixel Formats and Memory Layout
   href: articles/video/color-pixel-formats/pixel-layouts/Video-Pixel-Formats.html
-- uid: Video-Quality-PSNR
+- uid: Learn-Video-Quality-PSNR
   name: Peak Signal-to-Noise Ratio (PSNR) for Video
   href: articles/video/encoding-quality/quality-metrics/Video-Quality-PSNR.html
-- uid: Video-Quality-SSIM
+- uid: Learn-Video-Quality-SSIM
   name: Structural Similarity (SSIM) for Video
   href: articles/video/encoding-quality/quality-metrics/Video-Quality-SSIM.html
-- uid: Video-Quality-VMAF
+- uid: Learn-Video-Quality-VMAF
   name: VMAF Video Quality Metric
   href: articles/video/encoding-quality/quality-metrics/Video-Quality-VMAF.html
-- uid: Video-Resolution
+- uid: Learn-Video-Resolution
   name: Video Resolution
   href: articles/video/geometry/Video-Resolution.html
-- uid: Video-RGB
+- uid: Learn-Video-RGB
   name: RGB Video
   href: articles/video/color-pixel-formats/Video-RGB.html
-- uid: Video-Rotation-Metadata
+- uid: Learn-Video-Rotation-Metadata
   name: Video Rotation Metadata
   href: articles/video/geometry/Video-Rotation-Metadata.html
-- uid: Video-Scaling
+- uid: Learn-Video-Scaling
   name: How Video Scaling Works
   href: articles/video/scaling-image-processing/Video-Scaling.html
-- uid: Video-Scaling-Bicubic
+- uid: Learn-Video-Scaling-Bicubic
   name: Bicubic Video Scaling
   href: articles/video/scaling-image-processing/kernels/Video-Scaling-Bicubic.html
-- uid: Video-Scaling-Bilinear
+- uid: Learn-Video-Scaling-Bilinear
   name: Bilinear Video Scaling
   href: articles/video/scaling-image-processing/kernels/Video-Scaling-Bilinear.html
-- uid: Video-Scaling-EWA-Lanczos
+- uid: Learn-Video-Scaling-EWA-Lanczos
   name: EWA Lanczos (Jinc) Video Scaling
   href: articles/video/scaling-image-processing/kernels/Video-Scaling-EWA-Lanczos.html
-- uid: Video-Scaling-Lanczos
+- uid: Learn-Video-Scaling-Lanczos
   name: Lanczos Video Scaling
   href: articles/video/scaling-image-processing/kernels/Video-Scaling-Lanczos.html
-- uid: Video-Scaling-Nearest-Neighbor
+- uid: Learn-Video-Scaling-Nearest-Neighbor
   name: Nearest-Neighbor Video Scaling
   href: articles/video/scaling-image-processing/kernels/Video-Scaling-Nearest-Neighbor.html
-- uid: Video-Scaling-Ringing
+- uid: Learn-Video-Scaling-Ringing
   name: Scaling Ringing
   href: articles/video/scaling-image-processing/Video-Scaling-Ringing.html
-- uid: Video-Scaling-Spline
+- uid: Learn-Video-Scaling-Spline
   name: Spline Video Scaling
   href: articles/video/scaling-image-processing/kernels/Video-Scaling-Spline.html
-- uid: Video-Sharpening
+- uid: Learn-Video-Sharpening
   name: Video Sharpening
   href: articles/video/scaling-image-processing/image-cleanup/Video-Sharpening.html
-- uid: Video-Spatial-Aliasing
+- uid: Learn-Video-Spatial-Aliasing
   name: Spatial Aliasing in Video
   href: articles/video/scaling-image-processing/Video-Spatial-Aliasing.html
-- uid: Video-Stereoscopic
+- uid: Learn-Video-Stereoscopic
   name: How Stereoscopic Video Works
   href: articles/video/stereoscopic-spatial/Video-Stereoscopic.html
-- uid: Video-YCbCr
+- uid: Learn-Video-YCbCr
   name: YCbCr Video
   href: articles/video/color-pixel-formats/Video-YCbCr.html
-- uid: Virtual-Surround
+- uid: Learn-Virtual-Surround
   name: Virtual Surround
   href: articles/audio/channels/Virtual-Surround.html
-- uid: Vorbis
+- uid: Learn-Vorbis
   name: Vorbis Audio
   href: articles/audio/formats/lossy/Vorbis.html
-- uid: WavPack
+- uid: Learn-WavPack
   name: WavPack Audio
   href: articles/audio/formats/lossless/WavPack.html
-- uid: WAV-RIFF-Container
+- uid: Learn-WAV-RIFF-Container
   name: WAV and RIFF
   href: articles/media-files/containers/audio-oriented/WAV-RIFF-Container.html
-- uid: WebM-Container
+- uid: Learn-WebM-Container
   name: WebM Container
   href: articles/media-files/containers/matroska-family/WebM-Container.html
-- uid: WMA
+- uid: Learn-WMA
   name: Windows Media Audio (WMA)
   href: articles/audio/formats/lossy/WMA.html
-- uid: WMA-Lossless
+- uid: Learn-WMA-Lossless
   name: WMA Lossless Audio
   href: articles/audio/formats/lossless/WMA-Lossless.html
-- uid: xHE-AAC
+- uid: Learn-xHE-AAC
   name: xHE-AAC Audio
   href: articles/audio/formats/lossy/aac-family/xHE-AAC.html

@@ -1,0 +1,317 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Access control lists: entries, masks and inheritance | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Access control lists assign rights to named identities, but masks, entry order and inheritance determine how visible grants become effective access.">
+  <link rel="canonical" href="https://emby.media/learn/articles/storage/sharing/permissions/Storage-ACLs.html">
+  <meta property="og:title" content="Access control lists: entries, masks and inheritance | Emby Learn">
+  <meta property="og:description" content="Access control lists assign rights to named identities, but masks, entry order and inheritance determine how visible grants become effective access.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/storage/sharing/permissions/Storage-ACLs.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/storage/sharing/permissions/Storage-ACLs.html","url":"https://emby.media/learn/articles/storage/sharing/permissions/Storage-ACLs.html","name":"Access control lists: entries, masks and inheritance","inLanguage":"en","headline":"Access control lists: entries, masks and inheritance","articleSection":"Storage and server platforms","proficiencyLevel":"Beginner","accessMode":"textual","description":"Access control lists assign rights to named identities, but masks, entry order and inheritance determine how visible grants become effective access.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Storage and server platforms","item":"https://emby.media/learn/articles/storage/index.html"},{"@type":"ListItem","position":3,"name":"Shared storage and permissions","item":"https://emby.media/learn/articles/storage/sharing/index.html"},{"@type":"ListItem","position":4,"name":"Access identities and permissions","item":"https://emby.media/learn/articles/storage/sharing/permissions/index.html"},{"@type":"ListItem","position":5,"name":"Access control lists (ACLs)","item":"https://emby.media/learn/articles/storage/sharing/permissions/Storage-ACLs.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Storage-ACLs">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../storage/index.html">Storage and server platforms</a></li>
+              <li><a href="../../../storage/sharing/index.html">Shared storage and permissions</a></li>
+              <li><a href="../../../storage/sharing/permissions/index.html">Access identities and permissions</a></li>
+              <li><span aria-current="page">Access control lists (ACLs)</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Storage-ACLs">
+<h1>Access control lists: entries, masks and inheritance</h1>
+<p class="article-description">Access control lists assign rights to named identities, but masks, entry order and inheritance determine how visible grants become effective access.</p>
+
+
+<p>An access control list gives an object access rules for particular identities. It can express more than one owner, one owning group and an “everyone else” class.</p>
+<p>The phrase “has an ACL” does not identify one universal evaluation algorithm. Linux POSIX-style ACLs and Windows discretionary ACLs have different structures and rules. A network file server may map one arrangement into another.</p>
+<h2 id="a-visible-linux-grant-can-be-capped">A visible Linux grant can be capped</h2>
+<p>An original Linux access ACL is:</p>
+<pre><code class="lang-text">user::rw-
+user:1100:rw-
+group::r--
+mask::r--
+other::---
+</code></pre>
+<p>The owner has read/write access. Named user 1100 also has a visible read/write entry, but the <strong>mask</strong> limits the effective permissions of named users and the applicable group entries. It does not cap the owner or other entry in this model.</p>
+<p>For a nonowner process with UID 1100, the calculation is:</p>
+<pre><code class="lang-text">Named-user entry: rw- = binary 110
+Mask:            r-- = binary 100
+Effective rights: 110 AND 100 = 100 = r--
+Read request: allowed
+Write request: denied
+</code></pre>
+<p>The visible <code>rw-</code> entry is therefore not proof of an effective write grant. Changing the mask can affect several entries, not just the named user whose result you are investigating.</p>
+<p>If a named-user entry matches, that branch is evaluated. A denial there does not simply fall through to the other class to find a more generous permission.</p>
+<h2 id="mode-bits-can-show-the-mask">Mode bits can show the mask</h2>
+<p>With an extended POSIX ACL, the group-class bits displayed by a traditional mode listing correspond to the ACL mask. They do not necessarily describe only the owning group's entry.</p>
+<p>That is why a short <code>ls</code> listing may be insufficient to explain access. Inspect the full ACL, the requested operation and the relevant identity.</p>
+<table>
+<thead>
+<tr>
+<th>ACL element</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Owner entry</td>
+<td>Owner's rights</td>
+</tr>
+<tr>
+<td>Named user entries</td>
+<td>Rights associated with particular UIDs</td>
+</tr>
+<tr>
+<td>Owning/named group entries</td>
+<td>Applicable group rights</td>
+</tr>
+<tr>
+<td>Mask</td>
+<td>Effective ceiling for the group class and named users</td>
+</tr>
+<tr>
+<td>Other entry</td>
+<td>Rights when the earlier applicable classes do not match</td>
+</tr>
+</tbody>
+</table>
+<p>Directory search and listing rights still matter before a file's ACL can be used. An effective read grant on a film does not bypass a blocked directory component.</p>
+<h2 id="a-new-child-can-have-fewer-rights-than-its-parent">A new child can have fewer rights than its parent</h2>
+<p>Use the preceding access ACL as a starting idea, but consider a directory with this separate <strong>default</strong> ACL:</p>
+<pre><code class="lang-text">default:user::rwx
+default:user:1100:rwx
+default:group::r-x
+default:mask::rwx
+default:other::---
+</code></pre>
+<p>An importer creates an ordinary file and requests mode 0640. The new object's access ACL is derived from the default ACL, then constrained by the requested mode. The owner-class ceiling is read/write, the group-class ceiling is read, and the other-class ceiling is none.</p>
+<p>The inherited named-user entry may still visibly include broader permissions, but its effective access is constrained by the resulting mask. UID 1100 does not get write merely because the parent's default named-user entry contained write.</p>
+<p>If a later creation requests mode 0660 instead, its group-class ceiling includes write, so the resulting mask can permit the named user's write in this example. These are two different creation requests under the same default policy.</p>
+<table>
+<thead>
+<tr>
+<th>New file's requested mode</th>
+<th>Group-class ceiling</th>
+<th>Named user 1100's effective read/write result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0640</td>
+<td>Read</td>
+<td>Read, without write</td>
+</tr>
+<tr>
+<td>0660</td>
+<td>Read and write</td>
+<td>Read and write</td>
+</tr>
+</tbody>
+</table>
+<p>When a default ACL is present, this inheritance-and-requested-mode process determines the initial ACL; applying a separate simplistic “always subtract umask from the inherited ACL” rule does not describe the Linux contract. Without a default ACL, ordinary creation mode and umask supply the basic permissions.</p>
+<p>This explains why two import tools can create different access results in the same directory. Inspect the actual child ACL and the creator's requested mode rather than assuming that the parent dictates one identical outcome for every file.</p>
+<h2 id="a-windows-dacl-is-an-ordered-list">A Windows DACL is an ordered list</h2>
+<p>A Windows DACL contains access-control entries for security identifiers. Entries can allow or deny rights. The access check evaluates the entries in order while tracking the requested rights; ordering is part of the meaning.</p>
+<p>Consider an original simplified ordered list:</p>
+<pre><code class="lang-text">1. DENY  service-SID WRITE
+2. ALLOW media-group READ, WRITE
+Process belongs to service-SID and media-group
+</code></pre>
+<p>A read-only request can be satisfied by the group allow. A write request is denied by the earlier applicable deny. This example assumes the shown rights and identities; it does not model every Windows right or inheritance flag.</p>
+<p>It would be inaccurate to describe every possible DACL as an unordered union of allows followed by one universal denial rule. Windows tools normally maintain canonical ordering, and inherited entries have their own ordering and applicability.</p>
+<p>A null DACL and an empty DACL are also different: the former has no discretionary ACL restriction, while the latter grants no discretionary access. That distinction is useful when reading security descriptors; it is not a suggestion to remove a DACL to solve a storage error.</p>
+<h2 id="inheritance-describes-creation-and-propagation">Inheritance describes creation and propagation</h2>
+<p>A Linux directory's <strong>default ACL</strong> supplies a starting ACL for newly created child objects, constrained by the requested creation mode. Its <strong>access ACL</strong> controls access to the directory itself. Editing a default ACL does not retroactively rewrite every existing child's access ACL.</p>
+<p>Windows inheritance uses entry flags and propagation behavior. A child can contain explicit and inherited entries, and protected inheritance changes the result. Copying or moving content can also affect how the destination obtains its security state, depending on the operation and tool.</p>
+<p>For an Emby library, compare the ACL on an old readable file with one newly imported file that fails. The parent policy, creation identity and actual child ACL can explain the difference. A grant visible on the parent is only part of that lifecycle; inspect the child's effective access under the running server identity.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Storage-Permissions.html" title="File ownership and permissions across a library path">File ownership and permissions across a library path</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Storage-Linux-IDs.html" title="Linux user and group IDs in storage access">Linux user and group IDs in storage access</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../protocols/Storage-SMB.html" title="SMB file shares: sessions, shares and file operations">SMB file shares: sessions, shares and file operations</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://man7.org/linux/man-pages/man5/acl.5.html" title="Linux ACL specification and access checks">Linux ACL specification and access checks</a></li>
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/secauthz/dacls-and-aces" title="Microsoft DACLs and access-control entries">Microsoft DACLs and access-control entries</a></li>
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/secauthz/how-dacls-control-access-to-an-object" title="Microsoft: how access checks work">Microsoft: how access checks work</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Storage-ACLs%0A*%20Title%3A%20Access%20control%20lists%3A%20entries%2C%20masks%20and%20inheritance%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

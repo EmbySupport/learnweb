@@ -1,0 +1,264 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Powerline networking and a variable shared channel | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Powerline networking carries data over electrical wiring through a shared channel whose usable rate depends on the supported PHY/link family and changing path conditions.">
+  <link rel="canonical" href="https://emby.media/learn/articles/networking/performance/Network-Powerline.html">
+  <meta property="og:title" content="Powerline networking and a variable shared channel | Emby Learn">
+  <meta property="og:description" content="Powerline networking carries data over electrical wiring through a shared channel whose usable rate depends on the supported PHY/link family and changing path conditions.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/networking/performance/Network-Powerline.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/networking/performance/Network-Powerline.html","url":"https://emby.media/learn/articles/networking/performance/Network-Powerline.html","name":"Powerline networking and a variable shared channel","inLanguage":"en","headline":"Powerline networking and a variable shared channel","articleSection":"Networking and remote access","proficiencyLevel":"Beginner","accessMode":"textual","description":"Powerline networking carries data over electrical wiring through a shared channel whose usable rate depends on the supported PHY/link family and changing path conditions.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Networking and remote access","item":"https://emby.media/learn/articles/networking/index.html"},{"@type":"ListItem","position":3,"name":"Network performance","item":"https://emby.media/learn/articles/networking/performance/index.html"},{"@type":"ListItem","position":4,"name":"Powerline networking","item":"https://emby.media/learn/articles/networking/performance/Network-Powerline.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Network-Powerline">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../networking/index.html">Networking and remote access</a></li>
+              <li><a href="../../networking/performance/index.html">Network performance</a></li>
+              <li><span aria-current="page">Powerline networking</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Network-Powerline">
+<h1>Powerline networking and a variable shared channel</h1>
+<p class="article-description">Powerline networking carries data over electrical wiring through a shared channel whose usable rate depends on the supported PHY/link family and changing path conditions.</p>
+
+
+<p>Powerline adapters can carry network traffic over a building’s electrical wiring. To the attached Ethernet devices, a pair can provide another link in the server path.</p>
+<p>The electrical communication channel has its own modulation, error handling and shared-resource behavior.</p>
+<h2 id="the-label-describes-a-phy-family-and-capability">The label describes a PHY family and capability</h2>
+<p>The cited G.hn references describe wireline home-network PHY and data-link roles. Other powerline families have their own protocols; a generic “powerline” label does not establish interoperability.</p>
+<table>
+<thead>
+<tr>
+<th>Advertised or observed property</th>
+<th>What it describes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Maximum PHY capability</td>
+<td>A supported physical operation under its defined conditions</td>
+</tr>
+<tr>
+<td>Current link indication</td>
+<td>The device’s present interpreted link state/rate</td>
+</tr>
+<tr>
+<td>Useful transferred media bytes</td>
+<td>Application delivery over the actual path</td>
+</tr>
+<tr>
+<td>Ethernet socket rate</td>
+<td>Another attached link’s negotiated capability</td>
+</tr>
+</tbody>
+</table>
+<p>Those quantities should be kept separate. A fast Ethernet socket does not remove a slower electrical segment.</p>
+<h2 id="the-electrical-path-can-vary">The electrical path can vary</h2>
+<p>Wiring layout, coupling, connected loads and interference can change the available channel. Signal processing can alter its usable carriers/coding and retry behavior.</p>
+<p>A nearby wall socket is not necessarily the same communication path as another nearby socket. The actual supported adapter and electrical arrangement determine the result.</p>
+<h2 id="a-long-average-can-hide-short-service-changes">A long average can hide short service changes</h2>
+<p>Use this original reduced payload service:</p>
+<pre><code class="lang-json">{
+  &quot;intervalSeconds&quot;: 4,
+  &quot;availableMbitPerSecond&quot;: [60, 30]
+}
+</code></pre>
+<p>Equal four-second intervals average forty-five Mbit/s. A fifty-Mbit/s media demand still exceeds both that average and the second interval’s available service.</p>
+<p>A lower demand can fit the average yet need buffer tolerance during a dip. The time trace and usable-media reserve determine that relationship.</p>
+<p>This exercise is not a claimed powerline benchmark or a conversion from an advertised adapter number.</p>
+<h2 id="measure-its-place-in-the-complete-route">Measure its place in the complete route</h2>
+<p>Compare a transfer over the intended adapter path with an appropriate reference path using the same sender, receiver and direction.</p>
+<p>That separates the electrical segment’s effect from server preparation, remote upload capacity or receiver performance. <a href="Network-Measure-Streaming.html">Streaming-path measurements</a> develops those observation boundaries.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="capacity/Network-Throughput.html" title="Network throughput and useful delivery rate">Network throughput and useful delivery rate</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="capacity/Network-Jitter.html" title="Network jitter and changing packet delay">Network jitter and changing packet delay</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="capacity/Network-Packet-Loss.html" title="Packet loss, recovery and media deadlines">Packet loss, recovery and media deadlines</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Network-Measure-Streaming.html" title="Measuring the actual streaming delivery path">Measuring the actual streaming delivery path</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.itu.int/rec/T-REC-G.9960/en" title="ITU-T G.9960: Wireline home-network PHY and architecture">ITU-T G.9960: Wireline home-network PHY and architecture</a></li>
+			            <li><a class="seealso-link" href="https://www.itu.int/rec/T-REC-G.9961/en" title="ITU-T G.9961: Wireline home-network data link">ITU-T G.9961: Wireline home-network data link</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc2330.html" title="RFC 2330: IP performance metrics framework">RFC 2330: IP performance metrics framework</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Network-Powerline%0A*%20Title%3A%20Powerline%20networking%20and%20a%20variable%20shared%20channel%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

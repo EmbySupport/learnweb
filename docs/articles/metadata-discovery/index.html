@@ -1,0 +1,214 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Overview: Metadata and discovery | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Metadata describes media and supplies the identities, artwork and relationships used to organize and discover a collection.">
+  <link rel="canonical" href="https://emby.media/learn/articles/metadata-discovery/index.html">
+  <meta property="og:title" content="Overview: Metadata and discovery | Emby Learn">
+  <meta property="og:description" content="Metadata describes media and supplies the identities, artwork and relationships used to organize and discover a collection.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://emby.media/learn/articles/metadata-discovery/index.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://emby.media/learn/articles/metadata-discovery/index.html","url":"https://emby.media/learn/articles/metadata-discovery/index.html","name":"Overview: Metadata and discovery","inLanguage":"en","description":"Metadata describes media and supplies the identities, artwork and relationships used to organize and discover a collection.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Metadata and discovery","item":"https://emby.media/learn/articles/metadata-discovery/index.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../favicon.ico">
+  <script type="text/javascript" src="../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../styles/docfx.css">
+  <link rel="stylesheet" href="../../styles/main.css">
+  <link rel="stylesheet" href="../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../toc.html">
+  <meta property="docfx:tocrel" content="../toc.html">
+  <meta property="docfx:uid" content="Learn-Index-metadata-discovery">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  <script type="text/javascript" src="../../nav.js"></script>
+  <script type="text/javascript" src="../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../index.html">Emby Learn</a></li>
+              <li><span aria-current="page">Metadata and discovery</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-12">
+            <article class="content wrap" id="_content" data-uid="Learn-Index-metadata-discovery">
+<h1>Overview: Metadata and discovery</h1>
+<p class="article-description">Metadata describes media and supplies the identities, artwork and relationships used to organize and discover a collection.</p>
+
+
+<p>A title, poster and episode number are statements about a media item, not the item's encoded picture or sound. Those statements can come from the file, a nearby sidecar, an online provider or a user's own corrections.</p>
+<p>The topics below explain how identifiers connect those sources, how conflicting values are resolved, and how local formats preserve them. Artwork, localization and discovery build on that information. For an Emby library, the important question is often which source supplied a value and why that source was matched to this item.</p>
+<!-- learn-index:children:start -->
+<div class="learn-index-children">
+<ul>
+<li><p><a href="understanding/index.html">Understanding metadata</a><br>
+Metadata fundamentals distinguish descriptive and technical information, its storage location and the rules for choosing among sources.</p>
+</li>
+<li><p><a href="identification/index.html">Identification and matching</a><br>
+Media identification connects a source item to the intended catalogue entry using names, identifiers and other matching evidence.</p>
+</li>
+<li><p><a href="services/index.html">Metadata services</a><br>
+Metadata services supply catalogue information or artwork through provider-specific coverage, identities and interfaces.</p>
+</li>
+<li><p><a href="local-formats/index.html">Local metadata formats</a><br>
+Local metadata formats store descriptive or technical information within media files or nearby companion files.</p>
+</li>
+<li><p><a href="fields/index.html">Metadata fields and localization</a><br>
+Metadata fields represent values and relationships whose meaning depends on type, vocabulary and context.</p>
+</li>
+<li><p><a href="artwork/index.html">Artwork and preview images</a><br>
+Artwork roles identify which image belongs in a particular library or playback presentation.</p>
+</li>
+<li><p><a href="discovery/index.html">Finding related media</a><br>
+Metadata-driven discovery uses indexed values and relationships to support search, browsing and recommendations.</p>
+</li>
+</ul>
+</div>
+<!-- learn-index:children:end -->
+
+
+			                      </article>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Index-metadata-discovery%0A*%20Title%3A%20Overview%3A%20Metadata%20and%20discovery%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

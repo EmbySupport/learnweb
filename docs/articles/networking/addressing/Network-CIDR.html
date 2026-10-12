@@ -1,0 +1,305 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Subnets, CIDR and matching routes | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="CIDR notation specifies how many leading address bits form a prefix, defining address membership and the specificity used to choose matching routes.">
+  <link rel="canonical" href="https://emby.media/learn/articles/networking/addressing/Network-CIDR.html">
+  <meta property="og:title" content="Subnets, CIDR and matching routes | Emby Learn">
+  <meta property="og:description" content="CIDR notation specifies how many leading address bits form a prefix, defining address membership and the specificity used to choose matching routes.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/networking/addressing/Network-CIDR.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/networking/addressing/Network-CIDR.html","url":"https://emby.media/learn/articles/networking/addressing/Network-CIDR.html","name":"Subnets, CIDR and matching routes","inLanguage":"en","headline":"Subnets, CIDR and matching routes","articleSection":"Networking and remote access","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"CIDR notation specifies how many leading address bits form a prefix, defining address membership and the specificity used to choose matching routes.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Networking and remote access","item":"https://emby.media/learn/articles/networking/index.html"},{"@type":"ListItem","position":3,"name":"Home network fundamentals","item":"https://emby.media/learn/articles/networking/fundamentals/index.html"},{"@type":"ListItem","position":4,"name":"IP addressing","item":"https://emby.media/learn/articles/networking/addressing/index.html"},{"@type":"ListItem","position":5,"name":"Subnets and CIDR notation","item":"https://emby.media/learn/articles/networking/addressing/Network-CIDR.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Network-CIDR">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../networking/index.html">Networking and remote access</a></li>
+              <li><a href="../../networking/fundamentals/index.html">Home network fundamentals</a></li>
+              <li><a href="../../networking/addressing/index.html">IP addressing</a></li>
+              <li><span aria-current="page">Subnets and CIDR notation</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Network-CIDR">
+<h1>Subnets, CIDR and matching routes</h1>
+<p class="article-description">CIDR notation specifies how many leading address bits form a prefix, defining address membership and the specificity used to choose matching routes.</p>
+
+
+<p>The <code>/24</code> in <code>192.168.50.0/24</code> means that the first twenty-four address bits form the prefix. It does not mean twenty-four devices.</p>
+<p>The remaining eight IPv4 bits give 256 address combinations in that prefix. Prefix length is the information missing when someone describes a network only as “192.168.50.”</p>
+<h2 id="a-25-boundary-cuts-the-final-byte-in-half">A /25 boundary cuts the final byte in half</h2>
+<p>Use the original address 192.168.50.20 with a /25 prefix. The mask is 255.255.255.128.</p>
+<p>The first three bytes are entirely prefix bits. In the last byte, only the high bit belongs to the prefix:</p>
+<pre><code class="lang-text">address last byte:  20 = 00010100
+mask last byte:    128 = 10000000
+AND result:         0 = 00000000
+prefix: 192.168.50.0/25
+</code></pre>
+<p>There are seven remaining bits, giving 128 addresses from 192.168.50.0 through 192.168.50.127.</p>
+<p>Now consider 192.168.50.200. Its final byte has the high bit set, so it belongs to 192.168.50.128/25.</p>
+<table>
+<thead>
+<tr>
+<th>Prefix being compared</th>
+<th>.20 and .200 in the same prefix?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192.168.50.0/24</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>The relevant /25 subdivisions</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>The first three dotted numbers match in both cases. Only the actual prefix tells you whether the local grouping matches.</p>
+<p><img src="images/cidr-prefix-boundaries.png" alt="The original /24 is divided into two /25 ranges, with addresses .20 and .200 in different halves."></p>
+<h2 id="prefix-membership-does-not-require-a-0-ending">Prefix membership does not require a .0 ending</h2>
+<p>A prefix need not end on an eight-bit boundary. The same calculation works for /23, /26 or any other supported length.</p>
+<p>For example, a /23 has 512 IPv4 combinations. The aligned 192.168.50.0/23 block includes both the 192.168.50.* and 192.168.51.* ranges.</p>
+<p>Writing 192.168.50.20/24 as an interface address retains the host’s .20 value and its prefix length. A normalized network-prefix representation uses 192.168.50.0/24. Those strings describe related objects, not interchangeable host destinations.</p>
+<h2 id="total-combinations-differ-from-ordinary-host-allocation">Total combinations differ from ordinary host allocation</h2>
+<p>For IPv4, total combinations are <code>2^(32 - prefix length)</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Prefix</th>
+<th style="text-align: right;">Total combinations</th>
+<th>Interpretation in this example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/24</td>
+<td style="text-align: right;">256</td>
+<td>Ordinary LAN often reserves network/broadcast values</td>
+</tr>
+<tr>
+<td>/25</td>
+<td style="text-align: right;">128</td>
+<td>Same ordinary-LAN reservation convention</td>
+</tr>
+<tr>
+<td>/31</td>
+<td style="text-align: right;">2</td>
+<td>RFC 3021 point-to-point use can use both endpoints</td>
+</tr>
+<tr>
+<td>/32</td>
+<td style="text-align: right;">1</td>
+<td>One address, useful as a host-specific route</td>
+</tr>
+</tbody>
+</table>
+<p>“Subtract two” is therefore not a universal address-count rule.</p>
+<p>IPv6 applies the same prefix-bit idea to 128 bits. A /64 contains <code>2^64</code> address combinations; IPv4’s ordinary network/broadcast subtraction does not carry over unchanged.</p>
+<h2 id="more-specific-matching-routes-win-first">More specific matching routes win first</h2>
+<p>Use this original reduced route table:</p>
+<pre><code class="lang-json">{
+  &quot;destination&quot;: &quot;192.168.50.200&quot;,
+  &quot;routes&quot;: [
+    {&quot;prefix&quot;: &quot;0.0.0.0/0&quot;, &quot;path&quot;: &quot;default&quot;, &quot;metric&quot;: 10},
+    {&quot;prefix&quot;: &quot;192.168.50.0/24&quot;, &quot;path&quot;: &quot;lan&quot;, &quot;metric&quot;: 20},
+    {&quot;prefix&quot;: &quot;192.168.50.128/25&quot;, &quot;path&quot;: &quot;vpn&quot;, &quot;metric&quot;: 500}
+  ],
+  &quot;selectedPath&quot;: &quot;vpn&quot;
+}
+</code></pre>
+<p>All three prefixes include the destination. The /25 is the longest matching prefix and selects the VPN path in this exercise, despite its larger metric.</p>
+<p>Metric comparison is a later choice among otherwise competing route candidates according to the implementation. A low-metric default route does not automatically override every more-specific route.</p>
+<p>A mistaken narrow route can therefore capture only some addresses in what looked like one LAN. <a href="../routers/vpn/Network-VPN-Routing.html">VPN routing</a> develops that overlap.</p>
+<h2 id="routing-and-embys-classification-use-prefixes-for-different-decisions">Routing and Emby’s classification use prefixes for different decisions</h2>
+<p>The operating system uses routes to decide how to send traffic. Emby’s <a class="xref" href="https://emby.media/support/articles/Hosting-Settings.html">LAN Networks setting</a> uses specified ranges in its local/remote policy classification.</p>
+<p>An incorrect /16 instead of /24 can include 256 times as many address combinations. That can broaden the application classification without extending the actual network or creating a route.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Network-IP-Addresses.html" title="IP addresses and reachable interfaces">IP addresses and reachable interfaces</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Network-Private-Public.html" title="Private, public and special-purpose IP addresses">Private, public and special-purpose IP addresses</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../routers/vpn/Network-VPN-Routing.html" title="VPN routing, overlapping prefixes and split tunneling">VPN routing, overlapping prefixes and split tunneling</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc4632" title="RFC 4632: CIDR addressing and aggregation">RFC 4632: CIDR addressing and aggregation</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc3021.html" title="RFC 3021: IPv4 /31 point-to-point prefixes">RFC 3021: IPv4 /31 point-to-point prefixes</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc4291" title="RFC 4291: IPv6 addressing architecture">RFC 4291: IPv6 addressing architecture</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Hosting-Settings.html" title="Emby: Network settings and reported addresses">Emby: Network settings and reported addresses</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Network-CIDR%0A*%20Title%3A%20Subnets%2C%20CIDR%20and%20matching%20routes%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

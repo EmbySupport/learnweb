@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Duplicate library entries | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Duplicate library entries require comparing catalogue identity, edition and actual resource relationships rather than relying on matching titles or posters.">
+  <link rel="canonical" href="https://emby.media/learn/articles/libraries-collections/movies/Library-Duplicates.html">
+  <meta property="og:title" content="Duplicate library entries | Emby Learn">
+  <meta property="og:description" content="Duplicate library entries require comparing catalogue identity, edition and actual resource relationships rather than relying on matching titles or posters.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/libraries-collections/movies/Library-Duplicates.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/libraries-collections/movies/Library-Duplicates.html","url":"https://emby.media/learn/articles/libraries-collections/movies/Library-Duplicates.html","name":"Duplicate library entries","inLanguage":"en","headline":"Duplicate library entries","articleSection":"Libraries and media collections","proficiencyLevel":"Beginner","accessMode":"textual","description":"Duplicate library entries require comparing catalogue identity, edition and actual resource relationships rather than relying on matching titles or posters.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Libraries and media collections","item":"https://emby.media/learn/articles/libraries-collections/index.html"},{"@type":"ListItem","position":3,"name":"Movies and related videos","item":"https://emby.media/learn/articles/libraries-collections/movies/index.html"},{"@type":"ListItem","position":4,"name":"Duplicate library entries","item":"https://emby.media/learn/articles/libraries-collections/movies/Library-Duplicates.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Library-Duplicates">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../libraries-collections/index.html">Libraries and media collections</a></li>
+              <li><a href="../../libraries-collections/movies/index.html">Movies and related videos</a></li>
+              <li><span aria-current="page">Duplicate library entries</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Library-Duplicates">
+<h1>Duplicate library entries</h1>
+<p class="article-description">Duplicate library entries require comparing catalogue identity, edition and actual resource relationships rather than relying on matching titles or posters.</p>
+
+
+<p>Two identical-looking posters can represent an accidental duplicate, two useful encodes, two cuts, or two different works that were matched incorrectly. The display is evidence about presentation, not proof that the underlying resources are interchangeable.</p>
+<p>The first useful question is therefore “What is duplicated?” It may be the bytes, the work description, a storage route or only the visible label.</p>
+<h2 id="four-situations-that-look-similar">Four situations that look similar</h2>
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th>Possible relationship</th>
+<th>Evidence that resolves it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Different paths, equal complete-file hashes</td>
+<td>Copied resources</td>
+<td>Byte equality plus confirmation of the represented work</td>
+</tr>
+<tr>
+<td>Different bytes, same cut and timeline</td>
+<td>Alternate encodes</td>
+<td>Edition, scene sequence and technical comparison</td>
+</tr>
+<tr>
+<td>Same provider movie ID, different sequence</td>
+<td>Different cuts of one work</td>
+<td>Edition and timeline comparison</td>
+</tr>
+<tr>
+<td>One resource reachable through two configured routes</td>
+<td>Repeated catalogue exposure</td>
+<td>Resolved paths, storage mappings and library scope</td>
+</tr>
+</tbody>
+</table>
+<p><img src="images/duplicate-evidence.png" alt="An original classification diagram separates identical resources, alternate encodes, different editions and unresolved work matches."></p>
+<p>The routes in the diagram are explanatory choices, not an automatic Emby deduplication algorithm.</p>
+<p>A collection can also make a movie appear in more than one browsing context without duplicating either the item or file. Count the underlying item identities and resources before treating repeated visibility as an error.</p>
+<h2 id="byte-equality-and-semantic-equality">Byte equality and semantic equality</h2>
+<p>A cryptographic hash such as SHA-256 is a compact fingerprint of bytes. Matching hashes over the complete files provide extremely strong evidence that the resource contents agree. Different paths can still locate such copies.</p>
+<p>A hash difference is less informative. Retagging a file, changing its container packaging or re-encoding it can change the complete-file bytes while preserving the same cut. A hash cannot answer whether two different resources should be grouped as <a href="editions-versions/Library-Alternate-Versions.html">alternate versions</a>.</p>
+<p>Names and provider IDs operate at the other end of the evidence scale. They describe or identify catalogue entities. Two cuts can share a movie ID, while two unrelated films can acquire the same poster after a bad match. An identity mistake must be corrected at the descriptive layer before a resource relationship can be assessed confidently.</p>
+<h2 id="investigating-two-entries">Investigating two entries</h2>
+<p>Suppose two entries named <em>Night Ferry</em> appear in a library. One offers a 108-minute 1080p source; the other offers a 121-minute 4K source.</p>
+<p>The difference in resolution suggests a possible version relationship. The difference in runtime raises another question. In this fictional case, checking the sequence reveals that the longer source contains a 13-minute insert. The entries describe two cuts, not just a higher-resolution copy.</p>
+<p>That distinction affects the proposed result. A work-level presentation might collect both choices under one film. It should still retain the cut labels and recognize that <a href="../history/Library-Resume-Positions.html">resume positions</a>, subtitles and derived previews can differ. Collapsing resource identity would lose useful information even if the browsing grid became less crowded.</p>
+<p>Now suppose both resources instead have the same complete-file hash. The explanation is likely copied bytes or overlapping exposure, but the current catalogue state still matters. Which item does each playlist refer to? Where is viewer history associated? Are the records in different configured library contexts? Those relationships can outlive the superficial poster duplication.</p>
+<h2 id="why-refreshing-the-picture-is-not-a-duplicate-test">Why refreshing the picture is not a duplicate test</h2>
+<p>A metadata refresh can change a description or image. It cannot turn two files into one, nor establish their scene correspondence merely by retrieving a shared work record.</p>
+<p>Conversely, changing a path can alter recognition while leaving the film's work identity unchanged. <a href="../scanning/Library-Scanning.html">Library scanning</a> has to reconcile that resource change with the catalogue. Reappearance after a scan can reflect unresolved storage or identity evidence rather than a stubborn artwork cache.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../concepts/Library-Media-Identity.html" title="Media item identity">Media item identity</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="editions-versions/Library-Alternate-Versions.html" title="Alternate media versions">Alternate media versions</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="editions-versions/Library-Movie-Editions.html" title="Movie editions and cuts">Movie editions and cuts</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../scanning/Library-Scanning.html" title="Library scanning and catalogue reconciliation">Library scanning and catalogue reconciliation</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../metadata-discovery/identification/Metadata-Identification.html" title="Media identification">Media identification</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://csrc.nist.gov/pubs/fips/180-4/upd1/final" title="NIST: Secure Hash Standard, FIPS 180-4">NIST: Secure Hash Standard, FIPS 180-4</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Model.Dto.BaseItemDto.html" title="Emby API: BaseItemDto">Emby API: BaseItemDto</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Metadata-manager.html" title="Emby: Metadata manager">Emby: Metadata manager</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Movie-Naming.html" title="Emby: Movie naming and media relationships">Emby: Movie naming and media relationships</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Library-Duplicates%0A*%20Title%3A%20Duplicate%20library%20entries%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

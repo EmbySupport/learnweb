@@ -1,0 +1,292 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Browser media playback and its loading paths | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Browser media playback combines web application logic, browser media APIs, permitted resource loading and the available decoding and presentation path.">
+  <link rel="canonical" href="https://emby.media/learn/articles/playback-streaming/players/browser/Playback-Browser.html">
+  <meta property="og:title" content="Browser media playback and its loading paths | Emby Learn">
+  <meta property="og:description" content="Browser media playback combines web application logic, browser media APIs, permitted resource loading and the available decoding and presentation path.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/playback-streaming/players/browser/Playback-Browser.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/playback-streaming/players/browser/Playback-Browser.html","url":"https://emby.media/learn/articles/playback-streaming/players/browser/Playback-Browser.html","name":"Browser media playback and its loading paths","inLanguage":"en","headline":"Browser media playback and its loading paths","articleSection":"Playback and streaming","proficiencyLevel":"Beginner","accessMode":"textual","description":"Browser media playback combines web application logic, browser media APIs, permitted resource loading and the available decoding and presentation path.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Playback and streaming","item":"https://emby.media/learn/articles/playback-streaming/index.html"},{"@type":"ListItem","position":3,"name":"Players and playback environments","item":"https://emby.media/learn/articles/playback-streaming/players/index.html"},{"@type":"ListItem","position":4,"name":"Browser playback","item":"https://emby.media/learn/articles/playback-streaming/players/browser/index.html"},{"@type":"ListItem","position":5,"name":"Browser media playback","item":"https://emby.media/learn/articles/playback-streaming/players/browser/Playback-Browser.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Playback-Browser">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../playback-streaming/index.html">Playback and streaming</a></li>
+              <li><a href="../../../playback-streaming/players/index.html">Players and playback environments</a></li>
+              <li><a href="../../../playback-streaming/players/browser/index.html">Browser playback</a></li>
+              <li><span aria-current="page">Browser media playback</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Playback-Browser">
+<h1>Browser media playback and its loading paths</h1>
+<p class="article-description">Browser media playback combines web application logic, browser media APIs, permitted resource loading and the available decoding and presentation path.</p>
+
+
+<p>A browser player uses the browser's media facilities inside a web application. The application chooses a resource or delivery path, while the browser performs supported media parsing, decoding and presentation.</p>
+<p>The operating system may contribute decoders or output facilities, but a format available to a native application is not automatically exposed through every browser media API.</p>
+<h2 id="two-ways-to-supply-the-media">Two ways to supply the media</h2>
+<p>A web player can assign a media resource directly to an <a href="Playback-HTML-Media.html">HTML media element</a>. The browser then manages the supported resource-loading path.</p>
+<p>Alternatively, application JavaScript can fetch encoded media and feed it through <a href="Playback-MSE.html">Media Source Extensions</a>. A library can use that arrangement to implement segmented delivery and adaptation over the browser's underlying media engine.</p>
+<p><img src="images/browser-loading-paths.png" alt="An original browser-path diagram compares direct resource loading with application fetching and MSE appends."></p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>What the application supplies</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Direct media resource</td>
+<td>A resource locator and player configuration</td>
+</tr>
+<tr>
+<td>Script-managed MSE</td>
+<td>Encoded byte-stream data, append scheduling and media-selection logic</td>
+</tr>
+</tbody>
+</table>
+<p>A browser with native HLS resource support can interpret an HLS URL through its own path. A browser using an HLS JavaScript library may instead receive suitable media through MSE. The same protocol label can therefore conceal different loading and compatibility requirements.</p>
+<h2 id="resource-access-and-script-access-have-different-rules">Resource access and script access have different rules</h2>
+<p>Opening a media URL successfully is useful evidence that a particular navigation or loading route can access it. It does not establish that another web page's JavaScript may read its response.</p>
+<p>Consider a fictional web app served from one origin and a media resource served from another. Direct media-element playback can work in circumstances where a script cannot read the cross-origin response. A script-managed player using Fetch needs the appropriate cross-origin response behavior, including credential handling when applicable.</p>
+<p>This is a loading-path issue, separate from whether the downloaded encoded pictures could be decoded. A permissive container parser does not change the browser's origin rules.</p>
+<p>The same distinction matters for cast receivers implemented as web applications: the phone's successful request and the receiver's allowed request have different origins and access contexts.</p>
+<h2 id="the-supported-configuration-is-the-selected-one">The supported configuration is the selected one</h2>
+<p>Browser playback depends on more than a codec family name. Container and byte-stream format, profile, dimensions, cadence, selected audio and text handling all participate.</p>
+<p>A browser can accept a simple MP4 resource without accepting an arbitrary MP4 byte sequence through MSE. A chosen <a href="Playback-MSE.html">MSE byte-stream format</a> has its own initialization and fragment structure.</p>
+<p>For an Emby Web session, the server can adapt the selected media to the path the app and browser can use. That can mean packaging changes, audio conversion or video conversion depending on the actual incompatibility.</p>
+<h2 id="diagnose-the-stage-that-produced-the-observation">Diagnose the stage that produced the observation</h2>
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th>Stage to examine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Media resource request is refused</td>
+<td>Loading and access context</td>
+</tr>
+<tr>
+<td>Script cannot read a cross-origin response</td>
+<td>Fetch/CORS behavior for that request</td>
+</tr>
+<tr>
+<td>MSE append reports an error</td>
+<td>Byte-stream interpretation and append state</td>
+</tr>
+<tr>
+<td>play() rejects before presentation starts</td>
+<td>Promise result, including policy or loading failure</td>
+</tr>
+<tr>
+<td>Pictures begin and then drop</td>
+<td>Decode/presentation timing and available media</td>
+</tr>
+</tbody>
+</table>
+<p>An <a href="Playback-Autoplay.html">autoplay restriction</a> can prevent an otherwise supported source from starting without the required interaction. A <a href="Playback-Codec-Detection.html">codec prediction</a> can report a plausible configuration before any actual resource has been fetched.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-HTML-Media.html" title="HTML media elements, state and time ranges">HTML media elements, state and time ranges</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-MSE.html" title="Media Source Extensions (MSE) and scripted media delivery">Media Source Extensions (MSE) and scripted media delivery</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Codec-Detection.html" title="Browser codec detection and capability predictions">Browser codec detection and capability predictions</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Autoplay.html" title="Browser autoplay restrictions and playback permission">Browser autoplay restrictions and playback permission</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../protected/Playback-EME.html" title="Encrypted Media Extensions (EME) and browser key sessions">Encrypted Media Extensions (EME) and browser key sessions</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Playback-Native-Players.html" title="Native media players and their playback engines">Native media players and their playback engines</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://html.spec.whatwg.org/multipage/media.html" title="WHATWG: HTML media elements and playback">WHATWG: HTML media elements and playback</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/media-source-2/" title="W3C Working Draft: Media Source Extensions">W3C Working Draft: Media Source Extensions</a></li>
+			            <li><a class="seealso-link" href="https://fetch.spec.whatwg.org/" title="WHATWG: Fetch and cross-origin requests">WHATWG: Fetch and cross-origin requests</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/media-capabilities/" title="W3C Working Draft: Media Capabilities">W3C Working Draft: Media Capabilities</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html" title="Emby: Playback methods">Emby: Playback methods</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Playback-Browser%0A*%20Title%3A%20Browser%20media%20playback%20and%20its%20loading%20paths%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

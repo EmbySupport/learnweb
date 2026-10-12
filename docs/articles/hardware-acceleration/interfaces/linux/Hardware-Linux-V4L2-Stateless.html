@@ -1,0 +1,331 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>V4L2 stateless decoding and the Request API | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="V4L2 stateless decoding makes the application supply per-picture decoding state, references and encoded data through requests that bind the operation&#8217;s controls and buffers.">
+  <link rel="canonical" href="https://emby.media/learn/articles/hardware-acceleration/interfaces/linux/Hardware-Linux-V4L2-Stateless.html">
+  <meta property="og:title" content="V4L2 stateless decoding and the Request API | Emby Learn">
+  <meta property="og:description" content="V4L2 stateless decoding makes the application supply per-picture decoding state, references and encoded data through requests that bind the operation&#8217;s controls and buffers.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/hardware-acceleration/interfaces/linux/Hardware-Linux-V4L2-Stateless.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/hardware-acceleration/interfaces/linux/Hardware-Linux-V4L2-Stateless.html","url":"https://emby.media/learn/articles/hardware-acceleration/interfaces/linux/Hardware-Linux-V4L2-Stateless.html","name":"V4L2 stateless decoding and the Request API","inLanguage":"en","headline":"V4L2 stateless decoding and the Request API","articleSection":"Media hardware acceleration","proficiencyLevel":"Beginner","accessMode":"textual","description":"V4L2 stateless decoding makes the application supply per-picture decoding state, references and encoded data through requests that bind the operation’s controls and buffers.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Media hardware acceleration","item":"https://emby.media/learn/articles/hardware-acceleration/index.html"},{"@type":"ListItem","position":3,"name":"Media engines and acceleration interfaces","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/index.html"},{"@type":"ListItem","position":4,"name":"Platform media APIs","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/platforms/index.html"},{"@type":"ListItem","position":5,"name":"Linux","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/linux/index.html"},{"@type":"ListItem","position":6,"name":"V4L2 stateless decoding and the Request API","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/linux/Hardware-Linux-V4L2-Stateless.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Hardware-Linux-V4L2-Stateless">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../hardware-acceleration/index.html">Media hardware acceleration</a></li>
+              <li><a href="../../../hardware-acceleration/interfaces/index.html">Media engines and acceleration interfaces</a></li>
+              <li><a href="../../../hardware-acceleration/interfaces/platforms/index.html">Platform media APIs</a></li>
+              <li><a href="../../../hardware-acceleration/interfaces/linux/index.html">Linux</a></li>
+              <li><span aria-current="page">V4L2 stateless decoding and the Request API</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Hardware-Linux-V4L2-Stateless">
+<h1>V4L2 stateless decoding and the Request API</h1>
+<p class="article-description">V4L2 stateless decoding makes the application supply per-picture decoding state, references and encoded data through requests that bind the operation&#8217;s controls and buffers.</p>
+
+
+<p>A <strong>stateless decoder interface</strong> makes the application supply the decoding state needed for each picture. The application parses the encoded stream, tracks relevant references and submits the required controls and buffers with the decoding request.</p>
+<p>The hardware still reconstructs pictures. The interface moves responsibility for supplying consistent codec state to the client.</p>
+<h2 id="stateless-does-not-remove-picture-dependencies">Stateless does not remove picture dependencies</h2>
+<p>Inter-predicted pictures can still need earlier reconstructed pictures. A stateless interface makes those relationships explicit inputs rather than assuming the device maintains the entire coded stream's state on the application's behalf.</p>
+<p>The Linux kernel contrasts this with the stateful decoder contract, where the application provides encoded stream data and obtains pictures under the driver/device's stateful behavior.</p>
+<p><img src="images/stateless-request-state.png" alt="An original stateless-decoder diagram assigns stream parsing, reference state and request binding to the application while the device reconstructs pictures."></p>
+<table>
+<thead>
+<tr>
+<th>Responsibility</th>
+<th>Stateless-interface role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Container and bitstream parsing</td>
+<td>Client supplies the selected encoded picture and codec parameters</td>
+</tr>
+<tr>
+<td>Reference-picture bookkeeping</td>
+<td>Client supplies the relevant reference state</td>
+</tr>
+<tr>
+<td>Request binding</td>
+<td>Controls and encoded input belong to the intended operation</td>
+</tr>
+<tr>
+<td>Reconstruction</td>
+<td>Device performs the supported requested decoding</td>
+</tr>
+<tr>
+<td>Output ordering and lifetime</td>
+<td>Client follows the interface's completion/reference rules</td>
+</tr>
+</tbody>
+</table>
+<p>This is an application/device contract. It does not describe whether a particular embedded processor exposes a compatible decoder.</p>
+<h2 id="references-identify-usable-reconstructed-storage">References identify usable reconstructed storage</h2>
+<p>Use an original four-picture model:</p>
+<table>
+<thead>
+<tr>
+<th>Picture</th>
+<th>Target surface</th>
+<th>References in this model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I0</td>
+<td>A</td>
+<td>None</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>B</td>
+<td>A</td>
+</tr>
+<tr>
+<td>B1</td>
+<td>C</td>
+<td>A and B</td>
+</tr>
+<tr>
+<td>B2</td>
+<td>D</td>
+<td>A and B</td>
+</tr>
+</tbody>
+</table>
+<p>The reconstruction order is I0, P3, B1, B2. Their intended presentation order is I0, B1, B2, P3.</p>
+<p>A and B are decoded pictures used to reconstruct later pictures. The model keeps those references in storage while B1 and B2 need them.</p>
+<p>This readable request fixture illustrates one relationship:</p>
+<pre><code class="lang-json">{
+  &quot;request&quot;: &quot;model-R-B1&quot;,
+  &quot;codedPicture&quot;: &quot;B1&quot;,
+  &quot;targetSurface&quot;: &quot;C&quot;,
+  &quot;referenceSurfaces&quot;: [&quot;A&quot;, &quot;B&quot;],
+  &quot;parameters&quot;: {
+    &quot;bitDepth&quot;: 8,
+    &quot;chroma&quot;: &quot;4:2:0&quot;
+  }
+}
+</code></pre>
+<p>It is not a V4L2 ABI structure or captured request. Real codec controls supply substantially more specific data. The fixture makes the target, references and picture parameters belong to the same declared operation.</p>
+<h2 id="the-request-api-binds-controls-and-buffers">The Request API binds controls and buffers</h2>
+<p>A media request groups the relevant work so controls do not accidentally describe another queued picture.</p>
+<p>If the encoded data for B1 were paired with parameters or references for a different picture, completing the request would not make that mismatch meaningful. The application must construct a consistent operation before queueing it.</p>
+<p>The request lifecycle includes preparing its data, queueing the request and waiting for its defined completion. Modifying an already queued operation is a different state from building the next request.</p>
+<p>For an original conceptual state model:</p>
+<pre><code class="lang-text">Build request -&gt; bind controls and encoded input -&gt; queue
+Queued operation -&gt; completion observed -&gt; suitable reuse/reinitialization
+</code></pre>
+<p>The model deliberately avoids a native ioctl recipe. The kernel Request API specifies allocation, control association, queueing and reinitialization behavior for actual clients.</p>
+<h2 id="completion-does-not-free-every-reference">Completion does not free every reference</h2>
+<p>A reconstruction operation finishing establishes progress for that operation. A decoded picture can remain a reference for another outstanding picture and can also be in use by a display or filter consumer.</p>
+<p>In the four-picture model, A cannot be overwritten as a new target while B1 or B2 still needs it. Finishing presentation of I0 is insufficient evidence that A has no remaining decoding use.</p>
+<p>The kernel's stateless-interface guidance explicitly requires preserving reference resources while relevant decoding still needs them. The client also follows its consumers' ownership contracts.</p>
+<p>This is why the number of buffers required can exceed the number of pictures immediately waiting for display.</p>
+<h2 id="output-must-be-related-to-the-programme-timeline">Output must be related to the programme timeline</h2>
+<p>The client combines decoded results with the intended presentation timing and ordering. Completion order, decode order and display order have different meanings.</p>
+<p>A pending P3 result can be needed as a reference before B1 is reconstructed, while P3 is presented after B2. Choosing the next displayed picture solely by the order in which the reconstruction calls were made would mishandle that model.</p>
+<p><a href="../../../media-files/container-structure/timing-and-navigation/Media-Packet-Timestamps.html">Packet timestamps</a> provide the broader timing context. The Request API coordinates an operation; the application's media state places its result in the programme.</p>
+<h2 id="a-seek-establishes-a-new-reference-context">A seek establishes a new reference context</h2>
+<p>A jump to another programme position can require new parser and decoded-reference state. The client resolves a suitable access point and reconstructs the pictures needed for the requested destination.</p>
+<p>In the declared four-picture model, submitting B2 alone cannot provide the A and B references it names. A reference label retained from another source or a replaced decoder context is not proof that suitable reconstructed storage exists for this new request.</p>
+<p>The client therefore has to relate each reference to the active stream and decoded-picture context. A source change can also alter dimensions or codec parameters, requiring its new output/configuration relationship.</p>
+<p>This explains a specific kind of restart cost: a hardware block can reconstruct the new pictures quickly once given a consistent request, while the application still needs to establish the correct encoded access and reference sequence.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Hardware-Linux-V4L2-M2M.html" title="V4L2 memory-to-memory codecs">V4L2 memory-to-memory codecs</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Hardware-Linux-DMABuf.html" title="DRM PRIME and DMA-BUF frame sharing">DRM PRIME and DMA-BUF frame sharing</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../Hardware-Decoding.html" title="Hardware decoding and software decoding">Hardware decoding and software decoding</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../video/compression/picture-prediction-and-random-access/Video-Keyframes.html" title="Video Keyframes and Random Access">Video Keyframes and Random Access</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../media-files/container-structure/timing-and-navigation/Media-Packet-Timestamps.html" title="Packet Timestamps">Packet Timestamps</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.kernel.org/doc/html/latest/userspace-api/media/v4l/dev-stateless-decoder.html" title="Linux kernel: Stateless memory-to-memory decoder">Linux kernel: Stateless memory-to-memory decoder</a></li>
+			            <li><a class="seealso-link" href="https://www.kernel.org/doc/html/latest/userspace-api/media/mediactl/request-api.html" title="Linux kernel: Media Request API">Linux kernel: Media Request API</a></li>
+			            <li><a class="seealso-link" href="https://www.kernel.org/doc/html/latest/userspace-api/media/v4l/dev-decoder.html" title="Linux kernel: Stateful memory-to-memory decoder">Linux kernel: Stateful memory-to-memory decoder</a></li>
+			            <li><a class="seealso-link" href="https://www.kernel.org/doc/html/latest/driver-api/dma-buf.html" title="Linux kernel: DMA-BUF sharing and synchronization">Linux kernel: DMA-BUF sharing and synchronization</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Hardware-Linux-V4L2-Stateless%0A*%20Title%3A%20V4L2%20stateless%20decoding%20and%20the%20Request%20API%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

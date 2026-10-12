@@ -1,0 +1,278 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Subtitle format conversion | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Subtitle format conversion translates timing, content and presentation from one subtitle model into another with explicit choices about what the target can represent.">
+  <link rel="canonical" href="https://emby.media/learn/articles/subtitles/storage-delivery/extraction-conversion/Subtitle-Conversion.html">
+  <meta property="og:title" content="Subtitle format conversion | Emby Learn">
+  <meta property="og:description" content="Subtitle format conversion translates timing, content and presentation from one subtitle model into another with explicit choices about what the target can represent.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/subtitles/storage-delivery/extraction-conversion/Subtitle-Conversion.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/subtitles/storage-delivery/extraction-conversion/Subtitle-Conversion.html","url":"https://emby.media/learn/articles/subtitles/storage-delivery/extraction-conversion/Subtitle-Conversion.html","name":"Subtitle format conversion","inLanguage":"en","headline":"Subtitle format conversion","articleSection":"Subtitles and captions","proficiencyLevel":"Beginner","accessMode":"textual","description":"Subtitle format conversion translates timing, content and presentation from one subtitle model into another with explicit choices about what the target can represent.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Subtitles and captions","item":"https://emby.media/learn/articles/subtitles/index.html"},{"@type":"ListItem","position":3,"name":"Subtitle storage and delivery","item":"https://emby.media/learn/articles/subtitles/storage-delivery/index.html"},{"@type":"ListItem","position":4,"name":"Extraction and conversion","item":"https://emby.media/learn/articles/subtitles/storage-delivery/extraction-conversion/index.html"},{"@type":"ListItem","position":5,"name":"Subtitle format conversion","item":"https://emby.media/learn/articles/subtitles/storage-delivery/extraction-conversion/Subtitle-Conversion.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Subtitle-Conversion">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../subtitles/index.html">Subtitles and captions</a></li>
+              <li><a href="../../../subtitles/storage-delivery/index.html">Subtitle storage and delivery</a></li>
+              <li><a href="../../../subtitles/storage-delivery/extraction-conversion/index.html">Extraction and conversion</a></li>
+              <li><span aria-current="page">Subtitle format conversion</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Subtitle-Conversion">
+<h1>Subtitle format conversion</h1>
+<p class="article-description">Subtitle format conversion translates timing, content and presentation from one subtitle model into another with explicit choices about what the target can represent.</p>
+
+
+<p>Subtitle conversion interprets one format's model and writes another. A good conversion identifies the required <strong>content, timing and presentation</strong>, then determines which of those the target can represent.</p>
+<p>Changing an extension does not perform that interpretation. Nor does preserving the sentence establish that its full visual behavior survived.</p>
+<table>
+<thead>
+<tr>
+<th>Conversion</th>
+<th>Work and possible information change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Simple text to another simple text format</td>
+<td>Re-express cue syntax and timing; preserve supported markup</td>
+</tr>
+<tr>
+<td>Styled text to plain text</td>
+<td>Retain words/intervals while reducing presentation instructions</td>
+</tr>
+<tr>
+<td>Text to bitmap</td>
+<td>Shape and render with selected fonts and geometry</td>
+</tr>
+<tr>
+<td>Bitmap to another bitmap representation</td>
+<td>Repackage/recode graphics, palette, placement and updates</td>
+</tr>
+<tr>
+<td>Bitmap to character text</td>
+<td>Recognize/transcribe words, then author the target timing and layout</td>
+</tr>
+</tbody>
+</table>
+<h2 id="a-moving-sign-and-a-plain-text-cue">A moving sign and a plain-text cue</h2>
+<p>Imagine an ASS event from <strong>12.5 to 15 seconds</strong> with this override, using a previously declared style and script plane:</p>
+<pre><code class="lang-text">{\an7\move(160,90,480,90,0,1000)}LAST TRAIN
+</code></pre>
+<p>The anchor moves during the event's first second. A simple SRT output can retain:</p>
+<pre><code class="lang-text">1
+00:00:12,500 --&gt; 00:00:15,000
+LAST TRAIN
+</code></pre>
+<p>The words and interval match. The target does not contain an equivalent moving anchor, script plane or complete style. It normally presents the words using its own supported caption layout.</p>
+<p><img src="images/conversion-preservation.png" alt="A format conversion can preserve text and timing while discarding an animated sign's positioned presentation."></p>
+<p>This can be an appropriate result when readable dialogue is the goal. It is a different result when the intended translation must remain attached to a moving sign.</p>
+<h2 id="precision-and-origin-can-change-the-time-description">Precision and origin can change the time description</h2>
+<p>A target with millisecond times and a source with centisecond times use different representations. Converting to finer timestamp precision does not recover timing detail that the source never supplied.</p>
+<p>Moving from a container or segmented stream into a standalone file also requires resolving the original time base and origin. A cue local to one segment must be placed on the final programme timeline rather than copied to movie time zero.</p>
+<p>Compare resolved times before examining tiny text-format rounding differences. A several-second shift usually has another cause.</p>
+<h2 id="internal-timing-is-not-just-the-event-boundary">Internal timing is not just the event boundary</h2>
+<p>A styled event can have motion, fades or karaoke durations inside its active interval. If a rate correction changes a programme's time scale, those internal instructions may need the same transformation.</p>
+<p>Extending an event's end while leaving a one-second movement unchanged creates a longer event containing the original-speed movement. That differs from slowing the whole presentation proportionally.</p>
+<p>A target unable to express internal timing needs another preservation choice, such as simpler static text or rendered images. It should not claim to preserve an animation merely because its first and last cue times were copied.</p>
+<h2 id="the-target-renderer-needs-its-resources">The target renderer needs its resources</h2>
+<p>Retaining a font-family name does not bundle the font face. Retaining a graphics object's palette indices does not recreate an omitted palette. Resource handling and track conversion need to agree on what reaches the consumer.</p>
+<p>For an Emby route converting subtitles for a selected app, assess the delivered track's wording, resolved intervals and intended appearance separately. A conversion preserving a readable sentence can be useful while still producing a different typeset result.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Subtitle-Extraction.html" title="Subtitle extraction">Subtitle extraction</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Subtitle-OCR.html" title="Subtitle OCR">Subtitle OCR</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../formats/text/Subtitle-ASS.html" title="Advanced SubStation Alpha subtitles (ASS)">Advanced SubStation Alpha subtitles (ASS)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../rendering/fonts-typesetting/Subtitle-Karaoke.html" title="Karaoke subtitle timing">Karaoke subtitle timing</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../timing/Subtitle-Timestamps.html" title="Subtitle timestamps">Subtitle timestamps</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.matroska.org/technical/subtitles.html" title="Matroska: Subtitle codec mappings">Matroska: Subtitle codec mappings</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/2026/CRD-webvtt1-20260520/" title="W3C WebVTT, May 2026 Candidate Recommendation Draft">W3C WebVTT, May 2026 Candidate Recommendation Draft</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/ttml2/" title="W3C Timed Text Markup Language 2">W3C Timed Text Markup Language 2</a></li>
+			            <li><a class="seealso-link" href="https://github.com/libass/libass/wiki/ASS-File-Format-Guide" title="libass: ASS file format guide">libass: ASS file format guide</a></li>
+			            <li><a class="seealso-link" href="https://aegisub.org/docs/latest/ass_tags/" title="Aegisub: ASS override tags">Aegisub: ASS override tags</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Subtitle-Conversion%0A*%20Title%3A%20Subtitle%20format%20conversion%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

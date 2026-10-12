@@ -1,0 +1,278 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Live streams and on-demand streams | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Live and on-demand streams differ in when programme media exists and remains available, shaping timeline discovery, seeking, pausing and the meaning of the live position.">
+  <link rel="canonical" href="https://emby.media/learn/articles/playback-streaming/delivery/Playback-Live-On-Demand.html">
+  <meta property="og:title" content="Live streams and on-demand streams | Emby Learn">
+  <meta property="og:description" content="Live and on-demand streams differ in when programme media exists and remains available, shaping timeline discovery, seeking, pausing and the meaning of the live position.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/playback-streaming/delivery/Playback-Live-On-Demand.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/playback-streaming/delivery/Playback-Live-On-Demand.html","url":"https://emby.media/learn/articles/playback-streaming/delivery/Playback-Live-On-Demand.html","name":"Live streams and on-demand streams","inLanguage":"en","headline":"Live streams and on-demand streams","articleSection":"Playback and streaming","proficiencyLevel":"Beginner","accessMode":"textual","description":"Live and on-demand streams differ in when programme media exists and remains available, shaping timeline discovery, seeking, pausing and the meaning of the live position.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Playback and streaming","item":"https://emby.media/learn/articles/playback-streaming/index.html"},{"@type":"ListItem","position":3,"name":"Streaming delivery","item":"https://emby.media/learn/articles/playback-streaming/delivery/index.html"},{"@type":"ListItem","position":4,"name":"Live streams and on-demand streams","item":"https://emby.media/learn/articles/playback-streaming/delivery/Playback-Live-On-Demand.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Playback-Live-On-Demand">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../playback-streaming/index.html">Playback and streaming</a></li>
+              <li><a href="../../playback-streaming/delivery/index.html">Streaming delivery</a></li>
+              <li><span aria-current="page">Live streams and on-demand streams</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Playback-Live-On-Demand">
+<h1>Live streams and on-demand streams</h1>
+<p class="article-description">Live and on-demand streams differ in when programme media exists and remains available, shaping timeline discovery, seeking, pausing and the meaning of the live position.</p>
+
+
+<p>An <strong>on-demand stream</strong> starts from programme media that already exists. A <strong>live stream</strong> publishes media as a programme unfolds. The delivery can use the same protocol in both cases, while availability and timeline behavior differ.</p>
+<p>This distinction explains why live seeking can have a moving boundary and why “go live” is more than jumping to the last byte in a file.</p>
+<h2 id="compare-what-is-available">Compare what is available</h2>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Completed on-demand presentation</th>
+<th>Live presentation with a rolling window</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Does later programme media already exist?</td>
+<td>Normally yes</td>
+<td>Future programme media does not yet exist</td>
+</tr>
+<tr>
+<td>Does the description need new intervals?</td>
+<td>A completed description can remain stable</td>
+<td>New availability must be communicated</td>
+</tr>
+<tr>
+<td>Can the earliest available position move?</td>
+<td>Normally fixed for the resource</td>
+<td>Older intervals can leave the window</td>
+</tr>
+<tr>
+<td>What does pausing do?</td>
+<td>Holds a position in existing media</td>
+<td>Publication can advance while the position stays still</td>
+</tr>
+</tbody>
+</table>
+<p>Live delivery can retain a large seekable window or very little. A recording can retain media beyond the streaming window. These are separate resource and product decisions.</p>
+<h2 id="the-live-edge-has-a-publication-context">The live edge has a publication context</h2>
+<p>Use an original snapshot whose available programme interval is 90–120 seconds. A viewer is presenting programme second 108:</p>
+<pre><code class="lang-text">Delay behind the advertised end = 120 - 108 = 12 seconds
+</code></pre>
+<p>If the capture clock has already reached programme second 123, three seconds of programme time have not yet reached this availability boundary. Capture-to-presentation delay is then:</p>
+<pre><code class="lang-text">123 - 108 = 15 seconds
+</code></pre>
+<p>The two results measure different endpoints. “Twelve seconds behind live” is ambiguous until the reference is identified.</p>
+<p><img src="images/live-availability-window.png" alt="An original availability diagram separates the retained start, playhead, published end and later capture position."></p>
+<p>A player usually selects a suitable position behind the newest available media so it has enough reserve and dependencies for reliable presentation. The last advertised sample is not automatically the best immediate starting position.</p>
+<h2 id="a-paused-playhead-can-fall-out-of-the-window">A paused playhead can fall out of the window</h2>
+<p>Assume the example's rolling window continues to retain thirty seconds while publication advances at one programme second per wall second.</p>
+<p>After ten paused seconds, it covers 100–130. Position 108 remains available, but it is now twenty-two seconds behind the end.</p>
+<p>After thirty paused seconds, it covers 120–150. Position 108 is outside that advertised window. Resuming from the old position requires some other retained resource or a policy that chooses another available position.</p>
+<p>The original pause did not delete the programme. It allowed the publishing system's availability boundary to advance beyond what this delivery path still exposes.</p>
+<h2 id="seeking-needs-availability-as-well-as-an-access-point">Seeking needs availability as well as an access point</h2>
+<p>An on-demand seek uses a destination inside the resource's duration and resolves the relevant data and decoding dependencies. A live seek first needs to establish whether that destination is still available.</p>
+<p>The player then needs the appropriate playlist or manifest information, initialization and suitable encoded access point. A visible time slider can describe seekable availability rather than fully downloaded media; <a href="../players/browser/Playback-HTML-Media.html">buffered and seekable ranges</a> are different observations.</p>
+<p>In an Emby live-TV session, the delivery window, the server's temporary session output and any retained recording therefore have different meanings. A temporary conversion resource is not inherently a permanent recording of everything that has passed.</p>
+<h2 id="ending-publication-changes-the-task">Ending publication changes the task</h2>
+<p>Once a programme ends, a publisher can mark that no more intervals will appear. It may also publish a stable complete resource for later viewing.</p>
+<p>A final rolling snapshot containing only the last thirty seconds does not suddenly become the complete earlier programme. To create an on-demand asset covering the whole event, the publisher must retain and describe that complete media range.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Low-Latency.html" title="Low-latency streaming and the live presentation delay">Low-latency streaming and the live presentation delay</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="hls/Playback-HLS-Playlists.html" title="HLS playlists: variants, media order and live windows">HLS playlists: variants, media order and live windows</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-DASH.html" title="MPEG-DASH and its media presentation description">MPEG-DASH and its media presentation description</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Seeking.html" title="Seeking during streaming">Seeking during streaming</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../conversion/Playback-Temporary-Files.html" title="Transcode temporary files and generated output">Transcode temporary files and generated output</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc8216.html" title="IETF RFC 8216: HTTP Live Streaming (informational)">IETF RFC 8216: HTTP Live Streaming (informational)</a></li>
+			            <li><a class="seealso-link" href="https://dashif.org/Guidelines-TimingModel/" title="DASH-IF: Restricted timing model (2024 snapshot)">DASH-IF: Restricted timing model (2024 snapshot)</a></li>
+			            <li><a class="seealso-link" href="https://html.spec.whatwg.org/multipage/media.html" title="WHATWG: HTML media elements and playback">WHATWG: HTML media elements and playback</a></li>
+			            <li><a class="seealso-link" href="https://developer.apple.com/streaming/" title="Apple: HTTP Live Streaming">Apple: HTTP Live Streaming</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Playback-Live-On-Demand%0A*%20Title%3A%20Live%20streams%20and%20on-demand%20streams%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,306 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Search indexing for media metadata | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="A search index derives lookup structures from selected metadata fields, with analysis, field scope, positions and ranking determining which items a query returns.">
+  <link rel="canonical" href="https://emby.media/learn/articles/metadata-discovery/discovery/Metadata-Search-Indexing.html">
+  <meta property="og:title" content="Search indexing for media metadata | Emby Learn">
+  <meta property="og:description" content="A search index derives lookup structures from selected metadata fields, with analysis, field scope, positions and ranking determining which items a query returns.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/metadata-discovery/discovery/Metadata-Search-Indexing.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/metadata-discovery/discovery/Metadata-Search-Indexing.html","url":"https://emby.media/learn/articles/metadata-discovery/discovery/Metadata-Search-Indexing.html","name":"Search indexing for media metadata","inLanguage":"en","headline":"Search indexing for media metadata","articleSection":"Metadata and discovery","proficiencyLevel":"Beginner","accessMode":"textual","description":"A search index derives lookup structures from selected metadata fields, with analysis, field scope, positions and ranking determining which items a query returns.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Metadata and discovery","item":"https://emby.media/learn/articles/metadata-discovery/index.html"},{"@type":"ListItem","position":3,"name":"Finding related media","item":"https://emby.media/learn/articles/metadata-discovery/discovery/index.html"},{"@type":"ListItem","position":4,"name":"Search indexing","item":"https://emby.media/learn/articles/metadata-discovery/discovery/Metadata-Search-Indexing.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Metadata-Search-Indexing">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../metadata-discovery/index.html">Metadata and discovery</a></li>
+              <li><a href="../../metadata-discovery/discovery/index.html">Finding related media</a></li>
+              <li><span aria-current="page">Search indexing</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Metadata-Search-Indexing">
+<h1>Search indexing for media metadata</h1>
+<p class="article-description">A search index derives lookup structures from selected metadata fields, with analysis, field scope, positions and ranking determining which items a query returns.</p>
+
+
+<p>A reader searching for <strong>River Station</strong> can mean the title, while another search can mean any item mentioning a river or station. A useful search route needs a defined relationship between that query and the metadata fields it examines.</p>
+<p>An index prepares derived structures for that work. It is a representation of selected metadata, not another catalogue identity.</p>
+<h2 id="an-original-corpus-makes-the-lookup-visible">An original corpus makes the lookup visible</h2>
+<p>Consider these fictional records:</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Title</th>
+<th>Overview</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D1</td>
+<td>River Station</td>
+<td>night train at station</td>
+</tr>
+<tr>
+<td>D2</td>
+<td>Station Road</td>
+<td>river journeys</td>
+</tr>
+<tr>
+<td>D3</td>
+<td>Quiet River</td>
+<td>river river night</td>
+</tr>
+</tbody>
+</table>
+<p>For this example only, the analyzer lowercases the English text and splits its words. That deliberately simple rule is not a universal multilingual tokenizer.</p>
+<p>A field-aware inverted index can retain entries such as:</p>
+<table>
+<thead>
+<tr>
+<th>Field and term</th>
+<th>Item/position relationships</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>title:river</td>
+<td>D1 at 0; D3 at 1</td>
+</tr>
+<tr>
+<td>title:station</td>
+<td>D1 at 1; D2 at 0</td>
+</tr>
+<tr>
+<td>overview:river</td>
+<td>D2 at 0; D3 at 0 and 1</td>
+</tr>
+<tr>
+<td>overview:station</td>
+<td>D1 at 3</td>
+</tr>
+</tbody>
+</table>
+<p><img src="images/search-postings.png" alt="The original title fields become term-to-item postings with positions."></p>
+<p>Instead of rereading every title for each term, the query can consult the relevant posting lists. The index's layout/compression and query engine determine its actual cost.</p>
+<h2 id="field-scope-changes-the-answer">Field scope changes the answer</h2>
+<p>Across both fields, river occurs in all three items and station in D1/D2. An AND query returns <strong>D1 and D2</strong>.</p>
+<p>Restricted to title, river has D1/D3 and station has D1/D2. Their intersection returns <strong>D1 only</strong>.</p>
+<p>Those results answer different questions correctly under the declared rules. D2's overview mentions river, so it belongs to the wider search even though its title is Station Road.</p>
+<p>A filename, person name or tag can form another field. Deciding which fields participate is part of the query contract, not merely a cosmetic label around one universal string.</p>
+<h2 id="phrase-matching-needs-positions">Phrase matching needs positions</h2>
+<p>Both title words occur in D1 with river immediately before station. That supports the phrase <strong>River Station</strong>. The reversed phrase <strong>Station River</strong> is not present.</p>
+<p>Keeping only membership sets loses this order information. It can support AND queries but cannot distinguish that phrase by itself.</p>
+<p>Stop-word processing adds another choice. If an analyzer removes by from <strong>River by Station</strong>, retaining original position gaps lets the engine distinguish that wording from an adjacent River Station phrase. Renumbering every surviving token as adjacent can erase the distinction.</p>
+<p>The field boundary matters too: the last word of a title and first word of an overview should not accidentally become one phrase merely because an index concatenated fields.</p>
+<h2 id="ranking-is-separate-from-membership">Ranking is separate from membership</h2>
+<p>A query can first produce matching candidates, then order them. In an original presence-based score model for station:</p>
+<p><strong>score = 3 if present in title + 1 if present in overview.</strong></p>
+<p>D1 scores <strong>4</strong>, D2 <strong>3</strong>, and D3 <strong>0</strong>. The weights express this example's title preference; they are not an Emby score.</p>
+<p><img src="images/search-ranking.png" alt="Field membership and an original title-weighted ranking are shown as separate decisions."></p>
+<p>More elaborate methods can account for term frequency, corpus frequency and document length. The linked BM25 reference documents one such similarity family. Repetition should not automatically be treated as independent evidence of relevance without the method's stated policy.</p>
+<p>A numerical score is not necessarily a probability that the viewer intended that work. Display ordering and an exact identifier lookup also serve different tasks.</p>
+<h2 id="analysis-needs-a-text-policy">Analysis needs a text policy</h2>
+<p><a href="../fields/text-localization/Metadata-Unicode.html">Unicode metadata</a> explains canonical normalization and the value of preserving the display title while deriving a comparison key.</p>
+<p>Case folding, punctuation treatment, stemming and transliteration can improve some searches while changing distinctions. English word splitting cannot simply be assumed suitable for every script or for opaque provider identifiers.</p>
+<p>The query and indexed fields need compatible analysis. Lowercasing only the query while retaining case-sensitive postings can produce missed matches even when the title looks correct in the library.</p>
+<h2 id="updates-must-reach-the-derived-representation">Updates must reach the derived representation</h2>
+<p>If a title changes but its postings remain unchanged, the displayed item can be correct while searches still find its old wording. Replacing a resource at a path can likewise leave another version's derived technical fields.</p>
+<p>A coherent update removes or replaces obsolete index entries and installs the new analyzed values. The source record and index need a usable version relationship; rebuilding the same old source data does not discover a missing correction.</p>
+<p>In Emby, compare the imported field, selected search scope and actual returned items. The source/analysis/index/query boundaries identify what is being tested. This article does not infer that Emby's media search uses SQLite FTS5, Lucene or the illustrated weights.</p>
+<h2 id="the-result-pool-has-its-own-scope">The result pool has its own scope</h2>
+<p>Search can operate on a particular library, media type or eligible set. Ranking then orders that set rather than making every indexed item available to every viewer.</p>
+<p>A count computed over all records can disagree with a scoped result count legitimately. <a href="Metadata-Faceted-Browsing.html">Faceted browsing</a> develops those filters and the importance of counting distinct items.</p>
+<p>The complete observation is therefore the source data, field analysis, query semantics, eligible set and ranking. A visible title alone does not describe every one of those decisions.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../fields/text-localization/Metadata-Unicode.html" title="Unicode metadata">Unicode metadata</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../fields/text-localization/Metadata-Sort-Titles.html" title="Sort titles">Sort titles</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Metadata-Faceted-Browsing.html" title="Faceted browsing">Faceted browsing</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Metadata-Relationships.html" title="Metadata relationships">Metadata relationships</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.sqlite.org/fts5.html" title="SQLite: FTS5 indexing and queries">SQLite: FTS5 indexing and queries</a></li>
+			            <li><a class="seealso-link" href="https://lucene.apache.org/core/10_3_1/core/org/apache/lucene/search/similarities/BM25Similarity.html" title="Lucene 10.3.1: BM25 similarity">Lucene 10.3.1: BM25 similarity</a></li>
+			            <li><a class="seealso-link" href="https://unicode.org/reports/tr15/" title="Unicode UAX 15: Normalization forms">Unicode UAX 15: Normalization forms</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Metadata-Search-Indexing%0A*%20Title%3A%20Search%20indexing%20for%20media%20metadata%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

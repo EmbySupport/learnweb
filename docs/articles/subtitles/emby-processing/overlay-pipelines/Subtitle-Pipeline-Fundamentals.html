@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Subtitle overlay pipeline fundamentals | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="A subtitle overlay pipeline joins two timed branches: decoded video and interpreted captions. Correct output depends on representation, geometry, alpha, colour, resources and memory boundaries.">
+  <link rel="canonical" href="https://emby.media/learn/articles/subtitles/emby-processing/overlay-pipelines/Subtitle-Pipeline-Fundamentals.html">
+  <meta property="og:title" content="Subtitle overlay pipeline fundamentals | Emby Learn">
+  <meta property="og:description" content="A subtitle overlay pipeline joins two timed branches: decoded video and interpreted captions. Correct output depends on representation, geometry, alpha, colour, resources and memory boundaries.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/subtitles/emby-processing/overlay-pipelines/Subtitle-Pipeline-Fundamentals.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/subtitles/emby-processing/overlay-pipelines/Subtitle-Pipeline-Fundamentals.html","url":"https://emby.media/learn/articles/subtitles/emby-processing/overlay-pipelines/Subtitle-Pipeline-Fundamentals.html","name":"Subtitle overlay pipeline fundamentals","inLanguage":"en","headline":"Subtitle overlay pipeline fundamentals","articleSection":"Subtitles and captions","proficiencyLevel":"Beginner","accessMode":"textual","description":"A subtitle overlay pipeline joins two timed branches: decoded video and interpreted captions. Correct output depends on representation, geometry, alpha, colour, resources and memory boundaries.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Subtitles and captions","item":"https://emby.media/learn/articles/subtitles/index.html"},{"@type":"ListItem","position":3,"name":"Subtitle processing in Emby","item":"https://emby.media/learn/articles/subtitles/emby-processing/index.html"},{"@type":"ListItem","position":4,"name":"Subtitle overlay pipelines","item":"https://emby.media/learn/articles/subtitles/emby-processing/overlay-pipelines/index.html"},{"@type":"ListItem","position":5,"name":"Subtitle overlay pipeline fundamentals","item":"https://emby.media/learn/articles/subtitles/emby-processing/overlay-pipelines/Subtitle-Pipeline-Fundamentals.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Subtitle-Pipeline-Fundamentals">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../subtitles/index.html">Subtitles and captions</a></li>
+              <li><a href="../../../subtitles/emby-processing/index.html">Subtitle processing in Emby</a></li>
+              <li><a href="../../../subtitles/emby-processing/overlay-pipelines/index.html">Subtitle overlay pipelines</a></li>
+              <li><span aria-current="page">Subtitle overlay pipeline fundamentals</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Subtitle-Pipeline-Fundamentals">
+<h1>Subtitle overlay pipeline fundamentals</h1>
+<p class="article-description">A subtitle overlay pipeline joins two timed branches: decoded video and interpreted captions. Correct output depends on representation, geometry, alpha, colour, resources and memory boundaries.</p>
+
+
+<p>An overlay pipeline produces picture frames that already contain the subtitle presentation. It joins a <strong>video branch</strong> with a <strong>subtitle branch</strong> before the output is encoded. The branches have different jobs and often advance at different rates: pictures arrive regularly, while subtitle events can be sparse and stateful.</p>
+<p>The important question is what crosses each boundary. A sentence with timestamps, a decoded graphical object, a transparent video canvas and a GPU image are different kinds of input, even when they ultimately show the same words.</p>
+<p><img src="images/pipeline-contracts.png" alt="A subtitle branch supplies interpretation, resources and timed presentation to the compositor that joins the decoded video branch."></p>
+<h2 id="recover-interpret-render-compose">Recover, interpret, render, compose</h2>
+<p>The video branch reconstructs picture samples from the selected stream. Scaling, cropping or colour conversion may then change the surface on which the captions will appear.</p>
+<p>The subtitle branch recovers the selected track or caption service. A decoder can produce text events and associated style/configuration, or graphical objects with position, palette and transparency. A broadcast caption decoder may first have to interpret commands that modify a display state.</p>
+<p><strong>Rendering</strong> turns that presentation into image samples. For styled text it can include character decoding, shaping, font selection, line layout, outlines, movement and timed highlighting. A graphical subtitle already has much of its appearance, but may still need palette expansion, placement and scaling.</p>
+<p><strong>Composition</strong> combines those samples with the corresponding video picture. It uses the layer's transparency and geometry; it does not recover missing characters or infer the intended meaning of the dialogue.</p>
+<p>The combined pictures are then encoded for delivery. This is why <a href="../overlay-filters/Subtitle-Burn-In.html">burn-in</a> changes video output, even when every audio packet is retained.</p>
+<h2 id="six-agreements-at-the-join">Six agreements at the join</h2>
+<table>
+<thead>
+<tr>
+<th>Contract</th>
+<th>What must agree</th>
+<th>A recognizable failure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Time</td>
+<td>Picture PTS, cue intervals and any internal effect times share a usable mapping</td>
+<td>Right caption on the wrong scene</td>
+</tr>
+<tr>
+<td>Geometry</td>
+<td>Script/object plane, output dimensions, crop origin and placement</td>
+<td>Caption shifted, stretched or clipped</td>
+</tr>
+<tr>
+<td>Appearance/resources</td>
+<td>Styles, fonts, glyphs, palettes and language/script requirements</td>
+<td>Wrong face, missing glyph or reduced layout</td>
+</tr>
+<tr>
+<td>Transparency</td>
+<td>Alpha location and straight/premultiplied interpretation</td>
+<td>Opaque rectangle or dark text edges</td>
+</tr>
+<tr>
+<td>Colour</td>
+<td>Sample format, range and applicable colour processing</td>
+<td>Wrong white level or colour tint</td>
+</tr>
+<tr>
+<td>Memory/execution</td>
+<td>CPU/device representation, accepted formats and completion order</td>
+<td>Unsupported input or a stalled/failed processing stage</td>
+</tr>
+</tbody>
+</table>
+<p>These contracts interact. A subtitle layer can have correct text and timing but wrong colour because it was composed on the wrong side of a conversion. Matching visible dimensions can conceal a different crop origin or aspect interpretation.</p>
+<h2 id="an-event-interval-is-not-its-whole-time-model">An event interval is not its whole time model</h2>
+<p>An ASS sign might be active from 12.5 to 15.0 seconds and move horizontally from x = 160 to x = 480 during its first second. At programme time 13.0, the movement has advanced half a second, so the anchor is x = 320. At 13.5 it reaches x = 480.</p>
+<p>A renderer evaluated for each picture can show those intermediate positions. A converter that evaluates only one instant and holds that image for the entire event cannot.</p>
+<p>The examined Emby source provides both kinds of boundary. <code>textsub2video</code> in <code>vf_overlaytextsubs.c</code> renders the text at the generated video frame's time. The native <code>text2graphicsub</code> converter in <code>sf_text2graphicsub.c</code> calls libass at the <strong>event midpoint</strong>. For this 2.5-second event, that instant is 13.75 seconds, after the one-second movement has finished.</p>
+<p><img src="images/event-sampling.png" alt="An animated anchor reaches x 320 at 13 seconds, whereas a midpoint snapshot holds x 480 throughout the cue."></p>
+<p>The static conversion can represent a stationary caption effectively. For this animated sign, preserving start, end and final position still does not preserve the moving presentation. This is a property of the dated <strong>5.1-emby_2023_06_25_u1</strong> implementation, not a claim that every current Emby text conversion behaves this way.</p>
+<h2 id="picture-operations-also-affect-captions">Picture operations also affect captions</h2>
+<p>If composition precedes a downscale, the subtitle pixels are resampled with the picture. Fine outlines and character edges can change. If text is rendered after scaling, it can be rasterized for the target dimensions, but its script plane and placement still need a correct mapping.</p>
+<p>Cropping is similar. Composing an object in a region that will subsequently be removed loses those pixels. Rendering after the crop allows placement in the retained output, provided the graph accounts for the new origin and geometry.</p>
+<p>Tone mapping adds a colour-order issue. A layer composed into an HDR picture can pass through the later HDR-to-SDR mapping with that picture. A layer added to the mapped SDR picture needs values suitable for the SDR output. The two orders do not automatically produce the same caption white or coloured lettering.</p>
+<p>There is no universal instruction to put every subtitle operation last. The graph must preserve the intended placement and colour while satisfying the available filter interfaces. <a href="../../rendering/Subtitle-Rendering.html">Rendering geometry</a> and <a href="../../../video/tone-mapping/fundamentals/Tone-Mapping-HDR-to-SDR.html">tone mapping</a> explain the corresponding picture properties.</p>
+<h2 id="read-a-pipeline-by-its-boundaries">Read a pipeline by its boundaries</h2>
+<p>Consider a caption with readable letters but a solid box covering the scene. Character decoding and font rendering have probably succeeded enough to produce those letters. The next useful observations concern the layer's alpha, pixel format and compositor interpretation. Retiming the cue does not address that presentation.</p>
+<p>For a moving sign frozen at its final location, compare how the text became an image: per-frame evaluation and a held snapshot have different semantics. For a correctly shaped caption that shifts after a crop, inspect the geometry mapping rather than replacing the text file.</p>
+<p>These observations connect a visible result to the stage that produced it. In Emby, SDK <a class="xref" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Model.Session.Transcoding.VpStepTypes.html">pipeline step types</a> and <a class="xref" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Model.Session.TranscodingInfo.html#MediaBrowser_Model_Session_TranscodingInfo_SubtitlePipelineInfos">subtitle pipeline information</a> can describe stages. The names are semantic categories; the actual session details, tool version and resulting pictures establish which graph ran.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../overlay-filters/Subtitle-Burn-In.html" title="Subtitle burn-in">Subtitle burn-in</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../overlay-filters/Subtitle-Overlay-Filtering.html" title="Subtitle overlay filtering">Subtitle overlay filtering</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Subtitle-Pipeline-Classic.html" title="Classic subtitle overlay pipeline">Classic subtitle overlay pipeline</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Subtitle-Pipeline-Filtering.html" title="Subtitle filtering pipeline">Subtitle filtering pipeline</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Subtitle-Pipeline-Hardware.html" title="Hardware subtitle overlay pipeline">Hardware subtitle overlay pipeline</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../timing/Subtitle-Timestamps.html" title="Subtitle timestamps">Subtitle timestamps</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://mediabrowser.github.io/embytools/ffmpeg-2023_06_25-u1.tar.gz" title="Emby FFmpeg source archive: 2023_06_25-u1">Emby FFmpeg source archive: 2023_06_25-u1</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-filters.html" title="FFmpeg filter documentation">FFmpeg filter documentation</a></li>
+			            <li><a class="seealso-link" href="https://github.com/libass/libass" title="libass: Subtitle rendering library">libass: Subtitle rendering library</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Subtitle-Pipeline-Fundamentals%0A*%20Title%3A%20Subtitle%20overlay%20pipeline%20fundamentals%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>UNC paths and network-share names | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="A UNC path identifies a Windows network server, share and remaining pathname without depending on a mapped drive letter.">
+  <link rel="canonical" href="https://emby.media/learn/articles/storage/sharing/protocols/Storage-UNC.html">
+  <meta property="og:title" content="UNC paths and network-share names | Emby Learn">
+  <meta property="og:description" content="A UNC path identifies a Windows network server, share and remaining pathname without depending on a mapped drive letter.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/storage/sharing/protocols/Storage-UNC.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/storage/sharing/protocols/Storage-UNC.html","url":"https://emby.media/learn/articles/storage/sharing/protocols/Storage-UNC.html","name":"UNC paths and network-share names","inLanguage":"en","headline":"UNC paths and network-share names","articleSection":"Storage and server platforms","proficiencyLevel":"Beginner","accessMode":"textual","description":"A UNC path identifies a Windows network server, share and remaining pathname without depending on a mapped drive letter.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Storage and server platforms","item":"https://emby.media/learn/articles/storage/index.html"},{"@type":"ListItem","position":3,"name":"Shared storage and permissions","item":"https://emby.media/learn/articles/storage/sharing/index.html"},{"@type":"ListItem","position":4,"name":"Network file access","item":"https://emby.media/learn/articles/storage/sharing/protocols/index.html"},{"@type":"ListItem","position":5,"name":"UNC paths","item":"https://emby.media/learn/articles/storage/sharing/protocols/Storage-UNC.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Storage-UNC">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../storage/index.html">Storage and server platforms</a></li>
+              <li><a href="../../../storage/sharing/index.html">Shared storage and permissions</a></li>
+              <li><a href="../../../storage/sharing/protocols/index.html">Network file access</a></li>
+              <li><span aria-current="page">UNC paths</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Storage-UNC">
+<h1>UNC paths and network-share names</h1>
+<p class="article-description">A UNC path identifies a Windows network server, share and remaining pathname without depending on a mapped drive letter.</p>
+
+
+<p>A Universal Naming Convention path identifies a network resource directly. For a media file, the familiar form is:</p>
+<pre><code class="lang-text">\\nas.example.test\Media\Movies\Film.mkv
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nas.example.test</code></td>
+<td>The named server</td>
+</tr>
+<tr>
+<td><code>Media</code></td>
+<td>The shared resource on that server</td>
+</tr>
+<tr>
+<td><code>Movies\Film.mkv</code></td>
+<td>The remaining path within the share</td>
+</tr>
+</tbody>
+</table>
+<p>The share name is not necessarily the NAS's physical directory name. A share called <code>Media</code> can expose storage whose server-side location has a completely different path.</p>
+<h2 id="why-a-mapped-drive-can-work-only-on-the-desktop">Why a mapped drive can work only on the desktop</h2>
+<p>A desktop user might map <code>M:</code> to <code>\\nas.example.test\Media</code>. The letter is an alias established in that user's logon context.</p>
+<p>A background service runs in a separate context and may not have that mapping, even when it uses the same account name in another logon session. Microsoft therefore documents UNC names for service access to remote resources rather than relying on another session's redirected drive letters.</p>
+<p>Using the UNC path solves the naming dependency. The service still needs a reachable server and appropriate authentication and access rights. “I changed M: to a UNC name” does not establish that those later checks succeeded.</p>
+<h2 id="a-path-is-not-a-credential-or-a-web-url">A path is not a credential or a web URL</h2>
+<p>The UNC string identifies the destination; it does not grant access. It also does not identify an Emby HTTP playback endpoint. An app receiving media from Emby Server generally uses that server's playback connection, while the server separately opens its media source.</p>
+<p>On Linux, the same share may be mounted and presented through a path such as <code>/srv/media/Movies/Film.mkv</code>. That is the path the Linux server process uses. Copying a Windows UNC string into every application's path field is not a universal cross-platform substitute for configuring a supported file-access arrangement.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Storage-SMB.html" title="SMB file shares: sessions, shares and file operations">SMB file shares: sessions, shares and file operations</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../permissions/Storage-Service-Access.html" title="Storage access from background services">Storage access from background services</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../file-systems/paths/Storage-Case-Sensitivity.html" title="Case-sensitive paths and preserved spelling">Case-sensitive paths and preserved spelling</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file" title="Windows file and path naming">Windows file and path naming</a></li>
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/services/services-and-redirected-drives" title="Windows services and redirected drives">Windows services and redirected drives</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Library-Setup.html" title="Emby library setup">Emby library setup</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Storage-UNC%0A*%20Title%3A%20UNC%20paths%20and%20network-share%20names%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

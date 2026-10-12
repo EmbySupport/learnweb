@@ -1,0 +1,298 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Recommendation systems for media | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="A recommendation system generates and ranks eligible media candidates using content, behavior or other signals, then evaluates whether the chosen presentation serves the intended discovery goal.">
+  <link rel="canonical" href="https://emby.media/learn/articles/metadata-discovery/discovery/Metadata-Recommendations.html">
+  <meta property="og:title" content="Recommendation systems for media | Emby Learn">
+  <meta property="og:description" content="A recommendation system generates and ranks eligible media candidates using content, behavior or other signals, then evaluates whether the chosen presentation serves the intended discovery goal.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/metadata-discovery/discovery/Metadata-Recommendations.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/metadata-discovery/discovery/Metadata-Recommendations.html","url":"https://emby.media/learn/articles/metadata-discovery/discovery/Metadata-Recommendations.html","name":"Recommendation systems for media","inLanguage":"en","headline":"Recommendation systems for media","articleSection":"Metadata and discovery","proficiencyLevel":"Beginner","accessMode":"textual","description":"A recommendation system generates and ranks eligible media candidates using content, behavior or other signals, then evaluates whether the chosen presentation serves the intended discovery goal.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Metadata and discovery","item":"https://emby.media/learn/articles/metadata-discovery/index.html"},{"@type":"ListItem","position":3,"name":"Finding related media","item":"https://emby.media/learn/articles/metadata-discovery/discovery/index.html"},{"@type":"ListItem","position":4,"name":"Recommendation systems","item":"https://emby.media/learn/articles/metadata-discovery/discovery/Metadata-Recommendations.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Metadata-Recommendations">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../metadata-discovery/index.html">Metadata and discovery</a></li>
+              <li><a href="../../metadata-discovery/discovery/index.html">Finding related media</a></li>
+              <li><span aria-current="page">Recommendation systems</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Metadata-Recommendations">
+<h1>Recommendation systems for media</h1>
+<p class="article-description">A recommendation system generates and ranks eligible media candidates using content, behavior or other signals, then evaluates whether the chosen presentation serves the intended discovery goal.</p>
+
+
+<p>A recommendation proposes something useful to discover within an eligible media set. It can use descriptive features, known relationships, viewing behavior or a combination.</p>
+<p>The result depends on what the system is trying to help the viewer do: find a familiar style, explore something different, continue a collection or discover an unseen work.</p>
+<h2 id="generate-candidates-score-them-then-choose-a-presentation">Generate candidates, score them, then choose a presentation</h2>
+<p>Candidate generation narrows the pool. Scoring estimates a particular relationship or preference signal. A later selection/reranking stage can apply availability, diversity or presentation constraints.</p>
+<p><img src="images/recommendation-stages.png" alt="Eligible candidates, scoring and the final diversified selection form separate stages."></p>
+<p>Those stages answer different questions. A high score among candidates does not explain why another item never entered the pool.</p>
+<p>The eligible set can also depend on the selected library and viewer context. A discovery result and a playback/source choice remain separate operations.</p>
+<h2 id="content-similarity-has-a-declared-feature-model">Content similarity has a declared feature model</h2>
+<p>For an original example, use three binary features: <strong>Drama, Railway, Night</strong>. An invented viewer profile is <strong>[1, 1, 0]</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Candidate</th>
+<th>Feature vector</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>[1, 1, 0]</td>
+</tr>
+<tr>
+<td>B</td>
+<td>[1, 0, 1]</td>
+</tr>
+<tr>
+<td>C</td>
+<td>[0, 0, 1]</td>
+</tr>
+</tbody>
+</table>
+<p>Cosine similarity is the dot product divided by the product of vector lengths.</p>
+<p>For A, the dot product is 2 and both lengths are √2, giving <strong>1</strong>. For B, the dot product is 1 with the same lengths, giving <strong>0.5</strong>. For C, the dot product is zero, giving <strong>0</strong>.</p>
+<p><img src="images/recommendation-similarity.png" alt="The original feature vectors produce content similarities of 1, 0.5 and 0."></p>
+<p>The numbers express similarity in this feature model. They are not probabilities of enjoyment and not an Emby score. Other feature weights or representations can change the ordering.</p>
+<p>A genre tag is only one kind of evidence. Contributor relationships, plot topics and other supported features can add another view of relatedness.</p>
+<h2 id="behavior-can-supply-another-signal">Behavior can supply another signal</h2>
+<p>Consider these fictional viewing sets:</p>
+<table>
+<thead>
+<tr>
+<th>Viewer</th>
+<th>Observed items</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>U1</td>
+<td>A, B</td>
+</tr>
+<tr>
+<td>U2</td>
+<td>A, C</td>
+</tr>
+<tr>
+<td>U3</td>
+<td>A, C</td>
+</tr>
+</tbody>
+</table>
+<p>Overlap with U2/U3 can supply a reason to consider C for U1, even though C has no overlap with the simple content profile above.</p>
+<p>That observation does not establish a universal preference rule. A recorded play can represent curiosity, shared-device use or an abandoned viewing, rather than an explicit approval.</p>
+<p>A behavior model therefore needs a definition of its observations and target. Completion, replay, explicit feedback and item exposure are different signals.</p>
+<h2 id="exposure-affects-the-observed-numbers">Exposure affects the observed numbers</h2>
+<p>Suppose candidate X was shown 100 times and received 10 selections, while Y was shown 10 times and received 2.</p>
+<p>Raw selection counts favor X. The observed selection rates are <strong>10%</strong> and <strong>20%</strong> respectively.</p>
+<p>Y's rate is based on fewer observations. The comparison does not prove a causal preference or a stable advantage; it shows why the denominator and observation context matter.</p>
+<p>A system that mostly shows already popular items gathers more data about them. Using those counts without considering exposure can reinforce its original presentation choices.</p>
+<h2 id="evaluate-a-stated-discovery-target">Evaluate a stated discovery target</h2>
+<p>An original held-out example treats C and E as the known relevant future items. A ranked list <strong>[C, D, E]</strong> contains two relevant items among three:</p>
+<p><strong>Precision@3 = 2/3. Recall@3 = 2/2 = 1.</strong></p>
+<p>These metrics describe that defined relevance set. They do not establish enjoyment, novel discovery or suitability of every item absent from the set.</p>
+<p>Using future behavior in the feature preparation for an earlier recommendation can leak the answer into the evaluation. A time-coherent comparison keeps the available evidence separate from the later outcome.</p>
+<h2 id="new-items-and-viewers-need-another-route">New items and viewers need another route</h2>
+<p>An item with no viewing observations can still have content metadata. A new viewer can still have explicit preferences or choose a starting item.</p>
+<p>Those inputs supply a cold-start path without pretending that nonexistent behavior was measured. A mixed design can use different evidence where each is available.</p>
+<p>Incorrect <a href="../identification/Metadata-Identification.html">identification</a> can contaminate both routes: the wrong synopsis changes content features, and merged/split item identities change recorded behavior.</p>
+<h2 id="diversity-changes-the-final-selection">Diversity changes the final selection</h2>
+<p>If A and another near-identical candidate both score highest, choosing only those can repeat the same narrow signal. A policy can retain A and include B to offer another facet of the profile.</p>
+<p>That is a tradeoff in the intended discovery experience, not necessarily a scoring error. The selection goal should make it assessable.</p>
+<p>For Emby-related discovery, evaluate the actual feature/behavior source, candidate set and selected result. The primary references describe recommendation designs; this original example does not assert which proprietary or plugin algorithm an installed server uses.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Metadata-Relationships.html" title="Metadata relationships">Metadata relationships</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../fields/Metadata-Genre-Taxonomies.html" title="Genre taxonomies">Genre taxonomies</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Metadata-Faceted-Browsing.html" title="Faceted browsing">Faceted browsing</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../identification/Metadata-Identification.html" title="Media identification">Media identification</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://developers.google.com/machine-learning/recommendation" title="Google: Recommendation systems">Google: Recommendation systems</a></li>
+			            <li><a class="seealso-link" href="https://developers.google.com/machine-learning/recommendation/content-based/basics" title="Google: Content-based filtering">Google: Content-based filtering</a></li>
+			            <li><a class="seealso-link" href="https://developers.google.com/machine-learning/recommendation/collaborative/basics" title="Google: Collaborative filtering">Google: Collaborative filtering</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Metadata-Recommendations%0A*%20Title%3A%20Recommendation%20systems%20for%20media%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

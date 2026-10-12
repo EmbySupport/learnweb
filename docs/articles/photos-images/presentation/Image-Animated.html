@@ -1,0 +1,252 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Animated images | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="An animated image changes a shared canvas through timed frame data and composition/disposal rules, rather than necessarily storing independent full-size pictures.">
+  <link rel="canonical" href="https://emby.media/learn/articles/photos-images/presentation/Image-Animated.html">
+  <meta property="og:title" content="Animated images | Emby Learn">
+  <meta property="og:description" content="An animated image changes a shared canvas through timed frame data and composition/disposal rules, rather than necessarily storing independent full-size pictures.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/photos-images/presentation/Image-Animated.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/photos-images/presentation/Image-Animated.html","url":"https://emby.media/learn/articles/photos-images/presentation/Image-Animated.html","name":"Animated images","inLanguage":"en","headline":"Animated images","articleSection":"Photos and images","proficiencyLevel":"Beginner","accessMode":"textual","description":"An animated image changes a shared canvas through timed frame data and composition/disposal rules, rather than necessarily storing independent full-size pictures.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Photos and images","item":"https://emby.media/learn/articles/photos-images/index.html"},{"@type":"ListItem","position":3,"name":"Image presentation","item":"https://emby.media/learn/articles/photos-images/presentation/index.html"},{"@type":"ListItem","position":4,"name":"Animated images","item":"https://emby.media/learn/articles/photos-images/presentation/Image-Animated.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Image-Animated">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../photos-images/index.html">Photos and images</a></li>
+              <li><a href="../../photos-images/presentation/index.html">Image presentation</a></li>
+              <li><span aria-current="page">Animated images</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Image-Animated">
+<h1>Animated images</h1>
+<p class="article-description">An animated image changes a shared canvas through timed frame data and composition/disposal rules, rather than necessarily storing independent full-size pictures.</p>
+
+
+<p>An animated image presents changes over time using an image format's frame and control structure. GIF, APNG and animated WebP provide related capabilities with different syntax and rules.</p>
+<h2 id="reconstruct-the-canvas-not-just-the-latest-rectangle">Reconstruct the canvas, not just the latest rectangle</h2>
+<p>Take an invented six-cell canvas. A first frame draws a marker in the leftmost cell; the next draws a marker in the third cell.</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Keep earlier content</th>
+<th>Clear earlier marker before next draw</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>After first draw</td>
+<td>A . . . . .</td>
+<td>A . . . . .</td>
+</tr>
+<tr>
+<td>After second draw</td>
+<td>A . B . . .</td>
+<td>. . B . . .</td>
+</tr>
+</tbody>
+</table>
+<p>The second frame's rectangle can contain only B. Whether A remains visible depends on the applicable disposal/composition behavior.</p>
+<p><img src="images/animation-canvas.png" alt="Two partial frame updates produce different canvases depending on whether the earlier marker is retained or cleared."></p>
+<p>A transparent position in an update does not universally mean “erase the existing canvas here”. It may leave that destination unchanged. Some format operations also restore a previously saved canvas region. The reader must apply the source format's actual rules.</p>
+<h2 id="time-belongs-to-the-composed-presentation">Time belongs to the composed presentation</h2>
+<p>Frames carry or inherit durations in the format's time model. A loop's nominal duration is the sum of its applicable frame intervals, rather than the number of frames divided by an assumed video frame rate.</p>
+<p>For original intervals <strong>0.10, 0.20 and 0.15 seconds</strong>, one traversal lasts <strong>0.45 seconds</strong>. Repeating it twice nominally lasts <strong>0.90 seconds</strong>, apart from any additional scheduling or loop policy.</p>
+<p>A consumer can schedule very short delays differently or choose to suppress animation. That is separate from correctly recovering the frame rectangles and their canvas positions.</p>
+<h2 id="a-still-preview-needs-an-instant-and-a-reconstructed-state">A still preview needs an instant and a reconstructed state</h2>
+<p>Choosing “frame 2” can be ambiguous. Its encoded rectangle may be only an update, while its visible canvas includes earlier retained content.</p>
+<p>A thumbnail generator should obtain the intended composed state at a selected time. A default still image defined by a format can also have a different relationship to the animation sequence.</p>
+<p>For an Emby image path, distinguish the animated source, any server-generated still derivative and the app's handling of the delivered resource. A static tile can be an intentional derivative even when the original contains valid animation; an incomplete tile can instead result from extracting an update without reconstructing its canvas.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../formats/Image-GIF.html" title="GIF images">GIF images</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../formats/Image-PNG.html" title="PNG images">PNG images</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../formats/Image-WebP.html" title="WebP images">WebP images</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Image-Thumbnails.html" title="Image thumbnail generation">Image thumbnail generation</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.w3.org/Graphics/GIF/spec-gif89a.txt" title="GIF89a specification">GIF89a specification</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/2025/REC-png-3-20250624/" title="W3C PNG Third Edition, Recommendation of 24 June 2025">W3C PNG Third Edition, Recommendation of 24 June 2025</a></li>
+			            <li><a class="seealso-link" href="https://developers.google.com/speed/webp/docs/riff_container" title="Google: WebP container specification">Google: WebP container specification</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Image-Animated%0A*%20Title%3A%20Animated%20images%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

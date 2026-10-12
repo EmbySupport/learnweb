@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Chase playback while a recording grows | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Chase playback reads an ongoing recording before capture finishes, coordinating a growing usable endpoint with the reader&#8217;s position and the recording&#8217;s final completion state.">
+  <link rel="canonical" href="https://emby.media/learn/articles/live-tv/recording/time-shifting/TV-Chase-Playback.html">
+  <meta property="og:title" content="Chase playback while a recording grows | Emby Learn">
+  <meta property="og:description" content="Chase playback reads an ongoing recording before capture finishes, coordinating a growing usable endpoint with the reader&#8217;s position and the recording&#8217;s final completion state.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/live-tv/recording/time-shifting/TV-Chase-Playback.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/live-tv/recording/time-shifting/TV-Chase-Playback.html","url":"https://emby.media/learn/articles/live-tv/recording/time-shifting/TV-Chase-Playback.html","name":"Chase playback while a recording grows","inLanguage":"en","headline":"Chase playback while a recording grows","articleSection":"Live TV and recording","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"Chase playback reads an ongoing recording before capture finishes, coordinating a growing usable endpoint with the reader’s position and the recording’s final completion state.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Live TV and recording","item":"https://emby.media/learn/articles/live-tv/index.html"},{"@type":"ListItem","position":3,"name":"Recording and time shifting","item":"https://emby.media/learn/articles/live-tv/recording/index.html"},{"@type":"ListItem","position":4,"name":"Time shifting","item":"https://emby.media/learn/articles/live-tv/recording/time-shifting/index.html"},{"@type":"ListItem","position":5,"name":"Chase playback","item":"https://emby.media/learn/articles/live-tv/recording/time-shifting/TV-Chase-Playback.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-TV-Chase-Playback">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../live-tv/index.html">Live TV and recording</a></li>
+              <li><a href="../../../live-tv/recording/index.html">Recording and time shifting</a></li>
+              <li><a href="../../../live-tv/recording/time-shifting/index.html">Time shifting</a></li>
+              <li><span aria-current="page">Chase playback</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-TV-Chase-Playback">
+<h1>Chase playback while a recording grows</h1>
+<p class="article-description">Chase playback reads an ongoing recording before capture finishes, coordinating a growing usable endpoint with the reader&#8217;s position and the recording&#8217;s final completion state.</p>
+
+
+<p>A programme is still being recorded, but its beginning is already stored. <strong>Chase playback</strong> lets a viewer start that retained beginning while the recording continues to grow.</p>
+<p>The reader is following a moving usable endpoint. That differs from playing a completed file whose endpoint is fixed.</p>
+<h2 id="the-writer-and-viewer-advance-independently">The writer and viewer advance independently</h2>
+<p>Use an original recording that has 600 seconds of usable media when the viewer is at 480:</p>
+<table>
+<thead>
+<tr>
+<th>Wall time from this observation</th>
+<th style="text-align: right;">Usable recorded endpoint at 1× capture</th>
+<th style="text-align: right;">Viewer at 1× playback</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 s</td>
+<td style="text-align: right;">600</td>
+<td style="text-align: right;">480</td>
+</tr>
+<tr>
+<td>120 s</td>
+<td style="text-align: right;">720</td>
+<td style="text-align: right;">600</td>
+</tr>
+<tr>
+<td>240 s</td>
+<td style="text-align: right;">840</td>
+<td style="text-align: right;">720</td>
+</tr>
+</tbody>
+</table>
+<p>The gap remains 120 seconds. Normal-speed playback does not catch a writer advancing at the same speed.</p>
+<p>If the viewer instead runs at 1.5×, the gap closes at 0.5 seconds per wall second. It reaches the moving endpoint after 240 seconds, at media position 840.</p>
+<p><img src="images/chase-writer-reader.png" alt="The original writer and reader traces show a constant normal-speed gap and a faster reader reaching the usable endpoint."></p>
+<p>Seeking closer to the endpoint closes the gap immediately by skipping content. Faster playback retains more of that content while taking time to catch up.</p>
+<h2 id="only-usable-written-media-belongs-to-the-endpoint">Only usable written media belongs to the endpoint</h2>
+<p>Bytes at the physical end of a growing file may include an incomplete container unit or a picture lacking the entry-point information the reader needs.</p>
+<p>The writer therefore needs to expose a usable extent, not merely a filename and current byte count. The chosen container/index and media route determine how a reader discovers new data and seeks within it.</p>
+<p>A segmented representation can publish complete pieces as they become ready. This original HLS example contains three completed six-second segments:</p>
+<pre><code class="lang-m3u8">#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-PLAYLIST-TYPE:EVENT
+#EXT-X-TARGETDURATION:6
+#EXT-X-MEDIA-SEQUENCE:0
+#EXTINF:6,
+recording-0.ts
+#EXTINF:6,
+recording-1.ts
+#EXTINF:6,
+recording-2.ts
+</code></pre>
+<p>It exposes eighteen seconds so far. Its EVENT type permits appending to the existing presentation, and the absence of ENDLIST means no final endpoint has been declared.</p>
+<p>This playlist is a protocol teaching example, not a claim that every Emby ongoing-recording route uses this representation. Emby’s actual app, backend and media path establish the supported growing-recording behavior.</p>
+<h2 id="reaching-the-current-endpoint-can-mean-waiting">Reaching the current endpoint can mean waiting</h2>
+<p>For an original abstract state model:</p>
+<pre><code class="lang-json">[
+  {&quot;reader&quot;: 18, &quot;usableEnd&quot;: 18, &quot;finalized&quot;: false, &quot;result&quot;: &quot;wait-for-progress&quot;},
+  {&quot;reader&quot;: 18, &quot;usableEnd&quot;: 18, &quot;finalized&quot;: true, &quot;result&quot;: &quot;finished&quot;}
+]
+</code></pre>
+<p>The reader position and usable endpoint are equal in both rows. The finalization state changes the meaning.</p>
+<p>A player treating temporary lack of new data as permanent completion stops too early. A player waiting forever after a confirmed final endpoint fails in the other direction.</p>
+<p>The implementation can wait for progress, refresh a playlist, retry a read or report a stalled recording according to its route. That state needs to distinguish a healthy writer, an interrupted source and a confirmed completion.</p>
+<h2 id="stopping-capture-fixes-a-different-boundary">Stopping capture fixes a different boundary</h2>
+<p>Suppose the modeled recording finally stops with 900 seconds of usable media. Once completion is confirmed, the endpoint remains 900 while the viewer can continue toward it.</p>
+<p>For an HLS representation, ENDLIST indicates that no further segments will be added. A growing file uses its own completion signal and finalized structure.</p>
+<p>The scheduled guide ending is not that signal. Capture can include padding, stop early or continue after a programme overrun. The actual retained endpoint belongs to the recording result.</p>
+<h2 id="persistent-capture-differs-from-a-sliding-live-window">Persistent capture differs from a sliding live window</h2>
+<p>A time-shift buffer can evict earlier media as new data arrives. A chaseable recording must retain the earlier region the reader is permitted to access under its recording lifecycle.</p>
+<p>Another owner, post-processing job or retention action can still change availability. A shared display title does not keep the underlying artifact alive.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../TV-DVR.html" title="Digital video recording: from live source to stored media">Digital video recording: from live source to stored media</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="TV-Time-Shift-Buffers.html" title="Time-shift buffers and the retained live window">Time-shift buffers and the retained live window</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="TV-Live-Edge.html" title="The live playback edge and delivery delay">The live playback edge and delivery delay</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../playback-streaming/delivery/Playback-Seeking.html" title="Seeking during streaming">Seeking during streaming</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../lifecycle/TV-Incomplete-Recordings.html" title="Incomplete recordings and missing programme intervals">Incomplete recordings and missing programme intervals</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://dev.emby.media/doc/restapi/Live-TV.html" title="Emby developer documentation: Programmes, timers and series timers">Emby developer documentation: Programmes, timers and series timers</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/DVR-Settings.html" title="Emby: DVR settings and recording paths">Emby: DVR settings and recording paths</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc8216" title="RFC 8216: HLS playlist mutability, retention and live playback">RFC 8216: HLS playlist mutability, retention and live playback</a></li>
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/dotnet/api/system.io.filestream.flush?view=net-10.0" title="Microsoft: FileStream.Flush and buffered writes">Microsoft: FileStream.Flush and buffered writes</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-TV-Chase-Playback%0A*%20Title%3A%20Chase%20playback%20while%20a%20recording%20grows%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

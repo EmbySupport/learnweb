@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Linux user and group IDs in storage access | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Linux storage access uses process and file user/group IDs, so matching account names do not guarantee matching permissions across hosts or namespaces.">
+  <link rel="canonical" href="https://emby.media/learn/articles/storage/sharing/permissions/Storage-Linux-IDs.html">
+  <meta property="og:title" content="Linux user and group IDs in storage access | Emby Learn">
+  <meta property="og:description" content="Linux storage access uses process and file user/group IDs, so matching account names do not guarantee matching permissions across hosts or namespaces.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/storage/sharing/permissions/Storage-Linux-IDs.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/storage/sharing/permissions/Storage-Linux-IDs.html","url":"https://emby.media/learn/articles/storage/sharing/permissions/Storage-Linux-IDs.html","name":"Linux user and group IDs in storage access","inLanguage":"en","headline":"Linux user and group IDs in storage access","articleSection":"Storage and server platforms","proficiencyLevel":"Beginner","accessMode":"textual","description":"Linux storage access uses process and file user/group IDs, so matching account names do not guarantee matching permissions across hosts or namespaces.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Storage and server platforms","item":"https://emby.media/learn/articles/storage/index.html"},{"@type":"ListItem","position":3,"name":"Shared storage and permissions","item":"https://emby.media/learn/articles/storage/sharing/index.html"},{"@type":"ListItem","position":4,"name":"Access identities and permissions","item":"https://emby.media/learn/articles/storage/sharing/permissions/index.html"},{"@type":"ListItem","position":5,"name":"Linux user and group IDs","item":"https://emby.media/learn/articles/storage/sharing/permissions/Storage-Linux-IDs.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Storage-Linux-IDs">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../storage/index.html">Storage and server platforms</a></li>
+              <li><a href="../../../storage/sharing/index.html">Shared storage and permissions</a></li>
+              <li><a href="../../../storage/sharing/permissions/index.html">Access identities and permissions</a></li>
+              <li><span aria-current="page">Linux user and group IDs</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Storage-Linux-IDs">
+<h1>Linux user and group IDs in storage access</h1>
+<p class="article-description">Linux storage access uses process and file user/group IDs, so matching account names do not guarantee matching permissions across hosts or namespaces.</p>
+
+
+<p>Linux identifies users and groups numerically. Account names provide readable labels, but a file's ownership and a process's credentials contain IDs.</p>
+<p>A media directory owned by a user named <code>emby</code> on one computer does not automatically belong to the server process named <code>emby</code> on another. The numbers and any mapping rules have to line up.</p>
+<h2 id="one-name-can-label-different-numbers">One name can label different numbers</h2>
+<p>An original example uses ordinary file-permission checks without extended ACLs or privilege overrides:</p>
+<pre><code class="lang-text">Host A: emby -&gt; UID 1100
+Host B: emby -&gt; UID 1200
+File owner: UID 1200
+Host A process with UID 1100 is not this file's owner.
+</code></pre>
+<p>The reverse is also possible: two computers can display different names for the same numeric ID. That matters for simple numeric-ID network arrangements and for files moved without translating ownership.</p>
+<p>For local Linux file access, filesystem UID and GID are used with supplementary groups. These usually match the effective UID and GID. Specialized programs can change them, so the general rule concerns the process's actual credentials rather than the desktop's visible account name.</p>
+<h2 id="groups-belong-to-the-running-process">Groups belong to the running process</h2>
+<p>A process has a primary group and a set of supplementary groups. Those credentials are normally established when it is launched.</p>
+<p>Changing an account's group membership in the account database does not automatically rewrite the supplementary groups of every existing process. A newly launched shell can therefore have a group that a still-running server lacks.</p>
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th>What it describes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Account database says “member of media”</td>
+<td>Membership available to a new credential setup</td>
+</tr>
+<tr>
+<td>Running process lists GID 2000</td>
+<td>That process currently has the group</td>
+</tr>
+<tr>
+<td>File's group is GID 2000</td>
+<td>Group associated with this file object</td>
+</tr>
+<tr>
+<td>A label displays “media”</td>
+<td>A local name for an ID, not proof of all three states</td>
+</tr>
+</tbody>
+</table>
+<p>In a fictional read test, a file owned by another UID with group 2000 and mode 0640 is readable through the basic group class when the process has GID 2000. Removing that GID from the process's current groups changes the result. The name printed for group 2000 does not change the calculation.</p>
+<h2 id="a-namespace-can-translate-ids">A namespace can translate IDs</h2>
+<p>A user namespace can map an ID inside a container to another ID outside it. An apparent UID zero inside the namespace is not automatically the host's privileged UID zero. Mount arrangements can also have ID mappings that affect ownership interpretation.</p>
+<p>For NFS, the authentication arrangement and server mapping determine the accepted identity. For SMB, session credentials can be mapped to a server-side user. A host <code>id</code> result cannot alone establish those remote decisions.</p>
+<p>When Emby can see a directory but cannot read newly added files, compare the running process's IDs and groups with the actual file ownership and permissions. This keeps the investigation specific to the file and credential state, rather than treating matching names as evidence of access.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Storage-Permissions.html" title="File ownership and permissions across a library path">File ownership and permissions across a library path</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Storage-ACLs.html" title="Access control lists: entries, masks and inheritance">Access control lists: entries, masks and inheritance</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../protocols/Storage-NFS.html" title="NFS file shares and server-side identity mapping">NFS file shares and server-side identity mapping</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://man7.org/linux/man-pages/man7/credentials.7.html" title="Linux man-pages: process credentials">Linux man-pages: process credentials</a></li>
+			            <li><a class="seealso-link" href="https://man7.org/linux/man-pages/man5/acl.5.html" title="Linux ACL specification and access checks">Linux ACL specification and access checks</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc8881.html" title="RFC 8881: NFS version 4.1">RFC 8881: NFS version 4.1</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Storage-Linux-IDs%0A*%20Title%3A%20Linux%20user%20and%20group%20IDs%20in%20storage%20access%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

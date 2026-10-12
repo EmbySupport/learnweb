@@ -1,0 +1,259 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Notification delivery from event to recipient | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Notification delivery connects a source event to a selected recipient through processing and provider stages, each with its own completion evidence.">
+  <link rel="canonical" href="https://emby.media/learn/articles/automation/events/Automation-Notifications.html">
+  <meta property="og:title" content="Notification delivery from event to recipient | Emby Learn">
+  <meta property="og:description" content="Notification delivery connects a source event to a selected recipient through processing and provider stages, each with its own completion evidence.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/automation/events/Automation-Notifications.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/automation/events/Automation-Notifications.html","url":"https://emby.media/learn/articles/automation/events/Automation-Notifications.html","name":"Notification delivery from event to recipient","inLanguage":"en","headline":"Notification delivery from event to recipient","articleSection":"Automation and interoperability","proficiencyLevel":"Beginner","accessMode":"textual","description":"Notification delivery connects a source event to a selected recipient through processing and provider stages, each with its own completion evidence.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Automation and interoperability","item":"https://emby.media/learn/articles/automation/index.html"},{"@type":"ListItem","position":3,"name":"Events and integrations","item":"https://emby.media/learn/articles/automation/events/index.html"},{"@type":"ListItem","position":4,"name":"Notification delivery","item":"https://emby.media/learn/articles/automation/events/Automation-Notifications.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Automation-Notifications">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../automation/index.html">Automation and interoperability</a></li>
+              <li><a href="../../automation/events/index.html">Events and integrations</a></li>
+              <li><span aria-current="page">Notification delivery</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Automation-Notifications">
+<h1>Notification delivery from event to recipient</h1>
+<p class="article-description">Notification delivery connects a source event to a selected recipient through processing and provider stages, each with its own completion evidence.</p>
+
+
+<p>A notification starts with information worth delivering and ends with some intended recipient outcome. Between those points, an integration selects recipients, formats content and invokes a delivery service.</p>
+<p>Emby webhooks can supply an event for such a workflow. The webhook's successful delivery is only one stage of the resulting notification.</p>
+<h2 id="which-stage-completed">Which stage completed?</h2>
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th>What it establishes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Source event produced</td>
+<td>The trigger exists</td>
+</tr>
+<tr>
+<td>Receiver accepted the event</td>
+<td>Its accepted-processing boundary was reached</td>
+</tr>
+<tr>
+<td>Notification intent stored</td>
+<td>Work is recorded for later processing</td>
+</tr>
+<tr>
+<td>Provider accepted the send</td>
+<td>The provider accepted that request</td>
+</tr>
+<tr>
+<td>Device received or displayed it</td>
+<td>That particular downstream delivery state was observed</td>
+</tr>
+<tr>
+<td>User read it</td>
+<td>A separate recipient action, when the channel supplies that evidence</td>
+</tr>
+</tbody>
+</table>
+<p>A provider's successful API response does not universally mean that a phone displayed an alert. Device connectivity, channel settings and recipient behavior can affect later stages.</p>
+<h2 id="repeated-input-should-preserve-one-intended-notification">Repeated input should preserve one intended notification</h2>
+<p>An original design uses event E1 plus recipient R1 to identify notification intent N1. Receiving E1 twice should not automatically create N1 and another independent N2 for the same intended action.</p>
+<p>A durable intent record and the provider's applicable idempotency contract can help coordinate retries. If the provider offers no duplication guarantee, a response lost after acceptance can leave uncertainty.</p>
+<p>For multiple recipients, the result can split: R1's send succeeds while R2's fails. One global “event processed” flag is insufficient if the workflow needs separate recovery for each recipient.</p>
+<h2 id="preferences-and-permissions-are-part-of-selection">Preferences and permissions are part of selection</h2>
+<p>Who should receive the message, for which event and with what detail? Those choices depend on the configured integration and recipient preferences.</p>
+<p>A media-server user ID does not automatically grant permission to send to every address or device in another service. The destination credential and recipient mapping have their own roles.</p>
+<p>When a notification is missing, inspect the last completed stage rather than repeatedly firing the entire workflow. A rejected destination credential, filtered recipient, provider refusal and offline device call for different handling.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="receiving/Automation-Webhooks.html" title="Webhooks and pushed event notifications">Webhooks and pushed event notifications</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Automation-Retries.html" title="Event delivery, retries and duplicate processing">Event delivery, retries and duplicate processing</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Automation-Integration-Permissions.html" title="Integration permissions and effective operations">Integration permissions and effective operations</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Webhooks.html" title="Emby webhooks">Emby webhooks</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc9110.html" title="RFC 9110: HTTP semantics">RFC 9110: HTTP semantics</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Automation-Notifications%0A*%20Title%3A%20Notification%20delivery%20from%20event%20to%20recipient%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

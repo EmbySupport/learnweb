@@ -1,0 +1,257 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Subtitles in HLS | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="HLS can deliver separately selected WebVTT subtitle renditions whose cue times must be mapped to the shared media timeline.">
+  <link rel="canonical" href="https://emby.media/learn/articles/subtitles/storage-delivery/streaming/Subtitle-HLS.html">
+  <meta property="og:title" content="Subtitles in HLS | Emby Learn">
+  <meta property="og:description" content="HLS can deliver separately selected WebVTT subtitle renditions whose cue times must be mapped to the shared media timeline.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/subtitles/storage-delivery/streaming/Subtitle-HLS.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/subtitles/storage-delivery/streaming/Subtitle-HLS.html","url":"https://emby.media/learn/articles/subtitles/storage-delivery/streaming/Subtitle-HLS.html","name":"Subtitles in HLS","inLanguage":"en","headline":"Subtitles in HLS","articleSection":"Subtitles and captions","proficiencyLevel":"Beginner","accessMode":"textual","description":"HLS can deliver separately selected WebVTT subtitle renditions whose cue times must be mapped to the shared media timeline.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Subtitles and captions","item":"https://emby.media/learn/articles/subtitles/index.html"},{"@type":"ListItem","position":3,"name":"Subtitle storage and delivery","item":"https://emby.media/learn/articles/subtitles/storage-delivery/index.html"},{"@type":"ListItem","position":4,"name":"Streaming subtitle transports","item":"https://emby.media/learn/articles/subtitles/storage-delivery/streaming/index.html"},{"@type":"ListItem","position":5,"name":"Subtitles in HLS","item":"https://emby.media/learn/articles/subtitles/storage-delivery/streaming/Subtitle-HLS.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Subtitle-HLS">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../subtitles/index.html">Subtitles and captions</a></li>
+              <li><a href="../../../subtitles/storage-delivery/index.html">Subtitle storage and delivery</a></li>
+              <li><a href="../../../subtitles/storage-delivery/streaming/index.html">Streaming subtitle transports</a></li>
+              <li><span aria-current="page">Subtitles in HLS</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Subtitle-HLS">
+<h1>Subtitles in HLS</h1>
+<p class="article-description">HLS can deliver separately selected WebVTT subtitle renditions whose cue times must be mapped to the shared media timeline.</p>
+
+
+<p>HLS can deliver subtitles separately from video and audio. In the WebVTT route, the presentation's main playlist identifies subtitle renditions, and each chosen rendition has its own media playlist and subtitle segments.</p>
+<p>This keeps selection separate from video pixels. A viewer can choose a language while continuing to use a compatible video rendition.</p>
+<h2 id="the-playlist-connects-the-choices">The playlist connects the choices</h2>
+<p>Here is an illustrative main-playlist excerpt, not a complete playable presentation:</p>
+<pre><code class="lang-text">#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=&quot;subs&quot;,NAME=&quot;English&quot;,LANGUAGE=&quot;en&quot;,AUTOSELECT=YES,DEFAULT=YES,URI=&quot;english.m3u8&quot;
+#EXT-X-STREAM-INF:BANDWIDTH=2400000,SUBTITLES=&quot;subs&quot;
+video.m3u8
+</code></pre>
+<p>The <code>SUBTITLES</code> attribute links the video variant to the group named <code>subs</code>. The <code>URI</code> on the media entry points to that subtitle rendition's playlist. <code>NAME</code> is a displayed identifier; <code>LANGUAGE</code> describes its language. They are not its cue text.</p>
+<p>Those attributes help a client select a rendition. They do not remove its need to read the subtitle format or synchronize the cues.</p>
+<p><img src="images/hls-subtitle-route.png" alt="A variant references a subtitle group whose selected language playlist supplies timed text segments alongside the video."></p>
+<h2 id="map-the-cue-clock-to-the-media-clock">Map the cue clock to the media clock</h2>
+<p>RFC 8216 defines an <code>X-TIMESTAMP-MAP</code> header for WebVTT synchronization. It relates a WebVTT local time to an MPEG-2/PES timestamp on a <strong>90,000-tick-per-second</strong> scale.</p>
+<p>Take this original WebVTT segment example:</p>
+<pre><code class="lang-text">WEBVTT
+X-TIMESTAMP-MAP=LOCAL:00:00:00.000,MPEGTS:900000
+
+00:00:02.500 --&gt; 00:00:05.000
+The platform is empty.
+</code></pre>
+<p>The mapping makes local zero correspond to <strong>900,000/90,000 = 10 seconds</strong> on the media clock. The cue therefore corresponds to media time <strong>12.5 through 15 seconds</strong>.</p>
+<pre><code class="lang-text">mapped time = MPEGTS / 90000 + (cue time − LOCAL)
+start = 900000 / 90000 + (2.5 − 0) = 12.5 s
+end   = 900000 / 90000 + (5.0 − 0) = 15.0 s
+</code></pre>
+<p>The shared media timeline can itself have an origin relative to a player's programme time. The map is a relationship between clocks, not necessarily a claim that the movie began at timestamp zero.</p>
+<p>RFC 8216 recommends providing this map in the WebVTT header. Without it, its specified fallback maps WebVTT zero to MPEG timestamp zero. An application that assumes a different origin can produce a constant timing error even when every cue timestamp parses correctly.</p>
+<h2 id="a-cue-can-span-a-segment-boundary">A cue can span a segment boundary</h2>
+<p>Suppose a cue is active from programme time <strong>5.5 to 7 seconds</strong>, while two subtitle segments cover <strong>0–6</strong> and <strong>6–12</strong>.</p>
+<p>The cue is relevant to both segment intervals. RFC 8216 requires a WebVTT segment to include the cues needed during its interval with their <strong>complete display times</strong>, even when part of a cue extends outside that segment.</p>
+<p>It should not become two independently authored sentences whose times were arbitrarily clipped to 6 seconds. Correct assembly and presentation avoid a gap, duplicate display or reset at the boundary.</p>
+<p>A segment with no active cues is a legitimate interval without subtitles. It is different from a missing segment that should have supplied a caption.</p>
+<h2 id="long-running-streams-can-cross-timestamp-wrap">Long-running streams can cross timestamp wrap</h2>
+<p>The MPEG/PES timestamp count is 33 bits. Its raw value wraps after <strong>2³³ ticks</strong>, about <strong>26.5 hours</strong> on the 90 kHz scale. Cue clocks and other timeline values do not necessarily wrap at the same point.</p>
+<p>For a teaching example, the local-zero mapping is one second before wrap, at <strong>2³³ − 90,000</strong>. A cue two seconds later belongs at the unwrapped count <strong>2³³ + 90,000</strong>, although its raw 33-bit value is <strong>90,000</strong>.</p>
+<p>Subtracting raw values without the appropriate cycle relationship would turn a nearby later cue into an apparently remote earlier one. A client needs wrap-aware synchronization and the applicable discontinuity/timeline context.</p>
+<h2 id="separate-subtitles-and-in-band-caption-services">Separate subtitles and in-band caption services</h2>
+<p>HLS uses <code>TYPE=SUBTITLES</code> for a separately described subtitle rendition. A <code>TYPE=CLOSED-CAPTIONS</code> entry instead identifies a service carried in media, such as a supported caption channel or digital service. It does not supply a separate WebVTT playlist URI.</p>
+<p>For an Emby route using HLS, identify the actual subtitle delivery selected by that route. Compatible video can be retained while text is delivered separately or converted into an accepted representation. Another route may incorporate subtitles into video, in which case the separate language playlist is no longer the mechanism producing the visible lettering.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../formats/text/Subtitle-WebVTT.html" title="WebVTT subtitles">WebVTT subtitles</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../locations/Subtitle-In-Band.html" title="In-band captions">In-band captions</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../timing/Subtitle-Timestamps.html" title="Subtitle timestamps">Subtitle timestamps</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../selection/Subtitle-Selection.html" title="Subtitle track selection">Subtitle track selection</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc8216.html" title="RFC 8216: HTTP Live Streaming">RFC 8216: HTTP Live Streaming</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/2026/CRD-webvtt1-20260520/" title="W3C WebVTT, May 2026 Candidate Recommendation Draft">W3C WebVTT, May 2026 Candidate Recommendation Draft</a></li>
+			            <li><a class="seealso-link" href="https://developer.apple.com/documentation/http-live-streaming/hls-authoring-specification-for-apple-devices" title="Apple: HLS authoring specification">Apple: HLS authoring specification</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Subtitle-HLS%0A*%20Title%3A%20Subtitles%20in%20HLS%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

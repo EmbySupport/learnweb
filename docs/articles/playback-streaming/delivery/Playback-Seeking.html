@@ -1,0 +1,264 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Seeking during streaming | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Seeking resolves a requested media-time destination through available ranges, resource access and decoding dependencies before presentation resumes.">
+  <link rel="canonical" href="https://emby.media/learn/articles/playback-streaming/delivery/Playback-Seeking.html">
+  <meta property="og:title" content="Seeking during streaming | Emby Learn">
+  <meta property="og:description" content="Seeking resolves a requested media-time destination through available ranges, resource access and decoding dependencies before presentation resumes.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/playback-streaming/delivery/Playback-Seeking.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/playback-streaming/delivery/Playback-Seeking.html","url":"https://emby.media/learn/articles/playback-streaming/delivery/Playback-Seeking.html","name":"Seeking during streaming","inLanguage":"en","headline":"Seeking during streaming","articleSection":"Playback and streaming","proficiencyLevel":"Beginner","accessMode":"textual","description":"Seeking resolves a requested media-time destination through available ranges, resource access and decoding dependencies before presentation resumes.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Playback and streaming","item":"https://emby.media/learn/articles/playback-streaming/index.html"},{"@type":"ListItem","position":3,"name":"Streaming delivery","item":"https://emby.media/learn/articles/playback-streaming/delivery/index.html"},{"@type":"ListItem","position":4,"name":"Seeking during streaming","item":"https://emby.media/learn/articles/playback-streaming/delivery/Playback-Seeking.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Playback-Seeking">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../playback-streaming/index.html">Playback and streaming</a></li>
+              <li><a href="../../playback-streaming/delivery/index.html">Streaming delivery</a></li>
+              <li><span aria-current="page">Seeking during streaming</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Playback-Seeking">
+<h1>Seeking during streaming</h1>
+<p class="article-description">Seeking resolves a requested media-time destination through available ranges, resource access and decoding dependencies before presentation resumes.</p>
+
+
+<p>Seeking asks a playback path to resume at a particular media-time destination. That can require selecting another resource interval, fetching data, initialising a decoder and producing new output before the requested picture is available.</p>
+<p>The requested time and the point where reading or decoding begins need not be identical.</p>
+<h2 id="the-destination-can-depend-on-earlier-data">The destination can depend on earlier data</h2>
+<p>Assume an original source with known suitable random-access points at seconds 40, 44, 48 and 52. A request targets second 46.25.</p>
+<p>A path can begin decoding at 44 and process forward to the destination. For a constant 24-fps sequence, the positions are separated by:</p>
+<pre><code class="lang-text">(46.25 - 44) × 24 = 54 frame intervals
+</code></pre>
+<p><img src="images/seek-access-point.png" alt="An original seek example starts from a known access point at 44 seconds before presenting the requested position at 46.25."></p>
+<p>This counts intervals between the stated positions, not a universal packet or decode-frame count. Real codec dependencies, timestamp cadence and access-point types supply the actual work.</p>
+<p>Some paths present near an available access point; others decode forward and discard preceding output to reach a more precise target. A nearby presentation and an exact-target presentation are different behaviors.</p>
+<h2 id="buffered-and-seekable-are-different-ranges">Buffered and seekable are different ranges</h2>
+<p>A position can be seekable through resource retrieval even when it is not currently buffered at the player. Conversely, received data does not prove that every location is an independently decodable starting point.</p>
+<p>A stored on-demand resource can offer destinations across its available timeline. A live stream can expose a moving retained window. A requested old position outside that window needs another archive or cannot be resolved through that current live resource.</p>
+<p>The HTML media model distinguishes seekable and buffered ranges. Those concepts help explain why a progress bar's current received interval is not a complete map of every possible destination.</p>
+<h2 id="http-uses-bytes-not-media-seconds">HTTP uses bytes, not media seconds</h2>
+<p>An original HTTP example requests part of a million-byte resource:</p>
+<pre><code class="lang-http">Range: bytes=400000-499999
+
+HTTP/1.1 206 Partial Content
+Content-Range: bytes 400000-499999/1000000
+Content-Length: 100000
+</code></pre>
+<p>The inclusive byte endpoints yield <code>499999 - 400000 + 1 = 100000 bytes</code>.</p>
+<p>There is no timestamp in those fields. A container index or other media interpretation must relate the requested playback time to useful resource data. Multiplying a timestamp by an average bitrate is not a generally exact seek map for variable-rate, multi-stream media.</p>
+<p>The example was not sent to a server. It illustrates the byte contract defined by HTTP range semantics.</p>
+<h2 id="segmentation-adds-another-coordinate">Segmentation adds another coordinate</h2>
+<p>A delivery path can fetch a segment covering the destination interval. The segment's identity and its internal presentation times are different coordinates again.</p>
+<p>A segment boundary does not by itself prove independent decoding. The format, initialization data and access-point properties determine whether the chosen data can begin a useful decode sequence there. HLS includes explicit independent-segment semantics rather than making independence a universal consequence of every boundary.</p>
+<p>Fetching the right segment can therefore be necessary while still leaving decoder preparation before the target picture.</p>
+<h2 id="conversion-can-need-a-new-output-region">Conversion can need a new output region</h2>
+<p>A server may have generated output far ahead of the old playback position while having nothing ready for a new destination elsewhere. The old lead does not describe the newly requested interval.</p>
+<p>A conversion path can restart or resume work for that region. Input access, filter/encoder state and output packaging can then contribute to seek delay.</p>
+<p>The resulting output may have another clock origin. In an original mapping that starts output at zero for the requested 46.25-second destination:</p>
+<pre><code class="lang-text">programme position = output position + 46.25 seconds
+</code></pre>
+<p>Output second 2 corresponds to programme second 48.25. Another path can retain source timestamps instead. Reporting progress needs the relevant association, not an unqualified copy of one output clock.</p>
+<h2 id="other-selected-streams-must-align">Other selected streams must align</h2>
+<p>Audio and subtitles also need the requested programme context. Starting video at the destination while using unrelated old audio or subtitle timing does not produce a correct continuation.</p>
+<p>Resource changes add another problem: a saved time from another cut can identify a different scene. <a href="../../libraries-collections/history/Library-Resume-Positions.html">Resume positions</a> develop that identity/timeline relationship.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../video/compression/picture-prediction-and-random-access/Video-Keyframes.html" title="Video Keyframes and Random Access">Video Keyframes and Random Access</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../media-files/container-structure/timing-and-navigation/Media-Packet-Timestamps.html" title="Packet Timestamps">Packet Timestamps</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../media-files/container-structure/timing-and-navigation/Media-Time-Bases.html" title="Time Bases">Time Bases</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Buffering.html" title="Buffering, ready media and playback reserve">Buffering, ready media and playback reserve</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../conversion/Playback-Temporary-Files.html" title="Transcode temporary files and generated output">Transcode temporary files and generated output</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../libraries-collections/history/Library-Resume-Positions.html" title="Resume positions and playback timelines">Resume positions and playback timelines</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://html.spec.whatwg.org/multipage/media.html" title="WHATWG: HTML media playback">WHATWG: HTML media playback</a></li>
+			            <li><a class="seealso-link" href="https://datatracker.ietf.org/doc/html/rfc9110" title="IETF RFC 9110: HTTP semantics and ranges">IETF RFC 9110: HTTP semantics and ranges</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc8216.html" title="IETF RFC 8216: HTTP Live Streaming">IETF RFC 8216: HTTP Live Streaming</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg.html" title="FFmpeg: Processing, mapping and progress">FFmpeg: Processing, mapping and progress</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Model.MediaInfo.PlaybackInfoRequest.html" title="Emby API: PlaybackInfoRequest">Emby API: PlaybackInfoRequest</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Playback-Seeking%0A*%20Title%3A%20Seeking%20during%20streaming%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

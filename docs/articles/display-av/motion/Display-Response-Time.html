@@ -1,0 +1,305 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Display response time and motion blur | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Display response time measures a defined transition in pixel output, while motion clarity also depends on picture timing, illumination persistence and processing.">
+  <link rel="canonical" href="https://emby.media/learn/articles/display-av/motion/Display-Response-Time.html">
+  <meta property="og:title" content="Display response time and motion blur | Emby Learn">
+  <meta property="og:description" content="Display response time measures a defined transition in pixel output, while motion clarity also depends on picture timing, illumination persistence and processing.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/display-av/motion/Display-Response-Time.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/display-av/motion/Display-Response-Time.html","url":"https://emby.media/learn/articles/display-av/motion/Display-Response-Time.html","name":"Display response time and motion blur","inLanguage":"en","headline":"Display response time and motion blur","articleSection":"Displays and AV connections","proficiencyLevel":"Beginner","accessMode":"textual","description":"Display response time measures a defined transition in pixel output, while motion clarity also depends on picture timing, illumination persistence and processing.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Displays and AV connections","item":"https://emby.media/learn/articles/display-av/index.html"},{"@type":"ListItem","position":3,"name":"Motion on a display","item":"https://emby.media/learn/articles/display-av/motion/index.html"},{"@type":"ListItem","position":4,"name":"Display response time","item":"https://emby.media/learn/articles/display-av/motion/Display-Response-Time.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Display-Response-Time">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../display-av/index.html">Displays and AV connections</a></li>
+              <li><a href="../../display-av/motion/index.html">Motion on a display</a></li>
+              <li><span aria-current="page">Display response time</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Display-Response-Time">
+<h1>Display response time and motion blur</h1>
+<p class="article-description">Display response time measures a defined transition in pixel output, while motion clarity also depends on picture timing, illumination persistence and processing.</p>
+
+
+<p>When a display is driven to a new pixel level, its output does not necessarily reach that level instantly. <strong>Response time</strong> measures a specified part of that transition.</p>
+<p>The measurement needs a starting level, destination level and threshold definition. A quoted number without those conditions gives only a partial description of motion.</p>
+<h2 id="transition-delay-and-persistence-are-different-times">Transition, delay and persistence are different times</h2>
+<table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>What it describes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Processing/input delay</td>
+<td>Time before a new picture begins affecting the output</td>
+</tr>
+<tr>
+<td>Pixel transition time</td>
+<td>Time spent changing between specified light levels</td>
+</tr>
+<tr>
+<td>Illuminated persistence</td>
+<td>How long the picture’s light remains visible within its presentation</td>
+</tr>
+<tr>
+<td>Source-picture interval</td>
+<td>Time between samples created by the content</td>
+</tr>
+</tbody>
+</table>
+<p>A “one-ms response” does not establish one-ms input-to-light delay. A display can buffer a picture before driving a fast pixel.</p>
+<p>A fast transition also does not imply that the picture is illuminated only briefly.</p>
+<h2 id="a-curve-needs-a-defined-measurement-interval">A curve needs a defined measurement interval</h2>
+<p>Consider an original normalized transition from zero toward one:</p>
+<pre><code class="lang-text">L(t) = 1 − exp(−t / 2), with t in milliseconds
+</code></pre>
+<p>The two-millisecond parameter is a time constant, not a measured gray-to-gray result.</p>
+<p>The model reaches 10% at approximately 0.210721 ms and 90% at 4.605170 ms. Its 10%-to-90% interval is:</p>
+<pre><code class="lang-text">t90 − t10 = 2 × ln(9) = 4.394449 ms
+</code></pre>
+<p>It reaches 99% at 9.210340 ms, so reaching 90% is not the same event as completing the entire asymptotic transition.</p>
+<p><img src="images/pixel-response-and-overshoot.png" alt="The calculated transition marks the ten/ninety-percent measurement interval and contrasts it with a separate illustrative overshoot trace."></p>
+<p>The equation is a teaching model. Real response depends on the display technology, source/destination levels, drive policy and temperature, and need not have this shape.</p>
+<h2 id="a-fast-initial-crossing-can-hide-overshoot">A fast initial crossing can hide overshoot</h2>
+<p>An implementation can drive a transition aggressively so it reaches the target earlier. If its light output then exceeds the intended level before settling, the moving object can acquire a bright or dark inverse trail.</p>
+<p>Use a separate original sampled trace:</p>
+<table>
+<thead>
+<tr>
+<th>Model time</th>
+<th style="text-align: right;">Normalized output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 ms</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td>2 ms</td>
+<td style="text-align: right;">1.15</td>
+</tr>
+<tr>
+<td>4 ms</td>
+<td style="text-align: right;">1.05</td>
+</tr>
+<tr>
+<td>6 ms</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+<p>The early crossing of one does not mean all later samples are correct. The maximum overshoot is 15% relative to this unit target.</p>
+<p>VESA’s ClearMR material treats motion blur and overshoot/undershoot as relevant visual behavior. A transition-time figure alone cannot describe those artifacts completely.</p>
+<p>The trace above is not an overdrive setting or a measurement of a panel.</p>
+<h2 id="eye-tracking-exposes-another-blur-mechanism">Eye tracking exposes another blur mechanism</h2>
+<p>Suppose an ideal pixel changes instantly, then holds a picture’s light for the whole 16.667-ms interval of an exact sixty-Hz output.</p>
+<p>As the eye tracks an object moving at an original declared 960 screen pixels per second, the object’s held position moves across the retina during that interval. A simple uniform-hold estimate is:</p>
+<pre><code class="lang-text">960 × (1 / 60) = 16 pixels of tracking smear
+</code></pre>
+<p>If illumination lasts only four milliseconds under otherwise ideal conditions:</p>
+<pre><code class="lang-text">960 × 0.004 = 3.84 pixels
+</code></pre>
+<p>This model excludes the camera’s blur, pixel transition shape, eye dynamics and multiple image pulses. It explains persistence as a separate contribution, not a complete prediction of perceived blur or a ClearMR score.</p>
+<p><a href="Display-Black-Frame-Insertion.html">Black-frame insertion</a> develops how the illuminated interval can be shortened.</p>
+<h2 id="movies-include-their-own-motion-sampling">Movies include their own motion sampling</h2>
+<p>A 24-fps movie can have substantial camera-exposure blur and only twenty-four distinct source samples per second. A fast display cannot reconstruct motion information that was never supplied.</p>
+<p><a href="Display-Judder.html">Judder</a> concerns another relationship: unequal presentation durations can add a repeated rhythm to those samples.</p>
+<p>For Emby playback, compare the same scene while identifying source cadence, output mode and display processing. A panel response difference, an interpolation change and an uneven repeat schedule can all alter movement, but through different mechanisms.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../characteristics/technologies/Display-OLED.html" title="OLED displays">OLED displays</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../characteristics/technologies/Display-LCD-LED.html" title="LCD and LED-backlit displays">LCD and LED-backlit displays</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Display-Judder.html" title="Judder and uneven picture cadence">Judder and uneven picture cadence</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Display-Black-Frame-Insertion.html" title="Black-frame insertion and display persistence">Black-frame insertion and display persistence</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://vesa.org/featured-articles/vesa-brings-clarity-to-motion-blur-in-digital-displays-with-new-compliance-test-specification-and-logo-program/" title="VESA: ClearMR motion blur, overshoot and measurement context">VESA: ClearMR motion blur, overshoot and measurement context</a></li>
+			            <li><a class="seealso-link" href="https://www.sid.org/Standards/ICDM/ICDM" title="SID/ICDM: Information Display Measurements Standard">SID/ICDM: Information Display Measurements Standard</a></li>
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/api/dxgi/nf-dxgi-idxgiswapchain-present" title="Microsoft: DXGI presentation and synchronization">Microsoft: DXGI presentation and synchronization</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Display-Response-Time%0A*%20Title%3A%20Display%20response%20time%20and%20motion%20blur%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

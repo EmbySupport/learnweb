@@ -1,0 +1,404 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Tuner concurrency and shared acquisition | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Tuner concurrency depends on simultaneous compatible acquisitions and the implemented sharing policy, which can differ from the count of viewers, recordings or services.">
+  <link rel="canonical" href="https://emby.media/learn/articles/live-tv/sources/capacity/TV-Tuner-Concurrency.html">
+  <meta property="og:title" content="Tuner concurrency and shared acquisition | Emby Learn">
+  <meta property="og:description" content="Tuner concurrency depends on simultaneous compatible acquisitions and the implemented sharing policy, which can differ from the count of viewers, recordings or services.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/live-tv/sources/capacity/TV-Tuner-Concurrency.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/live-tv/sources/capacity/TV-Tuner-Concurrency.html","url":"https://emby.media/learn/articles/live-tv/sources/capacity/TV-Tuner-Concurrency.html","name":"Tuner concurrency and shared acquisition","inLanguage":"en","headline":"Tuner concurrency and shared acquisition","articleSection":"Live TV and recording","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"Tuner concurrency depends on simultaneous compatible acquisitions and the implemented sharing policy, which can differ from the count of viewers, recordings or services.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Live TV and recording","item":"https://emby.media/learn/articles/live-tv/index.html"},{"@type":"ListItem","position":3,"name":"Tuners and television sources","item":"https://emby.media/learn/articles/live-tv/sources/index.html"},{"@type":"ListItem","position":4,"name":"Source capacity","item":"https://emby.media/learn/articles/live-tv/sources/capacity/index.html"},{"@type":"ListItem","position":5,"name":"Tuner concurrency","item":"https://emby.media/learn/articles/live-tv/sources/capacity/TV-Tuner-Concurrency.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-TV-Tuner-Concurrency">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../live-tv/index.html">Live TV and recording</a></li>
+              <li><a href="../../../live-tv/sources/index.html">Tuners and television sources</a></li>
+              <li><a href="../../../live-tv/sources/capacity/index.html">Source capacity</a></li>
+              <li><span aria-current="page">Tuner concurrency</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-TV-Tuner-Concurrency">
+<h1>Tuner concurrency and shared acquisition</h1>
+<p class="article-description">Tuner concurrency depends on simultaneous compatible acquisitions and the implemented sharing policy, which can differ from the count of viewers, recordings or services.</p>
+
+
+<p>A tuner count describes acquisition resources, not automatically the number of clients that can watch television. Several clients can use one acquired source only if the route implements the relevant sharing.</p>
+<p>Different programmes on the same RF multiplex add another question: does the source/backend expose the whole multiplex or only independently acquired programme streams?</p>
+<h2 id="three-policies-have-different-resource-keys">Three policies have different resource keys</h2>
+<table>
+<thead>
+<tr>
+<th>Declared policy</th>
+<th>One acquisition is keyed by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Independent request</td>
+<td>Each viewer/recording request</td>
+</tr>
+<tr>
+<td>Shared same service</td>
+<td>A compatible service/source combination</td>
+</tr>
+<tr>
+<td>Shared full multiplex</td>
+<td>A compatible RF/multiplex acquisition supplying the required services</td>
+</tr>
+</tbody>
+</table>
+<p>Same-service sharing and full-multiplex sharing are different capabilities. A backend able to redistribute one programme to several clients does not thereby supply different programmes from the same carrier through one acquisition.</p>
+<p>The full key can include input route and physical-layer configuration. Matching only a frequency label is not always sufficient.</p>
+<h2 id="five-original-requests">Five original requests</h2>
+<p>Use this invented request set, with times measured in seconds from a common origin:</p>
+<table>
+<thead>
+<tr>
+<th>Request</th>
+<th>Use</th>
+<th>Service</th>
+<th>Multiplex</th>
+<th>Interval</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Viewer</td>
+<td>News</td>
+<td>M1</td>
+<td>[0,20)</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Recording</td>
+<td>Weather</td>
+<td>M1</td>
+<td>[5,15)</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Viewer</td>
+<td>Cinema</td>
+<td>M2</td>
+<td>[10,30)</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Recording</td>
+<td>Sport</td>
+<td>M3</td>
+<td>[15,25)</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Another viewer</td>
+<td>News</td>
+<td>M1</td>
+<td>[7,12)</td>
+</tr>
+</tbody>
+</table>
+<p>Intervals are half-open: a use ending at fifteen does not overlap a use starting at fifteen merely because their boundary is equal.</p>
+<p>The labels do not represent real broadcasts, user timers or Emby API data.</p>
+<h2 id="the-peak-depends-on-what-can-actually-share">The peak depends on what can actually share</h2>
+<p>Between ten and twelve seconds, A, B, C and E are active:</p>
+<ul>
+<li>Four requests.</li>
+<li>Three distinct services: News, Weather and Cinema.</li>
+<li>Two distinct multiplexes: M1 and M2.</li>
+</ul>
+<p>Under full-multiplex sharing, two suitable acquisition resources can supply that interval. Under same-service sharing, three are required. Under independent acquisition, four are required.</p>
+<p><img src="images/tuner-sharing-intervals.png" alt="The original request timeline and acquisition-count model distinguish request, service and multiplex demand."></p>
+<p>At fifteen seconds, B has ended and D has started. A, C and D now require M1, M2 and M3. Even the ideal full-multiplex policy needs three acquisition resources then.</p>
+<p>Across the complete exercise, the peaks are four requests, three service acquisitions and three multiplex acquisitions.</p>
+<h2 id="a-two-resource-model-still-has-a-conflict">A two-resource model still has a conflict</h2>
+<p>Assume two compatible resources and the declared full-multiplex policy. Demand is:</p>
+<table>
+<thead>
+<tr>
+<th>Interval</th>
+<th style="text-align: right;">Required multiplex acquisitions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[0,5)</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>[5,7)</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>[7,10)</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>[10,12)</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td>[12,15)</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td>[15,20)</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td>[20,25)</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td>[25,30)</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+<p>The conflict is fifteen through twenty seconds. If D waits until twenty, it can acquire M3 when A releases M1, but its first five requested seconds have not been captured by that delayed route.</p>
+<p>A policy that rejects, delays or interrupts a request must choose which consequence is intended. Resource arithmetic does not decide that priority.</p>
+<p>Actual recording rules, padding and other source consumers can change the intervals. This model isolates acquisition demand rather than claiming a real scheduler result.</p>
+<h2 id="a-shared-source-stays-live-while-any-use-remains">A shared source stays live while any use remains</h2>
+<p>A and E share News under the same-service policy. E ending at twelve does not release the acquisition while A still needs it through twenty.</p>
+<p>For a full-multiplex route, B also uses M1 until fifteen. Resource release must consider every remaining dependent service/use.</p>
+<p>This is why the ownership lifetime matters alongside the count. Releasing the acquisition on the first client disconnect can stop another client; retaining it after the last dependent use can leave a resource unnecessarily occupied.</p>
+<p><a href="../TV-Backends.html">Backend adapters</a> develops the interface/lifetime boundary.</p>
+<h2 id="rf-sharing-can-increase-other-work">RF sharing can increase other work</h2>
+<p>Suppose an original full-multiplex output uses twenty Mbit/s for M1 and twenty-four for M2. The two-acquisition interval then brings forty-four Mbit/s to the server.</p>
+<p>If the selected programme payloads are News six, Weather two and Cinema ten Mbit/s, their combined service payload is eighteen.</p>
+<p>The full-multiplex route uses fewer RF acquisitions under the stated assumptions while carrying more incoming data. Selection/filtering location and network capacity therefore remain separate considerations.</p>
+<p>Neither rate includes transport overhead, and neither describes a measured tuner.</p>
+<h2 id="a-compatible-assignment-is-another-condition">A compatible assignment is another condition</h2>
+<p>A free-resource count can be sufficient numerically while a careless assignment still fails.</p>
+<p>For a separate original two-resource exercise:</p>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Eligible modeled acquisitions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F1</td>
+<td>M1 or M2</td>
+</tr>
+<tr>
+<td>F2</td>
+<td>M1</td>
+</tr>
+</tbody>
+</table>
+<p>The required acquisitions are M1 and M2. Assigning M1 to F1 first leaves F2 unable to acquire M2.</p>
+<p>A valid assignment instead places M2 on F1 and M1 on F2. Both demands then have distinct compatible resources.</p>
+<pre><code class="lang-json">{
+  &quot;resources&quot;: [
+    {&quot;id&quot;: &quot;F1&quot;, &quot;eligible&quot;: [&quot;M1&quot;, &quot;M2&quot;]},
+    {&quot;id&quot;: &quot;F2&quot;, &quot;eligible&quot;: [&quot;M1&quot;]}
+  ],
+  &quot;required&quot;: [&quot;M1&quot;, &quot;M2&quot;],
+  &quot;assignment&quot;: {&quot;F1&quot;: &quot;M2&quot;, &quot;F2&quot;: &quot;M1&quot;}
+}
+</code></pre>
+<p>The object is a teaching matching model, not native capabilities or a tuner-allocation report. Eligibility can represent supported input/configuration differences in a real route.</p>
+<p>This separate example does not change the five-request model’s assumption that its resources are otherwise compatible. It adds the reason that counting alone cannot choose a working assignment.</p>
+<h2 id="the-implementation-establishes-the-policy">The implementation establishes the policy</h2>
+<p>A vendor’s direct stream interface, its record engine and a separate backend can expose different sharing behavior. SiliconDust’s record-engine API, for example, documents automatic tuner sharing for its defined live-TV route; that statement should not be generalized to every direct source request or every Emby backend.</p>
+<p>The relevant question is which source operation is opened and how its data is redistributed. A shared channel name or two requests beginning at the same time is not proof of shared acquisition.</p>
+<p>Finally, all counted resources must support the requested delivery system and input arrangement. An occupied tuner, an incompatible frontend or a mutually exclusive shared satellite input can reduce the available pool before client conversion capacity is considered.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../channels/identity/TV-Multiplexes.html" title="Broadcast multiplexes">Broadcast multiplexes</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../hardware/TV-Network-Tuners.html" title="Network TV tuners">Network TV tuners</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="TV-IPTV-Limits.html" title="IPTV connection limits">IPTV connection limits</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../hardware-acceleration/pipelines/Hardware-Encoder-Sessions.html" title="Concurrent encoder sessions, policy and capacity">Concurrent encoder sessions, policy and capacity</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://docs.kernel.org/userspace-api/media/dvb/frontend.html" title="Linux: Digital TV frontend API">Linux: Digital TV frontend API</a></li>
+			            <li><a class="seealso-link" href="https://docs.kernel.org/userspace-api/media/dvb/demux.html" title="Linux: Digital TV demultiplexer and MPEG-TS filters">Linux: Digital TV demultiplexer and MPEG-TS filters</a></li>
+			            <li><a class="seealso-link" href="https://info.hdhomerun.com/info/dvr_api:live_tv" title="SiliconDust: Record-engine live TV sharing API">SiliconDust: Record-engine live TV sharing API</a></li>
+			            <li><a class="seealso-link" href="https://info.hdhomerun.com/info/http_api" title="SiliconDust: HDHomeRun channel and HTTP API">SiliconDust: HDHomeRun channel and HTTP API</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-TV-Tuner-Concurrency%0A*%20Title%3A%20Tuner%20concurrency%20and%20shared%20acquisition%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

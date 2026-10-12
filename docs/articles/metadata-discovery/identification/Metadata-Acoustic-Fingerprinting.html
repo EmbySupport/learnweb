@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Acoustic fingerprinting | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Acoustic fingerprinting derives a compact audio-content representation that a matching system can compare with known recordings, independently of filenames and byte checksums.">
+  <link rel="canonical" href="https://emby.media/learn/articles/metadata-discovery/identification/Metadata-Acoustic-Fingerprinting.html">
+  <meta property="og:title" content="Acoustic fingerprinting | Emby Learn">
+  <meta property="og:description" content="Acoustic fingerprinting derives a compact audio-content representation that a matching system can compare with known recordings, independently of filenames and byte checksums.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/metadata-discovery/identification/Metadata-Acoustic-Fingerprinting.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/metadata-discovery/identification/Metadata-Acoustic-Fingerprinting.html","url":"https://emby.media/learn/articles/metadata-discovery/identification/Metadata-Acoustic-Fingerprinting.html","name":"Acoustic fingerprinting","inLanguage":"en","headline":"Acoustic fingerprinting","articleSection":"Metadata and discovery","proficiencyLevel":"Beginner","accessMode":"textual","description":"Acoustic fingerprinting derives a compact audio-content representation that a matching system can compare with known recordings, independently of filenames and byte checksums.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Metadata and discovery","item":"https://emby.media/learn/articles/metadata-discovery/index.html"},{"@type":"ListItem","position":3,"name":"Identification and matching","item":"https://emby.media/learn/articles/metadata-discovery/identification/index.html"},{"@type":"ListItem","position":4,"name":"Acoustic fingerprinting","item":"https://emby.media/learn/articles/metadata-discovery/identification/Metadata-Acoustic-Fingerprinting.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Metadata-Acoustic-Fingerprinting">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../metadata-discovery/index.html">Metadata and discovery</a></li>
+              <li><a href="../../metadata-discovery/identification/index.html">Identification and matching</a></li>
+              <li><span aria-current="page">Acoustic fingerprinting</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Metadata-Acoustic-Fingerprinting">
+<h1>Acoustic fingerprinting</h1>
+<p class="article-description">Acoustic fingerprinting derives a compact audio-content representation that a matching system can compare with known recordings, independently of filenames and byte checksums.</p>
+
+
+<p>Acoustic fingerprinting builds a compact representation from audio content. A matching system compares that representation with indexed references to help identify recorded material.</p>
+<p>This makes it useful when a filename or title tag is missing or misleading. It supplies another kind of evidence alongside descriptive matching.</p>
+<h2 id="decode-describe-compare-identify">Decode, describe, compare, identify</h2>
+<p>A pipeline first obtains audio samples, then computes its fingerprint representation. A lookup compares it with known reference data and returns candidate relationships or match evidence.</p>
+<p><img src="images/fingerprint-route.png" alt="Decoded audio produces fingerprint evidence, followed by a reference comparison and a separately interpreted recording/release relationship."></p>
+<p>Chromaprint's library accepts decoded, uncompressed audio; its documentation explicitly separates fingerprint calculation from reading encoded file formats. A tool supplying it with samples therefore needs an appropriate decode path.</p>
+<p>Fingerprint generation and provider lookup are also different operations. Computing a fingerprint locally does not inherently assign an artist, release or MusicBrainz identifier.</p>
+<h2 id="a-landmark-experiment-makes-timing-consistency-visible">A landmark experiment makes timing consistency visible</h2>
+<p>One approach identifies useful time-frequency landmarks and compares hashed relationships. Avery Wang's ISMIR paper describes a landmark-based audio search design.</p>
+<p>For an <strong>original simplified experiment</strong>, suppose three matched landmark keys occur at these positions:</p>
+<table>
+<thead>
+<tr>
+<th>Landmark key</th>
+<th style="text-align: right;">Query time</th>
+<th style="text-align: right;">Candidate A time</th>
+<th style="text-align: right;">Candidate A offset</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hA</td>
+<td style="text-align: right;">2 s</td>
+<td style="text-align: right;">12 s</td>
+<td style="text-align: right;">10 s</td>
+</tr>
+<tr>
+<td>hB</td>
+<td style="text-align: right;">3 s</td>
+<td style="text-align: right;">13 s</td>
+<td style="text-align: right;">10 s</td>
+</tr>
+<tr>
+<td>hC</td>
+<td style="text-align: right;">5 s</td>
+<td style="text-align: right;">15 s</td>
+<td style="text-align: right;">10 s</td>
+</tr>
+</tbody>
+</table>
+<p>All three support the same displacement: the query excerpt begins ten seconds into candidate A.</p>
+<p>Another candidate contains the same three simplified keys at 12, 20 and 28 seconds. Its offsets are <strong>10, 17 and 23 seconds</strong>. It has isolated key matches without one consistently supported alignment.</p>
+<p><img src="images/fingerprint-offset-votes.png" alt="Three matching landmarks vote for offset 10 in one candidate, while another candidate spreads the votes across different offsets."></p>
+<p>The experiment illustrates why agreement in time helps reject accidental feature matches. It does not implement the paper's hashing, feature selection or a production confidence threshold.</p>
+<p>A real system needs enough useful evidence, tolerance appropriate to its representation and a policy for ambiguous or weak matches. Short, repetitive or heavily altered audio can challenge those decisions.</p>
+<h2 id="fingerprints-and-file-hashes-answer-different-questions">Fingerprints and file hashes answer different questions</h2>
+<p>A byte checksum evaluates encoded bytes under a specified checksum algorithm. Changing the container or codec normally changes those bytes.</p>
+<p>An acoustic representation instead describes chosen features of decoded content. A robust implementation can retain useful similarity across some encoding differences. Its invariances are design choices: a scheme tolerant of compression is not automatically tolerant of every pitch, speed, mix or noise change.</p>
+<p>Chromaprint documents a particular design for near-identical audio and related uses. It should not be presented as identical to the landmark experiment above or as an unrestricted recognition solution for any short noisy recording.</p>
+<h2 id="a-recording-is-not-an-album-edition">A recording is not an album edition</h2>
+<p>A recognized recording can appear on an original album, a compilation and later issued products. An acoustic relationship alone does not identify which release's artwork, track number or release country belongs to the local album.</p>
+<p><a href="external-identifiers/Metadata-MusicBrainz-IDs.html">MusicBrainz identifiers</a> keep recording, release and release-group relationships distinct. Use accompanying release metadata and track-list context where the action needs that level of identity.</p>
+<p>An acoustic match also does not establish that two files are byte-identical, fully undamaged or equally high quality. The evidence concerns the features that were compared.</p>
+<h2 id="apply-the-evidence-at-its-actual-boundary">Apply the evidence at its actual boundary</h2>
+<p>For an Emby music-identification comparison, distinguish supported local tags, any fingerprint-capable integration and the catalogue relationship finally selected. This article explains fingerprint technology; it does not declare that every Emby installation performs the illustrated analysis automatically.</p>
+<p>A useful match record names the algorithm/service context, supplied audio segment, candidate entity and relevant evidence.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Metadata-Identification.html" title="Media identification">Media identification</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="external-identifiers/Metadata-MusicBrainz-IDs.html" title="MusicBrainz identifiers">MusicBrainz identifiers</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="external-identifiers/Metadata-Provider-IDs.html" title="Provider identifiers">Provider identifiers</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../understanding/Metadata-Technical.html" title="Technical media metadata">Technical media metadata</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.ee.columbia.edu/~dpwe/papers/Wang03-shazam.pdf" title="Avery Wang: An Industrial-Strength Audio Search Algorithm, ISMIR 2003">Avery Wang: An Industrial-Strength Audio Search Algorithm, ISMIR 2003</a></li>
+			            <li><a class="seealso-link" href="https://acoustid.org/chromaprint" title="AcoustID: Chromaprint inputs and fingerprinting">AcoustID: Chromaprint inputs and fingerprinting</a></li>
+			            <li><a class="seealso-link" href="https://github.com/acoustid/chromaprint" title="Chromaprint: Algorithm scope and implementation">Chromaprint: Algorithm scope and implementation</a></li>
+			            <li><a class="seealso-link" href="https://musicbrainz.org/doc/MusicBrainz_Identifier" title="MusicBrainz: Identifier model and redirects">MusicBrainz: Identifier model and redirects</a></li>
+			            <li><a class="seealso-link" href="https://musicbrainz.org/doc/Release" title="MusicBrainz: Releases">MusicBrainz: Releases</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Metadata-Acoustic-Fingerprinting%0A*%20Title%3A%20Acoustic%20fingerprinting%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,269 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Database locking and competing operations | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Database locking coordinates conflicting operations, and a busy result can require waiting, ending a snapshot or restarting a transaction according to its cause.">
+  <link rel="canonical" href="https://emby.media/learn/articles/storage/workload/databases/Server-Database-Locking.html">
+  <meta property="og:title" content="Database locking and competing operations | Emby Learn">
+  <meta property="og:description" content="Database locking coordinates conflicting operations, and a busy result can require waiting, ending a snapshot or restarting a transaction according to its cause.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/storage/workload/databases/Server-Database-Locking.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/storage/workload/databases/Server-Database-Locking.html","url":"https://emby.media/learn/articles/storage/workload/databases/Server-Database-Locking.html","name":"Database locking and competing operations","inLanguage":"en","headline":"Database locking and competing operations","articleSection":"Storage and server platforms","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"Database locking coordinates conflicting operations, and a busy result can require waiting, ending a snapshot or restarting a transaction according to its cause.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Storage and server platforms","item":"https://emby.media/learn/articles/storage/index.html"},{"@type":"ListItem","position":3,"name":"Server data and workload","item":"https://emby.media/learn/articles/storage/workload/index.html"},{"@type":"ListItem","position":4,"name":"Databases","item":"https://emby.media/learn/articles/storage/workload/databases/index.html"},{"@type":"ListItem","position":5,"name":"Database locking","item":"https://emby.media/learn/articles/storage/workload/databases/Server-Database-Locking.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Server-Database-Locking">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../storage/index.html">Storage and server platforms</a></li>
+              <li><a href="../../../storage/workload/index.html">Server data and workload</a></li>
+              <li><a href="../../../storage/workload/databases/index.html">Databases</a></li>
+              <li><span aria-current="page">Database locking</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Server-Database-Locking">
+<h1>Database locking and competing operations</h1>
+<p class="article-description">Database locking coordinates conflicting operations, and a busy result can require waiting, ending a snapshot or restarting a transaction according to its cause.</p>
+
+
+<p>A database lock coordinates operations whose concurrent execution would violate its storage or transaction rules. A waiting operation is not necessarily corrupt or unauthorized; it may be competing with another legitimate operation.</p>
+<p>The useful diagnosis identifies what is held, what the new operation requests and whether waiting can change that relationship.</p>
+<h2 id="a-second-writer-can-wait-for-the-first">A second writer can wait for the first</h2>
+<p>SQLite serializes writes, including in WAL mode. An original scheduling example is:</p>
+<pre><code class="lang-text">Writer A holds the required write state until 110 ms.
+Writer B requests it at 40 ms.
+B's deadline is 140 ms.
+If A releases at 110 ms and no other conflict appears:
+B can proceed after 70 ms of waiting, before its deadline.
+</code></pre>
+<p>A busy timeout bounds how long the caller waits under the applicable API behavior. It does not reserve the resource or guarantee that the owner finishes in time.</p>
+<p><img src="images/database-lock-and-snapshot.png" alt="A competing writer can proceed after the first releases the required state, while a stale snapshot needs a different recovery boundary."></p>
+<p>Long transactions hold their relevant state longer. Work that could occur before beginning a transaction or after committing it need not always occupy that same critical interval.</p>
+<h2 id="a-stale-read-snapshot-is-a-different-conflict">A stale read snapshot is a different conflict</h2>
+<p>Suppose connection R begins a WAL read transaction at state S1. Another connection commits S2. R then tries to turn its old read into a write.</p>
+<p>SQLite can reject that upgrade with a snapshot-busy result. Simply waiting for more time does not make R's S1 snapshot become S2. The application needs to end the old transaction and re-evaluate its intended work against an appropriate current state.</p>
+<p>This matters for a “read, calculate, update” operation. Retrying only the final write can apply a calculation based on information that is no longer current.</p>
+<table>
+<thead>
+<tr>
+<th>Conflict</th>
+<th>What can resolve it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Another writer temporarily holds the resource</td>
+<td>Release and a supported wait/retry</td>
+</tr>
+<tr>
+<td>Caller has an obsolete read snapshot for an upgrade</td>
+<td>End that transaction and start a suitable new attempt</td>
+</tr>
+<tr>
+<td>Database path is unwritable</td>
+<td>Correct the storage access problem</td>
+</tr>
+<tr>
+<td>Required storage is unavailable</td>
+<td>Restore that resource, rather than increasing a lock timeout</td>
+</tr>
+<tr>
+<td>Long-lived reader limits checkpoint progress</td>
+<td>End the relevant reader when the application can do so</td>
+</tr>
+</tbody>
+</table>
+<h2 id="locking-mode-affects-readers-too">Locking mode affects readers too</h2>
+<p>Rollback-journal and WAL arrangements have different reader/writer coordination. WAL readers can continue from their snapshots while another connection writes, but there is still one writer and there can still be busy conditions.</p>
+<p>Database-level coordination is also different from an arbitrary file lock acquired by another program. Opening the database files outside the database engine does not participate correctly in every engine lock protocol.</p>
+<p>For an Emby workload, overlapping scans, user-state updates and other database activity can be relevant context for a busy operation. The exact error and transaction state determine the retry boundary. An isolated toy example verifies writer contention and stale-snapshot recovery without using a real server database.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Server-Transactions.html" title="Database transactions and atomic application changes">Database transactions and atomic application changes</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Server-WAL.html" title="Database write-ahead logging, readers and checkpoints">Database write-ahead logging, readers and checkpoints</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../file-systems/activity/Storage-Locking.html" title="File locking, share modes and concurrent access">File locking, share modes and concurrent access</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Server-Tasks.html" title="Background task scheduling and shared resources">Background task scheduling and shared resources</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.sqlite.org/isolation.html" title="SQLite isolation and concurrency">SQLite isolation and concurrency</a></li>
+			            <li><a class="seealso-link" href="https://www.sqlite.org/lockingv3.html" title="SQLite locking and rollback journaling">SQLite locking and rollback journaling</a></li>
+			            <li><a class="seealso-link" href="https://www.sqlite.org/lang_transaction.html" title="SQLite transaction control">SQLite transaction control</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Server-Database-Locking%0A*%20Title%3A%20Database%20locking%20and%20competing%20operations%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

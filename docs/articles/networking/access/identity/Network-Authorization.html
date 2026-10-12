@@ -1,0 +1,282 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Media server authorization and operation-specific access | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Media-server authorization evaluates whether an established user context may perform a specific operation on the requested resource under the applicable policy.">
+  <link rel="canonical" href="https://emby.media/learn/articles/networking/access/identity/Network-Authorization.html">
+  <meta property="og:title" content="Media server authorization and operation-specific access | Emby Learn">
+  <meta property="og:description" content="Media-server authorization evaluates whether an established user context may perform a specific operation on the requested resource under the applicable policy.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/networking/access/identity/Network-Authorization.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/networking/access/identity/Network-Authorization.html","url":"https://emby.media/learn/articles/networking/access/identity/Network-Authorization.html","name":"Media server authorization and operation-specific access","inLanguage":"en","headline":"Media server authorization and operation-specific access","articleSection":"Networking and remote access","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"Media-server authorization evaluates whether an established user context may perform a specific operation on the requested resource under the applicable policy.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Networking and remote access","item":"https://emby.media/learn/articles/networking/index.html"},{"@type":"ListItem","position":3,"name":"User identity and access","item":"https://emby.media/learn/articles/networking/access/index.html"},{"@type":"ListItem","position":4,"name":"Identity and sessions","item":"https://emby.media/learn/articles/networking/access/identity/index.html"},{"@type":"ListItem","position":5,"name":"Media server authorization","item":"https://emby.media/learn/articles/networking/access/identity/Network-Authorization.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Network-Authorization">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../networking/index.html">Networking and remote access</a></li>
+              <li><a href="../../../networking/access/index.html">User identity and access</a></li>
+              <li><a href="../../../networking/access/identity/index.html">Identity and sessions</a></li>
+              <li><span aria-current="page">Media server authorization</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Network-Authorization">
+<h1>Media server authorization and operation-specific access</h1>
+<p class="article-description">Media-server authorization evaluates whether an established user context may perform a specific operation on the requested resource under the applicable policy.</p>
+
+
+<p>A user logs in successfully and can play a film, yet cannot delete it or open server administration. The credential relationship is valid; the operations have different permissions.</p>
+<p><strong>Authorization</strong> evaluates the action and resource under the established user context.</p>
+<h2 id="ask-about-the-particular-operation">Ask about the particular operation</h2>
+<p>Use this original policy matrix for U1:</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Resource</th>
+<th>Declared result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browse</td>
+<td>Family library</td>
+<td>Allow</td>
+</tr>
+<tr>
+<td>Play</td>
+<td>A permitted family item</td>
+<td>Allow</td>
+</tr>
+<tr>
+<td>Delete</td>
+<td>That same item</td>
+<td>Deny</td>
+</tr>
+<tr>
+<td>Administer</td>
+<td>Server configuration</td>
+<td>Deny</td>
+</tr>
+</tbody>
+</table>
+<p>The same authenticated account appears in every row. “Authenticated” is not one universal allow flag for all later operations.</p>
+<p><img src="images/authorization-operation-matrix.png" alt="The original authorization matrix uses one user context with distinct action/resource decisions."></p>
+<p>Emby’s user, content-access and parental-control documentation identifies these separate policy areas. Actual implemented routes must enforce their relevant policy.</p>
+<h2 id="keep-the-resource-and-user-in-the-decision">Keep the resource and user in the decision</h2>
+<p>An original reduced request is:</p>
+<pre><code class="lang-json">{
+  &quot;authenticatedUser&quot;: &quot;U1&quot;,
+  &quot;resource&quot;: &quot;Family/Item7&quot;,
+  &quot;operation&quot;: &quot;delete&quot;,
+  &quot;canPlay&quot;: true,
+  &quot;canDelete&quot;: false,
+  &quot;decision&quot;: &quot;deny&quot;
+}
+</code></pre>
+<p>The model denies deletion even though playback is allowed. Reusing only the canPlay result would select the wrong permission.</p>
+<p>A decision also needs the resource’s actual library/folder/rating context. A client-written display label should not replace the server’s authoritative object association.</p>
+<h2 id="enforce-policy-at-the-operation-boundary">Enforce policy at the operation boundary</h2>
+<p>Filtering a list in the client improves presentation but is not sufficient authorization for a later direct resource request.</p>
+<p>The server needs the applicable checks when the operation is attempted through its supported path. A trusted session identifies the user; it does not bypass resource policy.</p>
+<p>Conversely, a hidden UI button is not evidence that the backend denied an attempted operation. Those are separate observations.</p>
+<p>This is an access-control principle and teaching model, not a claim that live behavior was tested on a particular Emby version.</p>
+<h2 id="several-policy-inputs-can-combine">Several policy inputs can combine</h2>
+<p>Library/folder access, rating/tag restrictions, remote-access conditions and administrative capability can affect different operations.</p>
+<p>A request can satisfy one condition while failing another. <a href="../rules/Network-Library-Permissions.html">Library permissions</a> and <a href="../rules/Network-Rating-Restrictions.html">rating restrictions</a> develop those content decisions.</p>
+<p>The server’s storage identity also differs from the application user. The process being able to read a file does not give every authenticated user permission to request it.</p>
+<h2 id="an-allowed-request-still-needs-a-working-media-result">An allowed request still needs a working media result</h2>
+<p>Authorization can permit playback while an absent file, incompatible output or network failure prevents presentation.</p>
+<p>That failure does not retroactively mean the user was unauthorized. An application should preserve the difference between policy denial and unavailable/failed media processing.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Network-Authentication.html" title="Media server authentication and credential evidence">Media server authentication and credential evidence</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../rules/Network-Library-Permissions.html" title="Library access permissions and the user&#8217;s media scope">Library access permissions and the user&#8217;s media scope</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../rules/Network-Rating-Restrictions.html" title="Rating-based restrictions and unknown metadata">Rating-based restrictions and unknown metadata</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Network-User-Identity.html" title="Server user identity and scoped account state">Server user identity and scoped account state</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Users.html" title="Emby: Server-local users">Emby: Server-local users</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Content-Access.html" title="Emby: Library and channel access">Emby: Library and channel access</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Parental-Controls.html" title="Emby: Rating, tag and access-schedule controls">Emby: Rating, tag and access-schedule controls</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/doc/restapi/User-Authentication.html" title="Emby developer documentation: User authentication and tokens">Emby developer documentation: User authentication and tokens</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Network-Authorization%0A*%20Title%3A%20Media%20server%20authorization%20and%20operation-specific%20access%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

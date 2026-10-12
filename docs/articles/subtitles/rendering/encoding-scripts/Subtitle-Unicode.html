@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Unicode in subtitles | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Unicode represents subtitle characters, while code units, grapheme clusters, normalization and glyph shaping describe different text-processing boundaries.">
+  <link rel="canonical" href="https://emby.media/learn/articles/subtitles/rendering/encoding-scripts/Subtitle-Unicode.html">
+  <meta property="og:title" content="Unicode in subtitles | Emby Learn">
+  <meta property="og:description" content="Unicode represents subtitle characters, while code units, grapheme clusters, normalization and glyph shaping describe different text-processing boundaries.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/subtitles/rendering/encoding-scripts/Subtitle-Unicode.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/subtitles/rendering/encoding-scripts/Subtitle-Unicode.html","url":"https://emby.media/learn/articles/subtitles/rendering/encoding-scripts/Subtitle-Unicode.html","name":"Unicode in subtitles","inLanguage":"en","headline":"Unicode in subtitles","articleSection":"Subtitles and captions","proficiencyLevel":"Beginner","accessMode":"textual","description":"Unicode represents subtitle characters, while code units, grapheme clusters, normalization and glyph shaping describe different text-processing boundaries.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Subtitles and captions","item":"https://emby.media/learn/articles/subtitles/index.html"},{"@type":"ListItem","position":3,"name":"Text rendering and styling","item":"https://emby.media/learn/articles/subtitles/rendering/index.html"},{"@type":"ListItem","position":4,"name":"Character encoding and scripts","item":"https://emby.media/learn/articles/subtitles/rendering/encoding-scripts/index.html"},{"@type":"ListItem","position":5,"name":"Unicode in subtitles","item":"https://emby.media/learn/articles/subtitles/rendering/encoding-scripts/Subtitle-Unicode.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Subtitle-Unicode">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../subtitles/index.html">Subtitles and captions</a></li>
+              <li><a href="../../../subtitles/rendering/index.html">Text rendering and styling</a></li>
+              <li><a href="../../../subtitles/rendering/encoding-scripts/index.html">Character encoding and scripts</a></li>
+              <li><span aria-current="page">Unicode in subtitles</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Subtitle-Unicode">
+<h1>Unicode in subtitles</h1>
+<p class="article-description">Unicode represents subtitle characters, while code units, grapheme clusters, normalization and glyph shaping describe different text-processing boundaries.</p>
+
+
+<p>Unicode identifies the characters used in subtitle text. It allows one resource to represent many scripts and symbols, but “character count” still needs a definition.</p>
+<p>A byte, a code point, a UTF-16 code unit, a user-perceived character and a drawn glyph can have different counts. Those differences matter when software wraps a caption, highlights text, truncates a line or positions an OCR result.</p>
+<h2 id="one-accented-letter-has-two-common-representations">One accented letter has two common representations</h2>
+<p>The visible letter <strong>é</strong> can be represented as:</p>
+<table>
+<thead>
+<tr>
+<th>Representation</th>
+<th>Code points</th>
+<th>UTF-8 bytes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Composed</td>
+<td>U+00E9</td>
+<td>C3 A9</td>
+</tr>
+<tr>
+<td>Decomposed</td>
+<td>U+0065 followed by U+0301</td>
+<td>65 CC 81</td>
+</tr>
+</tbody>
+</table>
+<p>The second sequence contains an ordinary e and a combining acute accent. A capable renderer positions the mark with the base letter. It is one extended grapheme cluster under the applicable segmentation rules even though it contains two code points.</p>
+<p>Deleting just the final code point from the decomposed sequence removes the accent. Deleting the grapheme cluster removes the perceived letter. Splitting it carelessly between display lines separates information that belongs together.</p>
+<p><img src="images/unicode-boundaries.png" alt="Composed and decomposed accented text have different stored sequences but can form the same grapheme and glyph presentation."></p>
+<h2 id="a-longer-sequence-makes-the-counts-visible">A longer sequence makes the counts visible</h2>
+<p>Consider the family emoji <strong>👩‍👩‍👧‍👦</strong>, made from four person characters joined by three zero-width joiners.</p>
+<table>
+<thead>
+<tr>
+<th>Text example</th>
+<th style="text-align: right;">Unicode code points</th>
+<th style="text-align: right;">UTF-16 code units</th>
+<th style="text-align: right;">UTF-8 bytes</th>
+<th style="text-align: right;">Extended grapheme clusters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Composed é</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>Decomposed e + acute</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>Family emoji sequence</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+<p>Each person code point in this sequence uses two UTF-16 code units or four UTF-8 bytes. Each joiner uses one UTF-16 unit or three UTF-8 bytes. The totals are therefore <strong>4 × 2 + 3 = 11</strong> and <strong>4 × 4 + 3 × 3 = 25</strong>.</p>
+<p>A renderer with appropriate emoji/font support can present the family as a combined symbol. Another renderer can present constituent symbols. The segmentation boundary and the exact glyph appearance are distinct responsibilities.</p>
+<p>An index measured in UTF-16 code units is consequently not the same index as one measured in Unicode code points. Passing it into an API expecting another unit can select the wrong range or split a surrogate pair.</p>
+<h2 id="use-boundaries-suited-to-the-operation">Use boundaries suited to the operation</h2>
+<p>Grapheme segmentation identifies useful boundaries for user-perceived text units. Word segmentation and line-breaking rules answer different questions. A line does not have to break after every grapheme, and a grapheme count does not determine its width.</p>
+<p>For subtitle highlighting, a format can define its own character-range or timing units. The producer and consumer need to agree on those units. A karaoke instruction timing one syllable is not automatically an instruction timing one byte, one code point or one glyph.</p>
+<p>Font shaping can create ligatures or contextual glyphs after the character sequence is known. A font's glyph IDs are meaningful in that selected font; they are not Unicode character identifiers.</p>
+<p>These distinctions are useful when an Emby conversion preserves most wording but produces a broken accent, an incomplete symbol or a highlight on the wrong part of a line. Inspect the unit and boundary used at the transformation, rather than assuming a font change will repair every text operation.</p>
+<h2 id="normalization-addresses-equivalent-sequences">Normalization addresses equivalent sequences</h2>
+<p>Unicode normalization can transform canonically equivalent sequences. <strong>NFC</strong> composes where applicable; <strong>NFD</strong> decomposes into canonical components. The two accented-letter forms above become the same sequence when normalized to NFC.</p>
+<p>Normalization does not translate text, reverse writing direction, choose fonts or repair an incorrect byte decoding. Applying it to <code>cafÃ©</code> does not discover that the author intended <code>café</code>.</p>
+<p>Compatibility normalization forms, NFKC and NFKD, can additionally collapse distinctions such as some presentation or width variants. That broader transformation can change text choices a caption author intended to retain.</p>
+<p>A subtitle parser can also have exact string-matching rules for identifiers or style names. Normalizing visible wording and arbitrarily rewriting every identifier are different operations. Preserve the format's required matching semantics.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Subtitle-Encoding.html" title="Subtitle character encoding">Subtitle character encoding</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Subtitle-RTL.html" title="Right-to-left subtitles">Right-to-left subtitles</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../fonts-typesetting/Subtitle-Font-Fallback.html" title="Subtitle font fallback">Subtitle font fallback</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../fonts-typesetting/Subtitle-Karaoke.html" title="Karaoke subtitle timing">Karaoke subtitle timing</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc3629.html" title="RFC 3629: UTF-8">RFC 3629: UTF-8</a></li>
+			            <li><a class="seealso-link" href="https://www.unicode.org/reports/tr29/" title="Unicode UAX 29: Text segmentation">Unicode UAX 29: Text segmentation</a></li>
+			            <li><a class="seealso-link" href="https://www.unicode.org/reports/tr15/" title="Unicode UAX 15: Normalization forms">Unicode UAX 15: Normalization forms</a></li>
+			            <li><a class="seealso-link" href="https://harfbuzz.github.io/shaping-concepts.html" title="HarfBuzz: Shaping concepts">HarfBuzz: Shaping concepts</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/2026/CRD-webvtt1-20260520/" title="W3C WebVTT, May 2026 Candidate Recommendation Draft">W3C WebVTT, May 2026 Candidate Recommendation Draft</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Subtitle-Unicode%0A*%20Title%3A%20Unicode%20in%20subtitles%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

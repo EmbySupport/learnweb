@@ -1,0 +1,279 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Subtitle character encoding | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Character encoding specifies how subtitle bytes become characters, and incorrect decoding can produce mojibake before font rendering begins.">
+  <link rel="canonical" href="https://emby.media/learn/articles/subtitles/rendering/encoding-scripts/Subtitle-Encoding.html">
+  <meta property="og:title" content="Subtitle character encoding | Emby Learn">
+  <meta property="og:description" content="Character encoding specifies how subtitle bytes become characters, and incorrect decoding can produce mojibake before font rendering begins.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/subtitles/rendering/encoding-scripts/Subtitle-Encoding.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/subtitles/rendering/encoding-scripts/Subtitle-Encoding.html","url":"https://emby.media/learn/articles/subtitles/rendering/encoding-scripts/Subtitle-Encoding.html","name":"Subtitle character encoding","inLanguage":"en","headline":"Subtitle character encoding","articleSection":"Subtitles and captions","proficiencyLevel":"Beginner","accessMode":"textual","description":"Character encoding specifies how subtitle bytes become characters, and incorrect decoding can produce mojibake before font rendering begins.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Subtitles and captions","item":"https://emby.media/learn/articles/subtitles/index.html"},{"@type":"ListItem","position":3,"name":"Text rendering and styling","item":"https://emby.media/learn/articles/subtitles/rendering/index.html"},{"@type":"ListItem","position":4,"name":"Character encoding and scripts","item":"https://emby.media/learn/articles/subtitles/rendering/encoding-scripts/index.html"},{"@type":"ListItem","position":5,"name":"Subtitle character encoding","item":"https://emby.media/learn/articles/subtitles/rendering/encoding-scripts/Subtitle-Encoding.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Subtitle-Encoding">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../subtitles/index.html">Subtitles and captions</a></li>
+              <li><a href="../../../subtitles/rendering/index.html">Text rendering and styling</a></li>
+              <li><a href="../../../subtitles/rendering/encoding-scripts/index.html">Character encoding and scripts</a></li>
+              <li><span aria-current="page">Subtitle character encoding</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Subtitle-Encoding">
+<h1>Subtitle character encoding</h1>
+<p class="article-description">Character encoding specifies how subtitle bytes become characters, and incorrect decoding can produce mojibake before font rendering begins.</p>
+
+
+<p>Character encoding defines the relationship between stored <strong>bytes</strong> and text <strong>characters</strong>. An incorrectly decoded subtitle can show <code>Ã©</code> where <code>é</code> was intended even when its timestamps and basic punctuation remain readable.</p>
+<p>That is a text-decoding problem. Font selection happens later and cannot reinterpret the original bytes once the decoder has produced the wrong characters.</p>
+<h2 id="the-same-word-can-use-different-bytes">The same word can use different bytes</h2>
+<p>For the composed spelling <strong>café</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Encoding</th>
+<th>Bytes in hexadecimal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UTF-8</td>
+<td><code>63 61 66 C3 A9</code></td>
+</tr>
+<tr>
+<td>Windows-1252</td>
+<td><code>63 61 66 E9</code></td>
+</tr>
+</tbody>
+</table>
+<p>In UTF-8, C3 A9 together encode U+00E9. In Windows-1252, E9 represents that character directly.</p>
+<p>If the UTF-8 bytes are decoded as Windows-1252, C3 and A9 become two different characters, producing the familiar <strong>cafÃ©</strong>. If the single E9 byte is decoded as though it begins a complete UTF-8 character, that incomplete/invalid sequence needs an error policy.</p>
+<p>ASCII digits and timing separators have the same familiar byte values in these two encodings. The timing header can therefore look correct while the dialogue is wrong.</p>
+<p><img src="images/encoding-branches.png" alt="Decoding with the correct encoding recovers the intended characters; a later font cannot undo a wrong byte interpretation."></p>
+<h2 id="a-label-or-signature-supplies-evidence">A label or signature supplies evidence</h2>
+<p>Some formats prescribe an encoding: WebVTT is UTF-8. XML can describe its encoding under XML's rules. Existing SRT collections can contain legacy encodings, so the extension alone is insufficient evidence.</p>
+<p>A byte-order mark can identify a Unicode encoding signature:</p>
+<table>
+<thead>
+<tr>
+<th>Leading bytes</th>
+<th>Common signature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EF BB BF</td>
+<td>UTF-8 BOM</td>
+</tr>
+<tr>
+<td>FF FE</td>
+<td>UTF-16 little-endian BOM</td>
+</tr>
+<tr>
+<td>FE FF</td>
+<td>UTF-16 big-endian BOM</td>
+</tr>
+</tbody>
+</table>
+<p>A UTF-8 BOM is not required for all UTF-8 text. Absence of a BOM does not make a file a legacy code page. The format's rules and any valid metadata determine which interpretation should be used.</p>
+<p>A signature is also not visible caption content. Leaving U+FEFF where the applicable parser treats it as a signature and displaying it as a letter are different actions.</p>
+<h2 id="replacement-can-lose-information">Replacement can lose information</h2>
+<p>A decoder can reject invalid data or insert a replacement character, <strong>U+FFFD</strong>. If the resulting replacement text is saved over the source, the original byte sequence may no longer be available to reconstruct the intended wording.</p>
+<p>The replacement character is not a font's missing-glyph box. One comes from the text decoding/error policy; the other comes from a renderer unable to draw a character that is already known.</p>
+<p>For an Emby subtitle investigation, inspect the resource actually delivered and the interpretation used at the decoding stage. A file on disk can be correct while a conversion reads it with another encoding; a client cannot recover the original byte meaning from already corrupted text alone.</p>
+<h2 id="conversion-preserves-characters-through-a-new-encoding">Conversion preserves characters through a new encoding</h2>
+<p>A correct Windows-1252-to-UTF-8 conversion first decodes E9 as U+00E9, then encodes U+00E9 as C3 A9. It changes the stored bytes while preserving the character.</p>
+<p>Saving an already misdecoded <code>Ã©</code> string as UTF-8 encodes those wrong characters faithfully. It is not the same operation.</p>
+<p>The encoding conversion should therefore begin with a verified source interpretation. The resulting character sequence, not a successful “save as UTF-8” message, establishes whether the wording survived.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Subtitle-Unicode.html" title="Unicode in subtitles">Unicode in subtitles</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../formats/text/Subtitle-Text.html" title="Text-based subtitles">Text-based subtitles</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../formats/text/Subtitle-SRT.html" title="SubRip subtitles (SRT)">SubRip subtitles (SRT)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../storage-delivery/extraction-conversion/Subtitle-OCR.html" title="Subtitle OCR">Subtitle OCR</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc3629.html" title="RFC 3629: UTF-8">RFC 3629: UTF-8</a></li>
+			            <li><a class="seealso-link" href="https://encoding.spec.whatwg.org/" title="WHATWG Encoding Standard">WHATWG Encoding Standard</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/2026/CRD-webvtt1-20260520/" title="W3C WebVTT, May 2026 Candidate Recommendation Draft">W3C WebVTT, May 2026 Candidate Recommendation Draft</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Subtitle-Encoding%0A*%20Title%3A%20Subtitle%20character%20encoding%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Common Media Application Format (CMAF) | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="CMAF constrains segmented media tracks and their relationships so compatible delivery systems can use shared addressable media objects for timed presentation and switching.">
+  <link rel="canonical" href="https://emby.media/learn/articles/playback-streaming/delivery/Playback-CMAF.html">
+  <meta property="og:title" content="Common Media Application Format (CMAF) | Emby Learn">
+  <meta property="og:description" content="CMAF constrains segmented media tracks and their relationships so compatible delivery systems can use shared addressable media objects for timed presentation and switching.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/playback-streaming/delivery/Playback-CMAF.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/playback-streaming/delivery/Playback-CMAF.html","url":"https://emby.media/learn/articles/playback-streaming/delivery/Playback-CMAF.html","name":"Common Media Application Format (CMAF)","inLanguage":"en","headline":"Common Media Application Format (CMAF)","articleSection":"Playback and streaming","proficiencyLevel":"Beginner","accessMode":"textual","description":"CMAF constrains segmented media tracks and their relationships so compatible delivery systems can use shared addressable media objects for timed presentation and switching.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Playback and streaming","item":"https://emby.media/learn/articles/playback-streaming/index.html"},{"@type":"ListItem","position":3,"name":"Streaming delivery","item":"https://emby.media/learn/articles/playback-streaming/delivery/index.html"},{"@type":"ListItem","position":4,"name":"Common Media Application Format (CMAF)","item":"https://emby.media/learn/articles/playback-streaming/delivery/Playback-CMAF.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Playback-CMAF">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../playback-streaming/index.html">Playback and streaming</a></li>
+              <li><a href="../../playback-streaming/delivery/index.html">Streaming delivery</a></li>
+              <li><span aria-current="page">Common Media Application Format (CMAF)</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Playback-CMAF">
+<h1>Common Media Application Format (CMAF)</h1>
+<p class="article-description">CMAF constrains segmented media tracks and their relationships so compatible delivery systems can use shared addressable media objects for timed presentation and switching.</p>
+
+
+<p><strong>Common Media Application Format</strong>, or <strong>CMAF</strong>, defines constrained segmented media tracks and how suitable tracks form a presentation. It builds on the ISO Base Media File Format, adding relationships intended for interoperable delivery, decoding and switching.</p>
+<p>CMAF does not itself define the playlist, player or delivery protocol. That separation allows a delivery system to describe compatible media using HLS or DASH.</p>
+<h2 id="shared-media-different-descriptions">Shared media, different descriptions</h2>
+<p>A publisher can create compatible CMAF media objects and describe them in both HLS playlists and a DASH MPD. The descriptions remain different, while the addressable media resources can be shared.</p>
+<p><img src="images/cmaf-shared-media.png" alt="An original topology shows separate HLS and DASH descriptions referring to one compatible set of CMAF media objects."></p>
+<p>For a service offering both delivery systems, this can avoid keeping two separate copies of identically encoded and packaged media.</p>
+<p>The shared objects must actually satisfy the relevant constraints. Matching filename extensions does not establish that two independently packaged outputs are interchangeable.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>What it supplies</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Encoded video or audio</td>
+<td>Compressed pictures or samples</td>
+</tr>
+<tr>
+<td>CMAF track and media objects</td>
+<td>Constrained packaging, timing and track relationships</td>
+</tr>
+<tr>
+<td>HLS playlist or DASH MPD</td>
+<td>Resource discovery and presentation information</td>
+</tr>
+<tr>
+<td>Player</td>
+<td>Selection, retrieval, preparation and presentation</td>
+</tr>
+</tbody>
+</table>
+<p>This explains why “CMAF support” is not a complete compatibility statement. The receiver still needs the actual encoding configuration, delivery description and other selected features.</p>
+<h2 id="a-switching-set-coordinates-alternatives">A switching set coordinates alternatives</h2>
+<p>Alternative encodings intended for seamless switching need compatible boundaries and timeline relationships. CMAF defines constraints and profiles for tracks, switching sets and presentations.</p>
+<p>An original example has two video alternatives covering the same intervals, one at 720p and one at 1080p. If both have a suitable switching boundary at programme second twelve, the player can continue with the other alternative from that moment.</p>
+<p>If one alternative instead has a usable boundary at thirteen, describing it as another quality does not create the missing second. The track relationship must be established during encoding and packaging.</p>
+<p>A fragment is not a synonym for a complete movie. Track initialization describes how later samples are interpreted. Timed media objects then supply those samples, and the delivery description relates them to the presentation.</p>
+<h2 id="chunks-can-become-available-before-a-longer-interval-is-complete">Chunks can become available before a longer interval is complete</h2>
+<p>Lower-latency delivery can make smaller units available while a larger media interval is still being produced. A player capable of incremental receipt and preparation can work closer to the live publication edge.</p>
+<p>CMAF chunks provide a media organization that such delivery can use. The delivery protocol must also expose availability early enough, and intermediaries must avoid holding all bytes until the larger object completes.</p>
+<p>A six-second interval divided into twelve half-second units does not by itself promise half-second end-to-end delay. Encoding, publication, transfer, buffer policy and rendering contribute their own delays. <a href="Playback-Low-Latency.html">Low-latency streaming</a> works through that distinction.</p>
+<h2 id="identify-the-constraints-behind-the-label">Identify the constraints behind the label</h2>
+<p>An ordinary fragmented MP4 already has initialization and fragment structure. CMAF adds specific constraints, media profiles, brands and cross-track relationships; arbitrary fragmented output is not automatically a conforming CMAF presentation.</p>
+<p>ISO/IEC 23000-19:2024 is the published base edition referenced here. Its media and presentation constraints give the CMAF label a more specific meaning than fragmented MP4 alone.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="hls/Playback-HLS-Segments.html" title="HLS media segments and initialization">HLS media segments and initialization</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-DASH.html" title="MPEG-DASH and its media presentation description">MPEG-DASH and its media presentation description</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Adaptive-Bitrate.html" title="Adaptive bitrate streaming and representation selection">Adaptive bitrate streaming and representation selection</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Low-Latency.html" title="Low-latency streaming and the live presentation delay">Low-latency streaming and the live presentation delay</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../players/browser/Playback-MSE.html" title="Media Source Extensions (MSE) and scripted media delivery">Media Source Extensions (MSE) and scripted media delivery</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.iso.org/standard/85623.html" title="ISO/IEC 23000-19:2024: CMAF">ISO/IEC 23000-19:2024: CMAF</a></li>
+			            <li><a class="seealso-link" href="https://developer.apple.com/documentation/http-live-streaming/about-the-common-media-application-format-with-http-live-streaming-hls" title="Apple: CMAF with HTTP Live Streaming">Apple: CMAF with HTTP Live Streaming</a></li>
+			            <li><a class="seealso-link" href="https://dashif.org/Guidelines-TimingModel/" title="DASH-IF: Restricted timing model (2024 snapshot)">DASH-IF: Restricted timing model (2024 snapshot)</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/mse-byte-stream-format-isobmff/" title="W3C Group Note: ISO BMFF byte stream format">W3C Group Note: ISO BMFF byte stream format</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Playback-CMAF%0A*%20Title%3A%20Common%20Media%20Application%20Format%20(CMAF)%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

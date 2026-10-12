@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Progressive download and playback before completion | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Progressive download plays a media resource while its bytes are still arriving, using container information and buffered data to prepare the next presentation.">
+  <link rel="canonical" href="https://emby.media/learn/articles/playback-streaming/delivery/http-files/Playback-Progressive-Download.html">
+  <meta property="og:title" content="Progressive download and playback before completion | Emby Learn">
+  <meta property="og:description" content="Progressive download plays a media resource while its bytes are still arriving, using container information and buffered data to prepare the next presentation.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/playback-streaming/delivery/http-files/Playback-Progressive-Download.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/playback-streaming/delivery/http-files/Playback-Progressive-Download.html","url":"https://emby.media/learn/articles/playback-streaming/delivery/http-files/Playback-Progressive-Download.html","name":"Progressive download and playback before completion","inLanguage":"en","headline":"Progressive download and playback before completion","articleSection":"Playback and streaming","proficiencyLevel":"Beginner","accessMode":"textual","description":"Progressive download plays a media resource while its bytes are still arriving, using container information and buffered data to prepare the next presentation.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Playback and streaming","item":"https://emby.media/learn/articles/playback-streaming/index.html"},{"@type":"ListItem","position":3,"name":"Streaming delivery","item":"https://emby.media/learn/articles/playback-streaming/delivery/index.html"},{"@type":"ListItem","position":4,"name":"HTTP file delivery","item":"https://emby.media/learn/articles/playback-streaming/delivery/http-files/index.html"},{"@type":"ListItem","position":5,"name":"Progressive download","item":"https://emby.media/learn/articles/playback-streaming/delivery/http-files/Playback-Progressive-Download.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Playback-Progressive-Download">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../playback-streaming/index.html">Playback and streaming</a></li>
+              <li><a href="../../../playback-streaming/delivery/index.html">Streaming delivery</a></li>
+              <li><a href="../../../playback-streaming/delivery/http-files/index.html">HTTP file delivery</a></li>
+              <li><span aria-current="page">Progressive download</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Playback-Progressive-Download">
+<h1>Progressive download and playback before completion</h1>
+<p class="article-description">Progressive download plays a media resource while its bytes are still arriving, using container information and buffered data to prepare the next presentation.</p>
+
+
+<p>A movie does not have to arrive completely before the player shows its first picture. With <strong>progressive download</strong>, the player obtains a media resource over HTTP and presents the part for which it already has enough information and data. Retrieval and viewing overlap.</p>
+<p>This is a delivery arrangement. In an Emby <a href="../../from-server/modes/Playback-Direct-Play.html">Direct Play</a> session, a player may receive the original media this way. The term does not say whether the resource is a library original or a prepared version.</p>
+<h2 id="the-player-needs-more-than-the-first-bytes">The player needs more than the first bytes</h2>
+<p>A media container describes how encoded streams, their timestamps and their locations relate. The player uses that information to find samples, initialize decoders and schedule presentation.</p>
+<p>For an ordinary MP4, the <code>moov</code> box carries movie and track information, including sample tables. If that information is near the beginning, a player can discover the layout early. If it is at the end, startup may require retrieving that part first. An HTTP <a href="Playback-HTTP-Ranges.html">range request</a> can allow this without transferring everything preceding it.</p>
+<p><img src="images/progressive-layout.png" alt="An original resource-layout diagram shows that startup needs container information as well as the first media bytes."></p>
+<p>FFmpeg's <code>faststart</code> option for suitable non-fragmented MP4 output moves the index information toward the beginning. It changes packaging; it does not reduce the encoded video's bitrate or add codec support to the receiving device. <a href="../hls/Playback-HLS-Segments.html">Fragmented delivery</a> organizes initialization and media differently.</p>
+<p>The consequence is practical: two files with the same codecs and bitrate can start differently because the information needed to interpret their bytes appears in different places.</p>
+<h2 id="arrival-and-viewing-run-on-different-clocks">Arrival and viewing run on different clocks</h2>
+<p>Consider an original simplified example: a 600-second resource contains 450,000,000 bytes of media and packaging, and the connection sustains 12,000,000 bits per second.</p>
+<pre><code class="lang-text">450,000,000 × 8 / 12,000,000 = 300 seconds to transfer
+450,000,000 × 8 / 600 = 6,000,000 bits per media second on average
+</code></pre>
+<p>If bytes needed for each next interval arrive in time, the transfer can finish halfway through a ten-minute viewing. The player may nevertheless start much earlier, after establishing its initial <a href="../Playback-Buffering.html">buffer reserve</a>.</p>
+<p>This calculation assumes a stable useful transfer rate. Real media sizes vary by scene, and retrieval can be interrupted or scheduled in bursts. Knowing the average rate does not identify how much usable media exists before the next gap.</p>
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th>What it describes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bytes already received</td>
+<td>Transfer progress for the resource</td>
+</tr>
+<tr>
+<td>Buffered media intervals</td>
+<td>Time ranges the player has retained for use</td>
+</tr>
+<tr>
+<td>Current playback position</td>
+<td>The programme moment being presented</td>
+</tr>
+<tr>
+<td>Complete local copy</td>
+<td>A storage result, if the application retains the entire resource</td>
+</tr>
+</tbody>
+</table>
+<p>A player may discard earlier bytes or cease retrieval after playback stops. A progress bar approaching the end is therefore not evidence that the app has created a permanent offline copy.</p>
+<h2 id="a-jump-can-start-another-retrieval">A jump can start another retrieval</h2>
+<p>Seeking changes which portion is useful next. A player that supports the file layout and server range behavior can request the container information and encoded data needed around the destination rather than waiting for all intervening bytes.</p>
+<p>The required region can begin before the requested picture because decoding may need an earlier access point. That relationship is developed in <a href="../Playback-Seeking.html">Seeking during streaming</a>. A jump to a later scene can consequently create a new request and a short readiness wait even though the first part of the movie was already playing.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-HTTP-Ranges.html" title="HTTP range requests for media resources">HTTP range requests for media resources</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Playback-Segmented-Streaming.html" title="Segmented streaming and addressable media intervals">Segmented streaming and addressable media intervals</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Playback-Buffering.html" title="Buffering, ready media and playback reserve">Buffering, ready media and playback reserve</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../from-server/modes/Playback-Direct-Play.html" title="Direct Play in Emby">Direct Play in Emby</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../media-files/fundamentals/Containers-and-Codecs.html" title="Containers and Codecs">Containers and Codecs</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://datatracker.ietf.org/doc/html/rfc9110" title="IETF RFC 9110: HTTP semantics and range requests">IETF RFC 9110: HTTP semantics and range requests</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-formats.html" title="FFmpeg: Container formats and fragmented MP4">FFmpeg: Container formats and fragmented MP4</a></li>
+			            <li><a class="seealso-link" href="https://html.spec.whatwg.org/multipage/media.html" title="WHATWG: HTML media elements and playback">WHATWG: HTML media elements and playback</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/DirectPlay-Stream-Transcoding.html" title="Emby: Playback methods">Emby: Playback methods</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Playback-Progressive-Download%0A*%20Title%3A%20Progressive%20download%20and%20playback%20before%20completion%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

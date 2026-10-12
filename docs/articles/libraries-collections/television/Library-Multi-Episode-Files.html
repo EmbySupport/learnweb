@@ -1,0 +1,289 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Multi-episode files | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="A multi-episode file stores material for several episodes in one media resource, requiring a distinction between catalogue coverage and internal playback boundaries.">
+  <link rel="canonical" href="https://emby.media/learn/articles/libraries-collections/television/Library-Multi-Episode-Files.html">
+  <meta property="og:title" content="Multi-episode files | Emby Learn">
+  <meta property="og:description" content="A multi-episode file stores material for several episodes in one media resource, requiring a distinction between catalogue coverage and internal playback boundaries.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/libraries-collections/television/Library-Multi-Episode-Files.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/libraries-collections/television/Library-Multi-Episode-Files.html","url":"https://emby.media/learn/articles/libraries-collections/television/Library-Multi-Episode-Files.html","name":"Multi-episode files","inLanguage":"en","headline":"Multi-episode files","articleSection":"Libraries and media collections","proficiencyLevel":"Beginner","accessMode":"textual","description":"A multi-episode file stores material for several episodes in one media resource, requiring a distinction between catalogue coverage and internal playback boundaries.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Libraries and media collections","item":"https://emby.media/learn/articles/libraries-collections/index.html"},{"@type":"ListItem","position":3,"name":"Television and episodic media","item":"https://emby.media/learn/articles/libraries-collections/television/index.html"},{"@type":"ListItem","position":4,"name":"Multi-episode files","item":"https://emby.media/learn/articles/libraries-collections/television/Library-Multi-Episode-Files.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Library-Multi-Episode-Files">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../libraries-collections/index.html">Libraries and media collections</a></li>
+              <li><a href="../../libraries-collections/television/index.html">Television and episodic media</a></li>
+              <li><span aria-current="page">Multi-episode files</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Library-Multi-Episode-Files">
+<h1>Multi-episode files</h1>
+<p class="article-description">A multi-episode file stores material for several episodes in one media resource, requiring a distinction between catalogue coverage and internal playback boundaries.</p>
+
+
+<p>A multi-episode file contains material corresponding to more than one episode. It might preserve a double-length broadcast, a disc programme combining two stories, or a recording that runs through several episodes.</p>
+<p>The library needs to express what the file covers. A player additionally needs to know where each episode begins if it is to start a particular episode inside that resource. Those are separate kinds of information.</p>
+<h2 id="one-range-one-resource">One range, one resource</h2>
+<p>An illustrative Emby naming form is:</p>
+<pre><code class="lang-text">Harbour Watch S01E01-E02.mkv
+</code></pre>
+<p>The <a class="xref" href="https://emby.media/support/articles/TV-Naming.html">TV Naming guide</a> documents ranges for multiple episodes within the same season. The name expresses coverage of episodes 1 and 2. It does not change the container, create another file or insert a timestamp for the start of episode 2.</p>
+<p><img src="images/multi-episode-boundary.png" alt="Two fictional episode identities share coverage of one 45-minute file; a known 22-minute internal boundary enables the second story's local-time calculation."></p>
+<p>The diagram describes an original coverage model, not the exact item layout used by every server version.</p>
+<h2 id="a-boundary-must-come-from-other-evidence">A boundary must come from other evidence</h2>
+<p>Assume the fictional resource contains story A from 0:00 to 22:00 and story B from 22:00 to 45:00, with no extra material at the boundary.</p>
+<table>
+<thead>
+<tr>
+<th>Position within the resource</th>
+<th>Corresponding story position</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>12:00</td>
+<td>Story A, 12:00</td>
+</tr>
+<tr>
+<td>22:00</td>
+<td>Story B begins</td>
+</tr>
+<tr>
+<td>40:30</td>
+<td>Story B, 18:30</td>
+</tr>
+<tr>
+<td>45:00</td>
+<td>Resource end</td>
+</tr>
+</tbody>
+</table>
+<p>The third row subtracts B's known start: <code>40:30 - 22:00 = 18:30</code>.</p>
+<p>Splitting the total duration in half would instead place the boundary at 22:30. That guess is wrong by 30 seconds because the stories have unequal lengths. Production logos, credits or interstitial material can produce further differences.</p>
+<p>A chapter marker may identify a useful start, but “chapter 2” is not automatically “episode 2.” A feature can have many chapters, and a combined programme can have none. Exact episode boundaries require appropriately scoped metadata or content analysis, rather than a number extracted from the filename.</p>
+<h2 id="metadata-coverage-can-differ-from-programme-segmentation">Metadata coverage can differ from programme segmentation</h2>
+<p>A catalogue may represent the broadcast as one combined episode, or describe its component stories separately. A disc release can choose another segmentation again. TheTVDB's multi-segment policy illustrates why both combined and separated arrangements exist.</p>
+<p>A range against one arrangement is therefore not automatically a range against another. If the same file covers DVD programme X but aired episodes A and B, the mapping needs those actual entity relationships.</p>
+<p>Emby's public item model includes an end index as well as an initial index. That can describe a numbered span. It does not by itself promise that the file contains corresponding internal chapter boundaries or that every app exposes independent playback of each covered episode.</p>
+<h2 id="the-inverse-of-a-multipart-resource">The inverse of a multipart resource</h2>
+<table>
+<thead>
+<tr>
+<th>Resource relationship</th>
+<th>Catalogue meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One file contains two episodes</td>
+<td>Several episode identities or a covered span share a resource</td>
+</tr>
+<tr>
+<td>Two files contain one movie</td>
+<td>Sequential parts collectively represent one intended feature</td>
+</tr>
+<tr>
+<td>Two files encode one episode</td>
+<td>Alternative playable representations of an episode</td>
+</tr>
+</tbody>
+</table>
+<p>All three can involve the same number of filenames, but their playback logic differs. For alternatives, choose one complete representation. For sequential parts, traverse the necessary resources. For a combined resource, locate the relevant content within one timeline.</p>
+<h2 id="history-and-subtitles-need-that-timeline">History and subtitles need that timeline</h2>
+<p>A file-relative resume point of 40:30 is unambiguous for the resource. Reporting it as 40:30 of story B would be wrong under the worked boundary. Treating the range as two ordinary independent 45-minute episodes would be wrong for a different reason: it invents two full resources.</p>
+<p>Timed subtitles also normally refer to the combined file's presentation time unless a specific representation translates them. A cue at file minute 23 belongs after the second story begins in the example; subtracting 22 minutes only makes sense when converting to B's local timeline.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="episode-order/Library-Episode-Order.html" title="Understanding episode order">Understanding episode order</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="episode-order/Library-DVD-Order.html" title="DVD episode order">DVD episode order</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../movies/editions-versions/Library-Multipart-Movies.html" title="Multipart movies and file stacking">Multipart movies and file stacking</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../media-files/container-structure/timing-and-navigation/Media-Chapter-Markers.html" title="Chapter Markers">Chapter Markers</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/TV-Naming.html" title="Emby: Television naming">Emby: Television naming</a></li>
+			            <li><a class="seealso-link" href="https://support.thetvdb.com/kb/faq.php?id=17" title="TheTVDB: Multi-segment episodes and DVD orders">TheTVDB: Multi-segment episodes and DVD orders</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Model.Dto.BaseItemDto.html" title="Emby API: BaseItemDto">Emby API: BaseItemDto</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffprobe.html" title="FFmpeg: ffprobe documentation">FFmpeg: ffprobe documentation</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Library-Multi-Episode-Files%0A*%20Title%3A%20Multi-episode%20files%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

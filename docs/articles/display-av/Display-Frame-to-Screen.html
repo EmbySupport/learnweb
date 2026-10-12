@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>The path from decoded frames to the screen | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="A displayed picture results from decoding, presentation scheduling, color processing, output transport and the display&#8217;s own light-producing response.">
+  <link rel="canonical" href="https://emby.media/learn/articles/display-av/Display-Frame-to-Screen.html">
+  <meta property="og:title" content="The path from decoded frames to the screen | Emby Learn">
+  <meta property="og:description" content="A displayed picture results from decoding, presentation scheduling, color processing, output transport and the display&#8217;s own light-producing response.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/display-av/Display-Frame-to-Screen.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/display-av/Display-Frame-to-Screen.html","url":"https://emby.media/learn/articles/display-av/Display-Frame-to-Screen.html","name":"The path from decoded frames to the screen","inLanguage":"en","headline":"The path from decoded frames to the screen","articleSection":"Displays and AV connections","proficiencyLevel":"Beginner","accessMode":"textual","description":"A displayed picture results from decoding, presentation scheduling, color processing, output transport and the display’s own light-producing response.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Displays and AV connections","item":"https://emby.media/learn/articles/display-av/index.html"},{"@type":"ListItem","position":3,"name":"The path from decoded frames to the screen","item":"https://emby.media/learn/articles/display-av/Display-Frame-to-Screen.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../favicon.ico">
+  <script type="text/javascript" src="../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../styles/docfx.css">
+  <link rel="stylesheet" href="../../styles/main.css">
+  <link rel="stylesheet" href="../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../toc.html">
+  <meta property="docfx:tocrel" content="../toc.html">
+  <meta property="docfx:uid" content="Learn-Display-Frame-to-Screen">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  <script type="text/javascript" src="../../nav.js"></script>
+  <script type="text/javascript" src="../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../index.html">Emby Learn</a></li>
+              <li><a href="../display-av/index.html">Displays and AV connections</a></li>
+              <li><span aria-current="page">The path from decoded frames to the screen</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Display-Frame-to-Screen">
+<h1>The path from decoded frames to the screen</h1>
+<p class="article-description">A displayed picture results from decoding, presentation scheduling, color processing, output transport and the display&#8217;s own light-producing response.</p>
+
+
+<p>A movie can Direct Play from Emby Server and still pass through several transformations before its pictures become light. Direct Play describes delivery of the original media to a compatible client. The client then decodes and presents it through its device’s display system.</p>
+<p>That distinction matters when a movie plays without buffering but has uneven motion, incorrect colors or a short blackout at startup. Those symptoms can arise after the server has delivered the right bytes.</p>
+<h2 id="a-picture-changes-representation-along-the-route">A picture changes representation along the route</h2>
+<p>The decoder reconstructs a picture in a memory layout such as YCbCr planes. A renderer prepares it for the presentation surface: perhaps scaling it, converting its color representation, composing subtitles or placing it inside the app interface.</p>
+<p>The operating system can combine that surface with other windows. An output engine produces the selected display signal. A connected TV or monitor receives that signal and can apply additional processing before driving its pixels.</p>
+<p><img src="images/frame-screen-stages.png" alt="The picture route separates decoded storage, presentation, display signaling and physical pixel output."></p>
+<p>These operations can occur on dedicated hardware, GPU processing or other implemented paths. <a href="../hardware-acceleration/pipelines/memory/Hardware-Frame-Surfaces.html">Frame surfaces</a> describe the storage and ownership relationships; a compatible decoder surface is not automatically a finished display signal.</p>
+<p>For example, a 1920 × 1080 source shown on a 3840 × 2160 panel needs a spatial mapping somewhere. If the client sends 1080p, the display may scale it. If the client sends 2160p, scaling occurs earlier. The panel’s resolution alone does not identify the scaler.</p>
+<h2 id="four-different-clocks-meet-at-presentation">Four different clocks meet at presentation</h2>
+<table>
+<thead>
+<tr>
+<th>Clock or interval</th>
+<th>What it describes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Programme timestamps</td>
+<td>When each picture belongs in the movie</td>
+</tr>
+<tr>
+<td>Decode/processing completion</td>
+<td>When its usable result becomes ready</td>
+</tr>
+<tr>
+<td>Presentation/refresh schedule</td>
+<td>When the display system can select or scan that result</td>
+</tr>
+<tr>
+<td>Pixel response and light emission</td>
+<td>When the visible output changes</td>
+</tr>
+</tbody>
+</table>
+<p>A picture with a presentation timestamp of ten seconds is not required to spend ten seconds in the decoder. The player uses a playback clock to relate programme time to the current presentation deadline.</p>
+<p>Likewise, “60 Hz” describes a refresh schedule, while “24 fps” describes source-picture timing. A player must map one to the other. <a href="motion/refresh-synchronization/Display-Frame-Rate-Matching.html">Frame-rate matching</a> develops that mapping.</p>
+<p>The audio clock can also guide synchronization. Delaying video while audio advances creates another relationship to manage; increasing server throughput does not automatically correct it.</p>
+<h2 id="ready-selected-and-visible-are-different-moments">Ready, selected and visible are different moments</h2>
+<p>Consider an original simplified 60-Hz model. Refresh boundaries occur at 0, 16.667 and 33.333 milliseconds. Picture A becomes usable at 10 ms.</p>
+<p>Assume the presentation system selects A at the next boundary, then scans the picture progressively from top to bottom over one refresh interval:</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th style="text-align: right;">Model time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A becomes ready</td>
+<td style="text-align: right;">10 ms</td>
+</tr>
+<tr>
+<td>A is selected for scanout</td>
+<td style="text-align: right;">16.667 ms</td>
+</tr>
+<tr>
+<td>Centre of A is scanned</td>
+<td style="text-align: right;">25 ms</td>
+</tr>
+<tr>
+<td>Bottom of A is scanned</td>
+<td style="text-align: right;">33.333 ms</td>
+</tr>
+</tbody>
+</table>
+<p>If the centre pixels have a declared four-millisecond transition after their new drive begins, their modeled response point is 29 ms. Ready-to-centre-response time is therefore nineteen milliseconds.</p>
+<p>This exercise assumes a continuous scan, no extra queued pictures, no TV processing delay and the stated response interval. A real panel may buffer, scan differently, illuminate in pulses or have transitions that differ by color level. It is a timing explanation, not a latency measurement.</p>
+<p>An extra presentation queue can add time before selection. Display processing can add time after reception. A quoted pixel response does not include either automatically.</p>
+<h2 id="color-interpretation-travels-with-the-picture">Color interpretation travels with the picture</h2>
+<p>The source’s transfer function, primaries, matrix and range guide its interpretation. The renderer and output system need a compatible destination representation. The display needs the intended signal interpretation.</p>
+<p>Ten-bit storage does not, by itself, make the result HDR. A PQ picture interpreted through an SDR transfer function can look wrong even though the decoder reconstructed its values correctly.</p>
+<p><a href="characteristics/Display-Color-Management.html">Display color management</a> explains the application/OS relationship. <a href="signaling/capability-exchange/AV-HDR-Signaling.html">HDMI HDR signaling</a> separates source metadata, sink capability and the signal actually being sent.</p>
+<h2 id="evidence-should-identify-its-stage">Evidence should identify its stage</h2>
+<p>An Emby playback report showing Direct Play establishes the delivery choice. A hardware decoder report establishes a reconstruction path. The operating system’s selected output mode describes the display connection. A TV’s signal information describes what that input recognizes.</p>
+<p>Together these observations locate the route. None replaces all the others.</p>
+<p>When a mode change produces a startup blackout, the useful question is whether the output is being re-established at that moment. When a pan has regular uneven steps, the useful question is whether source pictures receive equal display durations. A stall while the next programme interval is unavailable is a different observation again.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="motion/refresh-synchronization/Display-Frame-Rate-Matching.html" title="Frame-rate matching at the display">Frame-rate matching at the display</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="characteristics/Display-Color-Management.html" title="Display color management">Display color management</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="connections/hdmi/AV-HDMI-Video.html" title="HDMI video transport">HDMI video transport</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../hardware-acceleration/pipelines/memory/Hardware-Frame-Surfaces.html" title="Hardware frame surfaces and GPU contexts">Hardware frame surfaces and GPU contexts</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../playback-streaming/conversion/Playback-Transcode-Pipeline.html" title="How a transcoding pipeline works">How a transcoding pipeline works</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/direct3darticles/high-dynamic-range" title="Microsoft: Advanced Color display pipeline">Microsoft: Advanced Color display pipeline</a></li>
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/api/dxgi/nf-dxgi-idxgiswapchain-present" title="Microsoft: DXGI presentation and synchronization">Microsoft: DXGI presentation and synchronization</a></li>
+			            <li><a class="seealso-link" href="https://docs.kernel.org/gpu/drm-kms.html" title="Linux: Connector properties, EDID and HDR metadata">Linux: Connector properties, EDID and HDR metadata</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Display-Frame-to-Screen%0A*%20Title%3A%20The%20path%20from%20decoded%20frames%20to%20the%20screen%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

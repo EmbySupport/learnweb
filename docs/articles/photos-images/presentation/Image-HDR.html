@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>HDR still images | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="An HDR still presentation combines suitable image samples and luminance/colour interpretation with an output path that can render the intended brightness range or a defined fallback.">
+  <link rel="canonical" href="https://emby.media/learn/articles/photos-images/presentation/Image-HDR.html">
+  <meta property="og:title" content="HDR still images | Emby Learn">
+  <meta property="og:description" content="An HDR still presentation combines suitable image samples and luminance/colour interpretation with an output path that can render the intended brightness range or a defined fallback.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/photos-images/presentation/Image-HDR.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/photos-images/presentation/Image-HDR.html","url":"https://emby.media/learn/articles/photos-images/presentation/Image-HDR.html","name":"HDR still images","inLanguage":"en","headline":"HDR still images","articleSection":"Photos and images","proficiencyLevel":"Beginner","accessMode":"textual","description":"An HDR still presentation combines suitable image samples and luminance/colour interpretation with an output path that can render the intended brightness range or a defined fallback.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Photos and images","item":"https://emby.media/learn/articles/photos-images/index.html"},{"@type":"ListItem","position":3,"name":"Image presentation","item":"https://emby.media/learn/articles/photos-images/presentation/index.html"},{"@type":"ListItem","position":4,"name":"HDR still images","item":"https://emby.media/learn/articles/photos-images/presentation/Image-HDR.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Image-HDR">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../photos-images/index.html">Photos and images</a></li>
+              <li><a href="../../photos-images/presentation/index.html">Image presentation</a></li>
+              <li><span aria-current="page">HDR still images</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Image-HDR">
+<h1>HDR still images</h1>
+<p class="article-description">An HDR still presentation combines suitable image samples and luminance/colour interpretation with an output path that can render the intended brightness range or a defined fallback.</p>
+
+
+<p>An HDR photograph can represent and present brightness relationships beyond a chosen SDR reproduction. Its meaningful properties include the samples, their colour/luminance interpretation and how the output path renders them.</p>
+<p>Capturing a wide range of scene light and storing a finished HDR presentation are different tasks. A raw capture or a high-precision TIFF can supply useful information without being a directly displayable HDR image.</p>
+<h2 id="capture-and-presentation-make-different-decisions">Capture and presentation make different decisions</h2>
+<p>A raw development or a merge of bracketed exposures can recover scene information across a range of light levels. The photographer still chooses exposure, appearance and an output representation.</p>
+<p>An SDR export maps that result into an SDR reproduction. An HDR export can retain another brightness relationship using a suitable encoding or gain-map arrangement.</p>
+<p>Increasing bit depth supplies more numerical levels. It does not identify which values mean SDR white, HDR highlights or a particular transfer function.</p>
+<h2 id="two-useful-representation-routes">Two useful representation routes</h2>
+<p>A directly interpreted HDR image uses appropriate sample encoding and colour/luminance description. Its reader needs to decode and interpret that representation, then render for the actual output.</p>
+<p>A <strong>gain-map</strong> arrangement relates a base rendition to another appearance using an additional spatial map and metadata. A compatible consumer can combine them according to the supported reconstruction and available output headroom. A base-only consumer can receive the designated base presentation when that arrangement permits it.</p>
+<p>Android's Ultra HDR v1.1 reference specifies one JPEG-based gain-map packaging. Adobe's resources describe its gain-map design and the ISO 21496-1 standardization relationship. These are concrete arrangements, rather than a guarantee that every file called HDR stores the same fields.</p>
+<h2 id="a-gain-is-a-relationship-between-renditions">A gain is a relationship between renditions</h2>
+<p>For an original, simplified <strong>one-channel, zero-offset</strong> model, let base linear sample B = <strong>0.5</strong>, full gain G = <strong>4</strong>, and reconstruction weight w between 0 and 1:</p>
+<p><strong>output = B × Gʷ.</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Weight w</th>
+<th>Calculation</th>
+<th style="text-align: right;">Linear result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0</td>
+<td>0.5 × 4⁰</td>
+<td style="text-align: right;">0.5</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.5</td>
+<td>0.5 × 4⁰·⁵</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1</td>
+<td>0.5 × 4¹</td>
+<td style="text-align: right;">2</td>
+</tr>
+</tbody>
+</table>
+<p>Here, 1 denotes the model's chosen SDR-white reference. The reconstructed highlight can rise above it as more of the gain is applied.</p>
+<p><img src="images/hdr-gain-model.png" alt="A simplified gain-map reconstruction increases the linear sample from 0.5 to 2 as the reconstruction weight increases."></p>
+<p>Real specified gain maps define how map samples, metadata, offsets, channels and display capacity determine the operation. This table illustrates the multiplicative relationship; it is not a complete gain-map decoder, and w is not a claim about a particular display's brightness setting.</p>
+<h2 id="thumbnail-generation-can-choose-a-different-rendition">Thumbnail generation can choose a different rendition</h2>
+<p>An image converter that reads only a designated SDR base may produce a useful SDR thumbnail while omitting the map. A later HDR-capable viewer cannot reconstruct the lost source relationship from that derivative alone.</p>
+<p>Another converter can reconstruct the HDR appearance, then intentionally create an SDR result through tone mapping. Simply clipping every value above 1 merges distinct highlights into one level; <a href="../../video/tone-mapping/fundamentals/Tone-Mapping-HDR-to-SDR.html">HDR-to-SDR tone mapping</a> develops the alternative mapping.</p>
+<p>Cropping/resizing also needs a coherent relationship between the image and any spatial auxiliary map. Carrying an unchanged map alongside differently cropped base samples can make their positions disagree.</p>
+<h2 id="output-headroom-belongs-to-the-full-route">Output headroom belongs to the full route</h2>
+<p>The app's decoding, colour handling, operating-system surface and display presentation all contribute to the observed result. A display with HDR capability does not cause an image decoder to recover missing gain-map data or automatically repair wrong colour signaling.</p>
+<p>For Emby photos/artwork, compare the selected original, delivered representation and final appearance. Determine whether that route preserved the intended HDR information, chose an SDR derivative, or lost part of the relationship during conversion.</p>
+<p>A sound SDR fallback is another authored result, not necessarily evidence of a failed capture. It should retain useful scene relationships for its intended output rather than rely on a filename or bit-depth label to communicate the whole presentation.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../formats/Image-AVIF.html" title="AVIF images">AVIF images</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../formats/Image-HEIF.html" title="HEIF and HEIC images">HEIF and HEIC images</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../formats/Image-PNG.html" title="PNG images">PNG images</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Image-ICC-Profiles.html" title="ICC color profiles">ICC color profiles</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../formats/Image-Camera-Raw.html" title="Camera raw images">Camera raw images</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../video/tone-mapping/fundamentals/Tone-Mapping-HDR-to-SDR.html" title="How HDR-to-SDR Tone Mapping Works">How HDR-to-SDR Tone Mapping Works</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://helpx.adobe.com/camera-raw/desktop/hdr-and-advanced-output/gain-map.html" title="Adobe: HDR gain maps and specification resources">Adobe: HDR gain maps and specification resources</a></li>
+			            <li><a class="seealso-link" href="https://developer.android.com/media/platform/hdr-image-format" title="Android: Ultra HDR image format v1.1">Android: Ultra HDR image format v1.1</a></li>
+			            <li><a class="seealso-link" href="https://aomediacodec.github.io/av1-avif/v1.2.0.html" title="AOM AVIF 1.2.0, Final Deliverable of 16 October 2025">AOM AVIF 1.2.0, Final Deliverable of 16 October 2025</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/2025/REC-png-3-20250624/" title="W3C PNG Third Edition, Recommendation of 24 June 2025">W3C PNG Third Edition, Recommendation of 24 June 2025</a></li>
+			            <li><a class="seealso-link" href="https://www.color.org/specification/ICC.1-2022-05.pdf" title="ICC.1:2022: Profile architecture, format and data structure">ICC.1:2022: Profile architecture, format and data structure</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Image-HDR%0A*%20Title%3A%20HDR%20still%20images%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,307 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Why hardware acceleration can still use the CPU | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="CPU activity during accelerated media processing can come from unaccelerated stages, host coordination and concurrent work, so its meaning depends on the complete selected workload.">
+  <link rel="canonical" href="https://emby.media/learn/articles/hardware-acceleration/pipelines/Hardware-CPU-Work.html">
+  <meta property="og:title" content="Why hardware acceleration can still use the CPU | Emby Learn">
+  <meta property="og:description" content="CPU activity during accelerated media processing can come from unaccelerated stages, host coordination and concurrent work, so its meaning depends on the complete selected workload.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/hardware-acceleration/pipelines/Hardware-CPU-Work.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/hardware-acceleration/pipelines/Hardware-CPU-Work.html","url":"https://emby.media/learn/articles/hardware-acceleration/pipelines/Hardware-CPU-Work.html","name":"Why hardware acceleration can still use the CPU","inLanguage":"en","headline":"Why hardware acceleration can still use the CPU","articleSection":"Media hardware acceleration","proficiencyLevel":"Beginner","accessMode":"textual","description":"CPU activity during accelerated media processing can come from unaccelerated stages, host coordination and concurrent work, so its meaning depends on the complete selected workload.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Media hardware acceleration","item":"https://emby.media/learn/articles/hardware-acceleration/index.html"},{"@type":"ListItem","position":3,"name":"Hardware pipelines and their limits","item":"https://emby.media/learn/articles/hardware-acceleration/pipelines/index.html"},{"@type":"ListItem","position":4,"name":"Why hardware acceleration can still use the CPU","item":"https://emby.media/learn/articles/hardware-acceleration/pipelines/Hardware-CPU-Work.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Hardware-CPU-Work">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../hardware-acceleration/index.html">Media hardware acceleration</a></li>
+              <li><a href="../../hardware-acceleration/pipelines/index.html">Hardware pipelines and their limits</a></li>
+              <li><span aria-current="page">Why hardware acceleration can still use the CPU</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Hardware-CPU-Work">
+<h1>Why hardware acceleration can still use the CPU</h1>
+<p class="article-description">CPU activity during accelerated media processing can come from unaccelerated stages, host coordination and concurrent work, so its meaning depends on the complete selected workload.</p>
+
+
+<p>Hardware acceleration assigns supported work to particular device paths. The application and other media stages still have work on the CPU.</p>
+<p>A high overall CPU number therefore needs a workload explanation before it becomes evidence that hardware decoding or encoding failed.</p>
+<h2 id="identify-the-cpus-tasks">Identify the CPU’s tasks</h2>
+<table>
+<thead>
+<tr>
+<th>Work</th>
+<th>Possible CPU contribution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Container and packet handling</td>
+<td>Source reads, parsing and stream selection</td>
+</tr>
+<tr>
+<td>Audio processing</td>
+<td>Selected decode, channel processing or encoding</td>
+</tr>
+<tr>
+<td>Subtitle/picture work</td>
+<td>A selected CPU renderer or filter</td>
+</tr>
+<tr>
+<td>Device coordination</td>
+<td>Submission, queues, callbacks and resource handling</td>
+</tr>
+<tr>
+<td>Delivery</td>
+<td>Packaging, temporary output and request handling</td>
+</tr>
+<tr>
+<td>Other server activity</td>
+<td>Concurrent jobs and library/system work</td>
+</tr>
+</tbody>
+</table>
+<p>NVIDIA's decoder documentation, for example, separates its software parser from the dedicated reconstruction engine. An application can consequently perform CPU parsing while NVDEC is doing its selected decode work.</p>
+<p><img src="images/cpu-work-accelerated-stages.png" alt="An original CPU-work diagram relates host responsibilities to accelerated video stages without equating total utilization with one codec operation."></p>
+<h2 id="small-per-picture-work-can-accumulate">Small per-picture work can accumulate</h2>
+<p>Use an original model with eight milliseconds of CPU work per picture at thirty pictures per second:</p>
+<pre><code class="lang-text">0.008 CPU seconds × 30 pictures = 0.24 CPU seconds per wall second
+</code></pre>
+<p>If the modeled work uses one core at a time, it is about 24% of one core's time. Four equivalent independent jobs request 0.96 core-seconds per wall second.</p>
+<p>On an ideal eight-core total-time denominator, that is 12% aggregate CPU time. The actual reporting convention, scheduling and extra work determine a real utilization display.</p>
+<p>The numbers are invented. They show why a per-picture cost, a per-core percentage and a machine-total percentage should not be interchanged.</p>
+<h2 id="observation-scope-by-stage">Observation scope by stage</h2>
+<table>
+<thead>
+<tr>
+<th>Evidence</th>
+<th>What it establishes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hardware encoder successfully initialized</td>
+<td>Selected output encoder path</td>
+</tr>
+<tr>
+<td>Hardware decoder produces pictures</td>
+<td>Selected reconstruction progress</td>
+</tr>
+<tr>
+<td>CPU filter appears in the graph</td>
+<td>A picture-processing path needing its CPU contract</td>
+</tr>
+<tr>
+<td>Total CPU utilization is high</td>
+<td>Combined activity under that reporting interval</td>
+</tr>
+<tr>
+<td>Conversion falls below playback rate</td>
+<td>Deficit somewhere in the complete producer route</td>
+</tr>
+</tbody>
+</table>
+<p>A hardware encoder name does not prove every upstream operation used hardware. Conversely, total CPU utilization does not erase a successfully running hardware stage.</p>
+<h2 id="preserve-the-compared-workload">Preserve the compared workload</h2>
+<p>An Emby session with a newly selected burn-in subtitle can introduce CPU picture work while keeping the same hardware decoder and encoder.</p>
+<p>Changing simultaneous jobs or output dimensions also changes demand. Compare the same source, selected tracks, target and job count before assigning the difference to acceleration.</p>
+<p><a href="../../playback-streaming/behavior/diagnostics/Playback-Transcode-Logs.html">Transcoding logs</a> supply operation and progress evidence that can be related to the observation interval.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Hardware-Mixed-Filtering.html" title="Mixed hardware and software filtering">Mixed hardware and software filtering</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="memory/Hardware-Copy-Back.html" title="Copy-back video pipelines">Copy-back video pipelines</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Hardware-Encoder-Sessions.html" title="Concurrent encoder sessions, policy and capacity">Concurrent encoder sessions, policy and capacity</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Hardware-Emby-Server.html" title="Hardware acceleration in Emby Server">Hardware acceleration in Emby Server</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../playback-streaming/behavior/diagnostics/Playback-Transcode-Logs.html" title="Reading a transcoding log">Reading a transcoding log</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../playback-streaming/conversion/performance/Playback-Concurrent-Workloads.html" title="Concurrent playback workloads">Concurrent playback workloads</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Hardware-Acceleration-Overview.html" title="Emby: Hardware acceleration overview">Emby: Hardware acceleration overview</a></li>
+			            <li><a class="seealso-link" href="https://docs.nvidia.com/video-technologies/video-codec-sdk/13.1/nvdec-video-decoder-api-prog-guide/index.html" title="NVIDIA SDK 13.1: NVDEC programming guide">NVIDIA SDK 13.1: NVDEC programming guide</a></li>
+			            <li><a class="seealso-link" href="https://docs.nvidia.com/video-technologies/video-codec-sdk/13.1/nvenc-video-encoder-api-prog-guide/index.html" title="NVIDIA SDK 13.1: NVENC programming guide">NVIDIA SDK 13.1: NVENC programming guide</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg.html" title="FFmpeg: Hardware devices and processing">FFmpeg: Hardware devices and processing</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-filters.html" title="FFmpeg: Hardware and software filters">FFmpeg: Hardware and software filters</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Hardware-CPU-Work%0A*%20Title%3A%20Why%20hardware%20acceleration%20can%20still%20use%20the%20CPU%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

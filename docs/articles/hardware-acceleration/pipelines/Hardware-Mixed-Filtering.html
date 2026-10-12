@@ -1,0 +1,276 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Mixed hardware and software filtering | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="A mixed video-processing route connects hardware and CPU operations through the picture representations each consumer accepts, with operation order and transfer placement affecting the result and cost.">
+  <link rel="canonical" href="https://emby.media/learn/articles/hardware-acceleration/pipelines/Hardware-Mixed-Filtering.html">
+  <meta property="og:title" content="Mixed hardware and software filtering | Emby Learn">
+  <meta property="og:description" content="A mixed video-processing route connects hardware and CPU operations through the picture representations each consumer accepts, with operation order and transfer placement affecting the result and cost.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/hardware-acceleration/pipelines/Hardware-Mixed-Filtering.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/hardware-acceleration/pipelines/Hardware-Mixed-Filtering.html","url":"https://emby.media/learn/articles/hardware-acceleration/pipelines/Hardware-Mixed-Filtering.html","name":"Mixed hardware and software filtering","inLanguage":"en","headline":"Mixed hardware and software filtering","articleSection":"Media hardware acceleration","proficiencyLevel":"Beginner","accessMode":"textual","description":"A mixed video-processing route connects hardware and CPU operations through the picture representations each consumer accepts, with operation order and transfer placement affecting the result and cost.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Media hardware acceleration","item":"https://emby.media/learn/articles/hardware-acceleration/index.html"},{"@type":"ListItem","position":3,"name":"Hardware pipelines and their limits","item":"https://emby.media/learn/articles/hardware-acceleration/pipelines/index.html"},{"@type":"ListItem","position":4,"name":"Mixed hardware and software filtering","item":"https://emby.media/learn/articles/hardware-acceleration/pipelines/Hardware-Mixed-Filtering.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Hardware-Mixed-Filtering">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../hardware-acceleration/index.html">Media hardware acceleration</a></li>
+              <li><a href="../../hardware-acceleration/pipelines/index.html">Hardware pipelines and their limits</a></li>
+              <li><span aria-current="page">Mixed hardware and software filtering</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Hardware-Mixed-Filtering">
+<h1>Mixed hardware and software filtering</h1>
+<p class="article-description">A mixed video-processing route connects hardware and CPU operations through the picture representations each consumer accepts, with operation order and transfer placement affecting the result and cost.</p>
+
+
+<p>A conversion can combine hardware decoding, CPU filtering, GPU processing and hardware encoding. Each stage needs a representation it can use, and the route must preserve the intended picture transformation.</p>
+<p>“Hardware acceleration enabled” does not choose one universal arrangement for those filters.</p>
+<h2 id="start-from-the-selected-operation">Start from the selected operation</h2>
+<p>A source can need scaling, colour processing and subtitle composition. The selected application has implementations for those operations with particular input/output contracts.</p>
+<p>A CPU-only renderer needs a CPU-usable picture. A device filter needs an accepted surface format/context. The result then needs to fit the next consumer.</p>
+<p><img src="images/mixed-filter-stage-placement.png" alt="An original mixed-filter diagram compares processing before transfer, after transfer and on a compatible device route."></p>
+<p>Three original arrangements are:</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Processing relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Hardware decode → device processing → hardware encode</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Hardware decode → copy-back → CPU processing → hardware encode input</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Hardware decode → device scale → CPU-specific operation → hardware encode input</td>
+</tr>
+</tbody>
+</table>
+<p>Each describes the chosen consumers, not a ranking that all sources and operations must share.</p>
+<h2 id="stage-location-changes-the-transferred-picture">Stage location changes the transferred picture</h2>
+<p>Assume an ideal 4K 4:2:0 picture with sixteen-bit sample storage: 24,883,200 bytes.</p>
+<p>If a compatible route scales and prepares a 1080p eight-bit picture before CPU access, that selected representation has 3,110,400 bytes. At thirty pictures per second, the modeled download payload changes from 746,496,000 to 93,312,000 bytes per second.</p>
+<p>That is an eightfold payload difference for these declared representations. It omits driver padding and other operations.</p>
+<p>The CPU operation must still accept the smaller representation and preserve the intended algorithm. Reducing data is useful only when it remains the right input.</p>
+<h2 id="coordinates-make-the-order-visible">Coordinates make the order visible</h2>
+<p>Use an original 1920 × 1080 source scaled to 1280 × 720, a ratio of two-thirds.</p>
+<p>An overlay painted with height 48 source-coordinate units before scaling becomes 32 destination units. A 48-unit overlay painted after scaling remains 48 destination units:</p>
+<pre><code class="lang-text">Before scale: 48 × 2/3 = 32
+After scale:  48
+</code></pre>
+<p>These are geometric models, not measured fonts. They show why moving an operation across another stage can change the visible result even when both routes run faster.</p>
+<p>Colour processing likewise needs its intended value interpretation. A selected nonlinear-to-linear transformation and a tone-mapping operation cannot be replaced by arbitrary byte-format conversion.</p>
+<h2 id="cross-stage-completion-protects-the-data">Cross-stage completion protects the data</h2>
+<p>The device producer must finish the picture the CPU or another device reads. The CPU result must be available before another encoder consumes it.</p>
+<p>The input and output allocations also remain live through codec references and outstanding consumers. A synchronization event and a resource's final release answer different questions.</p>
+<p>Compatible shared storage can avoid a particular copy. An unsupported CPU filter can still require another representation despite successful hardware decoding and encoding.</p>
+<h2 id="the-slow-stage-limits-the-filled-route">The slow stage limits the filled route</h2>
+<p>An original independent-overlap model gives stage capacities of 120 pictures/s decode, 25 pictures/s filter and 90 pictures/s encode.</p>
+<p>The filter limits the model to 25 pictures/s. Doubling the encoder to 180 does not change that minimum. Improving the filter to 60 moves the limit to 60, subject to the other stated assumptions.</p>
+<p>A 30-fps target exceeds the original 25-picture/s producer model. Existing <a href="../../playback-streaming/delivery/Playback-Buffering.html">buffer reserve</a> can cover a temporary deficit, but sustained production needs the complete route to keep up.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="memory/Hardware-Copy-Back.html" title="Copy-back video pipelines">Copy-back video pipelines</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="memory/Hardware-Zero-Copy.html" title="Zero-copy video pipelines and the boundary being avoided">Zero-copy video pipelines and the boundary being avoided</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="memory/Hardware-Frame-Surfaces.html" title="Hardware frame surfaces and GPU contexts">Hardware frame surfaces and GPU contexts</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../building-blocks/Hardware-GPU-Compute.html" title="GPU compute and video processing">GPU compute and video processing</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Hardware-CPU-Work.html" title="Why hardware acceleration can still use the CPU">Why hardware acceleration can still use the CPU</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../playback-streaming/conversion/pipeline-stages/Playback-Filter-Graphs.html" title="Media filter graphs">Media filter graphs</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-filters.html" title="FFmpeg: Hardware and software filters">FFmpeg: Hardware and software filters</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg.html" title="FFmpeg: Hardware devices and processing">FFmpeg: Hardware devices and processing</a></li>
+			            <li><a class="seealso-link" href="https://docs.nvidia.com/video-technologies/video-codec-sdk/13.1/ffmpeg-with-nvidia-gpu/index.html" title="NVIDIA SDK 13.1: FFmpeg hardware acceleration">NVIDIA SDK 13.1: FFmpeg hardware acceleration</a></li>
+			            <li><a class="seealso-link" href="https://www.kernel.org/doc/html/latest/driver-api/dma-buf.html" title="Linux kernel: DMA-BUF sharing and synchronization">Linux kernel: DMA-BUF sharing and synchronization</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Hardware-Acceleration-Overview.html" title="Emby: Hardware acceleration overview">Emby: Hardware acceleration overview</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Hardware-Mixed-Filtering%0A*%20Title%3A%20Mixed%20hardware%20and%20software%20filtering%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

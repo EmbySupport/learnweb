@@ -1,0 +1,256 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Plugin architecture inside a media server | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="A server plugin adds code to the host's extension lifecycle, using supported discovery and interfaces while sharing the host's execution resources.">
+  <link rel="canonical" href="https://emby.media/learn/articles/automation/events/plugins/Automation-Plugins.html">
+  <meta property="og:title" content="Plugin architecture inside a media server | Emby Learn">
+  <meta property="og:description" content="A server plugin adds code to the host's extension lifecycle, using supported discovery and interfaces while sharing the host's execution resources.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/automation/events/plugins/Automation-Plugins.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/automation/events/plugins/Automation-Plugins.html","url":"https://emby.media/learn/articles/automation/events/plugins/Automation-Plugins.html","name":"Plugin architecture inside a media server","inLanguage":"en","headline":"Plugin architecture inside a media server","articleSection":"Automation and interoperability","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"A server plugin adds code to the host's extension lifecycle, using supported discovery and interfaces while sharing the host's execution resources.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Automation and interoperability","item":"https://emby.media/learn/articles/automation/index.html"},{"@type":"ListItem","position":3,"name":"Events and integrations","item":"https://emby.media/learn/articles/automation/events/index.html"},{"@type":"ListItem","position":4,"name":"Plugins","item":"https://emby.media/learn/articles/automation/events/plugins/index.html"},{"@type":"ListItem","position":5,"name":"Plugin architecture","item":"https://emby.media/learn/articles/automation/events/plugins/Automation-Plugins.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Automation-Plugins">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../automation/index.html">Automation and interoperability</a></li>
+              <li><a href="../../../automation/events/index.html">Events and integrations</a></li>
+              <li><a href="../../../automation/events/plugins/index.html">Plugins</a></li>
+              <li><span aria-current="page">Plugin architecture</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Automation-Plugins">
+<h1>Plugin architecture inside a media server</h1>
+<p class="article-description">A server plugin adds code to the host's extension lifecycle, using supported discovery and interfaces while sharing the host's execution resources.</p>
+
+
+<p>A server plugin adds functionality through the media server's supported extension system. Its code participates in the host's lifecycle and interfaces rather than only sending requests from an external application.</p>
+<p>Emby's development documentation describes plugin templates, supported interfaces and automatic discovery of particular extension types. Those contracts determine how the host recognizes and uses an extension.</p>
+<h2 id="discovery-connects-code-to-an-extension-point">Discovery connects code to an extension point</h2>
+<p><img src="images/plugin-host-lifecycle.png" alt="A plugin package is loaded into the host's supported extension lifecycle, where discovered implementations participate in server work and own persistent state as documented."></p>
+<p>An extension point can represent a provider, task, service or another supported role. Implementing an interface is meaningful when the host's discovery and registration rules recognize it.</p>
+<p>The documented <code>IPlugin</code> interface includes identity and descriptive properties, plus paths for plugin-related data. That is one part of the contract; it does not mean every arbitrary class in every assembly automatically runs at startup.</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>What the host/plugin relationship needs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Package selection</td>
+<td>Compatible software and dependencies</td>
+</tr>
+<tr>
+<td>Loading</td>
+<td>Required assemblies and symbols available</td>
+</tr>
+<tr>
+<td>Discovery/registration</td>
+<td>Recognized supported extension types</td>
+</tr>
+<tr>
+<td>Invocation</td>
+<td>Correct operation and lifecycle behavior</td>
+</tr>
+<tr>
+<td>Shutdown or replacement</td>
+<td>Work and resources handled under the host's rules</td>
+</tr>
+</tbody>
+</table>
+<h2 id="inside-the-host-is-a-different-resource-boundary">Inside the host is a different resource boundary</h2>
+<p>Plugin work can consume the server's threads, memory and storage resources. A long-running provider or task can therefore affect the same host serving playback.</p>
+<p>An external API client has its own process lifecycle and reaches the server through request contracts. An in-process extension should not be assumed to have a container-like isolation boundary merely because it is labelled a plugin.</p>
+<p>That distinction makes cancellation, bounded work and error handling part of a useful extension design.</p>
+<h2 id="a-plugin-can-own-persistent-data">A plugin can own persistent data</h2>
+<p>Configuration and miscellaneous plugin data can have documented storage locations. Their lifetime can differ from cached results or from the plugin assembly itself.</p>
+<p>Replacing the code does not universally migrate or discard those files. A compatible update needs to interpret the existing state through its supported migration rules.</p>
+<p>For Emby, use the current <a class="xref" href="https://dev.emby.media/doc/plugins/dev/index.html">plugin-development contract</a> and distinguish package compatibility, discovered behavior and persistent state. The article explains that architecture without prescribing one extension's complete implementation.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Automation-Plugin-Compatibility.html" title="Plugin compatibility across server and runtime changes">Plugin compatibility across server and runtime changes</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../storage/execution/Server-Native-Libraries.html" title="Native libraries and runtime dependencies">Native libraries and runtime dependencies</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://dev.emby.media/doc/plugins/dev/index.html" title="Emby server plugin development">Emby server plugin development</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/doc/plugins/dev/Automatic-Type-Discovery.html" title="Emby automatic type discovery">Emby automatic type discovery</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Common.Plugins.IPlugin.html" title="Emby IPlugin interface">Emby IPlugin interface</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Automation-Plugins%0A*%20Title%3A%20Plugin%20architecture%20inside%20a%20media%20server%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

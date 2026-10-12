@@ -1,0 +1,313 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Buffering, ready media and playback reserve | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Buffering retains media ahead of use, with continuity, readiness and consumption rate determining how much playback reserve the stored data actually provides.">
+  <link rel="canonical" href="https://emby.media/learn/articles/playback-streaming/delivery/Playback-Buffering.html">
+  <meta property="og:title" content="Buffering, ready media and playback reserve | Emby Learn">
+  <meta property="og:description" content="Buffering retains media ahead of use, with continuity, readiness and consumption rate determining how much playback reserve the stored data actually provides.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/playback-streaming/delivery/Playback-Buffering.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/playback-streaming/delivery/Playback-Buffering.html","url":"https://emby.media/learn/articles/playback-streaming/delivery/Playback-Buffering.html","name":"Buffering, ready media and playback reserve","inLanguage":"en","headline":"Buffering, ready media and playback reserve","articleSection":"Playback and streaming","proficiencyLevel":"Beginner","accessMode":"textual","description":"Buffering retains media ahead of use, with continuity, readiness and consumption rate determining how much playback reserve the stored data actually provides.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Playback and streaming","item":"https://emby.media/learn/articles/playback-streaming/index.html"},{"@type":"ListItem","position":3,"name":"Streaming delivery","item":"https://emby.media/learn/articles/playback-streaming/delivery/index.html"},{"@type":"ListItem","position":4,"name":"Buffering","item":"https://emby.media/learn/articles/playback-streaming/delivery/Playback-Buffering.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Playback-Buffering">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../playback-streaming/index.html">Playback and streaming</a></li>
+              <li><a href="../../playback-streaming/delivery/index.html">Streaming delivery</a></li>
+              <li><span aria-current="page">Buffering</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Playback-Buffering">
+<h1>Buffering, ready media and playback reserve</h1>
+<p class="article-description">Buffering retains media ahead of use, with continuity, readiness and consumption rate determining how much playback reserve the stored data actually provides.</p>
+
+
+<p>A buffer stores media for later use. Playback reserve is the portion that can support the upcoming presentation without waiting for additional work.</p>
+<p>Those are related but different quantities. A player can retain thirty seconds of media in total and still have only two seconds before a gap. A server can have output on disk that the player has not received.</p>
+<h2 id="several-queues-can-exist-at-once">Several queues can exist at once</h2>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th>What can be retained</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Source reader</td>
+<td>Input bytes awaiting container/stream processing</td>
+</tr>
+<tr>
+<td>Server conversion path</td>
+<td>Frames or encoded output waiting for the next stage</td>
+</tr>
+<tr>
+<td>Generated output storage</td>
+<td>Media produced ahead of the viewing position</td>
+</tr>
+<tr>
+<td>Client input buffer</td>
+<td>Received media for later decoding</td>
+</tr>
+<tr>
+<td>Client presentation queues</td>
+<td>Decoded pictures or samples waiting for their deadlines</td>
+</tr>
+</tbody>
+</table>
+<p>A reserve measure needs to identify the queue and the readiness being counted. “Buffered for sixty seconds” without that scope can conceal the distinction between generated output, received data and decoded presentation.</p>
+<p>Emby's production position and the client's reported playback position describe useful session state. Their difference does not directly measure every client queue.</p>
+<h2 id="a-ready-media-model">A ready-media model</h2>
+<p>For an original simple model, count contiguous usable media seconds ahead of consumption:</p>
+<pre><code class="lang-text">change in reserve = arriving ready-media rate - consumption rate
+</code></pre>
+<p>Assume ordinary playback at one media second per wall second and an initial ten-second reserve.</p>
+<table>
+<thead>
+<tr>
+<th>Wall-time interval</th>
+<th>Ready-media arrival rate</th>
+<th>Reserve change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0–20 seconds</td>
+<td>1.5 media seconds/s</td>
+<td>Ten seconds gained</td>
+</tr>
+<tr>
+<td>20–30 seconds</td>
+<td>No new ready media</td>
+<td>Ten seconds used</td>
+</tr>
+<tr>
+<td>30–50 seconds</td>
+<td>0.5 media seconds/s</td>
+<td>Ten seconds used</td>
+</tr>
+</tbody>
+</table>
+<p>The reserve rises from 10 to 20, returns to 10, then reaches zero at wall second 50.</p>
+<p><img src="images/buffer-reserve.png" alt="An original three-phase ready-media model fills reserve, consumes it through an interruption, and finally reaches starvation under slower arrival."></p>
+<p>The graph assumes steady consumption until the first empty point. After that point, uninterrupted playback no longer follows the model; a player must wait, recover or choose another policy.</p>
+<p>A larger initial reserve can postpone starvation. It cannot make a sustained arrival deficit disappear.</p>
+<h2 id="stored-ranges-can-have-a-gap">Stored ranges can have a gap</h2>
+<p>Suppose an original received-data view contains media intervals 0–10 and 40–60 seconds. Playback is at second 8.</p>
+<p>There are thirty seconds stored across the intervals, but only two seconds remain before the next gap. The latest stored endpoint is 60; subtracting the playback position gives 52, which incorrectly counts the missing interval as reserve.</p>
+<p><img src="images/buffer-ranges.png" alt="An original range example distinguishes thirty seconds of stored media from the two seconds available before a gap at the current position."></p>
+<p>HTML media playback exposes buffered ranges rather than requiring one universal continuous interval. Seeking, fetching policy and discarded data can produce another set over time.</p>
+<p>The range still describes a media-time availability view, not a promise that every picture can start independently at every point. Codec configuration and reference dependencies remain relevant to <a href="Playback-Seeking.html">seeking</a>.</p>
+<h2 id="bytes-need-their-rate-context">Bytes need their rate context</h2>
+<p>At a constant 6 Mbit/s, five media seconds represent 30 million payload bits. Before playback starts, a path supplying 8 Mbit/s would take an ideal 3.75 seconds to fetch that amount.</p>
+<p>Once playback starts, some arrivals replace consumed data rather than increasing reserve. Assuming the same constant media rate, the net ready-media gain is <code>8/6 - 1</code>, about one third of a media second per wall second.</p>
+<p>Variable bitrate changes the conversion between byte inventory and media-time reserve. A five-second low-complexity passage can occupy fewer bytes than another five-second passage.</p>
+<h2 id="a-bitrate-burst-can-exhaust-a-finite-byte-inventory">A bitrate burst can exhaust a finite byte inventory</h2>
+<p>Use another original model: average demand is 6 Mbit/s over a sixteen-second cycle, made of four seconds at 12 Mbit/s and twelve seconds at 4 Mbit/s.</p>
+<p>The arithmetic average is:</p>
+<pre><code class="lang-text">(4 × 12 + 12 × 4) / 16 = 6 Mbit/s
+</code></pre>
+<p>A constant 8 Mbit/s delivery rate exceeds that average. But during the 12 Mbit/s burst, an initial twelve-million-bit buffer loses four million bits per second and reaches zero after three seconds.</p>
+<p>The burst is four media seconds long, so the stated reserve is insufficient for uninterrupted presentation of that interval. The model stops at its first empty point; a real stalled player does not keep consuming nonexistent bytes.</p>
+<p>This is why an average-rate comparison and a finite buffer need to be considered together. It is not an Emby network estimate or a measured movie bitrate trace.</p>
+<h2 id="buffer-policy-changes-waiting-and-resource-use">Buffer policy changes waiting and resource use</h2>
+<p>Waiting for more initial data can increase startup delay while providing another reserve. Retaining more received media can support later navigation but uses memory or storage. Discarding old data changes the available range set.</p>
+<p>A pause in playback reduces consumption and can allow reserve to grow. A producer throttle can reduce arrivals when sufficient server-side output exists. Those controls apply at different points in the path.</p>
+<p>None of these queue changes establishes decoder compatibility or repairs an unavailable resource. They manage when usable data is retained and consumed.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../conversion/performance/Playback-Realtime-Transcoding.html" title="Real-time transcoding and playback deadlines">Real-time transcoding and playback deadlines</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../conversion/performance/Playback-Transcode-Throttling.html" title="Transcode throttling and producer lead">Transcode throttling and producer lead</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../behavior/symptoms/Playback-Stalls.html" title="Playback stalls and unavailable next media">Playback stalls and unavailable next media</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Seeking.html" title="Seeking during streaming">Seeking during streaming</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../behavior/symptoms/Playback-Startup-Delay.html" title="Playback startup delay">Playback startup delay</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://html.spec.whatwg.org/multipage/media.html" title="WHATWG: HTML media playback">WHATWG: HTML media playback</a></li>
+			            <li><a class="seealso-link" href="https://datatracker.ietf.org/doc/html/rfc9110" title="IETF RFC 9110: HTTP semantics and ranges">IETF RFC 9110: HTTP semantics and ranges</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Model.Session.TranscodingInfo.html" title="Emby API: TranscodingInfo">Emby API: TranscodingInfo</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc8216.html" title="IETF RFC 8216: HTTP Live Streaming">IETF RFC 8216: HTTP Live Streaming</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Playback-Buffering%0A*%20Title%3A%20Buffering%2C%20ready%20media%20and%20playback%20reserve%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,293 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>MPEG-DASH and its media presentation description | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="MPEG-DASH describes timed media representations and their addressable segments in a Media Presentation Description that a player uses for HTTP delivery and adaptation.">
+  <link rel="canonical" href="https://emby.media/learn/articles/playback-streaming/delivery/Playback-DASH.html">
+  <meta property="og:title" content="MPEG-DASH and its media presentation description | Emby Learn">
+  <meta property="og:description" content="MPEG-DASH describes timed media representations and their addressable segments in a Media Presentation Description that a player uses for HTTP delivery and adaptation.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/playback-streaming/delivery/Playback-DASH.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/playback-streaming/delivery/Playback-DASH.html","url":"https://emby.media/learn/articles/playback-streaming/delivery/Playback-DASH.html","name":"MPEG-DASH and its media presentation description","inLanguage":"en","headline":"MPEG-DASH and its media presentation description","articleSection":"Playback and streaming","proficiencyLevel":"Beginner","accessMode":"textual","description":"MPEG-DASH describes timed media representations and their addressable segments in a Media Presentation Description that a player uses for HTTP delivery and adaptation.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Playback and streaming","item":"https://emby.media/learn/articles/playback-streaming/index.html"},{"@type":"ListItem","position":3,"name":"Streaming delivery","item":"https://emby.media/learn/articles/playback-streaming/delivery/index.html"},{"@type":"ListItem","position":4,"name":"MPEG-DASH","item":"https://emby.media/learn/articles/playback-streaming/delivery/Playback-DASH.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Playback-DASH">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../playback-streaming/index.html">Playback and streaming</a></li>
+              <li><a href="../../playback-streaming/delivery/index.html">Streaming delivery</a></li>
+              <li><span aria-current="page">MPEG-DASH</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Playback-DASH">
+<h1>MPEG-DASH and its media presentation description</h1>
+<p class="article-description">MPEG-DASH describes timed media representations and their addressable segments in a Media Presentation Description that a player uses for HTTP delivery and adaptation.</p>
+
+
+<p><strong>MPEG-DASH</strong> describes a media presentation that a player can retrieve over HTTP. Its <strong>Media Presentation Description</strong>, or <strong>MPD</strong>, identifies timing, available tracks and representations, and how to locate their media segments.</p>
+<p>DASH is a delivery and presentation-description system. “DASH” on its own does not name a video codec, a DRM system or an Emby playback mode.</p>
+<h2 id="the-presentation-hierarchy">The presentation hierarchy</h2>
+<p>Three useful levels organize the media:</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Role in the presentation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Period</td>
+<td>A programme interval with its own presentation context</td>
+</tr>
+<tr>
+<td>AdaptationSet</td>
+<td>A group of related media alternatives, such as a video group or an audio-language group</td>
+</tr>
+<tr>
+<td>Representation</td>
+<td>A particular encoded alternative within that group</td>
+</tr>
+</tbody>
+</table>
+<p>A video AdaptationSet can offer different rates or dimensions for corresponding content. An audio AdaptationSet can represent a separate selected track. The player combines the suitable selected components on the intended timeline.</p>
+<p><img src="images/dash-hierarchy.png" alt="An original MPD hierarchy separates programme periods, related track alternatives and individual representations."></p>
+<p>Several Periods can describe consecutive programme contexts. They are not necessarily just “the low, medium and high versions”: those alternatives belong at a different level.</p>
+<h2 id="a-template-resolves-resource-names">A template resolves resource names</h2>
+<p>This original selected XML excerpt describes a twelve-second static video presentation with two representations and four-second media intervals:</p>
+<pre><code class="lang-xml">&lt;MPD xmlns=&quot;urn:mpeg:dash:schema:mpd:2011&quot;
+     type=&quot;static&quot; minBufferTime=&quot;PT1.5S&quot;
+     mediaPresentationDuration=&quot;PT12S&quot;&gt;
+  &lt;Period start=&quot;PT0S&quot;&gt;
+    &lt;AdaptationSet contentType=&quot;video&quot; mimeType=&quot;video/mp4&quot;&gt;
+      &lt;SegmentTemplate timescale=&quot;1000&quot; duration=&quot;4000&quot; startNumber=&quot;1&quot;
+        initialization=&quot;init-$RepresentationID$.mp4&quot;
+        media=&quot;$RepresentationID$-$Number$.m4s&quot; /&gt;
+      &lt;Representation id=&quot;low&quot; bandwidth=&quot;2000000&quot;
+        width=&quot;1280&quot; height=&quot;720&quot; codecs=&quot;avc1.4d401f&quot; /&gt;
+      &lt;Representation id=&quot;high&quot; bandwidth=&quot;4000000&quot;
+        width=&quot;1920&quot; height=&quot;1080&quot; codecs=&quot;avc1.640028&quot; /&gt;
+    &lt;/AdaptationSet&gt;
+  &lt;/Period&gt;
+&lt;/MPD&gt;
+</code></pre>
+<p>The fictitious resources and omitted audio/profile details make this an addressing example, not a complete validated streaming package.</p>
+<p><code>timescale=&quot;1000&quot;</code> gives the template duration a unit of one thousand ticks per second. Therefore <code>duration=&quot;4000&quot;</code> means four seconds, not four thousand seconds.</p>
+<p>For the high representation, initialization resolves to <code>init-high.mp4</code>. With <code>startNumber=&quot;1&quot;</code>, the first three media names are <code>high-1.m4s</code>, <code>high-2.m4s</code> and <code>high-3.m4s</code>. In this simple zero-origin example they cover 0–4, 4–8 and 8–12 seconds.</p>
+<p>The <code>bandwidth</code> values describe representations. They do not give the network speed that a particular viewer will obtain when requesting those resources.</p>
+<h2 id="sample-time-needs-a-presentation-mapping">Sample time needs a presentation mapping</h2>
+<p>Other presentations use explicit segment timelines and nonzero sample origins. A raw timestamp then needs its timescale and offset before it becomes a programme position.</p>
+<p>For an original conversion exercise, assume:</p>
+<ul>
+<li>Period start: 20 programme seconds.</li>
+<li>Sample timestamp: 900,000 ticks.</li>
+<li>Presentation time offset: 450,000 ticks.</li>
+<li>Timescale: 90,000 ticks per second.</li>
+</ul>
+<pre><code class="lang-text">Time within Period = (900000 - 450000) / 90000 = 5 seconds
+Programme position = 20 + 5 = 25 seconds
+</code></pre>
+<p>The sample value alone represents ten seconds in its raw unit. Treating that as the final programme position would miss both the offset and the Period start.</p>
+<p>The public DASH-IF timing guideline develops these relationships under its stated restricted interoperability model. It is a 2024 snapshot of implementation guidance, separate from the full ISO standard.</p>
+<h2 id="static-and-dynamic-presentations-expose-different-availability">Static and dynamic presentations expose different availability</h2>
+<p>A static MPD describes a bounded presentation. A dynamic MPD can describe media becoming available as time advances, with a moving availability window and updated presentation information.</p>
+<p>For live delivery, a locator is useful only while the resource is available. Wall-clock mapping, the publication window and the player's intended delay from live all affect which interval it should request. <a href="Playback-Live-On-Demand.html">Live streams and on-demand streams</a> develops those viewing consequences.</p>
+<p>The MPD supplies information for adaptation, but the player supplies the selection policy. Two DASH players can choose differently from the same offered representations because their estimators, buffer states or device constraints differ.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="hls/Playback-HLS.html" title="HTTP Live Streaming (HLS)">HTTP Live Streaming (HLS)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-CMAF.html" title="Common Media Application Format (CMAF)">Common Media Application Format (CMAF)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Adaptive-Bitrate.html" title="Adaptive bitrate streaming and representation selection">Adaptive bitrate streaming and representation selection</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Live-On-Demand.html" title="Live streams and on-demand streams">Live streams and on-demand streams</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Discontinuities.html" title="Stream discontinuities and timeline changes">Stream discontinuities and timeline changes</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../players/browser/Playback-MSE.html" title="Media Source Extensions (MSE) and scripted media delivery">Media Source Extensions (MSE) and scripted media delivery</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.iso.org/standard/23009-1" title="ISO/IEC 23009-1:2026: DASH presentation and segment formats">ISO/IEC 23009-1:2026: DASH presentation and segment formats</a></li>
+			            <li><a class="seealso-link" href="https://dashif.org/Guidelines-TimingModel/" title="DASH-IF: Restricted timing model (2024 snapshot)">DASH-IF: Restricted timing model (2024 snapshot)</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/mse-byte-stream-format-isobmff/" title="W3C Group Note: ISO BMFF byte stream format">W3C Group Note: ISO BMFF byte stream format</a></li>
+			            <li><a class="seealso-link" href="https://dashif.org/dash.js/pages/usage/abr/settings.html" title="DASH-IF dash.js: Adaptive bitrate settings">DASH-IF dash.js: Adaptive bitrate settings</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Playback-DASH%0A*%20Title%3A%20MPEG-DASH%20and%20its%20media%20presentation%20description%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

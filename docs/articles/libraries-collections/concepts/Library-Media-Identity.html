@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Media item identity | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Media item identity distinguishes a catalogue entry, the work or episode it describes, and the particular resources that can play it.">
+  <link rel="canonical" href="https://emby.media/learn/articles/libraries-collections/concepts/Library-Media-Identity.html">
+  <meta property="og:title" content="Media item identity | Emby Learn">
+  <meta property="og:description" content="Media item identity distinguishes a catalogue entry, the work or episode it describes, and the particular resources that can play it.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/libraries-collections/concepts/Library-Media-Identity.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/libraries-collections/concepts/Library-Media-Identity.html","url":"https://emby.media/learn/articles/libraries-collections/concepts/Library-Media-Identity.html","name":"Media item identity","inLanguage":"en","headline":"Media item identity","articleSection":"Libraries and media collections","proficiencyLevel":"Beginner","accessMode":"textual","description":"Media item identity distinguishes a catalogue entry, the work or episode it describes, and the particular resources that can play it.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Libraries and media collections","item":"https://emby.media/learn/articles/libraries-collections/index.html"},{"@type":"ListItem","position":3,"name":"Library concepts","item":"https://emby.media/learn/articles/libraries-collections/concepts/index.html"},{"@type":"ListItem","position":4,"name":"Media item identity","item":"https://emby.media/learn/articles/libraries-collections/concepts/Library-Media-Identity.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Library-Media-Identity">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../libraries-collections/index.html">Libraries and media collections</a></li>
+              <li><a href="../../libraries-collections/concepts/index.html">Library concepts</a></li>
+              <li><span aria-current="page">Media item identity</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Library-Media-Identity">
+<h1>Media item identity</h1>
+<p class="article-description">Media item identity distinguishes a catalogue entry, the work or episode it describes, and the particular resources that can play it.</p>
+
+
+<p>“What is the same movie?” has several answers. Two titles may describe the same work. Two encodes may preserve the same cut. Two paths may lead to identical bytes. Two server entries may nevertheless have separate internal identities.</p>
+<p>A useful identity decision begins by stating which of those things should be the same. Without that scope, a duplicate check can collapse an extended edition into a theatrical release, or preserve two accidental copies as if they were different films.</p>
+<h2 id="four-identities-in-one-movie-library">Four identities in one movie library</h2>
+<p>Consider the fictional film <em>Night Ferry</em>:</p>
+<table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Example identifier</th>
+<th>What it identifies</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Catalogue work</td>
+<td>A movie provider's qualified movie ID</td>
+<td>The film record in that provider's catalogue</td>
+</tr>
+<tr>
+<td>Edition</td>
+<td>Theatrical or extended cut</td>
+<td>A particular editorial version of the work</td>
+</tr>
+<tr>
+<td>Media resource</td>
+<td>Source F1, with its path and stream details</td>
+<td>One playable representation of an edition</td>
+</tr>
+<tr>
+<td>Server item</td>
+<td>Item M1 on server S1</td>
+<td>An entry through which this server presents the movie</td>
+</tr>
+</tbody>
+</table>
+<p>The labels M1, S1 and F1 are invented for this explanation. They are not a proposed database layout.</p>
+<p><img src="images/identity-scopes.png" alt="One described film has theatrical and extended editions; the theatrical edition has two encodes, while server item identity supplies another distinct scope."></p>
+<p>Two encodes of the theatrical cut can share a work identity and edition identity while having different resource identities. The extended cut can share the work identity while differing in content and timeline. A provider that has only one film record may not supply a separate ID for every cut.</p>
+<p>In Emby's API, an item has an <code>Id</code> and can expose <code>ProviderIds</code> and <code>MediaSources</code>. The source information has its own <code>Id</code>, <code>Path</code> and technical description. These fields express distinct purposes. The presence of an ID does not promise that it survives every import, deletion, server rebuild or change of storage layout.</p>
+<h2 id="a-title-is-a-label-not-a-primary-key">A title is a label, not a primary key</h2>
+<p>A title can change with language, preferred presentation or correction. Two unrelated works can also have the same title and year. Even a title/year pair is matching evidence rather than a universal identifier.</p>
+<p>A <a href="../../metadata-discovery/identification/external-identifiers/Metadata-Provider-IDs.html">provider identifier</a> must retain its namespace and entity type. The number <code>12345</code> from one provider is not equivalent to <code>12345</code> from another. A series ID is not an episode ID, even when an interface presents both as numbers.</p>
+<p>The library's own item ID has another scope. It identifies the object used by that server API, not a global catalogue work. Copying an item ID into another independent server is not a dependable way to identify the same film there.</p>
+<p>This matters for history transfer. A source-server ID can locate the old record; a qualified provider ID can help locate a candidate on the destination. The transfer still has to account for entity type and edition. A resume point needs an even more precise match because it refers to a particular timeline.</p>
+<h2 id="what-a-fingerprint-proves">What a fingerprint proves</h2>
+<p>Different identity checks answer different questions:</p>
+<table>
+<thead>
+<tr>
+<th>Evidence</th>
+<th>Useful conclusion</th>
+<th>Remaining uncertainty</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Same path string</td>
+<td>The stored locator text agrees</td>
+<td>The bytes may have been replaced; the path may resolve differently on another machine</td>
+</tr>
+<tr>
+<td>Same file size and modification time</td>
+<td>A cheap change signature agrees</td>
+<td>Different content can share both values</td>
+</tr>
+<tr>
+<td>Same cryptographic hash over complete files</td>
+<td>Extremely strong evidence of byte equality</td>
+<td>The files' catalogue meaning still needs interpretation</td>
+</tr>
+<tr>
+<td>Similar audio/video fingerprint</td>
+<td>Portions may contain the same perceptual content</td>
+<td>Another cut, excerpt or re-encode may also match</td>
+</tr>
+<tr>
+<td>Same provider work ID</td>
+<td>Both descriptions refer to that provider's work record</td>
+<td>Edition, encode and local-item relationships can still differ</td>
+</tr>
+</tbody>
+</table>
+<p>SHA-256, specified in the Secure Hash Standard, hashes a byte sequence. Changing a container tag or artwork attachment can change the complete-file hash without changing the film's pictures and sound. Re-encoding the same cut will ordinarily change it too. A byte comparison is excellent for identifying copied files; it is the wrong test for deciding whether two encodes should be alternate sources of one movie.</p>
+<p>Likewise, similarity is useful evidence rather than an automatic merge decision. A trailer contains excerpts from the feature. An audio fingerprint could find shared passages, but that does not make the trailer another full version of the film.</p>
+<h2 id="identity-continuity-after-a-change">Identity continuity after a change</h2>
+<p>Suppose F1 moves from Disk A to Disk B. The underlying cut can remain the same while the path changes. A catalogue may update a locator, or may recognize a removed resource and a new resource through other evidence. The resulting item/history behavior depends on its reconciliation rules.</p>
+<p>Replacing F1 with a corrected encode introduces another case. The same work and cut may remain, but duration, stream indexes, seek previews or cached analysis may need updating. Replacing it with an extended cut changes the timeline as well: retaining a 70-minute resume value does not preserve the same scene.</p>
+<p>For a migration, the meaningful question is therefore more detailed than “Did the title appear?” It is whether the destination preserved the intended work match, source relationships and viewer state at the right scope. Emby's <a class="xref" href="https://emby.media/support/articles/Metadata-manager.html">metadata manager</a> discusses how identifying information can affect library behavior; its documentation should guide product-specific correction workflows.</p>
+<h2 id="a-practical-identity-test">A practical identity test</h2>
+<p>For two entries, state the intended relationship before looking for matching evidence:</p>
+<ul>
+<li><strong>Same bytes:</strong> compare the actual resources, not just the posters.</li>
+<li><strong>Same cut, different encode:</strong> compare edition and timeline, then technical differences.</li>
+<li><strong>Same work, different cut:</strong> retain the edition distinction even if a provider ID agrees.</li>
+<li><strong>Related work or supplement:</strong> express that relationship instead of treating it as sameness.</li>
+</ul>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../metadata-discovery/identification/external-identifiers/Metadata-Provider-IDs.html" title="Provider identifiers">Provider identifiers</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../metadata-discovery/identification/Metadata-Identification.html" title="Media identification">Media identification</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../movies/editions-versions/Library-Movie-Editions.html" title="Movie editions and cuts">Movie editions and cuts</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../movies/editions-versions/Library-Alternate-Versions.html" title="Alternate media versions">Alternate media versions</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../movies/Library-Duplicates.html" title="Duplicate library entries">Duplicate library entries</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../history/Library-User-History.html" title="User-specific playback history">User-specific playback history</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://dev.emby.media/doc/restapi/Item-Information.html" title="Emby API: Item information">Emby API: Item information</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Model.Dto.BaseItemDto.html" title="Emby API: BaseItemDto">Emby API: BaseItemDto</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Model.Dto.MediaSourceInfo.html" title="Emby API: MediaSourceInfo">Emby API: MediaSourceInfo</a></li>
+			            <li><a class="seealso-link" href="https://csrc.nist.gov/pubs/fips/180-4/upd1/final" title="NIST: Secure Hash Standard, FIPS 180-4">NIST: Secure Hash Standard, FIPS 180-4</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Metadata-manager.html" title="Emby: Metadata manager">Emby: Metadata manager</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Library-Media-Identity%0A*%20Title%3A%20Media%20item%20identity%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,262 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Ethernet link speeds and end-to-end capacity | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Ethernet link speed describes negotiated link-layer operation, while frame overhead, duplex and slower intermediate links determine its relationship to useful end-to-end media delivery.">
+  <link rel="canonical" href="https://emby.media/learn/articles/networking/performance/Network-Ethernet.html">
+  <meta property="og:title" content="Ethernet link speeds and end-to-end capacity | Emby Learn">
+  <meta property="og:description" content="Ethernet link speed describes negotiated link-layer operation, while frame overhead, duplex and slower intermediate links determine its relationship to useful end-to-end media delivery.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/networking/performance/Network-Ethernet.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/networking/performance/Network-Ethernet.html","url":"https://emby.media/learn/articles/networking/performance/Network-Ethernet.html","name":"Ethernet link speeds and end-to-end capacity","inLanguage":"en","headline":"Ethernet link speeds and end-to-end capacity","articleSection":"Networking and remote access","proficiencyLevel":"Beginner","accessMode":"textual","description":"Ethernet link speed describes negotiated link-layer operation, while frame overhead, duplex and slower intermediate links determine its relationship to useful end-to-end media delivery.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Networking and remote access","item":"https://emby.media/learn/articles/networking/index.html"},{"@type":"ListItem","position":3,"name":"Network performance","item":"https://emby.media/learn/articles/networking/performance/index.html"},{"@type":"ListItem","position":4,"name":"Ethernet link speeds","item":"https://emby.media/learn/articles/networking/performance/Network-Ethernet.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Network-Ethernet">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../networking/index.html">Networking and remote access</a></li>
+              <li><a href="../../networking/performance/index.html">Network performance</a></li>
+              <li><span aria-current="page">Ethernet link speeds</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Network-Ethernet">
+<h1>Ethernet link speeds and end-to-end capacity</h1>
+<p class="article-description">Ethernet link speed describes negotiated link-layer operation, while frame overhead, duplex and slower intermediate links determine its relationship to useful end-to-end media delivery.</p>
+
+
+<p>A “gigabit” adapter can connect through a path containing a slower port or negotiated link. The label on one component is only one part of the route.</p>
+<h2 id="retain-each-negotiated-link">Retain each negotiated link</h2>
+<p>Use an original path inventory:</p>
+<table>
+<thead>
+<tr>
+<th>Link</th>
+<th style="text-align: right;">Declared negotiated rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Server to switch</td>
+<td style="text-align: right;">1000 Mbit/s</td>
+</tr>
+<tr>
+<td>Switch uplink</td>
+<td style="text-align: right;">100 Mbit/s</td>
+</tr>
+<tr>
+<td>Viewing device link</td>
+<td style="text-align: right;">1000 Mbit/s</td>
+</tr>
+</tbody>
+</table>
+<p>The one-hundred-Mbit/s link is the lowest declared rate. Faster end links do not raise its continuous service capacity.</p>
+<p>A cable, port, transceiver or negotiation result can account for a rate differing from a component’s maximum advertised capability.</p>
+<h2 id="useful-payload-has-an-on-wire-budget">Useful payload has an on-wire budget</h2>
+<p>Use an original full-size untagged frame exercise:</p>
+<pre><code class="lang-json">{
+  &quot;ipPacketBytes&quot;: 1500,
+  &quot;ipv4HeaderBytes&quot;: 20,
+  &quot;tcpHeaderBytes&quot;: 20,
+  &quot;ethernetFrameBytes&quot;: 1518,
+  &quot;preambleAndStartBytes&quot;: 8,
+  &quot;interFrameGapBytes&quot;: 12,
+  &quot;linkMbitPerSecond&quot;: 1000
+}
+</code></pre>
+<p>The IP packet contains 1460 bytes of TCP payload under the minimum-header assumptions. The frame and stated timing allowance occupy 1538 byte-times.</p>
+<p>The conditional payload rate is <code>1000 × 1460 / 1538</code>, approximately 949.285 Mbit/s.</p>
+<p>This omits tags, options, encryption/application framing, reverse traffic, loss and other work. It explains the accounting difference rather than predicting a real Emby transfer at that rate.</p>
+<h2 id="full-duplex-describes-two-directions">Full duplex describes two directions</h2>
+<p>A one-Gbit/s full-duplex link supports its declared operation in each direction. It is not a two-Gbit/s one-direction payload path.</p>
+<p>Requests and acknowledgments use a return direction with its own work. A switch’s aggregate fabric capacity also differs from one port’s rate.</p>
+<h2 id="link-up-is-another-observation-from-clean-delivery">Link-up is another observation from clean delivery</h2>
+<p>A link can negotiate and remain up while errors, drops or another path bottleneck reduce useful progress.</p>
+<p>The client’s decode and server’s preparation/storage can limit playback further. <a href="capacity/Network-Throughput.html">Throughput</a> follows the delivered bytes after those constraints.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="capacity/Network-Throughput.html" title="Network throughput and useful delivery rate">Network throughput and useful delivery rate</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../fundamentals/Network-Home.html" title="How a home media network carries an Emby stream">How a home media network carries an Emby stream</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="wireless/Network-Wireless-Backhaul.html" title="Wireless backhaul and repeated airtime">Wireless backhaul and repeated airtime</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.ieee802.org/3/" title="IEEE: 802.3 Ethernet specifications">IEEE: 802.3 Ethernet specifications</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc9293.html" title="RFC 9293: TCP byte-stream delivery">RFC 9293: TCP byte-stream delivery</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc2330.html" title="RFC 2330: IP performance metrics framework">RFC 2330: IP performance metrics framework</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Network-Ethernet%0A*%20Title%3A%20Ethernet%20link%20speeds%20and%20end-to-end%20capacity%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

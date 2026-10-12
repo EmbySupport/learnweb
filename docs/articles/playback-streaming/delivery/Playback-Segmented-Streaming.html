@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Segmented streaming and addressable media intervals | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Segmented streaming presents media as a sequence of addressable intervals whose timing and initialization information let a player retrieve and assemble the programme.">
+  <link rel="canonical" href="https://emby.media/learn/articles/playback-streaming/delivery/Playback-Segmented-Streaming.html">
+  <meta property="og:title" content="Segmented streaming and addressable media intervals | Emby Learn">
+  <meta property="og:description" content="Segmented streaming presents media as a sequence of addressable intervals whose timing and initialization information let a player retrieve and assemble the programme.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/playback-streaming/delivery/Playback-Segmented-Streaming.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/playback-streaming/delivery/Playback-Segmented-Streaming.html","url":"https://emby.media/learn/articles/playback-streaming/delivery/Playback-Segmented-Streaming.html","name":"Segmented streaming and addressable media intervals","inLanguage":"en","headline":"Segmented streaming and addressable media intervals","articleSection":"Playback and streaming","proficiencyLevel":"Beginner","accessMode":"textual","description":"Segmented streaming presents media as a sequence of addressable intervals whose timing and initialization information let a player retrieve and assemble the programme.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Playback and streaming","item":"https://emby.media/learn/articles/playback-streaming/index.html"},{"@type":"ListItem","position":3,"name":"Streaming delivery","item":"https://emby.media/learn/articles/playback-streaming/delivery/index.html"},{"@type":"ListItem","position":4,"name":"Segmented streaming","item":"https://emby.media/learn/articles/playback-streaming/delivery/Playback-Segmented-Streaming.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Playback-Segmented-Streaming">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../playback-streaming/index.html">Playback and streaming</a></li>
+              <li><a href="../../playback-streaming/delivery/index.html">Streaming delivery</a></li>
+              <li><span aria-current="page">Segmented streaming</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Playback-Segmented-Streaming">
+<h1>Segmented streaming and addressable media intervals</h1>
+<p class="article-description">Segmented streaming presents media as a sequence of addressable intervals whose timing and initialization information let a player retrieve and assemble the programme.</p>
+
+
+<p><strong>Segmented streaming</strong> gives a player a sequence of addressable media intervals. Instead of treating a programme as one long download, the player discovers and retrieves the intervals needed next, keeps enough ahead for playback, and advances through their timeline.</p>
+<p><a href="hls/Playback-HLS.html">HLS</a> and <a href="Playback-DASH.html">MPEG-DASH</a> use this approach. A segmented delivery path can carry copied source streams or newly encoded output from an Emby <a href="../conversion/Playback-Transcode-Pipeline.html">conversion pipeline</a>. Segmentation describes how that output is organized and delivered.</p>
+<h2 id="the-interval-is-the-useful-unit">The interval is the useful unit</h2>
+<p>An original twelve-second example has three four-second intervals:</p>
+<table>
+<thead>
+<tr>
+<th>Segment</th>
+<th>Programme interval</th>
+<th style="text-align: right;">Encoded payload</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>0–4 seconds</td>
+<td style="text-align: right;">2 MB</td>
+</tr>
+<tr>
+<td>B</td>
+<td>4–8 seconds</td>
+<td style="text-align: right;">5 MB</td>
+</tr>
+<tr>
+<td>C</td>
+<td>8–12 seconds</td>
+<td style="text-align: right;">3 MB</td>
+</tr>
+</tbody>
+</table>
+<p>Their durations match; their sizes do not. The middle scene may simply take more encoded bits.</p>
+<p><img src="images/segment-intervals.png" alt="An original timeline shows three consecutive four-second intervals with different payload sizes."></p>
+<p>At a useful transfer rate of 16 Mbit/s, ignoring headers and other delays, these payloads take 1, 2.5 and 1.5 seconds to obtain. Each still contributes four seconds of media. The player's <a href="Playback-Buffering.html">reserve</a> depends on how those arrivals compare with consumption, including interruptions between requests.</p>
+<p>A segment locator can identify a separate object or a byte range inside a larger object. A segment also need not contain both video and audio: separate tracks can be addressed independently and combined by the player.</p>
+<h2 id="initialization-supplies-the-meaning-of-the-bytes">Initialization supplies the meaning of the bytes</h2>
+<p>Encoded samples require configuration. In fragmented MP4 delivery, an initialization resource supplies track descriptions and related information, while later media fragments provide timed samples.</p>
+<p>A player entering the presentation midway needs the relevant initialization as well as the chosen later media. Possessing segment C's bytes alone does not necessarily give it all the information needed to interpret them.</p>
+<p>The initialization resource is reusable while its configuration remains applicable. A boundary that changes the configuration can require another initialization resource and corresponding player handling.</p>
+<h2 id="continuity-comes-from-timing-and-dependencies">Continuity comes from timing and dependencies</h2>
+<p>Request completion order is not programme order. A player can retrieve future data ahead of time, then present samples according to their timestamps. Separate audio and video paths likewise depend on their intended time relationship rather than on which HTTP request completes first.</p>
+<p>Decoding dependencies cross another boundary. If a video segment begins with pictures that depend on earlier pictures, entering at that boundary may require an earlier access point. A presentation that advertises independently decodable segments makes a stronger promise than one that merely provides segment URLs.</p>
+<p><a href="Playback-Discontinuities.html">Stream discontinuities</a> mark changes that need additional interpretation. A new timestamp origin or track configuration is different from a network gap between two otherwise continuous segments.</p>
+<h2 id="short-intervals-create-more-scheduling-opportunities">Short intervals create more scheduling opportunities</h2>
+<p>More frequent boundaries can provide earlier opportunities to change representation or react to a seek. They also increase object and scheduling activity.</p>
+<p>For an original ten-minute programme, four-second intervals mean 150 media intervals per track; one-second intervals mean 600. That is four times as many intervals, before accounting for initialization, playlist updates, parallel tracks or retries. The numbers describe this example, not prescribed segment durations.</p>
+<p><a href="Playback-Adaptive-Bitrate.html">Adaptive bitrate streaming</a> additionally needs usable alternatives for the same programme moments and a selection policy. A single-representation segmented stream still has segments, while a server that changes its encoder settings for a new session has not automatically supplied a client-switchable ladder.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="hls/Playback-HLS.html" title="HTTP Live Streaming (HLS)">HTTP Live Streaming (HLS)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-DASH.html" title="MPEG-DASH and its media presentation description">MPEG-DASH and its media presentation description</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-CMAF.html" title="Common Media Application Format (CMAF)">Common Media Application Format (CMAF)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Adaptive-Bitrate.html" title="Adaptive bitrate streaming and representation selection">Adaptive bitrate streaming and representation selection</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Buffering.html" title="Buffering, ready media and playback reserve">Buffering, ready media and playback reserve</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Discontinuities.html" title="Stream discontinuities and timeline changes">Stream discontinuities and timeline changes</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc8216.html" title="IETF RFC 8216: HTTP Live Streaming (informational)">IETF RFC 8216: HTTP Live Streaming (informational)</a></li>
+			            <li><a class="seealso-link" href="https://dashif.org/Guidelines-TimingModel/" title="DASH-IF: Restricted timing model (2024 snapshot)">DASH-IF: Restricted timing model (2024 snapshot)</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/mse-byte-stream-format-isobmff/" title="W3C Group Note: ISO BMFF byte stream format">W3C Group Note: ISO BMFF byte stream format</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-formats.html" title="FFmpeg: Container formats and fragmented MP4">FFmpeg: Container formats and fragmented MP4</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Playback-Segmented-Streaming%0A*%20Title%3A%20Segmented%20streaming%20and%20addressable%20media%20intervals%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

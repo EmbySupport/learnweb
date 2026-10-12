@@ -1,0 +1,304 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>How a transcoding pipeline works | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="A transcoding pipeline connects resource access, selected stream processing, timestamp handling and output packaging so that a new media representation can be delivered.">
+  <link rel="canonical" href="https://emby.media/learn/articles/playback-streaming/conversion/Playback-Transcode-Pipeline.html">
+  <meta property="og:title" content="How a transcoding pipeline works | Emby Learn">
+  <meta property="og:description" content="A transcoding pipeline connects resource access, selected stream processing, timestamp handling and output packaging so that a new media representation can be delivered.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/playback-streaming/conversion/Playback-Transcode-Pipeline.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/playback-streaming/conversion/Playback-Transcode-Pipeline.html","url":"https://emby.media/learn/articles/playback-streaming/conversion/Playback-Transcode-Pipeline.html","name":"How a transcoding pipeline works","inLanguage":"en","headline":"How a transcoding pipeline works","articleSection":"Playback and streaming","proficiencyLevel":"Beginner","accessMode":"textual","description":"A transcoding pipeline connects resource access, selected stream processing, timestamp handling and output packaging so that a new media representation can be delivered.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Playback and streaming","item":"https://emby.media/learn/articles/playback-streaming/index.html"},{"@type":"ListItem","position":3,"name":"Conversion pipelines","item":"https://emby.media/learn/articles/playback-streaming/conversion/index.html"},{"@type":"ListItem","position":4,"name":"How a transcoding pipeline works","item":"https://emby.media/learn/articles/playback-streaming/conversion/Playback-Transcode-Pipeline.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Playback-Transcode-Pipeline">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../playback-streaming/index.html">Playback and streaming</a></li>
+              <li><a href="../../playback-streaming/conversion/index.html">Conversion pipelines</a></li>
+              <li><span aria-current="page">How a transcoding pipeline works</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Playback-Transcode-Pipeline">
+<h1>How a transcoding pipeline works</h1>
+<p class="article-description">A transcoding pipeline connects resource access, selected stream processing, timestamp handling and output packaging so that a new media representation can be delivered.</p>
+
+
+<p>A transcoding pipeline connects operations that use different kinds of data. The input is a stored or incoming media resource. Some stages handle compressed packets; others need reconstructed pictures or audio samples. The output is encoded media packaged for a playback path.</p>
+<p>Understanding those boundaries explains both what a conversion changes and where its time or memory cost can arise.</p>
+<h2 id="a-concrete-conversion-plan">A concrete conversion plan</h2>
+<p>Take an original fictional 108-minute source with 4K HEVC HDR video, six-channel AC-3 audio and a text subtitle. The chosen target is 1280 × 720 H.264 SDR, stereo AAC and separately usable subtitle text.</p>
+<p>The plan contains three different stream paths:</p>
+<p><img src="images/transcode-pipeline.png" alt="An original conversion plan decodes and filters video, processes audio separately, and retains subtitle timing through another path before output delivery."></p>
+<p>The diagram describes dependencies. Emby may schedule, fuse or accelerate operations differently.</p>
+<p>The video needs a new picture presentation and encoding. The audio needs a new channel/codec presentation. The text does not need to become video pixels in this plan. If the target instead requires subtitle burn-in, those pixels become another input to picture processing.</p>
+<h2 id="from-resource-bytes-to-selected-packets">From resource bytes to selected packets</h2>
+<p>The resource reader obtains input bytes. A demuxer interprets the container and exposes its streams and packet timing. Selection decides which streams contribute to the output.</p>
+<p>This matters when several audio tracks or subtitle types are present. Decoding the wrong audio track successfully still produces the wrong programme. A correct pipeline starts with the intended resource and track identities.</p>
+<p>The demuxer can also provide format information, chapters and codec configuration. Those descriptions help initialise downstream stages. They are not the decoded pictures themselves.</p>
+<table>
+<thead>
+<tr>
+<th>Boundary</th>
+<th>Data at that point</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Resource access</td>
+<td>Container or incoming delivery bytes</td>
+</tr>
+<tr>
+<td>Demuxed video/audio</td>
+<td>Encoded packets and associated timing/configuration</td>
+</tr>
+<tr>
+<td>Decoder output</td>
+<td>Reconstructed video pictures or audio samples</td>
+</tr>
+<tr>
+<td>Picture/audio filters</td>
+<td>Frames in the formats those filters require</td>
+</tr>
+<tr>
+<td>Encoder output</td>
+<td>A newly encoded stream representation</td>
+</tr>
+<tr>
+<td>Muxer/packager output</td>
+<td>Bytes organised for the delivery resource</td>
+</tr>
+</tbody>
+</table>
+<p>A compatible stream-copy branch can bypass reconstruction and encoding. It still needs valid selection, timing and output packaging.</p>
+<h2 id="reconstruct-before-changing-pictures-or-samples">Reconstruct before changing pictures or samples</h2>
+<p>A <a href="pipeline-stages/Playback-Decoding.html">decoder</a> interprets compressed data. It can need reference pictures, codec configuration and enough input before it produces a usable output frame.</p>
+<p><a href="pipeline-stages/Playback-Filter-Graphs.html">Picture filters</a> then operate on a suitable decoded representation. For the example, colour/range conversion and scaling prepare the SDR 720p pictures. Their exact algorithms are separate subjects; the important pipeline fact is that their inputs and outputs are picture data.</p>
+<p>Audio takes another branch. A decoder supplies samples; channel processing prepares the stereo presentation; the audio encoder produces AAC. Video and audio therefore can have different costs and buffering while sharing one output timeline.</p>
+<p>The separately delivered text keeps its timing association. It does not pass through the video encoder merely because the video is being transcoded.</p>
+<h2 id="decoded-data-changes-the-memory-scale">Decoded data changes the memory scale</h2>
+<p>A compressed stream at 35 Mbit/s represents about 4.375 MB/s in decimal units. Its decoded picture data can be far larger.</p>
+<p>Assume an ideal unpadded 3840 × 2160, 4:2:0 picture stored in 16-bit containers per sample:</p>
+<pre><code class="lang-text">3840 × 2160 × 1.5 samples per pixel × 2 bytes per sample
+= 24,883,200 bytes per picture
+</code></pre>
+<p>At 24 pictures per second, that layout represents 597,196,800 bytes per second of picture buffers. Five such buffers occupy 124,416,000 bytes.</p>
+<p>These are layout calculations, not measured Emby memory use. Actual surfaces can use other layouts, alignment, compression or memory domains. A processing step can also require an intermediate representation different from the decoder's output.</p>
+<p>The calculation explains why transfers between processing stages can matter even when the encoded bitrate seems small. A hardware decoder and hardware encoder do not automatically eliminate every movement of picture data between them.</p>
+<h2 id="encode-the-prepared-representation">Encode the prepared representation</h2>
+<p>The <a href="pipeline-stages/Playback-Encoding.html">video encoder</a> receives the prepared pictures and creates a stream meeting the target configuration. The output resolution, cadence, colour interpretation and rate-control choices describe this new representation.</p>
+<p>The audio encoder does the corresponding job for its prepared samples. A muxer can then interleave the encoded outputs, retain needed configuration and write the chosen container or delivery package.</p>
+<p>An encoder does not normally produce a complete MP4 merely because it produces H.264 packets. The packaging stage supplies the container structures. Likewise, a successful mux cannot rescue an upstream branch that never produced valid data.</p>
+<h2 id="preserve-a-timeline-across-the-stages">Preserve a timeline across the stages</h2>
+<p>Each stage needs to retain or deliberately transform presentation timing. Audio and video clocks must refer to the intended programme moments, even if their packet cadence differs.</p>
+<p>Suppose playback is requested from programme minute 10. An original simplified delivery model can start its new output clock at zero while retaining an association with source second 600:</p>
+<pre><code class="lang-text">programme time = output time + 600 seconds
+</code></pre>
+<p>Output second 12 then represents programme second 612. Copying an unqualified output timestamp into a user resume record would lose that association.</p>
+<p>Another path may retain source-origin timestamps instead. The example explains why the mapping matters; it does not specify every Emby timestamp policy. <a href="../delivery/Playback-Seeking.html">Seeking</a> develops the access-point and timing dependencies.</p>
+<h2 id="the-first-picture-and-sustained-throughput-are-different-results">The first picture and sustained throughput are different results</h2>
+<p>Before output can be used, resource access, parsing, decoder initialisation and any needed reference data must be available. Filters and encoders can introduce additional startup buffering. The output path then needs enough usable packaged data for the player.</p>
+<p>After startup, stages may overlap. One stage can decode later pictures while another encodes earlier ones. That can improve steady throughput without making the first frame's entire dependency chain disappear.</p>
+<p>A pipeline can therefore have noticeable startup delay and then run faster than real time. It can also start quickly but lose ground during difficult portions. <a href="performance/Playback-Realtime-Transcoding.html">Real-time capacity</a> and <a href="../behavior/symptoms/Playback-Startup-Delay.html">startup delay</a> describe those different observations.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="pipeline-stages/Playback-Decoding.html" title="Decoding media streams">Decoding media streams</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="pipeline-stages/Playback-Encoding.html" title="Encoding a new media representation">Encoding a new media representation</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="pipeline-stages/Playback-Filter-Graphs.html" title="Media filter graphs">Media filter graphs</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../from-server/Playback-Stream-Copy.html" title="Stream copying and encoded packet handling">Stream copying and encoded packet handling</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="performance/Playback-Bottlenecks.html" title="Transcoding bottlenecks">Transcoding bottlenecks</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Temporary-Files.html" title="Transcode temporary files and generated output">Transcode temporary files and generated output</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../delivery/Playback-Seeking.html" title="Seeking during streaming">Seeking during streaming</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://ffmpeg.org/doxygen/trunk/group__lavc__encdec.html" title="FFmpeg API: Send/receive encoding and decoding">FFmpeg API: Send/receive encoding and decoding</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-formats.html" title="FFmpeg: Container and segment formats">FFmpeg: Container and segment formats</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-filters.html" title="FFmpeg: Media filters">FFmpeg: Media filters</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Model.Dto.MediaSourceInfo.html" title="Emby API: MediaSourceInfo">Emby API: MediaSourceInfo</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Transcoding.html" title="Emby: Transcoding">Emby: Transcoding</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Playback-Transcode-Pipeline%0A*%20Title%3A%20How%20a%20transcoding%20pipeline%20works%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

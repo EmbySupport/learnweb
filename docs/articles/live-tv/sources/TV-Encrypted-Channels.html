@@ -1,0 +1,296 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Encrypted TV channels and supported playback paths | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="An encrypted television service needs a supported acquisition, entitlement/protection and media path; recovering its broadcast data alone does not provide playable programme content.">
+  <link rel="canonical" href="https://emby.media/learn/articles/live-tv/sources/TV-Encrypted-Channels.html">
+  <meta property="og:title" content="Encrypted TV channels and supported playback paths | Emby Learn">
+  <meta property="og:description" content="An encrypted television service needs a supported acquisition, entitlement/protection and media path; recovering its broadcast data alone does not provide playable programme content.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/live-tv/sources/TV-Encrypted-Channels.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/live-tv/sources/TV-Encrypted-Channels.html","url":"https://emby.media/learn/articles/live-tv/sources/TV-Encrypted-Channels.html","name":"Encrypted TV channels and supported playback paths","inLanguage":"en","headline":"Encrypted TV channels and supported playback paths","articleSection":"Live TV and recording","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"An encrypted television service needs a supported acquisition, entitlement/protection and media path; recovering its broadcast data alone does not provide playable programme content.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Live TV and recording","item":"https://emby.media/learn/articles/live-tv/index.html"},{"@type":"ListItem","position":3,"name":"Tuners and television sources","item":"https://emby.media/learn/articles/live-tv/sources/index.html"},{"@type":"ListItem","position":4,"name":"Encrypted TV channels","item":"https://emby.media/learn/articles/live-tv/sources/TV-Encrypted-Channels.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-TV-Encrypted-Channels">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../live-tv/index.html">Live TV and recording</a></li>
+              <li><a href="../../live-tv/sources/index.html">Tuners and television sources</a></li>
+              <li><span aria-current="page">Encrypted TV channels</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-TV-Encrypted-Channels">
+<h1>Encrypted TV channels and supported playback paths</h1>
+<p class="article-description">An encrypted television service needs a supported acquisition, entitlement/protection and media path; recovering its broadcast data alone does not provide playable programme content.</p>
+
+
+<p>A receiver can discover a television service and recover its transmitted data while the selected application still has no usable path to its protected content.</p>
+<p>An <strong>encrypted channel</strong> adds an access/protection relationship to the acquisition and media-decoding route. These conditions should be evaluated separately.</p>
+<h2 id="the-gates-have-different-responsibilities">The gates have different responsibilities</h2>
+<table>
+<thead>
+<tr>
+<th>Gate</th>
+<th>Question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reception/delivery</td>
+<td>Can the source obtain the intended service data?</td>
+</tr>
+<tr>
+<td>Entitlement</td>
+<td>Is access available under the applicable service arrangement?</td>
+</tr>
+<tr>
+<td>Implemented protection path</td>
+<td>Can the actual source/software/client carry out the required supported operation?</td>
+</tr>
+<tr>
+<td>Media decoding</td>
+<td>Can the recovered video/audio representation be consumed?</td>
+</tr>
+<tr>
+<td>Required presentation path</td>
+<td>Does the later output meet the actual playback requirements?</td>
+</tr>
+</tbody>
+</table>
+<p>A scan can identify a name or service descriptor without passing all later gates.</p>
+<p><img src="images/encrypted-service-gates.png" alt="The original protected-service model separates data acquisition from access, media decoding and presentation."></p>
+<h2 id="two-original-access-cases">Two original access cases</h2>
+<table>
+<thead>
+<tr>
+<th>Model case</th>
+<th>Service found</th>
+<th>Entitled</th>
+<th>Supported protection path</th>
+<th>Playable data established</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Depends on the remaining media/output stages</td>
+</tr>
+</tbody>
+</table>
+<p>Case A explains why a valid subscription or device pairing is not by itself an application capability result.</p>
+<p>Case B supplies that access prerequisite without proving every later decoder or presentation condition. These are invented diagnostic states, not claims about a provider or product.</p>
+<h2 id="protection-support-can-be-an-end-to-end-arrangement">Protection support can be an end-to-end arrangement</h2>
+<p>ATSC A/360 defines security/service-protection mechanisms within its scope. Cable conditional-access and product delivery arrangements have other defined contracts.</p>
+<p>SiliconDust’s CableCARD documentation describes particular supported protected-channel playback paths. It does not declare that every ordinary network stream client supports them.</p>
+<p>A service working in a manufacturer’s application therefore cannot automatically be used as evidence for a different generic server/client route. The actual protected representation and interface need their own support.</p>
+<h2 id="encryption-is-not-a-video-codec">Encryption is not a video codec</h2>
+<p>HEVC, H.264 or another codec describes picture reconstruction from an appropriate encoded representation. Supporting that decoder does not establish the required protected-service access.</p>
+<p>Likewise, <a href="../../display-av/signaling/AV-HDCP.html">HDCP</a> concerns a protected display-link relationship. It is not a universal replacement for the earlier broadcast/service protection stage.</p>
+<p>If reception succeeds but playable data is not exposed, a different client bitrate or video encoder does not solve the missing access path.</p>
+<h2 id="clear-reception-is-a-distinct-case">Clear reception is a distinct case</h2>
+<p><a href="TV-Clear-QAM.html">Clear QAM</a> describes relevant unencrypted cable services. It should not be generalized into a promise about all services on the same cable network.</p>
+<p>For Emby, the useful source result is the playable representation actually supplied by the supported interface. A channel-list entry, RF lock and account status describe different prerequisites before that result.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="TV-Clear-QAM.html" title="Clear QAM cable television">Clear QAM cable television</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../standards/atsc/TV-ATSC3.html" title="ATSC 3.0 broadcast television">ATSC 3.0 broadcast television</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="hardware/TV-HDHomeRun.html" title="HDHomeRun network tuner routes">HDHomeRun network tuner routes</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../playback-streaming/players/protected/Playback-DRM.html" title="DRM-protected media and authorized playback paths">DRM-protected media and authorized playback paths</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../display-av/signaling/AV-HDCP.html" title="HDCP and protected display links">HDCP and protected display links</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.atsc.org/atsc-documents/3602018-atsc-3-0-security-service-protection/" title="ATSC: A/360 security and service protection">ATSC: A/360 security and service protection</a></li>
+			            <li><a class="seealso-link" href="https://info.hdhomerun.com/info/drm" title="SiliconDust: CableCARD protected-channel path requirements">SiliconDust: CableCARD protected-channel path requirements</a></li>
+			            <li><a class="seealso-link" href="https://info.hdhomerun.com/info/http_api" title="SiliconDust: HDHomeRun channel and HTTP API">SiliconDust: HDHomeRun channel and HTTP API</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-TV-Encrypted-Channels%0A*%20Title%3A%20Encrypted%20TV%20channels%20and%20supported%20playback%20paths%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

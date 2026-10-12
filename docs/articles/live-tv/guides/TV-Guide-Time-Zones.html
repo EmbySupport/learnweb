@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Guide time zones and clock changes | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Guide time zones determine how supplied date/time values become absolute instants and local display times, including repeated or missing clock times around daylight-saving changes.">
+  <link rel="canonical" href="https://emby.media/learn/articles/live-tv/guides/TV-Guide-Time-Zones.html">
+  <meta property="og:title" content="Guide time zones and clock changes | Emby Learn">
+  <meta property="og:description" content="Guide time zones determine how supplied date/time values become absolute instants and local display times, including repeated or missing clock times around daylight-saving changes.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/live-tv/guides/TV-Guide-Time-Zones.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/live-tv/guides/TV-Guide-Time-Zones.html","url":"https://emby.media/learn/articles/live-tv/guides/TV-Guide-Time-Zones.html","name":"Guide time zones and clock changes","inLanguage":"en","headline":"Guide time zones and clock changes","articleSection":"Live TV and recording","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"Guide time zones determine how supplied date/time values become absolute instants and local display times, including repeated or missing clock times around daylight-saving changes.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Live TV and recording","item":"https://emby.media/learn/articles/live-tv/index.html"},{"@type":"ListItem","position":3,"name":"Electronic programme guides","item":"https://emby.media/learn/articles/live-tv/guides/index.html"},{"@type":"ListItem","position":4,"name":"Guide time zones","item":"https://emby.media/learn/articles/live-tv/guides/TV-Guide-Time-Zones.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-TV-Guide-Time-Zones">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../live-tv/index.html">Live TV and recording</a></li>
+              <li><a href="../../live-tv/guides/index.html">Electronic programme guides</a></li>
+              <li><span aria-current="page">Guide time zones</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-TV-Guide-Time-Zones">
+<h1>Guide time zones and clock changes</h1>
+<p class="article-description">Guide time zones determine how supplied date/time values become absolute instants and local display times, including repeated or missing clock times around daylight-saving changes.</p>
+
+
+<p>On a clock-change morning, “02:30” can identify two different moments. A guide or recording timer that retains only those clock digits has lost information needed to choose the intended airing.</p>
+<p>Consider Europe/Berlin on 25 October 2026. These original XMLTV timestamps have equal local digits and different offsets:</p>
+<pre><code class="lang-text">20261025023000 +0200  -&gt; 2026-10-25T00:30:00Z
+20261025023000 +0100  -&gt; 2026-10-25T01:30:00Z
+</code></pre>
+<p>The instants are an hour apart. The first belongs to the summer-time occurrence of 02:30; the second belongs to the standard-time occurrence.</p>
+<h2 id="convert-each-supplied-value-to-an-instant">Convert each supplied value to an instant</h2>
+<p>A numeric offset expresses local time minus UTC. To obtain UTC, subtract that offset.</p>
+<table>
+<thead>
+<tr>
+<th>Supplied date/time</th>
+<th>Offset</th>
+<th>Interpreted UTC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>25 October, 02:30</td>
+<td>+02:00</td>
+<td>25 October, 00:30</td>
+</tr>
+<tr>
+<td>25 October, 02:30</td>
+<td>+01:00</td>
+<td>25 October, 01:30</td>
+</tr>
+</tbody>
+</table>
+<p>The offset is part of the supplied value. Discarding it and applying the server’s current zone instead can map both entries to one moment or select the wrong occurrence.</p>
+<p>XMLTV has its own timestamp convention: absent an explicit zone, UTC is assumed. That convention must not be replaced with “whatever the server considers local.” Other formats can have different requirements; RFC 3339 timestamps use an explicit offset or Z in their complete form.</p>
+<h2 id="the-end-can-look-earlier-while-elapsed-time-is-positive">The end can look earlier while elapsed time is positive</h2>
+<p>Take this original interval spanning the same rollback:</p>
+<pre><code class="lang-text">start: 20261025025000 +0200 -&gt; 00:50 UTC
+stop:  20261025021000 +0100 -&gt; 01:10 UTC
+elapsed: 20 minutes
+</code></pre>
+<p>Subtracting the local clock labels would suggest minus forty minutes. Converting both endpoints first gives the correct positive twenty minutes.</p>
+<p><img src="images/guide-clock-rollback.png" alt="The two original offset cases and rollback-spanning interval are drawn on a single UTC timeline."></p>
+<p>The capture system needs elapsed time between instants. A guide display needs the appropriate local label for each instant. Those are related calculations with different inputs.</p>
+<p>The same issue affects padding. Adding ten elapsed minutes to an absolute endpoint is straightforward. Adding ten to a bare local label near a transition needs the zone’s rules and a policy for ambiguous or missing results.</p>
+<h2 id="spring-creates-a-missing-interval">Spring creates a missing interval</h2>
+<p>In Europe/Berlin on 29 March 2026, the local clock advances from 01:59 to 03:00. A bare local time of 02:30 does not occur in that zone on that date.</p>
+<p>An offset-bearing value can still identify an instant mathematically. It does not necessarily describe a valid local civil time under the claimed zone rules.</p>
+<p>For example, “02:30 with +01:00” resolves to 01:30 UTC, which Berlin displays as 03:30 after that transition. If the author intended Berlin’s wall clock, the supplied label and rules disagree.</p>
+<p>A parser accepting the timestamp therefore establishes syntax and offset arithmetic, not that the provider chose a valid civil time for a named zone.</p>
+<h2 id="an-offset-is-not-a-zone-rule">An offset is not a zone rule</h2>
+<p><code>+01:00</code> tells you an offset at a particular instant. <code>Europe/Berlin</code> identifies a set of civil-time rules that can choose different offsets at other instants.</p>
+<p>A programme scheduled for the same local clock time next month can consequently have a different UTC time. Carrying today’s offset into every future event loses the transition.</p>
+<p>IANA maintains the Time Zone Database as jurisdictions change their rules. Microsoft’s DateTimeOffset and TimeZoneInfo documentation likewise distinguishes an offset-bearing instant from a named zone and its adjustments.</p>
+<p>This is also why a recurring “every Monday at 20:00 local” rule differs from “every 168 hours after this instant.” The former follows civil labels; the latter follows elapsed time.</p>
+<h2 id="a-weekly-local-rule-can-have-a-169-hour-interval">A weekly local rule can have a 169-hour interval</h2>
+<p>For another original Europe/Berlin example, compare 20:00 local on 18 October and 25 October 2026. Before rollback, the first is 18:00 UTC. After rollback, the second is 19:00 UTC.</p>
+<p>The local weekly labels are seven calendar days apart, but their absolute separation is 169 hours. Adding exactly 168 elapsed hours to the first instant reaches 19:00 local on the second date.</p>
+<p>A recurring manual timer intended for 20:00 local therefore needs the named-zone rules or separately supplied event instants. Repeating a fixed elapsed interval expresses a different intent.</p>
+<p>Programme-based recording instead receives the particular scheduled airing’s time. A bare weekday/time preference in a series rule is an eligibility input; the airing still supplies a concrete instant.</p>
+<h2 id="keep-the-interpretation-stages-visible">Keep the interpretation stages visible</h2>
+<p>A useful guide/timer path retains:</p>
+<ol>
+<li>The original supplied timestamp and its declared convention.</li>
+<li>The interpreted absolute instant.</li>
+<li>The interval calculations and recording deadlines.</li>
+<li>The display zone used for the viewer’s local labels.</li>
+</ol>
+<p>Server and client can display different local times for the same instant without disagreeing about the recording. Conversely, matching labels on two machines do not prove that they agree about the instant.</p>
+<p>Emby’s public timer contract identifies start and end dates in UTC. The <a href="../recording/scheduling/TV-Recording-Timers.html">timer</a> is therefore easier to assess by comparing interpreted instants with its requested capture interval, rather than comparing only a screenshot’s clock labels.</p>
+<h2 id="a-constant-shift-fixes-only-a-constant-error">A constant shift fixes only a constant error</h2>
+<p>If all events are uniformly two hours late because an importer treated UTC digits as local time, correcting that interpretation addresses the cause.</p>
+<p>Applying an extra fixed shift after a correct conversion instead changes every intended instant. It can appear helpful during one offset period and become wrong after a transition.</p>
+<p>Compare an affected event’s original value, interpreted UTC and displayed local time. If those are consistent but a recording starts late, acquisition delay or an outdated schedule belongs elsewhere in the explanation.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="formats/TV-XMLTV.html" title="XMLTV listings: channels, programmes and time">XMLTV listings: channels, programmes and time</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="formats/TV-PSIP.html" title="ATSC PSIP: virtual channels, events and time">ATSC PSIP: virtual channels, events and time</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../recording/scheduling/TV-Recording-Timers.html" title="Recording timers and acquisition deadlines">Recording timers and acquisition deadlines</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../media-files/container-structure/timing-and-navigation/Media-Packet-Timestamps.html" title="Packet Timestamps">Packet Timestamps</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://raw.githubusercontent.com/XMLTV/xmltv/b424ef772a667856ca44b9dac3b4310d02191dea/xmltv.dtd" title="XMLTV: Version-pinned listings DTD and field semantics">XMLTV: Version-pinned listings DTD and field semantics</a></li>
+			            <li><a class="seealso-link" href="https://www.iana.org/time-zones" title="IANA: Time Zone Database">IANA: Time Zone Database</a></li>
+			            <li><a class="seealso-link" href="https://www.iana.org/time-zones/releases/2026e" title="IANA: Time Zone Database release 2026e">IANA: Time Zone Database release 2026e</a></li>
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime" title="Microsoft: DateTimeOffset and time-zone rules">Microsoft: DateTimeOffset and time-zone rules</a></li>
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/dotnet/standard/datetime/resolve-ambiguous-times" title="Microsoft: Ambiguous local times">Microsoft: Ambiguous local times</a></li>
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/dotnet/api/system.timezoneinfo.isinvalidtime?view=net-10.0" title="Microsoft: Invalid local times at a clock transition">Microsoft: Invalid local times at a clock transition</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc3339" title="RFC 3339: Internet timestamps and numeric offsets">RFC 3339: Internet timestamps and numeric offsets</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-TV-Guide-Time-Zones%0A*%20Title%3A%20Guide%20time%20zones%20and%20clock%20changes%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

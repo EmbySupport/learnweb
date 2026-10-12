@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Automatic speech recognition for captions | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="ASR estimates spoken text from audio, after which alignment, caption segmentation and content review produce a useful timed-caption resource.">
+  <link rel="canonical" href="https://emby.media/learn/articles/subtitles/sources/Subtitle-ASR.html">
+  <meta property="og:title" content="Automatic speech recognition for captions | Emby Learn">
+  <meta property="og:description" content="ASR estimates spoken text from audio, after which alignment, caption segmentation and content review produce a useful timed-caption resource.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/subtitles/sources/Subtitle-ASR.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/subtitles/sources/Subtitle-ASR.html","url":"https://emby.media/learn/articles/subtitles/sources/Subtitle-ASR.html","name":"Automatic speech recognition for captions","inLanguage":"en","headline":"Automatic speech recognition for captions","articleSection":"Subtitles and captions","proficiencyLevel":"Beginner","accessMode":"textual","description":"ASR estimates spoken text from audio, after which alignment, caption segmentation and content review produce a useful timed-caption resource.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Subtitles and captions","item":"https://emby.media/learn/articles/subtitles/index.html"},{"@type":"ListItem","position":3,"name":"Subtitle sources","item":"https://emby.media/learn/articles/subtitles/sources/index.html"},{"@type":"ListItem","position":4,"name":"Automatic speech recognition for captions","item":"https://emby.media/learn/articles/subtitles/sources/Subtitle-ASR.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Subtitle-ASR">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../subtitles/index.html">Subtitles and captions</a></li>
+              <li><a href="../../subtitles/sources/index.html">Subtitle sources</a></li>
+              <li><span aria-current="page">Automatic speech recognition for captions</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Subtitle-ASR">
+<h1>Automatic speech recognition for captions</h1>
+<p class="article-description">ASR estimates spoken text from audio, after which alignment, caption segmentation and content review produce a useful timed-caption resource.</p>
+
+
+<p>Automatic speech recognition, or <strong>ASR</strong>, estimates spoken words from audio. Producing a caption resource additionally requires timing, segmentation into readable cues, and review of the information the viewer needs.</p>
+<p>Recognition, alignment and caption authoring can be combined in a tool, but they answer different questions:</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Speech recognition</td>
+<td>Which words were spoken?</td>
+</tr>
+<tr>
+<td>Alignment/timing</td>
+<td>Where do those words belong in the audio?</td>
+</tr>
+<tr>
+<td>Caption segmentation</td>
+<td>Which words form a displayed cue and interval?</td>
+</tr>
+<tr>
+<td>Caption editing</td>
+<td>Which speaker/sound information and corrections are needed?</td>
+</tr>
+</tbody>
+</table>
+<p>A transcript without timestamps is not yet a timed subtitle. Word timestamps alone are not automatically a readable cue layout.</p>
+<h2 id="audio-windows-provide-context">Audio windows provide context</h2>
+<p>A model or processing pipeline can analyze windows with overlap. That gives neighboring windows shared context around a boundary.</p>
+<p>Take an invented <strong>180-second</strong> clip, using <strong>30-second windows</strong> and a <strong>25-second hop</strong>. Window starts are 0,25,50,75,100,125 and 150 seconds.</p>
+<p><img src="images/asr-windows.png" alt="Overlapping recognition windows share audio context, while merged text is aligned and grouped into caption cues."></p>
+<p>There are <strong>seven windows</strong>, each 30 seconds in this example. The processing sees <strong>210 seconds of window content</strong> even though the source is 180 seconds. Six adjacent overlaps of five seconds account for the extra 30 seconds.</p>
+<p>Repeated audio does not mean the final subtitle should repeat the boundary words. The output needs an appropriate merge/alignment strategy.</p>
+<p>A chosen input sample rate also belongs to the model's requirements. At an illustrative 16 kHz, the 180-second mono clip contains <strong>2,880,000 sample frames</strong>. Resampling to a model's expected rate should preserve programme time; changing a rate label without converting the signal would alter duration and pitch.</p>
+<h2 id="recognition-errors-can-be-easy-to-miss">Recognition errors can be easy to miss</h2>
+<p>Suppose the intended sentence is:</p>
+<pre><code class="lang-text">Please meet me at the station.
+</code></pre>
+<p>and the estimated transcript is:</p>
+<pre><code class="lang-text">Please meet me at station.
+</code></pre>
+<p>With whitespace tokenization, the reference has <strong>six words</strong>. One deleted word gives a word error rate of <strong>1/6 ≈ 16.7%</strong> for this defined example.</p>
+<p>A wrong name or negation can be more consequential than a small average rate suggests. Fluency does not establish that the text matches the audio. The example is not a benchmark of any named model.</p>
+<p>Music, overlapping speech, accents, unfamiliar names and poor recordings can affect the observation. The appropriate review compares against the audio rather than against a second sentence guessed from the same output.</p>
+<h2 id="edited-text-can-need-renewed-alignment">Edited text can need renewed alignment</h2>
+<p>Correcting a word changes the transcript. Existing word timings may need adjustment to the corrected sequence before cues are rebuilt.</p>
+<p>Cue boundaries should reflect the relevant speech and reading presentation. Arbitrarily putting every recognized word into its own cue can produce a flickering, awkward result. Conversely, a whole-minute transcript in one caption leaves little useful synchronization.</p>
+<p>A rate or origin change later in the media route also needs to preserve the caption's programme timeline.</p>
+<h2 id="accessible-captions-can-require-more-than-speech">Accessible captions can require more than speech</h2>
+<p>A dialogue recognizer does not inherently provide useful speaker identity, an off-screen sound description or the significance of music stopping. <a href="../selection/Subtitle-SDH.html">SDH</a> explains that content role.</p>
+<p>For Emby, a reviewed generated resource can be supplied as an external supported subtitle with appropriate identification. This is an authored-file workflow, not a declaration that every Emby build includes a particular recognizer or model.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Subtitle-Sources.html" title="Finding subtitle sources">Finding subtitle sources</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../selection/Subtitle-SDH.html" title="Subtitles for the deaf and hard of hearing (SDH)">Subtitles for the deaf and hard of hearing (SDH)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../timing/Subtitle-Cues.html" title="Subtitle cues">Subtitle cues</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Subtitle-Translation.html" title="Subtitle translation">Subtitle translation</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://arxiv.org/abs/2006.11477" title="wav2vec 2.0: Self-supervised speech recognition">wav2vec 2.0: Self-supervised speech recognition</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/WAI/media/av/captions/" title="W3C WAI: Captions and subtitles">W3C WAI: Captions and subtitles</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/2026/CRD-webvtt1-20260520/" title="W3C WebVTT, May 2026 Candidate Recommendation Draft">W3C WebVTT, May 2026 Candidate Recommendation Draft</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/ttml2/" title="W3C Timed Text Markup Language 2">W3C Timed Text Markup Language 2</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Subtitle-ASR%0A*%20Title%3A%20Automatic%20speech%20recognition%20for%20captions%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

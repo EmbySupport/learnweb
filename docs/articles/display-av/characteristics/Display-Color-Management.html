@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Display color management | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Display color management relates the source&#8217;s defined color meaning to the current output state through transformations implemented by the application, operating system and display path.">
+  <link rel="canonical" href="https://emby.media/learn/articles/display-av/characteristics/Display-Color-Management.html">
+  <meta property="og:title" content="Display color management | Emby Learn">
+  <meta property="og:description" content="Display color management relates the source&#8217;s defined color meaning to the current output state through transformations implemented by the application, operating system and display path.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/display-av/characteristics/Display-Color-Management.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/display-av/characteristics/Display-Color-Management.html","url":"https://emby.media/learn/articles/display-av/characteristics/Display-Color-Management.html","name":"Display color management","inLanguage":"en","headline":"Display color management","articleSection":"Displays and AV connections","proficiencyLevel":"Beginner","accessMode":"textual","description":"Display color management relates the source’s defined color meaning to the current output state through transformations implemented by the application, operating system and display path.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Displays and AV connections","item":"https://emby.media/learn/articles/display-av/index.html"},{"@type":"ListItem","position":3,"name":"Display characteristics","item":"https://emby.media/learn/articles/display-av/characteristics/index.html"},{"@type":"ListItem","position":4,"name":"Display color management","item":"https://emby.media/learn/articles/display-av/characteristics/Display-Color-Management.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Display-Color-Management">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../display-av/index.html">Displays and AV connections</a></li>
+              <li><a href="../../display-av/characteristics/index.html">Display characteristics</a></li>
+              <li><span aria-current="page">Display color management</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Display-Color-Management">
+<h1>Display color management</h1>
+<p class="article-description">Display color management relates the source&#8217;s defined color meaning to the current output state through transformations implemented by the application, operating system and display path.</p>
+
+
+<p>A color value has meaning only within a defined interpretation. The same triplet of RGB numbers can describe different colors under different primaries, white references and transfer functions.</p>
+<p><strong>Display color management</strong> connects that source meaning to the behavior of the selected output. It requires more than choosing a monitor with a wide gamut.</p>
+<h2 id="numbers-first-need-an-interpretation">Numbers first need an interpretation</h2>
+<p>A video source may describe its primaries, transfer function, YCbCr matrix and range through its stream/container signaling. A still image may carry an ICC profile.</p>
+<p>The player needs to interpret those properties before deciding how to present the source. Assigning a different description to unchanged numbers is not the same operation as transforming numbers to preserve their color meaning.</p>
+<p>For example, marking values as wide-gamut RGB without converting their interpretation does not automatically preserve the original narrow-gamut colors. It changes what the values are said to mean.</p>
+<p><a href="../../video/color-pixel-formats/Video-Color-Signaling.html">Video color signaling</a> and <a href="../../photos-images/presentation/Image-ICC-Profiles.html">ICC profiles</a> describe those source declarations.</p>
+<h2 id="assigning-a-label-and-converting-values-differ">Assigning a label and converting values differ</h2>
+<p>Use an original scalar tone-encoding exercise, with color primaries omitted. Encoding A means light equals its code squared; Encoding B means light equals its code raised to 2.4.</p>
+<p>Code 0.5 in A therefore describes light 0.25. Copying code 0.5 unchanged into B describes approximately 0.189465.</p>
+<p>To preserve light 0.25 in B, calculate its required code:</p>
+<pre><code class="lang-text">codeB = 0.25^(1/2.4) = 0.561231
+codeB^2.4 = 0.25
+</code></pre>
+<p>Relabeling the unchanged code changes its meaning. Converting the code preserves the modeled light relationship. Real color conversion also needs the source/destination primaries, reference state and mapping limits.</p>
+<h2 id="a-transform-relates-two-characterized-spaces">A transform relates two characterized spaces</h2>
+<p>A traditional ICC route uses a source profile, a profile connection space and a destination profile. The destination describes the display’s characterized state. The transform computes destination values intended to reproduce or map the source colors.</p>
+<p>The working values may be linearized before color-basis transformations, then encoded for output. Applying a linear-light operation directly to nonlinear encoded values can produce a different result.</p>
+<p>A calibrated video route can instead target an established reference color space. It need not apply an ordinary per-image ICC transform at every stage if the output is already set up for that reference.</p>
+<p>These are different implemented arrangements for maintaining intended color relationships.</p>
+<p><img src="images/color-management-responsibilities.png" alt="The color route identifies source interpretation, transformation responsibilities, output signaling and the characterized display state."></p>
+<h2 id="application-and-operating-system-share-responsibilities">Application and operating system share responsibilities</h2>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Relationship to establish</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Traditional color-managed application</td>
+<td>App interprets the source and transforms for its destination profile</td>
+</tr>
+<tr>
+<td>Calibrated reference video output</td>
+<td>Renderer produces the intended reference representation for that output state</td>
+</tr>
+<tr>
+<td>OS-managed Advanced Color</td>
+<td>App declares a supported surface interpretation; the OS composes/maps it into the current managed output</td>
+</tr>
+</tbody>
+</table>
+<p>Microsoft documents that Advanced Color changes traditional ICC behavior. Its managed routes distinguish application color conversion from display calibration and output handling.</p>
+<p>Consequently, an ICC profile being installed does not imply every app applies the same conventional transform. Nor does a managed OS output mean an application can label arbitrary values incorrectly and expect the system to infer their intended meaning.</p>
+<p>For an Emby client, the renderer, platform and selected presentation mode determine the implemented relationship. A browser player and a native video renderer can enter the output pipeline differently.</p>
+<h2 id="why-a-correction-applied-twice-is-different">Why a correction applied twice is different</h2>
+<p>Use an original scalar model from <a href="Display-Calibration.html">calibration</a>. A display has actual response <code>L = u²</code>, while the target for source value <code>x</code> is <code>x^2.2</code>. One correction sends <code>u = x^1.1</code>.</p>
+<p>At <code>x = 0.5</code>, one correction gives luminance approximately <code>0.217638</code>.</p>
+<p>If the same command correction is mistakenly applied again, the command becomes:</p>
+<pre><code class="lang-text">u = (x^1.1)^1.1 = x^1.21
+Actual light = u² = x^2.42
+At x = 0.5: L ≈ 0.186856
+</code></pre>
+<p>The result no longer matches the intended <code>x^2.2</code> target. This is an invented calculation illustrating duplicated responsibility, not a report that a particular app or OS performs it.</p>
+<p>The converse problem is a required transformation being omitted. Correct output depends on establishing which stage owns each operation.</p>
+<h2 id="hdr-adds-a-luminance-interpretation">HDR adds a luminance interpretation</h2>
+<p>PQ describes a relationship to absolute luminance. A managed desktop can also need to place SDR interface white at an appropriate reference level alongside HDR content.</p>
+<p>Converting color primaries alone does not solve that luminance relationship. Tone mapping, reference-white handling and the selected output representation remain relevant.</p>
+<p>Microsoft’s Advanced Color documentation describes surface-format/color-space combinations and their interpretation. Those API choices are factual examples of an implementation contract, not universal configuration instructions for every media app.</p>
+<p><a href="../signaling/capability-exchange/AV-HDR-Signaling.html">HDMI HDR signaling</a> covers the later signal sent to a connected display. Correct source metadata, correct surface interpretation and correct output signaling are three connected conditions.</p>
+<h2 id="display-changes-alter-the-destination">Display changes alter the destination</h2>
+<p>Moving a player window to another screen can change the output gamut, luminance, profile and active HDR state. A route that was correct for the first screen may need updated destination information.</p>
+<p>A desktop screenshot records a representation captured at a particular pipeline stage. Viewing that screenshot later through another application/display is another color route, so it is not automatically a measurement of the first screen’s emitted light.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Display-Calibration.html" title="Display color calibration">Display color calibration</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../photos-images/presentation/Image-ICC-Profiles.html" title="ICC color profiles">ICC color profiles</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../video/color-pixel-formats/Video-Color-Signaling.html" title="Video Color Tags and Signaling">Video Color Tags and Signaling</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../video/color-pixel-formats/Video-Color-Range.html" title="Limited and Full Video Range">Limited and Full Video Range</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../signaling/capability-exchange/AV-HDR-Signaling.html" title="HDMI HDR signaling">HDMI HDR signaling</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.color.org/icc_specs2/" title="ICC: Profile specifications">ICC: Profile specifications</a></li>
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/direct3darticles/high-dynamic-range" title="Microsoft: Advanced Color display pipeline">Microsoft: Advanced Color display pipeline</a></li>
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/wcs/advanced-color-icc-profiles" title="Microsoft: ICC profile behaviour with Advanced Color">Microsoft: ICC profile behaviour with Advanced Color</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Display-Color-Management%0A*%20Title%3A%20Display%20color%20management%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

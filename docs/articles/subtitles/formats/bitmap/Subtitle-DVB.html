@@ -1,0 +1,269 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>DVB subtitles (DVBSub) | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="DVBSub carries broadcast subtitle services using timed page, region, object and colour-table segments in a transport stream.">
+  <link rel="canonical" href="https://emby.media/learn/articles/subtitles/formats/bitmap/Subtitle-DVB.html">
+  <meta property="og:title" content="DVB subtitles (DVBSub) | Emby Learn">
+  <meta property="og:description" content="DVBSub carries broadcast subtitle services using timed page, region, object and colour-table segments in a transport stream.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/subtitles/formats/bitmap/Subtitle-DVB.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/subtitles/formats/bitmap/Subtitle-DVB.html","url":"https://emby.media/learn/articles/subtitles/formats/bitmap/Subtitle-DVB.html","name":"DVB subtitles (DVBSub)","inLanguage":"en","headline":"DVB subtitles (DVBSub)","articleSection":"Subtitles and captions","proficiencyLevel":"Beginner","accessMode":"textual","description":"DVBSub carries broadcast subtitle services using timed page, region, object and colour-table segments in a transport stream.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Subtitles and captions","item":"https://emby.media/learn/articles/subtitles/index.html"},{"@type":"ListItem","position":3,"name":"Subtitle formats","item":"https://emby.media/learn/articles/subtitles/formats/index.html"},{"@type":"ListItem","position":4,"name":"Bitmap subtitle formats","item":"https://emby.media/learn/articles/subtitles/formats/bitmap/index.html"},{"@type":"ListItem","position":5,"name":"DVB subtitles (DVBSub)","item":"https://emby.media/learn/articles/subtitles/formats/bitmap/Subtitle-DVB.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Subtitle-DVB">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../subtitles/index.html">Subtitles and captions</a></li>
+              <li><a href="../../../subtitles/formats/index.html">Subtitle formats</a></li>
+              <li><a href="../../../subtitles/formats/bitmap/index.html">Bitmap subtitle formats</a></li>
+              <li><span aria-current="page">DVB subtitles (DVBSub)</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Subtitle-DVB">
+<h1>DVB subtitles (DVBSub)</h1>
+<p class="article-description">DVBSub carries broadcast subtitle services using timed page, region, object and colour-table segments in a transport stream.</p>
+
+
+<p>DVB subtitles, often called <strong>DVBSub</strong>, are a broadcast subtitling system defined by <strong>ETSI EN 300 743</strong>. Their common graphical mode assembles subtitles from indexed-pixel objects, regions and a timed page composition.</p>
+<p>The system can support character-code objects under local agreements as well. It should therefore be described as a graphics-oriented subtitle system with defined additional modes, rather than as proof that every possible DVB subtitle contains only bitmap runs.</p>
+<h2 id="transport-identity-and-subtitle-service-identity">Transport identity and subtitle-service identity</h2>
+<p>DVB subtitle data travels in PES packets within an MPEG transport stream. The PES timing supplies presentation timestamps. Transport packets use a PID to identify the carrying stream.</p>
+<p>A single such stream can carry more than one subtitle service. Signaling identifies the intended language/type and the <strong>composition page ID</strong>, with an <strong>ancillary page ID</strong> when applicable. The PID alone can therefore be insufficient to choose the desired caption service.</p>
+<p>An Emby recording retaining the broadcast transport can preserve those relationships. When a tool extracts or repackages a subtitle track, it must keep the service configuration needed to interpret its data.</p>
+<h2 id="a-page-is-built-from-regions-and-objects">A page is built from regions and objects</h2>
+<p><img src="images/dvb-hierarchy.png" alt="A DVB subtitle page places regions, while each region places objects and selects its colour-table interpretation."></p>
+<p>The roles form a hierarchy:</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Page composition</td>
+<td>Selects regions, their positions and page state</td>
+</tr>
+<tr>
+<td>Region composition</td>
+<td>Defines region dimensions, depth, colour-table identity and placed objects</td>
+</tr>
+<tr>
+<td>Object data</td>
+<td>Supplies graphical content or the applicable alternative coding</td>
+</tr>
+<tr>
+<td>Colour lookup table, CLUT</td>
+<td>Resolves indexed values to colour/transparency</td>
+</tr>
+<tr>
+<td>Display definition</td>
+<td>Establishes display geometry where provided</td>
+</tr>
+</tbody>
+</table>
+<p>Objects can be updated without replacing the whole page. Regions can move or become visible through a page update. The stored data is therefore a sequence of state changes, not necessarily a collection of independent screenshots.</p>
+<h3 id="adding-the-two-levels-of-position">Adding the two levels of position</h3>
+<p>Suppose a region begins at <strong>(100,500)</strong> on a 720 × 576 display plane. An object begins at <strong>(20,15)</strong> within that region. Its plane position is:</p>
+<pre><code class="lang-text">x = 100 + 20 = 120
+y = 500 + 15 = 515
+</code></pre>
+<p>For a 500 × 40 object, its extent reaches x = 620 and y = 555, within this illustrative plane. The region must also be large enough to contain the object. Confusing the region-relative position with the page-relative position would put the graphic in another location.</p>
+<p>The CLUT and pixel-depth interpretation complete the picture. A valid object run decoded with the wrong colour-table state is not the intended subtitle.</p>
+<h2 id="tuning-and-seeking-require-an-acquisition-state">Tuning and seeking require an acquisition state</h2>
+<p>An update in the middle of a service may assume that earlier objects or regions are already known. A live receiver tuning into that stream needs an acquisition point containing the information required for the next page. A recording seek has a comparable need to reconstruct state.</p>
+<p>The page composition also supplies a <strong>timeout</strong> in seconds. If the page is not replaced or redefined, it eventually ceases to be valid and should be erased. This prevents a stale caption from remaining indefinitely after a lost update.</p>
+<p>A timeout is a recovery bound, not a universal substitute for exact authored cue endings. Later display updates provide the normal intended progression.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Subtitle-Bitmap.html" title="Bitmap subtitles">Bitmap subtitles</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Subtitle-PGS.html" title="Blu-ray subtitles (PGS)">Blu-ray subtitles (PGS)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../media-files/containers/mpeg-systems/MPEG-Transport-Stream.html" title="MPEG Transport Stream: TS and M2TS">MPEG Transport Stream: TS and M2TS</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../media-files/fundamentals/Media-Streams-Tracks.html" title="Streams and Tracks">Streams and Tracks</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.etsi.org/deliver/etsi_en/300700_300799/300743/01.06.01_60/en_300743v010601p.pdf" title="ETSI EN 300 743 V1.6.1: DVB subtitling">ETSI EN 300 743 V1.6.1: DVB subtitling</a></li>
+			            <li><a class="seealso-link" href="https://www.matroska.org/technical/subtitles.html" title="Matroska: Subtitle storage and codec mappings">Matroska: Subtitle storage and codec mappings</a></li>
+			            <li><a class="seealso-link" href="https://www.etsi.org/deliver/etsi_en/300400_300499/300468/01.19.01_60/en_300468v011901p.pdf" title="ETSI EN 300 468 V1.19.1: DVB service information and subtitling descriptor">ETSI EN 300 468 V1.19.1: DVB service information and subtitling descriptor</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Subtitle-DVB%0A*%20Title%3A%20DVB%20subtitles%20(DVBSub)%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

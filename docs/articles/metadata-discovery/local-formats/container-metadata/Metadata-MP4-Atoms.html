@@ -1,0 +1,266 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>MP4 metadata atoms | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="MP4 metadata uses structured boxes and metadata conventions whose keys, payload types and scope must be interpreted separately from the coded media streams.">
+  <link rel="canonical" href="https://emby.media/learn/articles/metadata-discovery/local-formats/container-metadata/Metadata-MP4-Atoms.html">
+  <meta property="og:title" content="MP4 metadata atoms | Emby Learn">
+  <meta property="og:description" content="MP4 metadata uses structured boxes and metadata conventions whose keys, payload types and scope must be interpreted separately from the coded media streams.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/metadata-discovery/local-formats/container-metadata/Metadata-MP4-Atoms.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/metadata-discovery/local-formats/container-metadata/Metadata-MP4-Atoms.html","url":"https://emby.media/learn/articles/metadata-discovery/local-formats/container-metadata/Metadata-MP4-Atoms.html","name":"MP4 metadata atoms","inLanguage":"en","headline":"MP4 metadata atoms","articleSection":"Metadata and discovery","proficiencyLevel":"Beginner","accessMode":"textual","description":"MP4 metadata uses structured boxes and metadata conventions whose keys, payload types and scope must be interpreted separately from the coded media streams.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Metadata and discovery","item":"https://emby.media/learn/articles/metadata-discovery/index.html"},{"@type":"ListItem","position":3,"name":"Local metadata formats","item":"https://emby.media/learn/articles/metadata-discovery/local-formats/index.html"},{"@type":"ListItem","position":4,"name":"Container metadata structures","item":"https://emby.media/learn/articles/metadata-discovery/local-formats/container-metadata/index.html"},{"@type":"ListItem","position":5,"name":"MP4 metadata atoms","item":"https://emby.media/learn/articles/metadata-discovery/local-formats/container-metadata/Metadata-MP4-Atoms.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Metadata-MP4-Atoms">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../metadata-discovery/index.html">Metadata and discovery</a></li>
+              <li><a href="../../../metadata-discovery/local-formats/index.html">Local metadata formats</a></li>
+              <li><a href="../../../metadata-discovery/local-formats/container-metadata/index.html">Container metadata structures</a></li>
+              <li><span aria-current="page">MP4 metadata atoms</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Metadata-MP4-Atoms">
+<h1>MP4 metadata atoms</h1>
+<p class="article-description">MP4 metadata uses structured boxes and metadata conventions whose keys, payload types and scope must be interpreted separately from the coded media streams.</p>
+
+
+<p>MP4 packages media and associated descriptions through boxes, often called atoms in related terminology. The movie's coded tracks and a descriptive title occupy different structures.</p>
+<h2 id="one-common-tag-convention-uses-ilst">One common tag convention uses ilst</h2>
+<p>An illustrative iTunes-style hierarchy is:</p>
+<pre><code class="lang-text">moov
+  udta
+    meta
+      ilst
+        ©nam
+          data
+</code></pre>
+<p>The visible key ©nam is commonly associated with a title in that convention. Other keys describe artist information or cover artwork.</p>
+<table>
+<thead>
+<tr>
+<th>Example key</th>
+<th>Conventional role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>©nam</td>
+<td>Title</td>
+</tr>
+<tr>
+<td>©ART</td>
+<td>Artist</td>
+</tr>
+<tr>
+<td>aART</td>
+<td>Album-artist relationship</td>
+</tr>
+<tr>
+<td>covr</td>
+<td>Embedded cover data</td>
+</tr>
+</tbody>
+</table>
+<p>These labels name a metadata convention. They should not be read as a promise that every MP4 uses this hierarchy or every reader exposes the same fields.</p>
+<h2 id="other-metadata-arrangements-use-another-contract">Other metadata arrangements use another contract</h2>
+<p>Keyed metadata can use a key table and namespace relationship instead of interpreting every entry as one familiar ilst key. FFmpeg documents an option to write mdta metadata.</p>
+<p>A reader supporting one arrangement can still fail to map another arrangement into the expected library title. Renaming a file does not convert those boxes.</p>
+<p>The payload also has a type. A string, number and picture bytes need their appropriate interpretation rather than one blanket “decode every data box as text”.</p>
+<h2 id="the-description-does-not-replace-stream-properties">The description does not replace stream properties</h2>
+<p>A title or album tag can describe the work represented by an M4A or video file. Track/sample structures establish the actual codec, duration and media layout.</p>
+<p>For Emby, compare the descriptive atom the file carries with the imported field and the selected media source. Correct playback and correct title import can succeed independently.</p>
+<h2 id="a-rewrite-has-preservation-choices">A rewrite has preservation choices</h2>
+<p>A remux can retain coded media while changing which metadata boxes are copied or rewritten. An export can produce a useful new audio file while omitting embedded artwork or custom fields.</p>
+<p><a href="../../artwork/cover-branding/Metadata-Embedded-Cover-Art.html">Embedded cover art</a> explains the picture-selection boundary; <a href="../../fields/text-localization/Metadata-Unicode.html">Unicode metadata</a> develops the text-decoding boundary.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../understanding/Metadata-Embedded.html" title="Embedded metadata">Embedded metadata</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../artwork/cover-branding/Metadata-Embedded-Cover-Art.html" title="Embedded cover art">Embedded cover art</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../media-files/containers/iso-base-media-and-quicktime/MP4-Container.html" title="MP4 and the ISO Base Media File Format">MP4 and the ISO Base Media File Format</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../fields/text-localization/Metadata-Unicode.html" title="Unicode metadata">Unicode metadata</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://taglib.org/api/classTagLib_1_1MP4_1_1Tag.html" title="TagLib: MP4 metadata interface">TagLib: MP4 metadata interface</a></li>
+			            <li><a class="seealso-link" href="https://github.com/taglib/taglib/blob/master/taglib/mp4/mp4tag.cpp" title="TagLib: MP4 tag implementation">TagLib: MP4 tag implementation</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-formats.html" title="FFmpeg: Container metadata options">FFmpeg: Container metadata options</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Metadata-MP4-Atoms%0A*%20Title%3A%20MP4%20metadata%20atoms%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

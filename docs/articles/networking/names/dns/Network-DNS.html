@@ -1,0 +1,294 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>DNS resolution, record types and cached answers | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="DNS resolves typed questions about names through authoritative data and caches, with address answers providing only one stage of a server connection.">
+  <link rel="canonical" href="https://emby.media/learn/articles/networking/names/dns/Network-DNS.html">
+  <meta property="og:title" content="DNS resolution, record types and cached answers | Emby Learn">
+  <meta property="og:description" content="DNS resolves typed questions about names through authoritative data and caches, with address answers providing only one stage of a server connection.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/networking/names/dns/Network-DNS.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/networking/names/dns/Network-DNS.html","url":"https://emby.media/learn/articles/networking/names/dns/Network-DNS.html","name":"DNS resolution, record types and cached answers","inLanguage":"en","headline":"DNS resolution, record types and cached answers","articleSection":"Networking and remote access","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"DNS resolves typed questions about names through authoritative data and caches, with address answers providing only one stage of a server connection.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Networking and remote access","item":"https://emby.media/learn/articles/networking/index.html"},{"@type":"ListItem","position":3,"name":"Names and discovery","item":"https://emby.media/learn/articles/networking/names/index.html"},{"@type":"ListItem","position":4,"name":"DNS and naming","item":"https://emby.media/learn/articles/networking/names/dns/index.html"},{"@type":"ListItem","position":5,"name":"DNS","item":"https://emby.media/learn/articles/networking/names/dns/Network-DNS.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Network-DNS">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../networking/index.html">Networking and remote access</a></li>
+              <li><a href="../../../networking/names/index.html">Names and discovery</a></li>
+              <li><a href="../../../networking/names/dns/index.html">DNS and naming</a></li>
+              <li><span aria-current="page">DNS</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Network-DNS">
+<h1>DNS resolution, record types and cached answers</h1>
+<p class="article-description">DNS resolves typed questions about names through authoritative data and caches, with address answers providing only one stage of a server connection.</p>
+
+
+<p>In <code>https://media.example.net:45000/</code>, the hostname is media.example.net. A normal address lookup asks DNS for address records for that name.</p>
+<p>The lookup does not test port 45000, complete TLS or log into Emby. Those stages use the chosen answer later.</p>
+<h2 id="address-records-have-types">Address records have types</h2>
+<p>An A record supplies an IPv4 address; an AAAA record supplies an IPv6 address. A CNAME identifies another name to follow rather than directly supplying an address.</p>
+<p>This original reduced answer set uses documentation addresses:</p>
+<pre><code class="lang-json">{
+  &quot;name&quot;: &quot;media.example.net&quot;,
+  &quot;records&quot;: [
+    {&quot;type&quot;: &quot;A&quot;, &quot;value&quot;: &quot;198.51.100.12&quot;, &quot;ttlSeconds&quot;: 300},
+    {&quot;type&quot;: &quot;AAAA&quot;, &quot;value&quot;: &quot;2001:db8:50::20&quot;, &quot;ttlSeconds&quot;: 300}
+  ]
+}
+</code></pre>
+<p>The name and address labels are invented. They are not endpoints to query or contact.</p>
+<p>Ordinary A/AAAA resolution leaves the URL’s scheme, port and path intact. Other DNS record types can include service information, such as the port in an SRV record, when the client implements that discovery method.</p>
+<h2 id="the-resolver-can-answer-from-a-cache">The resolver can answer from a cache</h2>
+<p>The client normally uses a resolver. That resolver can obtain information from authoritative DNS data and retain it for its supplied lifetime.</p>
+<p>A cached answer is not a fresh measurement of the destination server. It describes the name-to-record relationship last obtained under the cache rules.</p>
+<p><img src="images/dns-answer-cache.png" alt="The original DNS example separates authoritative records, a resolver cache and the later client connection."></p>
+<p>Consider a teaching timeline where an A answer is cached at second zero with a three-hundred-second TTL. At second one hundred, the authoritative record changes to another address.</p>
+<p>A resolver retaining the original positive answer can still supply it before its expiry at three hundred. Another resolver asking after the change can supply the newer value.</p>
+<p>Both can follow the stated caching model while giving different answers. Special stale-answer mechanisms and local overrides have additional rules; this example isolates an ordinary unexpired positive cache.</p>
+<h2 id="no-address-and-no-connection-are-different-failures">No address and no connection are different failures</h2>
+<table>
+<thead>
+<tr>
+<th>Result</th>
+<th>Meaning to examine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NXDOMAIN</td>
+<td>The queried name does not exist under the answer’s context</td>
+</tr>
+<tr>
+<td>Name exists, requested record type absent</td>
+<td>No matching data for that type</td>
+</tr>
+<tr>
+<td>Resolver timeout</td>
+<td>No timely usable resolution response</td>
+</tr>
+<tr>
+<td>Address returned, connection fails</td>
+<td>The later route/service path failed</td>
+</tr>
+</tbody>
+</table>
+<p>For example, an absent AAAA record does not establish that an A record is absent. A returned A address followed by a refused TCP connection is not a DNS-name failure.</p>
+<p>DNS can use UDP and TCP; current implementation requirements include TCP support. “DNS is just UDP port 53” omits useful behavior, especially for responses requiring another transport exchange.</p>
+<h2 id="a-missing-name-answer-can-be-cached-too">A missing-name answer can be cached too</h2>
+<p>Negative caching retains an applicable negative result under its supplied lifetime rules. Creating the missing record does not force every resolver to ask again immediately.</p>
+<p>Use this original reduced name case:</p>
+<pre><code class="lang-json">{
+  &quot;negativeFetchedAt&quot;: 0,
+  &quot;negativeTtlSeconds&quot;: 120,
+  &quot;nameCreatedAt&quot;: 30,
+  &quot;queryAt&quot;: 60
+}
+</code></pre>
+<p>At second sixty, the model’s unexpired negative cache can still answer that the name is absent. Its stated expiry is second 120, ninety seconds after the authoritative name was created.</p>
+<p>A lookup that never produces an address has not reached the TCP listener. Restarting the media decoder cannot replace that retained name result.</p>
+<p>The exact negative cache key and lifetime depend on the response type and DNS rules. NXDOMAIN and absence of one record type must retain their different meanings. The numbers above are declared inputs rather than a captured resolver response.</p>
+<h2 id="an-alias-and-target-have-separate-record-lifetimes">An alias and target have separate record lifetimes</h2>
+<p>Suppose an original CNAME maps media.example.net to gateway.example.net for six hundred seconds, while the target A answer has a three-hundred-second TTL.</p>
+<p>The alias can remain correct after the target address changes. Once the target A cache expires, that record can be obtained again without waiting for the unchanged alias to expire too.</p>
+<p>Conversely, changing the alias itself leaves its earlier unexpired CNAME answer applicable under the ordinary cache model. “The DNS cache” is therefore not one timer attached to the entire displayed URL.</p>
+<h2 id="different-address-families-can-select-different-paths">Different address families can select different paths</h2>
+<p>A client can receive both address families and choose, order or race connection attempts. Happy Eyeballs describes one concurrency strategy intended to improve connectivity.</p>
+<p>The IPv4 and IPv6 answers can lead to different routing, listener or firewall outcomes. Seeing one working browser does not identify which family another app attempted.</p>
+<h2 id="keep-the-name-question-and-endpoint-result-separate">Keep the name question and endpoint result separate</h2>
+<p>For a failed Emby connection, retain the actual name, record type, returned address and selected endpoint. That makes a stale record different from a missing listener or an application rejection.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Network-DDNS.html" title="Dynamic DNS and a changing server address">Dynamic DNS and a changing server address</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Network-Split-DNS.html" title="Split DNS and location-dependent server endpoints">Split DNS and location-dependent server endpoints</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Network-Hostnames-URLs.html" title="Hostnames, URLs and the complete server endpoint">Hostnames, URLs and the complete server endpoint</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../addressing/Network-IPv6.html" title="IPv6 addressing, scope and reachability">IPv6 addressing, scope and reachability</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc2308.html" title="RFC 2308: DNS negative caching">RFC 2308: DNS negative caching</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc1034" title="RFC 1034: DNS concepts and facilities">RFC 1034: DNS concepts and facilities</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc1035" title="RFC 1035: DNS records and protocol">RFC 1035: DNS records and protocol</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc9499" title="RFC 9499: DNS terminology and views">RFC 9499: DNS terminology and views</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc7766" title="RFC 7766: DNS transport over TCP">RFC 7766: DNS transport over TCP</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc8305" title="RFC 8305: Happy Eyeballs connection concurrency">RFC 8305: Happy Eyeballs connection concurrency</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Network-DNS%0A*%20Title%3A%20DNS%20resolution%2C%20record%20types%20and%20cached%20answers%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

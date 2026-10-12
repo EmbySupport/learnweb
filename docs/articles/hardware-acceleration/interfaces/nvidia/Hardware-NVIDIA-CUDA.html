@@ -1,0 +1,299 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>NVIDIA CUDA in media processing | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="CUDA provides NVIDIA GPU compute and device-memory interfaces used for programmable picture processing and interoperability around dedicated video engines.">
+  <link rel="canonical" href="https://emby.media/learn/articles/hardware-acceleration/interfaces/nvidia/Hardware-NVIDIA-CUDA.html">
+  <meta property="og:title" content="NVIDIA CUDA in media processing | Emby Learn">
+  <meta property="og:description" content="CUDA provides NVIDIA GPU compute and device-memory interfaces used for programmable picture processing and interoperability around dedicated video engines.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/hardware-acceleration/interfaces/nvidia/Hardware-NVIDIA-CUDA.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/hardware-acceleration/interfaces/nvidia/Hardware-NVIDIA-CUDA.html","url":"https://emby.media/learn/articles/hardware-acceleration/interfaces/nvidia/Hardware-NVIDIA-CUDA.html","name":"NVIDIA CUDA in media processing","inLanguage":"en","headline":"NVIDIA CUDA in media processing","articleSection":"Media hardware acceleration","proficiencyLevel":"Beginner","accessMode":"textual","description":"CUDA provides NVIDIA GPU compute and device-memory interfaces used for programmable picture processing and interoperability around dedicated video engines.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Media hardware acceleration","item":"https://emby.media/learn/articles/hardware-acceleration/index.html"},{"@type":"ListItem","position":3,"name":"Media engines and acceleration interfaces","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/index.html"},{"@type":"ListItem","position":4,"name":"Vendor media technologies","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/vendors/index.html"},{"@type":"ListItem","position":5,"name":"NVIDIA","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/nvidia/index.html"},{"@type":"ListItem","position":6,"name":"NVIDIA CUDA","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/nvidia/Hardware-NVIDIA-CUDA.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Hardware-NVIDIA-CUDA">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../hardware-acceleration/index.html">Media hardware acceleration</a></li>
+              <li><a href="../../../hardware-acceleration/interfaces/index.html">Media engines and acceleration interfaces</a></li>
+              <li><a href="../../../hardware-acceleration/interfaces/vendors/index.html">Vendor media technologies</a></li>
+              <li><a href="../../../hardware-acceleration/interfaces/nvidia/index.html">NVIDIA</a></li>
+              <li><span aria-current="page">NVIDIA CUDA</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Hardware-NVIDIA-CUDA">
+<h1>NVIDIA CUDA in media processing</h1>
+<p class="article-description">CUDA provides NVIDIA GPU compute and device-memory interfaces used for programmable picture processing and interoperability around dedicated video engines.</p>
+
+
+<p><strong>CUDA</strong> supplies programming and device-memory facilities for NVIDIA GPU compute. Media applications can use it to transform decoded pictures and connect suitable device resources to dedicated video engines.</p>
+<p>NVDEC and NVENC are separate specialized engines. A CUDA context or frame label can participate in their route without meaning that general compute cores perform the entire compressed-video operation.</p>
+<h2 id="a-media-route-contains-several-kinds-of-work">A media route contains several kinds of work</h2>
+<p><img src="images/cuda-media-roles.png" alt="An original NVIDIA route separates dedicated decode/encode from programmable CUDA filtering and resource coordination."></p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Media task</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NVDEC</td>
+<td>Supported source reconstruction</td>
+</tr>
+<tr>
+<td>CUDA processing</td>
+<td>Programmable picture operations and associated memory work</td>
+</tr>
+<tr>
+<td>NVENC</td>
+<td>Supported target compression</td>
+</tr>
+<tr>
+<td>Host application</td>
+<td>Resource parsing, submission, timing and output coordination</td>
+</tr>
+</tbody>
+</table>
+<p>The combination depends on the implemented pipeline. A hardware decoder can also have post-processing and output-layout preparation defined by its API.</p>
+<h2 id="a-device-frame-changes-the-filter-input">A device frame changes the filter input</h2>
+<p>A CUDA hardware frame describes picture data through the applicable device/frame context. A CUDA-capable filter needs a compatible layout and device relationship.</p>
+<p>This original FFmpeg command illustrates a selected route for an SDR, 16:9 source with MP4-compatible AAC audio:</p>
+<pre><code class="lang-text">ffmpeg -hwaccel cuda -hwaccel_output_format cuda -i input-sdr.mp4 -map 0:v:0 -map 0:a:0 -vf scale_cuda=1280:720 -c:v h264_nvenc -c:a copy output.mp4
+</code></pre>
+<p>The command was not run. It assumes the device and FFmpeg build expose the required paths.</p>
+<p>The requested hardware-frame output supplies the filter path with device-associated pictures. <code>scale_cuda</code> produces the selected size, and <code>h264_nvenc</code> encodes the prepared output. Audio copying is another selected operation.</p>
+<p>This example does not implement HDR-to-SDR colour processing. Its declared SDR input makes the demonstrated scaling route a defined subject.</p>
+<p>A CPU-only filter requires a compatible CPU-accessible frame. Adding that operation can introduce a transfer or mapping and a subsequent preparation for hardware encoding.</p>
+<h2 id="asynchronous-submission-needs-dependencies">Asynchronous submission needs dependencies</h2>
+<p>CUDA work can be queued into streams. Returning control to the CPU is different from completing all queued work.</p>
+<p>Use an original three-operation model for one picture:</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Model interval</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Produce the input picture</td>
+<td>0–4 ms</td>
+</tr>
+<tr>
+<td>Read input and write processed result</td>
+<td>4–7 ms</td>
+</tr>
+<tr>
+<td>Consume the result</td>
+<td>7–12 ms</td>
+</tr>
+</tbody>
+</table>
+<p>The intervals illustrate required dependencies, not actual GPU timings. Starting the second operation at two milliseconds would violate this model's input-readiness condition.</p>
+<p>Work in a stream has its documented ordering relationship. Dependencies across streams need suitable synchronization rather than a guess based on how quickly the host calls returned.</p>
+<p>Those relationships also govern when picture storage can be reused.</p>
+<h2 id="layout-and-meaning-remain-application-inputs">Layout and meaning remain application inputs</h2>
+<p>Device memory can contain planar, semiplanar or other layouts. Pitch, plane offsets and sample format determine how data is addressed. Colour and media-time information determine how it should be interpreted.</p>
+<p>A CUDA kernel needs the intended operation on those values. Its execution facility does not infer a tone-mapping policy or decide which subtitle should be painted.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Hardware-NVIDIA-NVDEC.html" title="NVIDIA NVDEC">NVIDIA NVDEC</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Hardware-NVIDIA-NVENC.html" title="NVIDIA NVENC">NVIDIA NVENC</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Hardware-NVIDIA-CUVID.html" title="NVDEC and CUVID API names">NVDEC and CUVID API names</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../building-blocks/Hardware-GPU-Compute.html" title="GPU compute and video processing">GPU compute and video processing</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../building-blocks/Hardware-Decode-Filter-Encode.html" title="The hardware decode-filter-encode pipeline">The hardware decode-filter-encode pipeline</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../playback-streaming/conversion/pipeline-stages/Playback-Filter-Graphs.html" title="Media filter graphs">Media filter graphs</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://docs.nvidia.com/cuda/cuda-programming-guide/02-basics/asynchronous-execution.html" title="NVIDIA CUDA: Asynchronous execution and streams">NVIDIA CUDA: Asynchronous execution and streams</a></li>
+			            <li><a class="seealso-link" href="https://docs.nvidia.com/video-technologies/video-codec-sdk/13.1/nvdec-video-decoder-api-prog-guide/index.html" title="NVIDIA SDK 13.1: NVDEC programming guide">NVIDIA SDK 13.1: NVDEC programming guide</a></li>
+			            <li><a class="seealso-link" href="https://docs.nvidia.com/video-technologies/video-codec-sdk/13.1/nvenc-video-encoder-api-prog-guide/index.html" title="NVIDIA SDK 13.1: NVENC programming guide">NVIDIA SDK 13.1: NVENC programming guide</a></li>
+			            <li><a class="seealso-link" href="https://docs.nvidia.com/video-technologies/video-codec-sdk/13.1/ffmpeg-with-nvidia-gpu/index.html" title="NVIDIA SDK 13.1: FFmpeg hardware acceleration">NVIDIA SDK 13.1: FFmpeg hardware acceleration</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-filters.html" title="FFmpeg: Hardware and software filters">FFmpeg: Hardware and software filters</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg.html" title="FFmpeg: Hardware devices and processing">FFmpeg: Hardware devices and processing</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Hardware-NVIDIA-CUDA%0A*%20Title%3A%20NVIDIA%20CUDA%20in%20media%20processing%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

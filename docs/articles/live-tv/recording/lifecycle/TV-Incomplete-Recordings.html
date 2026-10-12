@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Incomplete recordings and missing programme intervals | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="An incomplete recording lacks part of the intended programme coverage, even when its remaining container parses, its media plays and a recording item is visible.">
+  <link rel="canonical" href="https://emby.media/learn/articles/live-tv/recording/lifecycle/TV-Incomplete-Recordings.html">
+  <meta property="og:title" content="Incomplete recordings and missing programme intervals | Emby Learn">
+  <meta property="og:description" content="An incomplete recording lacks part of the intended programme coverage, even when its remaining container parses, its media plays and a recording item is visible.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/live-tv/recording/lifecycle/TV-Incomplete-Recordings.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/live-tv/recording/lifecycle/TV-Incomplete-Recordings.html","url":"https://emby.media/learn/articles/live-tv/recording/lifecycle/TV-Incomplete-Recordings.html","name":"Incomplete recordings and missing programme intervals","inLanguage":"en","headline":"Incomplete recordings and missing programme intervals","articleSection":"Live TV and recording","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"An incomplete recording lacks part of the intended programme coverage, even when its remaining container parses, its media plays and a recording item is visible.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Live TV and recording","item":"https://emby.media/learn/articles/live-tv/index.html"},{"@type":"ListItem","position":3,"name":"Recording and time shifting","item":"https://emby.media/learn/articles/live-tv/recording/index.html"},{"@type":"ListItem","position":4,"name":"Recording lifecycle","item":"https://emby.media/learn/articles/live-tv/recording/lifecycle/index.html"},{"@type":"ListItem","position":5,"name":"Incomplete recordings","item":"https://emby.media/learn/articles/live-tv/recording/lifecycle/TV-Incomplete-Recordings.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-TV-Incomplete-Recordings">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../live-tv/index.html">Live TV and recording</a></li>
+              <li><a href="../../../live-tv/recording/index.html">Recording and time shifting</a></li>
+              <li><a href="../../../live-tv/recording/lifecycle/index.html">Recording lifecycle</a></li>
+              <li><span aria-current="page">Incomplete recordings</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-TV-Incomplete-Recordings">
+<h1>Incomplete recordings and missing programme intervals</h1>
+<p class="article-description">An incomplete recording lacks part of the intended programme coverage, even when its remaining container parses, its media plays and a recording item is visible.</p>
+
+
+<p>A recording can play from beginning to end and still be incomplete. The player can present every retained packet successfully while the file lacks the opening, a middle interval or the programme’s ending.</p>
+<p>Completeness concerns what wanted media was captured. Playability concerns whether the retained media can be read and decoded.</p>
+<h2 id="one-hour-with-three-missing-intervals">One hour with three missing intervals</h2>
+<p>Use an original expected programme interval [0,3600), measured in seconds from its start. Suppose usable retained media covers:</p>
+<pre><code class="lang-json">{
+  &quot;wanted&quot;: [0, 3600],
+  &quot;usableIntervals&quot;: [[90, 1200], [1260, 3510]]
+}
+</code></pre>
+<p>All intervals are half-open. The recording starts ninety seconds late, loses sixty seconds in the middle and ends ninety seconds early.</p>
+<p><img src="images/incomplete-recording-coverage.png" alt="The original hour-long programme has separate opening, middle and ending gaps despite a long playable retained span."></p>
+<p>The retained intervals last 1110 and 2250 seconds, totaling 3360 seconds: fifty-six minutes of wanted coverage.</p>
+<p>The span from the first retained point to the last is 3420 seconds, or fifty-seven minutes. That larger extent includes the sixty-second internal gap. Neither number equals the wanted sixty minutes.</p>
+<p>A duration shown by a player can reflect container timestamps and its handling of discontinuities. It is not automatically a measurement of complete programme coverage.</p>
+<h2 id="each-missing-part-has-a-different-boundary">Each missing part has a different boundary</h2>
+<table>
+<thead>
+<tr>
+<th>Missing part</th>
+<th>Observation to compare</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Opening</td>
+<td>Requested start, scheduler attempt and first usable acquisition</td>
+</tr>
+<tr>
+<td>Middle gap</td>
+<td>Source media progress, reception errors and stored progress during the interval</td>
+</tr>
+<tr>
+<td>Ending</td>
+<td>Requested end, actual programme end and final usable stored media</td>
+</tr>
+</tbody>
+</table>
+<p>A late acquisition can miss the beginning without any later source errors. A reception failure can damage the middle while the timer continues running. An early stop can be deliberate under a conflict policy or follow an outdated scheduled end.</p>
+<p><a href="../scheduling/TV-Recording-Timers.html">Recording timers</a> separates the start deadline from the first usable media. <a href="../../channels/reception/TV-Reception-Errors.html">Reception errors</a> explains why one counter does not identify every later loss.</p>
+<h2 id="file-size-alone-cannot-identify-the-missing-minutes">File size alone cannot identify the missing minutes</h2>
+<p>Under a deliberately constant ten-Mbit/s payload, the fifty-six captured minutes in the model contain 4.2 GB of media bytes.</p>
+<p>A complete hour at an average of approximately 9.333333 Mbit/s also contains 4.2 GB. Equal size therefore does not establish equal coverage when rates differ.</p>
+<p>Conversely, a larger partial recording can include more streams, padding or higher-rate material than a smaller complete one.</p>
+<p>This calculation excludes container and filesystem overhead. Its point is the ambiguity: bytes need their rate and timeline context before they become a duration estimate.</p>
+<h2 id="a-successful-retry-does-not-fill-the-earlier-gap">A successful retry does not fill the earlier gap</h2>
+<p>If the source returns at second 1260, the new packets can supply later media. They do not supply the absent [1200,1260) interval unless some other retained/source history makes it available.</p>
+<p>Joining the later capture to the earlier file can improve usability. The join still needs compatible stream descriptions and coherent timestamps. Simply concatenating bytes is not a general container repair.</p>
+<p>A decoder can conceal some damaged pictures, and remuxing can rebuild or change packaging. Neither operation reconstructs programme content that was never received from any available source.</p>
+<p>A repeat airing or another complete capture can provide a replacement. That is a new source of the missing content rather than evidence that the original recording was complete.</p>
+<h2 id="closure-is-another-independent-property">Closure is another independent property</h2>
+<p>A recorder may retain all wanted media but fail to finalize a container or catalogue entry. That is a completion/packaging problem with potentially recoverable data.</p>
+<p>It may also finalize a clean container around only the partial intervals in this example. A successful close does not add those missing minutes.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../channels/reception/TV-Reception-Errors.html" title="Uncorrectable reception errors">Uncorrectable reception errors</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../scheduling/TV-Recording-Timers.html" title="Recording timers and acquisition deadlines">Recording timers and acquisition deadlines</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../scheduling/TV-Recording-Conflicts.html" title="Recording conflicts and feasible resource assignments">Recording conflicts and feasible resource assignments</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../TV-DVR.html" title="Digital video recording: from live source to stored media">Digital video recording: from live source to stored media</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/pluginapi/MediaBrowser.Controller.LiveTv.TimerInfo.html" title="Emby plugin API: TimerInfo identity, UTC dates and padding">Emby plugin API: TimerInfo identity, UTC dates and padding</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/DVR-Settings.html" title="Emby: DVR settings and recording paths">Emby: DVR settings and recording paths</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg.html" title="FFmpeg: Stream copying, transcoding and stream selection">FFmpeg: Stream copying, transcoding and stream selection</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-TV-Incomplete-Recordings%0A*%20Title%3A%20Incomplete%20recordings%20and%20missing%20programme%20intervals%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

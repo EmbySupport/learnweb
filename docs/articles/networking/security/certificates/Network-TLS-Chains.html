@@ -1,0 +1,340 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Certificate trust chains and path validation | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="A certificate trust chain links endpoint evidence through valid issuer relationships to a client-trusted anchor, with path validation separate from service-name matching.">
+  <link rel="canonical" href="https://emby.media/learn/articles/networking/security/certificates/Network-TLS-Chains.html">
+  <meta property="og:title" content="Certificate trust chains and path validation | Emby Learn">
+  <meta property="og:description" content="A certificate trust chain links endpoint evidence through valid issuer relationships to a client-trusted anchor, with path validation separate from service-name matching.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/networking/security/certificates/Network-TLS-Chains.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/networking/security/certificates/Network-TLS-Chains.html","url":"https://emby.media/learn/articles/networking/security/certificates/Network-TLS-Chains.html","name":"Certificate trust chains and path validation","inLanguage":"en","headline":"Certificate trust chains and path validation","articleSection":"Networking and remote access","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"A certificate trust chain links endpoint evidence through valid issuer relationships to a client-trusted anchor, with path validation separate from service-name matching.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Networking and remote access","item":"https://emby.media/learn/articles/networking/index.html"},{"@type":"ListItem","position":3,"name":"Connection security","item":"https://emby.media/learn/articles/networking/security/index.html"},{"@type":"ListItem","position":4,"name":"Certificate validation and lifecycle","item":"https://emby.media/learn/articles/networking/security/certificates/index.html"},{"@type":"ListItem","position":5,"name":"Certificate trust chains","item":"https://emby.media/learn/articles/networking/security/certificates/Network-TLS-Chains.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Network-TLS-Chains">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../networking/index.html">Networking and remote access</a></li>
+              <li><a href="../../../networking/security/index.html">Connection security</a></li>
+              <li><a href="../../../networking/security/certificates/index.html">Certificate validation and lifecycle</a></li>
+              <li><span aria-current="page">Certificate trust chains</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Network-TLS-Chains">
+<h1>Certificate trust chains and path validation</h1>
+<p class="article-description">A certificate trust chain links endpoint evidence through valid issuer relationships to a client-trusted anchor, with path validation separate from service-name matching.</p>
+
+
+<p>A server normally presents its endpoint certificate and the relevant intermediate certificates. The client tries to build an acceptable path from that leaf evidence to an anchor it already trusts.</p>
+<p>A list of certificates sent by the server is therefore input to validation. It is not automatically a trusted chain.</p>
+<h2 id="begin-with-the-clients-anchor">Begin with the client’s anchor</h2>
+<p>Use an original path:</p>
+<pre><code class="lang-text">Server leaf L -&gt; Intermediate I -&gt; Root R
+Client trust anchors: R
+</code></pre>
+<p>The arrow represents an issuer relationship whose signature and constraints must be checked. L is the endpoint certificate; I is permitted to issue the relevant child certificate; R is the declared anchor for this client.</p>
+<p><img src="images/certificate-path-anchor.png" alt="The original leaf/intermediate/root model separates the served chain from the client’s trusted anchor."></p>
+<p>Trust starts with the client’s chosen anchor policy. A self-signed root received over the same untrusted connection cannot grant itself trusted status merely by validating its own signature.</p>
+<p>Otherwise, an arbitrary endpoint could create a root and declare its own evidence acceptable.</p>
+<h2 id="the-path-needs-the-intermediate-relationships">The path needs the intermediate relationships</h2>
+<p>Consider this original reduced input:</p>
+<pre><code class="lang-json">{
+  &quot;leaf&quot;: {&quot;id&quot;: &quot;L&quot;, &quot;issuer&quot;: &quot;I&quot;},
+  &quot;availableIssuers&quot;: [{&quot;id&quot;: &quot;R&quot;, &quot;issuer&quot;: &quot;R&quot;}],
+  &quot;trustedAnchors&quot;: [&quot;R&quot;],
+  &quot;pathComplete&quot;: false
+}
+</code></pre>
+<p>The client trusts R, but it cannot directly bridge L’s issuer I to that root with the supplied data.</p>
+<p>Sending R again does not replace the missing I. The client needs an appropriate intermediate from its available sources.</p>
+<p>Some implementations can use cached or retrieved intermediates. Another TV/app may have no such source available. A browser succeeding with a previously cached I therefore does not prove the server supplied a complete usable chain to every client.</p>
+<h2 id="signature-relationships-are-necessary-but-not-sufficient">Signature relationships are necessary but not sufficient</h2>
+<p>A certificate claiming issuer I needs a valid issuer-signature relationship to the relevant key. Matching the issuer’s display text alone does not verify that relationship.</p>
+<p>Path processing also checks constraints and usage appropriate to the chain. Intermediate basic constraints, certificate-signing key usage, permitted path length and name constraints can affect whether a path is acceptable.</p>
+<p>A certificate chain can therefore have apparently connected issuer names while still failing validation.</p>
+<p>This page’s readable objects omit signatures and detailed constraint processing. They explain the graph and prerequisites, rather than implementing RFC 5280’s complete validation algorithm.</p>
+<h2 id="an-intermediate-constraint-applies-to-its-descendants">An intermediate constraint applies to its descendants</h2>
+<p>Consider a separate original constraint exercise. Intermediate I1 is a CA, can sign certificates and has a path-length limit of zero. It issues either the endpoint leaf L directly or another non-self-issued intermediate I2, which then issues L.</p>
+<table>
+<thead>
+<tr>
+<th>Descendants beneath I1</th>
+<th style="text-align: right;">Subordinate CA count</th>
+<th>Fits the declared zero limit?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Endpoint leaf L</td>
+<td style="text-align: right;">0</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Intermediate I2, then L</td>
+<td style="text-align: right;">1</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>The endpoint leaf is not another CA certificate in that count. A valid signature by I1 therefore does not automatically permit an extra issuer level.</p>
+<p>Name constraints add another kind of permitted scope. An issuer can restrict the relevant names in descendant certificates even while the cryptographic issuer relationships are connected. Both the path and permitted naming need the complete prescribed processing.</p>
+<p>These reduced cases explain what a constraint can exclude. Self-issued exceptions, policy processing and the complete validation state remain in RFC 5280 rather than being implemented by this table.</p>
+<h2 id="time-and-service-identity-add-independent-checks">Time and service identity add independent checks</h2>
+<p>Relevant certificate validity intervals must be appropriate at the validation time. Revocation/status handling and algorithm policy also belong to the client’s validation context.</p>
+<p>The final server identity must match the <a href="Network-TLS-Names.html">requested service</a>. A path to a trusted root with a certificate for another hostname does not establish the identity of media.example.net.</p>
+<p>An original decision table makes the independence explicit:</p>
+<table>
+<thead>
+<tr>
+<th>Declared path result</th>
+<th>Declared requested-name result</th>
+<th>Suitable endpoint identity in this simplified model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Valid</td>
+<td>Match</td>
+<td>Passes these two prerequisites</td>
+</tr>
+<tr>
+<td>Valid</td>
+<td>Mismatch</td>
+<td>Fails the service identity</td>
+</tr>
+<tr>
+<td>Incomplete</td>
+<td>Match</td>
+<td>Fails the path prerequisite</td>
+</tr>
+</tbody>
+</table>
+<p>The first row still leaves other required checks to their real validation process.</p>
+<h2 id="the-same-issuer-key-can-have-alternative-certificate-paths">The same issuer key can have alternative certificate paths</h2>
+<p>A cross-signed issuer can have certificate representations leading toward different roots. Equal issuer labels alone do not identify which representation the client received or selected.</p>
+<p>Use this original key/issuer graph, with all omitted signature relationships assumed valid for the exercise:</p>
+<pre><code class="lang-json">{
+  &quot;leaf&quot;: {
+    &quot;id&quot;: &quot;L&quot;,
+    &quot;issuerKey&quot;: &quot;KI&quot;
+  },
+  &quot;issuerCandidates&quot;: [
+    {
+      &quot;id&quot;: &quot;I-old&quot;,
+      &quot;publicKey&quot;: &quot;KI&quot;,
+      &quot;issuer&quot;: &quot;R-old&quot;
+    },
+    {
+      &quot;id&quot;: &quot;I-new&quot;,
+      &quot;publicKey&quot;: &quot;KI&quot;,
+      &quot;issuer&quot;: &quot;R-new&quot;
+    }
+  ],
+  &quot;trustedAnchors&quot;: [
+    &quot;R-old&quot;
+  ],
+  &quot;selectedPath&quot;: [
+    &quot;L&quot;,
+    &quot;I-old&quot;,
+    &quot;R-old&quot;
+  ]
+}
+</code></pre>
+<p>The leaf’s signature can be checked with the same modeled issuer key KI in either branch. The available certificates then lead toward different root anchors.</p>
+<p>A client trusting only R-old has a candidate through I-old; receiving only I-new does not supply that old-root path unless the client can obtain the other applicable certificate separately.</p>
+<p>Another client may trust R-new and prefer the other branch. A server transmitting one chain and a client constructing its usable path therefore have related but distinct choices.</p>
+<p>The graph’s key labels do not verify actual signatures. They make the reason for alternative paths visible without claiming that a root name or fingerprint by itself establishes trust.</p>
+<h2 id="different-clients-can-start-from-different-anchor-sets">Different clients can start from different anchor sets</h2>
+<p>Operating systems, embedded devices and app-specific TLS libraries can carry different trust stores and update lifecycles.</p>
+<p>A path ending at R can be acceptable to a client trusting R and unavailable to another whose anchor set lacks it. An alternative served/cached chain can also lead to another supported anchor.</p>
+<p>The useful comparison is the actual served leaf/intermediates, the path built by the failing client and its relevant validation result. “The root is trusted on my laptop” identifies that laptop’s context.</p>
+<h2 id="deployment-includes-the-chain-actually-served">Deployment includes the chain actually served</h2>
+<p>A renewed leaf file can be installed alongside an old or missing intermediate set. A public proxy and direct Emby listener can serve different certificate chains.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Network-TLS-Certificates.html" title="TLS certificates, public keys and endpoint evidence">TLS certificates, public keys and endpoint evidence</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Network-TLS-Names.html" title="Certificate hostnames and the requested service identity">Certificate hostnames and the requested service identity</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Network-ACME.html" title="Certificate renewal, ACME and deployed results">Certificate renewal, ACME and deployed results</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc5280.html" title="RFC 5280: Certificate profiles and path validation">RFC 5280: Certificate profiles and path validation</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc9325.html" title="RFC 9325: TLS and DTLS deployment guidance">RFC 9325: TLS and DTLS deployment guidance</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc9525.html" title="RFC 9525: Service identity in TLS">RFC 9525: Service identity in TLS</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Network-TLS-Chains%0A*%20Title%3A%20Certificate%20trust%20chains%20and%20path%20validation%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

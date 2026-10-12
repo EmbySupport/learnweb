@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>CUDA subtitle overlay | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="CUDA subtitle composition blends accepted device video/image formats and remains distinct from text rendering, codec engines and the selected Emby graph.">
+  <link rel="canonical" href="https://emby.media/learn/articles/subtitles/emby-processing/overlay-filters/gpu/Subtitle-Overlay-CUDA.html">
+  <meta property="og:title" content="CUDA subtitle overlay | Emby Learn">
+  <meta property="og:description" content="CUDA subtitle composition blends accepted device video/image formats and remains distinct from text rendering, codec engines and the selected Emby graph.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/subtitles/emby-processing/overlay-filters/gpu/Subtitle-Overlay-CUDA.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/subtitles/emby-processing/overlay-filters/gpu/Subtitle-Overlay-CUDA.html","url":"https://emby.media/learn/articles/subtitles/emby-processing/overlay-filters/gpu/Subtitle-Overlay-CUDA.html","name":"CUDA subtitle overlay","inLanguage":"en","headline":"CUDA subtitle overlay","articleSection":"Subtitles and captions","proficiencyLevel":"Beginner","accessMode":"textual","description":"CUDA subtitle composition blends accepted device video/image formats and remains distinct from text rendering, codec engines and the selected Emby graph.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Subtitles and captions","item":"https://emby.media/learn/articles/subtitles/index.html"},{"@type":"ListItem","position":3,"name":"Subtitle processing in Emby","item":"https://emby.media/learn/articles/subtitles/emby-processing/index.html"},{"@type":"ListItem","position":4,"name":"Subtitle overlay filters","item":"https://emby.media/learn/articles/subtitles/emby-processing/overlay-filters/index.html"},{"@type":"ListItem","position":5,"name":"GPU subtitle overlay","item":"https://emby.media/learn/articles/subtitles/emby-processing/overlay-filters/gpu/index.html"},{"@type":"ListItem","position":6,"name":"CUDA subtitle overlay","item":"https://emby.media/learn/articles/subtitles/emby-processing/overlay-filters/gpu/Subtitle-Overlay-CUDA.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Subtitle-Overlay-CUDA">
+  
+  <meta property="docfx:rel" content="../../../../../">
+  
+  <script type="text/javascript" src="../../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../../subtitles/index.html">Subtitles and captions</a></li>
+              <li><a href="../../../../subtitles/emby-processing/index.html">Subtitle processing in Emby</a></li>
+              <li><a href="../../../../subtitles/emby-processing/overlay-filters/index.html">Subtitle overlay filters</a></li>
+              <li><a href="../../../../subtitles/emby-processing/overlay-filters/gpu/index.html">GPU subtitle overlay</a></li>
+              <li><span aria-current="page">CUDA subtitle overlay</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Subtitle-Overlay-CUDA">
+<h1>CUDA subtitle overlay</h1>
+<p class="article-description">CUDA subtitle composition blends accepted device video/image formats and remains distinct from text rendering, codec engines and the selected Emby graph.</p>
+
+
+<p>CUDA can execute a subtitle-image blend on NVIDIA device data. That composition step is distinct from rendering the text and from the dedicated video decode/encode stages.</p>
+<p>The inputs must satisfy the <strong>specific filter's format contract</strong>. A generic claim that a GPU supports CUDA is not enough to establish that a chosen subtitle canvas can be composed with the selected video surface.</p>
+<h2 id="the-examined-filter-has-a-limited-format-set">The examined filter has a limited format set</h2>
+<p>In Emby FFmpeg <strong>5.1-emby_2023_06_25_u1</strong>, the <code>overlay_cuda</code> format-matching code accepts these pairs:</p>
+<table>
+<thead>
+<tr>
+<th>Main software format underlying the CUDA frames</th>
+<th>Accepted overlay format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NV12</td>
+<td>NV12</td>
+</tr>
+<tr>
+<td>YUV420P</td>
+<td>YUV420P or YUVA420P</td>
+</tr>
+</tbody>
+</table>
+<p>The overlay format list includes YUVA420P's alpha plane, but the matching code does <strong>not</strong> pair it with an NV12 main input. It also does not make an arbitrary RGBA, 10-bit P010 or another surface acceptable.</p>
+<p>This is a source-verified table for that dated filter, not a current support table for all Emby CUDA routes.</p>
+<h2 id="the-layer-needs-conversion-without-losing-its-meaning">The layer needs conversion without losing its meaning</h2>
+<p>A text renderer can produce coverage and colour on CPU memory. A route preparing CUDA input must select a compatible representation, preserve alpha where supported, upload/map it appropriately and retain its timing.</p>
+<p>Dropping alpha can change transparent background into an opaque rectangle. Choosing another format can also change range, colour or chroma sampling. Those are conversion decisions before the kernel does the blend.</p>
+<p><img src="images/cuda-format-boundary.png" alt="A CPU-generated subtitle layer passes through a format-aware preparation boundary before CUDA composition with device video."></p>
+<h2 id="kernel-and-codec-work-occupy-different-stages">Kernel and codec work occupy different stages</h2>
+<p>CUDA kernels operate on device memory. A hardware encoder consumes picture surfaces through its applicable codec interface. A session can use one stage without placing every preceding task on that same engine.</p>
+<p>The kernel needs correctly synchronized inputs and produces an output whose completion the next stage observes. Image pitch and per-plane dimensions matter alongside the visible width/height.</p>
+<p>For Emby, the <a class="xref" href="https://emby.media/support/articles/Hardware-Acceleration-Overview.html">hardware overview</a>, actual binary capabilities and selected graph describe the available combination. The reference source proves the table's interface; it does not prove that a session used it.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../overlay-pipelines/Subtitle-Pipeline-Hardware.html" title="Hardware subtitle overlay pipeline">Hardware subtitle overlay pipeline</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Subtitle-Overlay-Filtering.html" title="Subtitle overlay filtering">Subtitle overlay filtering</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Subtitle-Overlay-Software.html" title="Software subtitle overlay">Software subtitle overlay</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://mediabrowser.github.io/embytools/ffmpeg-2023_06_25-u1.tar.gz" title="Emby FFmpeg source archive: 2023_06_25-u1">Emby FFmpeg source archive: 2023_06_25-u1</a></li>
+			            <li><a class="seealso-link" href="https://docs.nvidia.com/cuda/cuda-programming-guide/" title="NVIDIA CUDA programming guide">NVIDIA CUDA programming guide</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-filters.html" title="FFmpeg filter documentation">FFmpeg filter documentation</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Subtitle-Overlay-CUDA%0A*%20Title%3A%20CUDA%20subtitle%20overlay%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../../styles/main.js"></script>
+  </body>
+</html>

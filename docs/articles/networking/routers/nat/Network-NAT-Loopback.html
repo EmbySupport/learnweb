@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>NAT loopback and same-network public endpoints | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="NAT loopback lets an inside client use an outside mapped endpoint for an inside service, with compatible translation and return routing keeping the client&#8217;s expected peer consistent.">
+  <link rel="canonical" href="https://emby.media/learn/articles/networking/routers/nat/Network-NAT-Loopback.html">
+  <meta property="og:title" content="NAT loopback and same-network public endpoints | Emby Learn">
+  <meta property="og:description" content="NAT loopback lets an inside client use an outside mapped endpoint for an inside service, with compatible translation and return routing keeping the client&#8217;s expected peer consistent.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/networking/routers/nat/Network-NAT-Loopback.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/networking/routers/nat/Network-NAT-Loopback.html","url":"https://emby.media/learn/articles/networking/routers/nat/Network-NAT-Loopback.html","name":"NAT loopback and same-network public endpoints","inLanguage":"en","headline":"NAT loopback and same-network public endpoints","articleSection":"Networking and remote access","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"NAT loopback lets an inside client use an outside mapped endpoint for an inside service, with compatible translation and return routing keeping the client’s expected peer consistent.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Networking and remote access","item":"https://emby.media/learn/articles/networking/index.html"},{"@type":"ListItem","position":3,"name":"Routers and remote reachability","item":"https://emby.media/learn/articles/networking/routers/index.html"},{"@type":"ListItem","position":4,"name":"Address translation and port mapping","item":"https://emby.media/learn/articles/networking/routers/nat/index.html"},{"@type":"ListItem","position":5,"name":"NAT loopback","item":"https://emby.media/learn/articles/networking/routers/nat/Network-NAT-Loopback.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Network-NAT-Loopback">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../networking/index.html">Networking and remote access</a></li>
+              <li><a href="../../../networking/routers/index.html">Routers and remote reachability</a></li>
+              <li><a href="../../../networking/routers/nat/index.html">Address translation and port mapping</a></li>
+              <li><span aria-current="page">NAT loopback</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Network-NAT-Loopback">
+<h1>NAT loopback and same-network public endpoints</h1>
+<p class="article-description">NAT loopback lets an inside client use an outside mapped endpoint for an inside service, with compatible translation and return routing keeping the client&#8217;s expected peer consistent.</p>
+
+
+<p>A server URL works from mobile data but fails when the same phone rejoins home Wi-Fi. If the name still resolves to the gateway’s outside endpoint, the home request now needs a path back inside.</p>
+<p><strong>NAT loopback</strong>, also called hairpin NAT, supplies that return-to-inside behavior.</p>
+<h2 id="the-final-service-is-inside-even-though-the-selected-endpoint-looks-outside">The final service is inside even though the selected endpoint looks outside</h2>
+<p>Assume an original mapping from the documentation outside endpoint 198.51.100.12:45000 to a declared server listener at 192.168.50.20:8920.</p>
+<p>A LAN client at 192.168.50.30:51234 sends toward the outside endpoint. The gateway must recognize and redirect that traffic to the inside service rather than treating it only as an ordinary internet-bound request.</p>
+<p><img src="images/nat-loopback-return.png" alt="The original hairpin path uses destination and source translation so the return passes through the gateway state."></p>
+<p>The remote-client mapping and the inside-client hairpin behavior are related capabilities. A gateway supporting one does not prove the other is enabled or usable.</p>
+<h2 id="the-return-route-must-preserve-the-expected-peer">The return route must preserve the expected peer</h2>
+<p>Suppose the gateway changes only the destination and leaves the client’s original LAN source unchanged.</p>
+<p>The server then sees a request from its local neighbor 192.168.50.30. It can send a direct local reply from 192.168.50.20:8920, bypassing the gateway’s reverse translation.</p>
+<p>The client, however, began a flow to 198.51.100.12:45000. A reply from the different inside endpoint does not match that expected peer under this simple connection model.</p>
+<p>The routing topology therefore matters alongside the destination rewrite.</p>
+<h2 id="one-design-also-translates-the-inside-source">One design also translates the inside source</h2>
+<p>Here is an original complete endpoint exercise:</p>
+<pre><code class="lang-json">{
+  &quot;protocol&quot;: &quot;tcp&quot;,
+  &quot;original&quot;: {
+    &quot;source&quot;: &quot;192.168.50.30:51234&quot;,
+    &quot;destination&quot;: &quot;198.51.100.12:45000&quot;
+  },
+  &quot;insideLeg&quot;: {
+    &quot;source&quot;: &quot;192.168.50.1:61000&quot;,
+    &quot;destination&quot;: &quot;192.168.50.20:8920&quot;
+  },
+  &quot;serverReply&quot;: {
+    &quot;source&quot;: &quot;192.168.50.20:8920&quot;,
+    &quot;destination&quot;: &quot;192.168.50.1:61000&quot;
+  },
+  &quot;clientReply&quot;: {
+    &quot;source&quot;: &quot;198.51.100.12:45000&quot;,
+    &quot;destination&quot;: &quot;192.168.50.30:51234&quot;
+  }
+}
+</code></pre>
+<p>The gateway’s inside address and chosen source port make the server return through it. Its state then reverses the appropriate fields so the client receives a reply from the endpoint it selected.</p>
+<p>These are explanatory fields, not configured rules or captured packets. A gateway can implement another valid hairpin design; the example isolates the return-route requirement.</p>
+<h2 id="the-server-may-observe-a-translated-client">The server may observe a translated client</h2>
+<p>In this design, the origin’s socket peer is 192.168.50.1 rather than the original LAN client address.</p>
+<p>That can affect application address classification, logs or per-address policy. It is another reason to keep path and observed peer separate.</p>
+<p>An application cannot infer every earlier address simply from the translated socket peer.</p>
+<h2 id="split-dns-can-select-a-direct-inside-endpoint-instead">Split DNS can select a direct inside endpoint instead</h2>
+<p>A home resolver can return a suitable local destination for the same hostname, avoiding this outside/hairpin route.</p>
+<p>That <a href="../../names/dns/Network-Split-DNS.html">split-DNS</a> design still needs the same requested scheme, port and path to work at its inside endpoint. Replacing only the address can leave a port mismatch.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../names/dns/Network-Split-DNS.html" title="Split DNS and location-dependent server endpoints">Split DNS and location-dependent server endpoints</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Network-Port-Forwarding.html" title="Port forwarding and the complete inbound path">Port forwarding and the complete inbound path</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Network-NAT.html" title="NAT and address/port translation state">NAT and address/port translation state</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../fundamentals/Network-Local-Remote.html" title="Local and remote connections to Emby">Local and remote connections to Emby</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc4787" title="RFC 4787: UDP NAT behavior and hairpinning">RFC 4787: UDP NAT behavior and hairpinning</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc5382" title="RFC 5382: TCP NAT behavioral requirements">RFC 5382: TCP NAT behavioral requirements</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc3022" title="RFC 3022: Traditional NAT and address/port translation">RFC 3022: Traditional NAT and address/port translation</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Network-NAT-Loopback%0A*%20Title%3A%20NAT%20loopback%20and%20same-network%20public%20endpoints%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

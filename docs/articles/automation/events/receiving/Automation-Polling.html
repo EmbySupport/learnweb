@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Polling for updates and observation intervals | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Polling queries current state at intervals, trading observation delay and request volume while potentially missing short-lived intermediate states.">
+  <link rel="canonical" href="https://emby.media/learn/articles/automation/events/receiving/Automation-Polling.html">
+  <meta property="og:title" content="Polling for updates and observation intervals | Emby Learn">
+  <meta property="og:description" content="Polling queries current state at intervals, trading observation delay and request volume while potentially missing short-lived intermediate states.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/automation/events/receiving/Automation-Polling.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/automation/events/receiving/Automation-Polling.html","url":"https://emby.media/learn/articles/automation/events/receiving/Automation-Polling.html","name":"Polling for updates and observation intervals","inLanguage":"en","headline":"Polling for updates and observation intervals","articleSection":"Automation and interoperability","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"Polling queries current state at intervals, trading observation delay and request volume while potentially missing short-lived intermediate states.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Automation and interoperability","item":"https://emby.media/learn/articles/automation/index.html"},{"@type":"ListItem","position":3,"name":"Events and integrations","item":"https://emby.media/learn/articles/automation/events/index.html"},{"@type":"ListItem","position":4,"name":"Receiving events and state","item":"https://emby.media/learn/articles/automation/events/receiving/index.html"},{"@type":"ListItem","position":5,"name":"Polling for updates","item":"https://emby.media/learn/articles/automation/events/receiving/Automation-Polling.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Automation-Polling">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../automation/index.html">Automation and interoperability</a></li>
+              <li><a href="../../../automation/events/index.html">Events and integrations</a></li>
+              <li><a href="../../../automation/events/receiving/index.html">Receiving events and state</a></li>
+              <li><span aria-current="page">Polling for updates</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Automation-Polling">
+<h1>Polling for updates and observation intervals</h1>
+<p class="article-description">Polling queries current state at intervals, trading observation delay and request volume while potentially missing short-lived intermediate states.</p>
+
+
+<p>Polling repeatedly queries a source for its current state. A playback integration might ask which sessions are active, then compare the returned state with its previous successful observation.</p>
+<p>The interval controls how quickly a change can be noticed and how often the query runs.</p>
+<h2 id="one-interval-two-costs">One interval, two costs</h2>
+<p>In an ideal ten-second schedule with instantaneous successful queries, a change just before a query is noticed almost immediately. A change just after one waits almost ten seconds.</p>
+<p>If changes occur uniformly within that interval, the average detection delay is five seconds.</p>
+<pre><code class="lang-text">One query every 10 seconds -&gt; 6 requests/minute
+Ideal detection delay -&gt; 0 to almost 10 seconds
+Uniform-timing average -&gt; 5 seconds
+</code></pre>
+<p><img src="images/polling-observation-delay.png" alt="Ideal polling detection delay falls toward zero as the next query approaches, then resets after that observation."></p>
+<p>Real request duration, scheduling and failures add to those delays. The average is a model assumption, not a response-time guarantee.</p>
+<h2 id="a-current-state-sample-can-miss-a-transition">A current-state sample can miss a transition</h2>
+<p>Suppose a player starts at second two and stops at second eight. Queries at seconds zero and ten can both report stopped.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Time</th>
+<th>Actual state</th>
+<th>Poll observation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0</td>
+<td>Stopped</td>
+<td>Stopped</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>Playing</td>
+<td>No query</td>
+</tr>
+<tr>
+<td style="text-align: right;">8</td>
+<td>Stopped</td>
+<td>No query</td>
+</tr>
+<tr>
+<td style="text-align: right;">10</td>
+<td>Stopped</td>
+<td>Stopped</td>
+</tr>
+</tbody>
+</table>
+<p>The observations can be accurate while the intermediate playback is absent from them. Polling current state is not a complete event history.</p>
+<p>A failed query is also unknown state, not a successful observation of “no sessions.” Keep the last successful observation and its age separate from the latest failure.</p>
+<h2 id="avoid-overlapping-work-unintentionally">Avoid overlapping work unintentionally</h2>
+<p>If a query takes longer than the interval, starting another every interval can create accumulating concurrent requests. A bounded polling design decides whether to wait, skip, cancel or use another supported policy.</p>
+<p>For Emby integrations, choose observations around the state needed and the endpoint's cost. <a href="../../api/Automation-Rate-Limits.html">Rate limits</a> describe shared request demand; <a href="../Automation-Retries.html">event delivery</a> describes a different way to learn about transitions.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../api/Automation-Rate-Limits.html" title="API rate limits and respectful request scheduling">API rate limits and respectful request scheduling</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Automation-WebSockets.html" title="WebSockets and a continuing message connection">WebSockets and a continuing message connection</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../api/Automation-Sessions.html" title="Playback sessions and current player state">Playback sessions and current player state</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc9110.html" title="RFC 9110: HTTP semantics">RFC 9110: HTTP semantics</a></li>
+			            <li><a class="seealso-link" href="https://dev.emby.media/reference/RestAPI/SessionsService/getSessions.html" title="Emby session API">Emby session API</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Automation-Polling%0A*%20Title%3A%20Polling%20for%20updates%20and%20observation%20intervals%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

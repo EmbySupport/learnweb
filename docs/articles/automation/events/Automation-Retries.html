@@ -1,0 +1,276 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Event delivery, retries and duplicate processing | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Event retries recover from uncertain delivery but can duplicate processing, so event identity, durable recording and effect semantics need separate boundaries.">
+  <link rel="canonical" href="https://emby.media/learn/articles/automation/events/Automation-Retries.html">
+  <meta property="og:title" content="Event delivery, retries and duplicate processing | Emby Learn">
+  <meta property="og:description" content="Event retries recover from uncertain delivery but can duplicate processing, so event identity, durable recording and effect semantics need separate boundaries.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/automation/events/Automation-Retries.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/automation/events/Automation-Retries.html","url":"https://emby.media/learn/articles/automation/events/Automation-Retries.html","name":"Event delivery, retries and duplicate processing","inLanguage":"en","headline":"Event delivery, retries and duplicate processing","articleSection":"Automation and interoperability","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"Event retries recover from uncertain delivery but can duplicate processing, so event identity, durable recording and effect semantics need separate boundaries.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Automation and interoperability","item":"https://emby.media/learn/articles/automation/index.html"},{"@type":"ListItem","position":3,"name":"Events and integrations","item":"https://emby.media/learn/articles/automation/events/index.html"},{"@type":"ListItem","position":4,"name":"Event delivery and retries","item":"https://emby.media/learn/articles/automation/events/Automation-Retries.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Automation-Retries">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../automation/index.html">Automation and interoperability</a></li>
+              <li><a href="../../automation/events/index.html">Events and integrations</a></li>
+              <li><span aria-current="page">Event delivery and retries</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Automation-Retries">
+<h1>Event delivery, retries and duplicate processing</h1>
+<p class="article-description">Event retries recover from uncertain delivery but can duplicate processing, so event identity, durable recording and effect semantics need separate boundaries.</p>
+
+
+<p>A retry repeats an attempt whose result was unsuccessful or uncertain. For an event, the receiver may already have accepted or processed the first attempt even when the sender did not receive the acknowledgment.</p>
+<p>That is why reliable event handling needs more than “try again.” It needs an identity for the logical event and a completion rule for the work it causes.</p>
+<h2 id="delivery-can-succeed-while-acknowledgment-is-lost">Delivery can succeed while acknowledgment is lost</h2>
+<p>An original event E1 reaches a receiver and is recorded. The successful response is lost on the return path. The producer later sends E1 again.</p>
+<pre><code class="lang-text">Attempt 1: E1 delivered and recorded
+Response:  lost before producer observes it
+Attempt 2: E1 delivered again
+Logical events: one
+Delivery attempts: two
+</code></pre>
+<p>Both attempts belong to the same logical event. Treating each delivery as a new event can produce two notifications or two increments.</p>
+<p><img src="images/retry-lost-acknowledgment.png" alt="A lost acknowledgment creates a retry of the same logical event, so the receiver's durable identity record governs duplicate handling."></p>
+<p>The producer's timeout only establishes that it did not observe completion in time. It does not prove that the receiver performed no work.</p>
+<h2 id="deduplication-needs-an-identity-and-a-lifetime">Deduplication needs an identity and a lifetime</h2>
+<p>CloudEvents defines event identity using source and ID together. Other event systems define their own keys. An integration must use the actual contract rather than assuming every Emby event includes a particular field.</p>
+<p>A normalized original example uses <code>(server-A, E1)</code> as its deduplication key. The receiver retains the key after accepted processing. A repeated delivery with that key can then be recognized.</p>
+<p>An in-memory set loses its records on restart. A retention period shorter than the producer's possible retry window can also let a later repeat appear new.</p>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Remaining duplication question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Key only in process memory</td>
+<td>What happens after restart?</td>
+</tr>
+<tr>
+<td>Key expires quickly</td>
+<td>Can an old delivery arrive after expiry?</td>
+</tr>
+<tr>
+<td>IDs unique only within a source</td>
+<td>Is source included in the key?</td>
+</tr>
+<tr>
+<td>Two workers accept simultaneously</td>
+<td>Is the claim/record operation coordinated?</td>
+</tr>
+<tr>
+<td>Same key has different content</td>
+<td>How does the contract handle an inconsistent replay?</td>
+</tr>
+</tbody>
+</table>
+<p>The key's identity and the record's durability have to fit the delivery behavior.</p>
+<h2 id="a-crash-window-remains-around-an-external-effect">A crash window remains around an external effect</h2>
+<p>Suppose a receiver sends a phone alert, then records “E1 done.” If it crashes between those actions, a retry can send the alert again.</p>
+<p>Reverse the order—record “done,” then send—and a crash between them can suppress the alert entirely. Merely choosing one order does not provide exactly-once external effects.</p>
+<p>A transactional intent or outbox design records the event and intended work under one durable database boundary. A worker then attempts the effect. The downstream service may support an idempotency key so repeating the same intent does not create another effect.</p>
+<p>If the downstream service has no such contract, uncertainty can remain between applying the effect and recording its result. The receiver should describe that limit rather than claiming a deduplication table automatically solves every failure.</p>
+<p>The isolated example verifier checks deduplicated durable intent records on toy data and evaluates the distinct external-effect window. It does not send notifications or operate a home system.</p>
+<h2 id="arrival-order-need-not-be-state-order">Arrival order need not be state order</h2>
+<p>An older event can be delayed while a newer event arrives promptly. Different workers can also finish in another order.</p>
+<p>If an operation applies an absolute desired state, a supported per-entity version can help reject older observations. If the event source supplies no ordering/version guarantee, the integration may need a fresh state query or another reconciliation rule.</p>
+<p>Deduplicating E1 does not order E1 relative to E2. Identity and ordering solve different problems.</p>
+<h2 id="backoff-changes-load-not-completion-semantics">Backoff changes load, not completion semantics</h2>
+<p>An original retry policy waits one, two and four seconds between failed attempts, before accounting for operation duration. Its accumulated waiting time is seven seconds.</p>
+<p>Jitter can spread concurrent clients' attempts so they do not all retry at the same instant. Retry-After, when supplied and applicable, contributes the source's requested timing.</p>
+<p>Neither delay nor jitter makes an unsafe repeated action idempotent. The operation's effect semantics still govern whether repeating it is appropriate.</p>
+<p>For Emby webhooks or external integrations, retain the event identity, attempt result and accepted-processing boundary. Recovery can then reconcile uncertain work rather than interpreting every successful HTTP response as proof of a completed downstream effect.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="receiving/Automation-Webhooks.html" title="Webhooks and pushed event notifications">Webhooks and pushed event notifications</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="receiving/Automation-WebSockets.html" title="WebSockets and a continuing message connection">WebSockets and a continuing message connection</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Automation-Home-Automation.html" title="Playback events and dependable home automation">Playback events and dependable home automation</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc9110.html" title="RFC 9110: HTTP semantics">RFC 9110: HTTP semantics</a></li>
+			            <li><a class="seealso-link" href="https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md" title="CloudEvents 1.0.2 event identity and specification">CloudEvents 1.0.2 event identity and specification</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Automation-Retries%0A*%20Title%3A%20Event%20delivery%2C%20retries%20and%20duplicate%20processing%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

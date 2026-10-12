@@ -1,0 +1,264 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Advanced SubStation Alpha subtitles (ASS) | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="ASS stores styled subtitle events with a script coordinate system, reusable styles, and local or timed override instructions.">
+  <link rel="canonical" href="https://emby.media/learn/articles/subtitles/formats/text/Subtitle-ASS.html">
+  <meta property="og:title" content="Advanced SubStation Alpha subtitles (ASS) | Emby Learn">
+  <meta property="og:description" content="ASS stores styled subtitle events with a script coordinate system, reusable styles, and local or timed override instructions.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/subtitles/formats/text/Subtitle-ASS.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/subtitles/formats/text/Subtitle-ASS.html","url":"https://emby.media/learn/articles/subtitles/formats/text/Subtitle-ASS.html","name":"Advanced SubStation Alpha subtitles (ASS)","inLanguage":"en","headline":"Advanced SubStation Alpha subtitles (ASS)","articleSection":"Subtitles and captions","proficiencyLevel":"Beginner","accessMode":"textual","description":"ASS stores styled subtitle events with a script coordinate system, reusable styles, and local or timed override instructions.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Subtitles and captions","item":"https://emby.media/learn/articles/subtitles/index.html"},{"@type":"ListItem","position":3,"name":"Subtitle formats","item":"https://emby.media/learn/articles/subtitles/formats/index.html"},{"@type":"ListItem","position":4,"name":"Text subtitle formats","item":"https://emby.media/learn/articles/subtitles/formats/text/index.html"},{"@type":"ListItem","position":5,"name":"Advanced SubStation Alpha (ASS)","item":"https://emby.media/learn/articles/subtitles/formats/text/Subtitle-ASS.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Subtitle-ASS">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../subtitles/index.html">Subtitles and captions</a></li>
+              <li><a href="../../../subtitles/formats/index.html">Subtitle formats</a></li>
+              <li><a href="../../../subtitles/formats/text/index.html">Text subtitle formats</a></li>
+              <li><span aria-current="page">Advanced SubStation Alpha (ASS)</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Subtitle-ASS">
+<h1>Advanced SubStation Alpha subtitles (ASS)</h1>
+<p class="article-description">ASS stores styled subtitle events with a script coordinate system, reusable styles, and local or timed override instructions.</p>
+
+
+<p>An ASS subtitle can be a simple dialogue line near the bottom of the picture, or a translated sign positioned over a sign in the scene. <strong>Advanced SubStation Alpha</strong> stores the timing, text and instructions for that presentation in one script.</p>
+<p>The format's power comes from two levels of styling: a named style shared by many events, and <strong>override tags</strong> within an event. An event can change position, colour or other properties while it is active. The subtitle therefore describes more than a string to place in the player's usual caption box.</p>
+<h2 id="a-minimal-script-with-a-positioned-event">A minimal script with a positioned event</h2>
+<pre><code class="lang-text">[Script Info]
+ScriptType: v4.00+
+PlayResX: 1280
+PlayResY: 720
+ScaledBorderAndShadow: yes
+WrapStyle: 0
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Arial,36,&amp;H00FFFFFF,&amp;H000000FF,&amp;H00000000,&amp;H80000000,0,0,0,0,100,100,0,0,1,2,0,2,20,20,30,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:12.50,0:00:15.00,Default,,0,0,0,,{\an7\pos(160,90)}LAST TRAIN\NAT MIDNIGHT
+</code></pre>
+<p>The original example supplies one style and one event. Its event is active from 12.5 to 15 seconds. It chooses <code>Default</code>, then overrides its alignment and position. <code>\N</code> in the rendered text is a forced line break; it is not a new timed event.</p>
+<p>The <code>Fontname</code> requests a font family. The file does not become self-contained merely because it names Arial. The selected rendering environment still needs an appropriate face.</p>
+<p>ASS colour notation also differs from ordinary web RGB notation. Style colours use alpha plus blue, green and red byte order. Alpha <strong>00</strong> is opaque and <strong>FF</strong> is fully transparent. The example's white primary colour is opaque, while the background/shadow colour includes transparency.</p>
+<h2 id="script-coordinates-establish-the-anchor">Script coordinates establish the anchor</h2>
+<p><code>PlayResX</code> and <code>PlayResY</code> define the script's logical resolution. In this example it is <strong>1280 × 720</strong>. The <code>\pos(160,90)</code> override places the alignment anchor at x = 160, y = 90 within that coordinate system.</p>
+<p>With <code>\an7</code>, the anchor is at the line's <strong>top left</strong>. With <code>\an2</code>, it would be at the <strong>bottom centre</strong>. The same position numbers can therefore put the visible lettering in a different place when alignment changes.</p>
+<p><img src="images/ass-coordinates.png" alt="An ASS anchor at 160,90 on a 1280 by 720 script plane maps to 240,135 on a same-aspect 1920 by 1080 output."></p>
+<p>For an ideal same-aspect mapping to <strong>1920 × 1080</strong>, the scale is 1.5 in each direction:</p>
+<pre><code class="lang-text">x = 160 × 1.5 = 240
+y =  90 × 1.5 = 135
+</code></pre>
+<p>This diagram explains the coordinate relationship, not the output of a particular ASS renderer. Cropping, letterboxing, sample aspect ratio and render-surface choices can add another transform. The logical script dimensions should not be casually replaced with the new output dimensions while keeping all position values unchanged.</p>
+<p>The style's margins determine default placement when an explicit position does not take over. Scaling border/shadow and other renderer conventions also affects appearance. Those details are why a precise sign layout needs more than matching a font-size number.</p>
+<h2 id="one-event-can-change-during-its-lifetime">One event can change during its lifetime</h2>
+<p>An override such as:</p>
+<pre><code class="lang-text">{\an7\move(160,90,480,90,0,1000)}LAST TRAIN
+</code></pre>
+<p>moves the anchor from (160,90) to (480,90), beginning at the event's start and completing <strong>1,000 ms later</strong>. The motion times are relative to the event. They are not new absolute movie timestamps.</p>
+<p>In the ideal linear motion, halfway through that interval the anchor is at <strong>(320,90)</strong>. Once the motion has completed, it remains at the final position for the event's remaining active time.</p>
+<p>Other instructions can change properties over time, fade text, use drawing shapes or time karaoke syllables. A renderer evaluates the event at the current playback instant. It cannot recreate an animated sign by drawing one immutable caption image for the entire interval.</p>
+<p>A seek into the middle of the event likewise needs the presentation at the sought time, including the relevant animation state.</p>
+<h2 id="fonts-affect-the-geometry">Fonts affect the geometry</h2>
+<p>The selected face supplies glyph shapes, advance widths and baseline metrics. A fallback with wider letters can change where a line wraps or how it fits a sign, even when <code>\pos</code> and the event text are unchanged.</p>
+<p>For an invented 300-unit-wide sign area, advances totalling 280 units fit, while a 320-unit total does not. A different font does not merely change decoration; it changes the layout calculation.</p>
+<p>Matroska can carry <a href="../../../media-files/packaging/matroska/Matroska-Attachments.html">font attachments</a> alongside ASS. In an Emby app-rendered route, usable resources must reach that renderer. In a server-rendered route, the server needs them where the text is drawn. The file's attachment list and the chosen font face are related evidence rather than interchangeable labels.</p>
+<h2 id="converting-the-script-means-choosing-what-to-retain">Converting the script means choosing what to retain</h2>
+<p>A plain SRT conversion can preserve this example's wording and cue interval. It has no equivalent for the complete positioned, moving presentation described above. A web or native text renderer may support another subset.</p>
+<p>Keeping ASS with a compatible renderer retains the script model. Incorporating its rendered result into video retains the appearance of that output version. These produce different deliverables: one keeps the timed instructions and a selectable subtitle; the other stores the resulting pixels in the video.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Subtitle-SSA.html" title="SubStation Alpha subtitles (SSA)">SubStation Alpha subtitles (SSA)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Subtitle-Text.html" title="Text-based subtitles">Text-based subtitles</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../timing/Subtitle-Cues.html" title="Subtitle cues">Subtitle cues</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../media-files/packaging/matroska/Matroska-Attachments.html" title="Matroska Attachments">Matroska Attachments</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://github.com/libass/libass/wiki/ASS-File-Format-Guide" title="libass: ASS file format guide">libass: ASS file format guide</a></li>
+			            <li><a class="seealso-link" href="https://aegisub.org/docs/latest/ass_tags/" title="Aegisub: ASS override tags">Aegisub: ASS override tags</a></li>
+			            <li><a class="seealso-link" href="https://www.matroska.org/technical/subtitles.html" title="Matroska: Subtitle storage and codec mappings">Matroska: Subtitle storage and codec mappings</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Subtitle-ASS%0A*%20Title%3A%20Advanced%20SubStation%20Alpha%20subtitles%20(ASS)%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

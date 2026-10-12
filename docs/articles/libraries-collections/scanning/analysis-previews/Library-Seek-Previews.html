@@ -1,0 +1,326 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Seek-preview thumbnails | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Seek-preview thumbnails are time-indexed small images that help a viewer locate scenes without decoding full video interactively for every seek position.">
+  <link rel="canonical" href="https://emby.media/learn/articles/libraries-collections/scanning/analysis-previews/Library-Seek-Previews.html">
+  <meta property="og:title" content="Seek-preview thumbnails | Emby Learn">
+  <meta property="og:description" content="Seek-preview thumbnails are time-indexed small images that help a viewer locate scenes without decoding full video interactively for every seek position.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/libraries-collections/scanning/analysis-previews/Library-Seek-Previews.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/libraries-collections/scanning/analysis-previews/Library-Seek-Previews.html","url":"https://emby.media/learn/articles/libraries-collections/scanning/analysis-previews/Library-Seek-Previews.html","name":"Seek-preview thumbnails","inLanguage":"en","headline":"Seek-preview thumbnails","articleSection":"Libraries and media collections","proficiencyLevel":"Beginner","accessMode":"textual","description":"Seek-preview thumbnails are time-indexed small images that help a viewer locate scenes without decoding full video interactively for every seek position.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Libraries and media collections","item":"https://emby.media/learn/articles/libraries-collections/index.html"},{"@type":"ListItem","position":3,"name":"Library scanning and media analysis","item":"https://emby.media/learn/articles/libraries-collections/scanning/index.html"},{"@type":"ListItem","position":4,"name":"Media analysis and previews","item":"https://emby.media/learn/articles/libraries-collections/scanning/analysis-previews/index.html"},{"@type":"ListItem","position":5,"name":"Seek-preview thumbnails","item":"https://emby.media/learn/articles/libraries-collections/scanning/analysis-previews/Library-Seek-Previews.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Library-Seek-Previews">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../libraries-collections/index.html">Libraries and media collections</a></li>
+              <li><a href="../../../libraries-collections/scanning/index.html">Library scanning and media analysis</a></li>
+              <li><a href="../../../libraries-collections/scanning/analysis-previews/index.html">Media analysis and previews</a></li>
+              <li><span aria-current="page">Seek-preview thumbnails</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Library-Seek-Previews">
+<h1>Seek-preview thumbnails</h1>
+<p class="article-description">Seek-preview thumbnails are time-indexed small images that help a viewer locate scenes without decoding full video interactively for every seek position.</p>
+
+
+<p>A seek-preview thumbnail is a small picture associated with a position on a video timeline. When the viewer scrubs through the progress bar, the app can display the nearby indexed picture instead of repeatedly opening and decoding the full-resolution video at each pointer movement.</p>
+<p>The preview is an aid to locating content. It does not change the main video's resolution or guarantee that playback will begin on exactly the frame shown.</p>
+<h2 id="a-time-lookup-selects-an-image">A time lookup selects an image</h2>
+<p>Assume an original preview set with samples at 0, 10, 20, 30, 40 and 50 seconds. A lookup policy that chooses the latest sample at or before the requested time maps 42 seconds to the 40-second image.</p>
+<p>A policy choosing the nearest sample could differ at another position—for example, 47 seconds could select the 50-second image. The sampling interval and selection policy together determine the preview's temporal approximation.</p>
+<p>A <a href="../../../metadata-discovery/artwork/preview-thumbnails/Metadata-Chapter-Thumbnails.html">chapter thumbnail</a> is associated with a chapter point. A regular seek-preview set samples across the timeline. The same image can serve both roles in a particular system, but chapters and regular samples do not inherently have the same positions or count.</p>
+<h2 id="more-samples-cost-more-work-and-storage">More samples cost more work and storage</h2>
+<p>For the fictional 108-minute movie, duration is 6,480 seconds. Sample at time zero and then at fixed intervals strictly before the end:</p>
+<table>
+<thead>
+<tr>
+<th>Interval</th>
+<th>Sample count</th>
+<th>Assumed average image size</th>
+<th>Image-payload total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10 seconds</td>
+<td>648</td>
+<td>12,000 bytes</td>
+<td>7.776 MB</td>
+</tr>
+<tr>
+<td>5 seconds</td>
+<td>1,296</td>
+<td>12,000 bytes</td>
+<td>15.552 MB</td>
+</tr>
+</tbody>
+</table>
+<p>The values use decimal units and the deliberately fixed average image size. Real images compress differently, and archive/index overhead adds further bytes.</p>
+<p>Halving the interval doubles the count under these assumptions. It improves temporal granularity, but it also increases extraction, encoding and storage work. The count does not imply that every source frame has to be decoded independently from scratch: sequential extraction can reuse decoded progression, while repeated random seeks have different costs.</p>
+<h2 id="bif-archives-store-images-with-a-time-index">BIF archives store images with a time index</h2>
+<p>A BIF archive packages preview images with index information. Roku's specification describes a header, time/offset entries and image data. The indexed timestamp is interpreted with a timestamp multiplier; the offsets locate the image bytes.</p>
+<p>Emby uses BIF resources for video previews. A current Emby team discussion describes storage either alongside media or in the server's metadata area. Packaging many pictures in one archive explains why the viewer can have hundreds of preview images while the file manager shows one <code>.bif</code> resource.</p>
+<p>Consider this original index arithmetic for <strong>three hypothetical image payloads</strong>, not a validated BIF file:</p>
+<table>
+<thead>
+<tr>
+<th>Entry</th>
+<th>Timestamp value</th>
+<th>Time with 1,000 ms multiplier</th>
+<th>Absolute byte offset</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image 0</td>
+<td>0</td>
+<td>0 seconds</td>
+<td>96</td>
+</tr>
+<tr>
+<td>Image 1</td>
+<td>10</td>
+<td>10 seconds</td>
+<td>1,096</td>
+</tr>
+<tr>
+<td>Image 2</td>
+<td>20</td>
+<td>20 seconds</td>
+<td>2,296</td>
+</tr>
+<tr>
+<td>End sentinel</td>
+<td>0xffffffff</td>
+<td>End-of-data entry</td>
+<td>3,196</td>
+</tr>
+</tbody>
+</table>
+<p>A 64-byte header and four 8-byte index entries occupy 96 bytes. The assumed payload lengths are 1,000, 1,200 and 900 bytes. Subtracting consecutive offsets recovers those lengths; the final entry supplies the endpoint for the last image.</p>
+<p><img src="images/preview-index.png" alt="Original BIF index arithmetic separates timestamp values from absolute image byte offsets and derives three payload lengths by subtraction."></p>
+<p>These values illustrate two distinct coordinates: <strong>time selects an entry; byte offset locates its payload</strong>. Neither coordinate is a pixel position inside an image.</p>
+<h2 id="a-sprite-sheet-uses-spatial-coordinates-instead">A sprite sheet uses spatial coordinates instead</h2>
+<p>Another design packs thumbnails into a larger image, called a sprite sheet, and indexes the rectangle for each time. Suppose a sheet has three columns and two rows of 320 × 180 tiles.</p>
+<p>Sample 4, counted from zero, occupies column 1 and row 1:</p>
+<pre><code class="lang-text">column = 4 mod 3 = 1
+row = floor(4 / 3) = 1
+x = 1 × 320 = 320
+y = 1 × 180 = 180
+</code></pre>
+<p>A spatial fragment can express that rectangle as:</p>
+<pre><code class="lang-text">sheet.jpg#xywh=320,180,320,180
+</code></pre>
+<p>W3C's Media Fragments specification defines this pixel-rectangle notation. The example is a generic sprite design, not a claim that Emby uses this delivery format.</p>
+<p><img src="images/preview-sprite.png" alt="Six original geometric preview tiles show a three-column sprite arrangement; sample 4 is highlighted at x 320, y 180 with dimensions 320 by 180."></p>
+<p>The sketches are original illustrations, not captured film frames.</p>
+<h2 id="extraction-needs-a-usable-picture">Extraction needs a usable picture</h2>
+<p>A requested timestamp can fall between random-access points. The decoder may start from an earlier access point and decode forward to obtain the intended picture. That is different from simply choosing a nearby keyframe as the preview; each approach has a different time/cost trade-off.</p>
+<p>The extracted frame then needs appropriate scaling and display interpretation. Aspect-ratio mistakes distort the image. An HDR source may need a suitable conversion for an SDR preview presentation. A black frame can be the correct sample at one instant but an unhelpful way to recognize a scene.</p>
+<p>These are content-processing choices. The availability of a preview file does not establish which extraction or colour-conversion algorithm produced it.</p>
+<h2 id="previews-belong-to-the-source-timeline">Previews belong to the source timeline</h2>
+<p>An archive created for one cut can remain numerically well-formed after the movie is replaced, while its images depict the wrong moments. A 13-minute insert shifts later content without necessarily changing the path.</p>
+<p>Regeneration or valid correspondence is then needed at the resource level. A metadata refresh that changes the movie's synopsis does not, by itself, prove the preview cache was regenerated. Storing previews beside the media likewise does not guarantee they correspond to a newly replaced file.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../metadata-discovery/artwork/preview-thumbnails/Metadata-Chapter-Thumbnails.html" title="Chapter thumbnails">Chapter thumbnails</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Library-Media-Analysis.html" title="Technical analysis of library media">Technical analysis of library media</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Library-Incremental-Scans.html" title="Incremental library scans">Incremental library scans</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../video/compression/picture-prediction-and-random-access/Video-Keyframes.html" title="Video Keyframes and Random Access">Video Keyframes and Random Access</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../video/scaling-image-processing/Video-Scaling.html" title="How Video Scaling Works">How Video Scaling Works</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../video/tone-mapping/fundamentals/Tone-Mapping-HDR-to-SDR.html" title="How HDR-to-SDR Tone Mapping Works">How HDR-to-SDR Tone Mapping Works</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://developer.roku.com/dev/docs/bif-file-creation" title="Roku: BIF file creation and archive specification">Roku: BIF file creation and archive specification</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/community/topic/145284-video-preview-thumbnails-question/" title="Emby team: Preview thumbnail storage">Emby team: Preview thumbnail storage</a></li>
+			            <li><a class="seealso-link" href="https://emby.media/community/topic/125275-delete-all-video-preview-thumbnails/" title="Emby team: BIF preview resources (January 2024)">Emby team: BIF preview resources (January 2024)</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/media-frags/" title="W3C: Media Fragments URI 1.0">W3C: Media Fragments URI 1.0</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg.html" title="FFmpeg: Seeking and media processing">FFmpeg: Seeking and media processing</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-filters.html" title="FFmpeg: Video frame-selection, scaling and tiling filters">FFmpeg: Video frame-selection, scaling and tiling filters</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffprobe.html" title="FFmpeg: ffprobe documentation">FFmpeg: ffprobe documentation</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Library-Seek-Previews%0A*%20Title%3A%20Seek-preview%20thumbnails%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

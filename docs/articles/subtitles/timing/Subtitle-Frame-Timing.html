@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Frame-based subtitle timing | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Frame-based subtitle timing maps numbered frames to presentation time using the correct rate, frame origin and boundary convention.">
+  <link rel="canonical" href="https://emby.media/learn/articles/subtitles/timing/Subtitle-Frame-Timing.html">
+  <meta property="og:title" content="Frame-based subtitle timing | Emby Learn">
+  <meta property="og:description" content="Frame-based subtitle timing maps numbered frames to presentation time using the correct rate, frame origin and boundary convention.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/subtitles/timing/Subtitle-Frame-Timing.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/subtitles/timing/Subtitle-Frame-Timing.html","url":"https://emby.media/learn/articles/subtitles/timing/Subtitle-Frame-Timing.html","name":"Frame-based subtitle timing","inLanguage":"en","headline":"Frame-based subtitle timing","articleSection":"Subtitles and captions","proficiencyLevel":"Beginner","accessMode":"textual","description":"Frame-based subtitle timing maps numbered frames to presentation time using the correct rate, frame origin and boundary convention.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Subtitles and captions","item":"https://emby.media/learn/articles/subtitles/index.html"},{"@type":"ListItem","position":3,"name":"Timing and synchronization","item":"https://emby.media/learn/articles/subtitles/timing/index.html"},{"@type":"ListItem","position":4,"name":"Frame-based subtitle timing","item":"https://emby.media/learn/articles/subtitles/timing/Subtitle-Frame-Timing.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Subtitle-Frame-Timing">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../subtitles/index.html">Subtitles and captions</a></li>
+              <li><a href="../../subtitles/timing/index.html">Timing and synchronization</a></li>
+              <li><span aria-current="page">Frame-based subtitle timing</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Subtitle-Frame-Timing">
+<h1>Frame-based subtitle timing</h1>
+<p class="article-description">Frame-based subtitle timing maps numbered frames to presentation time using the correct rate, frame origin and boundary convention.</p>
+
+
+<p>Frame-based subtitle timing identifies positions using <strong>frame numbers</strong>. Converting those positions to seconds requires the rate associated with that numbering and its origin.</p>
+<p>For a zero-origin, constant-rate sequence, frame 0 begins at time zero and frame n begins at <strong>n / f seconds</strong>, where f is frames per second.</p>
+<p><img src="images/frame-boundaries.png" alt="At twenty-five frames per second, frame boundaries are forty milliseconds apart; an exclusive ending boundary differs from a last displayed frame."></p>
+<h2 id="start-and-end-conventions-affect-one-frame">Start and end conventions affect one frame</h2>
+<p>At 25 fps, frames 300 through 374 occupy time <strong>12.000 through 15.000 seconds</strong>. The ending boundary is frame 375.</p>
+<p>If an authoring tool instead gives <strong>374 as the last displayed frame</strong>, that inclusive index needs one additional frame interval to become an exclusive time endpoint. Confusing the two conventions changes duration by <strong>40 ms</strong> at 25 fps.</p>
+<p>A format or tool's definition determines which interpretation applies. The article's calculations use zero-origin frame boundaries. They do not redefine every frame-based file's end convention.</p>
+<h2 id="exact-fractional-rates-matter">Exact fractional rates matter</h2>
+<p><strong>24000/1001</strong> is approximately 23.976 fps; it is not exactly the rounded decimal 23.976. For 24,000 frame intervals:</p>
+<table>
+<thead>
+<tr>
+<th>Interpreted rate</th>
+<th style="text-align: right;">Elapsed time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>24 fps</td>
+<td style="text-align: right;">1,000 s</td>
+</tr>
+<tr>
+<td>24000/1001 fps</td>
+<td style="text-align: right;">1,001 s</td>
+</tr>
+</tbody>
+</table>
+<p>After 86,400 intervals, the difference between these two interpretations is <strong>3.6 seconds</strong>. A small per-frame difference becomes visible drift across a movie.</p>
+<p>Use the declared rational rate where available. A rounded value in a display or filename can be an informal label, not the value to use in a long-duration calculation.</p>
+<p>A frame-based timecode label is also a notation with its own counting rules. Drop-frame timecode skips designated <strong>labels</strong> to keep clock correspondence; the label convention does not itself remove picture frames from playback.</p>
+<h2 id="more-output-frames-do-not-always-mean-faster-playback">More output frames do not always mean faster playback</h2>
+<p>There are two distinct operations:</p>
+<ul>
+<li>Playing the same 24 source frames in 1 second at 24 fps, then in 0.96 seconds at 25 fps, changes the programme's speed.</li>
+<li>Converting one second of 24 fps material into 25 output frames while preserving that second changes frame sampling and leaves programme duration intact.</li>
+</ul>
+<p>Only the first produces the 24/25 subtitle-time factor for matching source frame positions. In the second, time-based cues can remain on the same elapsed timeline even though output frame indices have changed.</p>
+<p>For an Emby file that was converted earlier, identify whether its programme timing changed. The current average frame-rate field alone does not establish the relationship to the subtitle's original frame numbers.</p>
+<h2 id="variable-rate-pictures-need-their-timestamps">Variable-rate pictures need their timestamps</h2>
+<p>With variable frame rate, frame intervals are not all equal. Dividing an index by an average rate gives an approximation rather than the actual presentation position.</p>
+<p>The useful map is the frame's presentation timestamp on the programme timeline. A frame-based subtitle conversion tied to that sequence needs those actual positions or an appropriate reference time map.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../formats/text/Subtitle-MicroDVD.html" title="MicroDVD subtitles">MicroDVD subtitles</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Subtitle-Drift.html" title="Subtitle timing drift">Subtitle timing drift</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../video/frame-timing/frame-rates/Video-Frame-Rate.html" title="Video Frame Rate">Video Frame Rate</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../video/frame-timing/frame-rates/Variable-Frame-Rate.html" title="Variable Frame Rate">Variable Frame Rate</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../video/frame-timing/frame-rates/Fractional-Frame-Rates.html" title="Fractional Frame Rates: 23.976, 29.97, and 59.94">Fractional Frame Rates: 23.976, 29.97, and 59.94</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://github.com/FFmpeg/FFmpeg/blob/n8.1/libavformat/microdvddec.c" title="FFmpeg n8.1: MicroDVD demuxer and frame-rate handling">FFmpeg n8.1: MicroDVD demuxer and frame-rate handling</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/ttml2/" title="W3C Timed Text Markup Language 2">W3C Timed Text Markup Language 2</a></li>
+			            <li><a class="seealso-link" href="https://html.spec.whatwg.org/multipage/media.html#text-track-model" title="WHATWG HTML: Text track timing and active cues">WHATWG HTML: Text track timing and active cues</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Subtitle-Frame-Timing%0A*%20Title%3A%20Frame-based%20subtitle%20timing%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

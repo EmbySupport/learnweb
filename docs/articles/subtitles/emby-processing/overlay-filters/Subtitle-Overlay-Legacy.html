@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Legacy subtitle overlay filters | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Legacy ass and subtitles video filters obtain a script through their own resource path and render it into CPU video frames; native subtitle-stream filters expose a different graph boundary.">
+  <link rel="canonical" href="https://emby.media/learn/articles/subtitles/emby-processing/overlay-filters/Subtitle-Overlay-Legacy.html">
+  <meta property="og:title" content="Legacy subtitle overlay filters | Emby Learn">
+  <meta property="og:description" content="Legacy ass and subtitles video filters obtain a script through their own resource path and render it into CPU video frames; native subtitle-stream filters expose a different graph boundary.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/subtitles/emby-processing/overlay-filters/Subtitle-Overlay-Legacy.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/subtitles/emby-processing/overlay-filters/Subtitle-Overlay-Legacy.html","url":"https://emby.media/learn/articles/subtitles/emby-processing/overlay-filters/Subtitle-Overlay-Legacy.html","name":"Legacy subtitle overlay filters","inLanguage":"en","headline":"Legacy subtitle overlay filters","articleSection":"Subtitles and captions","proficiencyLevel":"Beginner","accessMode":"textual","description":"Legacy ass and subtitles video filters obtain a script through their own resource path and render it into CPU video frames; native subtitle-stream filters expose a different graph boundary.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Subtitles and captions","item":"https://emby.media/learn/articles/subtitles/index.html"},{"@type":"ListItem","position":3,"name":"Subtitle processing in Emby","item":"https://emby.media/learn/articles/subtitles/emby-processing/index.html"},{"@type":"ListItem","position":4,"name":"Subtitle overlay filters","item":"https://emby.media/learn/articles/subtitles/emby-processing/overlay-filters/index.html"},{"@type":"ListItem","position":5,"name":"Legacy subtitle overlay filters","item":"https://emby.media/learn/articles/subtitles/emby-processing/overlay-filters/Subtitle-Overlay-Legacy.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Subtitle-Overlay-Legacy">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../subtitles/index.html">Subtitles and captions</a></li>
+              <li><a href="../../../subtitles/emby-processing/index.html">Subtitle processing in Emby</a></li>
+              <li><a href="../../../subtitles/emby-processing/overlay-filters/index.html">Subtitle overlay filters</a></li>
+              <li><span aria-current="page">Legacy subtitle overlay filters</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Subtitle-Overlay-Legacy">
+<h1>Legacy subtitle overlay filters</h1>
+<p class="article-description">Legacy ass and subtitles video filters obtain a script through their own resource path and render it into CPU video frames; native subtitle-stream filters expose a different graph boundary.</p>
+
+
+<p>The familiar FFmpeg <code>subtitles</code> and <code>ass</code> filters are video filters that render a script over incoming picture frames. Their script-reading path is part of the filter's own initialization. “Legacy” here distinguishes that interface from Emby's later native subtitle-stream filtering design; it does not mean the established filters are unusable.</p>
+<h2 id="who-owns-the-subtitle-input">Who owns the subtitle input?</h2>
+<table>
+<thead>
+<tr>
+<th>Interface in the examined Emby source</th>
+<th>Inputs visible to the filter graph</th>
+<th>Subtitle acquisition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ass</code></td>
+<td>Video frames</td>
+<td>The filter reads an ASS script</td>
+</tr>
+<tr>
+<td><code>subtitles</code></td>
+<td>Video frames</td>
+<td>The filter opens a resource, selects/decodes subtitle content and prepares a libass track</td>
+</tr>
+<tr>
+<td><code>overlaytextsubs</code></td>
+<td>Video frames and native subtitle frames</td>
+<td>A subtitle branch supplies decoded text events</td>
+</tr>
+<tr>
+<td><code>overlaygraphicsubs</code></td>
+<td>Video frames and native subtitle frames</td>
+<td>A subtitle branch supplies decoded graphics</td>
+</tr>
+</tbody>
+</table>
+<p>The first two still combine timed text with video. The difference is where selection, decoding and resource ownership enter the graph.</p>
+<p>For example, selecting one subtitle track from a media file and passing its events down a native branch keeps that selection in the ordinary demux/decode path. A filter that opens a resource independently needs its own correct resource and stream selection.</p>
+<h2 id="a-script-includes-more-than-dialogue-strings">A script includes more than dialogue strings</h2>
+<p>The renderer needs a valid script header, style definitions, event timings and fonts. In the examined <code>subtitles</code> path, the filter can also recover font attachments from the opened media resource. An external script can instead rely on available font-provider resources.</p>
+<p>A font directory or attachment is useful only if the requested face resolves at the active renderer. The <a href="../../rendering/fonts-typesetting/Subtitle-Font-Attachments.html">font attachment article</a> explains the difference between carrying a font file and actually selecting its face.</p>
+<p>The renderer evaluates the script at the video frame's presentation time and blends its generated images into that frame. It is therefore a CPU video-processing boundary in this implementation, even if video decoding and encoding elsewhere use hardware.</p>
+<h2 id="script-time-must-meet-picture-time">Script time must meet picture time</h2>
+<p>Suppose a script cue is at 12.5–15.0 seconds in the original programme. If a video branch rebases a trimmed excerpt to zero, the script and video no longer share the same time origin unless the route also establishes the corresponding mapping. Reading the right words from the right file does not repair that clock relationship.</p>
+<p>Seeking also requires a valid presentation state at the destination. A native subtitle branch and a separately initialized script can obtain that state by different mechanisms. Their output should be assessed using cue intervals, presentation time and recovered state, rather than assuming that every resource is reread identically.</p>
+<p>These interfaces are verified in the public <strong>5.1-emby_2023_06_25_u1</strong> source archive. <a href="../overlay-pipelines/Subtitle-Pipeline-Classic.html">Classic pipelines</a> show the script-owning route; <a href="../overlay-pipelines/Subtitle-Pipeline-Filtering.html">subtitle filtering pipelines</a> develop the separate native branch.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../overlay-pipelines/Subtitle-Pipeline-Classic.html" title="Classic subtitle overlay pipeline">Classic subtitle overlay pipeline</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../overlay-pipelines/Subtitle-Pipeline-Filtering.html" title="Subtitle filtering pipeline">Subtitle filtering pipeline</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Subtitle-Overlay-Software.html" title="Software subtitle overlay">Software subtitle overlay</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../rendering/fonts-typesetting/Subtitle-Font-Attachments.html" title="Subtitle font attachments">Subtitle font attachments</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://mediabrowser.github.io/embytools/ffmpeg-2023_06_25-u1.tar.gz" title="Emby FFmpeg source archive: 2023_06_25-u1">Emby FFmpeg source archive: 2023_06_25-u1</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-filters.html" title="FFmpeg filter documentation">FFmpeg filter documentation</a></li>
+			            <li><a class="seealso-link" href="https://github.com/libass/libass" title="libass: Subtitle rendering library">libass: Subtitle rendering library</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Subtitle-Overlay-Legacy%0A*%20Title%3A%20Legacy%20subtitle%20overlay%20filters%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

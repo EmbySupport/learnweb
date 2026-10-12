@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Scenarist Closed Captions (SCC) | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="SCC stores timecoded hexadecimal 608 caption words whose decoder commands determine the actual visible caption presentation.">
+  <link rel="canonical" href="https://emby.media/learn/articles/subtitles/formats/broadcast/Caption-SCC.html">
+  <meta property="og:title" content="Scenarist Closed Captions (SCC) | Emby Learn">
+  <meta property="og:description" content="SCC stores timecoded hexadecimal 608 caption words whose decoder commands determine the actual visible caption presentation.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/subtitles/formats/broadcast/Caption-SCC.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/subtitles/formats/broadcast/Caption-SCC.html","url":"https://emby.media/learn/articles/subtitles/formats/broadcast/Caption-SCC.html","name":"Scenarist Closed Captions (SCC)","inLanguage":"en","headline":"Scenarist Closed Captions (SCC)","articleSection":"Subtitles and captions","proficiencyLevel":"Beginner","accessMode":"textual","description":"SCC stores timecoded hexadecimal 608 caption words whose decoder commands determine the actual visible caption presentation.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Subtitles and captions","item":"https://emby.media/learn/articles/subtitles/index.html"},{"@type":"ListItem","position":3,"name":"Subtitle formats","item":"https://emby.media/learn/articles/subtitles/formats/index.html"},{"@type":"ListItem","position":4,"name":"Broadcast captions","item":"https://emby.media/learn/articles/subtitles/formats/broadcast/index.html"},{"@type":"ListItem","position":5,"name":"Scenarist Closed Captions (SCC)","item":"https://emby.media/learn/articles/subtitles/formats/broadcast/Caption-SCC.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Caption-SCC">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../subtitles/index.html">Subtitles and captions</a></li>
+              <li><a href="../../../subtitles/formats/index.html">Subtitle formats</a></li>
+              <li><a href="../../../subtitles/formats/broadcast/index.html">Broadcast captions</a></li>
+              <li><span aria-current="page">Scenarist Closed Captions (SCC)</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Caption-SCC">
+<h1>Scenarist Closed Captions (SCC)</h1>
+<p class="article-description">SCC stores timecoded hexadecimal 608 caption words whose decoder commands determine the actual visible caption presentation.</p>
+
+
+<p>SCC, <strong>Scenarist Closed Captions</strong>, stores 608 caption data as timecoded hexadecimal words. It is a file packaging convention for the caption byte/control model, rather than a plain-text subtitle sentence format.</p>
+<p>An original small record can look like:</p>
+<pre><code class="lang-text">Scenarist_SCC V1.0
+
+00:00:12:00 9420 9420 c8e9 942f 942f
+</code></pre>
+<p>The words carry caption bytes. They are not character strings to display as “9420” or “c8e9”.</p>
+<h2 id="decode-the-words-through-the-608-model">Decode the words through the 608 model</h2>
+<p>In this illustrative sequence, <code>9420</code> represents a parity-bearing Resume Caption Loading control pair, <code>c8e9</code> carries H and i, and <code>942f</code> is an End Of Caption control pair. Repeated control pairs are part of the relevant 608 transmission/decoder handling; they should not produce repeated visible words.</p>
+<p>A reader needs the caption command state and applicable channel context. The example is a small control sequence, not a complete professionally authored caption programme.</p>
+<h2 id="arrival-time-and-visible-time-can-differ">Arrival time and visible time can differ</h2>
+<p>Pop-on captions can be loaded into nondisplayed memory before a command reveals them. The timecode associated with a data record is therefore not automatically a complete visible interval for its final sentence.</p>
+<p>A text extractor interprets the command sequence, derives display changes and constructs resulting cues. It must also schedule the words according to the applicable SCC timecode/transmission convention.</p>
+<p>That is different from an SRT block whose first line directly states a cue's start/end timestamps.</p>
+<h2 id="frame-labels-require-their-convention">Frame labels require their convention</h2>
+<p>At a rate of <strong>30000/1001 frames per second</strong>, ten nominal minutes of non-drop-frame 30-based labels represent <strong>18,000 frame intervals</strong>:</p>
+<pre><code class="lang-text">18,000 / (30,000 / 1,001) = 600.6 seconds
+</code></pre>
+<p>For the corresponding drop-frame counting convention, two labels are skipped at each applicable minute except each tenth minute. At ten minutes the skipped count is <strong>2 × 9 = 18</strong>, leaving <strong>17,982 intervals</strong>, about <strong>599.9994 seconds</strong>.</p>
+<p>Drop-frame skips labels, not picture frames. The colon/semicolon convention and the reader's timecode model must be handled appropriately; merely parsing four numeric fields cannot establish the correct elapsed time.</p>
+<p><img src="images/scc-frame-labels.png" alt="At 30000/1001 frames per second, ten-minute non-drop and drop-frame labels correspond to different counts of frame intervals."></p>
+<h2 id="reader-versions-can-implement-different-details">Reader versions can implement different details</h2>
+<p>The pinned Emby FFmpeg source <strong>5.1-emby_2023_06_25_u1</strong> accepts colon or semicolon at the final separator in its SCC demuxer, then calculates millisecond positions using a <strong>33 ms</strong> frame term without a separate drop-frame-label adjustment in that code path.</p>
+<p>That is an observed implementation detail of that dated parser, not the definition of SCC timing and not evidence of the parser in every current Emby installation.</p>
+<p>For an Emby extraction comparison, identify the bundled tool version and compare recovered display times against known scenes. The valid-looking header and hexadecimal words establish the file's structure; command interpretation and timecode conversion establish its resulting caption presentation.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Caption-CTA-608.html" title="CEA-608 / CTA-608 captions">CEA-608 / CTA-608 captions</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../timing/Subtitle-Frame-Timing.html" title="Frame-based subtitle timing">Frame-based subtitle timing</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../timing/Subtitle-Timestamps.html" title="Subtitle timestamps">Subtitle timestamps</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../storage-delivery/extraction-conversion/Subtitle-Extraction.html" title="Subtitle extraction">Subtitle extraction</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://ccextractor.org/public/general/command_line_usage/" title="CCExtractor: Scenarist caption output">CCExtractor: Scenarist caption output</a></li>
+			            <li><a class="seealso-link" href="https://shop.cta.tech/products/cta-608" title="CTA: Line 21 Data Services, CTA-608">CTA: Line 21 Data Services, CTA-608</a></li>
+			            <li><a class="seealso-link" href="https://mediabrowser.github.io/embytools/ffmpeg-2023_06_25-u1.tar.gz" title="Emby FFmpeg source archive: 2023_06_25-u1">Emby FFmpeg source archive: 2023_06_25-u1</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Caption-SCC%0A*%20Title%3A%20Scenarist%20Closed%20Captions%20(SCC)%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

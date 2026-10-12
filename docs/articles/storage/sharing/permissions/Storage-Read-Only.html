@@ -1,0 +1,266 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Read-only media access and separate writable data | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Read-only media access lets a server consume source files while directing required application and temporary writes to other locations.">
+  <link rel="canonical" href="https://emby.media/learn/articles/storage/sharing/permissions/Storage-Read-Only.html">
+  <meta property="og:title" content="Read-only media access and separate writable data | Emby Learn">
+  <meta property="og:description" content="Read-only media access lets a server consume source files while directing required application and temporary writes to other locations.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/storage/sharing/permissions/Storage-Read-Only.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/storage/sharing/permissions/Storage-Read-Only.html","url":"https://emby.media/learn/articles/storage/sharing/permissions/Storage-Read-Only.html","name":"Read-only media access and separate writable data","inLanguage":"en","headline":"Read-only media access and separate writable data","articleSection":"Storage and server platforms","proficiencyLevel":"Beginner","accessMode":"textual","description":"Read-only media access lets a server consume source files while directing required application and temporary writes to other locations.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Storage and server platforms","item":"https://emby.media/learn/articles/storage/index.html"},{"@type":"ListItem","position":3,"name":"Shared storage and permissions","item":"https://emby.media/learn/articles/storage/sharing/index.html"},{"@type":"ListItem","position":4,"name":"Access identities and permissions","item":"https://emby.media/learn/articles/storage/sharing/permissions/index.html"},{"@type":"ListItem","position":5,"name":"Read-only media access","item":"https://emby.media/learn/articles/storage/sharing/permissions/Storage-Read-Only.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Storage-Read-Only">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../storage/index.html">Storage and server platforms</a></li>
+              <li><a href="../../../storage/sharing/index.html">Shared storage and permissions</a></li>
+              <li><a href="../../../storage/sharing/permissions/index.html">Access identities and permissions</a></li>
+              <li><span aria-current="page">Read-only media access</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Storage-Read-Only">
+<h1>Read-only media access and separate writable data</h1>
+<p class="article-description">Read-only media access lets a server consume source files while directing required application and temporary writes to other locations.</p>
+
+
+<p>Emby Server can read a source film without needing permission to overwrite that film. A media library can therefore use a read-only storage arrangement while the server's application-data and temporary locations remain writable.</p>
+<p>This is a useful separation of data roles. It also makes the affected operations easier to understand: reading an existing movie and creating a new subtitle file are different storage requests.</p>
+<h2 id="which-workflow-needs-a-write">Which workflow needs a write?</h2>
+<table>
+<thead>
+<tr>
+<th>Workflow</th>
+<th>Source media access</th>
+<th>Separate writable data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read and stream an existing film</td>
+<td>Read required</td>
+<td>Server application data remains writable</td>
+</tr>
+<tr>
+<td>Transcode that film</td>
+<td>Read source</td>
+<td>Write temporary output</td>
+</tr>
+<tr>
+<td>Store downloaded sidecars beside media</td>
+<td>Read relevant media; write sidecar location</td>
+<td>Depends on the chosen save location</td>
+</tr>
+<tr>
+<td>Record into the media directory</td>
+<td>Write destination</td>
+<td>Recording and server state also update</td>
+</tr>
+<tr>
+<td>Delete a media file</td>
+<td>Applicable deletion rights</td>
+<td>A viewer's delete permission is another check</td>
+</tr>
+</tbody>
+</table>
+<p>A library configured to save artwork or metadata beside source media needs suitable writes for those files. If that location is read-only, those saves can fail even though playback succeeds. This is a consequence of the operation's destination, not an inconsistency in read-only access.</p>
+<h2 id="mount-share-and-file-restrictions">Mount, share and file restrictions</h2>
+<p>A mount can be read-only. A share can restrict writes. File-system permissions or ACLs can grant only the relevant access. These mechanisms have different scopes.</p>
+<p>For example, a read-only mount seen by a container can restrict that container's view while the host has another writable view. File permissions apply according to identity and the underlying file system. A Windows file's read-only attribute is not a complete substitute for an access-control design governing creation and deletion of names in its directory.</p>
+<p>The effective result comes from the entire path and operation. Directory traversal must still work, and listing a folder does not establish that its files are readable.</p>
+<h2 id="viewer-permissions-are-another-boundary">Viewer permissions are another boundary</h2>
+<p>An Emby viewer allowed to play a film does not acquire the server process's operating-system rights. Likewise, a viewer denied media deletion does not make the source mount read-only for every process.</p>
+<p>Keep those checks distinct when diagnosing a failure. A permitted playback request can fail because the server cannot read the source. A prohibited delete request should remain prohibited even when the service identity technically has write access.</p>
+<p>The server also needs persistent writable application storage for its configuration, database and other state. Making every location read-only does not create an ordinary read-only media server; it prevents required server work. Separate the media source from <a href="../../fundamentals/Storage-Temporary.html">temporary output</a> and persistent application data according to their actual roles.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Storage-Permissions.html" title="File ownership and permissions across a library path">File ownership and permissions across a library path</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Storage-Service-Access.html" title="Storage access from background services">Storage access from background services</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../networking/access/rules/Network-Library-Permissions.html" title="Library access permissions and the user&#8217;s media scope">Library access permissions and the user&#8217;s media scope</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../playback-streaming/conversion/Playback-Temporary-Files.html" title="Transcode temporary files and generated output">Transcode temporary files and generated output</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Library-Setup.html" title="Emby library setup">Emby library setup</a></li>
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilew" title="Windows CreateFile access and sharing modes">Windows CreateFile access and sharing modes</a></li>
+			            <li><a class="seealso-link" href="https://man7.org/linux/man-pages/man7/path_resolution.7.html" title="Linux man-pages: pathname resolution">Linux man-pages: pathname resolution</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Storage-Read-Only%0A*%20Title%3A%20Read-only%20media%20access%20and%20separate%20writable%20data%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

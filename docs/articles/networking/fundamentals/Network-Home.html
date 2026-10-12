@@ -1,0 +1,290 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>How a home media network carries an Emby stream | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="A home media network carries requests and media between Emby Server and client apps through local links and any routed boundaries in their selected path.">
+  <link rel="canonical" href="https://emby.media/learn/articles/networking/fundamentals/Network-Home.html">
+  <meta property="og:title" content="How a home media network carries an Emby stream | Emby Learn">
+  <meta property="og:description" content="A home media network carries requests and media between Emby Server and client apps through local links and any routed boundaries in their selected path.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/networking/fundamentals/Network-Home.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/networking/fundamentals/Network-Home.html","url":"https://emby.media/learn/articles/networking/fundamentals/Network-Home.html","name":"How a home media network carries an Emby stream","inLanguage":"en","headline":"How a home media network carries an Emby stream","articleSection":"Networking and remote access","proficiencyLevel":"Beginner","accessMode":["textual","visual"],"description":"A home media network carries requests and media between Emby Server and client apps through local links and any routed boundaries in their selected path.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Networking and remote access","item":"https://emby.media/learn/articles/networking/index.html"},{"@type":"ListItem","position":3,"name":"Home network fundamentals","item":"https://emby.media/learn/articles/networking/fundamentals/index.html"},{"@type":"ListItem","position":4,"name":"How a home media network works","item":"https://emby.media/learn/articles/networking/fundamentals/Network-Home.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Network-Home">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../networking/index.html">Networking and remote access</a></li>
+              <li><a href="../../networking/fundamentals/index.html">Home network fundamentals</a></li>
+              <li><span aria-current="page">How a home media network works</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Network-Home">
+<h1>How a home media network carries an Emby stream</h1>
+<p class="article-description">A home media network carries requests and media between Emby Server and client apps through local links and any routed boundaries in their selected path.</p>
+
+
+<p>A television app asks Emby Server for a presentation. The server prepares the selected media and sends it back over the connection the app established.</p>
+<p>Within a home, that path can be much shorter than “up to the internet and back.” The devices, link arrangement and chosen endpoint determine where the traffic goes.</p>
+<h2 id="trace-the-local-stream">Trace the local stream</h2>
+<p>Use this original network:</p>
+<table>
+<thead>
+<tr>
+<th>Device</th>
+<th>Address</th>
+<th>Connection</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Emby Server</td>
+<td>192.168.50.20</td>
+<td>Ethernet to a switch</td>
+</tr>
+<tr>
+<td>TV app</td>
+<td>192.168.50.30</td>
+<td>Wi-Fi through an access point</td>
+</tr>
+<tr>
+<td>Router</td>
+<td>192.168.50.1</td>
+<td>Connects this LAN to other networks</td>
+</tr>
+</tbody>
+</table>
+<p>Assume both end devices use the same ordinary IPv4 /24 LAN, and the access point bridges Wi-Fi to the switch.</p>
+<p><img src="images/home-media-path.png" alt="The original topology separates local media links from the router’s path toward other networks."></p>
+<p>The app’s packets for 192.168.50.20 go over Wi-Fi, through the access point and switch, to the server. They do not need the router’s internet-facing connection.</p>
+<p>A household “router” box can contain a router, switch and wireless access point together. Traffic passing through its switch or Wi-Fi hardware is not necessarily being routed to the internet.</p>
+<h2 id="address-resolution-selects-a-local-next-hop">Address resolution selects a local next hop</h2>
+<p>An IPv4 host uses its address/prefix and routes to decide whether the destination is on its local link. For an ordinary local destination, ARP resolves the link-layer address needed to send the frame.</p>
+<p>For an off-link destination, the host instead sends the frame toward the selected router. The IP destination remains the remote host; the next-hop frame address identifies the router for that link.</p>
+<p>IPv6 uses Neighbor Discovery for its corresponding link relationships. The underlying distinction is the same: the final IP destination and the next hop are different roles.</p>
+<p><a href="../addressing/Network-CIDR.html">Subnets and routes</a> develops the prefix calculation.</p>
+<h2 id="the-media-request-and-media-payload-have-different-sizes">The media request and media payload have different sizes</h2>
+<p>Selecting a title, requesting a playlist and reporting playback state can involve small messages. Delivering the media usually accounts for much more traffic.</p>
+<p>An app showing posters and browsing a library has therefore established some successful communication, not a measurement of sustained streaming capacity. A media request can also choose another resource URL or begin a different connection.</p>
+<p><a href="../../playback-streaming/from-server/Playback-Server-Delivery.html">Server delivery</a> explains what the server prepares. The network transports that result; it does not decide whether the video must be transcoded merely because the TV uses Wi-Fi.</p>
+<h2 id="a-wi-fi-association-is-only-one-completed-step">A Wi-Fi association is only one completed step</h2>
+<p>The TV can join its access point yet lack a permitted path to the server. A guest network, separate routed segment or client-isolation rule can change the topology.</p>
+<table>
+<thead>
+<tr>
+<th>Established observation</th>
+<th>Remaining question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TV joined Wi-Fi</td>
+<td>Does its segment permit the server path?</td>
+</tr>
+<tr>
+<td>Name resolved</td>
+<td>Is the returned address reachable from this client?</td>
+</tr>
+<tr>
+<td>Connection established</td>
+<td>Does the requested application operation succeed?</td>
+</tr>
+<tr>
+<td>Short request succeeded</td>
+<td>Can the route sustain the selected media delivery?</td>
+</tr>
+</tbody>
+</table>
+<p>Emby’s <a class="xref" href="https://emby.media/support/articles/Connectivity.html">connectivity documentation</a> separates local access from external reachability. Knowing which boundary the request actually crosses makes those checks more precise.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Network-Local-Remote.html" title="Local and remote connections to Emby">Local and remote connections to Emby</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../addressing/Network-IP-Addresses.html" title="IP addresses and reachable interfaces">IP addresses and reachable interfaces</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../names/dns/Network-DNS.html" title="DNS resolution, record types and cached answers">DNS resolution, record types and cached answers</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../transport/Network-Ports.html" title="Network ports, listeners and connection endpoints">Network ports, listeners and connection endpoints</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://emby.media/support/articles/Connectivity.html" title="Emby: Connecting from client apps">Emby: Connecting from client apps</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc791" title="RFC 791: Internet Protocol">RFC 791: Internet Protocol</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc4861" title="RFC 4861: IPv6 Neighbor Discovery">RFC 4861: IPv6 Neighbor Discovery</a></li>
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc826" title="RFC 826: Ethernet address resolution">RFC 826: Ethernet address resolution</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Network-Home%0A*%20Title%3A%20How%20a%20home%20media%20network%20carries%20an%20Emby%20stream%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

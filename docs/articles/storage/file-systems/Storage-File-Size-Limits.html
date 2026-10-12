@@ -1,0 +1,253 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>File size limits and large media files | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="A file-size limit restricts one file independently of the volume's total free space, which matters for long recordings and high-bitrate media.">
+  <link rel="canonical" href="https://emby.media/learn/articles/storage/file-systems/Storage-File-Size-Limits.html">
+  <meta property="og:title" content="File size limits and large media files | Emby Learn">
+  <meta property="og:description" content="A file-size limit restricts one file independently of the volume's total free space, which matters for long recordings and high-bitrate media.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/storage/file-systems/Storage-File-Size-Limits.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/storage/file-systems/Storage-File-Size-Limits.html","url":"https://emby.media/learn/articles/storage/file-systems/Storage-File-Size-Limits.html","name":"File size limits and large media files","inLanguage":"en","headline":"File size limits and large media files","articleSection":"Storage and server platforms","proficiencyLevel":"Beginner","accessMode":"textual","description":"A file-size limit restricts one file independently of the volume's total free space, which matters for long recordings and high-bitrate media.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Storage and server platforms","item":"https://emby.media/learn/articles/storage/index.html"},{"@type":"ListItem","position":3,"name":"File systems and paths","item":"https://emby.media/learn/articles/storage/file-systems/index.html"},{"@type":"ListItem","position":4,"name":"File size limits","item":"https://emby.media/learn/articles/storage/file-systems/Storage-File-Size-Limits.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Storage-File-Size-Limits">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../storage/index.html">Storage and server platforms</a></li>
+              <li><a href="../../storage/file-systems/index.html">File systems and paths</a></li>
+              <li><span aria-current="page">File size limits</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Storage-File-Size-Limits">
+<h1>File size limits and large media files</h1>
+<p class="article-description">A file-size limit restricts one file independently of the volume's total free space, which matters for long recordings and high-bitrate media.</p>
+
+
+<p>A volume can have plenty of free space and still reject a large movie. <strong>Free space</strong> is the amount available for allocation; a <strong>file-size limit</strong> is the largest single file the format and implementation can represent.</p>
+<p>FAT32 is the familiar example. Its file-length field is 32 bits, giving a maximum of <strong>4,294,967,295 bytes</strong>, or <strong>4 GiB minus one byte</strong>. A 5-GB file exceeds that boundary even on a nearly empty, much larger volume.</p>
+<h2 id="why-the-units-matter">Why the units matter</h2>
+<p>One decimal GB is 1,000,000,000 bytes. One GiB is 1,073,741,824 bytes. A displayed value near “4 GB” can therefore conceal which side of FAT32's boundary the file actually occupies.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Candidate file length</th>
+<th>Fits the FAT32 field?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">4,000,000,000 bytes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td style="text-align: right;">4,294,967,295 bytes</td>
+<td>Yes, exactly at the field limit</td>
+</tr>
+<tr>
+<td style="text-align: right;">4,294,967,296 bytes</td>
+<td>No</td>
+</tr>
+<tr>
+<td style="text-align: right;">5,000,000,000 bytes</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>Available space, application behavior and other limits still apply to entries marked “Yes.”</p>
+<h2 id="duration-can-turn-an-ordinary-bitrate-into-a-large-file">Duration can turn an ordinary bitrate into a large file</h2>
+<p>For a constant 20-Mbit/s payload, reaching the boundary takes approximately:</p>
+<pre><code class="lang-text">4,294,967,295 bytes × 8 ÷ 20,000,000 bits/s
+= 1,717.986918 seconds
+≈ 28 minutes 38 seconds
+</code></pre>
+<p>Container overhead consumes additional bytes. Variable bitrate changes accumulation over time. The example explains the order of magnitude; it is not a guaranteed recording duration.</p>
+<p>Splitting a recording into several files changes the organization and requires suitable application support. Renaming a file or changing its extension does not reduce its byte length.</p>
+<h2 id="other-limits-remain-separate">Other limits remain separate</h2>
+<p>exFAT and commonly deployed modern file systems can support much larger files. Their actual supported limits depend on format fields, allocation parameters, operating-system implementation and sometimes application APIs. A theoretical field maximum is not a claim that a particular installed system can create a file of that size.</p>
+<p>A path-length error concerns the name used to reach a file. A quota concerns an account's or directory's allocation. A full disk concerns available capacity. These failures may all occur during a copy, but they call for different evidence. Check the source file's exact length and destination format before interpreting a failed large transfer.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Storage-File-Systems.html" title="File systems: names, allocation and persistent metadata">File systems: names, allocation and persistent metadata</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../media-files/fundamentals/bitrate-and-file-size/Media-Bitrate.html" title="Bitrate">Bitrate</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.microsoft.com/en-us/download/details.aspx?id=53426" title="Microsoft FAT on-media specification: fatgen103.doc in the legacy document collection">Microsoft FAT on-media specification: fatgen103.doc in the legacy document collection</a></li>
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/fileio/exfat-specification" title="Microsoft exFAT file-system specification">Microsoft exFAT file-system specification</a></li>
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/fileio/filesystem-functionality-comparison" title="Windows file-system features and limits">Windows file-system features and limits</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Storage-File-Size-Limits%0A*%20Title%3A%20File%20size%20limits%20and%20large%20media%20files%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

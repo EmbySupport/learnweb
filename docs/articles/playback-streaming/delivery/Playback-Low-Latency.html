@@ -1,0 +1,328 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Low-latency streaming and the live presentation delay | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Low-latency streaming reduces the delay between an event and its presentation by coordinating encoding, early media availability, delivery and player buffering.">
+  <link rel="canonical" href="https://emby.media/learn/articles/playback-streaming/delivery/Playback-Low-Latency.html">
+  <meta property="og:title" content="Low-latency streaming and the live presentation delay | Emby Learn">
+  <meta property="og:description" content="Low-latency streaming reduces the delay between an event and its presentation by coordinating encoding, early media availability, delivery and player buffering.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/playback-streaming/delivery/Playback-Low-Latency.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/playback-streaming/delivery/Playback-Low-Latency.html","url":"https://emby.media/learn/articles/playback-streaming/delivery/Playback-Low-Latency.html","name":"Low-latency streaming and the live presentation delay","inLanguage":"en","headline":"Low-latency streaming and the live presentation delay","articleSection":"Playback and streaming","proficiencyLevel":"Beginner","accessMode":"textual","description":"Low-latency streaming reduces the delay between an event and its presentation by coordinating encoding, early media availability, delivery and player buffering.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Playback and streaming","item":"https://emby.media/learn/articles/playback-streaming/index.html"},{"@type":"ListItem","position":3,"name":"Streaming delivery","item":"https://emby.media/learn/articles/playback-streaming/delivery/index.html"},{"@type":"ListItem","position":4,"name":"Low-latency streaming","item":"https://emby.media/learn/articles/playback-streaming/delivery/Playback-Low-Latency.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../favicon.ico">
+  <script type="text/javascript" src="../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../styles/main.css">
+  <link rel="stylesheet" href="../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../toc.html">
+  <meta property="docfx:tocrel" content="../../toc.html">
+  <meta property="docfx:uid" content="Learn-Playback-Low-Latency">
+  
+  <meta property="docfx:rel" content="../../../">
+  
+  <script type="text/javascript" src="../../../nav.js"></script>
+  <script type="text/javascript" src="../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Emby Learn</a></li>
+              <li><a href="../../playback-streaming/index.html">Playback and streaming</a></li>
+              <li><a href="../../playback-streaming/delivery/index.html">Streaming delivery</a></li>
+              <li><span aria-current="page">Low-latency streaming</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Playback-Low-Latency">
+<h1>Low-latency streaming and the live presentation delay</h1>
+<p class="article-description">Low-latency streaming reduces the delay between an event and its presentation by coordinating encoding, early media availability, delivery and player buffering.</p>
+
+
+<p><strong>Live latency</strong> is the delay between a programme event and the viewer seeing or hearing it. Low-latency streaming reduces that delay across the whole path, including when media becomes available and how far behind it the player chooses to stay.</p>
+<p>A converter running faster than real time can help keep up with the programme. Its <a href="../conversion/performance/Playback-Transcode-Speed.html">processing speed</a> does not measure how old the displayed picture is.</p>
+<h2 id="choose-the-two-endpoints">Choose the two endpoints</h2>
+<p>An event can be timed at camera capture, encoder input or publication. At the receiving end, a measurement can stop at byte arrival, decoder output or actual presentation. These produce different latency numbers.</p>
+<p>For viewers, capture-to-presentation is usually the meaningful experience. A server's “output is ready” timestamp accounts for only part of that path.</p>
+<p>The <a href="../behavior/symptoms/Playback-Startup-Delay.html">startup delay</a> is another quantity: the wait after a playback request until useful presentation begins. A live player can start in one second while presenting a programme picture ten seconds old.</p>
+<h2 id="several-delays-add-to-the-pictures-age">Several delays add to the picture's age</h2>
+<p>Consider two original, deliberately simplified serial budgets:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th style="text-align: right;">Longer-delay arrangement</th>
+<th style="text-align: right;">Earlier-availability arrangement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Capture/ingest</td>
+<td style="text-align: right;">0.04 s</td>
+<td style="text-align: right;">0.04 s</td>
+</tr>
+<tr>
+<td>Encoding</td>
+<td style="text-align: right;">0.18 s</td>
+<td style="text-align: right;">0.18 s</td>
+</tr>
+<tr>
+<td>Publication wait</td>
+<td style="text-align: right;">4.00 s</td>
+<td style="text-align: right;">0.25 s</td>
+</tr>
+<tr>
+<td>Discovering newly available media</td>
+<td style="text-align: right;">0.25 s</td>
+<td style="text-align: right;">0.05 s</td>
+</tr>
+<tr>
+<td>Transfer</td>
+<td style="text-align: right;">0.30 s</td>
+<td style="text-align: right;">0.30 s</td>
+</tr>
+<tr>
+<td>Chosen player reserve</td>
+<td style="text-align: right;">6.00 s</td>
+<td style="text-align: right;">1.00 s</td>
+</tr>
+<tr>
+<td>Final preparation/presentation</td>
+<td style="text-align: right;">0.08 s</td>
+<td style="text-align: right;">0.08 s</td>
+</tr>
+<tr>
+<td>Total</td>
+<td style="text-align: right;">10.85 s</td>
+<td style="text-align: right;">1.90 s</td>
+</tr>
+</tbody>
+</table>
+<p>These inputs are explanatory delays for one model, not typical HLS or Emby values. Real stages can overlap, and delay varies with where an event falls within an interval.</p>
+<p>The model keeps encoding unchanged. Most of the improvement comes from publishing usable media earlier and retaining less intentional delay at the player. Making the encoder twice as fast would affect only its 0.18-second contribution here.</p>
+<p><img src="images/live-latency-budget.png" alt="An original delay-budget diagram compares the same processing stages with different publication and reserve delays."></p>
+<h2 id="earlier-media-requires-an-earlier-delivery-path">Earlier media requires an earlier delivery path</h2>
+<p>If the publisher waits until a complete six-second interval exists, no receiver can obtain its first usable part four seconds before that publication. Producing shorter intervals or exposing partial media removes part of that wait.</p>
+<p>Low-Latency HLS adds several coordinated mechanisms:</p>
+<table>
+<thead>
+<tr>
+<th>Mechanism</th>
+<th>Contribution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Partial segments</td>
+<td>Describe smaller media units before their parent segment is complete</td>
+</tr>
+<tr>
+<td>Blocking playlist reload</td>
+<td>Let a playlist response wait for the requested new availability rather than force repeated empty polling</td>
+</tr>
+<tr>
+<td>Preload hints</td>
+<td>Identify a resource expected to become available next</td>
+</tr>
+<tr>
+<td>Delta updates</td>
+<td>Reduce repeated playlist information</td>
+</tr>
+<tr>
+<td>Rendition reports</td>
+<td>Help relate availability across alternatives</td>
+</tr>
+</tbody>
+</table>
+<p>These features work together with the publisher, origin, intermediaries and player. A cache that waits for the whole object before forwarding it can restore a delay that the packager intended to remove.</p>
+<p>CMAF is useful for organizing incrementally available media. It does not supply the discovery or request policy by itself, and a delivery system must coordinate media timing and availability with its description.</p>
+<h2 id="a-smaller-reserve-buys-less-time-through-an-interruption">A smaller reserve buys less time through an interruption</h2>
+<p>For a simple player with one second of usable reserve, a 1.4-second period with no useful arrivals can exhaust that reserve after one second. With six seconds initially available, the same interruption leaves 4.6 seconds.</p>
+<p>The longer reserve improves tolerance while increasing how far behind the newest usable media the presentation remains. Low-latency policies manage that tradeoff rather than abolish it.</p>
+<p>A player can recover by pausing to rebuild reserve, moving closer to the new live position, or changing its playback rate within its supported policy. Those choices affect continuity, omitted programme time and live delay differently.</p>
+<h2 id="measure-the-part-that-changed">Measure the part that changed</h2>
+<p>When assessing an Emby live session, identify the capture or programme-time reference, the currently presented moment, the server's ready-output position and the receiver's buffered position.</p>
+<p>That separates a producer struggling to keep up from a player deliberately maintaining a reserve. A lower transfer time with unchanged publication and reserve can improve one component while leaving most of the picture's age intact. The delay budget shows where an observed improvement can enter the result.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Live-On-Demand.html" title="Live streams and on-demand streams">Live streams and on-demand streams</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="hls/Playback-HLS.html" title="HTTP Live Streaming (HLS)">HTTP Live Streaming (HLS)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-CMAF.html" title="Common Media Application Format (CMAF)">Common Media Application Format (CMAF)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-Buffering.html" title="Buffering, ready media and playback reserve">Buffering, ready media and playback reserve</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../behavior/symptoms/Playback-Startup-Delay.html" title="Playback startup delay">Playback startup delay</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../conversion/performance/Playback-Realtime-Transcoding.html" title="Real-time transcoding and playback deadlines">Real-time transcoding and playback deadlines</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://developer.apple.com/documentation/http-live-streaming/enabling-low-latency-http-live-streaming-hls" title="Apple: Enabling Low-Latency HLS">Apple: Enabling Low-Latency HLS</a></li>
+			            <li><a class="seealso-link" href="https://developer.apple.com/streaming/" title="Apple: HTTP Live Streaming">Apple: HTTP Live Streaming</a></li>
+			            <li><a class="seealso-link" href="https://dashif.org/Guidelines-TimingModel/" title="DASH-IF: Restricted timing model (2024 snapshot)">DASH-IF: Restricted timing model (2024 snapshot)</a></li>
+			            <li><a class="seealso-link" href="https://www.iso.org/standard/85623.html" title="ISO/IEC 23000-19:2024: CMAF">ISO/IEC 23000-19:2024: CMAF</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Playback-Low-Latency%0A*%20Title%3A%20Low-latency%20streaming%20and%20the%20live%20presentation%20delay%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,308 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Media Foundation transforms and processing state | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="A Media Foundation transform is a Windows media-processing component whose negotiated types, input/output state and resource context determine its decoding, encoding or processing role.">
+  <link rel="canonical" href="https://emby.media/learn/articles/hardware-acceleration/interfaces/windows/Hardware-Windows-Media-Foundation.html">
+  <meta property="og:title" content="Media Foundation transforms and processing state | Emby Learn">
+  <meta property="og:description" content="A Media Foundation transform is a Windows media-processing component whose negotiated types, input/output state and resource context determine its decoding, encoding or processing role.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/hardware-acceleration/interfaces/windows/Hardware-Windows-Media-Foundation.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/hardware-acceleration/interfaces/windows/Hardware-Windows-Media-Foundation.html","url":"https://emby.media/learn/articles/hardware-acceleration/interfaces/windows/Hardware-Windows-Media-Foundation.html","name":"Media Foundation transforms and processing state","inLanguage":"en","headline":"Media Foundation transforms and processing state","articleSection":"Media hardware acceleration","proficiencyLevel":"Beginner","accessMode":"textual","description":"A Media Foundation transform is a Windows media-processing component whose negotiated types, input/output state and resource context determine its decoding, encoding or processing role.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Media hardware acceleration","item":"https://emby.media/learn/articles/hardware-acceleration/index.html"},{"@type":"ListItem","position":3,"name":"Media engines and acceleration interfaces","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/index.html"},{"@type":"ListItem","position":4,"name":"Platform media APIs","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/platforms/index.html"},{"@type":"ListItem","position":5,"name":"Windows","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/windows/index.html"},{"@type":"ListItem","position":6,"name":"Media Foundation transforms","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/windows/Hardware-Windows-Media-Foundation.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Hardware-Windows-Media-Foundation">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../hardware-acceleration/index.html">Media hardware acceleration</a></li>
+              <li><a href="../../../hardware-acceleration/interfaces/index.html">Media engines and acceleration interfaces</a></li>
+              <li><a href="../../../hardware-acceleration/interfaces/platforms/index.html">Platform media APIs</a></li>
+              <li><a href="../../../hardware-acceleration/interfaces/windows/index.html">Windows</a></li>
+              <li><span aria-current="page">Media Foundation transforms</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Hardware-Windows-Media-Foundation">
+<h1>Media Foundation transforms and processing state</h1>
+<p class="article-description">A Media Foundation transform is a Windows media-processing component whose negotiated types, input/output state and resource context determine its decoding, encoding or processing role.</p>
+
+
+<p>A <strong>Media Foundation transform</strong>, or <strong>MFT</strong>, is a Windows media-processing component. The same component model can represent a decoder, encoder or picture-processing operation.</p>
+<p>The label describes an interface contract. Its actual implementation and device/resource context determine where the work runs.</p>
+<h2 id="media-types-define-the-transformation">Media types define the transformation</h2>
+<p>A transform negotiates the media types it accepts and produces. A decoder accepts encoded input and produces pictures; an encoder accepts suitable pictures and produces compressed output.</p>
+<p><img src="images/mft-negotiation-stages.png" alt="An original Media Foundation diagram connects separate decoder, processor and encoder transforms with negotiated media types."></p>
+<table>
+<thead>
+<tr>
+<th>Transform role</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decoder</td>
+<td>Encoded configuration to accepted picture representation</td>
+</tr>
+<tr>
+<td>Processor</td>
+<td>One picture configuration to another</td>
+</tr>
+<tr>
+<td>Encoder</td>
+<td>Prepared pictures to selected compressed output</td>
+</tr>
+</tbody>
+</table>
+<p>The negotiated output must fit the next consumer. A decoded 10-bit picture format and an encoder expecting another format can need a suitable processing step between them.</p>
+<p>The transform framework coordinates those types; it does not make every proposed connection valid.</p>
+<h2 id="a-type-must-fit-both-sides-of-the-connection">A type must fit both sides of the connection</h2>
+<p>An original negotiation model makes the cross-stage requirement concrete:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Accepted input</th>
+<th>Offered output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decoder</td>
+<td>Selected encoded video</td>
+<td>NV12 or P010</td>
+</tr>
+<tr>
+<td>Processor</td>
+<td>NV12</td>
+<td>NV12 or BGRA</td>
+</tr>
+<tr>
+<td>Encoder</td>
+<td>NV12</td>
+<td>Selected compressed output</td>
+</tr>
+</tbody>
+</table>
+<p>The compatible route through these declarations uses NV12 from decoder to processor and NV12 from processor to encoder.</p>
+<p>Selecting P010 from the decoder would not fit this processor's declared input. Selecting BGRA from the processor would not fit this encoder's declared input. The existence of each individual component does not repair either connection.</p>
+<p>These are invented capability sets, not a Media Foundation enumeration. They illustrate how negotiation chooses a complete relationship rather than independently choosing a preferred format at every stage.</p>
+<p>The pipeline can select another processor or explicitly add an appropriate conversion when supported. That changes its negotiated route and resource requirements; it should not silently reinterpret P010 or BGRA bytes as NV12.</p>
+<h2 id="synchronous-inputoutput-state-has-backpressure">Synchronous input/output state has backpressure</h2>
+<p>The basic processing model exposes <code>ProcessInput()</code> and <code>ProcessOutput()</code>. Their results tell the caller whether another input can be accepted or whether output needs handling.</p>
+<p>This original synchronous trace illustrates the relationship:</p>
+<pre><code class="lang-text">ProcessInput(A)  -&gt; accepted
+ProcessInput(B)  -&gt; MF_E_NOTACCEPTING
+ProcessOutput() -&gt; completed result available
+ProcessInput(B)  -&gt; accepted
+ProcessOutput() -&gt; MF_E_TRANSFORM_NEED_MORE_INPUT
+</code></pre>
+<p>The trace is a model, not an actual COM call sequence. It preserves B when the first attempt could not accept it.</p>
+<p><code>MF_E_NOTACCEPTING</code> can describe a state that needs output progress, rather than an unsupported codec. <code>MF_E_TRANSFORM_NEED_MORE_INPUT</code> says that this output request needs further input under the transform's current processing state.</p>
+<p>The application interprets status, output data and the negotiated contract together. One accepted input does not universally promise exactly one immediately available output.</p>
+<h2 id="asynchronous-transforms-have-another-scheduling-contract">Asynchronous transforms have another scheduling contract</h2>
+<p>Media Foundation also provides an asynchronous processing model. Hardware MFTs have documented asynchronous and dynamic-format requirements.</p>
+<p>The caller follows event/readiness rules appropriate to that model rather than blindly using a synchronous polling loop. A host call returning and a media operation finishing can occur at different times.</p>
+<p>This lets queued work proceed while the application performs other coordination. The input and output resources still need valid ownership through their consumers' use.</p>
+<h2 id="a-software-component-can-coordinate-hardware-decoding">A software component can coordinate hardware decoding</h2>
+<p>Microsoft's D3D11 decoder-integration documentation calls the codec-facing component a software decoder while the driver-backed decoder device performs accelerated reconstruction.</p>
+<p>That illustrates why component implementation, registered hardware-MFT category and execution of a particular media operation are different facts. An MFT name alone should not be read as a CPU-utilization measurement.</p>
+<p>A suitable device manager and decoder configuration connect that component to Direct3D resources. The resulting pictures still need compatible downstream types and context.</p>
+<h2 id="a-format-change-propagates-to-consumers">A format change propagates to consumers</h2>
+<p>A source or transform can change its output picture configuration. The application needs to establish the new accepted types and resource requirements with the affected pipeline.</p>
+<p>A different dimension or surface format can require new buffers or a different next-stage configuration. Continuing to interpret the new output using the old assumptions can make an otherwise supported source fail downstream.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Hardware-Windows-D3D11VA.html" title="Direct3D 11 video acceleration (D3D11VA)">Direct3D 11 video acceleration (D3D11VA)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Hardware-Windows-DXVA2.html" title="DirectX Video Acceleration (DXVA2)">DirectX Video Acceleration (DXVA2)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../Hardware-Decoding.html" title="Hardware decoding and software decoding">Hardware decoding and software decoding</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../Hardware-Encoding.html" title="Hardware encoding and software encoding">Hardware encoding and software encoding</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../playback-streaming/conversion/Playback-Transcode-Pipeline.html" title="How a transcoding pipeline works">How a transcoding pipeline works</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/medfound/media-foundation-transforms" title="Microsoft: Media Foundation transform model">Microsoft: Media Foundation transform model</a></li>
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/medfound/hardware-mfts" title="Microsoft: Hardware Media Foundation transforms">Microsoft: Hardware Media Foundation transforms</a></li>
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/api/mftransform/nf-mftransform-imftransform-processinput" title="Microsoft: IMFTransform ProcessInput">Microsoft: IMFTransform ProcessInput</a></li>
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/api/mftransform/nf-mftransform-imftransform-processoutput" title="Microsoft: IMFTransform ProcessOutput">Microsoft: IMFTransform ProcessOutput</a></li>
+			            <li><a class="seealso-link" href="https://learn.microsoft.com/en-us/windows/win32/medfound/supporting-direct3d-11-video-decoding-in-media-foundation" title="Microsoft: Direct3D 11 decoding in Media Foundation">Microsoft: Direct3D 11 decoding in Media Foundation</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Hardware-Windows-Media-Foundation%0A*%20Title%3A%20Media%20Foundation%20transforms%20and%20processing%20state%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

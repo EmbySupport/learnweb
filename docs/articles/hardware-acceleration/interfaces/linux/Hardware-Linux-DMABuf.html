@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>DRM PRIME and DMA-BUF frame sharing | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="DRM PRIME and DMA-BUF let compatible Linux subsystems exchange references to frame storage while layout, synchronization and ownership determine how the shared picture may be used.">
+  <link rel="canonical" href="https://emby.media/learn/articles/hardware-acceleration/interfaces/linux/Hardware-Linux-DMABuf.html">
+  <meta property="og:title" content="DRM PRIME and DMA-BUF frame sharing | Emby Learn">
+  <meta property="og:description" content="DRM PRIME and DMA-BUF let compatible Linux subsystems exchange references to frame storage while layout, synchronization and ownership determine how the shared picture may be used.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/hardware-acceleration/interfaces/linux/Hardware-Linux-DMABuf.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/hardware-acceleration/interfaces/linux/Hardware-Linux-DMABuf.html","url":"https://emby.media/learn/articles/hardware-acceleration/interfaces/linux/Hardware-Linux-DMABuf.html","name":"DRM PRIME and DMA-BUF frame sharing","inLanguage":"en","headline":"DRM PRIME and DMA-BUF frame sharing","articleSection":"Media hardware acceleration","proficiencyLevel":"Beginner","accessMode":"textual","description":"DRM PRIME and DMA-BUF let compatible Linux subsystems exchange references to frame storage while layout, synchronization and ownership determine how the shared picture may be used.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Media hardware acceleration","item":"https://emby.media/learn/articles/hardware-acceleration/index.html"},{"@type":"ListItem","position":3,"name":"Media engines and acceleration interfaces","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/index.html"},{"@type":"ListItem","position":4,"name":"Platform media APIs","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/platforms/index.html"},{"@type":"ListItem","position":5,"name":"Linux","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/linux/index.html"},{"@type":"ListItem","position":6,"name":"DRM PRIME and DMA-BUF frame sharing","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/linux/Hardware-Linux-DMABuf.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Hardware-Linux-DMABuf">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../hardware-acceleration/index.html">Media hardware acceleration</a></li>
+              <li><a href="../../../hardware-acceleration/interfaces/index.html">Media engines and acceleration interfaces</a></li>
+              <li><a href="../../../hardware-acceleration/interfaces/platforms/index.html">Platform media APIs</a></li>
+              <li><a href="../../../hardware-acceleration/interfaces/linux/index.html">Linux</a></li>
+              <li><span aria-current="page">DRM PRIME and DMA-BUF frame sharing</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Hardware-Linux-DMABuf">
+<h1>DRM PRIME and DMA-BUF frame sharing</h1>
+<p class="article-description">DRM PRIME and DMA-BUF let compatible Linux subsystems exchange references to frame storage while layout, synchronization and ownership determine how the shared picture may be used.</p>
+
+
+<p><strong>DMA-BUF</strong> lets compatible Linux subsystems exchange references to allocated buffer storage. <strong>DRM PRIME</strong> provides related sharing interfaces in the Direct Rendering Manager.</p>
+<p>Here DRM means the graphics subsystem, not digital-rights-managed media. The sharing mechanism concerns memory resources, while protected-playback licensing is another subject.</p>
+<h2 id="share-a-resource-reference-with-a-compatible-consumer">Share a resource reference with a compatible consumer</h2>
+<p>A producer can export a buffer through the supported mechanism. A consumer can import a reference to that storage through its compatible interface.</p>
+<p><img src="images/dmabuf-sharing-layout.png" alt="An original Linux sharing diagram separates a shared backing resource from producer and consumer handles and their frame-layout metadata."></p>
+<p>The process exchanges a resource handle, not a complete self-describing movie. The consumer still needs the picture's layout and the context in which those bytes should be interpreted.</p>
+<p>For example, a decoder can produce suitable storage that another processor or encoder imports. Their accepted formats, layout modifiers and device relationships determine whether this handoff is usable.</p>
+<h2 id="plane-geometry-is-part-of-the-picture">Plane geometry is part of the picture</h2>
+<p>Consider an original 1920 × 1080, 8-bit NV12 layout. Its luma and interleaved chroma rows each have a declared 2048-byte pitch:</p>
+<pre><code class="lang-json">{
+  &quot;format&quot;: &quot;NV12&quot;,
+  &quot;width&quot;: 1920,
+  &quot;height&quot;: 1080,
+  &quot;layout&quot;: &quot;LINEAR&quot;,
+  &quot;bufferLabel&quot;: &quot;model-buffer-A&quot;,
+  &quot;allocationBytes&quot;: 3317760,
+  &quot;planes&quot;: [
+    { &quot;objectIndex&quot;: 0, &quot;offset&quot;: 0, &quot;pitch&quot;: 2048 },
+    { &quot;objectIndex&quot;: 0, &quot;offset&quot;: 2211840, &quot;pitch&quot;: 2048 }
+  ]
+}
+</code></pre>
+<p>This is a teaching descriptor, not a native DRM struct or valid exported file descriptor.</p>
+<p>The luma occupies 1080 rows and the chroma occupies 540:</p>
+<pre><code class="lang-text">Luma bytes   = 2048 × 1080 = 2,211,840
+Chroma bytes = 2048 × 540  = 1,105,920
+Total        = 3,317,760
+</code></pre>
+<p>The chroma plane begins after the declared luma storage. Its paired chroma values cover the half-resolution chroma geometry while its row pitch remains the declared byte stride.</p>
+<p>An unpadded layout would have 3,110,400 bytes. The modeled padding adds 207,360 bytes, about 6.667%. Assuming width equals pitch would give the wrong row addressing and chroma offset.</p>
+<p>A real import also needs the actual supported format/modifier relationship. A tiled or compressed layout cannot be interpreted as this linear example just because its visible dimensions match.</p>
+<h2 id="handles-have-a-process-context">Handles have a process context</h2>
+<p>A file descriptor is a handle in the process that owns it. Sending its printed integer as ordinary metadata does not transfer another process's usable reference.</p>
+<p>Through an appropriate supported handle-transfer path, another process can receive its own descriptor referring to the same underlying resource. The two integer values can differ while the backing storage relationship is shared.</p>
+<p>Likewise, a DRM-local handle and an exported DMA-BUF descriptor have different scopes. The relevant export/import operation establishes the relationship.</p>
+<p>The illustrative buffer label above avoids pretending that a particular integer descriptor is live on the reader's machine.</p>
+<h2 id="sharing-needs-completion-and-ownership">Sharing needs completion and ownership</h2>
+<p>A consumer cannot read a picture while its producer is still writing the data it needs. An earlier producer completion also does not prove a later consumer has finished.</p>
+<p>Use an original timeline:</p>
+<table>
+<thead>
+<tr>
+<th>Model interval</th>
+<th>Operation</th>
+<th>Storage relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0–4 ms</td>
+<td>Producer writes picture A</td>
+<td>Consumer waits for the relevant completion</td>
+</tr>
+<tr>
+<td>4–7 ms</td>
+<td>Consumer reads A</td>
+<td>Producer preserves A's storage</td>
+</tr>
+<tr>
+<td>After 7 ms</td>
+<td>Consumer use ends</td>
+<td>Reuse additionally requires no other outstanding owner/reference</td>
+</tr>
+</tbody>
+</table>
+<p><img src="images/dmabuf-ownership-timeline.png" alt="An original shared-buffer timeline separates producer completion from the later permission to reuse the resource."></p>
+<p>The kernel describes implicit and explicit synchronization arrangements. Fences communicate completion in their stated scope; the participating interfaces need a coherent way to honor those dependencies.</p>
+<p>A resource remaining allocated is not the same fact as its last write being complete or all readers being finished.</p>
+<h2 id="cpu-coherence-is-another-preparation">CPU coherence is another preparation</h2>
+<p>CPU mapping of a DMA buffer can require cache-coherency handling. The kernel's userspace documentation brackets CPU access with the appropriate <code>DMA_BUF_IOCTL_SYNC</code> start/end operations.</p>
+<p>Waiting for a transfer or fence does not universally perform every needed CPU-cache preparation. Conversely, cache preparation is not a substitute for coordinating an outstanding producer or consumer under an explicit synchronization arrangement.</p>
+<p>A GPU-to-GPU route that does not need CPU sample access can have a different set of requirements from a CPU filter reading the same picture.</p>
+<h2 id="importexport-is-evidence-of-a-handoff">Import/export is evidence of a handoff</h2>
+<p>A shared-resource path can avoid an application's explicit full-picture copy when the resources and consumers are compatible. The use of DMA-BUF or PRIME alone does not prove that the entire job avoided layout conversions, staging or other memory traffic.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Hardware-Linux-VAAPI.html" title="Video Acceleration API (VA-API)">Video Acceleration API (VA-API)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Hardware-Linux-V4L2-M2M.html" title="V4L2 memory-to-memory codecs">V4L2 memory-to-memory codecs</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Hardware-Linux-V4L2-Stateless.html" title="V4L2 stateless decoding and the Request API">V4L2 stateless decoding and the Request API</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../building-blocks/Hardware-Decode-Filter-Encode.html" title="The hardware decode-filter-encode pipeline">The hardware decode-filter-encode pipeline</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../building-blocks/Hardware-GPU-Compute.html" title="GPU compute and video processing">GPU compute and video processing</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.kernel.org/doc/html/latest/driver-api/dma-buf.html" title="Linux kernel: DMA-BUF sharing and synchronization">Linux kernel: DMA-BUF sharing and synchronization</a></li>
+			            <li><a class="seealso-link" href="https://www.kernel.org/doc/html/latest/gpu/drm-uapi.html" title="Linux kernel: DRM userland interfaces and PRIME">Linux kernel: DRM userland interfaces and PRIME</a></li>
+			            <li><a class="seealso-link" href="https://intel.github.io/libva/" title="VA-API: Core interface documentation">VA-API: Core interface documentation</a></li>
+			            <li><a class="seealso-link" href="https://www.kernel.org/doc/html/latest/userspace-api/media/v4l/dev-stateless-decoder.html" title="Linux kernel: Stateless memory-to-memory decoder">Linux kernel: Stateless memory-to-memory decoder</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Hardware-Linux-DMABuf%0A*%20Title%3A%20DRM%20PRIME%20and%20DMA-BUF%20frame%20sharing%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

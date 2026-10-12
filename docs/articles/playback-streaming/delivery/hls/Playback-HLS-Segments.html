@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>HLS media segments and initialization | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="HLS media segments carry timed media intervals whose packaging, initialization and decoding dependencies determine how a player can enter and assemble the stream.">
+  <link rel="canonical" href="https://emby.media/learn/articles/playback-streaming/delivery/hls/Playback-HLS-Segments.html">
+  <meta property="og:title" content="HLS media segments and initialization | Emby Learn">
+  <meta property="og:description" content="HLS media segments carry timed media intervals whose packaging, initialization and decoding dependencies determine how a player can enter and assemble the stream.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/playback-streaming/delivery/hls/Playback-HLS-Segments.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/playback-streaming/delivery/hls/Playback-HLS-Segments.html","url":"https://emby.media/learn/articles/playback-streaming/delivery/hls/Playback-HLS-Segments.html","name":"HLS media segments and initialization","inLanguage":"en","headline":"HLS media segments and initialization","articleSection":"Playback and streaming","proficiencyLevel":"Beginner","accessMode":"textual","description":"HLS media segments carry timed media intervals whose packaging, initialization and decoding dependencies determine how a player can enter and assemble the stream.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Playback and streaming","item":"https://emby.media/learn/articles/playback-streaming/index.html"},{"@type":"ListItem","position":3,"name":"Streaming delivery","item":"https://emby.media/learn/articles/playback-streaming/delivery/index.html"},{"@type":"ListItem","position":4,"name":"HLS delivery","item":"https://emby.media/learn/articles/playback-streaming/delivery/hls/index.html"},{"@type":"ListItem","position":5,"name":"HLS media segments","item":"https://emby.media/learn/articles/playback-streaming/delivery/hls/Playback-HLS-Segments.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Playback-HLS-Segments">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../playback-streaming/index.html">Playback and streaming</a></li>
+              <li><a href="../../../playback-streaming/delivery/index.html">Streaming delivery</a></li>
+              <li><a href="../../../playback-streaming/delivery/hls/index.html">HLS delivery</a></li>
+              <li><span aria-current="page">HLS media segments</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Playback-HLS-Segments">
+<h1>HLS media segments and initialization</h1>
+<p class="article-description">HLS media segments carry timed media intervals whose packaging, initialization and decoding dependencies determine how a player can enter and assemble the stream.</p>
+
+
+<p>An <strong>HLS media segment</strong> carries a described interval of the presentation. The media playlist identifies it and gives its duration. The player retrieves its bytes, interprets their packaging and uses the samples on the intended timeline.</p>
+<p>A segment's filename does not identify the video codec or prove that the media is self-contained.</p>
+<h2 id="two-packaging-arrangements">Two packaging arrangements</h2>
+<p>HLS supports specified media-segment formats. Two common video arrangements are MPEG-2 Transport Stream and fragmented MP4.</p>
+<table>
+<thead>
+<tr>
+<th>Arrangement</th>
+<th>Where important interpretation information appears</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Transport Stream</td>
+<td>Transport-stream structure, programme information and encoded-stream configuration</td>
+</tr>
+<tr>
+<td>Fragmented MP4</td>
+<td>Initialization track descriptions plus media-fragment timing and sample data</td>
+</tr>
+</tbody>
+</table>
+<p>A <code>.ts</code> segment can carry encoded video and audio within transport-stream packets. “TS” names the container arrangement rather than H.264, HEVC or another video encoding.</p>
+<p>For fragmented MP4, a schematic relationship is:</p>
+<pre><code class="lang-text">Initialization: ftyp + moov (track and sample descriptions)
+Media:          moof (fragment metadata) + mdat (sample bytes)
+</code></pre>
+<p>This is a selected-box sketch, not a complete valid file. The ISO BMFF byte-stream reference and HLS specification define additional structure and constraints.</p>
+<p><img src="images/hls-initialization.png" alt="An original box schematic separates reusable track initialization from the metadata and sample bytes of later fragments."></p>
+<p>The HLS <code>EXT-X-MAP</code> tag names the applicable initialization resource. Downloading a later media fragment does not replace the need to know how its track identifiers and encoded configuration should be interpreted.</p>
+<h2 id="independent-entry-is-a-stronger-property">Independent entry is a stronger property</h2>
+<p>A segment boundary is a delivery boundary. A suitable video random-access point is a decoding property.</p>
+<p>If pictures near a boundary depend on earlier pictures, the player may need prior encoded data or start at another suitable access point. A publisher advertising <code>EXT-X-INDEPENDENT-SEGMENTS</code> asserts that the segments satisfy the protocol's independence requirement. It cannot create independence simply by adding the tag to an arbitrary split.</p>
+<p>This distinction explains why packaging and encoding are often coordinated. Segment boundaries intended for quality switching or seeking need appropriate timing and decoding relationships. <a href="../../../video/compression/picture-prediction-and-random-access/Video-Keyframes.html">Video keyframes</a> explains the underlying access-point concepts.</p>
+<h2 id="splitting-does-not-require-another-encode">Splitting does not require another encode</h2>
+<p>A delivery job can package copied encoded video into segments while preserving its picture representation. That is compatible with an Emby <a href="../../from-server/modes/Playback-Direct-Stream.html">Direct Stream</a> session.</p>
+<p>Alternatively, a converter can generate a new representation and package its output in the same delivery format. The resulting resource names can look similar in both cases.</p>
+<p>The evidence of copying or encoding lies in the <a href="../../from-server/Playback-Stream-Copy.html">stream operations</a>, not in a <code>.m4s</code> or <code>.ts</code> suffix.</p>
+<h2 id="media-duration-and-byte-size-vary-independently">Media duration and byte size vary independently</h2>
+<p>A segment lasting four seconds can be much larger than its neighbor of the same duration. Scene complexity and encoding decisions determine payload size. The playlist duration helps establish the timeline; actual byte arrival helps determine whether the next interval is available in time.</p>
+<p>Separate video, audio and text resources can also have different interval boundaries. A subtitle cue may span a video-segment boundary, while an audio stream uses its own sample cadence. The player assembles their presentation relationships rather than requiring all resources to be identical little files.</p>
+<p>When track configuration or timing changes, <a href="../Playback-Discontinuities.html">discontinuity handling</a> supplies the boundary context needed to continue interpreting later media.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Playback-HLS-Playlists.html" title="HLS playlists: variants, media order and live windows">HLS playlists: variants, media order and live windows</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Playback-CMAF.html" title="Common Media Application Format (CMAF)">Common Media Application Format (CMAF)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../from-server/Playback-Stream-Copy.html" title="Stream copying and encoded packet handling">Stream copying and encoded packet handling</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Playback-Seeking.html" title="Seeking during streaming">Seeking during streaming</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../video/compression/picture-prediction-and-random-access/Video-Keyframes.html" title="Video Keyframes and Random Access">Video Keyframes and Random Access</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Playback-Discontinuities.html" title="Stream discontinuities and timeline changes">Stream discontinuities and timeline changes</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.rfc-editor.org/rfc/rfc8216.html" title="IETF RFC 8216: HTTP Live Streaming (informational)">IETF RFC 8216: HTTP Live Streaming (informational)</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/mse-byte-stream-format-isobmff/" title="W3C Group Note: ISO BMFF byte stream format">W3C Group Note: ISO BMFF byte stream format</a></li>
+			            <li><a class="seealso-link" href="https://ffmpeg.org/ffmpeg-formats.html" title="FFmpeg: Container formats and fragmented MP4">FFmpeg: Container formats and fragmented MP4</a></li>
+			            <li><a class="seealso-link" href="https://developer.apple.com/documentation/http-live-streaming/about-the-common-media-application-format-with-http-live-streaming-hls" title="Apple: CMAF with HTTP Live Streaming">Apple: CMAF with HTTP Live Streaming</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Playback-HLS-Segments%0A*%20Title%3A%20HLS%20media%20segments%20and%20initialization%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

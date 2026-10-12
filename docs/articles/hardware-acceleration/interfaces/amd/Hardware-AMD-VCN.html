@@ -1,0 +1,240 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>AMD Video Core Next (VCN) | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="VCN is AMD&#8217;s video-engine family associated with supported media decoding and encoding operations, distinct from its graphics architecture and the software API used to access it.">
+  <link rel="canonical" href="https://emby.media/learn/articles/hardware-acceleration/interfaces/amd/Hardware-AMD-VCN.html">
+  <meta property="og:title" content="AMD Video Core Next (VCN) | Emby Learn">
+  <meta property="og:description" content="VCN is AMD&#8217;s video-engine family associated with supported media decoding and encoding operations, distinct from its graphics architecture and the software API used to access it.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/hardware-acceleration/interfaces/amd/Hardware-AMD-VCN.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/hardware-acceleration/interfaces/amd/Hardware-AMD-VCN.html","url":"https://emby.media/learn/articles/hardware-acceleration/interfaces/amd/Hardware-AMD-VCN.html","name":"AMD Video Core Next (VCN)","inLanguage":"en","headline":"AMD Video Core Next (VCN)","articleSection":"Media hardware acceleration","proficiencyLevel":"Beginner","accessMode":"textual","description":"VCN is AMD’s video-engine family associated with supported media decoding and encoding operations, distinct from its graphics architecture and the software API used to access it.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Media hardware acceleration","item":"https://emby.media/learn/articles/hardware-acceleration/index.html"},{"@type":"ListItem","position":3,"name":"Media engines and acceleration interfaces","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/index.html"},{"@type":"ListItem","position":4,"name":"Vendor media technologies","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/vendors/index.html"},{"@type":"ListItem","position":5,"name":"AMD","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/amd/index.html"},{"@type":"ListItem","position":6,"name":"AMD Video Core Next (VCN)","item":"https://emby.media/learn/articles/hardware-acceleration/interfaces/amd/Hardware-AMD-VCN.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Hardware-AMD-VCN">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../hardware-acceleration/index.html">Media hardware acceleration</a></li>
+              <li><a href="../../../hardware-acceleration/interfaces/index.html">Media engines and acceleration interfaces</a></li>
+              <li><a href="../../../hardware-acceleration/interfaces/vendors/index.html">Vendor media technologies</a></li>
+              <li><a href="../../../hardware-acceleration/interfaces/amd/index.html">AMD</a></li>
+              <li><span aria-current="page">AMD Video Core Next (VCN)</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Hardware-AMD-VCN">
+<h1>AMD Video Core Next (VCN)</h1>
+<p class="article-description">VCN is AMD&#8217;s video-engine family associated with supported media decoding and encoding operations, distinct from its graphics architecture and the software API used to access it.</p>
+
+
+<p><strong>VCN</strong> is AMD's video-engine family. It describes media hardware beneath the application and driver interfaces that expose supported decoding and encoding operations.</p>
+<p>An application can reach applicable AMD media paths through AMF or another supported platform interface. The VCN name belongs to the hardware layer rather than to a container or video codec.</p>
+<h2 id="graphics-and-media-ip-have-their-own-versions">Graphics and media IP have their own versions</h2>
+<p>AMD's Linux hardware-component table lists graphics, display, video and DMA components in separate columns. Those versions identify different blocks within a product.</p>
+<p>For example, its RAVEN/PICASSO entry associates a graphics-core version with VCN 1.0; CARRIZO/STONEY uses the earlier VCE/UVD pair. The distinction identifies a component family, rather than supplying a complete media support or performance table.</p>
+<p><img src="images/vcn-interface-engine.png" alt="An original AMD block diagram separates graphics/compute, VCN media operations and the AMF or platform-interface layer."></p>
+<p>A graphics-generation number should therefore not be substituted for the media IP version. Likewise, a product-name number alone does not establish a particular decode/encode configuration.</p>
+<h2 id="the-exposed-operations-are-queried-separately">The exposed operations are queried separately</h2>
+<p>Source reconstruction and target compression have different requirements. A device can accept one compressed input while offering another set of output encoders.</p>
+<p>In an Emby conversion exercise, HEVC Main 10 input and H.264 output need separate decode and encode paths, with a usable picture-processing relationship between them.</p>
+<p>The software runtime and driver expose those operations to the application. Current hardware information, implementation capability and the actual selected media configuration cooperate in the answer.</p>
+<h2 id="legacy-software-names-can-outlive-the-old-block-name">Legacy software names can outlive the old block name</h2>
+<p>AMF's current decoder documentation still includes UVD-prefixed component identifiers for several codecs. A component name can remain stable while the implementation uses a different supported hardware generation.</p>
+<p>This mirrors a broader API pattern: names preserve compatibility with application code. Reading an identifier as a hardware-probing result would confuse the software contract with the selected physical device.</p>
+<p><a href="Hardware-AMD-UVD.html">The UVD article</a> explains the legacy decoder name, while <a href="Hardware-AMD-AMF.html">AMF</a> explains the component interface.</p>
+<h2 id="the-complete-job-still-has-picture-and-memory-work">The complete job still has picture and memory work</h2>
+<p>VCN's codec operation can cooperate with GPU processing, driver services or CPU-side application work. Scaling, subtitle composition and colour transformations belong to their selected processing path.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Hardware-AMD-AMF.html" title="AMD Advanced Media Framework (AMF)">AMD Advanced Media Framework (AMF)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Hardware-AMD-UVD.html" title="AMD Unified Video Decoder (UVD, legacy)">AMD Unified Video Decoder (UVD, legacy)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="Hardware-AMD-VCE.html" title="AMD Video Coding Engine (VCE, legacy)">AMD Video Coding Engine (VCE, legacy)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../building-blocks/Hardware-Fixed-Function.html" title="Fixed-function media engines">Fixed-function media engines</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../linux/Hardware-Linux-VAAPI.html" title="Video Acceleration API (VA-API)">Video Acceleration API (VA-API)</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://www.kernel.org/doc/html/latest/gpu/amdgpu/amd-hardware-list-info.html" title="Linux kernel: AMD hardware components per product">Linux kernel: AMD hardware components per product</a></li>
+			            <li><a class="seealso-link" href="https://gpuopen.com/advanced-media-framework/" title="AMD GPUOpen: Advanced Media Framework">AMD GPUOpen: Advanced Media Framework</a></li>
+			            <li><a class="seealso-link" href="https://github.com/GPUOpen-LibrariesAndSDKs/AMF/blob/master/amf/doc/AMF_Video_Decode_API.md" title="AMD AMF: Video decoder programming guide">AMD AMF: Video decoder programming guide</a></li>
+			            <li><a class="seealso-link" href="https://www.amd.com/en/products/software/adrenalin/video-streaming.html" title="AMD: Video and streaming encoder technologies">AMD: Video and streaming encoder technologies</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Hardware-AMD-VCN%0A*%20Title%3A%20AMD%20Video%20Core%20Next%20(VCN)%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

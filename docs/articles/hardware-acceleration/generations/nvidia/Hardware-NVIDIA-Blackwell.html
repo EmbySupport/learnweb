@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>NVIDIA Blackwell media capabilities | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="Blackwell&#8217;s documented media additions include H.264/HEVC 4:2:2 paths and H.264 ten-bit features, with exact product resources and SDK/driver exposure defining the usable configuration.">
+  <link rel="canonical" href="https://emby.media/learn/articles/hardware-acceleration/generations/nvidia/Hardware-NVIDIA-Blackwell.html">
+  <meta property="og:title" content="NVIDIA Blackwell media capabilities | Emby Learn">
+  <meta property="og:description" content="Blackwell&#8217;s documented media additions include H.264/HEVC 4:2:2 paths and H.264 ten-bit features, with exact product resources and SDK/driver exposure defining the usable configuration.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/hardware-acceleration/generations/nvidia/Hardware-NVIDIA-Blackwell.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/hardware-acceleration/generations/nvidia/Hardware-NVIDIA-Blackwell.html","url":"https://emby.media/learn/articles/hardware-acceleration/generations/nvidia/Hardware-NVIDIA-Blackwell.html","name":"NVIDIA Blackwell media capabilities","inLanguage":"en","headline":"NVIDIA Blackwell media capabilities","articleSection":"Media hardware acceleration","proficiencyLevel":"Beginner","accessMode":"textual","description":"Blackwell’s documented media additions include H.264/HEVC 4:2:2 paths and H.264 ten-bit features, with exact product resources and SDK/driver exposure defining the usable configuration.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Media hardware acceleration","item":"https://emby.media/learn/articles/hardware-acceleration/index.html"},{"@type":"ListItem","position":3,"name":"Media-engine generations","item":"https://emby.media/learn/articles/hardware-acceleration/generations/index.html"},{"@type":"ListItem","position":4,"name":"NVIDIA media-engine generations","item":"https://emby.media/learn/articles/hardware-acceleration/generations/nvidia/index.html"},{"@type":"ListItem","position":5,"name":"NVIDIA Blackwell media capabilities","item":"https://emby.media/learn/articles/hardware-acceleration/generations/nvidia/Hardware-NVIDIA-Blackwell.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Hardware-NVIDIA-Blackwell">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../hardware-acceleration/index.html">Media hardware acceleration</a></li>
+              <li><a href="../../../hardware-acceleration/generations/index.html">Media-engine generations</a></li>
+              <li><a href="../../../hardware-acceleration/generations/nvidia/index.html">NVIDIA media-engine generations</a></li>
+              <li><span aria-current="page">NVIDIA Blackwell media capabilities</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Hardware-NVIDIA-Blackwell">
+<h1>NVIDIA Blackwell media capabilities</h1>
+<p class="article-description">Blackwell&#8217;s documented media additions include H.264/HEVC 4:2:2 paths and H.264 ten-bit features, with exact product resources and SDK/driver exposure defining the usable configuration.</p>
+
+
+<p>Blackwell's documented NVIDIA media additions include <strong>H.264 and HEVC 4:2:2</strong> encoding/decoding paths and <strong>ten-bit H.264</strong> features. These are specific format changes, beyond another entry for ordinary eight-bit 4:2:0 video.</p>
+<p>NVIDIA introduced these capabilities in its SDK 13.0 Blackwell material. The current SDK and product matrix establish their updated software and device scope.</p>
+<h2 id="chroma-and-precision-are-separate-dimensions">Chroma and precision are separate dimensions</h2>
+<p>A 4:2:2 picture retains chroma at a different spatial sampling relationship from 4:2:0. Ten-bit storage precision is another property.</p>
+<p>For an original ideal 1920 × 1080 picture, 4:2:0 has 1.5 samples per pixel across its planes, while 4:2:2 has two. If each sample occupies two bytes of storage:</p>
+<pre><code class="lang-text">4:2:0 = 1920 × 1080 × 1.5 × 2 = 6,220,800 bytes
+4:2:2 = 1920 × 1080 × 2   × 2 = 8,294,400 bytes
+</code></pre>
+<p>The calculation concerns ideal unpadded picture storage. It does not give a compressed bitrate.</p>
+<p><img src="images/blackwell-chroma-precision.png" alt="An original format diagram separates chroma geometry, sample precision and the corresponding decode/encode configuration questions."></p>
+<p>NVIDIA's Blackwell material names NV16 and P210 among its semiplanar encoder input formats for the relevant 4:2:2 paths.</p>
+<h2 id="a-product-row-defines-its-resource-count">A product row defines its resource count</h2>
+<p>The <strong>GeForce RTX 5090</strong> matrix lists three ninth-generation NVENC units and two sixth-generation NVDEC units.</p>
+<p>Those are different operation resources. The same row includes its 4:2:2 encoding columns and AV1 encode/decode entries.</p>
+<p>A Blackwell architecture label is not a rule that every product must contain those same counts. The exact selected row remains part of the evidence.</p>
+<h2 id="source-and-target-profiles-need-software-exposure">Source and target profiles need software exposure</h2>
+<p>A new device feature needs an application wrapper, SDK/runtime and driver path that expose the requested profile and picture format.</p>
+<p>A program compiled with an older interface can therefore fail to offer a configuration present in the hardware reference. Its accepted input-surface layout is also another required link.</p>
+<p>For an Emby source using ten-bit 4:2:2, the server's actual decoder, filters and target encoder establish the executing route. The feature addition is relevant to the source query, while the observed initialization supplies the implemented answer.</p>
+<h2 id="keep-the-pipelines-picture-work-explicit">Keep the pipeline’s picture work explicit</h2>
+<p>Scaling, colour interpretation, subtitle composition and output packaging remain separate operations. An accepted 4:2:2 decoder does not choose those transformations automatically.</p>
+<p>The format and resource relationships described by <a href="../../pipelines/memory/Hardware-Frame-Surfaces.html">frame surfaces</a> connect the new codec configurations to their consumers.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Hardware-NVIDIA-Ada.html" title="NVIDIA Ada Lovelace media capabilities">NVIDIA Ada Lovelace media capabilities</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../interfaces/nvidia/Hardware-NVIDIA-NVDEC.html" title="NVIDIA NVDEC">NVIDIA NVDEC</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../interfaces/nvidia/Hardware-NVIDIA-NVENC.html" title="NVIDIA NVENC">NVIDIA NVENC</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../Hardware-Codec-Matrix.html" title="How to read a hardware codec support matrix">How to read a hardware codec support matrix</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../pipelines/Hardware-Driver-Capabilities.html" title="Driver-dependent media capabilities">Driver-dependent media capabilities</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://developer.nvidia.com/video-encode-decode-support-matrix" title="NVIDIA: Video encode/decode support matrix">NVIDIA: Video encode/decode support matrix</a></li>
+			            <li><a class="seealso-link" href="https://developer.nvidia.com/blog/nvidia-video-codec-sdk-13-0-powered-by-nvidia-blackwell/" title="NVIDIA: Blackwell codec features introduced with SDK 13.0">NVIDIA: Blackwell codec features introduced with SDK 13.0</a></li>
+			            <li><a class="seealso-link" href="https://docs.nvidia.com/video-technologies/video-codec-sdk/13.1/nvenc-application-note/index.html" title="NVIDIA SDK 13.1: NVENC capabilities and session policy">NVIDIA SDK 13.1: NVENC capabilities and session policy</a></li>
+			            <li><a class="seealso-link" href="https://docs.nvidia.com/video-technologies/video-codec-sdk/13.1/nvdec-application-note/index.html" title="NVIDIA SDK 13.1: NVDEC capabilities">NVIDIA SDK 13.1: NVDEC capabilities</a></li>
+			            <li><a class="seealso-link" href="https://docs.nvidia.com/video-technologies/video-codec-sdk/13.1/nvenc-video-encoder-api-prog-guide/index.html" title="NVIDIA SDK 13.1: NVENC programming guide">NVIDIA SDK 13.1: NVENC programming guide</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Hardware-NVIDIA-Blackwell%0A*%20Title%3A%20NVIDIA%20Blackwell%20media%20capabilities%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

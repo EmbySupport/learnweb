@@ -1,0 +1,289 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <title>Timed text in MPEG-DASH | Emby Learn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="docfx 2.59.2.0">
+  <meta name="theme-color" content="#f7f8f9">
+  <meta name="description" content="MPEG-DASH describes selectable timed-text representations and maps their sample timelines into periods on the presentation timeline.">
+  <link rel="canonical" href="https://emby.media/learn/articles/subtitles/storage-delivery/streaming/Subtitle-DASH.html">
+  <meta property="og:title" content="Timed text in MPEG-DASH | Emby Learn">
+  <meta property="og:description" content="MPEG-DASH describes selectable timed-text representations and maps their sample timelines into periods on the presentation timeline.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://emby.media/learn/articles/subtitles/storage-delivery/streaming/Subtitle-DASH.html">
+  <meta property="og:site_name" content="Emby Learn">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://emby.media/learn/articles/subtitles/storage-delivery/streaming/Subtitle-DASH.html","url":"https://emby.media/learn/articles/subtitles/storage-delivery/streaming/Subtitle-DASH.html","name":"Timed text in MPEG-DASH","inLanguage":"en","headline":"Timed text in MPEG-DASH","articleSection":"Subtitles and captions","proficiencyLevel":"Beginner","accessMode":"textual","description":"MPEG-DASH describes selectable timed-text representations and maps their sample timelines into periods on the presentation timeline.","author":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightHolder":{"@type":"Organization","name":"Emby LLC","url":"https://emby.media/"},"copyrightNotice":"Copyright ©2026 Emby LLC. All rights reserved.","copyrightYear":2026,"isAccessibleForFree":true,"isFamilyFriendly":true},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Emby Learn","item":"https://emby.media/learn/index.html"},{"@type":"ListItem","position":2,"name":"Subtitles and captions","item":"https://emby.media/learn/articles/subtitles/index.html"},{"@type":"ListItem","position":3,"name":"Subtitle storage and delivery","item":"https://emby.media/learn/articles/subtitles/storage-delivery/index.html"},{"@type":"ListItem","position":4,"name":"Streaming subtitle transports","item":"https://emby.media/learn/articles/subtitles/storage-delivery/streaming/index.html"},{"@type":"ListItem","position":5,"name":"Timed text in MPEG-DASH","item":"https://emby.media/learn/articles/subtitles/storage-delivery/streaming/Subtitle-DASH.html"}]}]}</script>
+  <link rel="shortcut icon" href="../../../../favicon.ico">
+  <script type="text/javascript" src="../../../../styles/theme-config.js"></script>
+  <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+  <link rel="stylesheet" href="../../../../styles/docfx.css">
+  <link rel="stylesheet" href="../../../../styles/main.css">
+  <link rel="stylesheet" href="../../../../styles/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css">
+  <link rel="stylesheet" href="../../../../styles/theme.css">
+  <meta property="docfx:navrel" content="../../../../toc.html">
+  <meta property="docfx:tocrel" content="../../../toc.html">
+  <meta property="docfx:uid" content="Learn-Subtitle-DASH">
+  
+  <meta property="docfx:rel" content="../../../../">
+  
+  <script type="text/javascript" src="../../../../nav.js"></script>
+  <script type="text/javascript" src="../../../toc.js"></script>
+
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      
+      <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+          <a class="brand" href="https://emby.media/" aria-label="Emby home">
+            
+            <img class="logo-on-dark" src="../../../../images/logo.png" alt="Emby">
+            <img class="logo-on-light" src="../../../../images/logo-dark-text.png" alt="Emby">
+          </a>
+          <a class="site-title-link" href="../../../../index.html"><span class="site-title">Emby <strong>Learn</strong></span></a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="navbar" aria-label="Open menu">&#9776;</button>
+          <div class="nav-links" id="navbar">
+            <ul class="nav-links-list navbar-nav">
+                
+                    <li>
+                      <a href="https://emby.media/" title="Emby Home">Emby Home</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/video/index.html" title="Video">Video</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/audio/index.html" title="Audio">Audio</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/media-files/index.html" title="Media Files">Media Files</a>
+                    </li>
+                    <li class="dropdown nav-dropdown">
+                      <button class="nav-dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">More <span class="caret" aria-hidden="true"></span></button>
+                      <ul class="dropdown-menu">
+                        
+                    <li>
+                      <a href="../../../../articles/subtitles/index.html" title="Subtitles and captions">Subtitles and captions</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/photos-images/index.html" title="Photos and images">Photos and images</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/metadata-discovery/index.html" title="Metadata and discovery">Metadata and discovery</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/libraries-collections/index.html" title="Libraries and media collections">Libraries and media collections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/playback-streaming/index.html" title="Playback and streaming">Playback and streaming</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/hardware-acceleration/index.html" title="Media hardware acceleration">Media hardware acceleration</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/display-av/index.html" title="Displays and AV connections">Displays and AV connections</a>
+                    </li>
+                    <li>
+                      <a href="../../../../articles/live-tv/index.html" title="Live TV and recording">Live TV and recording</a>
+                    </li>
+                      </ul>
+                    </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <script>
+        (function () {
+          var button = document.querySelector('.site-header .menu-button');
+          var links = document.querySelector('.site-header .nav-links');
+          if (!button || !links) { return; }
+          button.addEventListener('click', function () {
+            var isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          });
+        }());
+      </script>
+      
+      <div class="subnav navbar navbar-default">
+        <div class="container">
+          <nav class="hide-when-search" id="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href="../../../../index.html">Emby Learn</a></li>
+              <li><a href="../../../subtitles/index.html">Subtitles and captions</a></li>
+              <li><a href="../../../subtitles/storage-delivery/index.html">Subtitle storage and delivery</a></li>
+              <li><a href="../../../subtitles/storage-delivery/streaming/index.html">Streaming subtitle transports</a></li>
+              <li><span aria-current="page">Timed text in MPEG-DASH</span></li>
+              
+            </ol>
+          </nav>
+      
+      	<div class="breadcrumpsearch">
+      	  <form class="navbar-form navbar-right" role="search" id="search">
+      		<div class="form-group">
+      		  <i class="fa fa-search" aria-hidden="true"></i>
+      		  <label class="sr-only" for="search-query">Search Learn topics</label>
+      		  <input type="text" class="form-control" id="search-query" placeholder="Search Learn topics" autocomplete="off">
+      		</div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <nav id="sidetoc" aria-label="Learn table of contents"></nav>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Learn-Subtitle-DASH">
+<h1>Timed text in MPEG-DASH</h1>
+<p class="article-description">MPEG-DASH describes selectable timed-text representations and maps their sample timelines into periods on the presentation timeline.</p>
+
+
+<p>MPEG-DASH can describe timed text alongside its video and audio representations. A text <strong>Adaptation Set</strong> identifies the content role and language, while its representations and segment descriptions tell the client what to retrieve and interpret.</p>
+<p>The subtitle's representation can use TTML/IMSC or WebVTT carriage. The exact codec/profile declaration matters: “an MP4 segment” identifies the container family, not the timed-text model inside it.</p>
+<h2 id="a-text-adaptation-set-describes-a-choice">A text adaptation set describes a choice</h2>
+<p>This original XML excerpt illustrates one text representation within a period. It omits the surrounding MPD and video/audio sets:</p>
+<pre><code class="lang-xml">&lt;Period start=&quot;PT600S&quot;&gt;
+  &lt;AdaptationSet lang=&quot;en&quot; mimeType=&quot;application/mp4&quot;
+                 codecs=&quot;stpp.ttml.im1t&quot;&gt;
+    &lt;Role schemeIdUri=&quot;urn:mpeg:dash:role:2011&quot; value=&quot;subtitle&quot;/&gt;
+    &lt;Representation id=&quot;english&quot; bandwidth=&quot;4000&quot;&gt;
+      &lt;SegmentTemplate timescale=&quot;1000&quot; presentationTimeOffset=&quot;1000000&quot;
+                       initialization=&quot;text-init.mp4&quot;
+                       media=&quot;text-$Time$.m4s&quot;&gt;
+        &lt;SegmentTimeline&gt;
+          &lt;S t=&quot;1000000&quot; d=&quot;6000&quot; r=&quot;1&quot;/&gt;
+        &lt;/SegmentTimeline&gt;
+      &lt;/SegmentTemplate&gt;
+    &lt;/Representation&gt;
+  &lt;/AdaptationSet&gt;
+&lt;/Period&gt;
+</code></pre>
+<p>The codec identifier describes an IMSC text carriage profile, not every possible TTML feature. The example's language is English and its role is subtitle content. The segment description uses a 1,000-unit-per-second time scale and two six-second intervals.</p>
+<p>DASH-IF's published profiles distinguish <code>stpp</code>-based XML timed text from <code>wvtt</code> WebVTT samples. Caption accessibility roles can supply additional selection information. A client still needs to implement the declared representation.</p>
+<h2 id="a-sample-timeline-is-mapped-to-the-period">A sample timeline is mapped to the period</h2>
+<p>A stored sample time can be far from zero even when the period begins at a convenient programme position. <strong>presentationTimeOffset</strong>, or PTO, establishes which sample-timeline point corresponds to the period start.</p>
+<p>Using sample time q and timescale f:</p>
+<pre><code class="lang-text">presentation time = period start + (q − PTO) / f
+</code></pre>
+<p>In the example, a sample position of <strong>1,002,500</strong> maps to:</p>
+<pre><code class="lang-text">600 + (1,002,500 − 1,000,000) / 1,000
+= 600 + 2.5
+= 602.5 seconds
+</code></pre>
+<p><img src="images/dash-time-map.png" alt="A DASH sample time maps through presentationTimeOffset and timescale to a position within a period and then to the complete presentation."></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Sample position</th>
+<th style="text-align: right;">Position within period</th>
+<th style="text-align: right;">Presentation position</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1,000,000</td>
+<td style="text-align: right;">0 s</td>
+<td style="text-align: right;">600 s</td>
+</tr>
+<tr>
+<td style="text-align: right;">1,002,500</td>
+<td style="text-align: right;">2.5 s</td>
+<td style="text-align: right;">602.5 s</td>
+</tr>
+<tr>
+<td style="text-align: right;">1,006,000</td>
+<td style="text-align: right;">6 s</td>
+<td style="text-align: right;">606 s</td>
+</tr>
+</tbody>
+</table>
+<p>PTO is measured in the representation's units, not directly in seconds. Subtracting it after dividing only the sample position, or adding it instead of subtracting, produces a different origin.</p>
+<p>Segment numbers and URI values identify retrieved resources. They do not replace the sample timestamps within those resources.</p>
+<h2 id="a-text-document-can-contain-its-own-cue-timing">A text document can contain its own cue timing</h2>
+<p>The calculation above describes the <strong>sample timeline mapping</strong>. An XML timed-text sample can contain a document with its own begin/end expressions, nested timing and profile rules. Its internal cue intervals must be interpreted using the applicable carriage/profile relationship.</p>
+<p>That is why extracting XML and treating every <code>begin</code> as an absolute whole-movie timestamp can fail. <a href="../../formats/text/Subtitle-TTML.html">TTML timing</a> resolves the document's internal relationships; the delivery model places the resulting presentation in its period.</p>
+<p>A sample's interval can also bound what the client presents. A cue described outside the applicable period or sample context is not automatically an instruction to continue indefinitely into later periods.</p>
+<h2 id="period-boundaries-are-presentation-boundaries">Period boundaries are presentation boundaries</h2>
+<p>A presentation can move into another period with a different origin relationship or representation. A caption active around that transition needs appropriate representation in the retained intervals.</p>
+<p>The client must distinguish retained common content from a fresh timeline. Carrying an old PTO forward blindly can move otherwise valid subtitle data into another scene.</p>
+<p>A live stream adds <strong>availability timing</strong>: when a segment can be requested is not the same quantity as when its subtitle is shown. Wall-clock availability, sample timestamps and the player's selected presentation delay describe different relationships.</p>
+<p>For an Emby route consuming or producing a DASH presentation, inspect the actual subtitle representation and its period mapping. A source file's correct standalone cue times do not establish that the segmented delivery preserved the same programme origin.</p>
+
+
+<h4 class="seealso-heading">See Also</h4>
+<ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="Subtitle-HLS.html" title="Subtitles in HLS">Subtitles in HLS</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../formats/Subtitle-IMSC.html" title="IMSC timed text">IMSC timed text</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../formats/text/Subtitle-TTML.html" title="Timed Text Markup Language (TTML)">Timed Text Markup Language (TTML)</a>
+      </li>
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../timing/Subtitle-Timestamps.html" title="Subtitle timestamps">Subtitle timestamps</a>
+      </li>
+</ul>
+			          <h4 class="references seealso-heading">References</h4>
+			          <ul class="seealso-list reference-list">
+			            <li><a class="seealso-link" href="https://dashif.org/docs/IOP-Guidelines/DASH-IF-IOP-Part9-v5.0.0.pdf" title="DASH-IF IOP Part 9 v5.0.0: Subtitles and captions">DASH-IF IOP Part 9 v5.0.0: Subtitles and captions</a></li>
+			            <li><a class="seealso-link" href="https://dashif.org/Guidelines-TimingModel/" title="DASH-IF: Restricted timing model">DASH-IF: Restricted timing model</a></li>
+			            <li><a class="seealso-link" href="https://www.mpeg.org/standards/MPEG-4/30/" title="MPEG: Timed text in ISO base media files, ISO/IEC 14496-30">MPEG: Timed text in ISO base media files, ISO/IEC 14496-30</a></li>
+			            <li><a class="seealso-link" href="https://www.w3.org/TR/ttml-imsc1.3/" title="W3C IMSC Text Profile 1.3">W3C IMSC Text Profile 1.3</a></li>
+			          </ul>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix sdkversion" id="affix">
+                <h5>On this Page</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="footer">
+          <div class="container footer-inner">
+            <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
+            <div class="footer-actions">
+              <span class="contribution">
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Subtitle-DASH%0A*%20Title%3A%20Timed%20text%20in%20MPEG-DASH%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+              </span>
+              <a href="#top" class="back-to-top">Back to Top</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../searchIndex.js"></script>
+    <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>
