@@ -1282,9 +1282,6 @@ references:
 - uid: Learn-Index-storage-data-protection
   name: 'Overview: Data protection'
   href: articles/storage/data-protection/index.html
-- uid: Learn-Index-storage-data-protection-backups
-  name: 'Overview: Backups and recovery'
-  href: articles/storage/data-protection/backups/index.html
 - uid: Learn-Index-storage-data-protection-redundancy
   name: 'Overview: Redundancy and pooling'
   href: articles/storage/data-protection/redundancy/index.html
@@ -2512,9 +2509,6 @@ references:
 - uid: Learn-Storage-ACLs
   name: 'Access control lists: entries, masks and inheritance'
   href: articles/storage/sharing/permissions/Storage-ACLs.html
-- uid: Learn-Storage-App-Backups
-  name: Application-data backups and consistent server state
-  href: articles/storage/data-protection/backups/Storage-App-Backups.html
 - uid: Learn-Storage-Caches
   name: 'Storage caches: reusable reads and deferred writes'
   href: articles/storage/fundamentals/performance/Storage-Caches.html
@@ -2545,9 +2539,6 @@ references:
 - uid: Learn-Storage-Locking
   name: File locking, share modes and concurrent access
   href: articles/storage/file-systems/activity/Storage-Locking.html
-- uid: Learn-Storage-Media-Backups
-  name: Media backups and recoverable generations
-  href: articles/storage/data-protection/backups/Storage-Media-Backups.html
 - uid: Learn-Storage-Mount-Points
   name: Mount points and the file system behind a path
   href: articles/storage/file-systems/paths/Storage-Mount-Points.html
@@ -2581,9 +2572,6 @@ references:
 - uid: Learn-Storage-Read-Only
   name: Read-only media access and separate writable data
   href: articles/storage/sharing/permissions/Storage-Read-Only.html
-- uid: Learn-Storage-Restore
-  name: 'Backup restoration: recovering a usable server'
-  href: articles/storage/data-protection/backups/Storage-Restore.html
 - uid: Learn-Storage-SATA
   name: SATA storage and negotiated interface rates
   href: articles/storage/fundamentals/hardware/Storage-SATA.html

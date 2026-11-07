@@ -199,7 +199,7 @@ Container C3: /config -&gt; new volume V2; does not thereby contain G1
 <h2 id="persistence-is-not-consistency-or-backup">Persistence is not consistency or backup</h2>
 <p>Several containers can mount a volume, but simultaneous access must be supported by the applications using its files. Sharing one database directory between independent servers does not make those servers a coordinated database cluster.</p>
 <p>Back up volume content through supported access and the application's consistency method. Docker documents managed volume access rather than treating its private host-storage layout as a directory to edit arbitrarily.</p>
-<p>The volume preserves a data lifecycle. <a href="../../data-protection/backups/Storage-App-Backups.html">Application-data backup</a> supplies another recoverable generation, and <a href="../../data-protection/backups/Storage-Restore.html">restoration</a> verifies that it can be used with the intended software and paths.</p>
+<p>The volume preserves a data lifecycle. <a href="../../data-protection/backups/Storage-App-Backups.md">Application-data backup</a> supplies another recoverable generation, and <a href="../../data-protection/backups/Storage-Restore.md">restoration</a> verifies that it can be used with the intended software and paths.</p>
 
 
 <h4 class="seealso-heading">See Also</h4>
@@ -209,9 +209,6 @@ Container C3: /config -&gt; new volume V2; does not thereby contain G1
       </li>
       <li class="seealso-item">
           <a class="seealso-link" href="../Server-Persistent-Data.html" title="Persistent application data across server recreation">Persistent application data across server recreation</a>
-      </li>
-      <li class="seealso-item">
-          <a class="seealso-link" href="../../data-protection/backups/Storage-App-Backups.html" title="Application-data backups and consistent server state">Application-data backups and consistent server state</a>
       </li>
 </ul>
 			          <h4 class="references seealso-heading">References</h4>
@@ -238,7 +235,8 @@ Container C3: /config -&gt; new volume V2; does not thereby contain G1
             <div class="footer-copy">2026 © EMBY LLC.  Please see our <a class="lnk" href="https://emby.media/terms.html">terms of use</a> and <a class="lnk" href="https://emby.media/privacy.html">privacy policy</a>.</div>
             <div class="footer-actions">
               <span class="contribution">
-                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Server-Volumes%0A*%20Title%3A%20Container%20volumes%20and%20managed%20persistent%20storage%0A*%20Article%3A%20%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+                  <a href="https://github.com/EmbySupport/Emby.Docs/issues/new?title=&amp;body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23%23%23%23%20Article%20Details%0A%0A**Do%20not%20remove%20this%20section**%0A%0A*%20uid%3A%20Learn-Server-Volumes%0A*%20Title%3A%20Container%20volumes%20and%20managed%20persistent%20storage%0A*%20Article%3A%20https%3A%2F%2Fgithub.com%2FEmbySupport%2FEmby.Learn%2Fblob%2Fmaster%2FEmby.Learn%2Fcontent%2Flearn%2Farticles%2Fstorage%2Fexecution%2Fcontainers%2FServer-Volumes.md%0A*%20LegacyUrl%3A%20https%3A%2F%2Fsupport.emby.mediaundefined%0A" class="contribution-link" title="Feedback on this article"><div class="far fa-comment-alt fa-sm"></div></a>
+                  <a href="https://github.com/EmbySupport/Emby.Learn/blob/master/Emby.Learn/content/learn/articles/storage/execution/containers/Server-Volumes.md/#L1" class="contribution-link" title="View article source"><div class="far fa-edit fa-sm"></div></a>
               </span>
               <a href="#top" class="back-to-top">Back to Top</a>
             </div>
@@ -252,5 +250,6 @@ Container C3: /config -&gt; new volume V2; does not thereby contain G1
     <script type="text/javascript" src="../../../../styles/lunr.min.js"></script>
     <script type="text/javascript" src="../../../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../../../styles/main.js"></script>
+    <script src="https://emby.media/resources/site-switcher.js" data-site-switcher=".site-title-link" data-current-site="learn"></script>
   </body>
 </html>
