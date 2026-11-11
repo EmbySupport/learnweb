@@ -156,7 +156,7 @@
 <p class="article-description">A hardware video pipeline connects encoded input, decoded surfaces, picture transformations and encoded output through compatible devices, memory formats and completion dependencies.</p>
 
 
-<p>A hardware video pipeline must connect <strong>the output of each stage to a usable input for the next</strong>. Finding a decoder and encoder is only the beginning: picture layout, memory location, device context, transformations and timing also have to fit.</p>
+<p>A hardware video pipeline must connect <strong><a href="../../general-concepts/Graphs.html#connections-describe-the-data-as-well-as-the-route">the output of each stage to a usable input for the next</a></strong>. Finding a decoder and encoder is only the beginning: picture layout, memory location, device context, transformations and timing also have to fit.</p>
 <p>This is the hardware view of the broader <a href="../../playback-streaming/conversion/Playback-Transcode-Pipeline.html">transcoding pipeline</a>. Its central objects are compressed packets at the ends and decoded picture surfaces between the stages.</p>
 <h2 id="define-the-source-and-target-first">Define the source and target first</h2>
 <p>Imagine an original conversion exercise:</p>

@@ -2057,6 +2057,12 @@
                             "description":  "A copy-back video path makes hardware-decoded pictures available in a CPU-oriented representation so software consumers can process them before later delivery or encoding.",
                             "url":  "https://emby.media/learn/articles/hardware-acceleration/pipelines/memory/Hardware-Copy-Back.html"
                         },
+    "decision graph":  {
+                           "uid":  "Learn-Graphs",
+                           "title":  "What is a graph?",
+                           "description":  "A graph describes nodes and their connections, helping explain how audio and video are processed and how processing choices relate.",
+                           "url":  "https://emby.media/learn/articles/general-concepts/Graphs.html"
+                       },
     "deinterlacing":  {
                           "uid":  "Learn-Deinterlacing",
                           "title":  "Deinterlacing",
@@ -2219,6 +2225,12 @@
                                "description":  "Pixel aspect ratio describes how wide each video sample is intended to appear relative to its height.",
                                "url":  "https://emby.media/learn/articles/video/geometry/aspect-ratios/Video-Pixel-Aspect-Ratio.html"
                            },
+    "processing graph":  {
+                             "uid":  "Learn-Graphs",
+                             "title":  "What is a graph?",
+                             "description":  "A graph describes nodes and their connections, helping explain how audio and video are processed and how processing choices relate.",
+                             "url":  "https://emby.media/learn/articles/general-concepts/Graphs.html"
+                         },
     "progressive video":  {
                               "uid":  "Learn-Progressive-Video",
                               "title":  "Progressive Video",

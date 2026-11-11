@@ -164,7 +164,7 @@
 <pre><code class="lang-text">Server leaf L -&gt; Intermediate I -&gt; Root R
 Client trust anchors: R
 </code></pre>
-<p>The arrow represents an issuer relationship whose signature and constraints must be checked. L is the endpoint certificate; I is permitted to issue the relevant child certificate; R is the declared anchor for this client.</p>
+<p>Each arrow in this <a href="../../../general-concepts/Graphs.html">graph</a> represents an issuer relationship whose signature and constraints must be checked. L is the endpoint certificate; I is permitted to issue the relevant child certificate; R is the declared anchor for this client.</p>
 <p><img src="images/certificate-path-anchor.png" alt="The original leaf/intermediate/root model separates the served chain from the client’s trusted anchor."></p>
 <p>Trust starts with the client’s chosen anchor policy. A self-signed root received over the same untrusted connection cannot grant itself trusted status merely by validating its own signature.</p>
 <p>Otherwise, an arbitrary endpoint could create a root and declare its own evidence acceptable.</p>

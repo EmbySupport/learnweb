@@ -157,7 +157,7 @@
 <p class="article-description">A media filter graph connects decoded-frame transformations through defined input/output relationships whose order, format and branching affect the result.</p>
 
 
-<p>A filter graph connects media transformations. Its edges carry pictures or samples in compatible representations; its nodes perform operations such as scaling, mixing or rendering.</p>
+<p>A <a href="../../../general-concepts/Graphs.html">filter graph</a> connects media transformations. Its edges carry pictures or samples in compatible representations; its nodes perform operations such as scaling, mixing or rendering.</p>
 <p>Order and connectivity are part of the meaning. A collection of enabled options does not, by itself, describe how their outputs reach the next stage.</p>
 <h2 id="a-source-can-feed-two-branches">A source can feed two branches</h2>
 <p>This original FFmpeg-style graph expression splits one decoded video input and scales the branches to two sizes:</p>
@@ -211,6 +211,9 @@
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../general-concepts/Graphs.html" title="What is a graph?">What is a graph?</a>
+      </li>
       <li class="seealso-item">
           <a class="seealso-link" href="Playback-Decoding.html" title="Decoding media streams">Decoding media streams</a>
       </li>

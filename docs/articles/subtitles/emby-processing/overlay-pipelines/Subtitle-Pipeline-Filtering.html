@@ -157,7 +157,7 @@
 <p class="article-description">Native subtitle filtering keeps decoded text or graphics in a separate timed branch, exposing transformations before direct composition or conversion into an image/video layer.</p>
 
 
-<p>A subtitle filtering pipeline keeps decoded subtitle content as a branch in the processing graph. The branch can transform text, style or graphical geometry before joining the picture branch.</p>
+<p>A subtitle filtering pipeline keeps decoded subtitle content as a branch in the <a href="../../../general-concepts/Graphs.html">processing graph</a>. The branch can transform text, style or graphical geometry before joining the picture branch.</p>
 <p>This exposes intermediate representations. A filter can accept <strong>subtitle frames</strong> rather than pretending that all captions have already become video pictures. “Filtering pipeline” here describes that graph architecture, not a fixed Emby menu option.</p>
 <p><img src="images/native-subtitle-branch.png" alt="Decoded text or graphic subtitle events can be transformed as subtitles, composed directly, or converted into a video layer before composition."></p>
 <h2 id="a-native-event-carries-timing-and-presentation">A native event carries timing and presentation</h2>

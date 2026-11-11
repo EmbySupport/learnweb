@@ -194,7 +194,7 @@
 </tbody>
 </table>
 <p>The letters describe coding possibilities and picture/slice types, not a universal lifecycle. A modern B-picture can itself become a reference. A picture can also mix prediction choices across its regions.</p>
-<p>For example, a hierarchical structure might decode a B-picture between two distant anchors, then use that intermediate picture to predict other B-pictures. The dependency graph becomes deeper even if the visible I/P/B sequence looks similar. “B” therefore does not mean that the decoder can always discard it immediately.</p>
+<p>For example, a hierarchical structure might decode a B-picture between two distant anchors, then use that intermediate picture to predict other B-pictures. The <a href="../../../general-concepts/Graphs.html">dependency graph</a> becomes deeper even if the visible I/P/B sequence looks similar. “B” therefore does not mean that the decoder can always discard it immediately.</p>
 <h2 id="references-can-outlive-their-display-time">References can outlive their display time</h2>
 <p>I0 can already have been shown when P3 and the early B-pictures use it. It remains in memory because prediction still needs it.</p>
 <p>P3 may first be held because it was decoded ahead of display. After it has been displayed, it still remains a reference for P6, B4, and B5. Being displayed and being safe to release are separate events.</p>

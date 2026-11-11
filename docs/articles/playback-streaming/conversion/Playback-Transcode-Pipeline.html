@@ -156,7 +156,7 @@
 <p class="article-description">A transcoding pipeline connects resource access, selected stream processing, timestamp handling and output packaging so that a new media representation can be delivered.</p>
 
 
-<p>A transcoding pipeline connects operations that use different kinds of data. The input is a stored or incoming media resource. Some stages handle compressed packets; others need reconstructed pictures or audio samples. The output is encoded media packaged for a playback path.</p>
+<p>A transcoding pipeline forms a <a href="../../general-concepts/Graphs.html">graph of connected operations</a> that use different kinds of data. The input is a stored or incoming media resource. Some stages handle compressed packets; others need reconstructed pictures or audio samples. The output is encoded media packaged for a playback path.</p>
 <p>Understanding those boundaries explains both what a conversion changes and where its time or memory cost can arise.</p>
 <h2 id="a-concrete-conversion-plan">A concrete conversion plan</h2>
 <p>Take an original fictional 108-minute source with 4K HEVC HDR video, six-channel AC-3 audio and a text subtitle. The chosen target is 1280 × 720 H.264 SDR, stereo AAC and separately usable subtitle text.</p>
@@ -236,6 +236,9 @@
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../general-concepts/Graphs.html" title="What is a graph?">What is a graph?</a>
+      </li>
       <li class="seealso-item">
           <a class="seealso-link" href="pipeline-stages/Playback-Decoding.html" title="Decoding media streams">Decoding media streams</a>
       </li>

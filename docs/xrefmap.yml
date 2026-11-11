@@ -484,6 +484,9 @@ references:
 - uid: Learn-Gamut-Mapping
   name: Gamut Mapping
   href: articles/video/tone-mapping/color-and-luminance/Gamut-Mapping.html
+- uid: Learn-Graphs
+  name: What is a graph?
+  href: articles/general-concepts/Graphs.html
 - uid: Learn-Hardware-AMD-AMF
   name: AMD Advanced Media Framework (AMF)
   href: articles/hardware-acceleration/interfaces/amd/Hardware-AMD-AMF.html
@@ -880,6 +883,9 @@ references:
 - uid: Learn-Index-display-av-signaling-capability-exchange
   name: 'Overview: Capability exchange'
   href: articles/display-av/signaling/capability-exchange/index.html
+- uid: Learn-Index-general-concepts
+  name: 'Overview: General concepts'
+  href: articles/general-concepts/index.html
 - uid: Learn-Index-hardware-acceleration
   name: 'Overview: Media hardware acceleration'
   href: articles/hardware-acceleration/index.html

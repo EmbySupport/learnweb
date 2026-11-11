@@ -157,7 +157,7 @@
 <p class="article-description">PipeWire routes media through a scheduled graph of nodes, ports, and links, with session policy and compatibility interfaces around that graph.</p>
 
 
-<p>PipeWire organizes audio and other media as a <strong>processing graph</strong>. Applications and devices produce or consume buffers; links carry those buffers between their ports. A separate session manager decides how available devices and streams should be configured and connected.</p>
+<p>PipeWire organizes audio and other media as a <strong><a href="../../../general-concepts/Graphs.html">processing graph</a></strong>. Applications and devices produce or consume buffers; links carry those buffers between their ports. A separate session manager decides how available devices and streams should be configured and connected.</p>
 <p>This distinction is useful when a Linux player produces audio but it reaches the wrong output: the processing system may be running correctly while the selected route differs from the intended one.</p>
 <p><img src="../images/linux-routes.png" alt="Application interfaces enter a PipeWire processing graph; session policy selects connections, and an ALSA device route reaches hardware."></p>
 <p>The diagram shows one possible local audio configuration. A remote Emby server delivers media to the client app before this local output graph; it is not automatically a node in that client's graph.</p>
@@ -209,6 +209,9 @@ cycles per second = 48,000 / 256 = 187.5
 
 <h4 class="seealso-heading">See Also</h4>
 <ul class="seealso-list">
+      <li class="seealso-item">
+          <a class="seealso-link" href="../../../general-concepts/Graphs.html" title="What is a graph?">What is a graph?</a>
+      </li>
       <li class="seealso-item">
           <a class="seealso-link" href="Audio-ALSA.html" title="ALSA">ALSA</a>
       </li>
