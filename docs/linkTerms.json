@@ -2060,7 +2060,7 @@
     "decision graph":  {
                            "uid":  "Learn-Graphs",
                            "title":  "What is a graph?",
-                           "description":  "A graph describes nodes and their connections, helping explain how audio and video are processed and how processing choices relate.",
+                           "description":  "In media software, a graph is a set of nodes and the edges that connect them, not a chart. What nodes and edges stand for depends on the application.",
                            "url":  "https://emby.media/learn/articles/general-concepts/Graphs.html"
                        },
     "deinterlacing":  {
@@ -2228,7 +2228,7 @@
     "processing graph":  {
                              "uid":  "Learn-Graphs",
                              "title":  "What is a graph?",
-                             "description":  "A graph describes nodes and their connections, helping explain how audio and video are processed and how processing choices relate.",
+                             "description":  "In media software, a graph is a set of nodes and the edges that connect them, not a chart. What nodes and edges stand for depends on the application.",
                              "url":  "https://emby.media/learn/articles/general-concepts/Graphs.html"
                          },
     "progressive video":  {
